@@ -3,7 +3,8 @@
         <div class="row w-100">
             <!-- login Form -->
             <div class="col-md-6 col-12">
-                <form action="">
+                <form action="/login" method="POST">
+                    @csrf
                     <div class="d-flex flex-column gap-1">
                         <!-- logo -->
                         <div class="mb-3">
@@ -31,11 +32,14 @@
                         </div>
                         <!-- login with email -->
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="EMAIL" />
+                            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="EMAIL" />
                             <label for="floatingInput" class="form-label"> EMAIL</label>
                         </div>
+                        @error('email')
+                            <span class="alert alert-danger border-0 p-2 bg-danger text-white">{{ $message }}</span>
+                        @enderror
                         <div class="form-floating mb-3 position-relative">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="PASSWORD" />
+                            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="PASSWORD" />
                             <!-- eye slash click to show -->
                             <i class="bi bi-eye-slash position-absolute start-0 top-50 translate-middle-y me-3"></i>
                             <!-- eye click to hide -->
