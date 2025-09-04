@@ -59,5 +59,10 @@ class FortifyServiceProvider extends ServiceProvider
                 'email' => $request->email,
             ]);
         });
+
+        // verify email
+        Fortify::verifyEmailView(function () {
+            return app()->call(\App\Livewire\Auth\VerifyEmail::class);
+        });
     }
 }

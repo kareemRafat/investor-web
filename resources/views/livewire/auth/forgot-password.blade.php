@@ -9,7 +9,9 @@
                     <div class="d-flex flex-column gap-1  justify-content-center h-100">
                         <!-- logo -->
                         <div class="mb-3">
-                            <img src="{{ asset("images/logo.svg") }}" alt="Logo" class="img-fluid" width="100">
+                            <a href="/" wire:navigate>
+                                <img src="{{ asset("images/logo.svg") }}" alt="Logo" class="img-fluid" width="100">
+                            </a>
                         </div>
 
                         <h4 class="fw-bold">
@@ -45,13 +47,21 @@
                             </span>
                         </button>
                         <!-- New User? -->
-                        <div class="text-center mt-4">
+                        <div class="text-center mt-4 d-flex justify-content-between align-items-center">
                             <span class="small">
                                 Didn't receive the email?
                                 <span class="text-primary">
                                     Check your spam folder
                                 </span>
                             </span>
+                            @php
+                                $previous = url()->previous();
+                                $current = url()->current();
+                            @endphp
+
+                            <a href="{{ $previous !== $current ? $previous : '/' }}" wire:navigate class="small">
+                                Back
+                            </a>
                         </div>
                     </div>
                 </form>

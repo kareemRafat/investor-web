@@ -11,6 +11,9 @@ Route::get('/login', Login::class)
     ->name('login');
 Route::get('/register', Register::class)
     ->name('register');
+Route::get('/verify-email', \App\Livewire\Auth\VerifyEmail::class)
+    ->name('verify-email');
+
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/forgot-password', ForgotPassword::class)
@@ -21,6 +24,6 @@ Route::middleware(['guest'])->group(function () {
 
 
 // main page
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/', 'welcome');
 });
