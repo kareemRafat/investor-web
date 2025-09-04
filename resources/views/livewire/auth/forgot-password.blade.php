@@ -4,7 +4,8 @@
         <div class="row w-100">
             <!-- login Form -->
             <div class="col-md-6 col-12">
-                <form action="">
+                <form action="/forgot-password" method="POST">
+                    @csrf
                     <div class="d-flex flex-column gap-1  justify-content-center h-100">
                         <!-- logo -->
                         <div class="mb-3">
@@ -20,9 +21,23 @@
                         </h6>
                         <!-- login with email -->
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="EMAIL" />
+                            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="EMAIL"  value="{{ old('email') }}"/>
                             <label for="floatingInput" class="form-label">EMAIL</label>
+                            <!-- Error message -->
+                           @error('email')
+                               <div class="text-danger mt-2 fw-semibold">
+                                    <i class="bi bi-exclamation-circle me-2"></i>
+                                   {{ $message }}
+                               </div>
+                           @enderror
+                           @if (session('status'))
+                                <div class="mb-4 mt-2 font-medium text-sm text-success fw-semibold">
+                                    <i class="bi bi-check-circle me-2"></i>
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                         </div>
+
                         <button type="submit"
                             class="btn btn-custom py-2 d-flex justify-content-center gap-4 align-items-center small w-100">
                             <span class="small">

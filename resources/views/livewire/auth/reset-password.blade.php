@@ -4,7 +4,10 @@
          <div class="row w-100">
              <!-- reset password Form -->
              <div class="col-md-6 col-12">
-                 <form action="">
+                 <form action="/reset-password" method="POST">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ request()->route('token') }}">
+                    <input type="hidden" name="email" value="{{ request()->email }}">
                      <div class="d-flex flex-column gap-1  justify-content-center h-100">
                          <!-- logo -->
                          <div class="mb-3">
@@ -17,28 +20,20 @@
                          <h6 class="text-secondary mb-4 mt-3 small">
                              Enter your new password and confirm it to update your account information.
                          </h6>
-                         <div class="form-floating mb-3 position-relative">
-                             <input type="password" class="form-control" id="floatingPassword"
-                                 placeholder="NEW PASSWORD" />
-                             <!-- eye slash click to show -->
-                             <i class="bi bi-eye-slash position-absolute start-0 top-50 translate-middle-y me-3"></i>
-                             <!-- eye click to hide -->
-                             <!-- <i class="bi bi-eye position-absolute start-0 top-50 translate-middle-y me-3"></i> -->
-                             <label for="floatingPassword" class="form-label">
-                                 NEW PASSWORD
-                             </label>
-                         </div>
-                         <div class="form-floating mb-3 position-relative">
-                             <input type="password" class="form-control" id="floatingPassword"
-                                 placeholder="CONFIRM NEW PASSWORD" />
-                             <!-- eye slash click to show -->
-                             <i class="bi bi-eye-slash position-absolute start-0 top-50 translate-middle-y me-3"></i>
-                             <!-- eye click to hide -->
-                             <!-- <i class="bi bi-eye position-absolute start-0 top-50 translate-middle-y me-3"></i> -->
-                             <label for="floatingPassword" class="form-label">
-                                 CONFIRM NEW PASSWORD
-                             </label>
-                         </div>
+                          <!-- password -->
+                        <x-auth.password-input name="password" label="Password" />
+
+                        <!-- password confirmation -->
+                        <x-auth.password-input name="password_confirmation" label="Password Confirmation" />
+
+                         @error('email')
+                            <div class="text-danger mb-2 fw-semibold">
+                                <i class="bi bi-exclamation-circle me-2"></i>
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+
                          <button type="submit"
                              class="btn btn-custom py-2 d-flex justify-content-center gap-4 align-items-center small w-100">
                              <span class="small">

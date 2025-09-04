@@ -2,7 +2,6 @@
 <div class="container">
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="row w-100">
-            @dump($errors->all())
             <!-- login Form -->
             <div class="col-md-6 col-12">
                 <form action="/register" method="POST">

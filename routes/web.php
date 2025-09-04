@@ -11,10 +11,14 @@ Route::get('/login', Login::class)
     ->name('login');
 Route::get('/register', Register::class)
     ->name('register');
-Route::get('/forgot-password', ForgotPassword::class)
-    ->name('forgot-password');
-Route::get('/reset-password', ResetPassword::class)
-    ->name('reset-password');
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/forgot-password', ForgotPassword::class)
+        ->name('forgot-password');
+    Route::get('/reset-password/{token}', ResetPassword::class)
+        ->name('password.reset');
+});
+
 
 // main page
 Route::middleware(['auth'])->group(function () {

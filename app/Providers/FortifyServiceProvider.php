@@ -2,17 +2,18 @@
 
 namespace App\Providers;
 
+use Livewire\Livewire;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Laravel\Fortify\Fortify;
 use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
+use App\Actions\Fortify\UpdateUserProfileInformation;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
-use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -51,8 +52,12 @@ class FortifyServiceProvider extends ServiceProvider
 
     protected function viewsRoutes()
     {
-        // Fortify::loginView(function () {
-        //     return view('auth.login');
-        // });
+        // redirect to reset-password route with request data
+        Fortify::resetPasswordView(function ($request) {
+            return redirect()->route('reset-password', [
+                'token' => $request->route('token'),
+                'email' => $request->email,
+            ]);
+        });
     }
 }
