@@ -16,7 +16,6 @@ Route::get('/forgot-password', ForgotPassword::class)
 Route::get('/reset-password', ResetPassword::class)
     ->name('reset-password');
 
-
 // main page
 Route::middleware(['auth'])->group(function () {
     Route::view('/', 'welcome');
