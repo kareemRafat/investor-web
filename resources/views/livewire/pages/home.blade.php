@@ -7,14 +7,14 @@
             <div class="d-flex flex-column h-100 ">
                 <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
                     <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/lamp-charge.png') }}" alt="lamp-charge" class="img-fluid mx-auto" width="120"
-                            height="140" />
+                        <img src="{{ asset('images/lamp-charge.png') }}" alt="lamp-charge" class="img-fluid mx-auto"
+                            width="120" height="140" />
                     </div>
                 </div>
                 <a href="/idea_step1_en.html" aria-label="Submit Your Idea" title="Submit Your Idea" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
-                        Submit Your Idea
+                        {{ __('pages/mainpage.submit_idea') }}
                     </span>
                 </a>
             </div>
@@ -25,14 +25,14 @@
             <div class="d-flex flex-column h-100 ">
                 <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
                     <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/investor.png') }}" alt="investor" class="img-fluid mx-auto" width="120"
-                            height="140" />
+                        <img src="{{ asset('images/investor.png') }}" alt="investor" class="img-fluid mx-auto"
+                            width="120" height="140" />
                     </div>
                 </div>
                 <a href="/investment_step1_en.html" aria-label="Investor" title="Investor" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
-                        Investor
+                        {{ __('pages/mainpage.investor') }}
                     </span>
                 </a>
             </div>
@@ -43,14 +43,14 @@
             <div class="d-flex flex-column h-100 ">
                 <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
                     <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/search.png') }}" alt="search" class="img-fluid mx-auto" width="120"
-                            height="140" />
+                        <img src="{{ asset('images/search.png') }}" alt="search" class="img-fluid mx-auto"
+                            width="120" height="140" />
                     </div>
                 </div>
                 <a href="/ideas_en.html" aria-label="Explore Ideas" title="Explore Ideas" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
-                        Explore Ideas
+                        {{ __('pages/mainpage.explore_ideas') }}
                     </span>
                 </a>
             </div>
@@ -61,14 +61,14 @@
             <div class="d-flex flex-column h-100">
                 <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
                     <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/investor-search.png') }}" alt="investor-search" class="img-fluid mx-auto"
-                            width="120" height="140" />
+                        <img src="{{ asset('images/investor-search.png') }}" alt="investor-search"
+                            class="img-fluid mx-auto" width="120" height="140" />
                     </div>
                 </div>
                 <a href="/investor-search.html" aria-label="Find an Investor" title="Find an Investor" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
-                        Find an Investor
+                        {{ __('pages/mainpage.find_investor') }}
                     </span>
                 </a>
             </div>
@@ -82,7 +82,7 @@
                     <div class="d-flex flex-column">
                         <div class="bg-light text-primary rounded-8 shadow-sm mb-3">
                             <h5 class="mb-0 p-3 fw-bold text-center">
-                                Latest Ideas
+                                {{ __('pages/mainpage.latest_ideas') }}
                             </h5>
                         </div>
                         <div class="d-flex flex-column gap-3">
@@ -191,7 +191,7 @@
                             <!-- View All Ideas -->
                             <div class="col-12">
                                 <a href="/ideas_en.html" class="btn bg-custom w-100 rounded-8 py-3">
-                                    View All Ideas
+                                    {{ __('pages/mainpage.view_all_ideas') }}
                                 </a>
                             </div>
                         </div>
@@ -206,7 +206,7 @@
                     <div class="d-flex flex-column">
                         <div class="bg-light text-primary rounded-8 shadow-sm mb-3">
                             <h5 class="mb-0 p-3 fw-bold text-center">
-                                Latest Investment Opportunities
+                                {{ __('pages/mainpage.latest_opportunities') }}
                             </h5>
                         </div>
                         <div class="d-flex flex-column gap-3">
@@ -315,7 +315,7 @@
                             <!-- Latest Investment Opportunities -->
                             <div class="col-12">
                                 <a href="/investment_en.html" class="btn bg-custom w-100 rounded-8 py-3">
-                                    View All Opportunities
+                                    {{ __('pages/mainpage.view_all_opportunities') }}
                                 </a>
                             </div>
                         </div>

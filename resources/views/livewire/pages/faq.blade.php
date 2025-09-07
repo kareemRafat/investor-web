@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="bg-light text-primary rounded-8 shadow-sm mb-3">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    Frequently Asked Questions
+                    {{ __('header.fullfaq') }}
                 </h5>
             </div>
             <div class="card border-0 shadow-sm rounded-8">

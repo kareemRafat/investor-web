@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="bg-light text-primary rounded-8 shadow-sm mb-3">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    WHO US
+                    {{ __('header.about') }}
                 </h5>
             </div>
             <div class="card border-0 shadow-sm rounded-8">
@@ -48,7 +48,7 @@
                                         </div>
                                         <!-- img -->
                                         <div class="col-12 col-lg-5 d-flex justify-content-center order-0 order-lg-1">
-                                            <img src="/assets/images/about.png" alt="about"
+                                            <img src="{{ asset('images/about.png') }}" alt="about"
                                                 class="img-fluid rounded-8 w-100 img_about" width="500"
                                                 height="500" />
                                         </div>

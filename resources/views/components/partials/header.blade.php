@@ -10,32 +10,32 @@
             <nav class="d-none d-xl-flex">
                 <ul class="list-unstyled d-flex gap-xl-3 gap-xl-4 mb-0">
                     <li>
-                        <x-nav-link route="main.home" label="Home" />
+                        <x-nav-link route="main.home" label="{{ __('header.home') }}" />
                     </li>
                     <li>
-                        <x-nav-link route="main.about" label="About Us" />
+                        <x-nav-link route="main.about" label="{{ __('header.about') }}" />
                     </li>
                     <!-- Investment Fund -->
                     <li>
                         <a href="/ideas_en.html" class="text-dark">
-                            Investment Fund
+                            {{ __('header.investment') }}
                         </a>
                     </li>
                     <!-- Terms of Use -->
                     <li>
-                        <x-nav-link route="main.terms" label="Terms of Use" />
+                        <x-nav-link route="main.terms" label="{{ __('header.terms') }}" />
                     </li>
                     <!-- Privacy Policy -->
                     <li>
-                        <x-nav-link route="main.privacypolicy" label="Privacy Policy" />
+                        <x-nav-link route="main.privacypolicy" label="{{ __('header.privacy') }}" />
                     </li>
                     <!-- FAQ -->
                     <li>
-                        <x-nav-link route="main.faq" label="FAQ" />
+                        <x-nav-link route="main.faq" label="{{ __('header.faq') }}" />
                     </li>
                     <!--  Contact Us-->
                     <li>
-                        <x-nav-link route="main.contact" label="Contact Us" />
+                        <x-nav-link route="main.contact" label="{{ __('header.contact') }}" />
                     </li>
                 </ul>
             </nav>
@@ -43,7 +43,7 @@
                 <!-- login button -->
                 <a href="/login_en.html" class="btn btn-primary rounded-4 pt-2" title="login" aria-label="login">
                     <span class="small fw-semibold">
-                        Login
+                        {{ __('header.login') }}
                     </span>
                 </a>
                 <!-- language -->
