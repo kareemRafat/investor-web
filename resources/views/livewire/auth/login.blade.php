@@ -38,14 +38,9 @@
                         @error('email')
                             <span class="alert alert-danger border-0 p-2 bg-danger text-white">{{ $message }}</span>
                         @enderror
-                        <div class="form-floating mb-3 position-relative">
-                            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="PASSWORD" />
-                            <!-- eye slash click to show -->
-                            <i class="bi bi-eye-slash position-absolute start-0 top-50 translate-middle-y me-3"></i>
-                            <!-- eye click to hide -->
-                            <!-- <i class="bi bi-eye position-absolute start-0 top-50 translate-middle-y me-3"></i> -->
-                            <label for="floatingPassword" class="form-label">PASSWORD</label>
-                        </div>
+
+                        <x-auth.password-input name="password" label="Password" />
+                        
                         <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">

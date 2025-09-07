@@ -77,8 +77,6 @@
                         <!-- password confirmation -->
                         <x-auth.password-input name="password_confirmation" label="Password Confirmation" />
 
-
-
                         <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">
