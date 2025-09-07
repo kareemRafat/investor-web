@@ -3,7 +3,7 @@
     <div class="row px-2 px-xl-0">
         <div class="d-flex align-items-center justify-content-between bg-white py-3 px-4 shadow-sm rounded-8">
             <!-- logo -->
-            <a href="/index_en.html" class="logo" title="Investment" aria-label="Investment">
+            <a href="{{ route('main.home') }}" wire:navigate class="logo" title="Investment" aria-label="Investment">
                 <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid" width="120" height="120" />
             </a>
             <!-- menu items -->
