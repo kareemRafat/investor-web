@@ -2,8 +2,8 @@
 <div class="container px-sm-0">
     <div class="row g-3 mb-3">
         <div class="col-12">
-            {{-- step header --}}
-            <x-pages.idea-wizard.idea-header title="Submit your idea" subtitle="What is your idea's field?" />
+
+
 
             <livewire:pages.idea.idea-form.steps.step1 />
 
