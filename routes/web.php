@@ -9,6 +9,7 @@ use App\Livewire\Pages\Contact;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\About;
+use App\Livewire\Pages\Idea\IdeaForm;
 use App\Livewire\Pages\PrivacyPolicy;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +41,15 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+
+// Main pages
 Route::get('/' , Home::class)->name('main.home');
 Route::get('/contact' , Contact::class)->name('main.contact');
 Route::get('/terms-of-use' , Terms::class)->name('main.terms');
 Route::get('/faq' , FAQ::class)->name('main.faq');
 Route::get('/privacy-policy' , PrivacyPolicy::class)->name('main.privacypolicy');
 Route::get('/about' , About::class)->name('main.about');
+
+
+// Submit your Idea
+Route::get('/idea' , IdeaForm::class)->name('idea.main');
