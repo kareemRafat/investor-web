@@ -47,20 +47,32 @@
 
             <div class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
                 @if ($currentStep > 1)
-                    <a wire:click.prevent="previousStep" aria-label="Previous page" title="Previous page"
-                        class="btn btn-outline-custom btn_next py-2 px-4">
-                        <span class="small fw-bold">
-                            <i class="bi bi-arrow-left-circle me-2"></i>
-                            Previous
+                    <a wire:click.prevent="previousStep" aria-label="{{ __('idea/form.previous') }}"
+                        title="{{ __('idea/form.previous') }}" class="btn btn-outline-custom btn_next py-2 px-4">
+                        <span class="small fw-bold d-flex align-items-center">
+                            @if (app()->getLocale() === 'ar')
+                                <i class="bi bi-arrow-right-circle mx-2"></i>
+                                {{ __('idea/form.previous') }}
+                            @else
+                                <i class="bi bi-arrow-left-circle mx-2"></i>
+                                {{ __('idea/form.previous') }}
+                            @endif
                         </span>
                     </a>
                 @endif
 
-                <a wire:click.prevent="nextStep" aria-label="Next page" title="Next page"
+                <a wire:click.prevent="nextStep"
+                    aria-label="{{ $currentStep === 10 ? __('idea/form.finish') : __('idea/form.next') }}"
+                    title="{{ $currentStep === 10 ? __('idea/form.finish') : __('idea/form.next') }}"
                     class="btn {{ $currentStep === 10 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
-                    <span class="small fw-bold">
-                        {{ $currentStep === 10 ? 'Finish' : 'Next' }}
-                        <i class="bi bi-arrow-right-circle ms-2"></i>
+                    <span class="small fw-bold d-flex align-items-center">
+                        @if (app()->getLocale() === 'ar')
+                        {{ $currentStep === 10 ? __('idea/form.finish') : __('idea/form.next') }}
+                        <i class="bi bi-arrow-left-circle mx-2"></i>
+                        @else
+                            {{ $currentStep === 10 ? __('idea/form.finish') : __('idea/form.next') }}
+                            <i class="bi bi-arrow-right-circle mx-2"></i>
+                        @endif
                     </span>
                 </a>
             </div>
