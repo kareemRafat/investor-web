@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Idea;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
 class IdeaForm extends Component
 {
