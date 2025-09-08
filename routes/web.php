@@ -52,4 +52,4 @@ Route::get('/about' , About::class)->name('main.about');
 
 
 // Submit your Idea
-Route::get('/idea' , IdeaForm::class)->name('idea.main');
+Route::get('/ideas' , IdeaForm::class)->name('ideas.main');

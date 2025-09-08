@@ -11,7 +11,7 @@
                             width="120" height="140" />
                     </div>
                 </div>
-                <a href="/idea_step1_en.html" aria-label="Submit Your Idea" title="Submit Your Idea" type="button"
+                <a href="{{ route('ideas.main') }}" wire:navigate aria-label="Submit Your Idea" title="Submit Your Idea" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
                         {{ __('pages/mainpage.submit_idea') }}

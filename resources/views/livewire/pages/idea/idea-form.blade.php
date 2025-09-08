@@ -3,17 +3,23 @@
     <div class="row g-3 mb-3">
         <div class="col-12">
 
-
-
-            <livewire:pages.idea.idea-form.steps.step1 />
+            <livewire:pages.idea.idea-form.steps.step10 />
 
             <div class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
-                <a href="/idea_step2_en.html" aria-label="Next Page" title="Next Page"
+                <a href="/idea_step1_en.html" aria-label="Previous page" title="Previous page"
                     class="btn btn-outline-custom btn_next py-2 px-4">
                     <span class="small fw-bold">
                         <!-- icon arrow circle -->
-                        <i class="bi bi-arrow-right-circle"></i>
+                        <i class="bi bi-arrow-left-circle me-2"></i>
+                        Previous
+
+                    </span>
+                </a>
+                <a href="/idea_step3_en.html" aria-label="Next page" title="Next page" class="btn btn-custom py-2 px-4">
+                    <span class="small fw-bold">
                         Next
+                        <!-- icon arrow circle -->
+                        <i class="bi bi-arrow-right-circle ms-2"></i>
                     </span>
                 </a>
             </div>
