@@ -7,102 +7,133 @@
         <div class="row g-4 justify-content-center">
             <div class="col-12">
                 <div class="row g-3">
-                    <!-- Total Cost -->
+                    <!-- One-time Profits -->
                     <div class="col-12 col-lg-6">
                         <div class="h-100">
-                            <h6 class="rounded-8 p-3 bg-light fw-bold mb-3 text-center">Total Cost</h6>
                             <div class="row g-3">
-                                <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $1,000 to $5,000<br>
-                                        (3,700 to 18,500 SAR)
-                                    </div>
+                                <div class="col-12">
+                                    <input type="radio" class="btn-check" id="one-time" name="profit_type"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                        for="one-time">One-time Profits</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $6,000 to $10,000<br>
-                                        (22,200 to 37,000 SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-1"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-1">$1,000 to $5,000<br>(3,700 to 18,500 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $51,000 to $100,000<br>
-                                        (188,800 to 370,000 SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-2"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-2">$6,000 to $10,000<br>(22,200 to 37,000 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $101,000 to $250,000<br>
-                                        (374,000 to 925,750 SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-3"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-3">$51,000 to $100,000<br>(188,800 to 370,000 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $1 million to $2 million<br>
-                                        (3.7 million to 7.4 million SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-4"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-4">$101,000 to $250,000<br>(374,000 to 925,750 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $2 million to $5 million<br>
-                                        (7.4 million to 18.5 million SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-5"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-5">$1 million to $2 million<br>(3.7 million to 7.4 million
+                                        SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $50 million to $100 million<br>
-                                        (185 million to 370 million SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-6"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-6">$2 million to $5 million<br>(7.4 million to 18.5 million
+                                        SAR)</label>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <input type="radio" class="btn-check" name="profit_range" id="one-time-7"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="one-time-7">$50 million to $100 million<br>(185 million to 370 million
+                                        SAR)</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Annual Cost -->
+                    <!-- Annual Profits -->
                     <div class="col-12 col-lg-6">
                         <div class="h-100">
-                            <h6 class="bg-light rounded-8 p-3 fw-bold mb-3 text-center">Annual Cost</h6>
                             <div class="row g-3">
-                                <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $11,000 to $20,000<br>
-                                        (40,700 to 74,000 SAR)
-                                    </div>
+                                <div class="col-12">
+                                    <input type="radio" class="btn-check" id="Annual" name="profit_type"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                        for="Annual">Annual Profits</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $21,000 to $50,000<br>
-                                        (77,700 to 185,000 SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-1"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-1">$11,000 to $20,000<br>(40,700 to 74,000 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $251,000 to $500,000<br>
-                                        (929,450 to 1,851,500 SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-2"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-2">$21,000 to $50,000<br>(77,700 to 185,000 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $501,000 to $1,000,000<br>
-                                        (1,855,000 to 3,700,000 SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-3"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-3">$251,000 to $500,000<br>(929,450 to 1,851,500 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $5 million to $10 million<br>
-                                        (18.5 million to 37 million SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-4"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-4">$501,000 to $1,000,000<br>(1,855,000 to 3,700,000 SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        $10 million to $50 million<br>
-                                        (37 million to 185 million SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-5"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-5">$5 million to $10 million<br>(18.5 million to 37 million
+                                        SAR)</label>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="bg-light rounded-8 shadow-sm p-3 text-center small fw-bold">
-                                        More than $100 million<br>
-                                        (More than 370 million SAR)
-                                    </div>
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-6"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-6">$10 million to $50 million<br>(37 million to 185 million
+                                        SAR)</label>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <input type="radio" class="btn-check" name="profit_range" id="annual-7"
+                                        autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 p-3 rounded-8 shadow-sm small fw-bold"
+                                        for="annual-7">More than $100 million<br>(More than 370 million SAR)</label>
                                 </div>
                             </div>
                         </div>

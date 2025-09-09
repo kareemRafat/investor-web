@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Idea;
 
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 
 class IdeaForm extends Component
@@ -13,8 +14,13 @@ class IdeaForm extends Component
 
     public function nextStep()
     {
-        // $this->validateStep();
-        if ($this->currentStep < $this->totalSteps) {
+        $this->dispatch("validate-step-{$this->currentStep}");
+    }
+
+    #[On('go-to-next-step')]
+    public function goToNextStep()
+    {
+        if ($this->currentStep < 10) {
             $this->currentStep++;
         }
     }
@@ -25,7 +31,6 @@ class IdeaForm extends Component
             $this->currentStep--;
         }
     }
-
 
     #[Title('Submit Your Idea')]
     public function render()
