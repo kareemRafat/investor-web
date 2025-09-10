@@ -12,15 +12,15 @@ class Step5 extends Component
         'data.company' => 'required|in:yes,no',
         'data.space_type' => 'in:large,small',
         'data.staff' => 'required|in:yes,no',
-        'data.staff_number' => 'integer|min:1',
+        'data.staff_number' => 'required|integer|min:1',
         'data.workers' => 'required|in:yes,no',
-        'data.workers_number' => 'nullable|integer|min:1',
-        'data.spaces' => 'required|in:yes,no',
-        'data.factory_type' => 'nullable|in:open,factory,land',
+        'data.workers_number' => 'required|integer|min:1',
+        'data.executive_spaces' => 'required|in:yes,no',
+        'data.executive_spaces_type' => 'required|in:open_spaces,factory,land_space',
         'data.equipment' => 'required|in:yes,no',
-        'data.equipment_type' => 'nullable|in:industrial,electronic,other',
+        'data.equipment_type' => 'required|in:industrial,electronic,other',
         'data.software' => 'required|in:yes,no',
-        'data.software_type' => 'nullable|in:static,dynamic',
+        'data.software_type' => 'required|in:static,dynamic',
         'data.website' => 'required|in:yes,no',
     ])]
     public array $data = [
@@ -30,8 +30,8 @@ class Step5 extends Component
         'staff_number' => null,
         'workers' => null,
         'workers_number' => null,
-        'spaces' => null,
-        'factory_type' => null,
+        'executive_spaces' => null,
+        'executive_spaces_type' => null,
         'equipment' => null,
         'equipment_type' => null,
         'software' => null,
@@ -42,9 +42,7 @@ class Step5 extends Component
     #[On('validate-step-5')]
     public function validateStep5()
     {
-        dd(request()->toArray());
         $this->validate();
-        dd(1231);
         $this->dispatch('go-to-next-step');
     }
 

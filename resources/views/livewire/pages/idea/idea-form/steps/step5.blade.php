@@ -3,7 +3,7 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="Requirements for implementing the idea" />
 
-        @dump($errors->all())
+    @dump($errors->all())
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
@@ -14,7 +14,7 @@
                             <div class="row g-3">
 
                                 {{-- Establishing a company --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
+                                <div class="row mx-0 px-0 my-2 align-items-center">
                                     <div class="col-lg-7 col-12">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
@@ -40,8 +40,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <label for="space_type" class="text-primary fw-bold fs-5">Office spaces</label>
+                                        <div class="d-flex align-items-center gap-4">
+                                            <label for="space_type" class="text-primary fw-bold fs-5">Office
+                                                spaces</label>
                                             <div class="d-flex align-items-center gap-4">
                                                 <div class="d-flex align-items-center gap-2">
                                                     <input class="form-check-input" type="radio" name="space_type"
@@ -61,7 +62,7 @@
                                 </div>
 
                                 {{-- Specialized Employees --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
+                                <div class="row mx-0 px-0 my-2 align-items-center">
                                     <div class="col-lg-7 col-12">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
@@ -90,7 +91,7 @@
                                         <div class="d-flex align-items-center justify-content-between gap-5">
                                             <label for="number" class="text-primary fw-bold fs-5">Number</label>
                                             <input type="number" class="form-control py-3 rounded-8" id="number"
-                                                wire:model="data.number" placeholder="Enter number" />
+                                                wire:model="data.staff_number" placeholder="Enter number" />
                                         </div>
                                         @error('data.staff_number')
                                             <span class="text-danger small">{{ $message }}</span>
@@ -99,7 +100,7 @@
                                 </div>
 
                                 {{-- Unprofessional workers --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
+                                <div class="row mx-0 px-0 my-2 align-items-center">
                                     <div class="col-lg-7 col-12">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
@@ -129,7 +130,7 @@
                                             <label for="number_workers"
                                                 class="text-primary fw-bold fs-5">Number</label>
                                             <input type="number" class="form-control py-3 rounded-8"
-                                                id="number_workers" wire:model="data.number_workers"
+                                                id="number_workers" wire:model="data.workers_number"
                                                 placeholder="Enter number" />
                                         </div>
                                         @error('data.workers_number')
@@ -139,7 +140,7 @@
                                 </div>
 
                                 {{-- Executive Spaces --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
+                                <div class="row mx-0 px-0 my-2 align-items-center">
                                     <div class="col-lg-7 col-12">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
@@ -149,14 +150,14 @@
                                             <div class="col-4 justify-content-end d-flex gap-2">
                                                 <div class="col-6">
                                                     <input type="radio" class="btn-check" id="spaces_yes"
-                                                        wire:model="data.spaces" value="yes" name="spaces">
+                                                        wire:model="data.executive_spaces" value="yes" name="executive_spaces">
                                                     <label
                                                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                                         for="spaces_yes">Yes</label>
                                                 </div>
                                                 <div class="col-6">
                                                     <input type="radio" class="btn-check" id="spaces_no"
-                                                        wire:model="data.spaces" value="no" name="spaces">
+                                                        wire:model="data.executive_spaces" value="no" name="executive_spaces">
                                                     <label
                                                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                                         for="spaces_no">No</label>
@@ -168,21 +169,21 @@
                                         <div class="d-flex align-items-center gap-2 gap-md-3 gap-lg-4">
                                             <div class="d-flex align-items-center gap-2">
                                                 <input class="form-check-input" type="radio" name="factory"
-                                                    id="factory_large" wire:model="data.factory" value="open_spaces"
-                                                    checked>
+                                                    id="factory_large" wire:model="data.executive_spaces_type"
+                                                    value="open_spaces" checked>
                                                 <label class="form-check-label" for="factory_large">Open
                                                     spaces</label>
                                             </div>
                                             <div class="d-flex align-items-center gap-2">
                                                 <input class="form-check-input" type="radio" name="open_spaces"
-                                                    id="open_spaces_large" wire:model="data.open_spaces"
+                                                    id="open_spaces_large" wire:model="data.executive_spaces_type"
                                                     value="factory" checked>
                                                 <label class="form-check-label"
                                                     for="open_spaces_large">Factory</label>
                                             </div>
                                             <div class="d-flex align-items-center gap-2">
                                                 <input class="form-check-input" type="radio" name="land"
-                                                    id="land_large" wire:model="data.land" value="land_space"
+                                                    id="land_large" wire:model="data.executive_spaces_type" value="land_space"
                                                     checked>
                                                 <label class="form-check-label" for="land_large">Land space</label>
                                             </div>
@@ -191,7 +192,7 @@
                                 </div>
 
                                 {{-- Devices and Equipment --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
+                                <div class="row mx-0 px-0 my-2 align-items-center">
                                     <div class="col-lg-7 col-12">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
@@ -220,19 +221,19 @@
                                         <div class="d-flex align-items-center gap-4">
                                             <div class="d-flex align-items-center gap-2">
                                                 <input type="radio" class="form-check-input" id="Industrial"
-                                                    wire:model="data.equipment_type" value="Industrial" checked
+                                                    wire:model="data.equipment_type" value="industrial" checked
                                                     name="equipment_type">
                                                 <label class="form-check-label" for="Industrial">Industrial</label>
                                             </div>
                                             <div class="d-flex align-items-center gap-2">
                                                 <input type="radio" class="form-check-input" id="Electronic"
-                                                    wire:model="data.equipment_type" value="Electronic"
+                                                    wire:model="data.equipment_type" value="electronic"
                                                     name="equipment_type">
                                                 <label class="form-check-label" for="Electronic">Electronic</label>
                                             </div>
                                             <div class="d-flex align-items-center gap-2">
                                                 <input type="radio" class="form-check-input" id="other"
-                                                    wire:model="data.equipment_type" value="Other"
+                                                    wire:model="data.equipment_type" value="other"
                                                     name="equipment_type">
                                                 <label class="form-check-label" for="other">Other</label>
                                             </div>
@@ -241,54 +242,12 @@
                                 </div>
 
                                 {{-- Software and applications --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
+                                <div class="row mx-0 px-0 my-2 align-items-center">
                                     <div class="col-lg-7 col-12">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
                                                 Software and applications
-                                            </div>
-                                            <div class="col-4 justify-content-end d-flex gap-2">
-                                                <div class="col-6">
-                                                    <input type="radio" class="btn-check" id="website_yes"
-                                                        wire:model="data.website" value="yes" name="website">
-                                                    <label
-                                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                        for="website_yes">Yes</label>
-                                                </div>
-                                                <div class="col-6">
-                                                    <input type="radio" class="btn-check" id="website_no"
-                                                        wire:model="data.website" value="no" name="website">
-                                                    <label
-                                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                        for="website_no">No</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
-                                        <div class="d-flex align-items-center gap-5">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <input type="radio" class="form-check-input" id="static"
-                                                    wire:model="data.dynamic" value="static" checked name="dynamic">
-                                                <label class="form-check-label" for="static">Static</label>
-                                            </div>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <input type="radio" class="form-check-input" id="dynamic"
-                                                    wire:model="data.dynamic" value="dynamic" name="dynamic">
-                                                <label class="form-check-label" for="dynamic">Dynamic</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Website --}}
-                                <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
-                                    <div class="col-lg-7 col-12">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div
-                                                class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
-                                                Website
                                             </div>
                                             <div class="col-4 justify-content-end d-flex gap-2">
                                                 <div class="col-6">
@@ -304,6 +263,49 @@
                                                     <label
                                                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                                         for="software_no">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
+                                        <div class="d-flex align-items-center gap-5">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <input type="radio" class="form-check-input" id="static"
+                                                    wire:model="data.software_type" value="static" checked
+                                                    name="dynamic">
+                                                <label class="form-check-label" for="static">Static</label>
+                                            </div>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <input type="radio" class="form-check-input" id="dynamic"
+                                                    wire:model="data.software_type" value="dynamic" name="dynamic">
+                                                <label class="form-check-label" for="dynamic">Dynamic</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Website --}}
+                                <div class="row mx-0 px-0 my-2 align-items-center">
+                                    <div class="col-lg-7 col-12">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div
+                                                class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
+                                                Website
+                                            </div>
+                                            <div class="col-4 justify-content-end d-flex gap-2">
+                                                <div class="col-6">
+                                                    <input type="radio" class="btn-check" id="website_yes"
+                                                        wire:model="data.website" value="yes" name="website">
+                                                    <label
+                                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                                        for="website_yes">Yes</label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="radio" class="btn-check" id="website_no"
+                                                        wire:model="data.website" value="no" name="website">
+                                                    <label
+                                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                                        for="website_no">No</label>
                                                 </div>
                                             </div>
                                         </div>
