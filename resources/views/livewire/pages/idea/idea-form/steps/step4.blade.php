@@ -101,11 +101,9 @@
                                             for="{{ $id }}">{!! $label !!}</label>
                                     </div>
                                 @endforeach
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
