@@ -14,7 +14,6 @@ class Step4 extends Component
         'profit_range' => 'required|string',
     ])]
     public ?string $profit_type = null;
-
     public ?string $profit_range = null;
 
     public function updatedProfitRange($value)

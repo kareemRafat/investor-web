@@ -1,7 +1,8 @@
 <div>
     {{-- step header --}}
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="Your specific requirements in exchange for the idea are" />
+    <x-pages.idea-wizard.idea-header
+        title="{{ __('idea.steps.step8.title') }}"
+        subtitle="{{ __('idea.steps.step8.subtitle') }}" />
 
     @dump($errors->all())
 
@@ -12,11 +13,12 @@
                     <!-- Main Table -->
                     <div class="col-12">
                         <div class="row">
+
                             <!-- Profit Share -->
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <div class="h-100">
                                     <div class="bg-light rounded-8 shadow-sm p-3 text-center fw-bold mb-3">
-                                        A share of the profits
+                                        {{ __('idea.steps.step8.profit_share') }}
                                     </div>
                                     <div class="row mx-0 px-0 g-2">
                                         @foreach([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75] as $percent)
@@ -46,37 +48,41 @@
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <div class="h-100">
                                     <div class="bg-light rounded-8 shadow-sm p-3 text-center fw-bold mb-3">
-                                        A one-time sum of money
+                                        {{ __('idea.steps.step8.one_time_sum') }}
                                     </div>
                                     <div class="row g-2 mx-0 px-0 d-flex flex-column">
-                                        <!-- currency 1 -->
+                                        <!-- Currency: Dollar -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
                                             <div class="col-5">
                                                 <span class="w-100 btn btn-outline-custom rounded-4 py-3">
-                                                    dollars
+                                                    {{ __('idea.currency.dollar') }}
                                                 </span>
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="one_time_dollar" name="one_time_dollar"
-                                                    wire:model="data.one_time_dollar" placeholder="" />
+                                                    id="one_time_dollar"
+                                                    wire:model="data.one_time_dollar"
+                                                    name="one_time_dollar"
+                                                    placeholder="" />
                                             </div>
                                         </div>
                                         @error('data.one_time_dollar')
                                             <div class="text-danger small mt-1">{{ $message }}</div>
                                         @enderror
 
-                                        <!-- currency 2 -->
+                                        <!-- Currency: SAR -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
                                             <div class="col-5">
                                                 <span class="w-100 btn btn-outline-custom rounded-4 py-3">
-                                                    SR
+                                                    {{ __('idea.currency.sar') }}
                                                 </span>
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="one_time_sar" name="one_time_sar"
-                                                    wire:model="data.one_time_sar" placeholder="" />
+                                                    id="one_time_sar"
+                                                    wire:model="data.one_time_sar"
+                                                    name="one_time_sar"
+                                                    placeholder="" />
                                             </div>
                                         </div>
                                         @error('data.one_time_sar')
@@ -86,41 +92,45 @@
                                 </div>
                             </div>
 
-                            <!-- Combo -->
+                            <!-- Combo: Profit + Money -->
                             <div class="col-lg-4 col-md-12 col-12 mb-3">
                                 <div class="h-100">
                                     <div class="bg-light rounded-8 shadow-sm p-3 text-center fw-bold mb-3">
-                                        A share of the profits + a sum of money
+                                        {{ __('idea.steps.step8.profit_plus_sum') }}
                                     </div>
                                     <div class="row g-2 mx-0 px-0 d-flex flex-column">
-                                        <!-- currency 1 -->
+                                        <!-- Currency: Dollar -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
                                             <div class="col-5">
                                                 <span class="w-100 btn btn-outline-custom rounded-4 py-3">
-                                                    dollars
+                                                    {{ __('idea.currency.dollar') }}
                                                 </span>
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="combo_dollar" name="combo_dollar"
-                                                    wire:model="data.combo_dollar" placeholder="" />
+                                                    id="combo_dollar"
+                                                    wire:model="data.combo_dollar"
+                                                    name="combo_dollar"
+                                                    placeholder="" />
                                             </div>
                                         </div>
                                         @error('data.combo_dollar')
                                             <div class="text-danger small mt-1">{{ $message }}</div>
                                         @enderror
 
-                                        <!-- currency 2 -->
+                                        <!-- Currency: SAR -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
                                             <div class="col-5">
                                                 <span class="w-100 btn btn-outline-custom rounded-4 py-3">
-                                                    SR
+                                                    {{ __('idea.currency.sar') }}
                                                 </span>
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="combo_sar" name="combo_sar"
-                                                    wire:model="data.combo_sar" placeholder="" />
+                                                    id="combo_sar"
+                                                    wire:model="data.combo_sar"
+                                                    name="combo_sar"
+                                                    placeholder="" />
                                             </div>
                                         </div>
                                         @error('data.combo_sar')
@@ -136,7 +146,8 @@
                                                         id="combo_percentage_{{ $percent }}"
                                                         value="{{ $percent }}"
                                                         wire:model="data.combo_percentage"
-                                                        name="combo_percentage" autocomplete="off">
+                                                        name="combo_percentage"
+                                                        autocomplete="off">
                                                     <label
                                                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                                         for="combo_percentage_{{ $percent }}">
@@ -148,13 +159,14 @@
                                     </div>
                                 </div>
                             </div>
+
                             @error('data')
-                                <div class="text-danger text-center  mt-1">{{ $message }}</div>
+                                <div class="text-danger text-center mt-1">{{ $message }}</div>
                             @enderror
                             @error('combo')
-                                <div class="text-danger text-center  mt-1">{{ $message }}</div>
+                                <div class="text-danger text-center mt-1">{{ $message }}</div>
                             @enderror
-                            <!-- End -->
+
                         </div>
                     </div>
                 </div>

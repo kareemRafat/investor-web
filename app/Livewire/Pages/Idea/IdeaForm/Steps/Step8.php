@@ -37,7 +37,8 @@ class Step8 extends Component
             is_null($this->data['one_time_sar']) &&
             (is_null($this->data['combo_dollar']) && is_null($this->data['combo_sar']) && is_null($this->data['combo_percentage']))
         ) {
-            $this->addError('data', 'You must choose at least one option (profits, one-time money, or combo).');
+            $this->addError('data', __('idea.steps.step8.choose_one'));
+
             return;
         }
 
@@ -52,7 +53,7 @@ class Step8 extends Component
                 is_null($this->data['combo_sar']) ||
                 is_null($this->data['combo_percentage'])
             ) {
-                $this->addError('combo', 'If you choose A share of the profits + a sum of money, you must fill amount in dollars, SR, and choose a percentage.');
+                $this->addError('combo', __('idea.steps.step8.combo_complete'));
                 return;
             }
         }

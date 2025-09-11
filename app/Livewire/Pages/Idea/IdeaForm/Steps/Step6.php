@@ -31,7 +31,7 @@ class Step6 extends Component
         // all numbers inserted must be 100%
         $total = array_sum($this->data);
         if ($total !== 100) {
-            $this->addError('total', 'The total distribution must equal 100%.');
+            $this->addError('total', __('idea.steps.step6.must_equal'));
             return;
         }
 

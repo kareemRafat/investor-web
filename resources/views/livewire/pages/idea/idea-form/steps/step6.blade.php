@@ -14,7 +14,7 @@
 }">
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="Distribution of the capital required to implement the idea" />
+        subtitle="{{ __('idea.steps.step6.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
@@ -24,11 +24,11 @@
                     <!-- Field Component -->
                     @php
                         $fields = [
-                            'company' => 'Establishing a company',
-                            'assets' => 'Fixed Assets',
-                            'salaries' => 'Monthly Salaries',
-                            'operating' => 'Operating Expenses',
-                            'other' => 'Other',
+                            'company' => __('idea.steps.step6.fields.company'),
+                            'assets' => __('idea.steps.step6.fields.assets'),
+                            'salaries' => __('idea.steps.step6.fields.salaries'),
+                            'operating' => __('idea.steps.step6.fields.operating'),
+                            'other' => __('idea.steps.step6.fields.other'),
                         ];
                     @endphp
 
@@ -41,7 +41,8 @@
                                 <div class="w-100 d-flex align-items-center gap-2 gap-md-3 gap-lg-4">
                                     <input type="number" min="0" max="100"
                                         x-model.number="{{ $key }}" wire:model.defer="data.{{ $key }}"
-                                        class="form-control py-3 rounded-8" placeholder="Enter amount" />
+                                        class="form-control py-3 rounded-8"
+                                        placeholder="{{ __('idea.steps.step6.placeholder') }}" />
                                     <div class="text-light">
                                         <span class="bg-custom bg_icon rounded-circle">
                                             <i class="bi bi-percent"></i>
@@ -58,17 +59,17 @@
                     <!-- Total -->
                     <div class="col-xl-7 col-lg-9 col-12 mx-auto mt-4">
                         <div class="text-center fw-bold fs-5" :class="total === 100 ? 'text-success' : 'text-danger'">
-                            Total: <span x-text="total"></span>%
+                            {{ __('idea.steps.step6.total') }}: <span x-text="total"></span>%
                         </div>
                         <div class="text-center small">
                             @error('total')
                                 <span class="text-danger">{{ $message }}</span>
                             @else
                                 <template x-if="total === 100">
-                                    <span class="text-success">✅ Perfect! The distribution is balanced.</span>
+                                    <span class="text-success">✅ {{ __('idea.steps.step6.perfect') }}</span>
                                 </template>
                                 <template x-if="total !== 100">
-                                    <span class="text-danger">⚠️ The total must equal 100%.</span>
+                                    <span class="text-danger">⚠️ {{ __('idea.steps.step6.must_equal') }}</span>
                                 </template>
                             @enderror
                         </div>

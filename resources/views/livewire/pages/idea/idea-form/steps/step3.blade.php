@@ -43,7 +43,7 @@
                                             value="one-time-{{ $id }}" x-model="selectedRange"
                                             :disabled="selectedType !== 'one-time'" autocomplete="off">
                                         <label
-                                            class="btn btn-outline-primary w-100 h-100 p-3
+                                            class="btn btn-outline-secondary w-100 h-100 p-3
                                                       rounded-8 shadow-sm small fw-bold"
                                             for="one-time-{{ $id }}">{!! $label !!}</label>
                                     </div>
@@ -72,7 +72,7 @@
                                             value="annual-{{ $id }}" x-model="selectedRange"
                                             :disabled="selectedType !== 'annual'" autocomplete="off">
                                         <label
-                                            class="btn btn-outline-primary w-100 h-100 p-3
+                                            class="btn btn-outline-secondary w-100 h-100 p-3
                                                       rounded-8 shadow-sm small fw-bold"
                                             for="annual-{{ $id }}">{!! $label !!}</label>
                                     </div>
@@ -80,7 +80,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

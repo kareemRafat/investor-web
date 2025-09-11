@@ -37,7 +37,7 @@ class Step7 extends Component
             in_array($this->data['contribute_type'], ['personal', 'both']) &&
             (($this->data['money_percent'] ?? 0) + ($this->data['person_money_percent'] ?? 0)) !== 100
         ) {
-            $this->addError('total', 'The total percentage must equal 100%.');
+            $this->addError('total', __('idea.steps.step7.total_error'));
             return;
         }
 

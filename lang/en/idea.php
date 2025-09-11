@@ -1,6 +1,22 @@
 <?php
 
 return [
+    'common' => [
+        'yes' => 'Yes',
+        'no' => 'No',
+        'number' => 'Number',
+        'enter_number' => 'Enter number',
+        'large' => 'Large',
+        'small' => 'Small',
+        'open_spaces' => 'Open spaces',
+        'factory' => 'Factory',
+        'land_space' => 'Land space',
+        'industrial' => 'Industrial',
+        'electronic' => 'Electronic',
+        'other' => 'Other',
+        'static' => 'Static',
+        'dynamic' => 'Dynamic',
+    ],
     'steps' => [
         'step1' => [
             'subtitle' => "What is your idea's field?",
@@ -95,5 +111,85 @@ return [
                 7 => 'More than $100 million<br>(More than 370m SAR)',
             ],
         ],
+        'step4' => [
+            'subtitle' => 'The expected profits from implementing the idea',
+
+            'types' => [
+                'one_time' => 'One-time Profits',
+                'annual'   => 'Annual Profits',
+            ],
+
+            'one_time_ranges' => [
+                1 => '$1,000 to $5,000<br>(3,700 to 18,500 SAR)',
+                2 => '$6,000 to $10,000<br>(22,200 to 37,000 SAR)',
+                3 => '$51,000 to $100,000<br>(188,800 to 370,000 SAR)',
+                4 => '$101,000 to $250,000<br>(374,000 to 925,750 SAR)',
+                5 => '$1 million to $2 million<br>(3.7m to 7.4m SAR)',
+                6 => '$2 million to $5 million<br>(7.4m to 18.5m SAR)',
+                7 => '$50 million to $100 million<br>(185m to 370m SAR)',
+            ],
+
+            'annual_ranges' => [
+                1 => '$11,000 to $20,000<br>(40,700 to 74,000 SAR)',
+                2 => '$21,000 to $50,000<br>(77,700 to 185,000 SAR)',
+                3 => '$251,000 to $500,000<br>(929,450 to 1,851,500 SAR)',
+                4 => '$501,000 to $1,000,000<br>(1,855,000 to 3,700,000 SAR)',
+                5 => '$5 million to $10 million<br>(18.5m to 37m SAR)',
+                6 => '$10 million to $50 million<br>(37m to 185m SAR)',
+                7 => 'More than $100 million<br>(More than 370m SAR)',
+            ],
+        ],
+        'step5' => [
+            'subtitle' => 'Requirements for implementing the idea',
+            'company' => 'Establishing a company',
+            'office_spaces' => 'Office spaces',
+            'staff' => 'Specialized Employees',
+            'workers' => 'Unprofessional workers',
+            'executive_spaces' => 'Executive Spaces',
+            'equipment' => 'Devices and Equipment',
+            'software' => 'Software and applications',
+            'website' => 'Website',
+        ],
+        'step6' => [
+            'subtitle' => 'Distribution of the capital required to implement the idea',
+            'fields' => [
+                'company' => 'Establishing a company',
+                'assets' => 'Fixed Assets',
+                'salaries' => 'Monthly Salaries',
+                'operating' => 'Operating Expenses',
+                'other' => 'Other',
+            ],
+            'placeholder' => 'Enter amount',
+            'total' => 'Total',
+            'perfect' => 'Perfect! The distribution is balanced.',
+            'must_equal' => 'The total must equal 100%.',
+        ],
+        'step7' => [
+            'subtitle' => 'Your contribution to implementing the idea is:',
+            'sell' => 'I would like to sell the idea completely without any contribution to its implementation',
+            'idea' => 'I will only contribute the idea',
+            'capital' => 'I will contribute capital for implementing the idea',
+            'personal' => 'I will personally contribute to implementing the idea',
+            'both' => 'I will contribute with capital + I will personally contribute to implementing the idea',
+            'full_time' => 'Full time',
+            'part_time' => 'Part time',
+            'supervision' => 'Supervision only',
+            'amount' => 'Amount',
+            'percent' => 'Percentage',
+            'total_error' => 'The total percentage must equal 100%.',
+        ],
+        'step8' => [
+            'title' => 'Submit Idea',
+            'subtitle' => 'Your specific requirements in exchange for the idea',
+            'profit_share' => 'A share of the profits',
+            'one_time_sum' => 'A one-time sum of money',
+            'profit_plus_sum' => 'A share of the profits + a sum of money',
+            'choose_one' => 'You must choose at least one option (profits, one-time money, or combo).',
+            'combo_complete' => 'If you choose A share of the profits + a sum of money, you must fill amount in dollars, SR, and choose a percentage.',
+        ],
+    ],
+    'currency' => [
+        'dollar' => 'Dollars',
+        'sar' => 'SAR',
     ],
 ];
