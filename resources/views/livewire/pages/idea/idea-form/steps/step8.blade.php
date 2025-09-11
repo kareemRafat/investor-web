@@ -3,6 +3,8 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="Your specific requirements in exchange for the idea are" />
 
+    @dump($errors->all())
+
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
             <div class="col-12">
@@ -10,183 +12,42 @@
                     <!-- Main Table -->
                     <div class="col-12">
                         <div class="row">
+                            <!-- Profit Share -->
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <div class="h-100">
                                     <div class="bg-light rounded-8 shadow-sm p-3 text-center fw-bold mb-3">
-                                        A share of the profits</div>
-                                    <div class="row mx-0 px-0 g-2">
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_5"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_5">
-                                                    5 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_10"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_10">
-                                                    10 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_15"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_15">
-                                                    15 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_20"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_20">
-                                                    20 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_25"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_25">
-                                                    25 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_30"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_30">
-                                                    30 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_35"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_35">
-                                                    35 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_40"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_40">
-                                                    40 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_45"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_45">
-                                                    45 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_50"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_50">
-                                                    50 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_55"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_55">
-                                                    55 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_60"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_60">
-                                                    60 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_65"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_65">
-                                                    65 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_70"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_70">
-                                                    70 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="profit_only_75"
-                                                    name="profit_only_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="profit_only_75">
-                                                    75 %
-                                                </label>
-                                            </div>
-                                        </div>
+                                        A share of the profits
                                     </div>
+                                    <div class="row mx-0 px-0 g-2">
+                                        @foreach([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75] as $percent)
+                                            <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
+                                                <div class="bg-light rounded-8 shadow-sm text-center">
+                                                    <input type="radio" class="btn-check"
+                                                        id="profit_only_{{ $percent }}"
+                                                        value="{{ $percent }}"
+                                                        wire:model="data.profit_only_percentage"
+                                                        name="profit_only_percentage" autocomplete="off">
+                                                    <label
+                                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                                        for="profit_only_{{ $percent }}">
+                                                        {{ $percent }} %
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @error('data.profit_only_percentage')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
+
+                            <!-- One-time sum -->
                             <div class="col-lg-4 col-md-6 col-12 mb-3">
                                 <div class="h-100">
                                     <div class="bg-light rounded-8 shadow-sm p-3 text-center fw-bold mb-3">
-                                        A one-time sum of money</div>
+                                        A one-time sum of money
+                                    </div>
                                     <div class="row g-2 mx-0 px-0 d-flex flex-column">
                                         <!-- currency 1 -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
@@ -197,9 +58,14 @@
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="one_time_dollar" name="one_time_dollar" placeholder="" />
+                                                    id="one_time_dollar" name="one_time_dollar"
+                                                    wire:model="data.one_time_dollar" placeholder="" />
                                             </div>
                                         </div>
+                                        @error('data.one_time_dollar')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+
                                         <!-- currency 2 -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
                                             <div class="col-5">
@@ -209,12 +75,18 @@
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="one_time_sar" name="one_time_sar" placeholder="" />
+                                                    id="one_time_sar" name="one_time_sar"
+                                                    wire:model="data.one_time_sar" placeholder="" />
                                             </div>
                                         </div>
+                                        @error('data.one_time_sar')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Combo -->
                             <div class="col-lg-4 col-md-12 col-12 mb-3">
                                 <div class="h-100">
                                     <div class="bg-light rounded-8 shadow-sm p-3 text-center fw-bold mb-3">
@@ -230,9 +102,14 @@
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="combo_dollar" name="combo_dollar" placeholder="" />
+                                                    id="combo_dollar" name="combo_dollar"
+                                                    wire:model="data.combo_dollar" placeholder="" />
                                             </div>
                                         </div>
+                                        @error('data.combo_dollar')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+
                                         <!-- currency 2 -->
                                         <div class="col-12 d-flex align-items-center justify-content-between">
                                             <div class="col-5">
@@ -242,179 +119,42 @@
                                             </div>
                                             <div class="col-6">
                                                 <input type="number" class="form-control py-3 rounded-8"
-                                                    id="combo_sar" name="combo_sar" placeholder="" />
+                                                    id="combo_sar" name="combo_sar"
+                                                    wire:model="data.combo_sar" placeholder="" />
                                             </div>
                                         </div>
+                                        @error('data.combo_sar')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
                                     <div class="row mx-0 px-0 g-2 mt-2">
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_5"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_5">
-                                                    5 %
-                                                </label>
+                                        @foreach([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75] as $percent)
+                                            <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
+                                                <div class="bg-light rounded-8 shadow-sm text-center">
+                                                    <input type="radio" class="btn-check"
+                                                        id="combo_percentage_{{ $percent }}"
+                                                        value="{{ $percent }}"
+                                                        wire:model="data.combo_percentage"
+                                                        name="combo_percentage" autocomplete="off">
+                                                    <label
+                                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                                        for="combo_percentage_{{ $percent }}">
+                                                        {{ $percent }} %
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_10"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_10">
-                                                    10 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_15"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_15">
-                                                    15 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_20"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_20">
-                                                    20 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_25"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_25">
-                                                    25 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_30"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_30">
-                                                    30 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_35"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_35">
-                                                    35 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_40"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_40">
-                                                    40 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_45"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_45">
-                                                    45 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_50"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_50">
-                                                    50 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_55"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_55">
-                                                    55 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_60"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_60">
-                                                    60 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_65"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_65">
-                                                    65 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_70"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_70">
-                                                    70 %
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="bg-light rounded-8 shadow-sm text-center">
-                                                <input type="radio" class="btn-check" id="combo_percentage_75"
-                                                    name="combo_percentage" autocomplete="off">
-                                                <label
-                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                    for="combo_percentage_75">
-                                                    75 %
-                                                </label>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
+                            @error('data')
+                                <div class="text-danger text-center  mt-1">{{ $message }}</div>
+                            @enderror
+                            @error('combo')
+                                <div class="text-danger text-center  mt-1">{{ $message }}</div>
+                            @enderror
+                            <!-- End -->
                         </div>
                     </div>
                 </div>
