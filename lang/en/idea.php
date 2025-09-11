@@ -187,6 +187,13 @@ return [
             'choose_one' => 'You must choose at least one option (profits, one-time money, or combo).',
             'combo_complete' => 'If you choose A share of the profits + a sum of money, you must fill amount in dollars, SR, and choose a percentage.',
         ],
+        'step9' => [
+            'subtitle' => 'Summary of the idea and its files',
+            'placeholder' => 'Write a clear summary of your idea',
+            'confidential_info' => 'If there is any important and confidential information about the idea, we advise you not to mention it clearly in this summary to preserve your rights and protect it from being stolen by others.',
+            'max_characters' => '2000 characters maximum',
+            'file_format' => 'File format must be Word, Excel, PDF, or images',
+        ],
     ],
     'currency' => [
         'dollar' => 'Dollars',
