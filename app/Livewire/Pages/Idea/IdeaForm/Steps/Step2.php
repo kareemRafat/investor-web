@@ -15,37 +15,12 @@ class Step2 extends Component
     ])]
     public array $countries = [];
 
-    public array $options = [
-        'Lebanon',
-        'Tunisia',
-        'Algeria',
-        'Jordan',
-        'Saudi Arabia',
-        'Qatar',
-        'Oman',
-        'Morocco',
-        'Libya',
-        'Sudan',
-        'Palestine',
-        'Iraq',
-        'Iran',
-        'Turkey',
-        'North Africa',
-        'Levant',
-        'Gulf countries',
-        'United Arab Emirates',
-        'Kuwait',
-        'Bahrain',
-        'Egypt',
-        'America and Australia continent',
-        'Central and Southern Africa',
-        'European Union',
-        'China',
-        'India and Pakistan',
-        'Middle East and North Africa',
-        'Middle East',
-        'Yemen'
-    ];
+    public array $options = [];
+
+    public function mount(): void
+    {
+        $this->options = __('idea.steps.step2.options');
+    }
 
     #[On('validate-step-2')]
     public function validateStep2()

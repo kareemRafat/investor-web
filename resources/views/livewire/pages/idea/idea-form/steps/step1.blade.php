@@ -1,7 +1,7 @@
 <div>
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="What is your idea's field?" />
+        subtitle="{{ __('idea.steps.step1.subtitle') }}" />
 
     @error('ideaField')
         <div class="text-danger small mt-2">{{ $message }}</div>

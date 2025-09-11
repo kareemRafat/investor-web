@@ -1,4 +1,4 @@
-<html lang="en" dir="ltr">
+<html lang="en" dir="rtl">
 
 <head>
     <meta charset="UTF-8">

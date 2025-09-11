@@ -1,7 +1,7 @@
 <div>
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="The best countries /regions to implement the idea in (3 countries at most)" />
+        subtitle="{{ __('idea.steps.step2.subtitle') }}" />
 
     @error('countries')
         <div class="text-danger small mt-2">{{ $message }}</div>
@@ -12,7 +12,7 @@
             @foreach ($options as $index => $country)
                 <div class="col-6 col-lg-3 col-md-6">
                     <input type="checkbox" class="btn-check" id="country-{{ $index }}" name="countries[]"
-                        wire:model="countries" value="{{ $country }}" 
+                        wire:model="countries" value="{{ $country }}"
                         x-bind:disabled="$wire.countries.length >= limit && !$wire.countries.includes('{{ $country }}')">
                     <label
                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
