@@ -1,6 +1,13 @@
 <?php
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Idea 
+    |--------------------------------------------------------------------------
+    */
+
     'common' => [
         'yes' => 'Yes',
         'no' => 'No',
@@ -194,9 +201,37 @@ return [
             'max_characters' => '2000 characters maximum',
             'file_format' => 'File format must be Word, Excel, PDF, or images',
         ],
+        'step10' => [
+            'subtitle' => 'Idea owner details',
+            'registered_before' => 'Have you registered your details in a previous idea?',
+            'real_name' => 'Real Name',
+            'mobile_number' => 'Mobile Number',
+            'nickname' => 'Nickname',
+            'email' => 'Email',
+            'password' => 'Password',
+            'job_title' => 'Job title',
+            'current_country' => 'Current Country of Residence',
+            'date_of_birth' => 'Date of Birth',
+            'day' => 'Day',
+            'month' => 'Month',
+            'year' => 'Year',
+            'first_time' => 'Is this your first time submitting an idea?',
+            'public_description' => 'To use the website and to preserve the intellectual property rights',
+            'private_description' => 'I would like to show it to the public',
+            'note1' => 'Your account activation code will be sent to this number',
+            'note2' => 'It will be shown to the website visitors',
+            'note3' => 'Your account activation code will be sent to this number',
+            'note4' => 'You will use it to log in to your account on the website',
+            'note5' => 'Please put þ sign next to the method by which you prefer to be contacted by those looking for distinguished ideas',
+        ],
     ],
     'currency' => [
         'dollar' => 'Dollars',
         'sar' => 'SAR',
+    ],
+    'form' => [
+        'previous' => 'Previous',
+        'next' => 'Next',
+        'finish' => 'Finish',
     ],
 ];

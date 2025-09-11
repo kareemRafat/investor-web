@@ -1,92 +1,110 @@
 <div>
     {{-- step header --}}
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}" subtitle="Idea owner details" />
+    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
+        subtitle="{{ __('idea.steps.step10.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3">
             <!-- Left Column: User Details Form -->
             <div class="col-lg-6">
                 <div class="bg-light shadow-sm rounded-8 p-3 text-center fw-bold mb-3">
-                    Have you registered your details in a previous idea?
+                    {{ __('idea.steps.step10.registered_before') }}
                 </div>
                 <form>
                     <div class="d-flex flex-column gap-3">
                         <div class="row align-items-center">
                             <label for="name"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Real
-                                Name</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.real_name') }}
+                            </label>
                             <div class="col-12 col-sm-8">
-                                <input type="text" class="form-control py-3 rounded-8 without_padding"
-                                    id="name" />
+                                <input type="text" class="form-control py-3 rounded-8 without_padding" id="name"
+                                    placeholder="{{ __('idea.steps.step10.real_name') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <label for="mobile"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Mobile
-                                Number</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.mobile_number') }}
+                            </label>
                             <div class="col-12 col-sm-8">
-                                <input type="tel" class="form-control py-3 rounded-8 without_padding"
-                                    id="mobile" />
+                                <input type="text" class="form-control py-3 rounded-8 without_padding" id="mobile"
+                                    placeholder="{{ __('idea.steps.step10.mobile_number') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <label for="username"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Nickname</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.nickname') }}
+                            </label>
                             <div class="col-12 col-sm-8">
-                                <input type="text" class="form-control py-3 rounded-8 without_padding"
-                                    id="username" />
+                                <input type="text" class="form-control py-3 rounded-8 without_padding" id="username"
+                                    placeholder="{{ __('idea.steps.step10.nickname') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <label for="email"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Email</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.email') }}
+                            </label>
                             <div class="col-12 col-sm-8">
-                                <input type="email" class="form-control py-3 rounded-8 without_padding"
-                                    id="email" />
+                                <input type="email" class="form-control py-3 rounded-8 without_padding" id="email"
+                                    placeholder="{{ __('idea.steps.step10.email') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <label for="password"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Password</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.password') }}
+                            </label>
                             <div class="col-12 col-sm-8">
                                 <input type="password" class="form-control py-3 rounded-8 without_padding"
-                                    id="password" />
+                                    id="password" placeholder="{{ __('idea.steps.step10.password') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <label for="job"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Job
-                                title</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.job_title') }}
+                            </label>
                             <div class="col-12 col-sm-8">
-                                <input type="text" class="form-control py-3 rounded-8 without_padding"
-                                    id="job" />
+                                <input type="text" class="form-control py-3 rounded-8 without_padding" id="job"
+                                    placeholder="{{ __('idea.steps.step10.job_title') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <label for="country"
-                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">Current
-                                Country of Residence</label>
+                                class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
+                                {{ __('idea.steps.step10.current_country') }}
+                            </label>
                             <div class="col-12 col-sm-8">
-                                <input type="text" class="form-control py-3 rounded-8 without_padding"
-                                    id="country" />
+                                <input type="text" class="form-control py-3 rounded-8 without_padding" id="country"
+                                    placeholder="{{ __('idea.steps.step10.current_country') }}" />
                             </div>
                         </div>
+
                         <div class="row align-items-center">
                             <div
                                 class="col-12 col-sm-4 text-primary border-primary text-center border py-3 rounded-8 fw-bold mb-2 mb-sm-0">
-                                Date of Birth
+                                {{ __('idea.steps.step10.date_of_birth') }}
                             </div>
                             <div class="col-12 col-sm-8">
                                 <div class="d-flex gap-2 flex-wrap flex-lg-nowrap">
                                     <input type="text"
                                         class="form-control py-3 rounded-8 text-center without_padding"
-                                        placeholder="Day" id="day" />
+                                        placeholder="{{ __('idea.steps.step10.day') }}" id="day" />
                                     <input type="text"
                                         class="form-control py-3 rounded-8 text-center without_padding"
-                                        placeholder="Month" id="month" />
+                                        placeholder="{{ __('idea.steps.step10.month') }}" id="month" />
                                     <input type="text"
                                         class="form-control py-3 rounded-8 text-center without_padding"
-                                        placeholder="Year" id="year" />
+                                        placeholder="{{ __('idea.steps.step10.year') }}" id="year" />
                                 </div>
                             </div>
                         </div>
@@ -97,34 +115,32 @@
             <!-- Right Column: New User -->
             <div class="col-lg-6">
                 <div class="bg-light shadow-sm rounded-8 p-3 text-center fw-bold mb-3">
-                    Is this your first time submitting an idea?
+                    {{ __('idea.steps.step10.first_time') }}
                 </div>
                 <div class="d-flex align-items-center gap-3 gap-md-4 flex-wrap mb-3 p-3">
                     <div class="d-flex align-items-center gap-2">
                         <input class="form-check-input" type="radio" name="visibility" id="visibility_public"
                             value="public" checked>
                         <label class="form-check-label small" for="visibility_public">
-                            To use the website and to preserve the intellectual property rights
+                            {{ __('idea.steps.step10.public_description') }}
                         </label>
                     </div>
                     <div class="d-flex align-items-center gap-2">
                         <input class="form-check-input" type="radio" name="visibility" id="visibility_private"
                             value="private">
                         <label class="form-check-label small" for="visibility_private">
-                            I would like to show it to the public
+                            {{ __('idea.steps.step10.private_description') }}
                         </label>
                     </div>
                 </div>
-                <ul class=" d-flex flex-column gap-3 gap-md-4 gap-lg-5 text-muted small p-4">
-                    <li> Your account activation code will be sent to this number</li>
-                    <li> It will be shown to the website visitors</li>
-                    <li> Your account activation code will be sent to this number</li>
-                    <li>You will use it to log in to your account on the website</li>
-                    <li class="text-primary"> Please put þ sign next to the method by which you prefer to be contacted
-                        by those looking for distinguished ideas</li>
+                <ul class="d-flex flex-column gap-3 gap-md-4 gap-lg-5 text-muted small p-4">
+                    <li>{{ __('idea.steps.step10.note1') }}</li>
+                    <li>{{ __('idea.steps.step10.note2') }}</li>
+                    <li>{{ __('idea.steps.step10.note3') }}</li>
+                    <li>{{ __('idea.steps.step10.note4') }}</li>
+                    <li class="text-primary">{{ __('idea.steps.step10.note5') }}</li>
                 </ul>
             </div>
-
         </div>
     </div>
 </div>
