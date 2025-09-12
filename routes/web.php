@@ -56,4 +56,4 @@ Route::get('/about' , About::class)->name('main.about');
 Route::get('/ideas' , IdeaForm::class)->name('ideas.main');
 
 // Investor
-Route::get('/investor' , InvestmentForm::class)->name('investor.main');
+Route::get('/find-investor' , InvestmentForm::class)->name('investor.main');

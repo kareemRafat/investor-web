@@ -1,7 +1,9 @@
 <div>
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('idea.steps.step8.title') }}"
-        subtitle="{{ __('idea.steps.step8.subtitle') }}" /> @dump($errors->all())
+        subtitle="{{ __('idea.steps.step8.subtitle') }}" />
+
+    @dump($errors->all())
 
     <div x-data="{
         activeColumn: null,

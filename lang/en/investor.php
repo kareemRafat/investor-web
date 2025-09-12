@@ -91,33 +91,23 @@ return [
             ],
         ],
         'step3' => [
-            'subtitle' => 'The estimated cost of implementing the idea',
-
-            'types' => [
-                'one_time' => 'One-time Costs',
-                'annual'   => 'Annual Costs',
-            ],
-
-            'one_time_ranges' => [
-                1 => '$1,000 to $5,000<br>(3,700 to 18,500 SAR)',
-                2 => '$6,000 to $10,000<br>(22,200 to 37,000 SAR)',
-                3 => '$51,000 to $100,000<br>(188,800 to 370,000 SAR)',
-                4 => '$101,000 to $250,000<br>(374,000 to 925,750 SAR)',
-                5 => '$1 million to $2 million<br>(3.7m to 7.4m SAR)',
-                6 => '$2 million to $5 million<br>(7.4m to 18.5m SAR)',
-                7 => '$50 million to $100 million<br>(185m to 370m SAR)',
-            ],
-
-            'annual_ranges' => [
-                1 => '$11,000 to $20,000<br>(40,700 to 74,000 SAR)',
-                2 => '$21,000 to $50,000<br>(77,700 to 185,000 SAR)',
-                3 => '$251,000 to $500,000<br>(929,450 to 1,851,500 SAR)',
-                4 => '$501,000 to $1,000,000<br>(1,855,000 to 3,700,000 SAR)',
-                5 => '$5 million to $10 million<br>(18.5m to 37m SAR)',
-                6 => '$10 million to $50 million<br>(37m to 185m SAR)',
-                7 => 'More than $100 million<br>(More than 370m SAR)',
-            ],
+            'subtitle' => "The amounts / resources you own and wish to invest or share in the business"
         ],
+        'step4' => [
+            'subtitle' => 'The contributions you would like to have in the distinguished idea',
+            'sell' => 'I would like to sell the idea completely without any contribution to its implementation',
+            'idea' => 'I will only contribute the idea',
+            'capital' => 'I will contribute capital for implementing the idea',
+            'personal' => 'I will personally contribute to implementing the idea',
+            'both' => 'I will contribute with capital + I will personally contribute to implementing the idea',
+            'full_time' => 'Full time',
+            'part_time' => 'Part time',
+            'supervision' => 'Supervision only',
+            'amount' => 'Amount',
+            'percent' => 'Percentage',
+            'total_error' => 'The total percentage must equal 100%.',
+        ],
+
     ],
     'currency' => [
         'dollar' => 'Dollars',
@@ -136,70 +126,18 @@ return [
             'countries' => 'You must Choose at least One country',
         ],
         'step3' => [
-            'cost_type'  => 'You must select a valid cost type',
-            'cost_range' => 'You must enter a valid cost range',
+            'company_required' => 'Please select whether you have a company or not.',
+            'company_in' => 'Invalid option for company.',
+            'staff_required' => 'Please select yes or no for specialized employees.',
+            'workers_required' => 'Please select yes or no for unprofessional workers.',
+            'spaces_required' => 'Please select yes or no for executive spaces.',
+            'equipment_required' => 'Please select yes or no for devices and equipment.',
+            'software_required' => 'Please select yes or no for software and applications.',
+            'website_required' => 'Please select yes or no for website.',
+            'number_min' => 'Number must be at least 1.',
+            'number_workers_min' => 'Number of unprofessional workers must be at least 1.',
         ],
-        'step4' => [
-            'profit_type'  => 'You must select a valid profit type',
-            'profit_range' => 'You must enter a valid profit range',
-        ],
-        'step5' => [
-            'company'               => 'You must specify whether you have a company',
-            'space_type'            => 'You must select a valid space type',
-            'staff'                 => 'You must specify whether you have staff',
-            'staff_number'          => 'You must enter a valid staff number (minimum 1)',
-            'workers'               => 'You must specify whether you have workers',
-            'workers_number'        => 'You must enter a valid workers number (minimum 1)',
-            'executive_spaces'      => 'You must specify whether you have executive spaces',
-            'executive_spaces_type' => 'You must select a valid executive space type',
-            'equipment'             => 'You must specify whether you have equipment',
-            'equipment_type'        => 'You must select a valid equipment type',
-            'software'              => 'You must specify whether you have software',
-            'software_type'         => 'You must select a valid software type',
-            'website'               => 'You must specify whether you have a website',
-        ],
-        'step6' => [
-            'company'   => 'You must enter a valid company percentage (0–100)',
-            'assets'    => 'You must enter a valid assets percentage (0–100)',
-            'salaries'  => 'You must enter a valid salaries percentage (0–100)',
-            'operating' => 'You must enter a valid operating percentage (0–100)',
-            'other'     => 'You must enter a valid other expenses percentage (0–100)',
-        ],
-        'step7' => [
-            'contribute_type'     => 'You must select a valid contribution type',
-            'staff'               => 'You must specify the staff type when contribution is capital',
-            'staff_person_money'  => 'You must specify the staff type when contribution is both',
-            'money_amount'        => 'You must enter a valid money amount (minimum 1)',
-            'money_percent'       => 'You must enter a valid money percentage (1–100)',
-            'person_money_amount' => 'You must enter a valid personal money amount (minimum 1)',
-            'person_money_percent' => 'You must enter a valid personal money percentage (1–100)',
-        ],
-        'step8' => [
-            'profit_only_percentage'   => 'Profit percentage must be one of the allowed values.',
 
-            'one_time_dollar_numeric'  => 'One-time amount in USD must be a number.',
-            'one_time_dollar_min'      => 'One-time amount in USD must be at least 1.',
-
-            'one_time_sar_numeric'     => 'One-time amount in SAR must be a number.',
-            'one_time_sar_min'         => 'One-time amount in SAR must be at least 1.',
-
-            'combo_dollar_numeric'     => 'Combo amount in USD must be a number.',
-            'combo_dollar_min'         => 'Combo amount in USD must be at least 1.',
-
-            'combo_sar_numeric'        => 'Combo amount in SAR must be a number.',
-            'combo_sar_min'            => 'Combo amount in SAR must be at least 1.',
-
-            'combo_percentage'         => 'Combo percentage must be one of the allowed values.',
-        ],
-        'step9' => [
-            'summary_required' => 'A summary of the idea is required.',
-            'summary_string'   => 'The summary must be text.',
-            'summary_max'      => 'The summary must not exceed 2000 characters.',
-
-            'attachments_file'  => 'Each attachment must be a valid file.',
-            'attachments_mimes' => 'Attachments must be of type: pdf, doc, docx, xls, xlsx, jpg, jpeg, png.',
-            'attachments_max'   => 'Each attachment must not exceed 10 MB.',
-        ],
 
     ]
 ];

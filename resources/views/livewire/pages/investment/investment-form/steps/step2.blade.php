@@ -1,7 +1,7 @@
 <div>
     {{-- step header --}}
     <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
-        subtitle="{{ __('investor.steps.step1.subtitle') }}" />
+        subtitle="{{ __('investor.steps.step2.subtitle') }}" />
 
     @error('investorField')
         <div class="text-danger small mt-2">{{ $message }}</div>
