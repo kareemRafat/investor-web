@@ -33,6 +33,10 @@ class CreateNewUser implements CreatesNewUsers
                 }),
             ],
             'password' => $this->passwordRules(),
+            'job_title' => ['required', 'string', 'max:255'],
+            'residence_country' => ['required', 'string', 'max:255'],
+            'birth_date' => ['required', 'date', 'before:today'],
+
         ])->validate();
 
         return User::create([
@@ -40,6 +44,9 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => Hash::make($input['password']),
+            'job_title' => $input['job_title'],
+            'residence_country' => $input['residence_country'],
+            'birth_date' => $input['birth_date'],
         ]);
     }
 }

@@ -28,7 +28,7 @@ Route::middleware(['guest'])->group(function () {
         ->name('forgot-password');
     Route::get('/reset-password/{token}', ResetPassword::class)
         ->name('password.reset');
-    Route::get('/reset-password', fn () => abort(404)); // to prevent get error when access without token
+    Route::get('/reset-password', fn() => abort(404)); // to prevent get error when access without token
 });
 
 
@@ -36,24 +36,21 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/verify-email', \App\Livewire\Auth\VerifyEmail::class)
         ->name('verify-email');
-
-    Route::middleware(['verified'])->group(function () {
-        // Route::view('/', 'welcome'); // الصفحة الرئيسية
-    });
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Main pages
+    Route::get('/', Home::class)->name('main.home');
+    Route::get('/contact', Contact::class)->name('main.contact');
+    Route::get('/terms-of-use', Terms::class)->name('main.terms');
+    Route::get('/faq', FAQ::class)->name('main.faq');
+    Route::get('/privacy-policy', PrivacyPolicy::class)->name('main.privacypolicy');
+    Route::get('/about', About::class)->name('main.about');
 
-// Main pages
-Route::get('/' , Home::class)->name('main.home');
-Route::get('/contact' , Contact::class)->name('main.contact');
-Route::get('/terms-of-use' , Terms::class)->name('main.terms');
-Route::get('/faq' , FAQ::class)->name('main.faq');
-Route::get('/privacy-policy' , PrivacyPolicy::class)->name('main.privacypolicy');
-Route::get('/about' , About::class)->name('main.about');
 
+    // Submit your Idea
+    Route::get('/ideas', IdeaForm::class)->name('ideas.main');
 
-// Submit your Idea
-Route::get('/ideas' , IdeaForm::class)->name('ideas.main');
-
-// Investor
-Route::get('/find-investor' , InvestmentForm::class)->name('investor.main');
+    // Investor
+    Route::get('/find-investor', InvestmentForm::class)->name('investor.main');
+});

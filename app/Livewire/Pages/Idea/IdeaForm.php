@@ -10,7 +10,7 @@ class IdeaForm extends Component
 {
 
     public int $currentStep = 1 ;
-    public int $totalSteps = 10 ;
+    public int $totalSteps = 9 ;
 
     public function nextStep()
     {
@@ -21,7 +21,7 @@ class IdeaForm extends Component
     public function goToNextStep()
     {
         // dd('test');
-        if ($this->currentStep < 10) {
+        if ($this->currentStep < 9) {
             $this->currentStep++;
         }
     }

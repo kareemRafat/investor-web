@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'kareem',
             'email' => 'admin@admin.com',
             'password' => Hash::make(12345678),
-            'phone' => '01065056616'
+            'phone' => '01065056616',
+            'job_title' => 'lawyer',
+            'birth_date' => '1990-05-15',
+            'residence_country' => 'mansoura'
         ]);
     }
 }

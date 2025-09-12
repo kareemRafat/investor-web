@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('phone');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('job_title');
+            $table->string('residence_country');
+            $table->date('birth_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

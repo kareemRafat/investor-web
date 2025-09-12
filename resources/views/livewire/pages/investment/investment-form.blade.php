@@ -25,10 +25,6 @@
                 @case(5)
                     <livewire:pages.investment.investment-form.steps.step5 wire:key="step-5" />
                 @break
-
-                @case(6)
-                    <livewire:pages.investment.investment-form.steps.step6 wire:key="step-6" />
-                @break
             @endswitch
 
             <div class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
@@ -48,15 +44,15 @@
                 @endif
 
                 <a wire:click.prevent="nextStep"
-                    aria-label="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    title="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    class="btn {{ $currentStep === 6 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
+                    aria-label="{{ $currentStep === 5 ? __('investor.form.finish') : __('investor.form.next') }}"
+                    title="{{ $currentStep === 5 ? __('investor.form.finish') : __('investor.form.next') }}"
+                    class="btn {{ $currentStep === 5 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
                     <span class="small fw-bold d-flex align-items-center">
                         @if (app()->getLocale() === 'ar')
-                            {{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}
+                            {{ $currentStep === 5 ? __('investor.form.finish') : __('investor.form.next') }}
                             <i class="bi bi-arrow-left-circle mx-2"></i>
                         @else
-                            {{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}
+                            {{ $currentStep === 5 ? __('investor.form.finish') : __('investor.form.next') }}
                             <i class="bi bi-arrow-right-circle mx-2"></i>
                         @endif
                     </span>
@@ -64,7 +60,7 @@
             </div>
             <div class="d-flex justify-content-center mb-4">
                 <div class="stepper d-flex align-items-center justify-content-center flex-wrap">
-                    @for ($i = 1; $i <= 6; $i++)
+                    @for ($i = 1; $i <= 5; $i++)
                         <div
                             class="stepper-item
                             @if ($i < $currentStep) completed_step
@@ -78,7 +74,7 @@
                             </div>
                         </div>
 
-                        @if ($i < 6)
+                        @if ($i < 5)
                             <div class="stepper-connector">
                             </div>
                         @endif

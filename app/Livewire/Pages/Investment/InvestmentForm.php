@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 
 class InvestmentForm extends Component
 {
-    public int $currentStep = 5 ;
+    public int $currentStep = 1 ;
     public int $totalSteps = 5 ;
 
     public function nextStep()
@@ -20,7 +20,7 @@ class InvestmentForm extends Component
     public function goToNextStep()
     {
         // dd('test');
-        if ($this->currentStep < 10) {
+        if ($this->currentStep < 5) {
             $this->currentStep++;
         }
     }
