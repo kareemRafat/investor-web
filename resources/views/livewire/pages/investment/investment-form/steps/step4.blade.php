@@ -1,6 +1,6 @@
 <div>
     {{-- step header --}}
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
+    <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
         subtitle="{{ __('investor.steps.step4.subtitle') }}" />
 
     @dump($errors->all())

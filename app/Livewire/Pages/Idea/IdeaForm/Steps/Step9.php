@@ -14,6 +14,7 @@ class Step9 extends Component
     #[Validate([
         'data.summary' => 'required|string|max:2000',
         'data.attachments.*' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240', // 10MB max per file
+        'data.visibility' => 'required|in:public,private',
     ])]
     public array $data = [
         'summary' => null,
@@ -43,15 +44,18 @@ class Step9 extends Component
     }
 
     public function messages()
-{
-    return [
-        'data.summary.required' => __('idea.validation.step9.summary_required'),
-        'data.summary.string'   => __('idea.validation.step9.summary_string'),
-        'data.summary.max'      => __('idea.validation.step9.summary_max'),
+    {
+        return [
+            'data.summary.required' => __('idea.validation.step9.summary_required'),
+            'data.summary.string'   => __('idea.validation.step9.summary_string'),
+            'data.summary.max'      => __('idea.validation.step9.summary_max'),
 
-        'data.attachments.*.file'  => __('idea.validation.step9.attachments_file'),
-        'data.attachments.*.mimes' => __('idea.validation.step9.attachments_mimes'),
-        'data.attachments.*.max'   => __('idea.validation.step9.attachments_max'),
-    ];
-}
+            'data.attachments.*.file'  => __('idea.validation.step9.attachments_file'),
+            'data.attachments.*.mimes' => __('idea.validation.step9.attachments_mimes'),
+            'data.attachments.*.max'   => __('idea.validation.step9.attachments_max'),
+
+            'data.visibility.required' => __('investor.validation.step5.visibility_required'),
+            'data.visibility.in'       => __('investor.validation.step5.visibility_in'),
+        ];
+    }
 }

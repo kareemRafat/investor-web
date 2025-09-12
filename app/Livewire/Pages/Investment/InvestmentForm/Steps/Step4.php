@@ -39,4 +39,17 @@ class Step4 extends Component
     {
         return view('livewire.pages.investment.investment-form.steps.step4');
     }
+
+    public function messages()
+    {
+        return [
+            'data.contribute_type.*'     => __('investor.validation.step4.contribute_type'),
+            'data.staff.*'               => __('investor.validation.step4.staff'),
+            'data.staff_person_money.*'  => __('investor.validation.step4.staff_person_money'),
+            'data.money_amount.*'        => __('investor.validation.step4.money_amount'),
+            'data.money_percent.*'       => __('investor.validation.step4.money_percent'),
+            'data.person_money_amount.*' => __('investor.validation.step4.person_money_amount'),
+            'data.person_money_percent.*' => __('investor.validation.step4.person_money_percent'),
+        ];
+    }
 }

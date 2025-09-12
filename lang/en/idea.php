@@ -200,6 +200,10 @@ return [
             'confidential_info' => 'If there is any important and confidential information about the idea, we advise you not to mention it clearly in this summary to preserve your rights and protect it from being stolen by others.',
             'max_characters' => '2000 characters maximum',
             'file_format' => 'File format must be Word, Excel, PDF, or images',
+
+            'first_time_question' => 'Is this your first time submitting an idea?',
+            'show_public' => 'I would like to show it to the public',
+            'keep_private' => 'To use the website and to preserve the intellectual property rights',
         ],
         'step10' => [
             'subtitle' => 'Idea owner details',
@@ -305,6 +309,9 @@ return [
             'attachments_file'  => 'Each attachment must be a valid file.',
             'attachments_mimes' => 'Attachments must be of type: pdf, doc, docx, xls, xlsx, jpg, jpeg, png.',
             'attachments_max'   => 'Each attachment must not exceed 10 MB.',
+
+            'visibility_required' => 'Please select a visibility option first.',
+            'visibility_in'       => 'The selected visibility option is invalid.',
         ],
 
     ]

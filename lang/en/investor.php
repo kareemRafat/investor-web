@@ -107,6 +107,18 @@ return [
             'percent' => 'Percentage',
             'total_error' => 'The total percentage must equal 100%.',
         ],
+        'step5' => [
+            'subtitle' => 'Summary of the investment or participation proposed by you and its files',
+            'placeholder' => 'Write a clear summary of your idea',
+            
+            'confidential_info' => 'If there is any important and confidential information about the idea, we advise you not to mention it clearly in this summary to preserve your rights and protect it from being stolen by others.',
+            'max_characters' => '2000 characters maximum',
+            'file_format' => 'File format must be Word, Excel, PDF, or images',
+
+            'first_time_question' => 'Is this your first time submitting an idea?',
+            'show_public' => 'I would like to show it to the public',
+            'keep_private' => 'To use the website and to preserve the intellectual property rights',
+        ],
 
     ],
     'currency' => [
@@ -136,6 +148,27 @@ return [
             'website_required' => 'Please select yes or no for website.',
             'number_min' => 'Number must be at least 1.',
             'number_workers_min' => 'Number of unprofessional workers must be at least 1.',
+        ],
+        'step4' => [
+            'contribute_type'     => 'You must select a valid contribution type',
+            'staff'               => 'You must specify the staff type when contribution is capital',
+            'staff_person_money'  => 'You must specify the staff type when contribution is both',
+            'money_amount'        => 'You must enter a valid money amount (minimum 1)',
+            'money_percent'       => 'You must enter a valid money percentage (1–100)',
+            'person_money_amount' => 'You must enter a valid personal money amount (minimum 1)',
+            'person_money_percent' => 'You must enter a valid personal money percentage (1–100)',
+        ],
+        'step5' => [
+            'summary_required' => 'A summary of the idea is required.',
+            'summary_string'   => 'The summary must be text.',
+            'summary_max'      => 'The summary must not exceed 2000 characters.',
+
+            'attachments_file'  => 'Each attachment must be a valid file.',
+            'attachments_mimes' => 'Attachments must be of type: pdf, doc, docx, xls, xlsx, jpg, jpeg, png.',
+            'attachments_max'   => 'Each attachment must not exceed 10 MB.',
+
+            'visibility_required' => 'Please select a visibility option first.',
+            'visibility_in'       => 'The selected visibility option is invalid.',
         ],
 
 

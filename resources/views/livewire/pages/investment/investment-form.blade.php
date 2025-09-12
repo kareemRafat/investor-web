@@ -48,15 +48,15 @@
                 @endif
 
                 <a wire:click.prevent="nextStep"
-                    aria-label="{{ $currentStep === 10 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    title="{{ $currentStep === 10 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    class="btn {{ $currentStep === 10 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
+                    aria-label="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}"
+                    title="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}"
+                    class="btn {{ $currentStep === 6 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
                     <span class="small fw-bold d-flex align-items-center">
                         @if (app()->getLocale() === 'ar')
-                            {{ $currentStep === 10 ? __('investor.form.finish') : __('investor.form.next') }}
+                            {{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}
                             <i class="bi bi-arrow-left-circle mx-2"></i>
                         @else
-                            {{ $currentStep === 10 ? __('investor.form.finish') : __('investor.form.next') }}
+                            {{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}
                             <i class="bi bi-arrow-right-circle mx-2"></i>
                         @endif
                     </span>
@@ -64,7 +64,7 @@
             </div>
             <div class="d-flex justify-content-center mb-4">
                 <div class="stepper d-flex align-items-center justify-content-center flex-wrap">
-                    @for ($i = 1; $i <= 10; $i++)
+                    @for ($i = 1; $i <= 6; $i++)
                         <div
                             class="stepper-item
                             @if ($i < $currentStep) completed_step
@@ -78,7 +78,7 @@
                             </div>
                         </div>
 
-                        @if ($i < 10)
+                        @if ($i < 6)
                             <div class="stepper-connector">
                             </div>
                         @endif
