@@ -4,7 +4,32 @@
         <div class="col-12">
 
             {{-- steps --}}
-            <livewire:pages.investment.investment-form.steps.step1 wire:key="step-1" />
+
+            @switch($currentStep)
+                @case(1)
+                    <livewire:pages.investment.investment-form.steps.step1 wire:key="step-1" />
+                @break
+
+                @case(2)
+                    <livewire:pages.investment.investment-form.steps.step2 wire:key="step-2" />
+                @break
+
+                @case(3)
+                    <livewire:pages.investment.investment-form.steps.step3 wire:key="step-3" />
+                @break
+
+                @case(4)
+                    <livewire:pages.investment.investment-form.steps.step4 wire:key="step-4" />
+                @break
+
+                @case(5)
+                    <livewire:pages.investment.investment-form.steps.step5 wire:key="step-5" />
+                @break
+
+                @case(6)
+                    <livewire:pages.investment.investment-form.steps.step6 wire:key="step-6" />
+                @break
+            @endswitch
 
             <div class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
                 @if ($currentStep > 1)
