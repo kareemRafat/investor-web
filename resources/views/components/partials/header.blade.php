@@ -40,12 +40,11 @@
                 </ul>
             </nav>
             <div class="d-none d-xl-flex gap-2">
-                <!-- login button -->
-                <a href="/login_en.html" class="btn btn-primary rounded-4 pt-2" title="login" aria-label="login">
-                    <span class="small fw-semibold">
-                        {{ __('header.login') }}
-                    </span>
-                </a>
+                <!-- logout button -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="btn btn-primary rounded-4" type="submit">Logout</button>
+                </form>
                 <!-- language -->
                 <div class="dropdown">
                     <button class="btn text-primary dropdown-toggle" type="button" id="languageDropdown"
