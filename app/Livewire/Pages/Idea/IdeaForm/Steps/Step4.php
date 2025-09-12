@@ -49,4 +49,12 @@ class Step4 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step4');
     }
+
+    public function messages()
+    {
+        return [
+            'profit_type.*'  => __('idea.validation.step4.profit_type'),
+            'profit_range.*' => __('idea.validation.step4.profit_range'),
+        ];
+    }
 }

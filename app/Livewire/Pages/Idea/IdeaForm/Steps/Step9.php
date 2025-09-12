@@ -41,4 +41,17 @@ class Step9 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step9');
     }
+
+    public function messages()
+{
+    return [
+        'data.summary.required' => __('idea.validation.step9.summary_required'),
+        'data.summary.string'   => __('idea.validation.step9.summary_string'),
+        'data.summary.max'      => __('idea.validation.step9.summary_max'),
+
+        'data.attachments.*.file'  => __('idea.validation.step9.attachments_file'),
+        'data.attachments.*.mimes' => __('idea.validation.step9.attachments_mimes'),
+        'data.attachments.*.max'   => __('idea.validation.step9.attachments_max'),
+    ];
+}
 }

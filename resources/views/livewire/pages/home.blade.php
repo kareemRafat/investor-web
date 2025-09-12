@@ -29,7 +29,7 @@
                             width="120" height="140" />
                     </div>
                 </div>
-                <a href="/investment_step1_en.html" aria-label="Investor" title="Investor" type="button"
+                <a href="{{ route('investor.main') }}" wire:navigate aria-label="Investor" title="Investor" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
                         {{ __('pages/mainpage.investor') }}

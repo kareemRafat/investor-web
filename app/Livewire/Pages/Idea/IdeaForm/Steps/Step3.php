@@ -38,4 +38,12 @@ class Step3 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step3');
     }
+
+    public function messages()
+    {
+        return [
+            'cost_type.*'  => __('idea.validation.step3.cost_type'),
+            'cost_range.*' => __('idea.validation.step3.cost_range'),
+        ];
+    }
 }

@@ -50,4 +50,24 @@ class Step5 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step5');
     }
+
+    public function messages()
+    {
+        return [
+            // step5
+            'data.company.*'               => __('idea.validation.step5.company'),
+            'data.space_type.*'            => __('idea.validation.step5.space_type'),
+            'data.staff.*'                 => __('idea.validation.step5.staff'),
+            'data.staff_number.*'          => __('idea.validation.step5.staff_number'),
+            'data.workers.*'               => __('idea.validation.step5.workers'),
+            'data.workers_number.*'        => __('idea.validation.step5.workers_number'),
+            'data.executive_spaces.*'      => __('idea.validation.step5.executive_spaces'),
+            'data.executive_spaces_type.*' => __('idea.validation.step5.executive_spaces_type'),
+            'data.equipment.*'             => __('idea.validation.step5.equipment'),
+            'data.equipment_type.*'        => __('idea.validation.step5.equipment_type'),
+            'data.software.*'              => __('idea.validation.step5.software'),
+            'data.software_type.*'         => __('idea.validation.step5.software_type'),
+            'data.website.*'               => __('idea.validation.step5.website'),
+        ];
+    }
 }

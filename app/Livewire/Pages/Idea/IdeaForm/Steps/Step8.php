@@ -65,4 +65,25 @@ class Step8 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step8');
     }
+
+    public function messages()
+    {
+        return [
+            'data.profit_only_percentage.in' => __('idea.validation.step8.profit_only_percentage'),
+
+            'data.one_time_dollar.numeric' => __('idea.validation.step8.one_time_dollar_numeric'),
+            'data.one_time_dollar.min'     => __('idea.validation.step8.one_time_dollar_min'),
+
+            'data.one_time_sar.numeric' => __('idea.validation.step8.one_time_sar_numeric'),
+            'data.one_time_sar.min'     => __('idea.validation.step8.one_time_sar_min'),
+
+            'data.combo_dollar.numeric' => __('idea.validation.step8.combo_dollar_numeric'),
+            'data.combo_dollar.min'     => __('idea.validation.step8.combo_dollar_min'),
+
+            'data.combo_sar.numeric' => __('idea.validation.step8.combo_sar_numeric'),
+            'data.combo_sar.min'     => __('idea.validation.step8.combo_sar_min'),
+
+            'data.combo_percentage.in' => __('idea.validation.step8.combo_percentage'),
+        ];
+    }
 }

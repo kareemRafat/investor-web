@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
+namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -8,14 +8,15 @@ use Livewire\Attributes\Validate;
 
 class Step1 extends Component
 {
+
     #[Validate('required')]
-    public $ideaField;
+    public $investorField;
 
-    public array $ideaOptions = [];
+    public array $investorOptions = [];
 
-    public function mount(): void
+    public function mount()
     {
-        $this->ideaOptions = __('idea.steps.step1.options');
+        $this->investorOptions = __('investor.steps.step1.options');
     }
 
     #[On('validate-step-1')]
@@ -27,13 +28,13 @@ class Step1 extends Component
 
     public function render()
     {
-        return view('livewire.pages.idea.idea-form.steps.step1');
+        return view('livewire.pages.investment.investment-form.steps.step1');
     }
 
     public function messages()
     {
         return [
-            'ideaField.required' => __('idea.validation.step1.idea_field'),
+            'investorField.required' => __('investor.validation.step1.investor_field'),
         ];
     }
 }

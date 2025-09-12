@@ -42,4 +42,16 @@ class Step6 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step6');
     }
+
+    public function messages()
+    {
+        return [
+            // step6
+            'data.company.*'   => __('idea.validation.step6.company'),
+            'data.assets.*'    => __('idea.validation.step6.assets'),
+            'data.salaries.*'  => __('idea.validation.step6.salaries'),
+            'data.operating.*' => __('idea.validation.step6.operating'),
+            'data.other.*'     => __('idea.validation.step6.other'),
+        ];
+    }
 }

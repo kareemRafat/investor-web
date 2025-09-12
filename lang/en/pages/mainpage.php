@@ -11,6 +11,7 @@ return [
     'investor'      => 'Investor',
     'explore_ideas' => 'Explore Ideas',
     'find_investor' => 'Find an Investor',
+    'investor_details' => 'Find an Investor',
 
     'latest_ideas'        => 'Latest Ideas',
     'view_all_ideas'      => 'View All Ideas',

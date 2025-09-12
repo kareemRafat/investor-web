@@ -48,4 +48,18 @@ class Step7 extends Component
     {
         return view('livewire.pages.idea.idea-form.steps.step7');
     }
+
+    public function messages()
+    {
+        return [
+            // step7
+            'data.contribute_type.*'     => __('idea.validation.step7.contribute_type'),
+            'data.staff.*'               => __('idea.validation.step7.staff'),
+            'data.staff_person_money.*'  => __('idea.validation.step7.staff_person_money'),
+            'data.money_amount.*'        => __('idea.validation.step7.money_amount'),
+            'data.money_percent.*'       => __('idea.validation.step7.money_percent'),
+            'data.person_money_amount.*' => __('idea.validation.step7.person_money_amount'),
+            'data.person_money_percent.*' => __('idea.validation.step7.person_money_percent'),
+        ];
+    }
 }

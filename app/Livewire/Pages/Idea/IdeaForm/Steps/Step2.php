@@ -10,7 +10,7 @@ class Step2 extends Component
 {
 
     #[Validate([
-        'countries'   => 'required|array|size:3',
+        'countries'   => 'required|array|min:1|max:3',
         'countries.*' => 'string',
     ])]
     public array $countries = [];
@@ -32,5 +32,12 @@ class Step2 extends Component
     public function render()
     {
         return view('livewire.pages.idea.idea-form.steps.step2');
+    }
+
+    public function messages()
+    {
+        return [
+            'countries.required' => __('idea.validation.step2.countries'),
+        ];
     }
 }

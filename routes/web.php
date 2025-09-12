@@ -10,6 +10,7 @@ use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\About;
 use App\Livewire\Pages\Idea\IdeaForm;
+use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\PrivacyPolicy;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +54,6 @@ Route::get('/about' , About::class)->name('main.about');
 
 // Submit your Idea
 Route::get('/ideas' , IdeaForm::class)->name('ideas.main');
+
+// Investor
+Route::get('/investor' , InvestmentForm::class)->name('investor.main');
