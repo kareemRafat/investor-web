@@ -10,17 +10,17 @@ class Step5 extends Component
 {
     #[Validate([
         'data.company' => 'required|in:yes,no',
-        'data.space_type' => 'in:large,small',
+        'data.space_type' => 'required_if:data.company,yes|nullable|in:large,small',
         'data.staff' => 'required|in:yes,no',
-        'data.staff_number' => 'required|integer|min:1',
+        'data.staff_number' => 'required_if:data.staff,yes|nullable|integer|min:1',
         'data.workers' => 'required|in:yes,no',
-        'data.workers_number' => 'required|integer|min:1',
+        'data.workers_number' => 'required_if:data.workers,yes|nullable|integer|min:1',
         'data.executive_spaces' => 'required|in:yes,no',
-        'data.executive_spaces_type' => 'required|in:open_spaces,factory,land_space',
+        'data.executive_spaces_type' => 'required_if:data.executive_spaces,yes|nullable|in:open_spaces,factory,land_space',
         'data.equipment' => 'required|in:yes,no',
-        'data.equipment_type' => 'required|in:industrial,electronic,other',
+        'data.equipment_type' => 'required_if:data.equipment,yes|nullable|in:industrial,electronic,other',
         'data.software' => 'required|in:yes,no',
-        'data.software_type' => 'required|in:static,dynamic',
+        'data.software_type' => 'required_if:data.software,yes|nullable|in:static,dynamic',
         'data.website' => 'required|in:yes,no',
     ])]
     public array $data = [

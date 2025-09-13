@@ -9,20 +9,20 @@ use Livewire\Attributes\Validate;
 class Step3 extends Component
 {
     #[Validate([
-    'data.company'         => 'required|in:yes,no',
-    'data.space_type'      => 'nullable|required_if:data.company,yes|in:large,small',
-    'data.staff'           => 'required|in:yes,no',
-    'data.number_staff'    => 'nullable|required_if:data.staff,yes|integer|min:1',
-    'data.workers'         => 'required|in:yes,no',
-    'data.number_workers'  => 'nullable|required_if:data.workers,yes|integer|min:1',
-    'data.spaces'          => 'required|in:yes,no',
-    'data.space_type_exec' => 'nullable|required_if:data.spaces,yes|in:open_spaces,factory,land',
-    'data.equipment'       => 'required|in:yes,no',
-    'data.equipment_type'  => 'nullable|required_if:data.equipment,yes|in:industrial,electronic,other',
-    'data.software'        => 'required|in:yes,no',
-    'data.software_type'   => 'nullable|required_if:data.software,yes|in:dynamic,static',
-    'data.website'         => 'required|in:yes,no',
-])]
+        'data.company' => 'required|in:yes,no',
+        'data.space_type' => 'required_if:data.company,yes|nullable|in:large,small',
+        'data.staff' => 'required|in:yes,no',
+        'data.staff_number' => 'required_if:data.staff,yes|nullable|integer|min:1',
+        'data.workers' => 'required|in:yes,no',
+        'data.workers_number' => 'required_if:data.workers,yes|nullable|integer|min:1',
+        'data.executive_spaces' => 'required|in:yes,no',
+        'data.executive_spaces_type' => 'required_if:data.executive_spaces,yes|nullable|in:open_spaces,factory,land_space',
+        'data.equipment' => 'required|in:yes,no',
+        'data.equipment_type' => 'required_if:data.equipment,yes|nullable|in:industrial,electronic,other',
+        'data.software' => 'required|in:yes,no',
+        'data.software_type' => 'required_if:data.software,yes|nullable|in:static,dynamic',
+        'data.website' => 'required|in:yes,no',
+    ])]
     public array $data = [
         'company'         => null,
         'space_type'      => null,
@@ -54,22 +54,20 @@ class Step3 extends Component
     public function messages()
     {
         return [
-            'data.company.required' => __('investor.validation.step3.company_required'),
-            'data.staff.required'   => __('investor.validation.step3.staff_required'),
-            'data.workers.required' => __('investor.validation.step3.workers_required'),
-            'data.spaces.required'  => __('investor.validation.step3.spaces_required'),
-            'data.space_type_exec.required_if'  => __('investor.validation.step3.space_type_exec_required'),
-            'data.equipment.required' => __('investor.validation.step3.equipment_required'),
-            'data.equipment_type.required_if' => __('investor.validation.step3.equipment_type_required'),
-            'data.software.required'  => __('investor.validation.step3.software_required'),
-            'data.software_type.required_if'  => __('investor.validation.step3.software_type_required'),
-            'data.website.required'   => __('investor.validation.step3.website_required'),
-
-            'data.number_staff.required'    => __('investor.validation.step3.number_staff_required'),
-            'data.number_staff.min'         => __('investor.validation.step3.number_min'),
-            'data.number_workers.min'       => __('investor.validation.step3.number_workers_min'),
-            'data.number_workers.required'  => __('investor.validation.step3.number_workers_required'),
-            'data.company.in'               => __('investor.validation.step3.company_in'),
+            // step5
+            'data.company.*'               => __('idea.validation.step5.company'),
+            'data.space_type.*'            => __('idea.validation.step5.space_type'),
+            'data.staff.*'                 => __('idea.validation.step5.staff'),
+            'data.staff_number.*'          => __('idea.validation.step5.staff_number'),
+            'data.workers.*'               => __('idea.validation.step5.workers'),
+            'data.workers_number.*'        => __('idea.validation.step5.workers_number'),
+            'data.executive_spaces.*'      => __('idea.validation.step5.executive_spaces'),
+            'data.executive_spaces_type.*' => __('idea.validation.step5.executive_spaces_type'),
+            'data.equipment.*'             => __('idea.validation.step5.equipment'),
+            'data.equipment_type.*'        => __('idea.validation.step5.equipment_type'),
+            'data.software.*'              => __('idea.validation.step5.software'),
+            'data.software_type.*'         => __('idea.validation.step5.software_type'),
+            'data.website.*'               => __('idea.validation.step5.website'),
         ];
     }
 }

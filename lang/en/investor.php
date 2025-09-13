@@ -91,7 +91,15 @@ return [
             ],
         ],
         'step3' => [
-            'subtitle' => "The amounts / resources you own and wish to invest or share in the business"
+            'subtitle' => "The amounts / resources you own and wish to invest or share in the business",
+            'company' => 'Establishing a company',
+            'office_spaces' => 'Office spaces',
+            'staff' => 'Specialized Employees',
+            'workers' => 'Unprofessional workers',
+            'executive_spaces' => 'Executive Spaces',
+            'equipment' => 'Devices and Equipment',
+            'software' => 'Software and applications',
+            'website' => 'Website',
         ],
         'step4' => [
             'subtitle' => 'The contributions you would like to have in the distinguished idea',
