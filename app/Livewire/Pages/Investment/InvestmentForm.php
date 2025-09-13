@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 
 class InvestmentForm extends Component
 {
-    public int $currentStep = 3 ;
+    public int $currentStep = 4 ;
     public int $totalSteps = 5 ;
 
     public function nextStep()
