@@ -32,7 +32,8 @@
                         </div>
                         <!-- login with email -->
                         <div class="form-floating mb-3">
-                            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="EMAIL" />
+                            <input name="email" type="email" class="form-control" id="floatingInput"
+                                placeholder="EMAIL" />
                             <label for="floatingInput" class="form-label"> EMAIL</label>
                         </div>
                         @error('email')
@@ -40,7 +41,7 @@
                         @enderror
 
                         <x-auth.password-input name="password" label="Password" />
-                        
+
                         <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">

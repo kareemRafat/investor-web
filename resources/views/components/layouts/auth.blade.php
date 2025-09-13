@@ -8,9 +8,9 @@
     <meta name="keywords" content="investment, finance, portfolio" />
     <meta name="author" content="Investment Team" />
     <!-- favicon -->
-    <link rel="icon" href="{{ asset("images/logo.svg") }}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{{ asset("images/logo.svg") }}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{{ asset("images/logo.svg") }}" />
+    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}" />
     <!-- title -->
     <title>{{ $title ?? 'Page Title' }}</title>
     <!-- Bootstrap Icons -->
@@ -25,6 +25,23 @@
 </head>
 
 <body>
+
+    <div class="container fixed-top">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end mt-3">
+                <div class="dropdown">
+                    <button class="btn text-primary dropdown-toggle" type="button" id="languageDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" title="Choose Language">
+                        <i class="bi bi-globe2"></i>
+                    </button>
+                    <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item text-center" href="./index.html">العربية</a></li>
+                        <li><a class="dropdown-item text-center" href="./index_en.html">English</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{ $slot }}
 
