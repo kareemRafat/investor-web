@@ -2,9 +2,6 @@
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('idea.steps.step8.title') }}"
         subtitle="{{ __('idea.steps.step8.subtitle') }}" />
-
-    @dump($errors->all())
-
     <div x-data="{
         activeColumn: null,
         selectColumn(column) {
@@ -57,9 +54,6 @@
                                     </div>
                                 @endforeach
                             </div>
-                            @error('data.profit_only_percentage')
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
 
@@ -89,9 +83,6 @@
                                             wire:model="data.one_time_dollar" :disabled="activeColumn !== 'one_time'" />
                                     </div>
                                 </div>
-                                @error('data.one_time_dollar')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
 
                                 <!-- SAR -->
                                 <div class="col-12 d-flex align-items-center justify-content-between">
@@ -105,9 +96,6 @@
                                             wire:model="data.one_time_sar" :disabled="activeColumn !== 'one_time'" />
                                     </div>
                                 </div>
-                                @error('data.one_time_sar')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -138,9 +126,6 @@
                                             wire:model="data.combo_dollar" :disabled="activeColumn !== 'combo'" />
                                     </div>
                                 </div>
-                                @error('data.combo_dollar')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
 
                                 <!-- SAR -->
                                 <div class="col-12 d-flex align-items-center justify-content-between">
@@ -164,8 +149,8 @@
                                     <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
                                         <div class="bg-light rounded-8 shadow-sm text-center">
                                             <input type="radio" class="btn-check"
-                                                id="combo_percentage_{{ $percent }}"
-                                                value="{{ $percent }}" wire:model="data.combo_percentage"
+                                                id="combo_percentage_{{ $percent }}" value="{{ $percent }}"
+                                                wire:model="data.combo_percentage"
                                                 :disabled="activeColumn !== 'combo'">
                                             <label
                                                 class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
@@ -178,16 +163,14 @@
                             </div>
                         </div>
                     </div>
-
-                    @error('data')
-                        <div class="text-danger text-center mt-1">{{ $message }}</div>
-                    @enderror
-                    @error('combo')
-                        <div class="text-danger text-center mt-1">{{ $message }}</div>
-                    @enderror
-
                 </div>
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="text-danger text-center fw-bold mt-2">
+            {{ $errors->first() }}
+        </div>
+    @endif
 </div>

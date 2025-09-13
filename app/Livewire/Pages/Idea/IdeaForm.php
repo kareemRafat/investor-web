@@ -20,7 +20,6 @@ class IdeaForm extends Component
     #[On('go-to-next-step')]
     public function goToNextStep()
     {
-        // dd('test');
         if ($this->currentStep < 9) {
             $this->currentStep++;
         }

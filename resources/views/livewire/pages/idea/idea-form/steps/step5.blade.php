@@ -3,8 +3,6 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step5.subtitle') }}" />
 
-    @dump($errors->all())
-
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
             <div class="col-12">
@@ -104,9 +102,6 @@
                                                 wire:model="data.staff_number"
                                                 placeholder="{{ __('idea.common.enter_number') }}" />
                                         </div>
-                                        @error('data.staff_number')
-                                            <span class="text-danger small">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
 
@@ -147,9 +142,6 @@
                                                 id="number_workers" wire:model="data.workers_number"
                                                 placeholder="{{ __('idea.common.enter_number') }}" />
                                         </div>
-                                        @error('data.workers_number')
-                                            <span class="text-danger small">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
 
@@ -353,4 +345,10 @@
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="text-danger text-center fw-bold mt-2">
+            {{ $errors->first() }}
+        </div>
+    @endif
 </div>

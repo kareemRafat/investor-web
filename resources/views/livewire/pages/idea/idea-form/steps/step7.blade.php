@@ -3,17 +3,15 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step7.subtitle') }}" />
 
-    @dump($errors->all())
-
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
             <div class="col-12">
                 <div class="row g-3">
 
                     <!-- بيع الفكرة -->
-                    <div class="col-lg-7 col-12 my-2">
+                    <div class="col-lg-6 col-12 my-2">
                         <div class="d-flex align-items-center justify-content-between">
-                            <div class="col-12 col-lg-9 col-md-12">
+                            <div class="col-12 col-md-12">
                                 <input type="radio" class="btn-check" id="needs" wire:model="data.contribute_type"
                                     value="sell" name="contribute_type" autocomplete="off">
                                 <label
@@ -23,15 +21,12 @@
                                 </label>
                             </div>
                         </div>
-                        @error('data.contribute_type')
-                            <div class="text-danger small mt-1">{{ $message }}</div>
-                        @enderror
                     </div>
-
+                    <div class="mt-0"></div>
                     <!-- المساهمة بالفكرة فقط -->
-                    <div class="col-lg-7 col-12 my-2">
+                    <div class="col-lg-6 col-12 my-2">
                         <div class="d-flex align-items-center justify-content-between">
-                            <div class="col-12 col-lg-9 col-md-12">
+                            <div class="col-12  col-md-12">
                                 <input type="radio" class="btn-check" id="contribute"
                                     wire:model="data.contribute_type" value="idea" name="contribute_type"
                                     autocomplete="off">
@@ -45,9 +40,9 @@
                     </div>
 
                     <!-- المساهمة برأس المال -->
-                    <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
-                        <div class="col-lg-7 col-12">
-                            <div class="col-12 col-lg-9 col-md-12">
+                    <div class="row mx-0 px-0 my-2 align-items-center gap3">
+                        <div class="col-lg-6 col-12">
+                            <div class="col-12 col-md-12">
                                 <input type="radio" class="btn-check" id="contribute_person"
                                     wire:model="data.contribute_type" value="capital" name="contribute_type"
                                     autocomplete="off">
@@ -83,16 +78,13 @@
                                     </label>
                                 </div>
                             </div>
-                            @error('data.staff')
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
 
                     <!-- المساهمة الشخصية -->
-                    <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
-                        <div class="col-lg-7 col-12">
-                            <div class="col-12 col-lg-9 col-md-12">
+                    <div class="row mx-0 px-0 my-2 align-items-center">
+                        <div class="col-lg-6 col-12">
+                            <div class="col-12 col-lg-12 col-md-12">
                                 <input type="radio" class="btn-check" id="contribute_money"
                                     wire:model="data.contribute_type" value="personal" name="contribute_type"
                                     autocomplete="off">
@@ -103,36 +95,30 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
+                        <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
                             <div class="d-flex align-items-center gap-3">
-                                <div>
+                                <div class="d-flex align-items-center gap-3">
                                     <label for="money_amount" class="text-primary fw-bold fs-5">
                                         {{ __('idea.steps.step7.amount') }}
                                     </label>
                                     <input type="number" class="form-control py-3 rounded-8" id="money_amount"
                                         wire:model="data.money_amount" name="money_amount" placeholder="" />
-                                    @error('data.money_amount')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
                                 </div>
-                                <div>
+                                <div class="d-flex align-items-center gap-3">
                                     <label for="money_percent" class="text-primary fw-bold fs-5">
                                         {{ __('idea.steps.step7.percent') }}
                                     </label>
                                     <input type="number" class="form-control py-3 rounded-8" id="money_percent"
                                         wire:model="data.money_percent" name="money_percent" placeholder="" />
-                                    @error('data.money_percent')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- المساهمة الشخصية + رأس المال -->
-                    <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
-                        <div class="col-lg-7 col-12">
-                            <div class="col-12 col-lg-9 col-md-12">
+                    <div class="row mx-0 px-0 my-2 align-items-center">
+                        <div class="col-lg-6 col-12">
+                            <div class="col-12 col-md-12">
                                 <input type="radio" class="btn-check" id="contribute_person_and_money"
                                     wire:model="data.contribute_type" value="both" name="contribute_type"
                                     autocomplete="off">
@@ -143,31 +129,25 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
+                        <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
                             <div
                                 class="d-flex align-items-center justify-content-between flex-wrap flex-lg-nowrap gap-3">
                                 <div class="d-flex align-items-center gap-3">
-                                    <div>
-                                        <label for="person_money_amount" class="text-primary fw-bold fs-5">
+                                    <div class="d-flex align-items-center">
+                                        <label for="person_money_amount" class="text-primary fw-bold fs-5 me-1">
                                             {{ __('idea.steps.step7.amount') }}
                                         </label>
                                         <input type="number" class="form-control py-3 rounded-8"
                                             id="person_money_amount" wire:model="data.person_money_amount"
                                             name="person_money_amount" placeholder="" />
-                                        @error('data.person_money_amount')
-                                            <div class="text-danger small mt-1">{{ $message }}</div>
-                                        @enderror
                                     </div>
-                                    <div>
-                                        <label for="person_money_percent" class="text-primary fw-bold fs-5">
+                                    <div class="d-flex align-items-center">
+                                        <label for="person_money_percent" class="text-primary fw-bold fs-5 me-1">
                                             {{ __('idea.steps.step7.percent') }}
                                         </label>
                                         <input type="number" class="form-control py-3 rounded-8"
                                             id="person_money_percent" wire:model="data.person_money_percent"
                                             name="person_money_percent" placeholder="" />
-                                        @error('data.person_money_percent')
-                                            <div class="text-danger small mt-1">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 flex-wrap">
@@ -196,20 +176,17 @@
                                         </label>
                                     </div>
                                 </div>
-                                @error('data.staff_person_money')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                     </div>
-
-                    {{-- total validation --}}
-                    @error('total')
-                        <div class="text-danger small mt-2">{{ $message }}</div>
-                    @enderror
-
                 </div>
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="text-danger text-center fw-bold mt-2">
+            {{ $errors->first() }}
+        </div>
+    @endif
 </div>

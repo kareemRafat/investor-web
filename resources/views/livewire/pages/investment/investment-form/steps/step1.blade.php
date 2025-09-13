@@ -3,10 +3,6 @@
     <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
         subtitle="{{ __('investor.steps.step1.subtitle') }}" />
 
-    @error('investorField')
-        <div class="text-danger small mt-2">{{ $message }}</div>
-    @enderror
-
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3 justify-content-center">
             @foreach (__('investor.steps.step1.options') as $key => $label)
@@ -23,4 +19,8 @@
             @endforeach
         </div>
     </div>
+
+    @error('investorField')
+        <div  class="text-danger text-center fw-bold mt-2">{{ $message }}</div>
+    @enderror
 </div>

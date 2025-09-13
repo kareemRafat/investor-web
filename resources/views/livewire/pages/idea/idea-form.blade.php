@@ -41,7 +41,7 @@
                 @break
             @endswitch
 
-            <div class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
+            <div  wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
                 @if ($currentStep > 1)
                     <a wire:click.prevent="previousStep" aria-label="{{ __('idea.form.previous') }}"
                         title="{{ __('idea.form.previous') }}" class="btn btn-outline-custom btn_next py-2 px-4">
@@ -73,7 +73,7 @@
                 </a>
             </div>
         </div>
-        <div class="stepper d-flex align-items-center justify-content-center flex-wrap">
+        <div  wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap">
             @for ($i = 1; $i <= 9; $i++)
                 <div
                     class="stepper-item

@@ -50,9 +50,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @error("data.$key")
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
                         </div>
                     @endforeach
 

@@ -3,10 +3,6 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step2.subtitle') }}" />
 
-    @error('countries')
-        <div class="text-danger small mt-2">{{ $message }}</div>
-    @enderror
-
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4" x-data="{ limit: 3 }">
         <div class="row g-3 justify-content-center">
             @foreach ($options as $index => $country)
@@ -23,4 +19,7 @@
             @endforeach
         </div>
     </div>
+    @error('countries')
+        <div class="text-danger text-center fw-bold mt-2">{{ $message }}</div>
+    @enderror
 </div>

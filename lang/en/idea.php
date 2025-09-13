@@ -240,7 +240,7 @@ return [
     ],
     'validation' => [
         'step1' => [
-            'idea_field' => 'Idea field is Required'
+            'idea_field' => 'You must choose One of those Fields'
         ],
         'step2' => [
             'countries' => 'You must Choose at least One country',

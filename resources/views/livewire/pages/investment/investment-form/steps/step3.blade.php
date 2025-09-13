@@ -3,8 +3,6 @@
     <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
         subtitle="{{ __('investor.steps.step3.subtitle') }}" />
 
-    @dump($errors->all())
-
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
             <div class="row g-3">
@@ -93,7 +91,7 @@
                                             Number
                                         </label>
                                         <input type="number" class="form-control py-3 rounded-8" id="number"
-                                            name="number" placeholder="Enter number" wire:model="data.number_staff" />
+                                            name="number_staff" placeholder="Enter number" wire:model="data.number_staff" />
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +106,8 @@
                                         </div>
                                         <div class="col-4 justify-content-end d-flex gap-2">
                                             <div class="col-6">
-                                                <input type="radio" class="btn-check" id="workers_yes"
-                                                    name="workers" wire:model="data.workers" value="yes">
+                                                <input type="radio" class="btn-check" id="workers_yes" name="workers"
+                                                    wire:model="data.workers" value="yes">
                                                 <label
                                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                                     for="workers_yes">Yes</label>
@@ -130,7 +128,8 @@
                                             Number
                                         </label>
                                         <input type="number" class="form-control py-3 rounded-8" id="number_workers"
-                                            name="number_workers" placeholder="Enter number" wire:model="data.number_workers" />
+                                            name="number_workers" placeholder="Enter number"
+                                            wire:model="data.number_workers" />
                                     </div>
                                 </div>
                             </div>
@@ -166,13 +165,15 @@
                                     <div class="d-flex align-items-center gap-2 gap-md-3 gap-lg-4">
                                         <div class="d-flex align-items-center gap-2">
                                             <input class="form-check-input" type="radio" name="space_type_exec"
-                                                id="open_spaces_large" value="open_spaces" wire:model="data.space_type_exec">
+                                                id="open_spaces_large" value="open_spaces"
+                                                wire:model="data.space_type_exec">
                                             <label class="form-check-label" for="open_spaces_large">Open
                                                 spaces</label>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
                                             <input class="form-check-input" type="radio" name="space_type_exec"
-                                                id="factory_large" value="factory" checked wire:model="data.space_type_exec">
+                                                id="factory_large" value="factory" checked
+                                                wire:model="data.space_type_exec">
                                             <label class="form-check-label" for="factory_large">Factory</label>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
@@ -216,17 +217,20 @@
                                     <div class="d-flex align-items-center gap-4">
                                         <div class="d-flex align-items-center gap-2">
                                             <input type="radio" class="form-check-input" id="industrial"
-                                                name="equipment_type" checked wire:model="data.equipment_type" value="industrial">
+                                                name="equipment_type" checked wire:model="data.equipment_type"
+                                                value="industrial">
                                             <label class="form-check-label" for="industrial">Industrial</label>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
                                             <input type="radio" class="form-check-input" id="electronic"
-                                                name="equipment_type" wire:model="data.equipment_type" value="electronic">
+                                                name="equipment_type" wire:model="data.equipment_type"
+                                                value="electronic">
                                             <label class="form-check-label" for="electronic">Electronic</label>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
                                             <input type="radio" class="form-check-input" id="other"
-                                                name="equipment_type" wire:model="data.equipment_type" value="other">
+                                                name="equipment_type" wire:model="data.equipment_type"
+                                                value="other">
                                             <label class="form-check-label" for="other">Other</label>
                                         </div>
                                     </div>
@@ -263,7 +267,8 @@
                                     <div class="d-flex align-items-center gap-5">
                                         <div class="d-flex align-items-center gap-2">
                                             <input type="radio" class="form-check-input" id="dynamic"
-                                                name="software_type" checked wire:model="data.software_type" value="dynamic">
+                                                name="software_type" checked wire:model="data.software_type"
+                                                value="dynamic">
                                             <label class="form-check-label" for="dynamic">Dynamic</label>
                                         </div>
                                         <div class="d-flex align-items-center gap-2">
@@ -309,4 +314,10 @@
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="text-danger text-center fw-bold mt-2">
+            {{ $errors->first() }}
+        </div>
+    @endif
 </div>

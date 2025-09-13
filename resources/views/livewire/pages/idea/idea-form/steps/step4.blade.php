@@ -10,13 +10,6 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step4.subtitle') }}" />
 
-    {{-- errors --}}
-    @error('profit_type')
-        <div class="text-danger small fw-bold mt-1">{{ $message }}</div>
-    @enderror
-    @error('profit_range')
-        <div class="text-danger small fw-bold mt-1">{{ $message }}</div>
-    @enderror
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
@@ -84,4 +77,12 @@
             </div>
         </div>
     </div>
+
+    {{-- errors --}}
+    @if ($errors->has('profit_type') || $errors->has('profit_range'))
+        <div class="text-danger text-center fw-bold mt-2">
+            {{ $errors->first('profit_type') ?: $errors->first('profit_range') }}
+        </div>
+    @endif
+
 </div>

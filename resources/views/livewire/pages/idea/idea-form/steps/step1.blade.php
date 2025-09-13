@@ -20,6 +20,6 @@
         </div>
     </div>
     @error('ideaField')
-        <div class="text-danger text-center fw-bold mt-2">{{ $message }}</div>
+        <div  class="text-danger text-center fw-bold mt-2">{{ $message }}</div>
     @enderror
 </div>

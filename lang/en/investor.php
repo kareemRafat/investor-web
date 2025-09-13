@@ -110,7 +110,7 @@ return [
         'step5' => [
             'subtitle' => 'Summary of the investment or participation proposed by you and its files',
             'placeholder' => 'Write a clear summary of your idea',
-            
+
             'confidential_info' => 'If there is any important and confidential information about the idea, we advise you not to mention it clearly in this summary to preserve your rights and protect it from being stolen by others.',
             'max_characters' => '2000 characters maximum',
             'file_format' => 'File format must be Word, Excel, PDF, or images',
@@ -132,7 +132,7 @@ return [
     ],
     'validation' => [
         'step1' => [
-            'investor_field' => 'Investment field is Required'
+            'investor_field' => 'You must choose One of those Fields'
         ],
         'step2' => [
             'countries' => 'You must Choose at least One country',
@@ -144,8 +144,14 @@ return [
             'workers_required' => 'Please select yes or no for unprofessional workers.',
             'spaces_required' => 'Please select yes or no for executive spaces.',
             'equipment_required' => 'Please select yes or no for devices and equipment.',
+            'equipment_type_required' => 'Please select Equipment Type',
             'software_required' => 'Please select yes or no for software and applications.',
+            'software_type_required' => 'Please select Software Type',
             'website_required' => 'Please select yes or no for website.',
+            'space_type_exec_required' => 'Executive spaces type Required',
+            'number_required' => 'Number is Required',
+            'number_staff_required' => 'Staff Number is Required',
+            'number_workers_required' => 'Workers Number is Required',
             'number_min' => 'Number must be at least 1.',
             'number_workers_min' => 'Number of unprofessional workers must be at least 1.',
         ],
