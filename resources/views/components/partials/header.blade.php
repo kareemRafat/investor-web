@@ -52,8 +52,14 @@
                         <i class="bi bi-globe2"></i>
                     </button>
                     <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item text-center" href="./index.html">العربية</a></li>
-                        <li><a class="dropdown-item text-center" href="./index_en.html">English</a></li>
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a class="dropdown-item text-center" rel="alternate" hreflang="{{ $localeCode }}"
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $properties['native'] }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

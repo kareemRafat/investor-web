@@ -137,7 +137,7 @@
                             <i class="bi bi-chevron-right small"></i>
                         </button>
                         <!-- Already have an account? -->
-                        <div class="text-center mt-5">
+                        <div class="text-center my-5">
                             <span class="small">
                                 Already have an account?
                                 <a href="{{ route('login') }}" wire:navigate
