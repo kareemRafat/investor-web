@@ -31,16 +31,6 @@ class Step7 extends Component
     public function validateStep7()
     {
         $this->validate();
-
-        // لو النوع Personal أو Both لازم الإجمالي = 100%
-        if (
-            in_array($this->data['contribute_type'], ['personal', 'both']) &&
-            (($this->data['money_percent'] ?? 0) + ($this->data['person_money_percent'] ?? 0)) !== 100
-        ) {
-            $this->addError('total', __('idea.steps.step7.total_error'));
-            return;
-        }
-
         $this->dispatch('go-to-next-step');
     }
 

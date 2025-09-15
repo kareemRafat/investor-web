@@ -79,10 +79,12 @@
     </div>
 
     {{-- errors --}}
-    @if ($errors->has('profit_type') || $errors->has('profit_range'))
-        <div class="text-danger text-center fw-bold mt-2">
-            {{ $errors->first('profit_type') ?: $errors->first('profit_range') }}
-        </div>
-    @endif
+    <div class="d-flex justify-content-center">
+        @if ($errors->has('profit_type') || $errors->has('profit_range'))
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3 w-25">
+                {{ $errors->first('profit_type') ?: $errors->first('profit_range') }}
+            </span>
+        @endif
+    </div>
 
 </div>

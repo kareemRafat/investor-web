@@ -77,10 +77,12 @@
         </div>
     </div>
 
-    @if ($errors->has('cost_type') || $errors->has('cost_range'))
-        <div class="text-danger text-center fw-bold mt-2">
-            {{ $errors->first('cost_type') ?: $errors->first('cost_range') }}
-        </div>
-    @endif
+    <div class="d-flex justify-content-center">
+        @if ($errors->has('cost_type') || $errors->has('cost_range'))
+            <span class="text-white bg-danger rounded p-2 text-center fw-bold mt-3">
+                {{ $errors->first('cost_type') ?: $errors->first('cost_range') }}
+            </span>
+        @endif
+    </div>
 
 </div>

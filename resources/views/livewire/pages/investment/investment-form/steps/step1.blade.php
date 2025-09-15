@@ -21,6 +21,8 @@
     </div>
 
     @error('investorField')
-        <div  class="text-danger text-center fw-bold mt-2">{{ $message }}</div>
+        <div class="d-flex justify-content-center">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">{{ $message }}</span>
+        </div>
     @enderror
 </div>
