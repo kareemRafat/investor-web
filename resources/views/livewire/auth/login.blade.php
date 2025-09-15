@@ -11,10 +11,10 @@
                             <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid" width="100">
                         </div>
                         <h6 class="text-secondary mb-0 small">
-                            Welcome back 👋
+                            {{ __('pages.login.welcome_back') }}
                         </h6>
                         <h4 class="fw-bold">
-                            Log in to your account again
+                            {{ __('pages.login.login_title') }}
                         </h4>
                         <!-- login with google -->
                         <div
@@ -22,7 +22,7 @@
                             <img src="{{ asset('images/google.svg') }}" alt="Google Logo" class="img-fluid"
                                 width="20" height="20" />
                             <span>
-                                Sign in with Google
+                                {{ __('pages.login.google_login') }}
                             </span>
                         </div>
                         <!-- Sign in with Google -->
@@ -33,25 +33,25 @@
                         <!-- login with email -->
                         <div class="form-floating mb-3">
                             <input name="email" type="email" class="form-control" id="floatingInput"
-                                placeholder="EMAIL" />
-                            <label for="floatingInput" class="form-label"> EMAIL</label>
+                                placeholder="{{ __('pages.login.email') }}" />
+                            <label for="floatingInput" class="form-label">{{ __('pages.login.email') }}</label>
                         </div>
                         @error('email')
                             <span class="alert alert-danger border-0 p-2 bg-danger text-white">{{ $message }}</span>
                         @enderror
 
-                        <x-auth.password-input name="password" label="Password" />
+                        <x-auth.password-input name="password" label="{{ __('pages.login.password') }}" />
 
                         <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">
-                                Forgot Password?
+                                {{ __('pages.login.forgot') }}
                             </a>
                         </div>
                         <button type="submit"
                             class="btn btn-custom py-2 d-flex justify-content-center gap-4 align-items-center small w-100">
                             <span class="small">
-                                Continue
+                                {{ __('pages.login.continue') }}
                             </span>
                             <!-- icon chervon -->
                             <i class="bi bi-chevron-right small"></i>
@@ -59,10 +59,10 @@
                         <!-- مستخدم جديد؟ -->
                         <div class="text-center mt-5">
                             <span class="small">
-                                New user?
+                                {{ __('pages.login.new_user') }}
                                 <a href="{{ route('register') }}" wire:navigate
                                     class="text-decoration-none text-primary">
-                                    Sign up now
+                                    {{ __('pages.login.signup') }}
                                 </a>
                             </span>
                         </div>

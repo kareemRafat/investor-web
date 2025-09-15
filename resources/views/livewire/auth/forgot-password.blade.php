@@ -2,7 +2,7 @@
 <div class="container">
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="row w-100">
-            <!-- login Form -->
+            <!-- Forgot Password Form -->
             <div class="col-md-6 col-12">
                 <form action="/forgot-password" method="POST">
                     @csrf
@@ -10,65 +10,72 @@
                         <!-- logo -->
                         <div class="mb-3">
                             <a href="/" wire:navigate>
-                                <img src="{{ asset("images/logo.svg") }}" alt="Logo" class="img-fluid" width="100">
+                                <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid"
+                                    width="100">
                             </a>
                         </div>
 
                         <h4 class="fw-bold">
-                            Forgot Your Password?
+                            {{ __('pages.forgot.title') }}
                         </h4>
                         <h6 class="text-secondary mb-4 mt-3 small">
-                            Enter the email address associated with your account and we'll send you a link to reset
-                            your password.
+                            {{ __('pages.forgot.subtitle') }}
                         </h6>
-                        <!-- login with email -->
+
+                        <!-- email -->
                         <div class="form-floating mb-3">
-                            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="EMAIL"  value="{{ old('email') }}"/>
-                            <label for="floatingInput" class="form-label">EMAIL</label>
-                            <!-- Error message -->
-                           @error('email')
-                               <div class="text-danger mt-2 fw-semibold">
+                            <input name="email" type="email" class="form-control" id="floatingInput"
+                                placeholder="{{ __('pages.forgot.email') }}" value="{{ old('email') }}" />
+                            <label for="floatingInput" class="form-label">{{ __('pages.forgot.email') }}</label>
+
+                            @error('email')
+                                <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
-                                   {{ $message }}
-                               </div>
-                           @enderror
-                           @if (session('status'))
+                                    {{ __($message) }}
+                                </div>
+                            @enderror
+
+                            @if (session('status'))
                                 <div class="mb-4 mt-2 font-medium text-sm text-success fw-semibold">
                                     <i class="bi bi-check-circle me-2"></i>
-                                    {{ session('status') }}
+                                    {{ __(session('status')) }}
                                 </div>
                             @endif
                         </div>
 
+                        <!-- submit -->
                         <button type="submit"
                             class="btn btn-custom py-2 d-flex justify-content-center gap-4 align-items-center small w-100">
                             <span class="small">
-                                Send
+                                {{ __('pages.forgot.send') }}
                             </span>
                         </button>
-                        <!-- New User? -->
+
+                        <!-- Not received -->
                         <div class="text-center mt-4 d-flex justify-content-between align-items-center">
                             <span class="small">
-                                Didn't receive the email?
+                                {{ __('pages.forgot.not_received') }}
                                 <span class="text-primary">
-                                    Check your spam folder
+                                    {{ __('pages.forgot.check_spam') }}
                                 </span>
                             </span>
+
                             @php
                                 $previous = url()->previous();
                                 $current = url()->current();
                             @endphp
 
                             <a href="{{ $previous !== $current ? $previous : '/' }}" wire:navigate class="small">
-                                Back
+                                {{ __('pages.forgot.back') }}
                             </a>
                         </div>
                     </div>
                 </form>
             </div>
+
             <!-- forget-password Image -->
             <div class="col-md-6 col-12 d-none d-md-flex justify-content-center align-items-center">
-                <img src="{{ asset("images/forget-password.png") }}" alt="Login Image" class="img-fluid">
+                <img src="{{ asset('images/forget-password.png') }}" alt="Forget Password Image" class="img-fluid">
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 <div class="container">
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="row w-100">
-            <!-- login Form -->
+            <!-- Register Form -->
             <div class="col-md-6 col-12">
                 <form action="/register" method="POST">
                     @csrf
@@ -12,10 +12,10 @@
                             <img src="{{ asset('images/logo.svg') }} " alt="Logo" class="img-fluid" width="100">
                         </div>
                         <h6 class="text-secondary mb-0 small">
-                            Welcome back 👋
+                            {{ __('pages.register.welcome') }}
                         </h6>
                         <h4 class="fw-bold">
-                            Create a new account
+                            {{ __('pages.register.create_account') }}
                         </h4>
                         <!-- Register with google -->
                         <div
@@ -23,21 +23,21 @@
                             <img src="{{ asset('images/google.svg') }} " alt="Google Logo" class="img-fluid"
                                 width="20" height="20" />
                             <span>
-                                Sign up with Google
+                                {{ __('pages.register.google') }}
                             </span>
                         </div>
-                        <!-- سجل بحسابك -->
+                        <!-- OR -->
                         <div class="text-center mb-2">
                             <label class="or_label my-4 d-flex justify-content-center align-items-center bg-white">
+                                {{ __('pages.register.or') }}
                             </label>
                         </div>
 
-                        <!-- register with email -->
+                        <!-- name -->
                         <div class="form-floating mb-3">
                             <input name="name" type="text" class="form-control" id="floatingInput"
-                                placeholder="Enter your Name" value="{{ old('name') }}" />
-                            <label for="floatingInput" class="form-label">Name</label>
-                            <!-- Error message -->
+                                placeholder="{{ __('pages.register.name') }}" value="{{ old('name') }}" />
+                            <label for="floatingInput" class="form-label">{{ __('pages.register.name') }}</label>
                             @error('name')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -45,11 +45,12 @@
                                 </div>
                             @enderror
                         </div>
+
+                        <!-- email -->
                         <div class="form-floating mb-3">
                             <input name="email" type="email" class="form-control" id="floatingInput"
-                                placeholder="Enter your email" value="{{ old('email') }}" />
-                            <label for="floatingInput" class="form-label">EMAIL</label>
-                            <!-- Error message -->
+                                placeholder="{{ __('pages.register.email') }}" value="{{ old('email') }}" />
+                            <label for="floatingInput" class="form-label">{{ __('pages.register.email') }}</label>
                             @error('email')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -57,12 +58,12 @@
                                 </div>
                             @enderror
                         </div>
+
                         <!-- phone -->
                         <div class="form-floating mb-3 position-relative">
                             <input name="phone" type="tel" class="form-control" id="floatingPhone"
-                                placeholder="Enter your phone number" value="{{ old('phone') }}" />
-                            <label for="floatingPhone" class="form-label">PHONE NUMBER</label>
-                            <!-- Error message -->
+                                placeholder="{{ __('pages.register.phone') }}" value="{{ old('phone') }}" />
+                            <label for="floatingPhone" class="form-label">{{ __('pages.register.phone') }}</label>
                             @error('phone')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -72,17 +73,16 @@
                         </div>
 
                         <!-- password -->
-                        <x-auth.password-input name="password" label="Password" />
+                        <x-auth.password-input name="password" :label="__('pages.register.password')" />
 
                         <!-- password confirmation -->
-                        <x-auth.password-input name="password_confirmation" label="Password Confirmation" />
+                        <x-auth.password-input name="password_confirmation" :label="__('pages.register.password_confirmation')" />
 
                         <!-- residence_country -->
                         <div class="form-floating mb-3 position-relative">
                             <input name="residence_country" type="text" class="form-control" id="floatingAddress"
-                                placeholder="Enter your phone number" value="{{ old('residence_country') }}" />
-                            <label for="floatingAddress" class="form-label">Current Country of Residence</label>
-                            <!-- Error message -->
+                                placeholder="{{ __('pages.register.residence_country') }}" value="{{ old('residence_country') }}" />
+                            <label for="floatingAddress" class="form-label">{{ __('pages.register.residence_country') }}</label>
                             @error('residence_country')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -94,9 +94,8 @@
                         <!-- job_title -->
                         <div class="form-floating mb-3 position-relative">
                             <input name="job_title" type="text" class="form-control" id="floatingJob"
-                                placeholder="Enter your phone number" value="{{ old('job_title') }}" />
-                            <label for="floatingJob" class="form-label">Job Title</label>
-                            <!-- Error message -->
+                                placeholder="{{ __('pages.register.job_title') }}" value="{{ old('job_title') }}" />
+                            <label for="floatingJob" class="form-label">{{ __('pages.register.job_title') }}</label>
                             @error('job_title')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -108,10 +107,8 @@
                         <!-- birth_date -->
                         <div class="form-floating mb-3 position-relative">
                             <input name="birth_date" type="date" class="form-control" id="floatingBirthDate"
-                                placeholder="Enter your birth date" value="{{ old('birth_date') }}" />
-                            <label for="floatingBirthDate" class="form-label">Date of Birth</label>
-
-                            <!-- Error message -->
+                                placeholder="{{ __('pages.register.birth_date') }}" value="{{ old('birth_date') }}" />
+                            <label for="floatingBirthDate" class="form-label">{{ __('pages.register.birth_date') }}</label>
                             @error('birth_date')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -120,35 +117,37 @@
                             @enderror
                         </div>
 
-
+                        <!-- forgot password -->
                         <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">
-                                Forgot Password?
+                                {{ __('pages.register.forgot_password') }}
                             </a>
                         </div>
 
+                        <!-- submit -->
                         <button type="submit"
                             class="btn btn-custom py-2 d-flex justify-content-center gap-4 align-items-center small w-100">
                             <span class="small">
-                                Continue
+                                {{ __('pages.register.continue') }}
                             </span>
-                            <!-- icon chervon -->
                             <i class="bi bi-chevron-right small"></i>
                         </button>
-                        <!-- Already have an account? -->
+
+                        <!-- already have account -->
                         <div class="text-center my-5">
                             <span class="small">
-                                Already have an account?
+                                {{ __('pages.register.already_have_account') }}
                                 <a href="{{ route('login') }}" wire:navigate
                                     class="text-decoration-none text-primary">
-                                    Log in
+                                    {{ __('pages.register.login') }}
                                 </a>
                             </span>
                         </div>
                     </div>
                 </form>
             </div>
+
             <!-- sign-up Image -->
             <div class="col-md-6 col-12 d-none d-md-flex justify-content-center align-items-center">
                 <img src="{{ asset('images/sign-up.png') }}" alt="sign Up Image" class="img-fluid">

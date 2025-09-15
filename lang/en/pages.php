@@ -4,13 +4,55 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | pages Lines
+    | pages
     |--------------------------------------------------------------------------
-    |
-    |
     */
-
-
+    "login" => [
+        'welcome_back'   => 'Welcome back 👋',
+        'login_title'    => 'Log in to your account again',
+        'google_login'   => 'Sign in with Google',
+        'email'          => 'EMAIL',
+        'password'       => 'Password',
+        'forgot'         => 'Forgot Password ?',
+        'continue'       => 'Continue',
+        'new_user'       => 'New user?',
+        'signup'         => 'Sign up now',
+    ],
+    "register" => [
+        'welcome' => 'Welcome back 👋',
+        'create_account' => 'Create a new account',
+        'google' => 'Sign up with Google',
+        'or' => 'OR',
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone Number',
+        'password' => 'Password',
+        'password_confirmation' => 'Password Confirmation',
+        'residence_country' => 'Current Country of Residence',
+        'job_title' => 'Job Title',
+        'birth_date' => 'Date of Birth',
+        'forgot_password' => 'Forgot Password ?',
+        'continue' => 'Continue',
+        'already_have_account' => 'Already have an account ?',
+        'login' => 'Log in',
+    ],
+    'forgot' => [
+        'title' => 'Forgot Your Password?',
+        'subtitle' => "Enter the email address associated with your account and we'll send you a link to reset your password.",
+        'email' => 'Email',
+        'send' => 'Send',
+        'not_received' => "Didn't receive the email?",
+        'check_spam' => 'Check your spam folder',
+        'back' => 'Back',
+    ],
+    'reset' => [
+        'title' => 'Reset Password',
+        'subtitle' => 'Enter your new password and confirm it to update your account information.',
+        'password' => 'Password',
+        'password_confirmation' => 'Password Confirmation',
+        'confirm' => 'Confirm',
+        'note' => 'Passwords must match',
+    ],
     "about" => [
         'title' => 'About Us',
         'heading' => 'We build bridges between ideas and investment',
