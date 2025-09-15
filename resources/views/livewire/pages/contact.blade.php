@@ -21,37 +21,37 @@
                                                 <!-- NAME -->
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingName"
-                                                        placeholder="{{ __('pages/contactform.name') }}" />
+                                                        placeholder="{{ __('pages.contact.name') }}" />
                                                     <label for="floatingName"
-                                                        class="form-label">{{ __('pages/contactform.name') }}</label>
+                                                        class="form-label">{{ __('pages.contact.name') }}</label>
                                                 </div>
 
                                                 <!-- EMAIL -->
                                                 <div class="form-floating mb-3">
                                                     <input type="email" class="form-control" id="floatingEmail"
-                                                        placeholder="{{ __('pages/contactform.email') }}" />
+                                                        placeholder="{{ __('pages.contact.email') }}" />
                                                     <label for="floatingEmail"
-                                                        class="form-label">{{ __('pages/contactform.email') }}</label>
+                                                        class="form-label">{{ __('pages.contact.email') }}</label>
                                                 </div>
 
                                                 <!-- PHONE NUMBER -->
                                                 <div class="form-floating mb-3">
                                                     <input type="tel" class="form-control" id="floatingPhone"
-                                                        placeholder="{{ __('pages/contactform.phone') }}" />
+                                                        placeholder="{{ __('pages.contact.phone') }}" />
                                                     <label for="floatingPhone"
-                                                        class="form-label">{{ __('pages/contactform.phone') }}</label>
+                                                        class="form-label">{{ __('pages.contact.phone') }}</label>
                                                 </div>
 
                                                 <!-- MESSAGE -->
                                                 <div class="form-floating mb-3">
-                                                    <textarea class="form-control" id="floatingMessage" placeholder="{{ __('pages/contactform.message') }}" rows="5"></textarea>
+                                                    <textarea class="form-control" id="floatingMessage" placeholder="{{ __('pages.contact.message') }}" rows="5"></textarea>
                                                     <label for="floatingMessage"
-                                                        class="form-label">{{ __('pages/contactform.message') }}</label>
+                                                        class="form-label">{{ __('pages.contact.message') }}</label>
                                                 </div>
 
                                                 <!-- submit button -->
                                                 <button type="submit" class="btn btn-custom py-2 px-4">
-                                                    <span class="small">{{ __('pages/contactform.send') }}</span>
+                                                    <span class="small">{{ __('pages.contact.send') }}</span>
                                                 </button>
                                             </form>
                                         </div>

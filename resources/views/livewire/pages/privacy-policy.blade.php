@@ -9,101 +9,81 @@
             </div>
             <div class="card border-0 shadow-sm rounded-8">
                 <div class="card-body">
-                    <!--  Privacy Policy -->
+                    <!-- Privacy Policy -->
                     <div class="d-flex flex-column">
                         <div class="col-12">
                             <div class="card bg-transparent border-0">
                                 <div class="card-body">
                                     <p class="text-secondary mb-3">
-                                        We at INVESTMENT are committed to protecting our users’ privacy and ensuring
-                                        the confidentiality of their data. This
-                                        policy explains how information is collected, used, processed, and
-                                        protected.
+                                        {{ __('pages.privacy.intro') }}
                                     </p>
                                     <ol class="text-secondary line-height-2 row g-3">
                                         <div class="col-lg-6 col-12 d-flex flex-column gap-2">
                                             <li>
-                                                <strong>Information We Collect</strong>
+                                                <strong>{{ __('pages.privacy.collect.title') }}</strong>
                                                 <h6>
-                                                    We collect various types of information to enhance our services,
-                                                    including:
+                                                    {{ __('pages.privacy.collect.subtitle') }}
                                                 </h6>
                                                 <ul class="ul_square ps-3">
-                                                    <li>Full name</li>
-                                                    <li>Email address</li>
-                                                    <li>Phone number</li>
-                                                    <li>User type (Investor / Idea Owner)</li>
-                                                    <li>Usage data (e.g., pages you visit or actions you perform)
-                                                    </li>
-                                                    <li>Cookies</li>
+                                                    <li>{{ __('pages.privacy.collect.items.name') }}</li>
+                                                    <li>{{ __('pages.privacy.collect.items.email') }}</li>
+                                                    <li>{{ __('pages.privacy.collect.items.phone') }}</li>
+                                                    <li>{{ __('pages.privacy.collect.items.user_type') }}</li>
+                                                    <li>{{ __('pages.privacy.collect.items.usage') }}</li>
+                                                    <li>{{ __('pages.privacy.collect.items.cookies') }}</li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <strong>How We Use the Information</strong>
+                                                <strong>{{ __('pages.privacy.use.title') }}</strong>
                                                 <h6>
-                                                    We use the collected information to:
+                                                    {{ __('pages.privacy.use.subtitle') }}
                                                 </h6>
                                                 <ul class="ul_square ps-3">
-                                                    <li>Improve user experience and personalize content</li>
-                                                    <li>Communicate with you regarding your account or our services
-                                                    </li>
-                                                    <li>Send updates and promotional offers (with your consent)</li>
-                                                    <li>Conduct analytical and statistical purposes</li>
+                                                    <li>{{ __('pages.privacy.use.items.experience') }}</li>
+                                                    <li>{{ __('pages.privacy.use.items.communicate') }}</li>
+                                                    <li>{{ __('pages.privacy.use.items.offers') }}</li>
+                                                    <li>{{ __('pages.privacy.use.items.analysis') }}</li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <strong>Information Sharing</strong>
+                                                <strong>{{ __('pages.privacy.sharing.title') }}</strong>
                                                 <p>
-                                                    We do not sell or share your personal information with third
-                                                    parties except in the following cases:
+                                                    {{ __('pages.privacy.sharing.desc') }}
                                                 <ul class="ul_square ps-3">
-                                                    <li>With your explicit consent</li>
-                                                    <li>In response to an official legal request</li>
-                                                    <li>With service partners (e.g., email providers) under strict
-                                                        protection agreements</li>
+                                                    <li>{{ __('pages.privacy.sharing.items.consent') }}</li>
+                                                    <li>{{ __('pages.privacy.sharing.items.legal') }}</li>
+                                                    <li>{{ __('pages.privacy.sharing.items.partners') }}</li>
                                                 </ul>
                                                 </p>
                                             </li>
                                         </div>
                                         <div class="col-lg-6 col-12 d-flex flex-column gap-2">
                                             <li>
-                                                <strong>Contact Us</strong>
-                                                <p>
-                                                    We use appropriate security technologies and procedures to
-                                                    protect your data from unauthorized access or misuse.
-                                                </p>
+                                                <strong>{{ __('pages.privacy.contact.title') }}</strong>
+                                                <p>{{ __('pages.privacy.contact.desc') }}</p>
                                             </li>
                                             <li>
-                                                <strong>Information Security</strong>
-                                                <p>
-                                                    We use appropriate security technologies and procedures to
-                                                    protect your data from unauthorized access or misuse.
-                                                </p>
+                                                <strong>{{ __('pages.privacy.security.title') }}</strong>
+                                                <p>{{ __('pages.privacy.security.desc') }}</p>
                                             </li>
                                             <li>
-                                                <strong>Cookies</strong>
-                                                <p>
-                                                    We use cookies to enhance performance and analyze platform
-                                                    usage. You can disable cookies through your browser settings.
-                                                </p>
+                                                <strong>{{ __('pages.privacy.cookies.title') }}</strong>
+                                                <p>{{ __('pages.privacy.cookies.desc') }}</p>
                                             </li>
                                             <li>
-                                                <strong>User Rights</strong>
+                                                <strong>{{ __('pages.privacy.rights.title') }}</strong>
                                                 <p>
-                                                    You have the right to:
+                                                    {{ __('pages.privacy.rights.desc') }}
                                                 <ul class="ul_square ps-3">
-                                                    <li>Access your personal data</li>
-                                                    <li>Request modification or deletion of your data</li>
-                                                    <li>Withdraw your consent to data usage</li>
+                                                    <li>{{ __('pages.privacy.rights.items.access') }}</li>
+                                                    <li>{{ __('pages.privacy.rights.items.modify') }}</li>
+                                                    <li>{{ __('pages.privacy.rights.items.withdraw') }}</li>
                                                 </ul>
                                                 </p>
                                             </li>
                                             <li>
-                                                <strong>Changes to the Privacy Policy</strong>
-                                                <p>
-                                                    We may update this Privacy Policy from time to time. Updates
-                                                    will be posted on this page with a revised review date.
-                                                </p>
+                                                <strong>{{ __('pages.privacy.changes.title') }}</strong>
+                                                <p>{{ __('pages.privacy.changes.desc') }}</p>
                                             </li>
                                         </div>
                                     </ol>

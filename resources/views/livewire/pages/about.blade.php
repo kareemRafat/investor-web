@@ -18,32 +18,11 @@
                                         <!-- data -->
                                         <div class="col-12 col-lg-6 align-self-start order-1 order-lg-0 mt-4 mt-lg-0">
                                             <h5 class="fw-bold mb-3">
-                                                We build bridges between ideas and investment
+                                                {{ __('pages.about.heading') }}
 
                                             </h5>
                                             <p class="line-height-2 text-secondary">
-                                                Our platform aims to enable safe and effective connections between
-                                                innovative ideas and investors seeking promising
-                                                opportunities and scalable projects. We believe that true success
-                                                begins with an idea, but transforming that idea into a
-                                                successful venture requires support, experience, and funding — and
-                                                that's where we come in.
-                                                We serve as a reliable link, connecting entrepreneurs, startup
-                                                owners, and innovators with investors, supporting
-                                                companies, and other stakeholders to create an integrated investment
-                                                ecosystem. Using smart tools and providing an easy,
-                                                secure user experience, we enable both parties to interact, assess,
-                                                and build genuine partnerships on transparent
-                                                foundations.
-                                                Our platform is more than just a networking space; it is an
-                                                incubator for ideas, a true catalyst for growth, and a place
-                                                where new success stories are born every day. Whether you're seeking
-                                                funding for your project or looking for promising
-                                                ventures to invest in, we offer the space and resources necessary to
-                                                start, succeed, and grow.
-                                                Our vision is to foster innovation, empower ambitious individuals,
-                                                and create a positive, sustainable impact within the
-                                                worlds of entrepreneurship and investment.
+                                                {{ __('pages.about.text') }}
                                             </p>
                                         </div>
                                         <!-- img -->
