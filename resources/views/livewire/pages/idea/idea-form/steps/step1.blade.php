@@ -20,6 +20,8 @@
         </div>
     </div>
     @error('ideaField')
-        <div  class="text-danger text-center fw-bold mt-2">{{ $message }}</div>
+        <div class="d-flex justify-content-center">
+            <div  class="text-light bg-danger rounded p-2 text-center fw-bold mt-3 w-25">{{ $message }}</div>
+        </div>
     @enderror
 </div>
