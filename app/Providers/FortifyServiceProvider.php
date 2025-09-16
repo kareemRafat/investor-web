@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Livewire\Livewire;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
@@ -30,6 +29,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
 
         $this->viewsRoutes();
 
