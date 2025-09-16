@@ -2,7 +2,8 @@
     'name',
     'id' => null,
     'label' => 'Password',
-    'placeholder' => 'Enter your password'
+    'placeholder' => 'Enter your password',
+    'error' => null
 ])
 
 <div class="form-floating mb-3 position-relative" x-data="{ show: false }">
@@ -25,7 +26,7 @@
         @error('password')
             <div class="text-danger mt-2 fw-semibold">
                 <i class="bi bi-exclamation-circle me-2"></i>
-                {{ $message }}
+                {{ $error ?? $message }}
             </div>
         @enderror
     @endif

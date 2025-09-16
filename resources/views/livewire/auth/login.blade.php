@@ -1,3 +1,32 @@
+@php
+    $errorTranslations = [
+        // Email
+        'The email field is required.' => [
+            'en' => 'The email field is required.',
+            'ar' => 'البريد الإلكتروني مطلوب.',
+        ],
+        'The email must be a valid email address.' => [
+            'en' => 'The email must be a valid email address.',
+            'ar' => 'صيغة البريد الإلكتروني غير صحيحة.',
+        ],
+
+        // Password
+        'The password field is required.' => [
+            'en' => 'The password field is required.',
+            'ar' => 'كلمة المرور مطلوبة.',
+        ],
+        'The password must be at least 8 characters.' => [
+            'en' => 'The password must be at least 8 characters.',
+            'ar' => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل.',
+        ],
+
+        // Credentials
+        'These credentials do not match our records.' => [
+            'en' => 'These credentials do not match our records.',
+            'ar' => 'بيانات الاعتماد غير صحيحة.',
+        ],
+    ];
+@endphp
 <div class="container">
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="row w-100">
@@ -37,11 +66,18 @@
                             <label for="floatingInput" class="form-label">{{ __('pages.login.email') }}</label>
                         </div>
                         @error('email')
-                            <span class="alert alert-danger border-0 p-2 bg-danger text-white">{{ $message }}</span>
+                            <span class="alert alert-danger border-0 p-2 bg-danger text-white">
+                                {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                            </span>
                         @enderror
 
-                        <x-auth.password-input name="password" label="{{ __('pages.login.password') }}" />
-
+                        @php
+                            $passwordError = $errors->first('password');
+                        @endphp
+                        <x-auth.password-input name="password" label="{{ __('pages.login.password') }}"
+                            :error="$passwordError
+                                ? $errorTranslations[$passwordError][app()->getLocale()] ?? $passwordError
+                                : null" />
                         <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">
@@ -54,7 +90,8 @@
                                 {{ __('pages.login.continue') }}
                             </span>
                             <!-- icon chervon -->
-                            <i class="bi {{ app()->getLocale() === 'ar' ? 'bi-chevron-left' : 'bi-chevron-right'  }} small"></i>
+                            <i
+                                class="bi {{ app()->getLocale() === 'ar' ? 'bi-chevron-left' : 'bi-chevron-right' }} small"></i>
                         </button>
                         <!-- مستخدم جديد؟ -->
                         <div class="text-center mt-5">
