@@ -28,17 +28,51 @@
                                 placeholder="{{ __('pages.forgot.email') }}" value="{{ old('email') }}" />
                             <label for="floatingInput" class="form-label">{{ __('pages.forgot.email') }}</label>
 
+
+                            <!-- Error Message with Manual Translation -->
                             @error('email')
+                                @php
+                                    $errorMessage = $message;
+                                    $currentLocale = app()->getLocale();
+
+                                    $errorTranslations = [
+                                        'The email field is required.' => [
+                                            'en' => 'The email field is required.',
+                                            'ar' => 'حقل البريد الإلكتروني مطلوب.',
+                                        ],
+                                        'The email must be a valid email address.' => [
+                                            'en' => 'The email must be a valid email address.',
+                                            'ar' => 'يجب أن يكون البريد الإلكتروني عنوان بريد إلكتروني صالحاً.',
+                                        ],
+                                        "We can't find a user with that email address." => [
+                                            'en' => "We can't find a user with that email address.",
+                                            'ar' => 'لا يمكننا العثور على مستخدم بعنوان البريد الإلكتروني هذا.',
+                                        ],
+                                        'Please wait before retrying.' => [
+                                            'en' => 'Please wait before retrying.',
+                                            'ar' => 'يرجى الانتظار قبل المحاولة مرة أخرى.',
+                                        ],
+                                        'The selected email is invalid.' => [
+                                            'en' => 'The selected email is invalid.',
+                                            'ar' => 'البريد الإلكتروني المحدد غير صالح.',
+                                        ],
+                                    ];
+
+                                    $translatedError = isset($errorTranslations[$errorMessage][$currentLocale])
+                                        ? $errorTranslations[$errorMessage][$currentLocale]
+                                        : $errorMessage;
+                                @endphp
+
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
-                                    {{ __($message) }}
+                                    {{ $translatedError }}
                                 </div>
                             @enderror
 
                             @if (session('status'))
                                 <div class="mb-4 mt-2 font-medium text-sm text-success fw-semibold">
                                     <i class="bi bi-check-circle me-2"></i>
-                                    {{ __(session('status')) }}
+                                    {{ __('passwords.sent') }}
                                 </div>
                             @endif
                         </div>

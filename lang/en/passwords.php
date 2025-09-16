@@ -18,5 +18,9 @@ return [
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
+    // Sometimes Laravel uses these variations
+    'password_reset_sent' => '!password reset Link has been sent',
+    'email_sent' => '!Email sent successfully',
+
 
 ];
