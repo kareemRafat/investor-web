@@ -54,7 +54,7 @@
                                 {{ __('pages.login.continue') }}
                             </span>
                             <!-- icon chervon -->
-                            <i class="bi bi-chevron-right small"></i>
+                            <i class="bi {{ app()->getLocale() === 'ar' ? 'bi-chevron-left' : 'bi-chevron-right'  }} small"></i>
                         </button>
                         <!-- مستخدم جديد؟ -->
                         <div class="text-center mt-5">

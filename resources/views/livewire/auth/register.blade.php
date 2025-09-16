@@ -81,8 +81,10 @@
                         <!-- residence_country -->
                         <div class="form-floating mb-3 position-relative">
                             <input name="residence_country" type="text" class="form-control" id="floatingAddress"
-                                placeholder="{{ __('pages.register.residence_country') }}" value="{{ old('residence_country') }}" />
-                            <label for="floatingAddress" class="form-label">{{ __('pages.register.residence_country') }}</label>
+                                placeholder="{{ __('pages.register.residence_country') }}"
+                                value="{{ old('residence_country') }}" />
+                            <label for="floatingAddress"
+                                class="form-label">{{ __('pages.register.residence_country') }}</label>
                             @error('residence_country')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -108,7 +110,8 @@
                         <div class="form-floating mb-3 position-relative">
                             <input name="birth_date" type="date" class="form-control" id="floatingBirthDate"
                                 placeholder="{{ __('pages.register.birth_date') }}" value="{{ old('birth_date') }}" />
-                            <label for="floatingBirthDate" class="form-label">{{ __('pages.register.birth_date') }}</label>
+                            <label for="floatingBirthDate"
+                                class="form-label">{{ __('pages.register.birth_date') }}</label>
                             @error('birth_date')
                                 <div class="text-danger mt-2 fw-semibold">
                                     <i class="bi bi-exclamation-circle me-2"></i>
@@ -131,7 +134,8 @@
                             <span class="small">
                                 {{ __('pages.register.continue') }}
                             </span>
-                            <i class="bi bi-chevron-right small"></i>
+                            <i
+                                class="bi {{ app()->getLocale() === 'ar' ? 'bi-chevron-left' : 'bi-chevron-right' }} small"></i>
                         </button>
 
                         <!-- already have account -->

@@ -43,7 +43,7 @@
                 <!-- logout button -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="btn btn-primary rounded-4" type="submit">Logout</button>
+                    <button class="btn btn-primary rounded-4" type="submit">{{ __('header.logout') }}</button>
                 </form>
                 <!-- language -->
                 <div class="dropdown">

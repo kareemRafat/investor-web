@@ -17,6 +17,7 @@ return [
     'fullfaq'       => ' Frequently Asked Questions',
     'contact'       => 'Contact Us',
     'login'         => 'Login',
+    'logout'         => 'Logout',
 
 
 ];

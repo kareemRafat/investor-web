@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogoutController;
 use Livewire\Livewire;
 use App\Livewire\Pages\FAQ;
 use App\Livewire\Auth\Login;
@@ -42,6 +43,7 @@ Route::group(
         Route::middleware(['auth'])->group(function () {
             Route::get('/verify-email', \App\Livewire\Auth\VerifyEmail::class)
                 ->name('verify-email');
+            Route::post('/logout', LogoutController::class)->name('logout');
         });
 
         Route::middleware(['auth', 'verified'])->group(function () {
