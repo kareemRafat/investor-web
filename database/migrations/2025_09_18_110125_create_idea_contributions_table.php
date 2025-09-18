@@ -15,14 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
 
-            $table->string('contribute_type')->nullable();
-            $table->integer('staff')->nullable();
-            $table->decimal('staff_person_money', 15, 2)->nullable();
-            $table->decimal('money_amount', 15, 2)->nullable();
-            $table->decimal('money_percent', 5, 2)->nullable();
-            $table->decimal('person_money_amount', 15, 2)->nullable();
-            $table->decimal('person_money_percent', 5, 2)->nullable();
-
+            $table->enum('contribute_type', ['sell', 'idea', 'capital', 'personal', 'both']);
+            $table->enum('staff', ['full_time', 'part_time', 'supervision'])->nullable();
+            $table->enum('staff_person_money', ['full_time', 'part_time', 'supervision'])->nullable();
+            $table->decimal('money_amount', 12, 2)->nullable();
+            $table->unsignedTinyInteger('money_percent')->nullable();
+            $table->decimal('person_money_amount', 12, 2)->nullable();
+            $table->unsignedTinyInteger('person_money_percent')->nullable();
             $table->timestamps();
         });
     }

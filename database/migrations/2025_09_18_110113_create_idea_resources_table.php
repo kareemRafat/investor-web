@@ -15,20 +15,19 @@ return new class extends Migration
             $table->id();
             $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
 
-            $table->boolean('company')->nullable();
+            $table->enum('company', ['yes', 'no'])->nullable();
             $table->string('space_type')->nullable();
-            $table->boolean('staff')->nullable();
+            $table->enum('staff', ['yes', 'no'])->nullable();
             $table->integer('staff_number')->nullable();
-            $table->boolean('workers')->nullable();
+            $table->enum('workers', ['yes', 'no'])->nullable();
             $table->integer('workers_number')->nullable();
-            $table->boolean('executive_spaces')->nullable();
+            $table->enum('executive_spaces', ['yes', 'no'])->nullable();
             $table->string('executive_spaces_type')->nullable();
-            $table->boolean('equipment')->nullable();
+            $table->enum('equipment', ['yes', 'no'])->nullable();
             $table->string('equipment_type')->nullable();
-            $table->boolean('software')->nullable();
+            $table->enum('software', ['yes', 'no'])->nullable();
             $table->string('software_type')->nullable();
-            $table->boolean('website')->nullable();
-
+            $table->enum('website', ['yes', 'no'])->nullable();
             $table->timestamps();
         });
     }

@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
+use App\Models\Idea;
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
+use App\Models\IdeaContribution;
+use Livewire\Attributes\Validate;
 
 class Step7 extends Component
 {
@@ -27,10 +29,28 @@ class Step7 extends Component
         'person_money_percent' => null,
     ];
 
+    public function mount(): void
+    {
+        // data found if the user return back
+        $ideaId = session('current_idea_id');
+        if ($ideaId) {
+            $idea = Idea::find($ideaId);
+            if ($idea) {
+                $contribution = $idea->contributions()->first(); // relation contributions()
+                if ($contribution) {
+                    $this->data = $contribution->only(array_keys($this->data));
+                }
+            }
+        }
+    }
+
     #[On('validate-step-7')]
     public function validateStep7()
     {
         $this->validate();
+
+        $this->syncContribution();
+
         $this->dispatch('go-to-next-step');
     }
 
@@ -51,5 +71,17 @@ class Step7 extends Component
             'data.person_money_amount.*' => __('idea.validation.step7.person_money_amount'),
             'data.person_money_percent.*' => __('idea.validation.step7.person_money_percent'),
         ];
+    }
+
+    // DB Sync
+    public function syncContribution()
+    {
+        $ideaId = session('current_idea_id');
+        if ($ideaId) {
+            IdeaContribution::updateOrCreate(
+                ['idea_id' => $ideaId],
+                $this->data
+            );
+        }
     }
 }

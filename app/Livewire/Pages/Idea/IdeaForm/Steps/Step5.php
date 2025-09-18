@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
+use App\Models\Idea;
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 
 class Step5 extends Component
 {
@@ -39,10 +40,42 @@ class Step5 extends Component
         'website' => null,
     ];
 
+    public function mount(): void
+    {
+        // data found if the user return back
+        $ideaId = session('current_idea_id');
+        if ($ideaId) {
+            $idea = Idea::find($ideaId);
+            if ($idea) {
+                $resources = $idea->resources()->first();
+                if ($resources) {
+                    $this->data = $resources->only(array_keys($this->data));
+                }
+            }
+        }
+    }
+
     #[On('validate-step-5')]
     public function validateStep5()
     {
         $this->validate();
+
+        // continue with session of the idea
+        $ideaId = session('current_idea_id');
+        if (!$ideaId) {
+            $this->addError('data.company', 'Idea not found in session.');
+            return;
+        }
+
+        $idea = Idea::find($ideaId);
+        if (!$idea) {
+            $this->addError('data.company', 'Idea not found.');
+            return;
+        }
+
+        // DB sync
+        $this->syncResources($idea);
+
         $this->dispatch('go-to-next-step');
     }
 
@@ -69,5 +102,16 @@ class Step5 extends Component
             'data.software_type.*'         => __('idea.validation.step5.software_type'),
             'data.website.*'               => __('idea.validation.step5.website'),
         ];
+    }
+
+    /**
+     * Sync resources: update existing row or create a new one.
+     */
+    private function syncResources(Idea $idea): void
+    {
+        $idea->resources()->updateOrCreate(
+            ['idea_id' => $idea->id],
+            $this->data
+        );
     }
 }
