@@ -4,8 +4,25 @@
         title="{{ __('idea.steps.step8.title') }}"
         subtitle="{{ __('idea.steps.step8.subtitle') }}" />
 
-    <div x-data="{ activeColumn: @entangle('data.return_type') }"
+    <div x-data="{
+            activeColumn: @entangle('data.return_type'),
+            clearOther(column) {
+                if(column !== 'profit') {
+                    @this.set('data.profit_only_percentage', null)
+                }
+                if(column !== 'one_time') {
+                    @this.set('data.one_time_dollar', null)
+                    @this.set('data.one_time_sar', null)
+                }
+                if(column !== 'combo') {
+                    @this.set('data.combo_dollar', null)
+                    @this.set('data.combo_sar', null)
+                    @this.set('data.combo_percentage', null)
+                }
+            }
+        }"
          class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
+
         <div class="row g-4 justify-content-center">
             <div class="col-12">
                 <div class="row g-3">
@@ -18,10 +35,11 @@
                                        class="btn-check"
                                        id="profit_only"
                                        wire:model="data.return_type"
-                                       value="profit">
-                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small
-                                    {{ $data['return_type'] === 'profit' ? 'active' : '' }}"
-                                    for="profit_only">
+                                       value="profit"
+                                       @change="clearOther('profit')">
+                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                       :class="activeColumn === 'profit' ? 'active' : ''"
+                                       for="profit_only">
                                     {{ __('idea.steps.step8.profit_share') }}
                                 </label>
                             </div>
@@ -56,16 +74,16 @@
                                        class="btn-check"
                                        id="one_time"
                                        wire:model="data.return_type"
-                                       value="one_time">
-                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small
-                                    {{ $data['return_type'] === 'one_time' ? 'active' : '' }}"
-                                    for="one_time">
+                                       value="one_time"
+                                       @change="clearOther('one_time')">
+                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                       :class="activeColumn === 'one_time' ? 'active' : ''"
+                                       for="one_time">
                                     {{ __('idea.steps.step8.one_time_sum') }}
                                 </label>
                             </div>
 
                             <div class="row g-2 mx-0 px-0 d-flex flex-column">
-                                <!-- Dollar -->
                                 <div class="col-12 d-flex align-items-center justify-content-between">
                                     <div class="col-5">
                                         <span class="w-100 btn btn-outline-custom rounded-4 py-3">
@@ -75,13 +93,11 @@
                                     <div class="col-6">
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
-                                               id="one_time_dollar"
                                                wire:model="data.one_time_dollar"
                                                :disabled="activeColumn !== 'one_time'" />
                                     </div>
                                 </div>
 
-                                <!-- SAR -->
                                 <div class="col-12 d-flex align-items-center justify-content-between">
                                     <div class="col-5">
                                         <span class="w-100 btn btn-outline-custom rounded-4 py-3">
@@ -91,7 +107,6 @@
                                     <div class="col-6">
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
-                                               id="one_time_sar"
                                                wire:model="data.one_time_sar"
                                                :disabled="activeColumn !== 'one_time'" />
                                     </div>
@@ -108,16 +123,16 @@
                                        class="btn-check"
                                        id="combo"
                                        wire:model="data.return_type"
-                                       value="combo">
-                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small
-                                    {{ $data['return_type'] === 'combo' ? 'active' : '' }}"
-                                    for="combo">
+                                       value="combo"
+                                       @change="clearOther('combo')">
+                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                       :class="activeColumn === 'combo' ? 'active' : ''"
+                                       for="combo">
                                     {{ __('idea.steps.step8.profit_plus_sum') }}
                                 </label>
                             </div>
 
                             <div class="row g-2 mx-0 px-0 d-flex flex-column">
-                                <!-- Dollar -->
                                 <div class="col-12 d-flex align-items-center justify-content-between">
                                     <div class="col-5">
                                         <span class="w-100 btn btn-outline-custom rounded-4 py-3">
@@ -127,13 +142,11 @@
                                     <div class="col-6">
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
-                                               id="combo_dollar"
                                                wire:model="data.combo_dollar"
                                                :disabled="activeColumn !== 'combo'" />
                                     </div>
                                 </div>
 
-                                <!-- SAR -->
                                 <div class="col-12 d-flex align-items-center justify-content-between">
                                     <div class="col-5">
                                         <span class="w-100 btn btn-outline-custom rounded-4 py-3">
@@ -143,7 +156,6 @@
                                     <div class="col-6">
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
-                                               id="combo_sar"
                                                wire:model="data.combo_sar"
                                                :disabled="activeColumn !== 'combo'" />
                                     </div>
@@ -163,7 +175,8 @@
                                                    id="combo_percentage_{{ $percent }}"
                                                    value="{{ $percent }}"
                                                    wire:model="data.combo_percentage"
-                                                   :disabled="activeColumn !== 'combo'">
+                                                   :disabled="activeColumn !== 'combo'"
+                                                >
                                             <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                                    for="combo_percentage_{{ $percent }}">
                                                 {{ $percent }} %

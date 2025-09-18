@@ -19,12 +19,12 @@ class IdeaReturn extends Model
 
     // لو عايز تعمل cast للقيم decimal
     protected $casts = [
-        'profit_only_percentage' => 'decimal:2',
-        'one_time_dollar' => 'decimal:2',
-        'one_time_sar' => 'decimal:2',
-        'combo_dollar' => 'decimal:2',
-        'combo_sar' => 'decimal:2',
-        'combo_percentage' => 'decimal:2',
+        'profit_only_percentage' => 'integer',
+        'one_time_dollar' => 'integer',
+        'one_time_sar' => 'integer',
+        'combo_dollar' => 'integer',
+        'combo_sar' => 'integer',
+        'combo_percentage' => 'integer',
     ];
 
     public function idea()
