@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
+use App\Models\Idea;
+use App\Models\IdeaReturn;
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 
 class Step8 extends Component
 {
@@ -23,7 +25,23 @@ class Step8 extends Component
         'combo_dollar' => null,
         'combo_sar' => null,
         'combo_percentage' => null,
+        'return_type' => null,
     ];
+
+    public string|null $activeColumn = null; // لتفعيل العمود الصحيح في Alpine
+
+    public function mount(): void
+    {
+        $ideaId = session('current_idea_id');
+        if (!$ideaId) return;
+
+        $idea = Idea::find($ideaId);
+        if (!$idea || !$idea->returns) return;
+
+        $this->data = array_merge($this->data, $idea->returns->only(array_keys($this->data)));
+
+    }
+
 
     #[On('validate-step-8')]
     public function validateStep8()
@@ -38,7 +56,6 @@ class Step8 extends Component
             (is_null($this->data['combo_dollar']) && is_null($this->data['combo_sar']) && is_null($this->data['combo_percentage']))
         ) {
             $this->addError('data', __('idea.steps.step8.choose_one'));
-
             return;
         }
 
@@ -58,6 +75,9 @@ class Step8 extends Component
             }
         }
 
+        // DB sync
+        $this->syncData();
+
         $this->dispatch('go-to-next-step');
     }
 
@@ -66,24 +86,36 @@ class Step8 extends Component
         return view('livewire.pages.idea.idea-form.steps.step8');
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'data.profit_only_percentage.in' => __('idea.validation.step8.profit_only_percentage'),
-
             'data.one_time_dollar.numeric' => __('idea.validation.step8.one_time_dollar_numeric'),
-            'data.one_time_dollar.min'     => __('idea.validation.step8.one_time_dollar_min'),
-
+            'data.one_time_dollar.min' => __('idea.validation.step8.one_time_dollar_min'),
             'data.one_time_sar.numeric' => __('idea.validation.step8.one_time_sar_numeric'),
-            'data.one_time_sar.min'     => __('idea.validation.step8.one_time_sar_min'),
-
+            'data.one_time_sar.min' => __('idea.validation.step8.one_time_sar_min'),
             'data.combo_dollar.numeric' => __('idea.validation.step8.combo_dollar_numeric'),
-            'data.combo_dollar.min'     => __('idea.validation.step8.combo_dollar_min'),
-
+            'data.combo_dollar.min' => __('idea.validation.step8.combo_dollar_min'),
             'data.combo_sar.numeric' => __('idea.validation.step8.combo_sar_numeric'),
-            'data.combo_sar.min'     => __('idea.validation.step8.combo_sar_min'),
-
+            'data.combo_sar.min' => __('idea.validation.step8.combo_sar_min'),
             'data.combo_percentage.in' => __('idea.validation.step8.combo_percentage'),
         ];
+    }
+
+    private function syncData(): void
+    {
+        $ideaId = session('current_idea_id');
+        if (!$ideaId) return;
+
+        $idea = Idea::find($ideaId);
+        if (!$idea) return;
+
+        // تحديد return_type بناءً على القيم المختارة
+        $type = $this->data['return_type'] ?? null;
+
+        $idea->returns()->updateOrCreate(
+            ['idea_id' => $ideaId],
+            array_merge($this->data, ['return_type' => $type])
+        );
     }
 }

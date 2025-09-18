@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('idea_returns', function (Blueprint $table) {
             $table->id();
             $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
-
+            $table->enum('return_type', ['profit', 'one_time', 'combo'])->nullable();
             $table->decimal('profit_only_percentage', 5, 2)->nullable();
             $table->decimal('one_time_dollar', 15, 2)->nullable();
             $table->decimal('one_time_sar', 15, 2)->nullable();

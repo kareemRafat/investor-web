@@ -87,9 +87,7 @@ class Step6 extends Component
         ];
     }
 
-    /**
-     * Sync expenses: update existing row or create a new one.
-     */
+    // DB sync
     private function syncExpenses(Idea $idea): void
     {
         $idea->expenses()->updateOrCreate(
