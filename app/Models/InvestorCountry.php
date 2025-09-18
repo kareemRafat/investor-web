@@ -11,8 +11,8 @@ class InvestorCountry extends Model
 
     protected $fillable = ['investor_id', 'country'];
 
-    public function investor() {
+    public function investor()
+    {
         return $this->belongsTo(Investor::class);
     }
 }
-
