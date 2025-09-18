@@ -21,6 +21,7 @@ class Step9 extends Component
     public array $data = [
         'summary' => null,
         'attachments' => [],
+        'visibility' => null,
     ];
 
     public function mount(): void

@@ -8,7 +8,7 @@
             <div class="col-12">
                 <textarea class="form-control border-custom rounded-8 pt-3" rows="8"
                     placeholder="{{ __('investor.steps.step5.placeholder') }}" wire:model='data.summary'
-                    style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};"></textarea>
+                    style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};" dir="{{ app()->getLocale() }}"></textarea>
 
                 <div class="d-flex justify-content-between gap-3 mt-2">
                     <small class="text-muted text-start text-primary">

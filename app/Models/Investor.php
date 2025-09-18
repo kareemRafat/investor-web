@@ -9,7 +9,7 @@ class Investor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['investor_field'];
+    protected $fillable = ['investor_field' , 'visibility'];
 
     public function countries()
     {

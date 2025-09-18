@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use App\Models\InvestorContribution;
 
 class Step4 extends Component
 {
@@ -27,11 +28,25 @@ class Step4 extends Component
         'person_money_percent' => null,
     ];
 
+    public function mount(): void
+    {
+        $investorId = session('current_investor_id');
+        if ($investorId) {
+            $contribution = InvestorContribution::where('investor_id', $investorId)->first();
+            if ($contribution) {
+                $this->data = array_merge($this->data, $contribution->toArray());
+            }
+        }
+    }
+
 
     #[On('validate-step-4')]
     public function validateStep4()
     {
         $this->validate();
+
+        $this->syncContribution();
+
         $this->dispatch('go-to-next-step');
     }
 
@@ -51,5 +66,19 @@ class Step4 extends Component
             'data.person_money_amount.*' => __('investor.validation.step4.person_money_amount'),
             'data.person_money_percent.*' => __('investor.validation.step4.person_money_percent'),
         ];
+    }
+
+    public function syncContribution(): void
+    {
+        $investorId = session('current_investor_id');
+        if (!$investorId) {
+            $this->addError('data', 'Investor not found in session.');
+            return;
+        }
+
+        InvestorContribution::updateOrCreate(
+            ['investor_id' => $investorId],
+            $this->data
+        );
     }
 }

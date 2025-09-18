@@ -3,9 +3,11 @@
 namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
 use Livewire\Component;
+use App\Models\Investor;
 use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Step5 extends Component
 {
@@ -19,21 +21,29 @@ class Step5 extends Component
     public array $data = [
         'summary' => null,
         'attachments' => [],
+        'visibility' => null,
     ];
+
+
+    public function mount(): void
+    {
+        $investorId = session('current_investor_id');
+        if (!$investorId) return;
+
+        $investor = Investor::find($investorId);
+        if (!$investor) return;
+        $this->data['summary'] = $investor->summary->summary; // get summary from summary() relationship
+        $this->data['visibility'] = $investor->visibility;
+
+    }
+
 
     #[On('validate-step-5')]
     public function validateStep5()
     {
         $this->validate();
 
-        // لو عايز تخزن المرفقات في storage
-        if (!empty($this->data['attachments'])) {
-            $stored = [];
-            foreach ($this->data['attachments'] as $file) {
-                $stored[] = $file->store('idea_attachments', 'public');
-            }
-            $this->data['attachments'] = $stored;
-        }
+        $this->syncData();
 
         $this->dispatch('go-to-next-step');
     }
@@ -57,5 +67,26 @@ class Step5 extends Component
             'data.visibility.in'       => __('investor.validation.step5.visibility_in'),
 
         ];
+    }
+
+    private function syncData(): void
+    {
+        $investorId = session('current_investor_id');
+        if (!$investorId) return;
+
+        $investor = Investor::find($investorId);
+        if (!$investor) return;
+
+        //! store attachments
+
+        // DB sync
+        $investor->summary()->updateOrCreate(
+            ['investor_id' => $investorId],
+            $this->data
+        );
+
+        $investor->update([
+            'visibility' => $this->data['visibility'],
+        ]);
     }
 }
