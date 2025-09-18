@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\InvestorResource;
 use Livewire\Attributes\Validate;
 
 class Step3 extends Component
@@ -27,11 +28,11 @@ class Step3 extends Component
         'company'         => null,
         'space_type'      => null,
         'staff'           => null,
-        'number_staff'    => null,
+        'staff_number'    => null,
         'workers'         => null,
-        'number_workers'  => null,
-        'spaces'          => null,
-        'space_type_exec' => null,
+        'workers_number'  => null,
+        'executive_spaces' => null,
+        'executive_spaces_type' => null,
         'equipment'       => null,
         'equipment_type'  => null,
         'software'        => null,
@@ -39,10 +40,25 @@ class Step3 extends Component
         'website'         => null,
     ];
 
+    public function mount(): void
+    {
+        // when return back
+        $investorId = session('current_investor_id');
+        if ($investorId) {
+            $resource = InvestorResource::where('investor_id', $investorId)->first();
+            if ($resource) {
+                $this->data = array_merge($this->data, $resource->toArray());
+            }
+        }
+    }
+
     #[On('validate-step-3')]
     public function validateStep3()
     {
         $this->validate();
+
+        $this->syncResource();
+
         $this->dispatch('go-to-next-step');
     }
 
@@ -69,5 +85,19 @@ class Step3 extends Component
             'data.software_type.*'         => __('idea.validation.step5.software_type'),
             'data.website.*'               => __('idea.validation.step5.website'),
         ];
+    }
+
+    public function syncResource(): void
+    {
+        $investorId = session('current_investor_id');
+        if (!$investorId) {
+            $this->addError('data', 'Investor not found in session.');
+            return;
+        }
+
+        InvestorResource::updateOrCreate(
+            ['investor_id' => $investorId],
+            $this->data
+        );
     }
 }

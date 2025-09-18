@@ -11,16 +11,16 @@ class InvestorResource extends Model
         'company',
         'space_type',
         'staff',
-        'number_staff',
+        'staff_number',
         'workers',
-        'number_workers',
-        'spaces',
-        'space_type_exec',
+        'workers_number',
+        'executive_spaces',
+        'executive_spaces_type',
         'equipment',
         'equipment_type',
         'software',
         'software_type',
-        'website'
+        'website',
     ];
 
     public function investor()
