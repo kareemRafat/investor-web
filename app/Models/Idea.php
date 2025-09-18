@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\IdeaCost;
+use App\Models\IdeaProfit;
+use App\Models\IdeaReturn;
+use App\Models\IdeaExpense;
+use App\Models\IdeaSummary;
+use App\Models\IdeaResource;
+use App\Models\IdeaAttachment;
+use App\Models\IdeaContribution;
 use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
