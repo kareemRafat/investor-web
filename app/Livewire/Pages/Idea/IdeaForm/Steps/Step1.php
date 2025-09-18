@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
+use App\Models\Idea;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -22,6 +23,13 @@ class Step1 extends Component
     public function validateStep1()
     {
         $this->validate();
+
+        $idea = Idea::create([
+            'idea_field' => $this->ideaField,
+        ]);
+
+        session(['current_idea_id' => $idea->id]);
+
         $this->dispatch('go-to-next-step');
     }
 
