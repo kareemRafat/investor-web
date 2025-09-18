@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idea_attachments', function (Blueprint $table) {
+        Schema::create('investor_countries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
-            $table->string('path');
+            $table->foreignId('investor_id')->constrained()->onDelete('cascade');
+            $table->string('country');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('idea_attachments');
+        Schema::dropIfExists('investor_countries');
     }
 };

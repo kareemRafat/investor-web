@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idea_attachments', function (Blueprint $table) {
+        Schema::create('investor_summaries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
-            $table->string('path');
-            $table->timestamps();
+    $table->foreignId('investor_id')->constrained()->onDelete('cascade');
+    $table->text('summary')->nullable();
+    $table->json('attachments')->nullable();
+    $table->timestamps();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('idea_attachments');
+        Schema::dropIfExists('investor_summaries');
     }
 };

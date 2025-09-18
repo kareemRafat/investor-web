@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idea_contributions', function (Blueprint $table) {
+        Schema::create('investor_contributions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('investor_id')->constrained()->onDelete('cascade');
             $table->enum('contribute_type', ['sell', 'idea', 'capital', 'personal', 'both']);
             $table->enum('staff', ['full_time', 'part_time', 'supervision'])->nullable();
             $table->enum('staff_person_money', ['full_time', 'part_time', 'supervision'])->nullable();
-            $table->decimal('money_amount', 12, 2)->nullable();
+            $table->decimal('money_amount', 15, 2)->nullable();
             $table->unsignedTinyInteger('money_percent')->nullable();
-            $table->decimal('person_money_amount', 12, 2)->nullable();
+            $table->decimal('person_money_amount', 15, 2)->nullable();
             $table->unsignedTinyInteger('person_money_percent')->nullable();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('idea_contributions');
+        Schema::dropIfExists('investor_contributions');
     }
 };
