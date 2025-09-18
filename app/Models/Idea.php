@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field'];
+    protected $fillable = ['idea_field','visibility'];
 
     // Relations
     public function countries()
