@@ -17,6 +17,14 @@ class Step1 extends Component
     public function mount(): void
     {
         $this->ideaOptions = __('idea.steps.step1.options');
+
+        $ideaId = session('current_idea_id');
+        if ($ideaId) {
+            $idea = Idea::find($ideaId);
+            if ($idea) {
+                $this->ideaField = $idea->idea_field;
+            }
+        }
     }
 
     #[On('validate-step-1')]
@@ -24,11 +32,7 @@ class Step1 extends Component
     {
         $this->validate();
 
-        $idea = Idea::create([
-            'idea_field' => $this->ideaField,
-        ]);
-
-        session(['current_idea_id' => $idea->id]);
+        $this->dbsync();
 
         $this->dispatch('go-to-next-step');
     }
@@ -43,5 +47,17 @@ class Step1 extends Component
         return [
             'ideaField.required' => __('idea.validation.step1.idea_field'),
         ];
+    }
+
+    public function dbsync()
+    {
+        $ideaId = session('current_idea_id');
+
+        $idea = Idea::updateOrCreate(
+            ['id' => $ideaId],
+            ['idea_field' => $this->ideaField]
+        );
+
+        session(['current_idea_id' => $idea->id]);
     }
 }

@@ -26,12 +26,11 @@ class Step6 extends Component
 
     public function mount(): void
     {
-        //!!! data found if the user return back
         $ideaId = session('current_idea_id');
         if ($ideaId) {
             $idea = Idea::find($ideaId);
             if ($idea) {
-                $expenses = $idea->expenses()->first(); // relation expenses()
+                $expenses = $idea->expenses()->first();
                 if ($expenses) {
                     $this->data = $expenses->only(array_keys($this->data));
                 }

@@ -8,7 +8,19 @@ class IdeaExpense extends Model
 {
     protected $fillable = [
         'idea_id',
-        'company','assets','salaries','operating','other'
+        'company',
+        'assets',
+        'salaries',
+        'operating',
+        'other'
+    ];
+
+    protected $casts = [
+        'company' => 'integer',
+        'assets' => 'integer',
+        'salaries' => 'integer',
+        'operating' => 'integer',
+        'other' => 'integer',
     ];
 
     public function idea()
@@ -16,4 +28,3 @@ class IdeaExpense extends Model
         return $this->belongsTo(Idea::class);
     }
 }
-
