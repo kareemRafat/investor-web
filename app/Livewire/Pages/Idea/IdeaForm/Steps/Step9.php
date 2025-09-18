@@ -29,10 +29,10 @@ class Step9 extends Component
         $ideaId = session('current_idea_id');
         if (!$ideaId) return;
 
-        $idea = Idea::find($ideaId);
+        $idea = Idea::with('summary' , 'attachments')->find($ideaId);
         if (!$idea) return;
 
-        $this->data['summary'] = $idea->summary->summary;// get summary from summary() relationship
+        $this->data['summary'] = $idea?->summary?->summary;// get summary from summary() relationship
         $this->data['visibility'] = $idea->visibility;
 
         if (!empty($idea->attachments)) {

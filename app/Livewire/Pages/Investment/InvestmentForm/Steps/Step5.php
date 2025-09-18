@@ -30,9 +30,9 @@ class Step5 extends Component
         $investorId = session('current_investor_id');
         if (!$investorId) return;
 
-        $investor = Investor::find($investorId);
+        $investor = Investor::with('summary' , 'attachments')->find($investorId);
         if (!$investor) return;
-        $this->data['summary'] = $investor->summary->summary; // get summary from summary() relationship
+        $this->data['summary'] = $investor?->summary?->summary; // get summary from summary() relationship
         $this->data['visibility'] = $investor->visibility;
 
     }
