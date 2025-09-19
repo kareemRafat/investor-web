@@ -94,7 +94,7 @@ return [
             'subtitle' => 'The estimated cost of implementing the idea',
 
             'types' => [
-                'one_time' => 'One-time Costs',
+                'one-time' => 'One-time Costs',
                 'annual'   => 'Annual Costs',
             ],
 
@@ -217,7 +217,7 @@ return [
             'expected_profit' => 'The expected profit',
             'best_countries' => 'The best countries to implement the idea',
             'contact_way' => 'The preferred way to contact you is',
-            'requirements' => 'Requirements for implementing the idea',
+            'resources' => 'Requirements for implementing the idea',
             'contribution' => 'You will contribute by',
             'your_requirements' => 'Your requirements are',
             'capital_distribution' => 'Distribution of the required capital',

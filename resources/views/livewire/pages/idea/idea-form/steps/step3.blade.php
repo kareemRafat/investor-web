@@ -6,8 +6,7 @@
     $wire.set('range_id', null);
 })">
 
-    <x-pages.idea-wizard.idea-header
-        title="{{ __('pages/mainpage.submit_idea') }}"
+    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step3.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
@@ -21,11 +20,12 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="one-time" value="one-time"
-                                           x-model="selectedType" name="cost_type" autocomplete="off">
-                                    <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
+                                        x-model="selectedType" name="cost_type" autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
                                                   rounded-8 shadow-sm fw-bold small"
-                                           for="one-time">
-                                        {{ __('idea.steps.step3.types.one_time') }}
+                                        for="one-time">
+                                        {{ __('idea.steps.step3.types.one-time') }}
                                     </label>
                                 </div>
 
@@ -33,12 +33,13 @@
                                 @foreach ($oneTimeRanges as $range)
                                     <div class="col-12 col-md-6">
                                         <input type="radio" class="btn-check" id="one-time-{{ $range->id }}"
-                                               value="{{ $range->id }}" x-model="selectedRange"
-                                               :disabled="selectedType !== 'one-time'" autocomplete="off">
-                                        <label class="btn btn-outline-secondary w-100 h-100 p-3
+                                            value="{{ $range->id }}" x-model="selectedRange"
+                                            :disabled="selectedType !== 'one-time'" autocomplete="off">
+                                        <label
+                                            class="btn btn-outline-secondary w-100 h-100 p-3
                                                       rounded-8 shadow-sm small fw-bold"
-                                               for="one-time-{{ $range->id }}">
-                                            {!! $range->label !!}
+                                            for="one-time-{{ $range->id }}">
+                                            {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
                                         </label>
                                     </div>
                                 @endforeach
@@ -52,10 +53,11 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="annual" value="annual"
-                                           x-model="selectedType" name="cost_type" autocomplete="off">
-                                    <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
+                                        x-model="selectedType" name="cost_type" autocomplete="off">
+                                    <label
+                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
                                                   rounded-8 shadow-sm fw-bold small"
-                                           for="annual">
+                                        for="annual">
                                         {{ __('idea.steps.step3.types.annual') }}
                                     </label>
                                 </div>
@@ -64,12 +66,13 @@
                                 @foreach ($annualRanges as $range)
                                     <div class="col-12 col-md-6">
                                         <input type="radio" class="btn-check" id="annual-{{ $range->id }}"
-                                               value="{{ $range->id }}" x-model="selectedRange"
-                                               :disabled="selectedType !== 'annual'" autocomplete="off">
-                                        <label class="btn btn-outline-secondary w-100 h-100 p-3
+                                            value="{{ $range->id }}" x-model="selectedRange"
+                                            :disabled="selectedType !== 'annual'" autocomplete="off">
+                                        <label
+                                            class="btn btn-outline-secondary w-100 h-100 p-3
                                                       rounded-8 shadow-sm small fw-bold"
-                                               for="annual-{{ $range->id }}">
-                                            {!! $range->label !!}
+                                            for="annual-{{ $range->id }}">
+                                            {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
                                         </label>
                                     </div>
                                 @endforeach

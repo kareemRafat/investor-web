@@ -16,7 +16,8 @@ return new class extends Migration
             $table->enum('type', ['one-time', 'annual']);
             $table->bigInteger('min_value')->nullable();
             $table->bigInteger('max_value')->nullable();
-            $table->string('label'); // النص اللي هيظهر في الراديو
+            $table->string('label_en'); // النص اللي هيظهر في الراديو
+            $table->string('label_ar');
         });
     }
 

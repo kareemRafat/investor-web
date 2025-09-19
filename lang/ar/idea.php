@@ -95,7 +95,7 @@ return [
             'subtitle' => 'التكلفة التقديرية لتنفيذ الفكرة',
 
             'types' => [
-                'one_time' => 'تكاليف لمرة واحدة',
+                'one-time' => 'تكاليف لمرة واحدة',
                 'annual'   => 'تكاليف سنوية',
             ],
 
@@ -219,7 +219,7 @@ return [
             'expected_profit' => 'الأرباح المتوقعة',
             'best_countries' => 'أفضل الدول لتنفيذ الفكرة',
             'contact_way' => 'طريقة التواصل المفضلة معك',
-            'requirements' => 'متطلبات تنفيذ الفكرة',
+            'resources' => 'متطلبات تنفيذ الفكرة',
             'contribution' => 'ستساهم بـ',
             'your_requirements' => 'متطلباتك',
             'capital_distribution' => 'توزيع رأس المال المطلوب',
