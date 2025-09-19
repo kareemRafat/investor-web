@@ -96,5 +96,8 @@ class Step9 extends Component
 
         //! store attachments
         $this->handleAttachmentUpload($idea, $this->data['attachment']);
+
+        // Update current attachment name after upload
+        $this->currentAttachment = $idea->attachments()->first()?->original_name;
     }
 }
