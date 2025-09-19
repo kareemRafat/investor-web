@@ -5,41 +5,30 @@ namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 use App\Models\Idea;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\CostProfitRange;
 use Livewire\Attributes\Validate;
 
 class Step3 extends Component
 {
     #[Validate([
-        'cost_type'  => 'required|in:one-time,annual',
-        'cost_range' => 'required|string',
+        'cost_type' => 'required|in:one-time,annual',
+        'range_id'  => 'required|exists:cost_profit_ranges,id',
     ])]
     public ?string $cost_type = null;
-    public ?string $cost_range = null;
+    public ?int $range_id = null;
 
     public function mount(): void
     {
-        // data found if the user return back
         $ideaId = session('current_idea_id');
         if ($ideaId) {
             $idea = Idea::find($ideaId);
             if ($idea) {
                 $cost = $idea->costs()->first();
                 if ($cost) {
-                    $this->cost_type  = $cost->cost_type;
-                    $this->cost_range = $cost->cost_range;
+                    $this->cost_type = $cost->cost_type;
+                    $this->range_id  = $cost->range_id;
                 }
             }
-        }
-    }
-
-    public function updatedCostRange($value)
-    {
-        if (str_starts_with($value, 'one-time')) {
-            $this->cost_type = 'one-time';
-        }
-
-        if (str_starts_with($value, 'annual')) {
-            $this->cost_type = 'annual';
         }
     }
 
@@ -68,7 +57,10 @@ class Step3 extends Component
 
     public function render()
     {
-        return view('livewire.pages.idea.idea-form.steps.step3');
+        return view('livewire.pages.idea.idea-form.steps.step3', [
+            'oneTimeRanges' => CostProfitRange::where('type', 'one-time')->get(),
+            'annualRanges'  => CostProfitRange::where('type', 'annual')->get(),
+        ]);
     }
 
     public function messages()
@@ -84,12 +76,11 @@ class Step3 extends Component
      */
     private function syncCost(Idea $idea): void
     {
-        // أفضل طريقة: نحاول نجيب السطر الحالي، لو موجود نعمل update، لو مش موجود نعمل create
         $existing = $idea->costs()->first();
 
         $data = [
-            'cost_type'  => $this->cost_type,
-            'cost_range' => $this->cost_range,
+            'cost_type' => $this->cost_type,
+            'range_id'  => $this->range_id,
         ];
 
         if ($existing) {

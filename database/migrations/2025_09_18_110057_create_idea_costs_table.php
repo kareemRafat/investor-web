@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
             $table->enum('cost_type', ['one-time', 'annual']);
-            $table->string('cost_range');
+            $table->foreignId('range_id')->constrained('cost_profit_ranges');
             $table->timestamps();
         });
     }

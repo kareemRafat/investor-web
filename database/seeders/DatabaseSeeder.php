@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
             'birth_date' => '1990-05-15',
             'residence_country' => 'mansoura'
         ]);
+
+        $this->call(CostProfitRangeSeeder::class);
     }
 }

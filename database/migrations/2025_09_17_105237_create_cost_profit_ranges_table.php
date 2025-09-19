@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idea_profits', function (Blueprint $table) {
+        Schema::create('cost_profit_ranges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
-            $table->enum('profit_type', ['one-time', 'annual']);
-            $table->foreignId('range_id')->constrained('cost_profit_ranges');
-            $table->timestamps();
+            $table->enum('type', ['one-time', 'annual']);
+            $table->bigInteger('min_value')->nullable();
+            $table->bigInteger('max_value')->nullable();
+            $table->string('label'); // النص اللي هيظهر في الراديو
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('idea_profits');
+        Schema::dropIfExists('cost_profit_ranges');
     }
 };

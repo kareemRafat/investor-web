@@ -1,13 +1,13 @@
 <div x-data="{
     selectedType: @entangle('cost_type'),
-    selectedRange: @entangle('cost_range'),
+    selectedRange: @entangle('range_id'),
 }" x-init="$watch('selectedType', () => {
     selectedRange = null;
-    $wire.set('cost_range', null);
+    $wire.set('range_id', null);
 })">
 
-    {{-- step header --}}
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
+    <x-pages.idea-wizard.idea-header
+        title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step3.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
@@ -21,23 +21,25 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="one-time" value="one-time"
-                                        x-model="selectedType" name="cost_type" autocomplete="off">
-                                    <label
-                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
+                                           x-model="selectedType" name="cost_type" autocomplete="off">
+                                    <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
                                                   rounded-8 shadow-sm fw-bold small"
-                                        for="one-time">{{ __('idea.steps.step3.types.one_time') }}</label>
+                                           for="one-time">
+                                        {{ __('idea.steps.step3.types.one_time') }}
+                                    </label>
                                 </div>
 
                                 {{-- one-time ranges --}}
-                                @foreach (__('idea.steps.step3.one_time_ranges') as $id => $label)
+                                @foreach ($oneTimeRanges as $range)
                                     <div class="col-12 col-md-6">
-                                        <input type="radio" class="btn-check" id="one-time-{{ $id }}"
-                                            value="one-time-{{ $id }}" x-model="selectedRange"
-                                            :disabled="selectedType !== 'one-time'" autocomplete="off">
-                                        <label
-                                            class="btn btn-outline-secondary w-100 h-100 p-3
+                                        <input type="radio" class="btn-check" id="one-time-{{ $range->id }}"
+                                               value="{{ $range->id }}" x-model="selectedRange"
+                                               :disabled="selectedType !== 'one-time'" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100 h-100 p-3
                                                       rounded-8 shadow-sm small fw-bold"
-                                            for="one-time-{{ $id }}">{!! $label !!}</label>
+                                               for="one-time-{{ $range->id }}">
+                                            {!! $range->label !!}
+                                        </label>
                                     </div>
                                 @endforeach
                             </div>
@@ -50,39 +52,43 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="annual" value="annual"
-                                        x-model="selectedType" name="cost_type" autocomplete="off">
-                                    <label
-                                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
+                                           x-model="selectedType" name="cost_type" autocomplete="off">
+                                    <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3
                                                   rounded-8 shadow-sm fw-bold small"
-                                        for="annual">{{ __('idea.steps.step3.types.annual') }}</label>
+                                           for="annual">
+                                        {{ __('idea.steps.step3.types.annual') }}
+                                    </label>
                                 </div>
 
                                 {{-- annual ranges --}}
-                                @foreach (__('idea.steps.step3.annual_ranges') as $id => $label)
+                                @foreach ($annualRanges as $range)
                                     <div class="col-12 col-md-6">
-                                        <input type="radio" class="btn-check" id="annual-{{ $id }}"
-                                            value="annual-{{ $id }}" x-model="selectedRange"
-                                            :disabled="selectedType !== 'annual'" autocomplete="off">
-                                        <label
-                                            class="btn btn-outline-secondary w-100 h-100 p-3
+                                        <input type="radio" class="btn-check" id="annual-{{ $range->id }}"
+                                               value="{{ $range->id }}" x-model="selectedRange"
+                                               :disabled="selectedType !== 'annual'" autocomplete="off">
+                                        <label class="btn btn-outline-secondary w-100 h-100 p-3
                                                       rounded-8 shadow-sm small fw-bold"
-                                            for="annual-{{ $id }}">{!! $label !!}</label>
+                                               for="annual-{{ $range->id }}">
+                                            {!! $range->label !!}
+                                        </label>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-center">
-        @if ($errors->has('cost_type') || $errors->has('cost_range'))
-            <span class="text-white bg-danger rounded p-2 text-center fw-bold mt-3">
-                {{ $errors->first('cost_type') ?: $errors->first('cost_range') }}
-            </span>
-        @endif
+        @error('cost_type')
+            <span class="text-white bg-danger rounded p-2 text-center fw-bold mt-3">{{ $message }}</span>
+        @enderror
+        @error('range_id')
+            <span class="text-white bg-danger rounded p-2 text-center fw-bold mt-3">{{ $message }}</span>
+        @enderror
     </div>
 
 </div>

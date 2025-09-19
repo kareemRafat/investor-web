@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 use App\Models\Idea;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\CostProfitRange;
 use Livewire\Attributes\Validate;
 
 class Step4 extends Component
@@ -12,22 +13,21 @@ class Step4 extends Component
 
     #[Validate([
         'profit_type'  => 'required|in:one-time,annual',
-        'profit_range' => 'required|string',
+        'profit_range_id' => 'required|exists:cost_profit_ranges,id',
     ])]
     public ?string $profit_type = null;
-    public ?string $profit_range = null;
+    public ?int $profit_range_id = null;
 
     public function mount(): void
     {
-        // data found if the user return back
         $ideaId = session('current_idea_id');
         if ($ideaId) {
             $idea = Idea::find($ideaId);
             if ($idea) {
                 $profit = $idea->profits()->first();
                 if ($profit) {
-                    $this->profit_type  = $profit->profit_type;
-                    $this->profit_range = $profit->profit_range;
+                    $this->profit_type    = $profit->profit_type;
+                    $this->profit_range_id = $profit->range_id;
                 }
             }
         }
@@ -44,16 +44,6 @@ class Step4 extends Component
         }
     }
 
-    public function updatedProfitType($value)
-    {
-        if ($value === 'one-time' && str_starts_with($this->profit_range ?? '', 'annual')) {
-            $this->profit_range = null;
-        }
-
-        if ($value === 'annual' && str_starts_with($this->profit_range ?? '', 'one-time')) {
-            $this->profit_range = null;
-        }
-    }
 
     #[On('validate-step-4')]
     public function validateStep4()
@@ -81,7 +71,10 @@ class Step4 extends Component
 
     public function render()
     {
-        return view('livewire.pages.idea.idea-form.steps.step4');
+        return view('livewire.pages.idea.idea-form.steps.step4', [
+            'oneTimeRanges' => CostProfitRange::where('type', 'one-time')->get(),
+            'annualRanges'  => CostProfitRange::where('type', 'annual')->get(),
+        ]);
     }
 
     public function messages()
@@ -101,7 +94,7 @@ class Step4 extends Component
 
         $data = [
             'profit_type'  => $this->profit_type,
-            'profit_range' => $this->profit_range,
+            'range_id'     => $this->profit_range_id,
         ];
 
         if ($existing) {
