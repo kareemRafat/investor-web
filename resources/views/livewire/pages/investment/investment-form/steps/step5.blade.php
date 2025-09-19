@@ -26,7 +26,7 @@
                     <span>{{ __('investor.steps.step5.file_format') }}</span>
                     <i class="bi bi-paperclip fs-5"></i>
                 </label>
-                <input type="file" id="investor-attachment" class="d-none" multiple>
+                <input type="file" id="investor-attachment" class="d-none"  wire:model="data.attachment">
             </div>
             <hr class="mt-3">
             <div class="col-lg-12 d-flex">

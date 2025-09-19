@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Investor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['investor_field' , 'visibility'];
+    protected $fillable = ['investor_field', 'visibility'];
 
     public function countries()
     {
@@ -31,8 +32,8 @@ class Investor extends Model
         return $this->hasOne(InvestorSummary::class);
     }
 
-    public function attachments()
+    public function attachments(): MorphMany
     {
-        return $this->hasMany(InvestorAttachment::class);
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }

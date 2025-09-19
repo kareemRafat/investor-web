@@ -11,10 +11,11 @@ use App\Models\IdeaResource;
 use App\Models\IdeaAttachment;
 use App\Models\IdeaContribution;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field','visibility'];
+    protected $fillable = ['idea_field', 'visibility'];
 
     // Relations
     public function countries()
@@ -57,8 +58,8 @@ class Idea extends Model
         return $this->hasOne(IdeaSummary::class);
     }
 
-    public function attachments()
+    public function attachments(): MorphMany
     {
-        return $this->hasMany(IdeaAttachment::class);
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }

@@ -26,7 +26,7 @@
                     <span>{{ __('idea.steps.step9.file_format') }}</span>
                     <i class="bi bi-paperclip fs-5"></i>
                 </label>
-                <input type="file" id="idea-attachment" class="d-none" multiple>
+                <input type="file" id="idea-attachment" class="d-none" wire:model='data.attachment'>
             </div>
             <hr class="mt-3">
             <div class="col-lg-12 d-flex">
@@ -56,7 +56,7 @@
 
     <div class="d-flex justify-content-center">
         @if ($errors->any())
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3 w-25">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $errors->first() }}
             </span>
         @endif
