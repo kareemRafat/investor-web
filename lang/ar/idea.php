@@ -221,7 +221,7 @@ return [
             'contact_way' => 'طريقة التواصل المفضلة معك',
             'resources' => 'متطلبات تنفيذ الفكرة',
             'contribution' => 'ستساهم بـ',
-            'your_requirements' => 'متطلباتك',
+            'returns' => 'متطلباتك',
             'capital_distribution' => 'توزيع رأس المال المطلوب',
             'attachments' => 'الملفات المرفقة',
             'summary' => 'ملخص الفكرة',

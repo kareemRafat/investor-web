@@ -27,4 +27,19 @@ class IdeaExpense extends Model
     {
         return $this->belongsTo(Idea::class);
     }
+
+    public function getCapitalDistributionAttribute(): array
+    {
+        $map = trans('idea.steps.step6.fields');
+
+        $distribution = [];
+
+        foreach ($map as $field => $label) {
+            if (!is_null($this->$field)) {
+                $distribution[] = $label . ': ' . intval($this->$field) . '%';
+            }
+        }
+
+        return $distribution ?: ['-'];
+    }
 }

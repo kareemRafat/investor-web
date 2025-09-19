@@ -117,10 +117,20 @@
                                         {{ __('idea.steps.step10.contact_way') }}
                                     </h6>
                                 </div>
-                                <div
-                                    class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    {{ optional($idea->resources)->contact_way ?? '-' }}
-                                </div>
+                                <ol class="mb-0 d-flex flex-wrap gap-4 p-3 justify-content-center">
+                                    <li>
+                                        @if (app()->getLocale() === 'ar')
+                                            الهاتف النقال
+                                        @else
+                                            Mobile Phone
+                                        @endif
+                                    </li>
+                                    <li> @if (app()->getLocale() === 'ar')
+                                            البريد الإلكتروني
+                                        @else
+                                            Email
+                                        @endif</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
@@ -165,7 +175,8 @@
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                     <ul class="mb-0 list-unstyled">
                                         @forelse($idea->contributions as $contribution)
-                                            <li>{{ $contribution->type }}: {{ $contribution->value }}</li>
+                                            <li>{{ __('idea.steps.step7.' . ($contribution->contribute_type ?? '-')) }}
+                                            </li>
                                         @empty
                                             <li>-</li>
                                         @endforelse
@@ -175,18 +186,21 @@
                         </div>
                     </div>
 
-                    <!-- Your requirements -->
+                    <!-- Your returns -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="card bg-custom border-custom h-100 rounded-8">
                             <div class="card-body pt-0 px-0 d-flex flex-column">
                                 <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
                                     <h6 class="mb-0 fw-bold">
-                                        {{ __('idea.steps.step10.your_requirements') }}
+                                        {{ __('idea.steps.step10.returns') }}
                                     </h6>
                                 </div>
-                                <div
-                                    class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    {{ optional($idea->expenses)->details ?? '-' }}
+                                <div class="rounded-8 p-2 py-3 h-100 d-flex align-items-center justify-content-center">
+                                    <ul class="mb-0 list-unstyled">
+                                        @foreach (optional($idea->returns)->formatted_returns ?? ['-'] as $return)
+                                            <li>{{ $return }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -203,13 +217,18 @@
                                 </div>
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    <ul class="mb-0 list-unstyled">
-                                        @forelse($idea->costs as $cost)
-                                            <li>{{ $cost->type }}: {{ number_format($cost->amount, 2) }}</li>
-                                        @empty
-                                            <li>-</li>
-                                        @endforelse
-                                    </ul>
+                                    <div>
+                                        @if (optional($idea->expenses)->capital_distribution)
+                                            @foreach (optional($idea->expenses)->capital_distribution as $index => $expense)
+                                                <span>{{ $expense }}</span>
+                                                @if (!$loop->last)
+                                                    <span class="mx-1">+</span>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            <span>-</span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -236,10 +255,15 @@
                                             <img src="{{ asset('images/Container.png') }}" alt="File"
                                                 width="30" height="32" />
                                             <div class="text-start">
-                                                <div class="fw-bold small">{{ basename($file->path) }}</div>
+                                                {{-- اسم الملف --}}
+                                                <div class="fw-bold small">
+                                                    {{ $file->original_name ?? basename($file->path) }}
+                                                </div>
+
+                                                {{-- الحجم + تاريخ الرفع --}}
                                                 <small class="text-white small" dir="ltr">
-                                                    {{ number_format($file->size / 1024, 0) }} KB •
-                                                    {{ $file->created_at->format('d M, Y') }}
+                                                    {{-- الحجم بالـ KB لو عندك عمود size أو تقدر تحسبه بـ Storage::size --}}
+                                                    {{ $file->size_kb }} • {{ $file->created_at->format('d M, Y') }}
                                                 </small>
                                             </div>
                                         </div>
@@ -250,6 +274,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Summary -->
                     <div class="col-lg-9 col-md-6 col-12">
@@ -262,7 +287,7 @@
                                 </div>
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    {{ optional($idea->summary)->text ?? '-' }}
+                                    {{ optional($idea->summary)->summary ?? '-' }}
                                 </div>
                             </div>
                         </div>

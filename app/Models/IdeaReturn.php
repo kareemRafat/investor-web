@@ -31,4 +31,50 @@ class IdeaReturn extends Model
     {
         return $this->belongsTo(Idea::class);
     }
+
+    public function getFormattedReturnsAttribute(): array
+    {
+        $returns = [];
+
+        switch ($this->return_type) {
+            case 'profit':
+                if ($this->profit_only_percentage) {
+                    $returns[] = __('idea.steps.step8.profit_share')
+                        . ': ' . $this->profit_only_percentage . '%';
+                }
+                break;
+
+            case 'one_time':
+                if ($this->one_time_dollar) {
+                    $returns[] = __('idea.steps.step8.one_time_sum')
+                        . ': ' . number_format($this->one_time_dollar, 2) . ' $';
+                }
+                if ($this->one_time_sar) {
+                    $returns[] = __('idea.steps.step8.one_time_sum')
+                        . ': ' . number_format($this->one_time_sar, 2) . ' ر.س';
+                }
+                break;
+
+            case 'combo':
+                $label = __('idea.steps.step8.profit_plus_sum');
+                $parts = [];
+
+                if ($this->combo_percentage) {
+                    $parts[] = $this->combo_percentage . '%';
+                }
+                if ($this->combo_dollar) {
+                    $parts[] = number_format($this->combo_dollar, 2) . ' $';
+                }
+                if ($this->combo_sar) {
+                    $parts[] = number_format($this->combo_sar, 2) . ' ر.س';
+                }
+
+                if (!empty($parts)) {
+                    $returns[] = $label . ': ' . implode(' + ', $parts);
+                }
+                break;
+        }
+
+        return $returns ?: ['-'];
+    }
 }

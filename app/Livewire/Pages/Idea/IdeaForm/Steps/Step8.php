@@ -27,7 +27,7 @@ class Step8 extends Component
         'return_type' => null,
     ];
 
-    public string|null $activeColumn = null; // لتفعيل العمود الصحيح في Alpine
+    public string|null $activeColumn = null;
 
     public function mount(): void
     {

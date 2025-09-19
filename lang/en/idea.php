@@ -219,7 +219,7 @@ return [
             'contact_way' => 'The preferred way to contact you is',
             'resources' => 'Requirements for implementing the idea',
             'contribution' => 'You will contribute by',
-            'your_requirements' => 'Your requirements are',
+            'returns' => 'Your requirements are',
             'capital_distribution' => 'Distribution of the required capital',
             'attachments' => 'Attached files',
             'summary' => 'Idea summary',
