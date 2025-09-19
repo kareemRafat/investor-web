@@ -9,8 +9,8 @@ use Livewire\Attributes\Title;
 class IdeaForm extends Component
 {
 
-    public int $currentStep = 10 ;
-    public int $totalSteps = 10 ;
+    public int $currentStep = 1;
+    public int $totalSteps = 10;
 
     public function nextStep()
     {
@@ -30,6 +30,15 @@ class IdeaForm extends Component
         if ($this->currentStep > 1) {
             $this->currentStep--;
         }
+    }
+
+    public function finish()
+    {
+        session()->forget('current_idea_id');
+
+        $this->currentStep = 1;
+
+        return $this->redirect('/', navigate: true);
     }
 
     #[Title('Submit Your Idea')]

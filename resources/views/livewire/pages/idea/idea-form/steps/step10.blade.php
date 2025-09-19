@@ -125,17 +125,19 @@
                                             Mobile Phone
                                         @endif
                                     </li>
-                                    <li> @if (app()->getLocale() === 'ar')
+                                    <li>
+                                        @if (app()->getLocale() === 'ar')
                                             البريد الإلكتروني
                                         @else
                                             Email
-                                        @endif</li>
+                                        @endif
+                                    </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Resources -->
+                    <!-- Resources or Requirements -->
                     <div class="col-lg-8 col-md-6 col-12 h-100">
                         <div class="card bg-custom border-custom h-100 rounded-8">
                             <div class="card-body pt-0 px-0 d-flex flex-column">
@@ -144,15 +146,19 @@
                                         {{ __('idea.steps.step10.resources') }}
                                     </h6>
                                 </div>
-                                <div class="rounded-8 px-2 py-3 h-100 d-flex align-items-center justify-content-center">
-                                    <ol class="mb-0 row g-3 px-4">
-                                        @forelse(array_slice($idea->resources->translated_requirements ?? [], 0, 6) as $resource)
-                                            <li class="col-lg-4 col-6">{{ $resource }}</li>
+                                <div class="rounded-8 px-3 py-4 h-100">
+                                    <ol class="mb-0 d-flex flex-wrap gap-3 list-unstyled justify-content-center">
+                                        @forelse(array_slice($idea->resources->translated_requirements ?? [], 0, 6) as $index => $resource)
+                                            <li class="d-flex align-items-center gap-2">
+                                                <span class="fw-bold">{{ $index + 1 }}.</span>
+                                                <span class="small">{{ $resource }}</span>
+                                            </li>
                                         @empty
-                                            <li class="col-12 text-muted">-</li>
+                                            <li class="text-center text-muted">-</li>
                                         @endforelse
                                     </ol>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -251,7 +257,7 @@
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex flex-column gap-2 justify-content-center">
                                     @forelse($idea->attachments as $file)
-                                        <div class="d-flex gap-2 align-items-center">
+                                        <div class="d-flex gap-4 align-items-center">
                                             <img src="{{ asset('images/Container.png') }}" alt="File"
                                                 width="30" height="32" />
                                             <div class="text-start">

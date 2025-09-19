@@ -46,15 +46,18 @@ class IdeaResource extends Model
         }
 
         if ($this->executive_spaces === 'yes') {
-            $resources[] = __('idea.steps.step5.executive_spaces') . ($this->executive_spaces_type ? ' ( ' . $this->executive_spaces_type . ' )' : '');
+            $resources[] = __('idea.steps.step5.executive_spaces')
+                . ($this->executive_spaces_type ? ' ( ' . __('idea.common.' . $this->executive_spaces_type) . ' )' : '');
         }
 
         if ($this->equipment === 'yes') {
-            $resources[] = __('idea.steps.step5.equipment') . ($this->equipment_type ? ' ( ' . $this->equipment_type . ' )' : '');
+            $resources[] = __('idea.steps.step5.equipment')
+                . ($this->equipment_type ? ' ( ' . __('idea.common.' . $this->equipment_type) . ' )' : '');
         }
 
         if ($this->software === 'yes') {
-            $resources[] = __('idea.steps.step5.software') . ($this->software_type ? ' ( ' . $this->software_type . ' )' : '');
+            $resources[] = __('idea.steps.step5.software')
+                . ($this->software_type ? ' ( ' . __('idea.common.' . $this->software_type) . ' )' : '');
         }
 
         if ($this->website === 'yes') {
