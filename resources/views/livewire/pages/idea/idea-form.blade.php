@@ -39,6 +39,10 @@
                 @case(9)
                     <livewire:pages.idea.idea-form.steps.step9 wire:key="step-9" />
                 @break
+
+                @case(10)
+                    <livewire:pages.idea.idea-form.steps.step10 wire:key="step-10" />
+                @break
             @endswitch
 
             <div  wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
@@ -58,15 +62,15 @@
                 @endif
 
                 <a wire:click.prevent="nextStep"
-                    aria-label="{{ $currentStep === 9 ? __('idea.form.finish') : __('idea.form.next') }}"
-                    title="{{ $currentStep === 9 ? __('idea.form.finish') : __('idea.form.next') }}"
-                    class="btn {{ $currentStep === 9 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
+                    aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
+                    title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
+                    class="btn {{ $currentStep === 10 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
                     <span class="small fw-bold d-flex align-items-center">
                         @if (app()->getLocale() === 'ar')
-                        {{ $currentStep === 9 ? __('idea.form.finish') : __('idea.form.next') }}
+                        {{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}
                         <i class="bi bi-arrow-left-circle mx-2"></i>
                         @else
-                            {{ $currentStep === 9 ? __('idea.form.finish') : __('idea.form.next') }}
+                            {{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}
                             <i class="bi bi-arrow-right-circle mx-2"></i>
                         @endif
                     </span>
@@ -74,7 +78,7 @@
             </div>
         </div>
         <div  wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap">
-            @for ($i = 1; $i <= 9; $i++)
+            @for ($i = 1; $i <= 10; $i++)
                 <div
                     class="stepper-item
             @if ($i < $currentStep) completed_step
@@ -88,7 +92,7 @@
                     </div>
                 </div>
 
-                @if ($i < 9)
+                @if ($i < 10)
                     <div class="stepper-connector"></div>
                 @endif
             @endfor

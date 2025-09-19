@@ -209,6 +209,21 @@ return [
             'delete_file' => 'Delete',
             'delete_confirm' => 'Are you sure you want to Delete ?',
         ],
+        'step10' => [
+            'title' => 'Summary of your distinguished idea',
+            'project' => 'The project',
+            'classification' => 'Idea classification',
+            'capital' => 'The required capital',
+            'expected_profit' => 'The expected profit',
+            'best_countries' => 'The best countries to implement the idea',
+            'contact_way' => 'The preferred way to contact you is',
+            'requirements' => 'Requirements for implementing the idea',
+            'contribution' => 'You will contribute by',
+            'your_requirements' => 'Your requirements are',
+            'capital_distribution' => 'Distribution of the required capital',
+            'attachments' => 'Attached files',
+            'summary' => 'Idea summary',
+        ],
 
     ],
     'currency' => [
