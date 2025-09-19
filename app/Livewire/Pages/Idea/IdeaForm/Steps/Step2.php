@@ -21,7 +21,6 @@ class Step2 extends Component
 
     public function mount(): void
     {
-
         $this->options = __('idea.steps.step2.options');
 
         $ideaId = session('current_idea_id');

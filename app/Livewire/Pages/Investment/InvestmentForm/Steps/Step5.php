@@ -12,7 +12,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Step5 extends Component
 {
-    use WithFileUploads , HandlesAttachmentUpload;
+    use WithFileUploads, HandlesAttachmentUpload;
 
     #[Validate([
         'data.summary' => 'required|string|max:2000',
@@ -25,15 +25,24 @@ class Step5 extends Component
         'visibility' => null,
     ];
 
+    public $currentAttachment = null; // real file name
+
     public function mount(): void
     {
         $investorId = session('current_investor_id');
         if (!$investorId) return;
 
-        $investor = Investor::with('summary', 'attachments')->find($investorId);
+        $investor = Investor::with(['summary', 'attachments'])->find($investorId);
         if (!$investor) return;
-        $this->data['summary'] = $investor->summary?->summary; // get summary from summary() relationship
+
+        $this->data['summary'] = $investor->summary?->summary;
         $this->data['visibility'] = $investor->visibility;
+
+        // Load current attachment name if exists, or use default name
+        $this->currentAttachment = $investor->attachments()->first()?->original_name ?? 'Uploaded File';
+
+        // Ensure $data['attachment'] is reset to avoid stale file references
+        $this->data['attachment'] = null;
     }
 
     #[On('validate-step-5')]
@@ -87,6 +96,8 @@ class Step5 extends Component
 
         //! store attachments
         $this->handleAttachmentUpload($investor, $this->data['attachment']);
-    }
 
+        // Update current attachment name after upload
+        $this->currentAttachment = $investor->attachments()->first()?->original_name;
+    }
 }

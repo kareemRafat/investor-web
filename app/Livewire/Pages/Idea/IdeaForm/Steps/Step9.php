@@ -25,6 +25,8 @@ class Step9 extends Component
         'visibility' => null,
     ];
 
+    public $currentAttachment = null; // real file name
+
     public function mount(): void
     {
         $ideaId = session('current_idea_id');
@@ -35,6 +37,12 @@ class Step9 extends Component
 
         $this->data['summary'] = $idea?->summary?->summary; // get summary from summary() relationship
         $this->data['visibility'] = $idea->visibility;
+
+        // Load current attachment name if exists, or use default name
+        $this->currentAttachment = $idea->attachments()->first()?->original_name ?? 'Uploaded File';
+
+        // Ensure $data['attachment'] is reset to avoid stale file references
+        $this->data['attachment'] = null;
     }
 
     #[On('validate-step-9')]

@@ -8,7 +8,8 @@
             <div class="col-12">
                 <textarea class="form-control border-custom rounded-8 pt-3" rows="8"
                     placeholder="{{ __('idea.steps.step9.placeholder') }}" wire:model='data.summary'
-                    style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};"></textarea>
+                    style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};"
+                    dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
 
                 <div class="d-flex justify-content-between gap-3 mt-2">
                     <small class="text-muted text-start text-primary">
@@ -27,6 +28,17 @@
                     <i class="bi bi-paperclip fs-5"></i>
                 </label>
                 <input type="file" id="idea-attachment" class="d-none" wire:model='data.attachment'>
+                {{-- Display selected or current file name --}}
+                @if ($data['attachment'] || $currentAttachment !== 'Uploaded File')
+                    <div class="mt-2 d-flex align-items-center gap-2"
+                        dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
+                        <small class="text-primary fw-bold">
+                            {{ __('idea.steps.step9.selected_file') }}:
+                            <span
+                                class="mx-2">{{ $data['attachment'] ? $data['attachment']->getClientOriginalName() : $currentAttachment }}</span>
+                        </small>
+                    </div>
+                @endif
             </div>
             <hr class="mt-3">
             <div class="col-lg-12 d-flex">

@@ -36,6 +36,7 @@ trait HandlesAttachmentUpload
             // Store the file path in attachments table
             $model->attachments()->create([
                 'path' => $path,
+                'original_name' => $attachment->getClientOriginalName(),
             ]);
 
             // Reset the property after upload
@@ -43,13 +44,4 @@ trait HandlesAttachmentUpload
         }
     }
 
-
-    public function deleteAttachment(Model $model): void
-    {
-        if ($model->attachments()->exists()) {
-            Storage::disk('public')->delete($model->attachments()->first()->path);
-            $model->attachments()->delete();
-        }
-        $this->data['attachment'] = null;
-    }
 }

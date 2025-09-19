@@ -21,7 +21,6 @@ class Step2 extends Component
     public function mount(): void
     {
         $this->options = __('investor.steps.step2.options');
-
         $investorId = session('current_investor_id');
         if ($investorId) {
             $this->countries = InvestorCountry::where('investor_id', $investorId)

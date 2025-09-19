@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->nullableMorphs('attachable');
             // attachable_id (unsignedBigInteger, nullable) & attachable_type (string, nullable)
+            $table->string('original_name')->nullable();
             $table->string('path');
             $table->timestamps();
         });
