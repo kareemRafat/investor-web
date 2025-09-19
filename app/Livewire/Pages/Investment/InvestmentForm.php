@@ -8,8 +8,8 @@ use Livewire\Attributes\Title;
 
 class InvestmentForm extends Component
 {
-    public int $currentStep = 1 ;
-    public int $totalSteps = 5 ;
+    public int $currentStep = 1;
+    public int $totalSteps = 6;
 
     public function nextStep()
     {
@@ -20,7 +20,7 @@ class InvestmentForm extends Component
     public function goToNextStep()
     {
         // dd('test');
-        if ($this->currentStep < 5) {
+        if ($this->currentStep < 6) {
             $this->currentStep++;
         }
     }
@@ -30,6 +30,15 @@ class InvestmentForm extends Component
         if ($this->currentStep > 1) {
             $this->currentStep--;
         }
+    }
+
+    public function finish()
+    {
+        session()->forget('current_investor_id');
+
+        $this->currentStep = 1;
+
+        return $this->redirect('/', navigate: true);
     }
 
     #[Title('Find Investor')]

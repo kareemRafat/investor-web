@@ -15,4 +15,11 @@ class InvestorCountry extends Model
     {
         return $this->belongsTo(Investor::class);
     }
+
+    public function getCountryNameAttribute()
+    {
+        $options = trans('investor.steps.step2.options');
+        $found = collect($options)->firstWhere('code', $this->country);
+        return $found['name'] ?? $this->country;
+    }
 }

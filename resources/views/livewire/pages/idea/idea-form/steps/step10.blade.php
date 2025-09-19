@@ -91,13 +91,15 @@
                                 </div>
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    <ul class="text-white mb-0 list-unstyled">
-                                        @forelse($idea->countries as $country)
-                                            <li>{{ $country->country_name }}</li>
+                                    <div class="text-white">
+                                        @forelse($idea->countries as $index => $country)
+                                            {{ $country->country_name }}@if (!$loop->last)
+                                                -
+                                            @endif
                                         @empty
-                                            <li>-</li>
+                                            -
                                         @endforelse
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -131,6 +131,20 @@ return [
             'delete_file' => 'Delete',
             'delete_confirm' => 'Are you sure you want to Delete ?',
         ],
+        'step6' => [
+            'title' => 'Summary of your Investment Details',
+            'project' => 'The project',
+            'required_capital' => 'The required capital',
+            'expected_profit' => 'The expected profit',
+            'best_countries' => 'The best countries',
+            'preferred_contact' => 'The preferred way to contact you',
+            'requirements' => 'Requirements for implementing the idea',
+            'contribution' => 'You will contribute by',
+            'returns' => 'Your returns',
+            'capital_distribution' => 'Distribution of the required capital',
+            'attachments' => 'Attached files',
+            'summary' => 'Idea summary',
+        ],
 
     ],
     'currency' => [

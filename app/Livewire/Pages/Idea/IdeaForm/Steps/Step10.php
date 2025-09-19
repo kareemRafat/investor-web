@@ -25,6 +25,7 @@ class Step10 extends Component
             'attachments',
         ])->findOrFail($ideaId);
     }
+    
     public function render()
     {
         return view('livewire.pages.idea.idea-form.steps.step10', [
