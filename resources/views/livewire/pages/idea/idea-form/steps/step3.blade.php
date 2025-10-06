@@ -106,7 +106,7 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center gap-3">
         @error('cost_type')
             <span class="text-white bg-danger rounded p-2 text-center fw-bold mt-3">{{ $message }}</span>
         @enderror
