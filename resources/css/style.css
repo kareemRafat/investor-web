@@ -20,6 +20,17 @@
     --btn-bg: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #3B82F6;
     --btn-bg-hover: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #246ddb;
 }
+@media screen and (max-width: 992px) {
+    body::after,
+    body::before {
+        display: none !important;
+    }
+
+    .step_height{
+        height:450px;
+    }
+}
+
 
 * {
     box-sizing: border-box;
@@ -535,3 +546,6 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 50%;
     background: #fff;
 }
+
+
+
