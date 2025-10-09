@@ -273,13 +273,18 @@ return [
             'other'     => 'You must enter a valid other expenses percentage (0–100)',
         ],
         'step7' => [
-            'contribute_type'     => 'You must select a valid contribution type',
-            'staff'               => 'You must specify the staff type when contribution is capital',
-            'staff_person_money'  => 'You must specify the staff type when contribution is both',
-            'money_amount'        => 'You must enter a valid money amount (minimum 1)',
-            'money_percent'       => 'You must enter a valid money percentage (1–100)',
+            'contribute_type' => 'You must select a valid contribution type',
+            'staff' => 'You must specify the staff type when contribution is capital',
+            'staff_person_money' => 'You must specify the staff type when contribution is both',
+            'money_amount' => 'You must enter a valid money amount (minimum 1)',
+            'money_percent' => 'You must enter a valid money percentage (1–100)',
             'person_money_amount' => 'You must enter a valid personal money amount (minimum 1)',
             'person_money_percent' => 'You must enter a valid personal money percentage (1–100)',
+
+            'money_required_one' => 'You must enter either amount or percentage',
+            'money_both_prohibited' => 'You cannot enter both amount and percentage',
+            'person_money_required_one' => 'You must enter either personal amount or percentage',
+            'person_money_both_prohibited' => 'You cannot enter both personal amount and percentage',
         ],
         'step8' => [
             'profit_only_percentage'   => 'Profit percentage must be one of the allowed values.',

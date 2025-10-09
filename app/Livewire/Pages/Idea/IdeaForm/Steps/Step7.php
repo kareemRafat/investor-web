@@ -10,15 +10,6 @@ use Livewire\Attributes\Validate;
 
 class Step7 extends Component
 {
-    #[Validate([
-        'data.contribute_type' => 'required|in:sell,idea,capital,personal,both',
-        'data.staff' => 'required_if:data.contribute_type,capital|nullable|in:full_time,part_time,supervision',
-        'data.money_amount' => 'required_if:data.contribute_type,personal|nullable|numeric|min:1',
-        'data.money_percent' => 'required_if:data.contribute_type,personal|nullable|numeric|min:1|max:100',
-        'data.person_money_amount' => 'required_if:data.contribute_type,both|nullable|numeric|min:1',
-        'data.person_money_percent' => 'required_if:data.contribute_type,both|nullable|numeric|min:1|max:100',
-        'data.staff_person_money' => 'required_if:data.contribute_type,both|nullable|in:full_time,part_time,supervision',
-    ])]
     public array $data = [
         'contribute_type' => null,
         'staff' => null,
@@ -59,17 +50,79 @@ class Step7 extends Component
         return view('livewire.pages.idea.idea-form.steps.step7');
     }
 
+    public function rules()
+    {
+        $rules = [
+            'data.contribute_type' => 'required|in:sell,idea,capital,personal,both',
+            'data.staff' => 'required_if:data.contribute_type,capital|nullable|in:full_time,part_time,supervision',
+            'data.staff_person_money' => 'required_if:data.contribute_type,both|nullable|in:full_time,part_time,supervision',
+        ];
+
+        // للـ personal فقط
+        if ($this->data['contribute_type'] === 'personal') {
+            // لو دخل الاثنين مع بعض
+            if (!empty($this->data['money_amount']) && !empty($this->data['money_percent'])) {
+                $rules['data.money_amount'] = 'prohibited';
+                $rules['data.money_percent'] = 'prohibited';
+            }
+            // لو مدخلش حاجة خالص
+            elseif (empty($this->data['money_amount']) && empty($this->data['money_percent'])) {
+                $rules['data.money_amount'] = 'required';
+            }
+            // لو دخل واحد بس (صح)
+            else {
+                $rules['data.money_amount'] = 'nullable|numeric|min:1';
+                $rules['data.money_percent'] = 'nullable|numeric|min:1|max:100';
+            }
+        }
+
+        // للـ both فقط
+        if ($this->data['contribute_type'] === 'both') {
+            // لو دخل الاثنين مع بعض
+            if (!empty($this->data['person_money_amount']) && !empty($this->data['person_money_percent'])) {
+                $rules['data.person_money_amount'] = 'prohibited';
+                $rules['data.person_money_percent'] = 'prohibited';
+            }
+            // لو مدخلش حاجة خالص
+            elseif (empty($this->data['person_money_amount']) && empty($this->data['person_money_percent'])) {
+                $rules['data.person_money_amount'] = 'required';
+            }
+            // لو دخل واحد بس (صح)
+            else {
+                $rules['data.person_money_amount'] = 'nullable|numeric|min:1';
+                $rules['data.person_money_percent'] = 'nullable|numeric|min:1|max:100';
+            }
+        }
+
+        return $rules;
+    }
+
     public function messages()
     {
         return [
-            // step7
-            'data.contribute_type.*'     => __('idea.validation.step7.contribute_type'),
-            'data.staff.*'               => __('idea.validation.step7.staff'),
-            'data.staff_person_money.*'  => __('idea.validation.step7.staff_person_money'),
-            'data.money_amount.*'        => __('idea.validation.step7.money_amount'),
-            'data.money_percent.*'       => __('idea.validation.step7.money_percent'),
-            'data.person_money_amount.*' => __('idea.validation.step7.person_money_amount'),
-            'data.person_money_percent.*' => __('idea.validation.step7.person_money_percent'),
+            'data.contribute_type.*' => __('idea.validation.step7.contribute_type'),
+            'data.staff.*' => __('idea.validation.step7.staff'),
+            'data.staff_person_money.*' => __('idea.validation.step7.staff_person_money'),
+
+            // امسح الـ wildcard من هنا
+            'data.money_amount.numeric' => __('idea.validation.step7.money_amount'),
+            'data.money_amount.min' => __('idea.validation.step7.money_amount'),
+            'data.money_percent.numeric' => __('idea.validation.step7.money_percent'),
+            'data.money_percent.min' => __('idea.validation.step7.money_percent'),
+            'data.money_percent.max' => __('idea.validation.step7.money_percent'),
+            'data.person_money_amount.numeric' => __('idea.validation.step7.person_money_amount'),
+            'data.person_money_amount.min' => __('idea.validation.step7.person_money_amount'),
+            'data.person_money_percent.numeric' => __('idea.validation.step7.person_money_percent'),
+            'data.person_money_percent.min' => __('idea.validation.step7.person_money_percent'),
+            'data.person_money_percent.max' => __('idea.validation.step7.person_money_percent'),
+
+            // الرسائل الخاصة
+            'data.money_amount.required' => __('idea.validation.step7.money_required_one'),
+            'data.money_amount.prohibited' => __('idea.validation.step7.money_both_prohibited'),
+            'data.money_percent.prohibited' => __('idea.validation.step7.money_both_prohibited'),
+            'data.person_money_amount.required' => __('idea.validation.step7.person_money_required_one'),
+            'data.person_money_amount.prohibited' => __('idea.validation.step7.person_money_both_prohibited'),
+            'data.person_money_percent.prohibited' => __('idea.validation.step7.person_money_both_prohibited'),
         ];
     }
 
