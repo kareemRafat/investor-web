@@ -22,16 +22,6 @@
             this.expanded = this.expanded === column ? null : column;
         }
     }"
-   x-init="
-    window.addEventListener('resize', () => isMobile = window.innerWidth < 992);
-
-    // Prevent scroll when clicking radio labels
-    document.querySelectorAll('label[for]').forEach(label => {
-        label.addEventListener('mousedown', e => {
-            e.preventDefault(); // يمنع الفوكس الافتراضي اللى بيعمل سكرول
-        });
-    });
-"
 >
 
     {{-- step header --}}

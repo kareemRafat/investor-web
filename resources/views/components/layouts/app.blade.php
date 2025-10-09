@@ -67,6 +67,18 @@
     {{ $slot }}
 
     @livewireScripts
+
+    {{-- to prevent scroll down when choose input --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Prevent scroll when clicking radio labels across all pages
+            document.querySelectorAll('label[for]').forEach(label => {
+                label.addEventListener('mousedown', e => {
+                    e.preventDefault(); // يمنع السلوك الافتراضي اللي بيعمل سكرول
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
