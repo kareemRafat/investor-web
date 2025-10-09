@@ -1,62 +1,83 @@
-<div>
+<div
+    x-data="{
+        activeColumn: @entangle('data.return_type'),
+        expanded: null,
+        isMobile: window.innerWidth < 992,
+        clearOther(column) {
+            if (column !== 'profit') {
+                @this.set('data.profit_only_percentage', null)
+            }
+            if (column !== 'one_time') {
+                @this.set('data.one_time_dollar', null)
+                @this.set('data.one_time_sar', null)
+            }
+            if (column !== 'combo') {
+                @this.set('data.combo_dollar', null)
+                @this.set('data.combo_sar', null)
+                @this.set('data.combo_percentage', null)
+            }
+        },
+        toggle(column) {
+            if (!this.isMobile) return;
+            this.expanded = this.expanded === column ? null : column;
+        }
+    }"
+   x-init="
+    window.addEventListener('resize', () => isMobile = window.innerWidth < 992);
+
+    // Prevent scroll when clicking radio labels
+    document.querySelectorAll('label[for]').forEach(label => {
+        label.addEventListener('mousedown', e => {
+            e.preventDefault(); // يمنع الفوكس الافتراضي اللى بيعمل سكرول
+        });
+    });
+"
+>
+
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header
-        title="{{ __('idea.steps.step8.title') }}"
-        subtitle="{{ __('idea.steps.step8.subtitle') }}" />
+        title='{{ __("idea.steps.step8.title") }}'
+        subtitle='{{ __("idea.steps.step8.subtitle") }}'
+    />
 
-    <div x-data="{
-            activeColumn: @entangle('data.return_type'),
-            clearOther(column) {
-                if(column !== 'profit') {
-                    @this.set('data.profit_only_percentage', null)
-                }
-                if(column !== 'one_time') {
-                    @this.set('data.one_time_dollar', null)
-                    @this.set('data.one_time_sar', null)
-                }
-                if(column !== 'combo') {
-                    @this.set('data.combo_dollar', null)
-                    @this.set('data.combo_sar', null)
-                    @this.set('data.combo_percentage', null)
-                }
-            }
-        }"
-         class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
-
+    <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
             <div class="col-12">
                 <div class="row g-3">
 
-                    <!-- Profit Share -->
+                    {{-- Profit Share --}}
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
                         <div class="h-100">
                             <div class="bg-light rounded-8 shadow-sm text-center mb-3">
-                                <input type="radio"
-                                       class="btn-check"
-                                       id="profit_only"
+                                <input type="radio" class="btn-check" id="profit_only"
                                        wire:model="data.return_type"
                                        value="profit"
                                        @change="clearOther('profit')">
-                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                       :class="activeColumn === 'profit' ? 'active' : ''"
-                                       for="profit_only">
+                                <label
+                                    class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                    :class="activeColumn === 'profit' ? 'active' : ''"
+                                    for="profit_only"
+                                    @click.stop="toggle('profit')">
                                     {{ __('idea.steps.step8.profit_share') }}
+                                    <span class="d-lg-none ms-2" x-text="expanded === 'profit' ? '▲' : '▼'"></span>
                                 </label>
                             </div>
 
-                            <div class="row mx-0 px-0 g-2">
-                                @foreach ([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75] as $percent)
+                            <div class="row mx-0 px-0 g-2"
+                                 x-show="!isMobile || expanded === 'profit'"
+                                 x-collapse.duration.200ms>
+                                @foreach ([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75] as $percent)
                                     <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
                                         <div class="bg-light rounded-8 shadow-sm text-center">
-                                            <input type="radio"
-                                                   class="btn-check"
+                                            <input type="radio" class="btn-check"
                                                    id="profit_only_{{ $percent }}"
                                                    value="{{ $percent }}"
                                                    wire:model="data.profit_only_percentage"
                                                    name="profit_only_percentage"
                                                    :disabled="activeColumn !== 'profit'">
-                                            <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                   for="profit_only_{{ $percent }}">
+                                            <label
+                                                class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                                for="profit_only_{{ $percent }}">
                                                 {{ $percent }} %
                                             </label>
                                         </div>
@@ -66,24 +87,27 @@
                         </div>
                     </div>
 
-                    <!-- One-time sum -->
+                    {{-- One-time sum --}}
                     <div class="col-lg-4 col-md-6 col-12 mb-3">
                         <div class="h-100">
                             <div class="bg-light rounded-8 shadow-sm text-center mb-3">
-                                <input type="radio"
-                                       class="btn-check"
-                                       id="one_time"
+                                <input type="radio" class="btn-check" id="one_time"
                                        wire:model="data.return_type"
                                        value="one_time"
                                        @change="clearOther('one_time')">
-                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                       :class="activeColumn === 'one_time' ? 'active' : ''"
-                                       for="one_time">
+                                <label
+                                    class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                    :class="activeColumn === 'one_time' ? 'active' : ''"
+                                    for="one_time"
+                                    @click.stop="toggle('one_time')">
                                     {{ __('idea.steps.step8.one_time_sum') }}
+                                    <span class="d-lg-none ms-2" x-text="expanded === 'one_time' ? '▲' : '▼'"></span>
                                 </label>
                             </div>
 
-                            <div class="row g-2 mx-0 px-0 d-flex flex-column">
+                            <div class="row g-2 mx-0 px-0 d-flex flex-column"
+                                 x-show="!isMobile || expanded === 'one_time'"
+                                 x-collapse.duration.200ms>
                                 <div class="col-12 d-flex align-items-center justify-content-between">
                                     <div class="col-5">
                                         <span class="w-100 btn btn-outline-custom rounded-4 py-3">
@@ -94,7 +118,7 @@
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
                                                wire:model="data.one_time_dollar"
-                                               :disabled="activeColumn !== 'one_time'" />
+                                               :disabled="activeColumn !== 'one_time'">
                                     </div>
                                 </div>
 
@@ -108,31 +132,34 @@
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
                                                wire:model="data.one_time_sar"
-                                               :disabled="activeColumn !== 'one_time'" />
+                                               :disabled="activeColumn !== 'one_time'">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Combo -->
+                    {{-- Combo --}}
                     <div class="col-lg-4 col-md-12 col-12 mb-3">
                         <div class="h-100">
                             <div class="bg-light rounded-8 shadow-sm text-center mb-3">
-                                <input type="radio"
-                                       class="btn-check"
-                                       id="combo"
+                                <input type="radio" class="btn-check" id="combo"
                                        wire:model="data.return_type"
                                        value="combo"
                                        @change="clearOther('combo')">
-                                <label class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                       :class="activeColumn === 'combo' ? 'active' : ''"
-                                       for="combo">
+                                <label
+                                    class="btn btn-outline-primary w-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                    :class="activeColumn === 'combo' ? 'active' : ''"
+                                    for="combo"
+                                    @click.stop="toggle('combo')">
                                     {{ __('idea.steps.step8.profit_plus_sum') }}
+                                    <span class="d-lg-none ms-2" x-text="expanded === 'combo' ? '▲' : '▼'"></span>
                                 </label>
                             </div>
 
-                            <div class="row g-2 mx-0 px-0 d-flex flex-column">
+                            <div class="row g-2 mx-0 px-0 d-flex flex-column"
+                                 x-show="!isMobile || expanded === 'combo'"
+                                 x-collapse.duration.200ms>
                                 <div class="col-12 d-flex align-items-center justify-content-between">
                                     <div class="col-5">
                                         <span class="w-100 btn btn-outline-custom rounded-4 py-3">
@@ -143,7 +170,7 @@
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
                                                wire:model="data.combo_dollar"
-                                               :disabled="activeColumn !== 'combo'" />
+                                               :disabled="activeColumn !== 'combo'">
                                     </div>
                                 </div>
 
@@ -157,35 +184,29 @@
                                         <input type="number"
                                                class="form-control py-3 rounded-8"
                                                wire:model="data.combo_sar"
-                                               :disabled="activeColumn !== 'combo'" />
+                                               :disabled="activeColumn !== 'combo'">
                                     </div>
                                 </div>
 
-                                @error('data.combo_sar')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="row mx-0 px-0 g-2 mt-2">
-                                @foreach ([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75] as $percent)
-                                    <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
-                                        <div class="bg-light rounded-8 shadow-sm text-center">
-                                            <input type="radio"
-                                                   class="btn-check"
-                                                   id="combo_percentage_{{ $percent }}"
-                                                   value="{{ $percent }}"
-                                                   wire:model="data.combo_percentage"
-                                                   :disabled="activeColumn !== 'combo'"
-                                                >
-                                            <label class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                                   for="combo_percentage_{{ $percent }}">
-                                                {{ $percent }} %
-                                            </label>
+                                <div class="row mx-0 px-0 g-2 mt-2">
+                                    @foreach ([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75] as $percent)
+                                        <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
+                                            <div class="bg-light rounded-8 shadow-sm text-center">
+                                                <input type="radio" class="btn-check"
+                                                       id="combo_percentage_{{ $percent }}"
+                                                       value="{{ $percent }}"
+                                                       wire:model="data.combo_percentage"
+                                                       :disabled="activeColumn !== 'combo'">
+                                                <label
+                                                    class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                                                    for="combo_percentage_{{ $percent }}">
+                                                    {{ $percent }} %
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-
                         </div>
                     </div>
 
