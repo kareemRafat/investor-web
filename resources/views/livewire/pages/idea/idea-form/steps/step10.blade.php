@@ -45,6 +45,10 @@
                                                 <li>
                                                     {!! app()->getLocale() === 'ar' ? $cost->range->label_ar : $cost->range->label_en !!}
                                                 </li>
+                                                <li>
+                                                    —
+                                                    {{ __('idea.steps.step3.types.' . ($cost->cost_type ?? '-')) }}
+                                                </li>
                                             @empty
                                                 <li>-</li>
                                             @endforelse
@@ -70,6 +74,10 @@
                                         @forelse($idea->profits as $profit)
                                             <li>
                                                 {!! app()->getLocale() === 'ar' ? $profit->range->label_ar : $profit->range->label_en !!}
+                                            </li>
+                                            <li>
+                                                —
+                                                {{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}
                                             </li>
                                         @empty
                                             <li>-</li>
@@ -181,15 +189,22 @@
                                 </div>
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    <ul class="mb-0 list-unstyled">
-                                        @forelse($idea->contributions as $contribution)
-                                            <li>{{ __('idea.steps.step7.' . ($contribution->contribute_type ?? '-')) }}
-                                            </li>
-                                        @empty
+                                    @forelse ($idea->contributions as $contribution)
+                                        @php
+                                            $lines = $contribution->formatted_contribution ?? ['-'];
+                                        @endphp
+                                        <ul class="mb-0 list-unstyled">
+                                            @foreach ($lines as $line)
+                                                <li>{{ $line }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @empty
+                                        <ul class="mb-0 list-unstyled">
                                             <li>-</li>
-                                        @endforelse
-                                    </ul>
+                                        </ul>
+                                    @endforelse
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -205,7 +220,7 @@
                                 </div>
                                 <div class="rounded-8 p-2 py-3 h-100 d-flex align-items-center justify-content-center">
                                     <ul class="mb-0 list-unstyled">
-                                        @foreach (optional($idea->returns)->formatted_returns ?? ['-'] as $return)
+                                        @foreach ($idea->returns->formatted_returns ?? [] as $return)
                                             <li>{{ $return }}</li>
                                         @endforeach
                                     </ul>
@@ -295,7 +310,7 @@
                                 </div>
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    {{ optional($idea->summary)->summary ?? '-' }}
+                                    {{ $idea->summary ?? '-' }}
                                 </div>
                             </div>
                         </div>

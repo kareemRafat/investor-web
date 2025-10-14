@@ -39,7 +39,7 @@ class Step7 extends Component
     public function validateStep7()
     {
         $this->validate();
-
+        
         $this->syncContribution();
 
         $this->dispatch('go-to-next-step');
@@ -54,12 +54,12 @@ class Step7 extends Component
     {
         $rules = [
             'data.contribute_type' => 'required|in:sell,idea,capital,personal,both',
-            'data.staff' => 'required_if:data.contribute_type,capital|nullable|in:full_time,part_time,supervision',
+            'data.staff' => 'required_if:data.contribute_type,personal|nullable|in:full_time,part_time,supervision',
             'data.staff_person_money' => 'required_if:data.contribute_type,both|nullable|in:full_time,part_time,supervision',
         ];
 
-        // للـ personal فقط
-        if ($this->data['contribute_type'] === 'personal') {
+        // للـ capital فقط
+        if ($this->data['contribute_type'] === 'capital') {
             // لو دخل الاثنين مع بعض
             if (!empty($this->data['money_amount']) && !empty($this->data['money_percent'])) {
                 $rules['data.money_amount'] = 'prohibited';
@@ -131,9 +131,14 @@ class Step7 extends Component
     {
         $ideaId = session('current_idea_id');
         if ($ideaId) {
+            // parse any "" to null
+            $cleanData = collect($this->data)->map(function ($value) {
+                return $value === '' ? null : $value;
+            })->toArray();
+
             IdeaContribution::updateOrCreate(
                 ['idea_id' => $ideaId],
-                $this->data
+                $cleanData
             );
         }
     }

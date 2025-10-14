@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class IdeaReturn extends Model
 {
@@ -32,49 +33,53 @@ class IdeaReturn extends Model
         return $this->belongsTo(Idea::class);
     }
 
-    public function getFormattedReturnsAttribute(): array
+    protected function formattedReturns(): Attribute
     {
-        $returns = [];
+        return Attribute::get(function () {
+            if (!$this->return_type) {
+                return []; // ← ضمان يرجع Array مش null
+            }
 
-        switch ($this->return_type) {
-            case 'profit':
-                if ($this->profit_only_percentage) {
-                    $returns[] = __('idea.steps.step8.profit_share')
-                        . ': ' . $this->profit_only_percentage . '%';
-                }
-                break;
+            $typeLabel = __('idea.steps.step8.' . ($this->return_type ?? '-'));
+            $details = [];
 
-            case 'one_time':
-                if ($this->one_time_dollar) {
-                    $returns[] = __('idea.steps.step8.one_time_sum')
-                        . ': ' . number_format($this->one_time_dollar, 2) . ' $';
-                }
-                if ($this->one_time_sar) {
-                    $returns[] = __('idea.steps.step8.one_time_sum')
-                        . ': ' . number_format($this->one_time_sar, 2) . ' ر.س';
-                }
-                break;
+            switch ($this->return_type) {
+                case 'profit':
+                    if ($this->profit_only_percentage) {
+                        $details[] = __('idea.steps.step8.profit_share') . ': ' . $this->profit_only_percentage . '%';
+                    }
+                    break;
 
-            case 'combo':
-                $label = __('idea.steps.step8.profit_plus_sum');
-                $parts = [];
+                case 'one_time':
+                    if ($this->one_time_dollar) {
+                        $details[] = __('idea.steps.step8.fixed_amount') . ': '
+                            . number_format($this->one_time_dollar, 2)
+                            . ' ' . __('idea.currency.dollar');
+                    } elseif ($this->one_time_sar) {
+                        $details[] = __('idea.steps.step8.fixed_amount') . ': '
+                            . number_format($this->one_time_sar, 2)
+                            . ' ' . __('idea.currency.sar');
+                    }
+                    break;
 
-                if ($this->combo_percentage) {
-                    $parts[] = $this->combo_percentage . '%';
-                }
-                if ($this->combo_dollar) {
-                    $parts[] = number_format($this->combo_dollar, 2) . ' $';
-                }
-                if ($this->combo_sar) {
-                    $parts[] = number_format($this->combo_sar, 2) . ' ر.س';
-                }
+                case 'combo':
+                    if ($this->combo_percentage) {
+                        $details[] = __('idea.steps.step8.profit_share') . ': ' . $this->combo_percentage . '%';
+                    }
 
-                if (!empty($parts)) {
-                    $returns[] = $label . ': ' . implode(' + ', $parts);
-                }
-                break;
-        }
+                    if ($this->combo_dollar) {
+                        $details[] = __('idea.steps.step8.fixed_amount') . ': '
+                            . number_format($this->combo_dollar, 2)
+                            . ' ' . __('idea.currency.dollar');
+                    } elseif ($this->combo_sar) {
+                        $details[] = __('idea.steps.step8.fixed_amount') . ': '
+                            . number_format($this->combo_sar, 2)
+                            . ' ' . __('idea.currency.sar');
+                    }
+                    break;
+            }
 
-        return $returns ?: ['-'];
+            return array_filter([...$details]);
+        });
     }
 }

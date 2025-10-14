@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field', 'visibility'];
+    protected $fillable = ['idea_field', 'visibility' , 'summary'];
 
     // Relations
     public function countries()
@@ -51,11 +51,6 @@ class Idea extends Model
     public function returns()
     {
         return $this->hasOne(IdeaReturn::class);
-    }
-
-    public function summary()
-    {
-        return $this->hasOne(IdeaSummary::class);
     }
 
     public function attachments(): MorphMany

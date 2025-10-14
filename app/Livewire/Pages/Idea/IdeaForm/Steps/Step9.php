@@ -32,10 +32,10 @@ class Step9 extends Component
         $ideaId = session('current_idea_id');
         if (!$ideaId) return;
 
-        $idea = Idea::with('summary', 'attachments')->find($ideaId);
+        $idea = Idea::with('attachments')->find($ideaId);
         if (!$idea) return;
 
-        $this->data['summary'] = $idea?->summary?->summary; // get summary from summary() relationship
+        $this->data['summary'] = $idea?->summary;
         $this->data['visibility'] = $idea->visibility;
 
         // Load current attachment name if exists, or use default name
@@ -85,10 +85,9 @@ class Step9 extends Component
         if (!$idea) return;
 
         // DB sync
-        $idea->summary()->updateOrCreate(
-            ['idea_id' => $ideaId],
-            $this->data
-        );
+        $idea->update([
+            'summary' => $this->data['summary'],
+        ]);
 
         $idea->update([
             'visibility' => $this->data['visibility'],

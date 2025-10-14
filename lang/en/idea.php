@@ -193,6 +193,18 @@ return [
             'profit_plus_sum' => 'A share of the profits + a sum of money',
             'choose_one' => 'You must choose at least one option (profits, one-time money, or combo).',
             'combo_complete' => 'If you choose A share of the profits + a sum of money, you must fill amount in dollars, SR, and choose a percentage.',
+
+            'choose_one' => 'Please choose at least one type of return.',
+            'only_one_currency' => 'Please enter the amount in only one currency (either SAR or USD).',
+            'combo_percentage_required' => 'For combo return, you must enter the percentage along with the amount in one currency.',
+            'combo_currency_required' => 'For combo return, you must enter the amount in one currency together with the percentage.',
+
+            // for show in summary
+            'profit_share' => 'Profit share',
+            'fixed_amount' => 'Fixed amount',
+            'combo' => 'Profit share + Fixed amount',
+
+
         ],
         'step9' => [
             'subtitle' => 'Summary of the idea and its files',
@@ -213,7 +225,7 @@ return [
             'title' => 'Summary of your distinguished idea',
             'project' => 'The project',
             'classification' => 'Idea classification',
-            'capital' => 'The required capital',
+            'capital' => 'The required capital amount',
             'expected_profit' => 'The expected profit',
             'best_countries' => 'The best countries to implement the idea',
             'contact_way' => 'The preferred way to contact you is',
@@ -233,7 +245,9 @@ return [
     'form' => [
         'previous' => 'Previous',
         'next' => 'Next',
-        'finish' => 'Finish',
+        'finish' => 'Submit Your Idea',
+        'edit' => 'I would like to review my informations',
+
     ],
     'validation' => [
         'step1' => [

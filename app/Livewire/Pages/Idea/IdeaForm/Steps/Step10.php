@@ -21,11 +21,10 @@ class Step10 extends Component
             'expenses',
             'contributions',
             'returns',
-            'summary',
             'attachments',
         ])->findOrFail($ideaId);
     }
-    
+
     public function render()
     {
         return view('livewire.pages.idea.idea-form.steps.step10', [

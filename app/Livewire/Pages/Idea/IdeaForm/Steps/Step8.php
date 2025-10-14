@@ -38,47 +38,77 @@ class Step8 extends Component
         if (!$idea || !$idea->returns) return;
 
         $this->data = array_merge($this->data, $idea->returns->only(array_keys($this->data)));
-
     }
 
 
     #[On('validate-step-8')]
     public function validateStep8()
     {
+        // --- تنظيف: حول أي string فاضية إلى null ---
+        foreach (
+            [
+                'profit_only_percentage',
+                'one_time_dollar',
+                'one_time_sar',
+                'combo_dollar',
+                'combo_sar',
+                'combo_percentage'
+            ] as $key
+        ) {
+            if (array_key_exists($key, $this->data) && $this->data[$key] === '') {
+                $this->data[$key] = null;
+            }
+        }
+
+        // أولًا تحقق القواعد الأساسية (rules الموجودة)
         $this->validate();
 
-        // شرط: لازم المستخدم يختار واحدة من التلات طرق على الأقل
-        if (
-            is_null($this->data['profit_only_percentage']) &&
-            is_null($this->data['one_time_dollar']) &&
-            is_null($this->data['one_time_sar']) &&
-            (is_null($this->data['combo_dollar']) && is_null($this->data['combo_sar']) && is_null($this->data['combo_percentage']))
-        ) {
+        // --- شرط: لازم المستخدم يختار واحدة من التلات طرق على الأقل ---
+        $hasProfitOnly = !is_null($this->data['profit_only_percentage']);
+        $hasOneTime = !is_null($this->data['one_time_dollar']) || !is_null($this->data['one_time_sar']);
+        $hasCombo = !is_null($this->data['combo_dollar']) || !is_null($this->data['combo_sar']) || !is_null($this->data['combo_percentage']);
+
+        if (! $hasProfitOnly && ! $hasOneTime && ! $hasCombo) {
             $this->addError('data', __('idea.steps.step8.choose_one'));
             return;
         }
 
-        // شرط: لو المستخدم اختار الـ Combo → لازم الثلاثة موجودين
-        if (
-            !is_null($this->data['combo_dollar']) ||
-            !is_null($this->data['combo_sar']) ||
-            !is_null($this->data['combo_percentage'])
-        ) {
-            if (
-                is_null($this->data['combo_dollar']) ||
-                is_null($this->data['combo_sar']) ||
-                is_null($this->data['combo_percentage'])
-            ) {
-                $this->addError('combo', __('idea.steps.step8.combo_complete'));
-                return;
-            }
+        // --- تحقق One-time: لازم عملة واحدة فقط لو دخل أي حاجة هنا ---
+        $oneTimeCount = (!is_null($this->data['one_time_dollar']) ? 1 : 0) + (!is_null($this->data['one_time_sar']) ? 1 : 0);
+        if ($oneTimeCount > 1) {
+            // دخل الدولار والريال معًا — مش مسموح
+            $this->addError('one_time', __('idea.steps.step8.only_one_currency'));
+            return;
+        }
+        // ملاحظة: لو $oneTimeCount === 0 يبقى الـ choose_one فوق ممكن يكون غطى الحالة (يعتمد على أي اختيار آخر)
+
+        // --- تحقق Combo: لازم عملة واحدة فقط AND نسبة موجودة ---
+        $comboCurrencyCount = (!is_null($this->data['combo_dollar']) ? 1 : 0) + (!is_null($this->data['combo_sar']) ? 1 : 0);
+        $comboHasPercentage = !is_null($this->data['combo_percentage']);
+
+        if ($comboCurrencyCount > 1) {
+            $this->addError('combo', __('idea.steps.step8.only_one_currency'));
+            return;
         }
 
-        // DB sync
-        $this->syncData();
+        if ($comboCurrencyCount === 1 && ! $comboHasPercentage) {
+            // دخل عملة بس من غير نسبة
+            $this->addError('combo', __('idea.steps.step8.combo_percentage_required'));
+            return;
+        }
 
+        if ($comboCurrencyCount === 0 && $comboHasPercentage) {
+            // دخل نسبة بس بدون عملة
+            $this->addError('combo', __('idea.steps.step8.combo_currency_required'));
+            return;
+        }
+
+        // كل حاجة تمام — احفظ
+        $this->syncData();
         $this->dispatch('go-to-next-step');
     }
+
+
 
     public function render()
     {

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('idea_field'); // step 1
             $table->enum('visibility', ['public', 'private'])->nullable();
+            $table->text('summary')->nullable();
             $table->timestamps();
         });
     }

@@ -66,24 +66,23 @@
                         </div>
                     </div>
 
-                    <!-- المساهمة برأس المال -->
+                    <!-- المساهمة الشخصية -->
                     <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
                         <div class="col-lg-7 col-12">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="col-12 col-md-12">
-                                    <input type="radio" class="btn-check" id="contribute_person"
+                                    <input type="radio" class="btn-check" id="contribute_money"
                                         wire:model="data.contribute_type" x-model="contribute_type"
-                                        @change="resetFields('capital')" value="capital" name="contribute_type"
+                                        @change="resetFields('personal')" value="personal" name="contribute_type"
                                         autocomplete="off">
                                     <label
                                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                        for="contribute_person">
-                                        {{ __('idea.steps.step7.capital') }}
+                                        for="contribute_money">
+                                        {{ __('idea.steps.step7.personal') }}
                                     </label>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-5 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
                             <div class="d-flex align-items-center gap-2 flex-wrap flex-lg-nowrap gap-md-3 gap-lg-4">
                                 <div class="d-flex align-items-center gap-2">
@@ -111,23 +110,25 @@
                         </div>
                     </div>
 
-                    <!-- المساهمة الشخصية -->
+
+                    <!-- المساهمة برأس المال -->
                     <div class="row mx-0 px-0 my-2 align-items-center justify-content-between">
                         <div class="col-lg-7 col-12">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="col-12 col-md-12">
-                                    <input type="radio" class="btn-check" id="contribute_money"
+                                    <input type="radio" class="btn-check" id="contribute_person"
                                         wire:model="data.contribute_type" x-model="contribute_type"
-                                        @change="resetFields('personal')" value="personal" name="contribute_type"
+                                        @change="resetFields('capital')" value="capital" name="contribute_type"
                                         autocomplete="off">
                                     <label
                                         class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
-                                        for="contribute_money">
-                                        {{ __('idea.steps.step7.personal') }}
+                                        for="contribute_person">
+                                        {{ __('idea.steps.step7.capital') }}
                                     </label>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-5 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
                             <div class="d-flex align-items-center justify-content-between gap-3">
                                 <div class="d-flex align-items-center gap-3">

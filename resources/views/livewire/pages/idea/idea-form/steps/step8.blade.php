@@ -26,7 +26,7 @@
 
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header
-        title='{{ __("idea.steps.step8.title") }}'
+        title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle='{{ __("idea.steps.step8.subtitle") }}'
     />
 
