@@ -47,22 +47,19 @@
 
             <div wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
                 @if ($currentStep > 1)
-                    <a wire:click.prevent="previousStep"
-                        aria-label="{{ $currentStep === 10 ? __('idea.form.edit') : __('idea.form.previous') }}"
-                        title="{{ $currentStep === 10 ? __('idea.form.edit') : __('idea.form.previous') }}"
-                        class="btn btn-outline-custom btn_next py-2 px-4">
+                    <a wire:click.prevent="previousStep" aria-label="{{ __('idea.form.previous') }}"
+                        title="{{ __('idea.form.previous') }}" class="btn btn-outline-custom btn_next py-2 px-4">
                         <span class="small fw-bold d-flex align-items-center">
                             @if (app()->getLocale() === 'ar')
                                 <i class="bi bi-arrow-right-circle mx-2"></i>
-                                {{ $currentStep === 10 ? __('idea.form.edit') : __('idea.form.previous') }}
+                                {{ __('idea.form.previous') }}
                             @else
                                 <i class="bi bi-arrow-left-circle mx-2"></i>
-                                {{ $currentStep === 10 ? __('idea.form.edit') : __('idea.form.previous') }}
+                                {{ __('idea.form.previous') }}
                             @endif
                         </span>
                     </a>
                 @endif
-
 
                 <a wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
                     aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
