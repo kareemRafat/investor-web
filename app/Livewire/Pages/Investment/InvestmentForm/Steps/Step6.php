@@ -17,7 +17,6 @@ class Step6 extends Component
             'countries',
             'resources',
             'contributions',
-            'summary',
             'attachments',
         ])->findOrFail($investorId);
     }

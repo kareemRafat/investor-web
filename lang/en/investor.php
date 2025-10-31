@@ -154,7 +154,8 @@ return [
     'form' => [
         'previous' => 'Previous',
         'next' => 'Next',
-        'finish' => 'Finish',
+        'finish' => 'Submit Your Request',
+        'edit' => 'I would like to review my informations',
     ],
     'validation' => [
         'step1' => [

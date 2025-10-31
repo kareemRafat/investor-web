@@ -34,7 +34,6 @@ class IdeaForm extends Component
 
     public function finish()
     {
-        dd('sdsd');
         session()->forget('current_idea_id');
 
         $this->currentStep = 1;

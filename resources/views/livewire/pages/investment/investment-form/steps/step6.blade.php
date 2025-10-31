@@ -171,7 +171,7 @@
                                     </div>
                                     <div
                                         class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                        {{ optional($investor->summary)->summary ?? '-' }}
+                                        {{ $investor->summary ?? '-' }}
                                     </div>
                                 </div>
                             </div>

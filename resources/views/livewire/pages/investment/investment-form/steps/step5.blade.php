@@ -5,7 +5,7 @@
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3">
-            <div class="col-12">
+            <div class="col-12 position-relative">
                 <textarea class="form-control border-custom rounded-8 pt-3" rows="8"
                     placeholder="{{ __('investor.steps.step5.placeholder') }}" wire:model='data.summary'
                     style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-4" dir="ltr">
+            <div class="col-12 position-relative mt-4" dir="ltr">
                 <label for="investor-attachment"
                     class="form-control d-flex align-items-center gap-2 cursor-pointer justify-content-between py-3 border-custom rounded-8">
                     <span>{{ __('investor.steps.step5.file_format') }}</span>

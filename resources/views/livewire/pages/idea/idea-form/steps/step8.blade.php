@@ -36,7 +36,7 @@
                 <div class="row g-3">
 
                     {{-- Profit Share --}}
-                    <div class="col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="col-lg-4 col-md-6 col-12 mb-3 position-relative">
                         <div class="h-100">
                             <div class="bg-light rounded-8 shadow-sm text-center mb-3">
                                 <input type="radio" class="btn-check" id="profit_only"
@@ -78,7 +78,7 @@
                     </div>
 
                     {{-- One-time sum --}}
-                    <div class="col-lg-4 col-md-6 col-12 mb-3">
+                    <div class="col-lg-4 col-md-6 col-12 mb-3  position-relative">
                         <div class="h-100">
                             <div class="bg-light rounded-8 shadow-sm text-center mb-3">
                                 <input type="radio" class="btn-check" id="one_time"
@@ -130,7 +130,7 @@
                     </div>
 
                     {{-- Combo --}}
-                    <div class="col-lg-4 col-md-12 col-12 mb-3">
+                    <div class="col-lg-4 col-md-12 col-12 mb-3  position-relative">
                         <div class="h-100">
                             <div class="bg-light rounded-8 shadow-sm text-center mb-3">
                                 <input type="radio" class="btn-check" id="combo"

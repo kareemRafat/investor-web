@@ -32,25 +32,24 @@
             @endswitch
 
             <div wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
-                @if ($currentStep > 1)
-                    <a wire:click.prevent="previousStep" aria-label="{{ __('investor.form.previous') }}"
-                        title="{{ __('investor.form.previous') }}" class="btn btn-outline-custom btn_next py-2 px-4">
+                @if ($currentStep != 1)
+                    <button wire:click.prevent="previousStep" class="btn btn-outline-custom btn_next py-2 px-4"
+                        aria-label="{{ $currentStep === 6 ? __('investor.form.edit') : __('investor.form.previous') }}">
                         <span class="small fw-bold d-flex align-items-center">
                             @if (app()->getLocale() === 'ar')
                                 <i class="bi bi-arrow-right-circle mx-2"></i>
-                                {{ __('investor.form.previous') }}
+                                {{ $currentStep === 6 ? __('investor.form.edit') : __('investor.form.previous') }}
                             @else
                                 <i class="bi bi-arrow-left-circle mx-2"></i>
-                                {{ __('investor.form.previous') }}
+                                {{ $currentStep === 6 ? __('investor.form.edit') : __('investor.form.previous') }}
                             @endif
                         </span>
-                    </a>
+                    </button>
                 @endif
 
-                <a wire:click.prevent="{{ $currentStep === 6 ? 'finish' : 'nextStep' }}"
-                    aria-label="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    title="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    class="btn {{ $currentStep === 6 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
+                <button wire:click.prevent="{{ $currentStep === 6 ? 'finish' : 'nextStep' }}"
+                    class="btn {{ $currentStep === 6 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4"
+                    aria-label="{{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}">
                     <span class="small fw-bold d-flex align-items-center">
                         @if (app()->getLocale() === 'ar')
                             {{ $currentStep === 6 ? __('investor.form.finish') : __('investor.form.next') }}
@@ -60,8 +59,9 @@
                             <i class="bi bi-arrow-right-circle mx-2"></i>
                         @endif
                     </span>
-                </a>
+                </button>
             </div>
+
             <div wire:cloak class="d-flex justify-content-center mb-4">
                 <div class="stepper d-flex align-items-center justify-content-center flex-wrap">
                     @for ($i = 1; $i <= 6; $i++)

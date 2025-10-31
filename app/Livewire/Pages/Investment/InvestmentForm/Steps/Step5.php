@@ -32,10 +32,10 @@ class Step5 extends Component
         $investorId = session('current_investor_id');
         if (!$investorId) return;
 
-        $investor = Investor::with('summary', 'attachments')->find($investorId);
+        $investor = Investor::with('attachments')->find($investorId);
         if (!$investor) return;
 
-        $this->data['summary'] = $investor->summary?->summary;
+        $this->data['summary'] = $investor?->summary;
         $this->data['visibility'] = $investor->visibility;
 
         // Load current attachment name if exists, or use default name
@@ -85,10 +85,9 @@ class Step5 extends Component
         if (!$investor) return;
 
         // DB sync
-        $investor->summary()->updateOrCreate(
-            ['investor_id' => $investorId],
-            $this->data
-        );
+        $investor->update([
+            'summary' => $this->data['summary'],
+        ]);
 
         $investor->update([
             'visibility' => $this->data['visibility'],

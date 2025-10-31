@@ -10,7 +10,7 @@ class Investor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['investor_field', 'visibility'];
+    protected $fillable = ['investor_field', 'visibility' , 'summary'];
 
     public function countries()
     {
@@ -25,11 +25,6 @@ class Investor extends Model
     public function contributions()
     {
         return $this->hasOne(InvestorContribution::class);
-    }
-
-    public function summary()
-    {
-        return $this->hasOne(InvestorSummary::class);
     }
 
     public function attachments(): MorphMany

@@ -6,7 +6,7 @@
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4" x-data="{ limit: 3 }">
         <div class="row g-3 justify-content-center">
             @foreach ($options as $index => $country)
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-3 col-md-6 position-relative">
                     <input type="checkbox" class="btn-check" id="country-{{ $index }}" name="countries[]"
                         wire:model="countries" value="{{ $country['code'] }}"
                         x-bind:disabled="$wire.countries.length >= limit && !$wire.countries.includes('{{ $country['code'] }}')">

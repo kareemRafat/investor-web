@@ -31,7 +31,7 @@
                 <div class="row g-3">
 
                     <!-- بيع الفكرة -->
-                    <div class="col-lg-6 col-12 my-2">
+                    <div class="col-lg-6 col-12 position-relative my-2">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="col-12 col-md-12">
                                 <input type="radio" class="btn-check" id="needs"
@@ -51,7 +51,7 @@
                     <div class="mt-0"></div>
 
                     <!-- المساهمة بالفكرة فقط -->
-                    <div class="col-lg-6 col-12 my-2">
+                    <div class="col-lg-6 col-12 position-relative my-2">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="col-12  col-md-12">
                                 <input type="radio" class="btn-check" id="contribute"
@@ -71,7 +71,7 @@
 
                     <!-- المساهمة برأس المال -->
                     <div class="row mx-0 px-0 my-2 align-items-center gap3">
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-6 col-12 position-relative">
                             <div class="col-12 col-md-12">
                                 <input type="radio" class="btn-check" id="contribute_person"
                                     wire:model="data.contribute_type"
@@ -122,7 +122,7 @@
 
                     <!-- المساهمة الشخصية -->
                     <div class="row mx-0 px-0 my-2 align-items-center">
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-6 col-12 position-relative">
                             <div class="col-12 col-lg-12 col-md-12">
                                 <input type="radio" class="btn-check" id="contribute_money"
                                     wire:model="data.contribute_type"
@@ -137,7 +137,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
+                        <div class="col-lg-6 col-12 position-relative mt-3 mt-lg-0 mb-2 mb-lg-0">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="d-flex align-items-center gap-3">
                                     <label for="money_amount" class="text-primary fw-bold fs-5">
@@ -163,7 +163,7 @@
 
                     <!-- المساهمة الشخصية + رأس المال -->
                     <div class="row mx-0 px-0 my-2 align-items-center">
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-6 col-12 position-relative">
                             <div class="col-12 col-md-12">
                                 <input type="radio" class="btn-check" id="contribute_person_and_money"
                                     wire:model="data.contribute_type"
@@ -178,7 +178,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-2 mb-lg-0">
+                        <div class="col-lg-6 col-12 position-relative mt-3 mt-lg-0 mb-2 mb-lg-0">
                             <div
                                 class="d-flex align-items-center justify-content-between flex-wrap flex-lg-nowrap gap-3">
                                 <div class="d-flex align-items-center gap-3">

@@ -13,7 +13,7 @@
 
                                 {{-- Establishing a company --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
@@ -68,7 +68,7 @@
 
                                 {{-- Specialized Employees --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
@@ -108,7 +108,7 @@
                                 {{-- Unprofessional workers --}}
                                 {{-- (نفس النمط كما فوق) --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
@@ -147,7 +147,7 @@
 
                                 {{-- Executive Spaces --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
@@ -206,7 +206,7 @@
 
                                 {{-- Devices and Equipment --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
@@ -263,7 +263,7 @@
 
                                 {{-- Software and applications --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
@@ -312,7 +312,7 @@
 
                                 {{-- Website --}}
                                 <div class="row mx-0 px-0 my-2 align-items-center">
-                                    <div class="col-lg-7 col-12">
+                                    <div class="col-lg-7 col-12 position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div
                                                 class="col-7 text-primary border-primary text-center border py-3 rounded-8 fw-bold">
