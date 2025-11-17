@@ -71,7 +71,7 @@
             </button>
             <!-- offcanvas menu -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-                <div class="offcanvas-header border-bottom">
+                <div class="offcanvas-header border-bottom" dir="{{ app()->getLocale() == 'ar' ? 'ltr' : '' }}">
                     <h5 class="offcanvas-title" id="offcanvasMenuLabel">menu</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="close"></button>
@@ -79,13 +79,14 @@
                 <div class="offcanvas-body">
                     <nav class="mt-2">
                         <ul class="list-unstyled d-flex flex-column gap-4">
-                            <li><a href="/index_en.html" class="text-dark active">Home</a></li>
-                            <li><a href="/about_en.html" class="text-dark">About Us</a></li>
+                            <li><x-nav-link route="main.home" label="{{ __('header.home') }}" /></li>
+                            <li><x-nav-link route="main.about" label="{{ __('header.about') }}" /></li>
                             <li><a href="/ideas_en.html" class="text-dark">Investment Fund</a></li>
-                            <li><a href="/terms_en.html" class="text-dark">Terms of Use</a></li>
-                            <li><a href="/privacy_en.html" class="text-dark">Privacy Policy</a></li>
-                            <li><a href="/faq_en.html" class="text-dark">FAQ</a></li>
-                            <li><a href="/contact_en.html" class="text-dark">Contact Us</a></li>
+                            <li><x-nav-link route="main.terms" label="{{ __('header.terms') }}" /></li>
+                            <li><x-nav-link route="main.privacypolicy" label="{{ __('header.privacy') }}" /></li>
+                            <li><x-nav-link route="main.faq" label="{{ __('header.faq') }}" /></li>
+                            <li><x-nav-link route="main.contact" label="{{ __('header.contact') }}" /></li>
+
                         </ul>
                         <!-- make language as accordion! -->
                         <div class="accordion mt-3" id="languageAccordionMobile">
@@ -102,9 +103,12 @@
                                 <div id="collapseLanguageMobile" class="accordion-collapse collapse"
                                     aria-labelledby="headingLanguageMobile" data-bs-parent="#languageAccordionMobile">
                                     <div class="accordion-body px-0">
-                                        <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
-                                            <li><a class="text-dark py-2" href="#">العربية</a></li>
-                                            <li><a class="text-dark py-2" href="#">English</a></li>
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                                <li><a class="text-dark py-2" hreflang="{{ $localeCode }}"
+                                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
+                                                </li>
+                                        @endforeach
                                         </ul>
                                     </div>
                                 </div>
