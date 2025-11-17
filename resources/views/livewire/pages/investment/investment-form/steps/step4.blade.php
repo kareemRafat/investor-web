@@ -22,8 +22,8 @@
     }"
 >
     {{-- step header --}}
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="{{ __('idea.steps.step7.subtitle') }}" />
+    <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.submit_idea') }}"
+        subtitle="{{ __('investor.steps.step4.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-4 justify-content-center">
@@ -42,7 +42,7 @@
                                 <label
                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                     for="needs">
-                                    {{ __('idea.steps.step7.sell') }}
+                                    {{ __('investor.steps.step7.sell') }}
                                 </label>
                             </div>
                         </div>
