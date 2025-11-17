@@ -116,6 +116,29 @@ return [
             'total_error' => 'The total must be 100%.',
         ],
         'step5' => [
+            'subtitle' => 'The amounts/resources that you own and would like to invest or participate in business with',
+            'financial_amounts' => 'Financial Amounts',
+            'amounts_of_money' => 'Amounts of money',
+            'resources' => 'Resources',
+            'financial_amounts_resources' => 'Financial Amounts + Resources',
+            'amounts_of_money_resources' => 'Amounts of money + Resources',
+
+            'amount_1' => '$1,000 to $5,000<br>(3,700 to 18,500 SAR)',
+            'amount_2' => '$6,000 to $10,000<br>(22,200 to 37,000 SAR)',
+            'amount_3' => '$51,000 to $100,000<br>(188,800 to 370,000 SAR)',
+            'amount_4' => '$101,000 to $250,000<br>(374,000 to 925,750 SAR)',
+            'amount_5' => '$1 million to $2 million<br>(3.7 million to 7.4 million SAR)',
+            'amount_6' => '$2 million to $5 million<br>(7.4 million to 18.5 million SAR)',
+            'amount_7' => '$50 million to $100 million<br>(185 million to 370 million SAR)',
+            'amount_8' => '$11,000 to $20,000<br>(40,700 to 74,000 SAR)',
+            'amount_9' => '$21,000 to $50,000<br>(77,700 to 185,000 SAR)',
+            'amount_10' => '$251,000 to $500,000<br>(929,450 to 1,851,500 SAR)',
+            'amount_11' => '$501,000 to $1,000,000<br>(1,855,000 to 3,700,000 SAR)',
+            'amount_12' => '$5 million to $10 million<br>(18.5 million to 37 million SAR)',
+            'amount_13' => '$10 million to $50 million<br>(37 million to 185 million SAR)',
+            'amount_14' => 'More than $100 million<br>(More than 370 million SAR)',
+        ],
+        'step6' => [
             'subtitle' => 'Summary of your proposed investment or partnership and its related files',
             'placeholder' => 'Write a clear summary of your investment offer',
             'confidential_info' => 'If there is any important and confidential information regarding the investment offer, we advise against stating it clearly in this summary to protect your rights and protect it from theft.',
@@ -130,7 +153,7 @@ return [
             'delete_file' => 'Delete file',
             'delete_confirm' => 'Are you sure you want to delete the file?',
         ],
-        'step6' => [
+        'step7' => [
             'title' => 'Summary of your Investment Details',
             'project' => 'The project',
             'required_capital' => 'The required capital',

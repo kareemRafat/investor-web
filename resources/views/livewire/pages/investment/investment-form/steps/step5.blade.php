@@ -4,67 +4,57 @@
         subtitle="{{ __('investor.steps.step5.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
-        <div class="row g-3">
-            <div class="col-12 position-relative">
-                <textarea class="form-control border-custom rounded-8 pt-3" rows="8"
-                    placeholder="{{ __('investor.steps.step5.placeholder') }}" wire:model='data.summary'
-                    style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
-
-                <div class="d-flex justify-content-between gap-3 mt-2">
-                    <small class="text-muted text-start text-primary">
-                        {{ __('investor.steps.step5.confidential_info') }}
-                    </small>
-                    <small class="text-primary">
-                        {{ __('investor.steps.step5.max_characters') }}
-                    </small>
-                </div>
-            </div>
-
-            <div class="col-12 position-relative mt-4" dir="ltr">
-                <label for="investor-attachment"
-                    class="form-control d-flex align-items-center gap-2 cursor-pointer justify-content-between py-3 border-custom rounded-8">
-                    <span>{{ __('investor.steps.step5.file_format') }}</span>
-                    <i class="bi bi-paperclip fs-5"></i>
-                </label>
-                <input type="file" id="investor-attachment" class="d-none" wire:model="data.attachment">
-                {{-- Display selected or current file name --}}
-                @if ($data['attachment'] || $currentAttachment !== 'Uploaded File')
-                    <div class="mt-2 d-flex align-items-center gap-2" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
-                        <small class="text-primary fw-bold">
-                            {{ __('investor.steps.step5.selected_file') }}:
-                            <span class="mx-2">{{ $data['attachment'] ? $data['attachment']->getClientOriginalName() : $currentAttachment }}</span>
-                        </small>
-                    </div>
-                @endif
-            </div>
-            <hr class="mt-3">
-            <div class="col-lg-12 d-flex">
-                <div class="bg-light shadow-sm rounded-8 p-3 text-center fw-bold mb-3">
-                    {{ __('investor.steps.step5.first_time_question') }}
-                </div>
-                <div class="d-flex align-items-center gap-3 gap-md-4 flex-wrap mb-3 p-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <input class="form-check-input" type="radio" name="visibility" id="visibility_public"
-                            wire:model="data.visibility" value="public">
-                        <label class="form-check-label small" for="visibility_public">
-                            {{ __('investor.steps.step5.show_public') }}
+        <div class="row g-4 justify-content-center">
+            <div class="col-12">
+                <div class="row g-3">
+                    <!-- الخيارات الثلاثة كـ radio buttons -->
+                    <div class="col-12 col-lg-4 col-md-4 position-relative">
+                        <input type="radio" class="btn-check" wire:model="investmentType" id="money-only" value="money"
+                            autocomplete="off" name="investmentType">
+                        <label
+                            class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold text-center"
+                            for="money-only">
+                            {{ __('investor.steps.step5.amounts_of_money') }}
                         </label>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <input class="form-check-input" type="radio" name="visibility" id="visibility_private"
-                            wire:model="data.visibility" value="private">
-                        <label class="form-check-label small" for="visibility_private">
-                            {{ __('investor.steps.step5.keep_private') }}
+
+                    <div class="col-12 col-lg-4 col-md-4 position-relative">
+                        <input type="radio" class="btn-check" wire:model="investmentType" id="supplier-only"
+                            value="supplier" autocomplete="off" name="investmentType">
+                        <label
+                            class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold text-center"
+                            for="supplier-only">
+                            {{ __('investor.steps.step5.resources') }}
+                        </label>
+                    </div>
+
+                    <div class="col-12 col-lg-4 col-md-4 position-relative">
+                        <input type="radio" class="btn-check" wire:model="investmentType" id="money-supplier"
+                            value="both" autocomplete="off" name="investmentType">
+                        <label
+                            class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold text-center"
+                            for="money-supplier">
+                            {{ __('investor.steps.step5.amounts_of_money_resources') }}
                         </label>
                     </div>
                 </div>
+            </div>
+            <div class="row g-3">
+                @foreach (range(1, 14) as $i)
+                    <div class="col-12 col-md-3">
+                        <input type="radio" class="btn-check" wire:model="selectedAmount"
+                            id="amount-{{ $i }}" value="{{ $i }}" autocomplete="off">
+                        <label
+                            class="btn btn-outline-secondary w-100  d-flex align-items-center justify-content-center
+                          p-3 rounded-8 shadow-sm text-center fw-bold small position-relative"
+                            for="amount-{{ $i }}">
+                            <span class="px-2">
+                                {!! __('investor.steps.step5.amount_' . $i) !!}
+                            </span>
+                        </label>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
-
-    @if ($errors->any())
-        <div class="d-flex justify-content-center">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">{{ $errors->first() }}</span>
-        </div>
-    @endif
 </div>

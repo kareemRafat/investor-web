@@ -1,207 +1,70 @@
 <div>
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.investor_details') }}"
-        subtitle="{{ __('investor.steps.step6.title') }}" />
+    {{-- step header --}}
+    <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
+        subtitle="{{ __('investor.steps.step6.subtitle') }}" />
 
-    <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
+    <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3">
+            <div class="col-12 position-relative">
+                <textarea class="form-control border-custom rounded-8 pt-3" rows="8"
+                    placeholder="{{ __('investor.steps.step6.placeholder') }}" wire:model='data.summary'
+                    style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
 
-            <!-- Project + Capital + Expected Profit + Best Countries -->
-            <div class="col-12">
-                <div class="row g-3">
-
-                    <!-- Project -->
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="card bg-custom border-custom h-100 rounded-8">
-                            <div class="card-body pt-0 px-0 d-flex flex-column">
-                                <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                    <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.project') }}</h6>
-                                </div>
-                                <div
-                                    class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    <h6 class="text-white mb-0 fw-bold">
-                                        {{ __('investor.steps.step1.options.' . ($investor->investor_field ?? '-')) }}
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- رأس المال -->
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="card bg-custom border-custom h-100 rounded-8">
-                            <div class="card-body pt-0 px-0">
-                                <div class="d-flex flex-column">
-                                    <div class="text-primary p-2 py-3 text-center bg-danger rounded-top">
-                                        <h6 class="mb-0 fw-bold">
-                                            رأس المال
-                                        </h6>
-                                    </div>
-                                    <div
-                                        class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                        <h6 class="text-white mb-0 fw-bold">
-                                            1,000 إلى 5,000 دولار<br>(3,700 إلى 18,500 ريال)
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Best Countries -->
-                    <div class="col-md-6 col-12">
-                        <div class="card bg-custom border-custom h-100 rounded-8">
-                            <div class="card-body pt-0 px-0 d-flex flex-column">
-                                <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                    <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.best_countries') }}</h6>
-                                </div>
-                                <div
-                                    class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    <div class="text-white">
-                                        @forelse($investor->countries as $index => $country)
-                                            {{ $country->country_name }}@if (!$loop->last)
-                                                -
-                                            @endif
-                                            @empty
-                                                -
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class="d-flex justify-content-between gap-3 mt-2">
+                    <small class="text-muted text-start text-primary">
+                        {{ __('investor.steps.step6.confidential_info') }}
+                    </small>
+                    <small class="text-primary">
+                        {{ __('investor.steps.step6.max_characters') }}
+                    </small>
                 </div>
+            </div>
 
-                <!-- Contact + Requirements -->
-                <div class="col-12">
-                    <div class="row g-3">
-
-                        <!-- Contact -->
-                        <div class="col-lg-4 col-md-6 col-12 h-100">
-                            <div class="card bg-custom border-custom h-100 rounded-8">
-                                <div class="card-body pt-0 px-0 d-flex flex-column">
-                                    <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                        <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.preferred_contact') }}</h6>
-                                    </div>
-                                    <div
-                                        class="p-2 py-2 text-center h-100 d-flex align-items-center justify-content-center">
-                                        <ol class="mb-0 d-flex flex-wrap gap-4 p-3 justify-content-center">
-                                            <li>
-                                                @if (app()->getLocale() === 'ar')
-                                                    الهاتف النقال
-                                                @else
-                                                    Mobile Phone
-                                                @endif
-                                            </li>
-                                            <li>
-                                                @if (app()->getLocale() === 'ar')
-                                                    البريد الإلكتروني
-                                                @else
-                                                    Email
-                                                @endif
-                                            </li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Requirements -->
-                        <div class="col-lg-8 col-md-6 col-12 h-100">
-                            <div class="card bg-custom border-custom h-100 rounded-8">
-                                <div class="card-body pt-0 px-0 d-flex flex-column">
-                                    <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                        <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.requirements') }}</h6>
-                                    </div>
-                                    <div class="rounded-8 px-3 py-4 h-100 d-flex flex-wrap gap-3 justify-content-center">
-                                        @forelse(array_slice($investor->resources->translated_requirements ?? [], 0, 6) as $index => $resource)
-                                            <span class="d-flex align-items-center gap-2">
-                                                <span class="fw-bold">{{ $index + 1 }}.</span>
-                                                <span class="small">{{ $resource }}</span>
-                                            </span>
-                                        @empty
-                                            <span class="text-muted">-</span>
-                                        @endforelse
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+            <div class="col-12 position-relative mt-4" dir="ltr">
+                <label for="investor-attachment"
+                    class="form-control d-flex align-items-center gap-2 cursor-pointer justify-content-between py-3 border-custom rounded-8">
+                    <span>{{ __('investor.steps.step6.file_format') }}</span>
+                    <i class="bi bi-paperclip fs-5"></i>
+                </label>
+                <input type="file" id="investor-attachment" class="d-none" wire:model="data.attachment">
+                {{-- Display selected or current file name --}}
+                @if ($data['attachment'] || $currentAttachment !== 'Uploaded File')
+                    <div class="mt-2 d-flex align-items-center gap-2" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
+                        <small class="text-primary fw-bold">
+                            {{ __('investor.steps.step6.selected_file') }}:
+                            <span class="mx-2">{{ $data['attachment'] ? $data['attachment']->getClientOriginalName() : $currentAttachment }}</span>
+                        </small>
                     </div>
+                @endif
+            </div>
+            <hr class="mt-3">
+            <div class="col-lg-12 d-flex">
+                <div class="bg-light shadow-sm rounded-8 p-3 text-center fw-bold mb-3">
+                    {{ __('investor.steps.step6.first_time_question') }}
                 </div>
-
-                <!-- Contribution + Returns + Capital Distribution -->
-                <div class="col-12">
-                    <div class="row g-3">
-
-                        <!-- Contribution -->
-                        <div class="col-md-12 col-12">
-                            <div class="card bg-custom border-custom h-100 rounded-8">
-                                <div class="card-body pt-0 px-0 d-flex flex-column">
-                                    <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                        <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.contribution') }}</h6>
-                                    </div>
-                                    <div
-                                        class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                        <div>{{ __('investor.steps.step4.' . $investor->contributions->contribute_type) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="d-flex align-items-center gap-3 gap-md-4 flex-wrap mb-3 p-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input" type="radio" name="visibility" id="visibility_public"
+                            wire:model="data.visibility" value="public">
+                        <label class="form-check-label small" for="visibility_public">
+                            {{ __('investor.steps.step6.show_public') }}
+                        </label>
                     </div>
-                </div>
-
-                <!-- Attachments + Summary -->
-                <div class="col-12">
-                    <div class="row g-3">
-
-                        <!-- Attachments -->
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <div class="card bg-custom border-custom h-100 rounded-8">
-                                <div class="card-body pt-0 px-0 d-flex flex-column h-100">
-                                    <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                        <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.attachments') }}</h6>
-                                    </div>
-                                    <div
-                                        class="rounded-8 p-2 py-3 text-center h-100 d-flex flex-column gap-2 justify-content-center">
-                                        @forelse($investor->attachments as $file)
-                                            <div class="d-flex gap-4 align-items-center">
-                                                <img class="mx-2" src="{{ asset('images/Container.png') }}"
-                                                    alt="File" width="30" height="32" />
-                                                <div class="text-start">
-                                                    <div class="fw-bold small">
-                                                        {{ $file->original_name ?? basename($file->path) }}</div>
-                                                    <small class="text-white small" dir="ltr">
-                                                        {{ $file->size_kb }} • {{ $file->created_at->format('d M, Y') }}
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        @empty
-                                            <span>-</span>
-                                        @endforelse
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Summary -->
-                        <div class="col-lg-9 col-md-6 col-12">
-                            <div class="card bg-custom border-custom h-100 rounded-8">
-                                <div class="card-body pt-0 px-0 d-flex flex-column h-100">
-                                    <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                        <h6 class="mb-0 fw-bold">{{ __('investor.steps.step6.summary') }}</h6>
-                                    </div>
-                                    <div
-                                        class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                        {{ $investor->summary ?? '-' }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <input class="form-check-input" type="radio" name="visibility" id="visibility_private"
+                            wire:model="data.visibility" value="private">
+                        <label class="form-check-label small" for="visibility_private">
+                            {{ __('investor.steps.step6.keep_private') }}
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="d-flex justify-content-center">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">{{ $errors->first() }}</span>
+        </div>
+    @endif
+</div>
