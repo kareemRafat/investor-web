@@ -65,10 +65,13 @@
             <div wire:cloak class="d-flex justify-content-center mb-4">
                 <div class="stepper d-flex align-items-center justify-content-center flex-wrap">
                     @for ($i = 1; $i <= 6; $i++)
-                        <div
-                            class="stepper-item
-                            @if ($i < $currentStep) completed_step
-                            @elseif($i === $currentStep) active_step @endif">
+                        <div class="stepper-item
+                    @if ($i < $currentStep) completed_step
+                    @elseif($i === $currentStep) active_step @endif"
+                            @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
+                    style="cursor: pointer;"
+                @else
+                    style="cursor: not-allowed; opacity: .4;" @endif>
                             <div class="stepper-circle">
                                 @if ($i < $currentStep)
                                     <i class="bi bi-check-circle"></i>
@@ -79,8 +82,7 @@
                         </div>
 
                         @if ($i < 6)
-                            <div class="stepper-connector">
-                            </div>
+                            <div class="stepper-connector"></div>
                         @endif
                     @endfor
                 </div>
