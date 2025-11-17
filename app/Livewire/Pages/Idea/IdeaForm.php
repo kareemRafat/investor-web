@@ -10,6 +10,7 @@ class IdeaForm extends Component
 {
 
     public int $currentStep = 1;
+    public int $maxAllowedStep = 1;
     public int $totalSteps = 10;
 
     public function nextStep()
@@ -20,7 +21,11 @@ class IdeaForm extends Component
     #[On('go-to-next-step')]
     public function goToNextStep()
     {
-        if ($this->currentStep < 10) {
+        if ($this->maxAllowedStep < $this->totalSteps) {
+            $this->maxAllowedStep++;
+        }
+
+        if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
         }
     }
@@ -32,11 +37,19 @@ class IdeaForm extends Component
         }
     }
 
+    public function goToStep(int $step): void
+    {
+        if ($step <= $this->maxAllowedStep) {
+            $this->currentStep = $step;
+        }
+    }
+
     public function finish()
     {
         session()->forget('current_idea_id');
 
         $this->currentStep = 1;
+        $this->maxAllowedStep = 1;
 
         return $this->redirect('/', navigate: true);
     }

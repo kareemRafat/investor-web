@@ -45,6 +45,7 @@
                 @break
             @endswitch
 
+            {{-- buttons --}}
             <div wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
                 @if ($currentStep > 1)
                     <a wire:click.prevent="previousStep" aria-label="{{ __('idea.form.previous') }}"
@@ -80,13 +81,16 @@
         </div>
         <div wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap">
             @for ($i = 1; $i <= 10; $i++)
-                <div
-                    class="stepper-item
-            @if ($i < $currentStep) completed_step
-            @elseif($i === $currentStep) active_step @endif">
+                <div class="stepper-item
+                    @if ($i < $currentStep) completed_step
+                    @elseif($i === $currentStep) active_step @endif"
+                    @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
+                    style="cursor: pointer"
+                    @else
+                    style="opacity: .4; cursor: not-allowed" @endif>
                     <div class="stepper-circle">
                         @if ($i < $currentStep)
-                            <i class="bi bi-check-circle"></i>
+                            <i class="bi bi-check-circle-fill"></i>
                         @else
                             {{ $i }}
                         @endif
