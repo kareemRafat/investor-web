@@ -42,7 +42,7 @@
                                 <label
                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                     for="needs">
-                                    {{ __('investor.steps.step7.sell') }}
+                                    {{ __('investor.steps.step4.sell') }}
                                 </label>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 <label
                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                     for="contribute">
-                                    {{ __('idea.steps.step7.idea') }}
+                                    {{ __('investor.steps.step4.idea') }}
                                 </label>
                             </div>
                         </div>
@@ -76,13 +76,13 @@
                                 <input type="radio" class="btn-check" id="contribute_person"
                                     wire:model="data.contribute_type"
                                     x-model="contribute_type"
-                                    @change="resetFields('capital')"
-                                    value="capital" name="contribute_type"
+                                    @change="resetFields('personal')"
+                                    value="personal" name="contribute_type"
                                     autocomplete="off">
                                 <label
                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                     for="contribute_person">
-                                    {{ __('idea.steps.step7.capital') }}
+                                    {{ __('investor.steps.step4.personal') }}
                                 </label>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                         x-model="staff"
                                         value="full_time" name="staff">
                                     <label class="form-check-label" for="staff_yes">
-                                        {{ __('idea.steps.step7.full_time') }}
+                                        {{ __('investor.steps.step4.full_time') }}
                                     </label>
                                 </div>
                                 <div class="d-flex align-items-center gap-2">
@@ -104,7 +104,7 @@
                                         x-model="staff"
                                         value="part_time" name="staff">
                                     <label class="form-check-label" for="staff_no">
-                                        {{ __('idea.steps.step7.part_time') }}
+                                        {{ __('investor.steps.step4.part_time') }}
                                     </label>
                                 </div>
                                 <div class="d-flex align-items-center gap-2">
@@ -113,7 +113,7 @@
                                         x-model="staff"
                                         value="supervision" name="staff">
                                     <label class="form-check-label" for="admin_only_no">
-                                        {{ __('idea.steps.step7.supervision') }}
+                                        {{ __('investor.steps.step4.supervision') }}
                                     </label>
                                 </div>
                             </div>
@@ -127,13 +127,13 @@
                                 <input type="radio" class="btn-check" id="contribute_money"
                                     wire:model="data.contribute_type"
                                     x-model="contribute_type"
-                                    @change="resetFields('personal')"
-                                    value="personal" name="contribute_type"
+                                    @change="resetFields('capital')"
+                                    value="capital" name="contribute_type"
                                     autocomplete="off">
                                 <label
                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                     for="contribute_money">
-                                    {{ __('idea.steps.step7.personal') }}
+                                    {{ __('investor.steps.step4.capital') }}
                                 </label>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             <div class="d-flex align-items-center gap-3">
                                 <div class="d-flex align-items-center gap-3">
                                     <label for="money_amount" class="text-primary fw-bold fs-5">
-                                        {{ __('idea.steps.step7.amount') }}
+                                        {{ __('investor.steps.step4.amount') }}
                                     </label>
                                     <input type="number" class="form-control py-3 rounded-8" id="money_amount"
                                         wire:model="data.money_amount"
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3">
                                     <label for="money_percent" class="text-primary fw-bold fs-5">
-                                        {{ __('idea.steps.step7.percent') }}
+                                        {{ __('investor.steps.step4.percent') }}
                                     </label>
                                     <input type="number" class="form-control py-3 rounded-8" id="money_percent"
                                         wire:model="data.money_percent"
@@ -174,7 +174,7 @@
                                 <label
                                     class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
                                     for="contribute_person_and_money">
-                                    {{ __('idea.steps.step7.both') }}
+                                    {{ __('investor.steps.step4.both') }}
                                 </label>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="d-flex align-items-center">
                                         <label for="person_money_amount" class="text-primary fw-bold fs-5 me-1">
-                                            {{ __('idea.steps.step7.amount') }}
+                                            {{ __('investor.steps.step4.amount') }}
                                         </label>
                                         <input type="number" class="form-control py-3 rounded-8"
                                             id="person_money_amount" wire:model="data.person_money_amount"
@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <label for="person_money_percent" class="text-primary fw-bold fs-5 me-1">
-                                            {{ __('idea.steps.step7.percent') }}
+                                            {{ __('investor.steps.step4.percent') }}
                                         </label>
                                         <input type="number" class="form-control py-3 rounded-8"
                                             id="person_money_percent" wire:model="data.person_money_percent"
@@ -209,7 +209,7 @@
                                             value="full_time"
                                             name="staff_person_money">
                                         <label class="form-check-label" for="staff_yes_person_money">
-                                            {{ __('idea.steps.step7.full_time') }}
+                                            {{ __('investor.steps.step4.full_time') }}
                                         </label>
                                     </div>
                                     <div class="d-flex align-items-center gap-2">
@@ -219,7 +219,7 @@
                                             value="part_time"
                                             name="staff_person_money">
                                         <label class="form-check-label" for="staff_no_person_money">
-                                            {{ __('idea.steps.step7.part_time') }}
+                                            {{ __('investor.steps.step4.part_time') }}
                                         </label>
                                     </div>
                                     <div class="d-flex align-items-center gap-2">
@@ -228,7 +228,7 @@
                                             x-model="staff_person_money"
                                             value="supervision" name="staff_person_money">
                                         <label class="form-check-label" for="admin_only_no_person_money">
-                                            {{ __('idea.steps.step7.supervision') }}
+                                            {{ __('investor.steps.step4.supervision') }}
                                         </label>
                                     </div>
                                 </div>

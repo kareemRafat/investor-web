@@ -31,12 +31,18 @@
     }
 }
 
+@font-face {
+    font-family: kareem;
+    src: url(/fonts/ArbFONTS-LamaSans-Regular.ttf);
+}
+
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Cairo", sans-serif;
+    font-family: kareem;
+    font-weight: 600;
     text-decoration: none !important;
 }
 
@@ -216,7 +222,7 @@ html[lang="ar"] .me-3 {
 
 nav ul li a.active {
     color: var(--text-400) !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
 }
 
 nav ul li a:hover {

@@ -9,11 +9,12 @@ use App\Models\InvestorContribution;
 
 class Step4 extends Component
 {
-    #[Validate([
+
+     #[Validate([
         'data.contribute_type' => 'required|in:sell,idea,capital,personal,both',
-        'data.staff' => 'required_if:data.contribute_type,capital|nullable|in:full_time,part_time,supervision',
-        'data.money_amount' => 'required_if:data.contribute_type,personal|nullable|numeric|min:1',
-        'data.money_percent' => 'required_if:data.contribute_type,personal|nullable|numeric|min:1|max:100',
+        'data.staff' => 'required_if:data.contribute_type,personal|nullable|in:full_time,part_time,supervision',
+        'data.money_amount' => 'required_if:data.contribute_type,capital|nullable|numeric|min:1',
+        'data.money_percent' => 'required_if:data.contribute_type,capital|nullable|numeric|min:1|max:100',
         'data.person_money_amount' => 'required_if:data.contribute_type,both|nullable|numeric|min:1',
         'data.person_money_percent' => 'required_if:data.contribute_type,both|nullable|numeric|min:1|max:100',
         'data.staff_person_money' => 'required_if:data.contribute_type,both|nullable|in:full_time,part_time,supervision',
