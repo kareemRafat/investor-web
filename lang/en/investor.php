@@ -116,20 +116,19 @@ return [
             'total_error' => 'The total must be 100%.',
         ],
         'step5' => [
-            'subtitle' => 'Summary of the investment or participation proposed by you and its files',
-            'placeholder' => 'Write a clear summary of your idea',
-
-            'confidential_info' => 'If there is any important and confidential information about the idea, we advise you not to mention it clearly in this summary to preserve your rights and protect it from being stolen by others.',
+            'subtitle' => 'Summary of your proposed investment or partnership and its related files',
+            'placeholder' => 'Write a clear summary of your investment offer',
+            'confidential_info' => 'If there is any important and confidential information regarding the investment offer, we advise against stating it clearly in this summary to protect your rights and protect it from theft.',
             'max_characters' => '2000 characters maximum',
             'file_format' => 'File format must be Word, Excel, PDF, or images',
 
-            'first_time_question' => 'Is this your first time submitting an idea?',
-            'show_public' => 'I would like to show it to the public',
-            'keep_private' => 'To use the website and to preserve the intellectual property rights',
+            'first_time_question' => 'Is this your first time submitting an investment offer?',
+            'show_public' => 'I would like to display it to the public',
+            'keep_private' => 'For website use and intellectual property rights preservation',
 
-            'selected_file' => 'Selected File',
-            'delete_file' => 'Delete',
-            'delete_confirm' => 'Are you sure you want to Delete ?',
+            'selected_file' => 'Uploaded file',
+            'delete_file' => 'Delete file',
+            'delete_confirm' => 'Are you sure you want to delete the file?',
         ],
         'step6' => [
             'title' => 'Summary of your Investment Details',
