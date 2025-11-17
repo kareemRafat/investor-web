@@ -213,9 +213,9 @@ return [
             'max_characters' => '2000 characters maximum',
             'file_format' => 'File format must be Word, Excel, PDF, or images',
 
-            'first_time_question' => 'Is this your first time submitting an idea?',
+            'first_time_question' => 'property rights',
             'show_public' => 'I would like to show it to the public',
-            'keep_private' => 'To use the website and to preserve the intellectual property rights',
+            'keep_private' => 'keep Private',
 
             'selected_file' => 'Selected File',
             'delete_file' => 'Delete',

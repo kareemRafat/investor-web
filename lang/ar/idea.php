@@ -213,7 +213,7 @@ return [
             'max_characters' => '2000 حرف كحد أقصى',
             'file_format' => 'صيغة الملفات يجب أن تكون Word أو Excel أو PDF أو صور',
 
-            'first_time_question' => 'هل هذه هي المرة الأولى التي تقوم فيها بتقديم فكرة؟',
+            'first_time_question' => 'الملكية الفكرية',
             'show_public' => 'أود عرضها للجمهور',
             'keep_private' => 'للاستخدام في الموقع وحفظ حقوق الملكية الفكرية',
 

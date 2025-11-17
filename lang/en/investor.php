@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Idea
+    | investor
     |--------------------------------------------------------------------------
     */
 
@@ -122,9 +122,9 @@ return [
             'max_characters' => '2000 characters maximum',
             'file_format' => 'File format must be Word, Excel, PDF, or images',
 
-            'first_time_question' => 'Is this your first time submitting an investment offer?',
+            'first_time_question' => 'property rights',
             'show_public' => 'I would like to display it to the public',
-            'keep_private' => 'For website use and intellectual property rights preservation',
+            'keep_private' => 'For website use and to preserve intellectual property rights',
 
             'selected_file' => 'Uploaded file',
             'delete_file' => 'Delete file',
@@ -137,12 +137,12 @@ return [
             'expected_profit' => 'The expected profit',
             'best_countries' => 'The best countries',
             'preferred_contact' => 'The preferred way to contact you',
-            'requirements' => 'Requirements for implementing the idea',
+            'requirements' => 'Your available resources :',
             'contribution' => 'You will contribute by',
             'returns' => 'Your returns',
             'capital_distribution' => 'Distribution of the required capital',
             'attachments' => 'Attached files',
-            'summary' => 'Idea summary',
+            'summary' => 'investment offer summary',
         ],
 
     ],
