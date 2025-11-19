@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cost_profit_ranges', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['one-time', 'annual']);
+            $table->enum('type', ['one-time', 'annual', 'money_contribution']);
             $table->bigInteger('min_value')->nullable();
             $table->bigInteger('max_value')->nullable();
             $table->string('label_en'); // النص اللي هيظهر في الراديو

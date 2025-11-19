@@ -17,7 +17,8 @@ class InvestorContribution extends Model
         'money_amount',
         'money_percent',
         'person_money_amount',
-        'person_money_percent'
+        'person_money_percent',
+        'money_contributions'
     ];
 
     public function investor()

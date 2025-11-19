@@ -4,10 +4,17 @@
         subtitle="{{ __('investor.steps.step5.subtitle') }}" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
+        {{-- Disable All --}}
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <input type="checkbox" id="disable_resources" wire:model.live="disableResources" class="form-check-input">
+            <label for="disable_resources" class="fw-bold text-danger">
+                {{ __('investor.steps.step5.checkbox') }}
+            </label>
+        </div>
         <div class="row g-4 justify-content-center">
             <div class="col-12">
-                <div class="row g-3">
-                    <!-- الخيارات الثلاثة كـ radio buttons -->
+                <!-- الخيارات الثلاثة كـ radio buttons -->
+                {{-- <div class="row g-3">
                     <div class="col-12 col-lg-4 col-md-4 position-relative">
                         <input type="radio" class="btn-check" wire:model="investmentType" id="money-only" value="money"
                             autocomplete="off" name="investmentType">
@@ -37,19 +44,20 @@
                             {{ __('investor.steps.step5.amounts_of_money_resources') }}
                         </label>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row g-3">
-                @foreach (range(1, 14) as $i)
+                @foreach ($moneyRanges as $range)
                     <div class="col-12 col-md-3">
-                        <input type="radio" class="btn-check" wire:model="selectedAmount"
-                            id="amount-{{ $i }}" value="{{ $i }}" autocomplete="off">
+                        <input type="radio" class="btn-check" wire:model="data.money_contributions"
+                            id="amount-{{ $range->id }}" value="{{ $range->id }}" autocomplete="off"
+                            @disabled($disableResources)>
                         <label
-                            class="btn btn-outline-secondary w-100  d-flex align-items-center justify-content-center
-                          p-3 rounded-8 shadow-sm text-center fw-bold small position-relative"
-                            for="amount-{{ $i }}">
-                            <span class="px-2">
-                                {!! __('investor.steps.step5.amount_' . $i) !!}
+                            class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center
+                         p-3 rounded-8 shadow-sm text-center fw-bold small position-relative"
+                            for="amount-{{ $range->id }}">
+                            <span class="px-2 small">
+                                {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
                             </span>
                         </label>
                     </div>

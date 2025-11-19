@@ -46,7 +46,7 @@ class Step6 extends Component
     }
 
     #[On('validate-step-6')]
-    public function validateStep5()
+    public function validateStep6()
     {
         $this->validate();
 

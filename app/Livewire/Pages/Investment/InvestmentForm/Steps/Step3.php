@@ -40,6 +40,8 @@ class Step3 extends Component
         'website'         => null,
     ];
 
+    public bool $disableResources = false;
+
     public function mount(): void
     {
         // when return back
@@ -48,14 +50,40 @@ class Step3 extends Component
             $resource = InvestorResource::where('investor_id', $investorId)->first();
             if ($resource) {
                 $this->data = array_merge($this->data, $resource->toArray());
+
+                // detect if user previously disabled the step
+                if (
+                    is_null($resource->company)
+                    && is_null($resource->staff)
+                    && is_null($resource->workers)
+                    && is_null($resource->executive_spaces)
+                    && is_null($resource->equipment)
+                    && is_null($resource->software)
+                    && is_null($resource->website)
+                ) {
+                    $this->disableResources = true;
+                }
             }
+        }
+    }
+
+    public function updatedDisableResources($value)
+    {
+        // this function to use it not to empty the investor_id and uncheck all other feilds
+        if ($value) {
+            $requiredFields = ['investor_id']; // excepted field
+            $this->data = collect($this->data)
+                ->mapWithKeys(fn($v, $k) => in_array($k, $requiredFields) ? [$k => $v] : [$k => null])
+                ->toArray();
         }
     }
 
     #[On('validate-step-3')]
     public function validateStep3()
     {
-        $this->validate();
+        if (!$this->disableResources) {
+            $this->validate();
+        }
 
         $this->syncResource();
 

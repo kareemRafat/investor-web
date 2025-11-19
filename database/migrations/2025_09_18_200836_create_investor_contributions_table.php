@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('money_percent')->nullable();
             $table->decimal('person_money_amount', 15, 2)->nullable();
             $table->unsignedTinyInteger('person_money_percent')->nullable();
+            $table->tinyInteger('money_contributions')->nullable()->comment('الخطوة الخامسة');
+
             $table->timestamps();
         });
     }
