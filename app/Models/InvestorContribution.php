@@ -25,4 +25,13 @@ class InvestorContribution extends Model
     {
         return $this->belongsTo(Investor::class);
     }
+
+    public function getMoneyContributionLabelAttribute(): ?string
+    {
+        if (!$this->money_contributions) {
+            return null;
+        }
+
+        return __('investor.steps.step5.money_contribution_ranges.amount_' . $this->money_contributions);
+    }
 }

@@ -27,25 +27,23 @@
                     </div>
 
                     <!-- رأس المال -->
+
                     <div class="col-lg-3 col-md-6 col-12">
                         <div class="card bg-custom border-custom h-100 rounded-8">
-                            <div class="card-body pt-0 px-0">
-                                <div class="d-flex flex-column">
-                                    <div class="text-primary p-2 py-3 text-center bg-danger rounded-top">
-                                        <h6 class="mb-0 fw-bold">
-                                            رأس المال
-                                        </h6>
-                                    </div>
-                                    <div
-                                        class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                        <h6 class="text-white mb-0 fw-bold">
-                                            1,000 إلى 5,000 دولار<br>(3,700 إلى 18,500 ريال)
-                                        </h6>
+                            <div class="card-body pt-0 px-0 d-flex flex-column">
+                                <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
+                                    <h6 class="mb-0 fw-bold">{{ __('investor.steps.step7.contribution') }}</h6>
+                                </div>
+                                <div
+                                    class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                    <div class="text-white">
+                                        {{ $investor->contributions->money_contribution_label ?? '-' }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Best Countries -->
                     <div class="col-md-6 col-12">
@@ -121,7 +119,7 @@
                                                 <span class="small">{{ $resource }}</span>
                                             </span>
                                         @empty
-                                            <span class="text-muted">-</span>
+                                            <span>-</span>
                                         @endforelse
                                     </div>
                                 </div>
