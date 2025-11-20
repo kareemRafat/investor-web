@@ -37,7 +37,7 @@
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                     <div class="text-white">
-                                        {{ $investor->contributions->money_contribution_label ?? '-' }}
+                                        {!! $investor->contributions->money_contribution_label ?? '-' !!}
                                     </div>
                                 </div>
                             </div>
