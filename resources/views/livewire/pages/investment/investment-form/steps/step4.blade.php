@@ -72,7 +72,7 @@
                     <!-- المساهمة برأس المال -->
                     <div class="row mx-0 px-0 my-2 align-items-center gap3">
                         <div class="col-lg-6 col-12 position-relative">
-                            <div class="col-12 col-md-12">
+                            <div class="d-flex">
                                 <input type="radio" class="btn-check" id="contribute_person"
                                     wire:model="data.contribute_type"
                                     x-model="contribute_type"
@@ -123,7 +123,7 @@
                     <!-- المساهمة الشخصية -->
                     <div class="row mx-0 px-0 my-2 align-items-center">
                         <div class="col-lg-6 col-12 position-relative">
-                            <div class="col-12 col-lg-12 col-md-12">
+                            <div class="d-flex">
                                 <input type="radio" class="btn-check" id="contribute_money"
                                     wire:model="data.contribute_type"
                                     x-model="contribute_type"
@@ -164,7 +164,7 @@
                     <!-- المساهمة الشخصية + رأس المال -->
                     <div class="row mx-0 px-0 my-2 align-items-center">
                         <div class="col-lg-6 col-12 position-relative">
-                            <div class="col-12 col-md-12">
+                            <div class="d-flex">
                                 <input type="radio" class="btn-check" id="contribute_person_and_money"
                                     wire:model="data.contribute_type"
                                     x-model="contribute_type"
