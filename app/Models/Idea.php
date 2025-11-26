@@ -6,21 +6,19 @@ use App\Models\IdeaCost;
 use App\Models\IdeaProfit;
 use App\Models\IdeaReturn;
 use App\Models\IdeaExpense;
-use App\Models\IdeaSummary;
 use App\Models\IdeaResource;
-use App\Models\IdeaAttachment;
 use App\Models\IdeaContribution;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field', 'visibility' , 'summary'];
+    protected $fillable = ['idea_field', 'summary'];
 
     // Relations
     public function countries()
     {
-        return $this->hasMany(IdeaCountry::class);
+        return $this->morphMany(Countryable::class, 'countryable');
     }
 
     public function costs()

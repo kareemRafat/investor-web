@@ -4,7 +4,6 @@ namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
 use Livewire\Component;
-use App\Models\IdeaCountry;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 
@@ -24,8 +23,10 @@ class Step2 extends Component
         $this->options = __('idea.steps.step2.options');
 
         $ideaId = session('current_idea_id');
+
         if ($ideaId) {
-            $this->countries = IdeaCountry::where('idea_id', $ideaId)
+            $this->countries = Idea::find($ideaId)
+                ->countries
                 ->pluck('country')
                 ->toArray();
         }

@@ -10,11 +10,12 @@ class Investor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['investor_field', 'visibility' , 'summary'];
+    protected $fillable = ['investor_field' , 'summary'];
 
+    // Relations
     public function countries()
     {
-        return $this->hasMany(InvestorCountry::class);
+        return $this->morphMany(Countryable::class, 'countryable');
     }
 
     public function resources()

@@ -5,7 +5,6 @@ namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 use Livewire\Component;
 use App\Models\Investor;
 use Livewire\Attributes\On;
-use App\Models\InvestorCountry;
 use Livewire\Attributes\Validate;
 
 class Step2 extends Component
@@ -23,7 +22,8 @@ class Step2 extends Component
         $this->options = __('investor.steps.step2.options');
         $investorId = session('current_investor_id');
         if ($investorId) {
-            $this->countries = InvestorCountry::where('investor_id', $investorId)
+            $this->countries = Investor::find($investorId)
+                ->countries()
                 ->pluck('country')
                 ->toArray();
         }
