@@ -17,12 +17,10 @@ class Step6 extends Component
     #[Validate([
         'data.summary' => 'required|string|max:2000',
         'data.attachment' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240', // 10MB max
-        'data.visibility' => 'required|in:public,private',
     ])]
     public array $data = [
         'summary' => null,
         'attachment' => null,
-        'visibility' => null,
     ];
 
     public $currentAttachment = null; // real file name
@@ -36,7 +34,6 @@ class Step6 extends Component
         if (!$investor) return;
 
         $this->data['summary'] = $investor?->summary;
-        $this->data['visibility'] = $investor->visibility;
 
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $investor->attachments()->first()?->original_name ?? 'Uploaded File';
@@ -69,10 +66,6 @@ class Step6 extends Component
             'data.attachment.file'  => __('investor.validation.step5.attachments_file'),
             'data.attachment.mimes' => __('investor.validation.step5.attachments_mimes'),
             'data.attachment.max'   => __('investor.validation.step5.attachments_max'),
-
-            'data.visibility.required' => __('investor.validation.step5.visibility_required'),
-            'data.visibility.in'       => __('investor.validation.step5.visibility_in'),
-
         ];
     }
 
@@ -87,10 +80,6 @@ class Step6 extends Component
         // DB sync
         $investor->update([
             'summary' => $this->data['summary'],
-        ]);
-
-        $investor->update([
-            'visibility' => $this->data['visibility'],
         ]);
 
         //! store attachments

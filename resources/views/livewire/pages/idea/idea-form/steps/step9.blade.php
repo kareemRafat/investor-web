@@ -40,27 +40,6 @@
                 @endif
             </div>
             <hr class="mt-3">
-            <div class="col-lg-12 d-flex">
-                <div class="bg-light shadow-sm rounded-8 p-3 text-center fw-bold mb-3">
-                    {{ __('idea.steps.step9.first_time_question') }}
-                </div>
-                <div class="d-flex align-items-center gap-3 gap-md-4 flex-wrap mb-3 p-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <input class="form-check-input" type="radio" name="visibility" id="visibility_public"
-                            wire:model="data.visibility" value="public">
-                        <label class="form-check-label small" for="visibility_public">
-                            {{ __('idea.steps.step9.show_public') }}
-                        </label>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <input class="form-check-input" type="radio" name="visibility" id="visibility_private"
-                            wire:model="data.visibility" value="private">
-                        <label class="form-check-label small" for="visibility_private">
-                            {{ __('idea.steps.step9.keep_private') }}
-                        </label>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

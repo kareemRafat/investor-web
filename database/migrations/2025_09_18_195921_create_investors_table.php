@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('investor_field');
-            $table->enum('visibility', ['public', 'private'])->nullable();
             $table->text('summary')->nullable();
             $table->timestamps();
         });
