@@ -18,7 +18,7 @@
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <!-- style -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -65,6 +65,8 @@
     <x-partials.header />
 
     {{ $slot }}
+
+    <x-partials.footer />
 
     @livewireScripts
 
