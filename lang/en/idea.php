@@ -88,6 +88,11 @@ return [
                 ['code' => 'MENA', 'name' => 'Middle East and North Africa'],
                 ['code' => 'ME', 'name' => 'Middle East'],
                 ['code' => 'YE', 'name' => 'Yemen'],
+                ['code' => 'SY', 'name' => 'Syria'],
+                ['code' => 'MR', 'name' => 'Mauritania'],
+                ['code' => 'SO', 'name' => 'Somalia'],
+                ['code' => 'DJ', 'name' => 'Djibouti'],
+                ['code' => 'KM', 'name' => 'Comoros']
             ],
         ],
         'step3' => [
