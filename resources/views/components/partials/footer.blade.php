@@ -5,11 +5,11 @@
             <div class="col-lg-3 col-md-6 col-12">
                 <h6 class="fw-bold mb-3 text-dark">حول</h6>
                 <ul class="list-unstyled d-flex flex-column gap-2">
-                    <li><a href="./about.html" class="text-muted text-decoration-none small">من نحن</a></li>
-                    <li><a href="#" class="text-muted text-decoration-none small">ميثاقنا</a></li>
-                    <li><a href="#" class="text-muted text-decoration-none small">الإحصائيات</a></li>
-                    <li><a href="#" class="text-muted text-decoration-none small">الصحافة</a></li>
-                    <li><a href="#" class="text-muted text-decoration-none small">الوظائف</a></li>
+                    <li><x-footer-nav-link route="main.about" label="{{ __('header.about') }}" /></li>
+                    <li><a href="#" class="text-muted text-decoration-none small">صندوق الاستثمار</a></li>
+                    <li><x-footer-nav-link route="main.terms" label="{{ __('header.terms') }}" /></li>
+                    <li><x-footer-nav-link route="main.privacypolicy" label="{{ __('header.privacy') }}" /></li>
+                    <li><x-footer-nav-link route="main.faq" label="{{ __('header.faq') }}" /></li>
                 </ul>
             </div>
 
@@ -17,8 +17,8 @@
             <div class="col-lg-3 col-md-6 col-12">
                 <h6 class="fw-bold mb-3 text-dark">الدعم</h6>
                 <ul class="list-unstyled d-flex flex-column gap-2">
+                    <li><x-footer-nav-link route="main.contact" label="{{ __('header.contact') }}" /></li>
                     <li><a href="#" class="text-muted text-decoration-none small">مركز المساعدة</a></li>
-                    <li><a href="./terms.html" class="text-muted text-decoration-none small">قواعدنا</a></li>
                     <li><a href="#" class="text-muted text-decoration-none small">موارد المبدعين</a></li>
                     <li><a href="#" class="text-muted text-decoration-none small">التمويل المباشر</a></li>
                     <li><a href="#" class="text-muted text-decoration-none small">أصول العلامة التجارية</a></li>
@@ -94,21 +94,6 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer Links -->
-        <div class="row pb-4">
-            <div class="col-12">
-                <div class="d-flex flex-wrap justify-content-center gap-3 small text-muted">
-                    <a href="#" class="text-muted text-decoration-none">الثقة والأمان</a>
-                    <a href="./terms.html" class="text-muted text-decoration-none">شروط الاستخدام</a>
-                    <a href="./privacy.html" class="text-muted text-decoration-none">سياسة الخصوصية</a>
-                    <a href="#" class="text-muted text-decoration-none">سياسة الكوكيز</a>
-                    <a href="#" class="text-muted text-decoration-none">تفضيلات الكوكيز</a>
-                    <a href="#" class="text-muted text-decoration-none">بيان إمكانية الوصول</a>
-                    <a href="#" class="text-muted text-decoration-none">إشعار الموافقة CA</a>
                 </div>
             </div>
         </div>
