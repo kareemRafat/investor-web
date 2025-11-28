@@ -56,7 +56,13 @@
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                     <div class="text-white">
                                         @forelse($investor->countries as $index => $country)
-                                            {{ $country->country_name }}@if (!$loop->last)
+                                            @php
+                                                $countryOption = collect(
+                                                    __('investor.steps.step2.options'),
+                                                )->firstWhere('code', $country->country);
+                                                $countryName = $countryOption['name'] ?? $country->country;
+                                            @endphp
+                                            {{ $countryName }}@if (!$loop->last)
                                                 -
                                             @endif
                                             @empty

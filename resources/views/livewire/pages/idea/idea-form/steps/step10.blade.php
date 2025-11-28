@@ -20,7 +20,7 @@
                                 </div>
                                 <div
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                    <h6 class="text-white mb-0">
+                                    <h6 class="text-white mb-0 fw-bold">
                                         {{ __('idea.steps.step1.options.' . ($idea->idea_field ?? '-')) }}
                                     </h6>
                                 </div>
@@ -101,7 +101,14 @@
                                     class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                     <div class="text-white">
                                         @forelse($idea->countries as $index => $country)
-                                            {{ $country->country_name }}@if (!$loop->last)
+                                            @php
+                                                $countryOption = collect(__('idea.steps.step2.options'))->firstWhere(
+                                                    'code',
+                                                    $country->country,
+                                                );
+                                                $countryName = $countryOption['name'] ?? $country->country;
+                                            @endphp
+                                            {{ $countryName }}@if (!$loop->last)
                                                 -
                                             @endif
                                         @empty

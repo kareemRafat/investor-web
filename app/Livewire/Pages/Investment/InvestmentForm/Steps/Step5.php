@@ -66,8 +66,6 @@ class Step5 extends Component
         $investorId = session('current_investor_id');
 
         if ($investorId) {
-            $contribution = InvestorContribution::where('investor_id', $investorId)->first();
-
             $clean = collect($this->data)
                 ->map(fn($v) => $v === '' ? null : $v)
                 ->toArray();

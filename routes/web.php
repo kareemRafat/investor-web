@@ -60,7 +60,7 @@ Route::group(
 
             // Submit your Idea
             Route::get('/ideas', IdeaForm::class)->name('ideas.main');
-            Route::get('/ideas/summary', IdeaSummary::class)->name('ideas.summary');
+            Route::get('/ideas/{idea}/summary', IdeaSummary::class)->name('idea.summary');
 
             // Investor
             Route::get('/find-investor', InvestmentForm::class)->name('investor.main');

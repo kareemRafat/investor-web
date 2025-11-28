@@ -46,12 +46,14 @@ class IdeaForm extends Component
 
     public function finish()
     {
+        $ideaId = session('current_idea_id');
+
         session()->forget('current_idea_id');
 
         $this->currentStep = 1;
         $this->maxAllowedStep = 1;
 
-        return $this->redirect('/', navigate: true);
+        return $this->redirect(route('idea.summary', ['idea' => $ideaId]), navigate: true);
     }
 
     #[Title('Submit Your Idea')]
