@@ -133,7 +133,7 @@
 
                                                     <div class="col-md-1 col-12 ">
 
-                                                        <a class="btn underline d-flex gap-2 align-items-center">
+                                                        <a class="btn underline d-flex gap-2 align-items-center" wire:navigate href="{{ route('investor.info' , request('idea')) }}">
                                                             <span>More</span>
                                                             <i class="bi bi-arrow-left fw-bold"></i>
                                                         </a>

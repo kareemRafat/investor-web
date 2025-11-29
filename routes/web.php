@@ -12,10 +12,12 @@ use App\Livewire\Pages\Contact;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\Idea\IdeaForm;
+use App\Livewire\Pages\Idea\IdeaInfo;
 use App\Livewire\Pages\Idea\IdeaSummary;
 use App\Livewire\Pages\PrivacyPolicy;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Investment\InvestmentForm;
+use App\Livewire\Pages\Investment\InvestmentInfo;
 use App\Livewire\Pages\Investment\InvestmentSummary;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -61,10 +63,12 @@ Route::group(
             // Submit your Idea
             Route::get('/ideas', IdeaForm::class)->name('ideas.main');
             Route::get('/ideas/{idea}/summary', IdeaSummary::class)->name('idea.summary');
+            // Route::get('/ideas/{idea}/info' , IdeaInfo::class )->name('idea.info');
 
             // Investor
-            Route::get('/find-investor', InvestmentForm::class)->name('investor.main');
-            Route::get('/investment/summary', InvestmentSummary::class)->name('investor.summary');
+            Route::get('/investor', InvestmentForm::class)->name('investor.main');
+            Route::get('/investment/{investment}/summary', InvestmentSummary::class)->name('investor.summary');
+            Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
         });
 
         // to make livewire3 work with localiaztion
