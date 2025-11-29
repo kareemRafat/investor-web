@@ -33,7 +33,7 @@
                         <div class="col-12" wire:key="investor-{{ $investor->id }}">
                             <div class="card border-0 shadow-sm rounded-8 position-relative">
 
-                                <div class="bg-custom position-absolute top-0 end-0 bg_idea_num rounded-circle m-1"
+                                <div class="bg-custom position-absolute top-0 end-0 bg_idea_num rounded-circle m-1 mt-4"
                                     style="background-color: #0d6efd; width: 30px; height: 30px;">
                                     <div class="d-flex align-items-center justify-content-center h-100">
                                         <span class="text-white fw-bold fs-6">
@@ -99,7 +99,7 @@
                                                         </h6>
                                                     </div>
 
-                                                    <div class="col-lg-5 col-md-6 col-12 p-4">
+                                                    <div class="col-lg-4 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
                                                             تتوفر الموارد التالية:
                                                         </h6>
@@ -129,6 +129,14 @@
                                                                 لا توجد موارد إضافية محددة.
                                                             @endif
                                                         </p>
+                                                    </div>
+
+                                                    <div class="col-md-1 col-12 ">
+
+                                                        <a class="btn underline d-flex gap-2 align-items-center">
+                                                            <span>More</span>
+                                                            <i class="bi bi-arrow-left fw-bold"></i>
+                                                        </a>
                                                     </div>
 
                                                 </div>
