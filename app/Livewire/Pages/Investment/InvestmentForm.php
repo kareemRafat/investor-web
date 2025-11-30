@@ -46,12 +46,17 @@ class InvestmentForm extends Component
 
     public function finish()
     {
+        $InvestorId = session('current_investor_id');
+
         session()->forget('current_investor_id');
 
         $this->currentStep = 1;
         $this->maxAllowedStep = 1;
 
-        return $this->redirect('/', navigate: true);
+        return $this->redirect(
+            route('investor.summary', ['investment' => $InvestorId]),
+            navigate: true
+        );
     }
 
     #[Title('Find Investor')]

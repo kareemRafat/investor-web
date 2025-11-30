@@ -68,7 +68,7 @@ Route::group(
             // Investor
             Route::get('/investor', InvestmentForm::class)->name('investor.main');
             Route::get('/investment/{investment}/summary', InvestmentSummary::class)->name('investor.summary');
-            Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
+            // Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
         });
 
         // to make livewire3 work with localiaztion

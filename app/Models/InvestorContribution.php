@@ -34,4 +34,10 @@ class InvestorContribution extends Model
 
         return __('investor.steps.step5.money_contribution_ranges.amount_' . $this->money_contributions);
     }
+
+    public function contributionRange()
+    {
+        return $this->belongsTo(CostProfitRange::class, 'money_contributions')
+            ->where('type', 'money_contribution');
+    }
 }
