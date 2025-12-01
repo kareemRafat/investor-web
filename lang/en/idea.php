@@ -335,5 +335,20 @@ return [
             'visibility_in'       => 'The selected visibility option is invalid.',
         ],
 
+    ],
+    'summary' => [
+        'page_title' => 'Details For your Idea',
+        'welcome_title' => 'Mr.',
+        'welcome_message' => 'Your idea has been added to the Ideas Fund. We hope you find the right partner to implement it according to your requirements.',
+        'matching_title' => 'The list below contains investment offers that match or are close to the requirements of implementing your idea. We hope you find the suitable one:',
+        'investor_field_title' => 'Investor in Sector:',
+        'capital_offered' => 'Offered Capital',
+        'desired_country' => 'Preferred execution in:',
+        'resources_title' => 'The following resources are available:',
+        'resources_empty' => 'No additional resources available.',
+        'btn_more' => 'More',
+        'btn_show_more' => 'Show More',
+        'loading' => 'Loading...',
+        'no_offers' => 'There are currently no investment offers fully matching your idea, but you will be notified once an interested investor appears.',
     ]
 ];

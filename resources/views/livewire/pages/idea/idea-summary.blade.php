@@ -6,7 +6,7 @@
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    ملخص استثمارك المميز
+                    {{ __('idea.summary.page_title') }}
                 </h5>
             </div>
 
@@ -14,18 +14,16 @@
 
                 <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
                     <div class="mb-2">
-                        <strong>السيد: {{ auth()->user()->name ?? 'المستخدم' }}</strong>
+                        <strong>{{ __('idea.summary.welcome_title') }} {{ auth()->user()->name ?? 'المستخدم' }}</strong>
                     </div>
                     <h6 class="fw-bold mb-0">
-                        لقد تم إدراج فكرتك في صندوق الأفكار، نتمنى أن تجد الطرف المناسب
-                        لتنفيذها وفق متطلباتك.
+                        {{ __('idea.summary.welcome_message') }}
                     </h6>
                 </div>
 
                 <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
                     <h6 class="fw-bold mb-0">
-                        القائمة أدناه تحتوي على العروض الاستثمارية المتوافقة / القريبة من متطلبات تنفيذ فكرتك، نأمل أن
-                        تجد المناسب منها:
+                        {{ __('idea.summary.matching_title') }}
                     </h6>
                 </div>
 
@@ -35,12 +33,12 @@
                         <div class="col-12" wire:key="investor-{{ $investor->id }}">
                             <div class="card border-0 shadow-sm rounded-8 position-relative">
 
-                                <div class="bg-custom position-absolute top-0 end-0 bg_idea_num rounded-circle m-1 mt-4"
+                                <div class="bg-custom position-absolute
+                                    {{ app()->getLocale() === 'ar' ? 'top-0 end-0' : '' }}
+                                    bg_idea_num rounded-circle m-1"
                                     style="background-color: #0d6efd; width: 30px; height: 30px;">
                                     <div class="d-flex align-items-center justify-content-center h-100">
-                                        <span class="text-white fw-bold fs-6">
-                                            {{ $loop->iteration }}
-                                        </span>
+                                        <span class="text-white fw-bold fs-6">{{ $loop->iteration }}</span>
                                     </div>
                                 </div>
 
@@ -52,7 +50,7 @@
 
                                                     <div class="col-lg-3 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 d-flex flex-column gap-3">
-                                                            <span> مستثمر في قطاع: </span>
+                                                            <span>{{ __('idea.summary.investor_field_title') }}</span>
                                                             <span
                                                                 class="text-primary">{{ __("idea.steps.step1.options.{$investor->investor_field}") }}</span>
 
@@ -62,7 +60,8 @@
                                                     <div
                                                         class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
                                                         <h6 class="fw-bold mb-2">
-                                                            رأس المال المعروض =
+                                                            {{ __('idea.summary.capital_offered') }} =
+
                                                             <span class="text-success" dir="ltr">
                                                                 @php
                                                                     $contributionLabel =
@@ -78,7 +77,7 @@
                                                             </span>
                                                         </h6>
                                                         <h6 class="fw-bold mb-0 mt-3">
-                                                            مرغوب فى تنفيذه فى:
+                                                            {{ __('idea.summary.desired_country') }}
                                                             <span class="text-muted small">
                                                                 @forelse($investor->countries as $country)
                                                                     @php
@@ -103,7 +102,7 @@
 
                                                     <div class="col-lg-4 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
-                                                            تتوفر الموارد التالية:
+                                                            {{ __('idea.summary.resources_title') }}
                                                         </h6>
                                                         <p class="text-muted small mt-2 mb-0">
                                                             @php
@@ -131,7 +130,7 @@
                                                             @if (count($resources) > 0)
                                                                 {{ implode('، ', $resources) }}
                                                             @else
-                                                                لا توجد موارد إضافية محددة.
+                                                                {{ __('idea.summary.resources_empty') }}
                                                             @endif
                                                         </p>
                                                     </div>
@@ -141,8 +140,12 @@
                                                         <a class="btn underline d-flex gap-2 align-items-center text-primary"
                                                             wire:navigate
                                                             href="{{ route('investor.info', $investor->id) }}">
-                                                            <span>More</span>
-                                                            <i class="bi bi-arrow-left fw-bold"></i>
+                                                            <span>{{ __('idea.summary.btn_more') }}</span>
+                                                            @if (app()->getLocale() === 'ar')
+                                                                <i class="bi bi-arrow-left fw-bold mt-1"></i>
+                                                            @else
+                                                                <i class="bi bi-arrow-right fw-bold mt-1"></i>
+                                                            @endif
                                                         </a>
                                                     </div>
 
@@ -156,8 +159,7 @@
                     @empty
                         <div class="col-12">
                             <div class="alert alert-warning text-center">
-                                لا توجد عروض استثمارية مطابقة تماماً لفكرتك حالياً، ولكن سيتم إشعارك فور توفر مستثمر
-                                مهتم.
+                                {{ __('idea.summary.no_offers') }}
                             </div>
                         </div>
                     @endforelse
@@ -169,10 +171,11 @@
                         <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
                             class="btn btn-primary py-3 px-4">
                             <span class="small fw-bold" wire:loading.remove>
-                                عرض المزيد
+                                {{ __('idea.summary.btn_show_more') }}
                             </span>
+
                             <span class="small fw-bold" wire:loading>
-                                جاري التحميل...
+                                {{ __('idea.summary.loading') }}
                             </span>
                         </button>
                     </div>
