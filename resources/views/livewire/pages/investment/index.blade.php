@@ -39,24 +39,37 @@
                                                     class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
                                                     <h6 class="fw-bold mb-2">
                                                         <span class="d-block mb-2">رأس المال المعروض =</span>
-                                                        @if ($investor->contributions && $investor->contributions->money_amount)
+
+                                                        @php
+                                                            $contribution = $investor->contributions;
+                                                            $moneyLabel = null;
+
+                                                            if ($contribution) {
+                                                                if (
+                                                                    $contribution->relationLoaded(
+                                                                        'contributionRange',
+                                                                    ) &&
+                                                                    $contribution->contributionRange
+                                                                ) {
+                                                                }
+                                                                // جرب الـ accessor
+                                                                elseif ($contribution->money_contributions) {
+                                                                    $moneyLabel = $contribution->getMoneyContributionLabelAttribute();
+                                                                }
+                                                            }
+                                                        @endphp
+                                                        @if ($moneyLabel)
                                                             <span class="text-success">
-                                                                {{ number_format($investor->contributions->money_amount, 2) }}
-                                                                ريال
+                                                                {{ str_replace('<br>', '', $moneyLabel) }}
                                                             </span>
-                                                            @if ($investor->contributions->money_percent)
-                                                                <span class="text-muted small">
-                                                                    ({{ $investor->contributions->money_percent }}%)
-                                                                </span>
-                                                            @endif
                                                         @else
                                                             <span class="text-muted">غير محدد</span>
                                                         @endif
                                                     </h6>
 
                                                     <h6 class="fw-bold mb-0 mt-3">
-                                                        <span class="ms-2"> مرغوب فى تنفيذه فى</span>
-                                                        <span class="text-muted small" style="line-height: 20px">
+                                                        مرغوب فى تنفيذه فى
+                                                        <span class="text-muted small" style="line-height: 25px">
                                                             @forelse($investor->countries as $country)
                                                                 @php
                                                                     $options = __('investor.steps.step2.options');
@@ -138,7 +151,7 @@
                                                 <!-- زر تفاصيل -->
                                                 <div class="col-md-1 col-12">
                                                     <a class="btn underline d-flex gap-2 align-items-center text-primary"
-                                                        wire:navigate href="#">
+                                                        wire:navigate href="{{ route('investor.info', $investor->id) }}">
                                                         <span>تفاصيل</span>
                                                         <i class="bi bi-arrow-left fw-bold mt-1"></i>
                                                     </a>

@@ -26,7 +26,7 @@ class Index extends Component
             return;
         }
 
-        $newInvestors = Investor::with(['resources', 'contributions', 'countries'])
+        $newInvestors = Investor::with(['resources', 'contributions.contributionRange', 'countries'])
             ->when($this->lastId !== null, fn($q) => $q->where('id', '<', $this->lastId))
             ->orderByDesc('id')
             ->limit($this->perPage + 1)

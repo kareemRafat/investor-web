@@ -75,7 +75,7 @@
 
                                                         <h6 class="fw-bold mb-0 mt-3">
                                                             مرغوب فى تنفيذه فى
-                                                            <span class="text-muted small" style="line-height: 20px">
+                                                            <span class="text-muted small" style="line-height: 25px">
 
                                                                 @forelse($idea->countries as $country)
                                                                     @php
