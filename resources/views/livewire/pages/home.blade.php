@@ -65,7 +65,7 @@
                             class="img-fluid mx-auto" width="120" height="140" />
                     </div>
                 </div>
-                <a href="/investor-search.html" aria-label="Find an Investor" title="Find an Investor" type="button"
+                <a href="{{ route('investor.index') }}" aria-label="Find an Investor" title="Find an Investor" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
                         {{ __('pages/mainpage.find_investor') }}

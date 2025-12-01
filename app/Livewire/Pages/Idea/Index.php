@@ -10,8 +10,6 @@ class Index extends Component
 {
     public $limit = 5;
 
-    protected $listeners = ['load-more' => 'loadMore'];
-
     public function loadMore()
     {
         $this->limit += 5;
@@ -24,7 +22,7 @@ class Index extends Component
             ->latest()
             ->take($this->limit)
             ->get();
-            
+
         return view('livewire.pages.idea.index', [
             'ideas' => $ideas,
         ]);

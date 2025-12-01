@@ -50,15 +50,32 @@
                                                         class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
 
                                                         <h6 class="fw-bold mb-2">
-                                                            رأس المال المعروض =
-                                                            <span class="text-success" dir="ltr">
-                                                                {{ number_format($idea->capital, 0) }} SAR
-                                                            </span>
+                                                            <span class="d-block mb-2"> رأس المال المعروض =</span>
+                                                            @php
+                                                                $cost = $idea->costs->first();
+                                                                $range = $cost?->range;
+                                                                $label = null;
+                                                                if ($range) {
+                                                                    $label =
+                                                                        app()->getLocale() === 'ar'
+                                                                            ? $range->label_ar
+                                                                            : $range->label_en;
+                                                                    $label = str_replace('<br>', '', $label);
+                                                                }
+                                                            @endphp
+
+                                                            @if ($label)
+                                                                <span
+                                                                    class="text-success">{!! $label !!}</span>
+                                                            @else
+                                                                {{ __('idea.summary.not_defined') }}
+                                                            @endif
                                                         </h6>
+
 
                                                         <h6 class="fw-bold mb-0 mt-3">
                                                             مرغوب فى تنفيذه فى
-                                                            <span class="text-muted small">
+                                                            <span class="text-muted small" style="line-height: 20px">
 
                                                                 @forelse($idea->countries as $country)
                                                                     @php
