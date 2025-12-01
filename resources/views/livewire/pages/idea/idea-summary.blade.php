@@ -78,7 +78,7 @@
                                                         <h6 class="fw-bold mb-0 mt-3">
                                                             مرغوب فى تنفيذه فى:
                                                             <span class="text-muted small">
-                                                                @forelse($idea->countries as $country)
+                                                                @forelse($investor->countries as $country)
                                                                     @php
                                                                         $options = __('idea.steps.step2.options');
                                                                         $countryOption = collect($options)->firstWhere(
@@ -136,7 +136,7 @@
 
                                                     <div class="col-md-1 col-12 ">
 
-                                                        {{-- <a class="btn underline d-flex gap-2 align-items-center" wire:navigate href="{{ route('investor.info' , request('idea')) }}"> --}}
+                                                        <a class="btn underline d-flex gap-2 align-items-center" wire:navigate href="{{ route('investor.info' , $investor->id) }}">
                                                             <span>More</span>
                                                             <i class="bi bi-arrow-left fw-bold"></i>
                                                         </a>
