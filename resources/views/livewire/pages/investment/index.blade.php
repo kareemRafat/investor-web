@@ -160,14 +160,15 @@
             </div>
 
             <!-- زر تحميل المزيد -->
-            @if ($investors->count() >= $limit)
+            @if ($hasMore)
                 <div class="d-flex align-items-center gap-2 justify-content-center mt-4">
-                    <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
+                    <button type="button" wire:click="loadMore" wire:loading.attr="disabled" wire:target="loadMore"
                         class="btn btn-primary py-2 px-4">
-                        <span class="small fw-bold" wire:loading.remove>
+                        <span class="small fw-bold" wire:loading.remove wire:target="loadMore">
                             عرض المزيد
                         </span>
-                        <span class="small fw-bold" wire:loading>
+                        <span class="small fw-bold" wire:loading wire:target="loadMore">
+                            <span class="spinner-border spinner-border-sm me-2"></span>
                             جاري التحميل...
                         </span>
                     </button>

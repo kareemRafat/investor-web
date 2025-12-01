@@ -170,7 +170,7 @@
                 </div>
 
                 <!-- زر تحميل المزيد -->
-                @if ($ideas->count() >= $limit)
+                @if($hasMore)
                     <div class="d-flex align-items-center gap-2 justify-content-center my-4">
                         <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
                             class="btn btn-primary py-3 px-4">
