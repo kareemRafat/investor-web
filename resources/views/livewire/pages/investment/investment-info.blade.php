@@ -4,7 +4,7 @@
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-semibold text-center">
-                    ملخص استثمارك المميز
+                    {{ __('investor.summary.title') }}
                 </h5>
             </div>
             <div class=" bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
@@ -218,6 +218,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            {{-- التواصل مع صاحب الفكرة --}}
+            <div class="d-flex justify-content-center w-100 mt-4">
+                <a href="#" class="btn btn-primary rounded-4 py-3 px-5 w-100"
+                    title="{{ __('investor.summary.contact_owner') }}"
+                    aria-label="{{ __('investor.summary.contact_owner') }}">
+                    <span class="fw-semibold">
+                        {{ __('investor.summary.contact_owner') }}
+                    </span>
+                </a>
             </div>
         </div>
     </div>

@@ -350,5 +350,8 @@ return [
         'btn_show_more' => 'Show More',
         'loading' => 'Loading...',
         'no_offers' => 'There are currently no investment offers fully matching your idea, but you will be notified once an interested investor appears.',
+        'contact_owner' => 'Contact the idea owner',
+        'title' => 'Idea summary',
+
     ]
 ];
