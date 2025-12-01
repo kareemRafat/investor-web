@@ -6,7 +6,7 @@
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    ملخص استثمارك المميز
+                    ملخص مشروع الإستثمار
                 </h5>
             </div>
 
@@ -41,7 +41,7 @@
                                 <div class="bg-custom position-absolute top-0 end-0 bg_idea_num rounded-circle m-1">
                                     <div class="d-flex align-items-center justify-content-center h-100">
                                         <span class="text-white fw-bold fs-6">
-                                            {{ $index + 1 }}
+                                            {{ $loop->iteration }}
                                         </span>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                                                     </div>
 
                                                     <!-- الموارد -->
-                                                    <div class="col-lg-5 col-md-6 col-12 p-4">
+                                                    <div class="col-lg-4 col-md-1 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
                                                             تتوفر الموارد التالية:
                                                             {{ $idea->resources
@@ -114,6 +114,15 @@
                                                                 )
                                                                 : 'لا يوجد بيانات موارد' }}
                                                         </h6>
+                                                    </div>
+
+                                                    <div class="col-md-1 col-12 p-4">
+
+                                                        <a class="btn underline d-flex gap-2 align-items-center text-primary"
+                                                            wire:navigate href="{{ route('idea.info', $idea->id) }}">
+                                                            <span>More</span>
+                                                            <i class="bi bi-arrow-left fw-bold"></i>
+                                                        </a>
                                                     </div>
 
                                                 </div>
@@ -136,10 +145,16 @@
                 </div>
 
                 <!-- زر عرض المزيد -->
-                @if ($amount < $matchingIdeas->count())
+                @if ($matchingIdeas->count() >= $amount)
                     <div class="d-flex align-items-center gap-2 justify-content-center my-4">
-                        <button type="button" class="btn btn-custom py-3 px-4" wire:click="loadMore">
-                            <span class="small fw-bold">عرض المزيد</span>
+                        <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
+                            class="btn btn-primary py-3 px-4">
+                            <span class="small fw-bold" wire:loading.remove>
+                                عرض المزيد
+                            </span>
+                            <span class="small fw-bold" wire:loading>
+                                جاري التحميل...
+                            </span>
                         </button>
                     </div>
                 @endif

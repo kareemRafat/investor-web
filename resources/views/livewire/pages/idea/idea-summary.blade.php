@@ -1,10 +1,12 @@
 <div class="container px-sm-0">
     <div class="row g-3 mb-3">
         <div class="col-12">
+
+            <!-- عنوان الصفحة -->
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    ملخص فكرتك المميزة
+                    ملخص استثمارك المميز
                 </h5>
             </div>
 
@@ -136,7 +138,9 @@
 
                                                     <div class="col-md-1 col-12 ">
 
-                                                        <a class="btn underline d-flex gap-2 align-items-center" wire:navigate href="{{ route('investor.info' , $investor->id) }}">
+                                                        <a class="btn underline d-flex gap-2 align-items-center text-primary"
+                                                            wire:navigate
+                                                            href="{{ route('investor.info', $investor->id) }}">
                                                             <span>More</span>
                                                             <i class="bi bi-arrow-left fw-bold"></i>
                                                         </a>
