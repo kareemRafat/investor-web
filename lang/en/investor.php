@@ -124,15 +124,6 @@ return [
         'step5' => [
             'subtitle' => 'The amounts that you own and would like to invest or participate in business with',
             'checkbox' => 'I do not wish to contribute any financial amounts',
-
-            /*
-            'financial_amounts' => 'Financial Amounts',
-            'amounts_of_money' => 'Amounts of money',
-            'resources' => 'Resources',
-            'financial_amounts_resources' => 'Financial Amounts + Resources',
-            'amounts_of_money_resources' => 'Amounts of money + Resources',
-            */
-
             'money_contribution_ranges' => [
                 'amount_1'  => '$1,000 to $5,000<br>(3,700 to 18,500 SAR)',
                 'amount_2'  => '$6,000 to $10,000<br>(22,200 to 37,000 SAR)',
@@ -258,5 +249,17 @@ return [
         'contact_owner' => 'Contact the investment offer owner',
         'title' => 'Investment offer summary',
 
-    ]
+    ],
+    'index' => [
+        'page_title' => 'Investment Fund',
+        'investor_field_title' => 'Investment sector:',
+        'capital_offered' => 'Offered capital',
+        'desired_country' => 'Preferred execution in',
+        'resources_title' => 'The following resources are available:',
+        'resources_empty' => 'No resources specified',
+        'btn_more' => 'Details',
+        'no_investors' => 'No investment requests at the moment',
+        'btn_show_more' => 'Show More',
+        'loading' => 'Loading...',
+    ],
 ];

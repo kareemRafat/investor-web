@@ -4,7 +4,7 @@
             <!-- عنوان الصفحة -->
             <div class="bg-light text-primary rounded-8 shadow-sm mb-3">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    صندوق الإستثمار
+                    {{ __('investor.index.page_title') }}
                 </h5>
             </div>
 
@@ -13,7 +13,9 @@
                     <div class="col-12" wire:key="investor-{{ $investor->id }}">
                         <div class="card border-0 shadow-sm rounded-8 position-relative">
                             <!-- index -->
-                            <div class="bg-custom position-absolute top-0 end-0 bg_idea_num rounded-circle m-1"
+                            <div class="bg-custom position-absolute
+                            {{ app()->getLocale() === 'ar' ? 'top-0 end-0' : '' }}
+                            bg_idea_num rounded-circle m-1"
                                 style="background-color: #0d6efd; width: 30px; height: 30px;">
                                 <div class="d-flex align-items-center justify-content-center h-100">
                                     <span class="text-white fw-bold fs-6">{{ $loop->iteration }}</span>
@@ -28,7 +30,7 @@
                                                 <!-- المجال الاستثماري -->
                                                 <div class="col-lg-3 col-md-6 col-12 p-4">
                                                     <h6 class="fw-bold mb-0 d-flex flex-column gap-3">
-                                                        <span>المجال الاستثماري:</span>
+                                                        <span>{{ __('investor.index.investor_field_title') }}</span>
                                                         <span
                                                             class="text-primary">{{ __("investor.steps.step1.options.{$investor->investor_field}") }}</span>
                                                     </h6>
@@ -38,7 +40,9 @@
                                                 <div
                                                     class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
                                                     <h6 class="fw-bold mb-2">
-                                                        <span class="d-block mb-2">رأس المال المعروض =</span>
+                                                        <span
+                                                            class="d-block mb-2">{{ __('investor.index.capital_offered') }}
+                                                            =</span>
 
                                                         @php
                                                             $contribution = $investor->contributions;
@@ -68,7 +72,7 @@
                                                     </h6>
 
                                                     <h6 class="fw-bold mb-0 mt-3">
-                                                        مرغوب فى تنفيذه فى
+                                                        {{ __('investor.index.desired_country') }}
                                                         <span class="text-muted small" style="line-height: 25px">
                                                             @forelse($investor->countries as $country)
                                                                 @php
@@ -94,7 +98,7 @@
                                                 <!-- الموارد -->
                                                 <div class="col-lg-4 col-md-6 col-12 p-4">
                                                     <h6 class="fw-bold mb-0 line-height-1">
-                                                        تتوفر الموارد التالية:
+                                                        {{ __('investor.index.resources_title') }}
                                                     </h6>
                                                     <p class="text-muted small mt-2 mb-0">
                                                         @php
@@ -143,7 +147,7 @@
                                                         @if (count($resources) > 0)
                                                             {{ implode('، ', $resources) }}
                                                         @else
-                                                            لا توجد موارد محددة
+                                                            {{ __('investor.index.resources_empty') }}
                                                         @endif
                                                     </p>
                                                 </div>
@@ -151,9 +155,14 @@
                                                 <!-- زر تفاصيل -->
                                                 <div class="col-md-1 col-12">
                                                     <a class="btn underline d-flex gap-2 align-items-center text-primary"
-                                                        wire:navigate href="{{ route('investor.info', $investor->id) }}">
-                                                        <span>تفاصيل</span>
-                                                        <i class="bi bi-arrow-left fw-bold mt-1"></i>
+                                                        wire:navigate
+                                                        href="{{ route('investor.info', $investor->id) }}">
+                                                        <span>{{ __('investor.index.btn_more') }}</span>
+                                                        @if (app()->getLocale() === 'ar')
+                                                            <i class="bi bi-arrow-left fw-bold mt-1"></i>
+                                                        @else
+                                                            <i class="bi bi-arrow-right fw-bold mt-1"></i>
+                                                        @endif
                                                     </a>
                                                 </div>
                                             </div>
@@ -166,7 +175,7 @@
                 @empty
                     <div class="col-12">
                         <div class="alert alert-warning text-center">
-                            لا توجد طلبات استثمار حالياً
+                            {{ __('investor.index.no_investors') }}
                         </div>
                     </div>
                 @endforelse
@@ -178,11 +187,11 @@
                     <button type="button" wire:click="loadMore" wire:loading.attr="disabled" wire:target="loadMore"
                         class="btn btn-primary py-2 px-4">
                         <span class="small fw-bold" wire:loading.remove wire:target="loadMore">
-                            عرض المزيد
+                            {{ __('investor.index.btn_show_more') }}
                         </span>
                         <span class="small fw-bold" wire:loading wire:target="loadMore">
                             <span class="spinner-border spinner-border-sm me-2"></span>
-                            جاري التحميل...
+                            {{ __('investor.index.loading') }}
                         </span>
                     </button>
                 </div>

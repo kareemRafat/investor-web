@@ -353,5 +353,17 @@ return [
         'contact_owner' => 'Contact the idea owner',
         'title' => 'Idea summary',
 
-    ]
+    ],
+    'index' => [
+        'page_title' => 'Ideas Fund',
+        'idea_field_title' => 'The idea is in the sector:',
+        'capital_offered' => 'Offered capital',
+        'desired_country' => 'Preferred execution in',
+        'resources_title' => 'The following resources are available:',
+        'resources_empty' => 'No additional resources available.',
+        'btn_more' => 'More',
+        'no_ideas' => 'No ideas available at the moment.',
+        'btn_show_more' => 'Show More',
+        'loading' => 'Loading...',
+    ],
 ];

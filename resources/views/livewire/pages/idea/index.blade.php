@@ -6,15 +6,12 @@
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    صندوق الأفكار
+                    {{ __('idea.index.page_title') }}
                 </h5>
             </div>
 
             <div class="d-flex flex-column gap-3">
-
-
                 <div class="row mx-0 px-0 g-2">
-
                     @forelse($ideas as $idea)
                         <div class="col-12" wire:key="idea-{{ $idea->id }}">
                             <div class="card border-0 shadow-sm rounded-8 position-relative">
@@ -38,7 +35,7 @@
                                                     <!-- عنوان الفكرة / المجال -->
                                                     <div class="col-lg-3 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 d-flex flex-column gap-3">
-                                                            <span>الفكرة مقدمة في قطاع:</span>
+                                                            <span>{{ __('idea.index.idea_field_title') }}</span>
 
                                                             <span
                                                                 class="text-primary">{{ __("idea.steps.step1.options.{$idea->idea_field}") }}</span>
@@ -50,7 +47,8 @@
                                                         class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
 
                                                         <h6 class="fw-bold mb-2">
-                                                            <span class="d-block mb-2"> رأس المال المعروض =</span>
+                                                            <span class="d-block mb-2">
+                                                                {{ __('idea.index.capital_offered') }} = </span>
                                                             @php
                                                                 $cost = $idea->costs->first();
                                                                 $range = $cost?->range;
@@ -74,7 +72,7 @@
 
 
                                                         <h6 class="fw-bold mb-0 mt-3">
-                                                            مرغوب فى تنفيذه فى
+                                                            {{ __('idea.index.desired_country') }} :
                                                             <span class="text-muted small" style="line-height: 25px">
 
                                                                 @forelse($idea->countries as $country)
@@ -102,7 +100,7 @@
                                                     <!-- الموارد -->
                                                     <div class="col-lg-4 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
-                                                            تتوفر الموارد التالية:
+                                                            {{ __('idea.index.resources_title') }} :
                                                         </h6>
 
                                                         <p class="text-muted small mt-2 mb-0">
@@ -132,7 +130,7 @@
                                                             @if (count($resources) > 0)
                                                                 {{ implode('، ', $resources) }}
                                                             @else
-                                                                {{ __('idea.summary.resources_empty') }}
+                                                                {{ __('idea.index.resources_empty') }}
                                                             @endif
                                                         </p>
                                                     </div>
@@ -141,7 +139,7 @@
                                                     <div class="col-md-1 col-12">
                                                         <a class="btn underline d-flex gap-2 align-items-center text-primary"
                                                             wire:navigate href="{{ route('idea.info', $idea->id) }}">
-                                                            <span>{{ __('idea.summary.btn_more') }}</span>
+                                                            <span> {{ __('idea.index.btn_more') }}</span>
 
                                                             @if (app()->getLocale() === 'ar')
                                                                 <i class="bi bi-arrow-left fw-bold mt-1"></i>
@@ -162,7 +160,7 @@
                     @empty
                         <div class="col-12">
                             <div class="alert alert-warning text-center">
-                                {{ __('idea.summary.no_offers') }}
+                                {{ __('idea.index.no_ideas') }}
                             </div>
                         </div>
                     @endforelse
@@ -170,16 +168,16 @@
                 </div>
 
                 <!-- زر تحميل المزيد -->
-                @if($hasMore)
+                @if ($hasMore)
                     <div class="d-flex align-items-center gap-2 justify-content-center my-4">
                         <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
                             class="btn btn-primary py-3 px-4">
                             <span class="small fw-bold" wire:loading.remove>
-                                {{ __('idea.summary.btn_show_more') }}
+                                {{ __('idea.index.btn_show_more') }}
                             </span>
 
                             <span class="small fw-bold" wire:loading>
-                                {{ __('idea.summary.loading') }}
+                                {{ __('idea.index.loading') }}
                             </span>
                         </button>
                     </div>
