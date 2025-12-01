@@ -6,7 +6,7 @@
                 <h6 class="fw-bold mb-3 text-dark">حول</h6>
                 <ul class="list-unstyled d-flex flex-column gap-2">
                     <li><x-footer-nav-link route="main.about" label="{{ __('header.about') }}" /></li>
-                    <li><a href="#" class="text-muted text-decoration-none small">صندوق الاستثمار</a></li>
+                    <li><x-footer-nav-link route="investor.index" label="{{ __('header.investment') }}" /></li>
                     <li><x-footer-nav-link route="main.terms" label="{{ __('header.terms') }}" /></li>
                     <li><x-footer-nav-link route="main.privacypolicy" label="{{ __('header.privacy') }}" /></li>
                     <li><x-footer-nav-link route="main.faq" label="{{ __('header.faq') }}" /></li>
@@ -26,6 +26,7 @@
             </div>
 
             <!-- More Section -->
+            <!--
             <div class="col-lg-3 col-md-6 col-12">
                 <h6 class="fw-bold mb-3 text-dark">المزيد من INVESTMENT</h6>
                 <ul class="list-unstyled d-flex flex-column gap-2">
@@ -36,6 +37,7 @@
                     <li><a href="#" class="text-muted text-decoration-none small">الأبحاث</a></li>
                 </ul>
             </div>
+            -->
 
             <!-- Categories Section -->
             <div class="col-lg-3 col-md-6 col-12">
