@@ -14,6 +14,8 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\Idea\IdeaForm;
 use App\Livewire\Pages\Idea\IdeaInfo;
 use App\Livewire\Pages\Idea\IdeaSummary;
+use App\Livewire\Pages\Idea\Index as IdeaIndex;
+use App\Livewire\Pages\Investment\Index as InvestmentIndex;
 use App\Livewire\Pages\PrivacyPolicy;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Investment\InvestmentForm;
@@ -61,12 +63,14 @@ Route::group(
 
 
             // Submit your Idea
-            Route::get('/ideas', IdeaForm::class)->name('ideas.main');
+            Route::get('/ideas' , IdeaIndex::class)->name('idea.index');
+            Route::get('/ideas/new', IdeaForm::class)->name('idea.main');
             Route::get('/ideas/{idea}/summary', IdeaSummary::class)->name('idea.summary');
             Route::get('/ideas/{idea}/info' , IdeaInfo::class )->name('idea.info');
 
             // Investor
-            Route::get('/investor', InvestmentForm::class)->name('investor.main');
+            Route::get('/investment' , InvestmentIndex::class)->name('investor.index');
+            Route::get('/investment/new', InvestmentForm::class)->name('investor.main');
             Route::get('/investment/{investment}/summary', InvestmentSummary::class)->name('investor.summary');
             Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
         });

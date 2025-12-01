@@ -11,7 +11,7 @@
                             width="120" height="140" />
                     </div>
                 </div>
-                <a href="{{ route('ideas.main') }}" wire:navigate aria-label="Submit Your Idea" title="Submit Your Idea" type="button"
+                <a href="{{ route('idea.main') }}" wire:navigate aria-label="Submit Your Idea" title="Submit Your Idea" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
                         {{ __('pages/mainpage.submit_idea') }}
@@ -47,7 +47,7 @@
                             width="120" height="140" />
                     </div>
                 </div>
-                <a href="/ideas_en.html" aria-label="Explore Ideas" title="Explore Ideas" type="button"
+                <a wire:navigate href="{{ route('idea.index') }}" aria-label="Explore Ideas" title="Explore Ideas" type="button"
                     class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
                     <span class="fs-6 fw-bold">
                         {{ __('pages/mainpage.explore_ideas') }}
@@ -189,11 +189,11 @@
                                 </div>
                             </div>
                             <!-- View All Ideas -->
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <a href="/ideas_en.html" class="btn bg-custom w-100 rounded-8 py-3">
                                     {{ __('pages/mainpage.view_all_ideas') }}
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -313,11 +313,11 @@
                                 </div>
                             </div>
                             <!-- Latest Investment Opportunities -->
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <a href="/investment_en.html" class="btn bg-custom w-100 rounded-8 py-3">
                                     {{ __('pages/mainpage.view_all_opportunities') }}
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
