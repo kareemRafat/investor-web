@@ -240,5 +240,20 @@ return [
         ],
 
 
+    ],
+    'summary' => [
+        'page_title' => 'Investment Project Summary',
+        'welcome_title' => 'Dear :',
+        'welcome_message' => 'Your distinguished investment has been successfully listed in the Investment Fund. We hope you will find the right partner to implement it according to your requirements.',
+        'matching_title' => 'The list below contains outstanding ideas that match or closely match your investment requirements. We hope you find the suitable one:',
+        'idea_field_title' => 'The idea is in the sector:',
+        'capital_expected' => 'Expected Capital',
+        'desired_country'  => 'Preferred Execution Country:',
+        'resources_available' => 'The following resources are available:',
+        'resources_empty'     => 'No resource data available',
+        'btn_more'   => 'More',
+        'btn_show_more' => 'Show More',
+        'loading'    => 'Loading...',
+        'no_ideas' => 'There are no ideas matching your investment at the moment.',
     ]
 ];

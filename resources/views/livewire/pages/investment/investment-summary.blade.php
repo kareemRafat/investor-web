@@ -6,7 +6,7 @@
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-bold text-center">
-                    ملخص مشروع الإستثمار
+                    {{ __('investor.summary.page_title') }}
                 </h5>
             </div>
 
@@ -15,19 +15,18 @@
                 <!-- رسالة الترحيب -->
                 <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
                     <div class="mb-2">
-                        <strong>السيد (الاسم المستعار):</strong>
+                        <strong>{{ __('investor.summary.welcome_title') }}
+                            {{ auth()->user()->name ?? 'المستخدم' }}</strong>
                     </div>
                     <h6 class="fw-bold mb-0">
-                        لقد تم إدراج استثمارك المميز في صندوق الإستثمار، نتمنى أن تجد الطرف المناسب لتنفيذه وفق
-                        متطلباتك.
+                        {{ __('investor.summary.welcome_message') }}
                     </h6>
                 </div>
 
                 <!-- رسالة الأفكار المتوافقة -->
                 <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
                     <h6 class="fw-bold mb-0">
-                        القائمة أدناه تحتوي على الأفكار المتميزة المتوافقة / القريبة من متطلبات تنفيذ استثمارك، نأمل
-                        أن تجد المناسب منها:
+                        {{ __('investor.summary.matching_title') }}
                     </h6>
                 </div>
 
@@ -38,7 +37,11 @@
                             <div class="card border-0 shadow-sm rounded-8 position-relative">
 
                                 <!-- index -->
-                                <div class="bg-custom position-absolute top-0 end-0 bg_idea_num rounded-circle m-1">
+                                <div
+                                    class="bg-custom position-absolute
+                                            {{ app()->getLocale() === 'ar' ? 'top-0 end-0' : '' }}
+                                            bg_idea_num rounded-circle m-1 d-flex">
+
                                     <div class="d-flex align-items-center justify-content-center h-100">
                                         <span class="text-white fw-bold fs-6">
                                             {{ $loop->iteration }}
@@ -55,7 +58,7 @@
                                                     <!-- عنوان الفكرة -->
                                                     <div class="col-lg-3 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 d-flex flex-column gap-3">
-                                                            <span> الفكرة مقدمة في قطاع: </span>
+                                                            <span>{{ __('investor.summary.idea_field_title') }}</span>
                                                             <span
                                                                 class="text-primary">{{ __("idea.steps.step1.options.{$idea->idea_field}") }}</span>
 
@@ -68,11 +71,14 @@
                                                         {{-- !! need attention --}}
 
                                                         <h6 class="fw-bold mb-2">
-                                                            رأس المال المتوقع = {{ 00 }}
+                                                            {{ __('investor.summary.capital_expected') }} =
+                                                            {{ 00 }}
                                                         </h6>
 
                                                         <h6 class="fw-bold mb-0 mt-3">
-                                                            مرغوب فى تنفيذه فى:
+                                                            <h6 class="fw-bold mb-0 mt-3">
+                                                                {{ __('investor.summary.desired_country') }}
+                                                            </h6>
                                                             <span class="text-muted small">
                                                                 @forelse($idea->countries as $country)
                                                                     @php
@@ -98,7 +104,8 @@
                                                     <!-- الموارد -->
                                                     <div class="col-lg-4 col-md-1 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
-                                                            تتوفر الموارد التالية:
+                                                            {{ __('investor.summary.resources_available') }}
+
                                                             {{ $idea->resources
                                                                 ? implode(
                                                                     '، ',
@@ -112,7 +119,7 @@
                                                                         $idea->resources->website == 'yes' ? 'موقع إلكتروني' : null,
                                                                     ]),
                                                                 )
-                                                                : 'لا يوجد بيانات موارد' }}
+                                                                : __('investor.summary.resources_empty') }}
                                                         </h6>
                                                     </div>
 
@@ -120,11 +127,15 @@
 
                                                         <a class="btn underline d-flex gap-2 align-items-center text-primary"
                                                             wire:navigate href="{{ route('idea.info', $idea->id) }}">
-                                                            <span>More</span>
-                                                            <i class="bi bi-arrow-left fw-bold"></i>
+                                                            <span>{{ __('investor.summary.btn_more') }}</span>
+                                                            @if (app()->getLocale() === 'ar')
+                                                                <i class="bi bi-arrow-left fw-bold mt-1"></i>
+                                                            @else
+                                                                <i class="bi bi-arrow-right fw-bold mt-1"></i>
+                                                            @endif
+
                                                         </a>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +148,7 @@
                         <div class="col-12">
                             <div class="bg-white rounded-8 shadow-sm p-4 text-center">
                                 <h6 class="fw-bold mb-0">
-                                    لا توجد أفكار متوافقة مع استثمارك حاليًا.
+                                    {{ __('investor.summary.no_ideas') }}
                                 </h6>
                             </div>
                         </div>
@@ -150,10 +161,11 @@
                         <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
                             class="btn btn-primary py-3 px-4">
                             <span class="small fw-bold" wire:loading.remove>
-                                عرض المزيد
+                                {{ __('investor.summary.btn_show_more') }}
                             </span>
+
                             <span class="small fw-bold" wire:loading>
-                                جاري التحميل...
+                                {{ __('investor.summary.loading') }}
                             </span>
                         </button>
                     </div>
