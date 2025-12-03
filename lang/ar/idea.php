@@ -343,5 +343,17 @@ return [
         'no_ideas' => 'لا توجد أفكار متاحة حالياً.',
         'btn_show_more' => 'عرض المزيد',
         'loading' => 'جاري التحميل...',
+
+        // Filters
+        'filter_field' => 'مجال الفكرة التي تبحث عنها',
+        'filter_countries' => 'أفضل الدول',
+        'filter_cost' => 'التكلفة التقديرية لتنفيذ الفكرة',
+        'filter_contribution' => 'مساهمتك في تنفيذ الفكرة تتمثل في',
+        'filter_requirements' => 'متطلباتك الخاصة مقابل الفكرة هي',
+        'filter_implementation' => 'متطلبات تنفيذ الفكرة',
+        'filter_distribution' => 'توزيع رأس المال المطلوب لتنفيذ الفكرة',
+        'filter_expected_profit' => 'الأرباح المتوقعة',
+
+        'btn_search' => 'بحث',
     ],
 ];

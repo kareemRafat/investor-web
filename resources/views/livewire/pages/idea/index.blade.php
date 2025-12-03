@@ -2,7 +2,7 @@
     <div class="row g-3 mb-3">
         <div class="col-12">
 
-            <!-- عنوان الصفحة -->
+            {{-- page Title --}}
             <div
                 class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
                 <h5 class="mb-0 p-3 fw-bold text-center">
@@ -11,6 +11,79 @@
             </div>
 
             <div class="d-flex flex-column gap-3">
+                <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
+                    <div class="row mb-3">
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-">
+                                <option selected disabled>{{ __('idea.index.filter_field') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-">
+                                <option selected disabled>{{ __('idea.index.filter_countries') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-">
+                                <option selected disabled>{{ __('idea.index.filter_cost') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-full">
+                                <option selected disabled>{{ __('idea.index.filter_contribution') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-full">
+                                <option selected disabled>{{ __('idea.index.filter_requirements') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-full">
+                                <option selected disabled>{{ __('idea.index.filter_implementation') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-full">
+                                <option selected disabled>{{ __('idea.index.filter_distribution') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-12 mb-2">
+                            <select class="form-select py-2 w-full">
+                                <option selected disabled>{{ __('idea.index.filter_expected_profit') }}</option>
+                                <option>خيار 1</option>
+                                <option>خيار 2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button class="btn w-25 bg-primary text-white rounded-8 shadow-sm text-center py-2">
+                            {{ __('idea.index.btn_search') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column gap-3 mt-4">
                 <div class="row mx-0 px-0 g-2">
                     @forelse($ideas as $idea)
                         <div class="col-12" wire:key="idea-{{ $idea->id }}">

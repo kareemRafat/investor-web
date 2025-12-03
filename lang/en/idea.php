@@ -365,5 +365,17 @@ return [
         'no_ideas' => 'No ideas available at the moment.',
         'btn_show_more' => 'Show More',
         'loading' => 'Loading...',
+
+        // Filters
+        'filter_field' => 'Field of the idea you are looking for',
+        'filter_countries' => 'Preferred countries',
+        'filter_cost' => 'Estimated cost to execute the idea',
+        'filter_contribution' => 'Your contribution to executing the idea consists of',
+        'filter_requirements' => 'Your special requirements for the idea are',
+        'filter_implementation' => 'Idea implementation requirements',
+        'filter_distribution' => 'Required capital distribution to implement the idea',
+        'filter_expected_profit' => 'Expected profits',
+
+        'btn_search' => 'Search',
     ],
 ];
