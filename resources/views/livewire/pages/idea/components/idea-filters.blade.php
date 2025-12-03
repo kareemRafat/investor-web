@@ -2,17 +2,21 @@
     <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
         <div class="row mb-3">
             <div class="col-md-4 col-12 mb-2">
-                <select class="form-select py-2 w-">
-                    <option selected disabled>{{ __('idea.index.filter_field') }}</option>
-                    <option>خيار 1</option>
-                    <option>خيار 2</option>
+                <select class="form-select py-2" wire:model.live="field">
+                     {{-- get Fields from translation files (no query Needed) --}}
+                    <option selected disabled value="">{{ __('idea.index.filter_field') }}</option>
+                    @foreach (__('idea.steps.step1.options', [], app()->getLocale()) as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-md-4 col-12 mb-2">
-                <select class="form-select py-2 w-">
-                    <option selected disabled>{{ __('idea.index.filter_countries') }}</option>
-                    <option>خيار 1</option>
-                    <option>خيار 2</option>
+                <select class="form-select py-2" wire:model.live="country">
+                    {{-- get Countries from translation files (no query Needed) --}}
+                    <option selected disabled value="">{{ __('idea.index.filter_countries') }}</option>
+                    @foreach (__('idea.steps.step2.options', [], app()->getLocale()) as $country)
+                        <option value="{{ $country['code'] }}">{{ $country['name'] }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-md-4 col-12 mb-2">
