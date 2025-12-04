@@ -348,11 +348,14 @@ return [
         'filter_field' => 'مجال الفكرة التي تبحث عنها',
         'filter_countries' => 'أفضل الدول',
         'filter_cost' => 'التكلفة التقديرية لتنفيذ الفكرة',
-        'filter_contribution' => 'مساهمتك في تنفيذ الفكرة تتمثل في',
-        'filter_requirements' => 'متطلباتك الخاصة مقابل الفكرة هي',
+        'filter_contribution' => 'مساهمتك في تنفيذ الفكرة ',
+        'filter_requirements' => 'متطلباتك الخاصة مقابل الفكرة ',
         'filter_implementation' => 'متطلبات تنفيذ الفكرة',
         'filter_distribution' => 'توزيع رأس المال المطلوب لتنفيذ الفكرة',
         'filter_expected_profit' => 'الأرباح المتوقعة',
+
+        'one_time_cost' => 'تكلفة مرة واحدة',
+        'annual_cost' => 'تكلفة سنوية',
 
         'btn_search' => 'بحث',
     ],
