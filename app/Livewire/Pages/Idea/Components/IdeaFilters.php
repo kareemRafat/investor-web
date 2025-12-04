@@ -11,11 +11,21 @@ class IdeaFilters extends Component
     public $field = "";
     public $country = "";
     public $costRanges = '';
-    public $contributionType = '' ;
+    public $contributionType = '';
 
     public function mount()
     {
         $this->loadCostRanges();
+    }
+
+    public function search()
+    {
+        $this->dispatch(
+            'filters-changed',
+            field: $this->field,
+            country: $this->country,
+            cost_range: $this->costRanges
+        );
     }
 
     protected function loadCostRanges()

@@ -4,7 +4,7 @@
             <div class="col-md-6 col-12 mb-2">
                 <select class="form-select py-2" wire:model.live="field">
                     {{-- get Fields from translation files (no query Needed) --}}
-                    <option selected disabled value="">{{ __('idea.index.filter_field') }}</option>
+                    <option selected  value="">{{ __('idea.index.filter_field') }}</option>
                     @foreach (__('idea.steps.step1.options') as $key => $value)
                         <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
@@ -13,7 +13,7 @@
             <div class="col-md-6 col-12 mb-2">
                 <select class="form-select py-2" wire:model.live="country">
                     {{-- get Countries from translation files (no query Needed) --}}
-                    <option selected disabled value="">{{ __('idea.index.filter_countries') }}</option>
+                    <option selected  value="">{{ __('idea.index.filter_countries') }}</option>
                     @foreach (__('idea.steps.step2.options') as $country)
                         <option value="{{ $country['code'] }}">{{ $country['name'] }}</option>
                     @endforeach
@@ -61,7 +61,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <button class="btn w-25 bg-primary text-white rounded-8 shadow-sm text-center py-2">
+            <button wire:click="search" class="btn w-25 bg-primary text-white rounded-8 shadow-sm text-center py-2">
                 {{ __('idea.index.btn_search') }}
             </button>
         </div>

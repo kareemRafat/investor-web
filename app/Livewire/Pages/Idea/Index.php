@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Idea;
 
 use App\Models\Idea;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Collection;
 
@@ -11,8 +12,13 @@ class Index extends Component
 {
     public Collection $ideas;
     public bool $hasMore = true;
-    public ?int $lastId = null;// مؤشر الصفحة التالية
-    public int $perPage = 5;
+    public ?int $lastId = null; // مؤشر الصفحة التالية
+    public int $perPage = 1;
+
+    // Filters
+    public $field = null;
+    public $country = null;
+    public $cost_range = null;
 
     public function mount(): void
     {
@@ -20,43 +26,85 @@ class Index extends Component
         $this->loadMore();
     }
 
+    #[On('filters-changed')]
+    public function applyFilters($field, $country, $cost_range)
+    {
+        $this->field = $field;
+        $this->country = $country;
+        $this->cost_range = $cost_range;
+
+        // إعادة ضبط الباجينيشن
+        $this->ideas = collect();
+        $this->lastId = null;
+        $this->hasMore = true;
+
+        // تحميل الصفحة الأولى بالفلترة
+        $this->loadMore();
+    }
+
     public function loadMore(): void
     {
-        // لو خلّصت الصفحات، متعملش حاجة
         if (!$this->hasMore) {
             return;
         }
 
-        $newIdeas = Idea::with(['costs.range', 'profits.range', 'resources'])
+        $query = Idea::query()
+            ->with(['costs.range', 'profits.range', 'resources'])
             ->when($this->lastId !== null, fn($q) => $q->where('id', '<', $this->lastId))
-            ->orderByDesc('id') // ترتيب ثابت وسريع (يستخدم index)
-            ->limit($this->perPage + 1)// +1 عشان نعرف فيه تكملة ولا لأ
+
+            // فلتر field
+            ->when(
+                $this->field,
+                fn($q) =>
+                $q->where('idea_field', $this->field)
+            )
+
+            // فلتر cost_range (Idea → has costs → where range_id = selected)
+            ->when(
+                $this->cost_range,
+                fn($q) =>
+                $q->whereHas(
+                    'costs',
+                    fn($c) =>
+                    $c->where('range_id', $this->cost_range)
+                )
+            )
+
+            // فلتر country (polymorphic)
+            ->when(
+                $this->country,
+                fn($q) =>
+                $q->whereHas(
+                    'countries',
+                    fn($countryQuery) =>
+                    $countryQuery->where('country', $this->country)
+                )
+            )
+
+            ->orderByDesc('id')
+            ->limit($this->perPage + 1)
             ->get();
 
-        // لو مفيش نتايج → خلّصنا
-        if ($newIdeas->isEmpty()) {
+        if ($query->isEmpty()) {
             $this->hasMore = false;
             return;
         }
 
-        // نشوف فيه صفحة جاية ولا لأ
-        $hasNextPage = $newIdeas->count() > $this->perPage;
+        $hasNext = $query->count() > $this->perPage;
 
-        if ($hasNextPage) {
-            $newIdeas->pop(); // نشيل العنصر الزيادة
+        if ($hasNext) {
+            $query->pop();
         } else {
             $this->hasMore = false;
         }
 
-        // نضيف الأفكار الجديدة للقايمة
-        $this->ideas = $this->ideas->merge($newIdeas);
+        // دمج النتائج
+        $this->ideas = $this->ideas->merge($query);
 
-        // نحفظ آخر id عشان الصفحة الجاية (آمن 100%)
-        $this->lastId = $newIdeas->last()->id ?? null;
-
-        // لو مفيش تكملة → نقفل الباب
-        $this->hasMore = $hasNextPage;
+        // تحديث آخر ID
+        $this->lastId = $query->last()->id ?? null;
     }
+
 
     #[Title('Explore Ideas')]
     public function render()
