@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-6 col-12 mb-2">
                 <select class="form-select py-2 w-full" wire:model.live="contributionType">
-                    <option selected disabled value="">{{ __('idea.index.filter_contribution') }}</option>
+                    <option selected value="">{{ __('idea.index.filter_contribution') }}</option>
                     <option value="sell">{{ __('idea.steps.step7.sell') }}</option>
                     <option value="idea">{{ __('idea.steps.step7.idea') }}</option>
                     <option value="capital">{{ __('idea.steps.step7.capital') }}</option>

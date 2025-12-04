@@ -19,19 +19,27 @@ class Index extends Component
     public $field = null;
     public $country = null;
     public $cost_range = null;
+    public $contributionType = null;
 
     public function mount(): void
     {
+        // Read filter first from query string
+        $this->field = request()->query('field', '');
+        $this->country = request()->query('country', '');
+        $this->cost_range = request()->query('cost_range', '');
+        $this->contributionType = request()->query('contributionType', '');
+
         $this->ideas = collect();
         $this->loadMore();
     }
 
     #[On('filters-changed')]
-    public function applyFilters($field, $country, $cost_range)
+    public function applyFilters($field, $country, $cost_range, $contributionType)
     {
         $this->field = $field ?: null;
         $this->country = $country ?: null;
         $this->cost_range = $cost_range ?: null;
+        $this->contributionType = $contributionType ?: null;
 
         $this->ideas = collect();
         $this->lastId = null;
@@ -84,6 +92,16 @@ class Index extends Component
                 )
             )
 
+            // contributions
+            ->when(
+                $this->contributionType,
+                fn($q) =>
+                $q->whereHas(
+                    'contributions',
+                    fn($c) =>
+                    $c->where('contribute_type', $this->contributionType)
+                )
+            )
             ->orderByDesc('id')
             ->limit($this->perPage + 1)
             ->get();
