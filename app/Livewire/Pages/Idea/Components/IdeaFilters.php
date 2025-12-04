@@ -45,6 +45,12 @@ class IdeaFilters extends Component
         $this->dispatchFilters();
     }
 
+    public function resetFilters()
+    {
+        $this->reset('field', 'country', 'cost_range', 'contributionType');
+        $this->dispatchFilters();
+    }
+
     protected function loadCostRanges()
     {
         $locale = app()->getLocale();

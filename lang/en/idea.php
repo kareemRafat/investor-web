@@ -380,5 +380,7 @@ return [
         'annual_cost' => 'Annual Cost',
 
         'btn_search' => 'Search',
+        'reset' => 'Reset',
+        'filters' => 'Filters',
     ],
 ];

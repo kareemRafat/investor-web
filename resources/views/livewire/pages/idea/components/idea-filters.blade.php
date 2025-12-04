@@ -1,6 +1,17 @@
 <div class="d-flex flex-column gap-3">
     <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
         <div class="row mb-3">
+            <div class="d-flex justify-content-between text-primary">
+                <div class="d-flex gap-2">
+                    <i class="bi bi-filter mt-1"></i>
+                    <h5 class="fw-bold">{{ __('idea.index.filters') }}</h5>
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <a wire:click="resetFilters" class="text-secondary small mb-3 text-end rounded-8 cursor-pointer">
+                        {{ __('idea.index.reset') }}
+                    </a>
+                </div>
+            </div>
             <div class="col-md-6 col-12 mb-2">
                 <select class="form-select py-2" wire:model.live="field">
                     {{-- get Fields from translation files (no query Needed) --}}

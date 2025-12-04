@@ -358,5 +358,7 @@ return [
         'annual_cost' => 'تكلفة سنوية',
 
         'btn_search' => 'بحث',
+        'reset' => 'إعادة ضبط',
+        'filters' => 'التصفيات',
     ],
 ];
