@@ -37,12 +37,44 @@
                     </li>
                 </ul>
             </nav>
-            <div class="d-none d-xl-flex gap-2">
-                <!-- logout button -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="btn btn-primary rounded-4" type="submit">{{ __('header.logout') }}</button>
-                </form>
+            <div class="d-none d-xl-flex gap-2 align-items-center">
+                <!-- Profile Dropdown -->
+                <div class="dropdown">
+                    <button class="btn text-primary rounded-4 d-flex align-items-center gap-2 dropdown-toggle"
+                            type="button"
+                            id="profileDropdown"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            title="User Profile">
+                        <!-- User Icon -->
+                        <i class="bi bi-person-circle fs-5"></i>
+                        <span class="d-none d-lg-inline">{{ auth()->user()->name ?? __('header.profile') }}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-8 p-2 mt-2"
+                        aria-labelledby="profileDropdown">
+                        <!-- Profile Link -->
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-1 px-3 rounded-6"
+                               href="#" wire:navigate>
+                                <i class="bi bi-person-fill text-primary"></i>
+                                <span>{{ __('header.profile') }}</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider my-2"></li>
+                        <!-- Logout Form -->
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}" id="logoutForm">
+                                @csrf
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-1 px-3 rounded-6 text-danger"
+                                   href="#"
+                                   onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>{{ __('header.logout') }}</span>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
                 <!-- language -->
                 <div class="dropdown">
                     <button class="btn text-primary dropdown-toggle" type="button" id="languageDropdown"
@@ -114,13 +146,29 @@
                         </div>
                     </nav>
                     <div class="d-flex flex-column gap-3 mt-4">
-                        <!-- login button -->
-                        <a href="/login_en.html" class="btn btn-primary rounded-4 py-3" title="login"
-                            aria-label="login">
-                            <span class="small fw-semibold">
-                                Login
-                            </span>
-                        </a>
+                        <!-- User Profile Section in Mobile Menu -->
+                        <div class="border-top pt-3">
+                            <h6 class="text-muted mb-3">{{ __('header.user_account') }}</h6>
+                            <ul class="list-unstyled d-flex flex-column gap-3">
+                                <li>
+                                    <a href="#" class="text-dark d-flex align-items-center gap-2 py-2">
+                                        <i class="bi bi-person-fill fs-5 text-primary"></i>
+                                        <span>{{ __('header.profile') }}</span>
+                                    </a>
+                                </li>
+                                <li class="mt-2">
+                                    <form method="POST" action="{{ route('logout') }}" id="logoutFormMobile">
+                                        @csrf
+                                        <a class="btn btn-outline-danger rounded-4 w-100 d-flex align-items-center justify-content-center gap-2 py-3"
+                                           href="#"
+                                           onclick="event.preventDefault(); document.getElementById('logoutFormMobile').submit();">
+                                            <i class="bi bi-box-arrow-right fs-5"></i>
+                                            <span>{{ __('header.logout') }}</span>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

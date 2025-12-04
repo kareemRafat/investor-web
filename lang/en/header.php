@@ -19,5 +19,8 @@ return [
     'login'         => 'Login',
     'logout'         => 'Logout',
 
-
+    'profile' => 'Profile',
+    'dashboard' => 'Dashboard',
+    'settings' => 'Settings',
+    'user_account' => 'user Account'
 ];
