@@ -17,6 +17,7 @@ return [
         'continue'       => 'Continue',
         'new_user'       => 'New user?',
         'signup'         => 'Sign up now',
+        'remember_me'    => 'Remember me',
     ],
     "register" => [
         'welcome' => 'Welcome back 👋',

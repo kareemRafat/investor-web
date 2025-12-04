@@ -79,6 +79,12 @@
                                 ? $errorTranslations[$passwordError][app()->getLocale()] ?? $passwordError
                                 : null" />
                         <div class="d-flex mb-3">
+                            <input type="checkbox" id="remember" name="remember" class="form-check-input me-2" />
+                            <label for="remember" class="form-check-label me-2 small text-muted">
+                                {{ __('pages.login.remember_me') }}
+                            </label>
+                        </div>
+                        <div class="d-flex mb-3">
                             <a href="{{ route('forgot-password') }}" wire:navigate
                                 class="text-decoration-none text-danger small">
                                 {{ __('pages.login.forgot') }}
