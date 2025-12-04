@@ -13,7 +13,7 @@ class Index extends Component
     public Collection $ideas;
     public bool $hasMore = true;
     public ?int $lastId = null; // مؤشر الصفحة التالية
-    public int $perPage = 1;
+    public int $perPage = 5;
 
     // Filters
     public $field = null;
@@ -29,16 +29,14 @@ class Index extends Component
     #[On('filters-changed')]
     public function applyFilters($field, $country, $cost_range)
     {
-        $this->field = $field;
-        $this->country = $country;
-        $this->cost_range = $cost_range;
+        $this->field = $field ?: null;
+        $this->country = $country ?: null;
+        $this->cost_range = $cost_range ?: null;
 
-        // إعادة ضبط الباجينيشن
         $this->ideas = collect();
         $this->lastId = null;
         $this->hasMore = true;
 
-        // تحميل الصفحة الأولى بالفلترة
         $this->loadMore();
     }
 
@@ -50,16 +48,21 @@ class Index extends Component
 
         $query = Idea::query()
             ->with(['costs.range', 'profits.range', 'resources'])
-            ->when($this->lastId !== null, fn($q) => $q->where('id', '<', $this->lastId))
 
-            // فلتر field
+            ->when(
+                $this->lastId !== null,
+                fn($q) =>
+                $q->where('id', '<', $this->lastId)
+            )
+
+            // field
             ->when(
                 $this->field,
                 fn($q) =>
                 $q->where('idea_field', $this->field)
             )
 
-            // فلتر cost_range (Idea → has costs → where range_id = selected)
+            // cost range (direct relation)
             ->when(
                 $this->cost_range,
                 fn($q) =>
@@ -70,14 +73,14 @@ class Index extends Component
                 )
             )
 
-            // فلتر country (polymorphic)
+            // country
             ->when(
                 $this->country,
                 fn($q) =>
                 $q->whereHas(
                     'countries',
-                    fn($countryQuery) =>
-                    $countryQuery->where('country', $this->country)
+                    fn($c) =>
+                    $c->where('country', $this->country)
                 )
             )
 

@@ -10,7 +10,8 @@ class IdeaFilters extends Component
 {
     public $field = "";
     public $country = "";
-    public $costRanges = '';
+    public $cost_range = '';
+    public $costRanges = ''; // for show only
     public $contributionType = '';
 
     public function mount()
@@ -24,7 +25,7 @@ class IdeaFilters extends Component
             'filters-changed',
             field: $this->field,
             country: $this->country,
-            cost_range: $this->costRanges
+            cost_range: $this->cost_range
         );
     }
 
@@ -34,19 +35,14 @@ class IdeaFilters extends Component
         $labelColumn = $locale === 'ar' ? 'label_ar' : 'label_en';
 
         $this->costRanges = \App\Models\CostProfitRange::query()
-            ->select('id', 'label_ar', 'label_en', 'type', 'min_value', 'max_value')
-            ->whereIn('type', ['one-time', 'annual']) // الاتنين دول هما التكاليف
-            ->orderBy('min_value', 'asc')
+            ->select('id', 'label_ar', 'label_en', 'type')
+            ->orderBy('id')
             ->get()
-            ->map(function ($range) use ($labelColumn) {
-                return [
-                    'id' => $range->id,
-                    'label' => $range->$labelColumn,
-                    'type' => $range->type,
-                    'min_value' => $range->min_value,
-                    'max_value' => $range->max_value,
-                ];
-            })
+            ->map(fn($range) => [
+                'id'    => $range->id,
+                'label' => $range->$labelColumn,
+                'type'  => $range->type,
+            ])
             ->toArray();
     }
 
