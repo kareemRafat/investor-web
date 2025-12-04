@@ -22,5 +22,6 @@ return [
     'profile' => 'الملف الشخصي',
     'dashboard' => 'لوحة التحكم',
     'settings' => 'الإعدادات',
-    'user_account' => 'حساب العميل'
+    'user_account' => 'حساب العميل',
+    'menu' => 'القائمة',
 ];

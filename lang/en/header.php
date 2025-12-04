@@ -22,5 +22,6 @@ return [
     'profile' => 'Profile',
     'dashboard' => 'Dashboard',
     'settings' => 'Settings',
-    'user_account' => 'user Account'
+    'user_account' => 'user Account',
+    'menu' => 'Menu',
 ];

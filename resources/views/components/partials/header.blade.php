@@ -102,7 +102,9 @@
             <!-- offcanvas menu -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
                 <div class="offcanvas-header border-bottom" dir="{{ app()->getLocale() == 'ar' ? 'ltr' : '' }}">
-                    <h5 class="offcanvas-title" id="offcanvasMenuLabel">menu</h5>
+                    <h5 class="offcanvas-title" id="offcanvasMenuLabel">
+                        {{ __('header.menu') }}
+                    </h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="close"></button>
                 </div>
