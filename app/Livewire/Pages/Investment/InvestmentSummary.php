@@ -18,7 +18,7 @@ class InvestmentSummary extends Component
         $this->investor = Investor::with(['resources', 'countries', 'contributions'])->findOrFail($investment);
 
         // جلب جميع الأفكار مع العلاقات اللازمة
-        $ideas = Idea::with(['resources', 'costs.range', 'countries'])->get();
+        $ideas = Idea::with(['resources', 'costs.range', 'countries' , 'contributions'])->get();
 
         // فلترة الأفكار حسب الأولويات
         $this->matchingIdeas = $ideas->filter(function ($idea) {

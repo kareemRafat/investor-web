@@ -76,10 +76,10 @@
                                                         </h6>
 
                                                         <h6 class="fw-bold mb-0 mt-3">
-                                                            <h6 class="fw-bold mb-0 mt-3">
+                                                            <h6 class="fw-bold mb-0 mt-3 d-inline-block">
                                                                 {{ __('investor.summary.desired_country') }}
                                                             </h6>
-                                                            <span class="text-muted small">
+                                                            <span class="text-muted small" style="line-height: 25px">
                                                                 @forelse($idea->countries as $country)
                                                                     @php
                                                                         $options = __('idea.steps.step2.options');
@@ -102,25 +102,35 @@
                                                     </div>
 
                                                     <!-- الموارد -->
-                                                    <div class="col-lg-4 col-md-1 col-12 p-4">
+                                                    <div class="col-lg-4 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
-                                                            {{ __('investor.summary.resources_available') }}
-
-                                                            {{ $idea->resources
-                                                                ? implode(
-                                                                    '، ',
-                                                                    array_filter([
-                                                                        $idea->resources->company == 'yes' ? 'شركة قائمة' : null,
-                                                                        $idea->resources->staff == 'yes' ? 'موظفون متخصصون' : null,
-                                                                        $idea->resources->workers == 'yes' ? 'عمال' : null,
-                                                                        $idea->resources->executive_spaces == 'yes' ? 'مكاتب تنفيذية' : null,
-                                                                        $idea->resources->equipment == 'yes' ? 'آليات ومعدات' : null,
-                                                                        $idea->resources->software == 'yes' ? 'برمجيات' : null,
-                                                                        $idea->resources->website == 'yes' ? 'موقع إلكتروني' : null,
-                                                                    ]),
-                                                                )
-                                                                : __('investor.summary.resources_empty') }}
+                                                            {{ __('idea.index.contributions_title') }} :
                                                         </h6>
+
+                                                        <p class="text-muted small mt-2 mb-0">
+                                                            @php
+                                                                $contributions = [];
+
+                                                                foreach ($idea->contributions as $c) {
+                                                                    $label = match ($c->contribute_type) {
+                                                                        'sell' => __('idea.steps.step7.sell'),
+                                                                        'idea' => __('idea.steps.step7.idea'),
+                                                                        'capital' => __('idea.steps.step7.capital'),
+                                                                        'personal' => __('idea.steps.step7.personal'),
+                                                                        'both' => __('idea.steps.step7.both'),
+                                                                        default => $c->contribute_type,
+                                                                    };
+
+                                                                    $contributions[] = $label;
+                                                                }
+                                                            @endphp
+
+                                                            @if (count($contributions) > 0)
+                                                                {{ implode('، ', $contributions) }}
+                                                            @else
+                                                                {{ __('idea.index.contributions_empty') }}
+                                                            @endif
+                                                        </p>
                                                     </div>
 
                                                     <div class="col-md-1 col-12 p-4">
