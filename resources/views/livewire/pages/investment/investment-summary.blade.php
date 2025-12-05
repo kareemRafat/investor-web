@@ -67,16 +67,27 @@
 
                                                     <!-- رأس المال والدول -->
                                                     <div class="col-lg-4 col-md-6 col-12 p-4 border_custom_idea">
-                                                        {{-- TODO --}}
-                                                        {{-- !! need attention --}}
-
-                                                        <h6 class="fw-bold mb-2">
-                                                            {{ __('investor.summary.capital_expected') }} =
-                                                            {{ 00 }}
+                                                        @php
+                                                            $range = $investor->contributions?->contributionRange;
+                                                            $locale = app()->getLocale();
+                                                        @endphp
+                                                        {{-- راس المال --}}
+                                                        <h6 class="fw-bold mb-2 d-flex flex-column gap-2">
+                                                            <span>
+                                                                {{ __('investor.summary.capital_expected') }} =
+                                                            </span>
+                                                            <span class="text-success">
+                                                                @if ($range)
+                                                                    {!! $locale === 'ar' ? $range->label_ar : $range->label_en !!}
+                                                                @else
+                                                                    {{ __('investor.summary.capital_not_defined') }}
+                                                                @endif
+                                                            </span>
                                                         </h6>
 
-                                                        <h6 class="fw-bold mb-0 mt-3">
-                                                            <h6 class="fw-bold mb-0 mt-3 d-inline-block">
+                                                        {{-- الدول --}}
+                                                        <h6 class="fw-bold mb-0 mt-1">
+                                                            <h6 class="fw-bold mb-0 mt-2 d-inline-block">
                                                                 {{ __('investor.summary.desired_country') }}
                                                             </h6>
                                                             <span class="text-muted small" style="line-height: 25px">
