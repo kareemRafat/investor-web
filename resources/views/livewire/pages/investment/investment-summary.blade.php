@@ -76,7 +76,7 @@
                                                             <span class="p-2 text-white bg-primary rounded-1">
                                                                 {{ __('investor.summary.capital_expected') }} =
                                                             </span>
-                                                            <span class="text-success">
+                                                            <span class="text-success line-height-1">
                                                                 @if ($range)
                                                                     {!! $locale === 'ar' ? $range->label_ar : $range->label_en !!}
                                                                 @else

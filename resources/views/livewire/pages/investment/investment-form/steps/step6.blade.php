@@ -43,7 +43,8 @@
         </div>
     </div>
 
-    <x-form.hidden-created-at model="data.created_at" />
+    <!-- hidden client date -->
+    <x-form.hidden-client-date wire-model="data.created_at" />
 
     @if ($errors->any())
         <div class="d-flex justify-content-center">

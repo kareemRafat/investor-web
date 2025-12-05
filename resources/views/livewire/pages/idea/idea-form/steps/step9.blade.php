@@ -30,7 +30,8 @@
                 <input type="file" id="idea-attachment" class="d-none" wire:model='data.attachment'>
                 {{-- Display selected or current file name --}}
                 @if ($data['attachment'] || $currentAttachment !== 'Uploaded File')
-                    <div class="mt-2 d-flex align-items-center gap-2" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
+                    <div class="mt-2 d-flex align-items-center gap-2"
+                        dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
                         <small class="text-primary fw-bold">
                             {{ __('idea.steps.step9.selected_file') }}:
                             <span
@@ -43,6 +44,8 @@
         </div>
     </div>
 
+    <!-- hidden client date -->
+    <x-form.hidden-client-date wire-model="data.created_at" />
 
     <div class="d-flex justify-content-center">
         @if ($errors->any())

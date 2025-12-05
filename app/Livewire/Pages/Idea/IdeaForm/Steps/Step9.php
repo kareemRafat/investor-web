@@ -22,6 +22,7 @@ class Step9 extends Component
     public array $data = [
         'summary' => null,
         'attachment' => null,
+        'created_at' => null,
     ];
 
     public $currentAttachment = null; // real file name
@@ -84,7 +85,7 @@ class Step9 extends Component
         $idea->update([
             'summary' => $this->data['summary'],
             'user_id' => Auth::id(),
-            // 'created_at' => $this->data['created_at'],
+            'created_at' => $this->data['created_at'],
         ]);
 
         //! store attachments

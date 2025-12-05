@@ -53,11 +53,11 @@
 
                                                         @if ($range)
                                                             {{--  cost_profit_ranges --}}
-                                                            <span class="text-success">
+                                                            <span class="text-success line-height-1">
                                                                 {!! $range->{app()->getLocale() == 'ar' ? 'label_ar' : 'label_en'} !!}
                                                             </span>
                                                         @elseif ($contribution?->money_contributions)
-                                                            <span class="text-success">
+                                                            <span class="text-success line-height-1">
                                                                 {{ $contribution->money_contribution_label }}
                                                             </span>
                                                         @else
