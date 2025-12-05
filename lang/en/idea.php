@@ -361,6 +361,7 @@ return [
         'desired_country' => 'Preferred execution in',
         'resources_title' => 'The following resources are available:',
         'resources_empty' => 'No additional resources available.',
+        'contributions_title' => 'Contribution to implementing the idea',
         'btn_more' => 'More',
         'no_ideas' => 'No ideas available at the moment.',
         'btn_show_more' => 'Show More',

@@ -339,6 +339,7 @@ return [
         'desired_country' => 'مرغوب في تنفيذه في',
         'resources_title' => 'تتوفر الموارد التالية:',
         'resources_empty' => 'لا توجد موارد إضافية محددة.',
+        'contributions_title' => 'المساهمة في تنفيذ الفكرة',
         'btn_more' => 'المزيد',
         'no_ideas' => 'لا توجد أفكار متاحة حالياً.',
         'btn_show_more' => 'عرض المزيد',

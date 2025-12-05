@@ -55,7 +55,7 @@ class Index extends Component
         }
 
         $query = Idea::query()
-            ->with(['costs.range', 'profits.range', 'resources'])
+            ->with(['costs.range', 'profits.range', 'contributions'])
 
             ->when(
                 $this->lastId !== null,

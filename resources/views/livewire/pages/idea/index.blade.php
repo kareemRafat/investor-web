@@ -102,40 +102,43 @@
                                                     <!-- الموارد -->
                                                     <div class="col-lg-4 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
-                                                            {{ __('idea.index.resources_title') }} :
+                                                            {{ __('idea.index.contributions_title') }} :
                                                         </h6>
 
                                                         <p class="text-muted small mt-2 mb-0">
                                                             @php
-                                                                $resources = [];
+                                                                $contributions = [];
 
-                                                                if ($idea->resources?->company === 'yes') {
-                                                                    $resources[] = 'شركة قائمة';
-                                                                }
-                                                                if ($idea->resources?->staff === 'yes') {
-                                                                    $resources[] =
-                                                                        'موظفون (' .
-                                                                        $idea->resources->staff_number .
-                                                                        ')';
-                                                                }
-                                                                if ($idea->resources?->equipment === 'yes') {
-                                                                    $resources[] = 'معدات وآليات';
-                                                                }
-                                                                if ($idea->resources?->executive_spaces === 'yes') {
-                                                                    $resources[] = 'مكاتب تنفيذية';
-                                                                }
-                                                                if ($idea->resources?->website === 'yes') {
-                                                                    $resources[] = 'موقع الكتروني';
+                                                                foreach ($idea->contributions as $c) {
+                                                                    $label = match ($c->contribute_type) {
+                                                                        'sell' => __('idea.steps.step7.sell'),
+                                                                        'idea' => __('idea.steps.step7.idea'),
+                                                                        'capital' => __('idea.steps.step7.capital'),
+                                                                        'personal' => __('idea.steps.step7.personal'),
+                                                                        'both' => __('idea.steps.step7.both'),
+                                                                        default => $c->contribute_type,
+                                                                    };
+
+                                                                    if (
+                                                                        $c->contribute_type === 'personal' &&
+                                                                        $c->working_time
+                                                                    ) {
+                                                                        $label .= ' (' . $c->working_time . ')';
+                                                                    }
+
+                                                                    $contributions[] = $label;
                                                                 }
                                                             @endphp
 
-                                                            @if (count($resources) > 0)
-                                                                {{ implode('، ', $resources) }}
+                                                            @if (count($contributions) > 0)
+                                                                {{ implode('، ', $contributions) }}
                                                             @else
-                                                                {{ __('idea.index.resources_empty') }}
+                                                                {{ __('idea.index.contributions_empty') }}
                                                             @endif
                                                         </p>
                                                     </div>
+
+
 
                                                     <!-- زر تفاصيل -->
                                                     <div class="col-md-1 col-12">
