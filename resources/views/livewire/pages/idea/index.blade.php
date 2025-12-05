@@ -60,20 +60,19 @@
                                                                         app()->getLocale() === 'ar'
                                                                             ? $range->label_ar
                                                                             : $range->label_en;
-                                                                    $label = str_replace('<br>', '', $label);
                                                                 }
                                                             @endphp
 
                                                             @if ($label)
                                                                 <span
-                                                                    class="text-success">{!! $label !!}</span>
+                                                                    class="text-success line-height-1">{!! $label !!}</span>
                                                             @else
                                                                 {{ __('idea.summary.not_defined') }}
                                                             @endif
                                                         </h6>
 
 
-                                                        <h6 class="fw-bold mb-0 mt-3">
+                                                        <h6 class="fw-bold mb-0 mt-2">
                                                             {{ __('idea.index.desired_country') }} :
                                                             <span class="text-muted small" style="line-height: 25px">
 
