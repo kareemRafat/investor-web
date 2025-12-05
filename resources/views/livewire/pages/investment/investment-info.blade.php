@@ -157,7 +157,9 @@
                                             <div
                                                 class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                                 <div>
-                                                    {{ __('investor.steps.step4.' . $investor->contributions->contribute_type) }}
+                                                    @if (isset($investor->contributions->contribute_type))
+                                                        {{ __('investor.steps.step4.' . $investor->contributions->contribute_type) }}
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
