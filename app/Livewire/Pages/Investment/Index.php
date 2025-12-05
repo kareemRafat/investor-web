@@ -4,19 +4,48 @@ namespace App\Livewire\Pages\Investment;
 
 use App\Models\Investor;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Collection;
 
 class Index extends Component
 {
-    public Collection $investors;     // ← مهم جداً: Collection مش array
+    public Collection $investors;
     public bool $hasMore = true;
     public ?int $lastId = null;
     public int $perPage = 5;
 
+    // Filters
+    public $field = null;
+    public $country = null;
+    public $cost_range = null;
+    public $contributionType = null;
+
     public function mount(): void
     {
-        $this->investors = collect(); // ← Collection فاضية
+        // تحميل الفلاتر من الـ URL قبل عرض الصفحة (مهم جداً)
+        $this->field = request()->query('field', '');
+        $this->country = request()->query('country', '');
+        $this->cost_range = request()->query('cost_range', '');
+        $this->contributionType = request()->query('contributionType', '');
+
+        $this->investors = collect();
+        $this->loadMore();
+    }
+
+    #[On('filters-changed')]
+    public function applyFilters($field, $country, $cost_range, $contributionType)
+    {
+        $this->field = $field ?: null;
+        $this->country = $country ?: null;
+        $this->cost_range = $cost_range ?: null;
+        $this->contributionType = $contributionType ?: null;
+
+        // إعادة الباجينيشن
+        $this->investors = collect();
+        $this->lastId = null;
+        $this->hasMore = true;
+
         $this->loadMore();
     }
 
@@ -26,33 +55,84 @@ class Index extends Component
             return;
         }
 
-        $newInvestors = Investor::with(['resources', 'contributions.contributionRange', 'countries'])
-            ->when($this->lastId !== null, fn($q) => $q->where('id', '<', $this->lastId))
+        $query = Investor::query()
+            ->with([
+                'resources',
+                'contributions.contributionRange',
+                'countries'
+            ])
+
+            // pagination by id
+            ->when(
+                $this->lastId !== null,
+                fn($q) =>
+                $q->where('id', '<', $this->lastId)
+            )
+
+            // ---- filters ----
+
+            // field filter
+            ->when(
+                $this->field,
+                fn($q) =>
+                $q->where('investor_field', $this->field)
+            )
+
+            // cost_range filter
+            ->when(
+                $this->cost_range,
+                fn($q) =>
+                $q->whereHas(
+                    'contributions',
+                    fn($c) =>
+                    $c->where('money_contributions', $this->cost_range)
+                )
+            )
+
+            // country filter
+            ->when(
+                $this->country,
+                fn($q) =>
+                $q->whereHas(
+                    'countries',
+                    fn($c) =>
+                    $c->where('country', $this->country)
+                )
+            )
+
+            // contribution type
+            ->when(
+                $this->contributionType,
+                fn($q) =>
+                $q->whereHas(
+                    'contributions',
+                    fn($c) =>
+                    $c->where('contribute_type', $this->contributionType)
+                )
+            )
+
             ->orderByDesc('id')
             ->limit($this->perPage + 1)
             ->get();
 
-        // لو مفيش نتايج جديدة
-        if ($newInvestors->isEmpty()) {
+        if ($query->isEmpty()) {
             $this->hasMore = false;
             return;
         }
 
-        // نشوف فيه صفحة جاية ولا لأ
-        $hasNextPage = $newInvestors->count() > $this->perPage;
+        $hasNext = $query->count() > $this->perPage;
 
-        if ($hasNextPage) {
-            $newInvestors->pop(); // نشيل العنصر الزيادة
+        if ($hasNext) {
+            $query->pop();
+        } else {
+            $this->hasMore = false;
         }
 
-        // نضيف البيانات الجديدة للـ Collection
-        $this->investors = $this->investors->merge($newInvestors);
+        // merge
+        $this->investors = $this->investors->merge($query);
 
-        // نحدّث آخر id بطريقة آمنة 100%
-        $this->lastId = $newInvestors->last()->id ?? null;
-
-        // نحدّث حالة الـ hasMore
-        $this->hasMore = $hasNextPage;
+        // update last id
+        $this->lastId = $query->last()->id ?? null;
     }
 
     #[Title('صندوق الاستثمار')]

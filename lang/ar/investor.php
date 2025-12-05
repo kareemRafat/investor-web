@@ -265,6 +265,23 @@ return [
         'no_investors' => 'لا توجد طلبات استثمار حالياً',
         'btn_show_more' => 'عرض المزيد',
         'loading' => 'جاري التحميل...',
+
+        // Filters
+        'filter_field' => 'مجال الإستثمار الذي تبحث عنه',
+        'filter_countries' => 'أفضل الدول',
+        'filter_cost' => 'التكلفة التقديرية لتنفيذ الإستثمار',
+        'filter_contribution' => 'مساهمتك في تنفيذ الإستثمار ',
+        'filter_requirements' => 'متطلباتك الخاصة مقابل الإستثمار ',
+        'filter_implementation' => 'متطلبات تنفيذ الإستثمار',
+        'filter_distribution' => 'توزيع رأس المال المطلوب لتنفيذ الإستثمار',
+        'filter_expected_profit' => 'الأرباح المتوقعة',
+
+        'one_time_cost' => 'تكلفة مرة واحدة',
+        'annual_cost' => 'تكلفة سنوية',
+
+        'btn_search' => 'بحث',
+        'reset' => 'إعادة ضبط',
+        'filters' => 'التصفيات',
     ],
 
 ];

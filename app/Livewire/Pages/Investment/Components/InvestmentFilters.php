@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\Pages\Idea\Components;
+namespace App\Livewire\Pages\Investment\Components;
 
 use Livewire\Component;
 use Livewire\Attributes\Url;
 
-class IdeaFilters extends Component
+class InvestmentFilters extends Component
 {
     #[Url(history: true)]
     public $field = "";
@@ -23,6 +23,7 @@ class IdeaFilters extends Component
 
     public function mount()
     {
+
         $this->loadCostRanges();
         $this->dispatchFilters();
     }
@@ -68,6 +69,6 @@ class IdeaFilters extends Component
 
     public function render()
     {
-        return view('livewire.pages.idea.components.idea-filters');
+        return view('livewire.pages.investment.components.investment-filters');
     }
 }

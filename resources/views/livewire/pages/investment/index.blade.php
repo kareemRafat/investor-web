@@ -8,6 +8,8 @@
                 </h5>
             </div>
 
+            <livewire:pages.investment.components.investment-filters />
+
             <div class="row mx-0 px-0 g-2">
                 @forelse($investors as $investor)
                     <div class="col-12" wire:key="investor-{{ $investor->id }}">

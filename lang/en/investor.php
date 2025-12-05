@@ -261,5 +261,22 @@ return [
         'no_investors' => 'No investment requests at the moment',
         'btn_show_more' => 'Show More',
         'loading' => 'Loading...',
+
+        // Filters
+        'filter_field' => 'Investment field sought',
+        'filter_countries' => 'Top countries',
+        'filter_cost' => 'Estimated cost of implementing the investment',
+        'filter_contribution' => 'Your contribution to implementing the investment',
+        'filter_requirements' => 'Your specific requirements in exchange for the investment',
+        'filter_implementation' => 'Investment implementation requirements',
+        'filter_distribution' => 'Distribution of capital required to implement the investment',
+        'filter_expected_profit' => 'Expected profits',
+
+        'one_time_cost' => 'One-time Cost',
+        'annual_cost' => 'Annual Cost',
+
+        'btn_search' => 'Search',
+        'reset' => 'Reset',
+        'filters' => 'Filters',
     ],
 ];
