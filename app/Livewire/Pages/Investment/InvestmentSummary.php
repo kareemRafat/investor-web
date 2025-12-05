@@ -24,9 +24,9 @@ class InvestmentSummary extends Component
         // فلترة الأفكار حسب الأولويات
         $this->matchingIdeas = $ideas->filter(function ($idea) {
             //  المجال
-            // if ($idea->idea_field !== $this->investor->investor_field) {
-            //     return false;
-            // }
+            if ($idea->idea_field !== $this->investor->investor_field) {
+                return false;
+            }
 
             //  الدول
             $ideaCountries = $idea->countries->pluck('country')->toArray();

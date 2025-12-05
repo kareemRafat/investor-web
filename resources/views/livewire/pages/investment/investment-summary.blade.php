@@ -56,7 +56,7 @@
                                                 <div class="row mx-0 px-0 my-0 py-0">
 
                                                     <!-- عنوان الفكرة -->
-                                                    <div class="col-lg-3 col-md-6 col-12 p-4">
+                                                    <div class="col-lg-3 col-md-6 col-12 p-4 d-flex align-items-start gap-1 flex-column justify-content-center">
                                                         <h6 class="fw-bold mb-0 d-flex flex-column gap-3">
                                                             <span>{{ __('investor.summary.idea_field_title') }}</span>
                                                             <span
@@ -113,7 +113,8 @@
                                                     </div>
 
                                                     <!-- الموارد -->
-                                                    <div class="col-lg-4 col-md-6 col-12 p-4">
+                                                    <div
+                                                        class="col-lg-4 col-md-6 col-12 p-4 d-flex align-items-start gap-1 flex-column justify-content-center">
                                                         <h6 class="fw-bold mb-0 line-height-1">
                                                             {{ __('idea.index.contributions_title') }} :
                                                         </h6>
@@ -144,7 +145,7 @@
                                                         </p>
                                                     </div>
 
-                                                    <div class="col-md-1 col-12 p-4">
+                                                    <div class="col-md-1 col-12 p-4 d-flex align-items-center">
 
                                                         <a class="btn underline d-flex gap-2 align-items-center text-primary"
                                                             wire:navigate href="{{ route('idea.info', $idea->id) }}">
