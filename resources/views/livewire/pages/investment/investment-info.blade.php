@@ -42,7 +42,7 @@
                                         <div
                                             class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                             <div class="text-white">
-                                                {!! $investor->contributions->money_contribution_label ?? '-' !!}
+                                                {!! $investor->contributions?->money_contribution_label ??  __('investor.common.unspecified')!!}
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                                         <span class="small">{{ $resource }}</span>
                                                     </span>
                                                 @empty
-                                                    <span>-</span>
+                                                    <span>{{ __('investor.common.unspecified') }}</span>
                                                 @endforelse
                                             </div>
                                         </div>
@@ -157,8 +157,10 @@
                                             <div
                                                 class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
                                                 <div>
-                                                    @if (isset($investor->contributions->contribute_type))
+                                                    @if ($investor->contributions?->contribute_type)
                                                         {{ __('investor.steps.step4.' . $investor->contributions->contribute_type) }}
+                                                    @else
+                                                        <span class="text-white">{{ __('investor.common.unspecified') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -195,7 +197,7 @@
                                                         </div>
                                                     </div>
                                                 @empty
-                                                    <span>-</span>
+                                                    <span>{{ __('investor.common.unspecified') }}</span>
                                                 @endforelse
                                             </div>
                                         </div>

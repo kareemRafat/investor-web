@@ -23,6 +23,7 @@ return [
         'other' => 'Other',
         'static' => 'Static',
         'dynamic' => 'Dynamic',
+        'unspecified' => 'Unspecified',
     ],
     'steps' => [
         'step1' => [

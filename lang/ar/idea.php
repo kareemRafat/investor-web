@@ -24,6 +24,7 @@ return [
         'other' => 'أخرى',
         'static' => 'ثابتة',
         'dynamic' => 'ديناميكية',
+        'unspecified' => 'غير محدد',
     ],
     'steps' => [
         'step1' => [

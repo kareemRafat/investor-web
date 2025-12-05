@@ -50,7 +50,7 @@
                 @foreach ($moneyRanges as $index =>  $range)
                     <div class="col-12 col-md-3">
                         <input type="radio" class="btn-check" wire:model="data.money_contributions"
-                            id="amount-{{ $range->id }}" value="{{ $index + 1 }}"  autocomplete="off"
+                            id="amount-{{ $range->id }}" value="{{ $range->id }}"  autocomplete="off"
                             @disabled($disableResources)>
                         <label
                             class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center

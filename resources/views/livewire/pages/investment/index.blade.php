@@ -41,32 +41,24 @@
                                                 <!-- رأس المال + الدول -->
                                                 <div
                                                     class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
+                                                    @php
+                                                        $contribution = $investor->contributions;
+                                                        $range = $contribution?->contributionRange;
+                                                    @endphp
+
                                                     <h6 class="fw-bold mb-2">
                                                         <span
                                                             class="d-block mb-2">{{ __('investor.index.capital_offered') }}
                                                             =</span>
 
-                                                        @php
-                                                            $contribution = $investor->contributions;
-                                                            $moneyLabel = null;
-
-                                                            if ($contribution) {
-                                                                if (
-                                                                    $contribution->relationLoaded(
-                                                                        'contributionRange',
-                                                                    ) &&
-                                                                    $contribution->contributionRange
-                                                                ) {
-                                                                }
-                                                                // جرب الـ accessor
-                                                                elseif ($contribution->money_contributions) {
-                                                                    $moneyLabel = $contribution->getMoneyContributionLabelAttribute();
-                                                                }
-                                                            }
-                                                        @endphp
-                                                        @if ($moneyLabel)
+                                                        @if ($range)
+                                                            {{--  cost_profit_ranges --}}
                                                             <span class="text-success">
-                                                                {{ str_replace('<br>', '', $moneyLabel) }}
+                                                                {!! $range->{app()->getLocale() == 'ar' ? 'label_ar' : 'label_en'} !!}
+                                                            </span>
+                                                        @elseif ($contribution?->money_contributions)
+                                                            <span class="text-success">
+                                                                {{ $contribution->money_contribution_label }}
                                                             </span>
                                                         @else
                                                             <span class="text-muted">غير محدد</span>
@@ -74,7 +66,7 @@
                                                     </h6>
 
                                                     <h6 class="fw-bold mb-0 mt-3">
-                                                        {{ __('investor.index.desired_country') }}
+                                                        <span class="me-1">{{ __('investor.index.desired_country') }}</span>
                                                         <span class="text-muted small" style="line-height: 25px">
                                                             @forelse($investor->countries as $country)
                                                                 @php
@@ -97,59 +89,36 @@
                                                     </h6>
                                                 </div>
 
-                                                <!-- الموارد -->
+                                                <!-- المساهمات -->
                                                 <div class="col-lg-4 col-md-6 col-12 p-4">
                                                     <h6 class="fw-bold mb-0 line-height-1">
-                                                        {{ __('investor.index.resources_title') }}
+                                                        {{ __('investor.index.contributions_offered') }} :
                                                     </h6>
+
                                                     <p class="text-muted small mt-2 mb-0">
                                                         @php
-                                                            $resources = [];
+                                                            $contributions = [];
 
-                                                            if ($investor->resources) {
-                                                                if ($investor->resources->company === 'yes') {
-                                                                    $resources[] = 'شركة قائمة';
-                                                                }
-                                                                if ($investor->resources->space_type) {
-                                                                    $resources[] =
-                                                                        'مساحة: ' . $investor->resources->space_type;
-                                                                }
-                                                                if ($investor->resources->staff === 'yes') {
-                                                                    $staffText = 'موظفون';
-                                                                    if ($investor->resources->staff_number) {
-                                                                        $staffText .=
-                                                                            ' (' .
-                                                                            $investor->resources->staff_number .
-                                                                            ')';
-                                                                    }
-                                                                    $resources[] = $staffText;
-                                                                }
-                                                                if ($investor->resources->workers === 'yes') {
-                                                                    $workersText = 'عمال';
-                                                                    if ($investor->resources->workers_number) {
-                                                                        $workersText .=
-                                                                            ' (' .
-                                                                            $investor->resources->workers_number .
-                                                                            ')';
-                                                                    }
-                                                                    $resources[] = $workersText;
-                                                                }
-                                                                if ($investor->resources->equipment === 'yes') {
-                                                                    $resources[] = 'معدات وآليات';
-                                                                }
-                                                                if ($investor->resources->software === 'yes') {
-                                                                    $resources[] = 'برمجيات';
-                                                                }
-                                                                if ($investor->resources->executive_spaces === 'yes') {
-                                                                    $resources[] = 'مكاتب تنفيذية';
-                                                                }
+                                                            if ($investor->contributions) {
+                                                                $c = $investor->contributions;
+
+                                                                $label = match ($c->contribute_type) {
+                                                                    'sell' => __('investor.steps.step4.sell'),
+                                                                    'idea' => __('investor.steps.step4.idea'),
+                                                                    'capital' => __('investor.steps.step4.capital'),
+                                                                    'personal' => __('investor.steps.step4.personal'),
+                                                                    'both' => __('investor.steps.step4.both'),
+                                                                    default => $c->contribute_type,
+                                                                };
+
+                                                                $contributions[] = $label;
                                                             }
                                                         @endphp
 
-                                                        @if (count($resources) > 0)
-                                                            {{ implode('، ', $resources) }}
+                                                        @if (count($contributions) > 0)
+                                                            {{ implode('، ', $contributions) }}
                                                         @else
-                                                            {{ __('investor.index.resources_empty') }}
+                                                            {{ __('investor.index.contributions_empty') }}
                                                         @endif
                                                     </p>
                                                 </div>

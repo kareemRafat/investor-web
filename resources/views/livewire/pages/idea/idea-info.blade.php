@@ -51,10 +51,10 @@
                                                         </li>
                                                         <li>
                                                             —
-                                                            {{ __('idea.steps.step3.types.' . ($cost->cost_type ?? '-')) }}
+                                                            {{ __('idea.steps.step3.types.' . ($cost->cost_type ?? __('idea.common.unspecified'))) }}
                                                         </li>
                                                     @empty
-                                                        <li>-</li>
+                                                        <li>{{ __('idea.common.unspecified') }}</li>
                                                     @endforelse
                                                 </ul>
                                             </h6>
@@ -84,7 +84,7 @@
                                                         {{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}
                                                     </li>
                                                 @empty
-                                                    <li>-</li>
+                                                    <li>{{ __('idea.common.unspecified') }}</li>
                                                 @endforelse
                                             </ul>
                                         </div>
@@ -115,7 +115,7 @@
                                                         -
                                                     @endif
                                                 @empty
-                                                    -
+                                                    {{ __('idea.common.unspecified') }}
                                                 @endforelse
                                             </div>
                                         </div>
@@ -261,7 +261,7 @@
                                                         @endif
                                                     @endforeach
                                                 @else
-                                                    <span>-</span>
+                                                    <span>{{ __('idea.common.unspecified') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -304,7 +304,7 @@
                                                     </div>
                                                 </div>
                                             @empty
-                                                <span>-</span>
+                                                <span>{{ __('idea.common.unspecified') }}</span>
                                             @endforelse
                                         </div>
                                     </div>
