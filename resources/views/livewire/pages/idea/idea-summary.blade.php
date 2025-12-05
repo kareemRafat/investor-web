@@ -99,37 +99,38 @@
                                                         </h6>
                                                     </div>
 
+                                                    <!-- المساهمات -->
                                                     <div class="col-lg-4 col-md-6 col-12 p-4">
                                                         <h6 class="fw-bold mb-0 line-height-1">
-                                                            {{ __('idea.summary.resources_title') }}
+                                                            {{ __('investor.index.contributions_offered') }} :
                                                         </h6>
+
                                                         <p class="text-muted small mt-2 mb-0">
                                                             @php
-                                                                $resources = [];
-                                                                if ($investor->resources?->company === 'yes') {
-                                                                    $resources[] = 'شركة قائمة';
-                                                                }
-                                                                if ($investor->resources?->staff === 'yes') {
-                                                                    $resources[] =
-                                                                        'موظفون (' .
-                                                                        $investor->resources->staff_number .
-                                                                        ')';
-                                                                }
-                                                                if ($investor->resources?->equipment === 'yes') {
-                                                                    $resources[] = 'معدات وآليات';
-                                                                }
-                                                                if ($investor->resources?->executive_spaces === 'yes') {
-                                                                    $resources[] = 'مكاتب تنفيذية';
-                                                                }
-                                                                if ($investor->resources?->website === 'yes') {
-                                                                    $resources[] = 'موقع الكتروني';
+                                                                $contributions = [];
+
+                                                                if ($investor->contributions) {
+                                                                    $c = $investor->contributions;
+
+                                                                    $label = match ($c->contribute_type) {
+                                                                        'sell' => __('investor.steps.step4.sell'),
+                                                                        'idea' => __('investor.steps.step4.idea'),
+                                                                        'capital' => __('investor.steps.step4.capital'),
+                                                                        'personal' => __(
+                                                                            'investor.steps.step4.personal',
+                                                                        ),
+                                                                        'both' => __('investor.steps.step4.both'),
+                                                                        default => $c->contribute_type,
+                                                                    };
+
+                                                                    $contributions[] = $label;
                                                                 }
                                                             @endphp
 
-                                                            @if (count($resources) > 0)
-                                                                {{ implode('، ', $resources) }}
+                                                            @if (count($contributions) > 0)
+                                                                {{ implode('، ', $contributions) }}
                                                             @else
-                                                                {{ __('idea.summary.resources_empty') }}
+                                                                {{ __('investor.index.contributions_empty') }}
                                                             @endif
                                                         </p>
                                                     </div>
