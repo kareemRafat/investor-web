@@ -7,6 +7,7 @@ use App\Models\Investor;
 use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
 use App\Traits\HandlesAttachmentUpload;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
@@ -21,6 +22,7 @@ class Step6 extends Component
     public array $data = [
         'summary' => null,
         'attachment' => null,
+        'created_at' => null,
     ];
 
     public $currentAttachment = null; // real file name
@@ -40,6 +42,9 @@ class Step6 extends Component
 
         // Ensure $data['attachment'] is reset to avoid stale file references
         $this->data['attachment'] = null;
+
+         $this->data['created_at'] = now()->format('Y-m-d H:i:s');
+
     }
 
     #[On('validate-step-6')]
@@ -71,6 +76,7 @@ class Step6 extends Component
 
     private function syncData(): void
     {
+        dd($this->data);
         $investorId = session('current_investor_id');
         if (!$investorId) return;
 
@@ -80,6 +86,8 @@ class Step6 extends Component
         // DB sync
         $investor->update([
             'summary' => $this->data['summary'],
+            'user_id' => Auth::id(),
+            // 'created_at' => $this->data['created_at'],
         ]);
 
         //! store attachments

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field', 'summary'];
+    protected $fillable = ['idea_field', 'summary' , 'user_id' ,'created_at'];
 
     // Relations
     public function countries()

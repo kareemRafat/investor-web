@@ -10,7 +10,7 @@ class Investor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['investor_field' , 'summary'];
+    protected $fillable = ['investor_field' , 'summary', 'user_id' , 'created_at'];
 
     // Relations
     public function countries()

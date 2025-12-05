@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
 use App\Traits\HandlesAttachmentUpload;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
@@ -82,6 +83,8 @@ class Step9 extends Component
         // DB sync
         $idea->update([
             'summary' => $this->data['summary'],
+            'user_id' => Auth::id(),
+            // 'created_at' => $this->data['created_at'],
         ]);
 
         //! store attachments
