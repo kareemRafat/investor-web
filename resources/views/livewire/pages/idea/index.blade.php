@@ -119,13 +119,6 @@
                                                                         default => $c->contribute_type,
                                                                     };
 
-                                                                    if (
-                                                                        $c->contribute_type === 'personal' &&
-                                                                        $c->working_time
-                                                                    ) {
-                                                                        $label .= ' (' . $c->working_time . ')';
-                                                                    }
-
                                                                     $contributions[] = $label;
                                                                 }
                                                             @endphp

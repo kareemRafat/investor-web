@@ -335,11 +335,12 @@ return [
     'index' => [
         'page_title' => 'صندوق الأفكار',
         'idea_field_title' => 'الفكرة مقدمة في قطاع:',
+        'contributions_title' => 'المساهمة في تنفيذ الفكرة',
         'capital_offered' => 'رأس المال المعروض',
         'desired_country' => 'مرغوب في تنفيذه في',
         'resources_title' => 'تتوفر الموارد التالية:',
         'resources_empty' => 'لا توجد موارد إضافية محددة.',
-        'contributions_title' => 'المساهمة في تنفيذ الفكرة',
+        'contributions_empty' => 'لا توجد مساهمات محددة.',
         'btn_more' => 'المزيد',
         'no_ideas' => 'لا توجد أفكار متاحة حالياً.',
         'btn_show_more' => 'عرض المزيد',
