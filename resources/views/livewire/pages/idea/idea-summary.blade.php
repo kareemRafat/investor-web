@@ -59,7 +59,7 @@
                                                     <div
                                                         class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
                                                         <h6 class="fw-bold mb-2 d-flex flex-column gap-1 ">
-                                                            <span>{{ __('idea.summary.capital_offered') }} =</span>
+                                                            <span class="p-2 text-white bg-primary rounded-1">{{ __('idea.summary.capital_offered') }} =</span>
                                                             <span class="text-success line-height-1">
                                                                 @php
                                                                     $contributionLabel =

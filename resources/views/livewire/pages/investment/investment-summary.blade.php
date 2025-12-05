@@ -73,7 +73,7 @@
                                                         @endphp
                                                         {{-- راس المال --}}
                                                         <h6 class="fw-bold mb-2 d-flex flex-column gap-2">
-                                                            <span>
+                                                            <span class="p-2 text-white bg-primary rounded-1">
                                                                 {{ __('investor.summary.capital_expected') }} =
                                                             </span>
                                                             <span class="text-success">

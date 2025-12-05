@@ -49,7 +49,7 @@
                                                         class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
 
                                                         <h6 class="fw-bold mb-2">
-                                                            <span class="d-block mb-2">
+                                                            <span class="d-block mb-2 p-2 text-white bg-primary rounded-1">
                                                                 {{ __('idea.index.capital_offered') }} = </span>
                                                             @php
                                                                 $cost = $idea->costs->first();

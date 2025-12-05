@@ -48,7 +48,7 @@
 
                                                     <h6 class="fw-bold mb-2">
                                                         <span
-                                                            class="d-block mb-2">{{ __('investor.index.capital_offered') }}
+                                                            class="d-block mb-2 p-2 text-white bg-primary rounded-1">{{ __('investor.index.capital_offered') }}
                                                             =</span>
 
                                                         @if ($range)
