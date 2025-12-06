@@ -52,7 +52,7 @@
                         <!-- Profile Link -->
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-2 py-1 px-3 rounded-6 small"
-                                href="#" wire:navigate>
+                                href="{{ route('main.profile') }}" wire:navigate>
                                 <i class="bi bi-person-fill text-primary"></i>
                                 <span>{{ __('header.profile') }}</span>
                             </a>

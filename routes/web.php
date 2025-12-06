@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\Investment\InvestmentInfo;
 use App\Livewire\Pages\Investment\InvestmentSummary;
+use App\Livewire\Pages\Profile;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -73,6 +74,9 @@ Route::group(
             Route::get('/investment/new', InvestmentForm::class)->name('investor.main');
             Route::get('/investment/{investment}/summary', InvestmentSummary::class)->name('investor.summary');
             Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
+
+            // profile
+            Route::get('/profile', Profile::class)->name('main.profile');
         });
 
         // to make livewire3 work with localiaztion
