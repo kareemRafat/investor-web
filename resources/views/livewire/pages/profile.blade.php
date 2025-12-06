@@ -135,8 +135,8 @@
 
     .avatar-upload-btn {
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: 45px;
+        {{ app()->getLocale() == 'ar' ? 'left: 0;' : 'right: 0;' }}
         background: var(--bs-primary);
         color: white;
         border-radius: 50%;
@@ -251,24 +251,23 @@
         <div class="profile-header shadow-sm">
             <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <h3 class="fw-bold mb-2">الملف الشخصي</h3>
-                    <p class="mb-0 opacity-75">إدارة معلوماتك الشخصية ومتابعة أفكارك الاستثمارية</p>
+                    <h3 class="fw-bold mb-2">{{ __('profile.title') }}</h3>
+                    <p class="mb-0 opacity-75">{{ __('profile.subtitle') }}</p>
                 </div>
                 <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
                     <div class="d-flex justify-content-lg-end gap-2">
                         <span class="badge bg-light text-dark px-3 py-2">
                             <i class="bi bi-lightbulb me-1"></i>
-                            5 أفكار
+                            5 {{ __('profile.stats.ideas') }}
                         </span>
                         <span class="badge bg-light text-dark px-3 py-2">
                             <i class="bi bi-calendar-check me-1"></i>
-                            عضو منذ 2024
+                            {{ __('profile.stats.since', ['year' => 2024]) }}
                         </span>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <!-- Personal Information Section -->
         <div class="card info-card shadow-sm mb-4">
@@ -277,22 +276,22 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="personal-tab" data-bs-toggle="tab"
                             data-bs-target="#personal" type="button" role="tab">
-                            <i class="bi bi-person-circle me-2"></i>
-                            البيانات الشخصية
+                            <i class="{{ __('profile.tabs.personal.icon') }} me-2"></i>
+                            {{ __('profile.tabs.personal.title') }}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
                             type="button" role="tab">
-                            <i class="bi bi-telephone me-2"></i>
-                            معلومات الاتصال
+                            <i class="{{ __('profile.tabs.contact.icon') }} me-2"></i>
+                            {{ __('profile.tabs.contact.title') }}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security"
                             type="button" role="tab">
-                            <i class="bi bi-shield-check me-2"></i>
-                            الأمان
+                            <i class="{{ __('profile.tabs.security.icon') }} me-2"></i>
+                            {{ __('profile.tabs.security.title') }}
                         </button>
                     </li>
                 </ul>
@@ -313,6 +312,7 @@
                                                 <i class="bi bi-camera-fill"></i>
                                             </label>
                                             <input type="file" id="avatarUpload" class="d-none" accept="image/*" />
+                                            <small class="d-block mt-2 text-muted">{{ __('profile.buttons.upload_avatar') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-9">
@@ -324,8 +324,7 @@
                                                             <i class="bi bi-person-badge text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">الاسم
-                                                                الكامل</small>
+                                                            <small class="text-muted d-block">{{ __('profile.personal_info.full_name') }}</small>
                                                             <strong>أحمد محمد علي</strong>
                                                         </div>
                                                     </div>
@@ -338,8 +337,7 @@
                                                             <i class="bi bi-envelope text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">البريد
-                                                                الإلكتروني</small>
+                                                            <small class="text-muted d-block">{{ __('profile.personal_info.email') }}</small>
                                                             <strong class="small">ahmed@email.com</strong>
                                                         </div>
                                                     </div>
@@ -352,7 +350,7 @@
                                                             <i class="bi bi-telephone text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">رقم الهاتف</small>
+                                                            <small class="text-muted d-block">{{ __('profile.personal_info.phone') }}</small>
                                                             <strong>+966 50 123 4567</strong>
                                                         </div>
                                                     </div>
@@ -365,7 +363,7 @@
                                                             <i class="bi bi-geo-alt text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">الموقع</small>
+                                                            <small class="text-muted d-block">{{ __('profile.personal_info.location') }}</small>
                                                             <strong>الرياض، السعودية</strong>
                                                         </div>
                                                     </div>
@@ -383,7 +381,7 @@
                                         <div class="stats-card">
                                             <i class="bi bi-lightbulb-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">5</h4>
-                                            <small class="opacity-75">أفكار مقدمة</small>
+                                            <small class="opacity-75">{{ __('profile.stats.ideas') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -391,7 +389,7 @@
                                             style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                                             <i class="bi bi-check-circle-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">2</h4>
-                                            <small class="opacity-75">أفكار منشورة</small>
+                                            <small class="opacity-75">{{ __('profile.stats.published_ideas') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -399,7 +397,7 @@
                                             style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                                             <i class="bi bi-people-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">3</h4>
-                                            <small class="opacity-75">اتصالات فعالة</small>
+                                            <small class="opacity-75">{{ __('profile.stats.investment_offers') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -407,7 +405,7 @@
                                             style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
                                             <i class="bi bi-star-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">4.8</h4>
-                                            <small class="opacity-75">التقييم</small>
+                                            <small class="opacity-75">{{ __('profile.stats.published_offers') }}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -419,23 +417,23 @@
                                     <div class="col-md-6">
                                         <label for="fullName" class="form-label fw-semibold">
                                             <i class="bi bi-person text-primary me-2"></i>
-                                            الإسم بالكامل
+                                            {{ __('profile.personal_info.full_name') }}
                                         </label>
                                         <input type="text" class="form-control py-3" id="fullName"
-                                            placeholder="أدخل الإسم بالكامل" value="أحمد محمد علي" />
+                                            placeholder="{{ __('profile.personal_info.full_name') }}" value="أحمد محمد علي" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="username" class="form-label fw-semibold">
                                             <i class="bi bi-at text-primary me-2"></i>
-                                            اسم المستخدم
+                                            {{ __('profile.personal_info.username') }}
                                         </label>
                                         <input type="text" class="form-control py-3" id="username"
-                                            placeholder="اسم المستخدم" value="ahmed_mohamed" />
+                                            placeholder="{{ __('profile.personal_info.username') }}" value="ahmed_mohamed" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="birthdate" class="form-label fw-semibold">
                                             <i class="bi bi-calendar text-primary me-2"></i>
-                                            تاريخ الميلاد
+                                            {{ __('profile.personal_info.birthdate') }}
                                         </label>
                                         <input type="date" class="form-control py-3" id="birthdate"
                                             value="1990-01-15" />
@@ -443,24 +441,24 @@
                                     <div class="col-md-6">
                                         <label for="gender" class="form-label fw-semibold">
                                             <i class="bi bi-gender-ambiguous text-primary me-2"></i>
-                                            النوع
+                                            {{ __('profile.personal_info.gender') }}
                                         </label>
                                         <select class="form-select py-3" id="gender">
-                                            <option selected>ذكر</option>
-                                            <option>أنثى</option>
+                                            <option selected>{{ __('profile.general.male') }}</option>
+                                            <option>{{ __('profile.general.female') }}</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="bio" class="form-label fw-semibold">
                                             <i class="bi bi-chat-quote text-primary me-2"></i>
-                                            نبذة عنك
+                                            {{ __('profile.personal_info.bio') }}
                                         </label>
-                                        <textarea class="form-control" id="bio" rows="4" placeholder="اكتب نبذة مختصرة عنك...">رائد أعمال شغوف بالاستثمار في المشاريع الناشئة والتقنية</textarea>
+                                        <textarea class="form-control" id="bio" rows="4" placeholder="{{ __('profile.personal_info.bio_placeholder') }}">رائد أعمال شغوف بالاستثمار في المشاريع الناشئة والتقنية</textarea>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-custom py-3 px-5">
                                             <i class="bi bi-check-circle me-2"></i>
-                                            حفظ التعديلات
+                                            {{ __('profile.buttons.save_changes') }}
                                         </button>
                                     </div>
                                 </form>
@@ -474,7 +472,7 @@
                             <div class="col-md-6">
                                 <label for="email2" class="form-label fw-semibold">
                                     <i class="bi bi-envelope text-primary me-2"></i>
-                                    البريد الإلكتروني
+                                    {{ __('profile.personal_info.email') }}
                                 </label>
                                 <input type="email" class="form-control py-3" id="email2"
                                     placeholder="example@email.com" value="ahmed@email.com" />
@@ -482,7 +480,7 @@
                             <div class="col-md-6">
                                 <label for="phone2" class="form-label fw-semibold">
                                     <i class="bi bi-telephone text-primary me-2"></i>
-                                    رقم الهاتف
+                                    {{ __('profile.personal_info.phone') }}
                                 </label>
                                 <input type="tel" class="form-control py-3" id="phone2"
                                     placeholder="+966 XX XXX XXXX" value="+966 50 123 4567" />
@@ -490,27 +488,27 @@
                             <div class="col-md-4">
                                 <label for="country2" class="form-label fw-semibold">
                                     <i class="bi bi-flag text-primary me-2"></i>
-                                    الدولة
+                                    {{ __('profile.contact_info.country') }}
                                 </label>
                                 <select class="form-select py-3" id="country2">
-                                    <option selected>السعودية</option>
-                                    <option>الإمارات</option>
-                                    <option>مصر</option>
-                                    <option>الكويت</option>
+                                    <option selected>{{ __('profile.countries.saudi_arabia') }}</option>
+                                    <option>{{ __('profile.countries.uae') }}</option>
+                                    <option>{{ __('profile.countries.egypt') }}</option>
+                                    <option>{{ __('profile.countries.kuwait') }}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="city2" class="form-label fw-semibold">
                                     <i class="bi bi-geo-alt text-primary me-2"></i>
-                                    المدينة
+                                    {{ __('profile.contact_info.city') }}
                                 </label>
-                                <input type="text" class="form-control py-3" id="city2" placeholder="الرياض"
+                                <input type="text" class="form-control py-3" id="city2" placeholder="{{ __('profile.contact_info.city') }}"
                                     value="الرياض" />
                             </div>
                             <div class="col-md-4">
                                 <label for="zipcode" class="form-label fw-semibold">
                                     <i class="bi bi-mailbox text-primary me-2"></i>
-                                    الرمز البريدي
+                                    {{ __('profile.contact_info.zipcode') }}
                                 </label>
                                 <input type="text" class="form-control py-3" id="zipcode" placeholder="12345"
                                     value="11564" />
@@ -518,14 +516,14 @@
                             <div class="col-12">
                                 <label for="address" class="form-label fw-semibold">
                                     <i class="bi bi-house text-primary me-2"></i>
-                                    العنوان الكامل
+                                    {{ __('profile.contact_info.address') }}
                                 </label>
-                                <textarea class="form-control" id="address" rows="3" placeholder="أدخل العنوان الكامل...">حي العليا، طريق الملك فهد، الرياض</textarea>
+                                <textarea class="form-control" id="address" rows="3" placeholder="{{ __('profile.contact_info.address_placeholder') }}">حي العليا، طريق الملك فهد، الرياض</textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-custom py-3 px-5">
                                     <i class="bi bi-check-circle me-2"></i>
-                                    حفظ معلومات الاتصال
+                                    {{ __('profile.buttons.save_contact') }}
                                 </button>
                             </div>
                         </form>
@@ -537,14 +535,13 @@
                             <div class="col-12">
                                 <div class="alert alert-info border-0">
                                     <i class="bi bi-info-circle me-2"></i>
-                                    <strong>نصيحة أمنية:</strong> استخدم كلمة مرور قوية تحتوي على أحرف كبيرة
-                                    وصغيرة وأرقام ورموز
+                                    <strong>{{ __('profile.security.security_tip') }}</strong>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label for="currentPassword" class="form-label fw-semibold">
                                     <i class="bi bi-lock text-primary me-2"></i>
-                                    كلمة المرور الحالية
+                                    {{ __('profile.security.current_password') }}
                                 </label>
                                 <input type="password" class="form-control py-3" id="currentPassword"
                                     placeholder="••••••••" />
@@ -554,7 +551,7 @@
                             <div class="col-md-6">
                                 <label for="newPassword" class="form-label fw-semibold">
                                     <i class="bi bi-key text-primary me-2"></i>
-                                    كلمة المرور الجديدة
+                                    {{ __('profile.security.new_password') }}
                                 </label>
                                 <input type="password" class="form-control py-3" id="newPassword"
                                     placeholder="••••••••" />
@@ -562,7 +559,7 @@
                             <div class="col-md-6">
                                 <label for="confirmPassword" class="form-label fw-semibold">
                                     <i class="bi bi-shield-check text-primary me-2"></i>
-                                    تأكيد كلمة المرور
+                                    {{ __('profile.security.confirm_password') }}
                                 </label>
                                 <input type="password" class="form-control py-3" id="confirmPassword"
                                     placeholder="••••••••" />
@@ -570,11 +567,11 @@
                             <div class="col-12 d-flex flex-column gap-3 flex-sm-row">
                                 <button type="submit" class="btn btn-primary py-3 px-5  rounded-4">
                                     <i class="bi bi-check-circle me-2"></i>
-                                    تحديث كلمة المرور
+                                    {{ __('profile.buttons.update_password') }}
                                 </button>
                                 <a href="./forget-password.html" class="btn btn-danger bg-danger px-5 rounded-4 py-3">
                                     <i class="bi bi-x-circle me-2"></i>
-                                    نسيت كلمة المرور؟
+                                    {{ __('profile.security.forgot_password') }}
                                 </a>
                             </div>
                         </div>
@@ -583,14 +580,13 @@
             </div>
         </div>
 
-
         <!-- Ideas Section -->
         <div class="card info-card shadow-sm p-0">
             <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 section-title fw-bold text-dark">الأفكار المقدمة</h5>
+                <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.ideas.title') }}</h5>
                 <a href="./ideas.html" class="btn btn-sm btn-outline-primary">
                     <i class="bi bi-eye me-1"></i>
-                    عرض جميع الأفكار
+                    {{ __('profile.buttons.view_ideas') }}
                 </a>
             </div>
             <div class="card-body p-0">
@@ -602,35 +598,35 @@
                                 <div class="col-lg-3">
                                     <h6 class="fw-bold mb-2 text-primary">
                                         <i class="bi bi-lightbulb-fill me-2"></i>
-                                        مطلوب مشروع سياحي
+                                        {{ __('profile.ideas.title') }}: مطلوب مشروع سياحي
                                     </h6>
                                     <p class="text-muted small mb-0">
                                         <i class="bi bi-calendar3 me-1"></i>
-                                        15 يناير 2025
+                                        {{ __('profile.ideas.details.date') }}: 15 يناير 2025
                                     </p>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="d-flex flex-column gap-2">
                                         <p class="mb-0 small">
                                             <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>رأس المال:</strong> 500,000 ريال
+                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 500,000 ريال
                                         </p>
                                         <p class="mb-0 small">
                                             <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>الموقع:</strong> دول الخليج، مصر
+                                            <strong>{{ __('profile.ideas.location') }}:</strong> دول الخليج، مصر
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <p class="mb-0 small text-muted">
                                         <i class="bi bi-briefcase me-2"></i>
-                                        شركة قائمة، موظفون متخصصون
+                                        {{ __('profile.ideas.details.team') }}: شركة قائمة، موظفون متخصصون
                                     </p>
                                 </div>
                                 <div class="col-lg-2 text-lg-center">
                                     <span class="status-badge pending">
                                         <span class="status-indicator bg-warning"></span>
-                                        قيد المراجعة
+                                        {{ __('profile.ideas.status.pending') }}
                                     </span>
                                 </div>
                             </div>
@@ -644,35 +640,35 @@
                                 <div class="col-lg-3">
                                     <h6 class="fw-bold mb-2 text-primary">
                                         <i class="bi bi-lightbulb-fill me-2"></i>
-                                        تطبيق توصيل طعام
+                                        {{ __('profile.ideas.title') }}: تطبيق توصيل طعام
                                     </h6>
                                     <p class="text-muted small mb-0">
                                         <i class="bi bi-calendar3 me-1"></i>
-                                        10 يناير 2025
+                                        {{ __('profile.ideas.details.date') }}: 10 يناير 2025
                                     </p>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="d-flex flex-column gap-2">
                                         <p class="mb-0 small">
                                             <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>رأس المال:</strong> 300,000 ريال
+                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 300,000 ريال
                                         </p>
                                         <p class="mb-0 small">
                                             <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>الموقع:</strong> السعودية
+                                            <strong>{{ __('profile.ideas.location') }}:</strong> السعودية
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <p class="mb-0 small text-muted">
                                         <i class="bi bi-briefcase me-2"></i>
-                                        فريق تقني، خطة عمل
+                                        {{ __('profile.ideas.details.team') }}: فريق تقني، خطة عمل
                                     </p>
                                 </div>
                                 <div class="col-lg-2 text-lg-center">
                                     <span class="status-badge published">
                                         <span class="status-indicator bg-primary"></span>
-                                        منشورة
+                                        {{ __('profile.ideas.status.published') }}
                                     </span>
                                 </div>
                             </div>
@@ -686,35 +682,35 @@
                                 <div class="col-lg-3">
                                     <h6 class="fw-bold mb-2 text-primary">
                                         <i class="bi bi-lightbulb-fill me-2"></i>
-                                        مصنع منتجات غذائية
+                                        {{ __('profile.ideas.title') }}: مصنع منتجات غذائية
                                     </h6>
                                     <p class="text-muted small mb-0">
                                         <i class="bi bi-calendar3 me-1"></i>
-                                        5 يناير 2025
+                                        {{ __('profile.ideas.details.date') }}: 5 يناير 2025
                                     </p>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="d-flex flex-column gap-2">
                                         <p class="mb-0 small">
                                             <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>رأس المال:</strong> 1,000,000 ريال
+                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 1,000,000 ريال
                                         </p>
                                         <p class="mb-0 small">
                                             <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>الموقع:</strong> مصر
+                                            <strong>{{ __('profile.ideas.location') }}:</strong> مصر
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <p class="mb-0 small text-muted">
                                         <i class="bi bi-briefcase me-2"></i>
-                                        معدات، مقر، تراخيص
+                                        {{ __('profile.ideas.details.team') }}: معدات، مقر، تراخيص
                                     </p>
                                 </div>
                                 <div class="col-lg-2 text-lg-center">
                                     <span class="status-badge rejected">
                                         <span class="status-indicator bg-danger"></span>
-                                        مرفوضة
+                                        {{ __('profile.ideas.status.rejected') }}
                                     </span>
                                 </div>
                             </div>
@@ -728,35 +724,35 @@
                                 <div class="col-lg-3">
                                     <h6 class="fw-bold mb-2 text-primary">
                                         <i class="bi bi-lightbulb-fill me-2"></i>
-                                        منصة تعليمية إلكترونية
+                                        {{ __('profile.ideas.title') }}: منصة تعليمية إلكترونية
                                     </h6>
                                     <p class="text-muted small mb-0">
                                         <i class="bi bi-calendar3 me-1"></i>
-                                        1 يناير 2025
+                                        {{ __('profile.ideas.details.date') }}: 1 يناير 2025
                                     </p>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="d-flex flex-column gap-2">
                                         <p class="mb-0 small">
                                             <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>رأس المال:</strong> 200,000 ريال
+                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 200,000 ريال
                                         </p>
                                         <p class="mb-0 small">
                                             <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>الموقع:</strong> دول الخليج
+                                            <strong>{{ __('profile.ideas.location') }}:</strong> دول الخليج
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <p class="mb-0 small text-muted">
                                         <i class="bi bi-briefcase me-2"></i>
-                                        محتوى تعليمي، مدربون
+                                        {{ __('profile.ideas.details.team') }}: محتوى تعليمي، مدربون
                                     </p>
                                 </div>
                                 <div class="col-lg-2 text-lg-center">
                                     <span class="status-badge connected">
                                         <span class="status-indicator bg-success"></span>
-                                        تم التواصل
+                                        {{ __('profile.ideas.status.connected') }}
                                     </span>
                                 </div>
                             </div>
@@ -765,6 +761,7 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+
