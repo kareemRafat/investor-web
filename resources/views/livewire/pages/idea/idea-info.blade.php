@@ -1,348 +1,278 @@
 <div class="container px-sm-0">
     <div class="row g-3 mb-3">
         <div class="col-12">
-            <div
-                class="bg-light text-dark rounded-8 shadow-sm mb-3 d-flex justify-content-center gap-0 gap-md-3 gap-lg-4 flex-wrap">
+
+            {{-- page Title --}}
+            <div class="bg-light text-dark rounded-3 shadow-sm mb-4">
                 <h5 class="mb-0 p-3 fw-semibold text-center">
                     {{ __('idea.summary.title') }}
                 </h5>
             </div>
-            <div class="bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
-                <div class="row g-3">
 
-                    <!-- Project + Capital + Expected Profits + Best Countries -->
-                    <div class="col-12">
-                        <div class="row g-3">
-                            <!-- The project -->
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.project') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            <h6 class="text-white mb-0 fw-bold">
-                                                {{ __('idea.steps.step1.options.' . ($idea->idea_field ?? '-')) }}
-                                            </h6>
-                                        </div>
-                                    </div>
+            {{-- Main Content Card --}}
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    {{-- Section 1: Core Info --}}
+                    <div class="row g-3 mb-4">
+
+                        {{-- Project --}}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="border rounded-3 p-3 h-100 bg-primary bg-opacity-10">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="bi bi-lightbulb text-primary fs-5"></i>
+                                    <small class="text-muted fw-semibold">{{ __('idea.steps.step10.project') }}</small>
+                                </div>
+                                <h6 class="mb-0 fw-bold text-primary">
+                                    {{ __('idea.steps.step1.options.' . ($idea->idea_field ?? '-')) }}
+                                </h6>
+                            </div>
+                        </div>
+
+                        {{-- Capital --}}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="border rounded-3 p-3 h-100 bg-success bg-opacity-10">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="bi bi-cash-stack text-success fs-5"></i>
+                                    <small class="text-muted fw-semibold">{{ __('idea.steps.step10.capital') }}</small>
+                                </div>
+                                <div class="fw-semibold text-dark small">
+                                    @forelse($idea->costs as $cost)
+                                        <div>{!! app()->getLocale() === 'ar' ? $cost->range->label_ar : $cost->range->label_en !!}</div>
+                                        <small class="text-muted">{{ __('idea.steps.step3.types.' . ($cost->cost_type ?? __('idea.common.unspecified'))) }}</small>
+                                    @empty
+                                        <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
+                                    @endforelse
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- The required capital -->
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.capital') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            <h6 class="text-white mb-0">
-                                                <ul class="text-white mb-0 list-unstyled">
-                                                    @forelse($idea->costs as $cost)
-                                                        <li>
-                                                            {!! app()->getLocale() === 'ar' ? $cost->range->label_ar : $cost->range->label_en !!}
-                                                        </li>
-                                                        <li>
-                                                            —
-                                                            {{ __('idea.steps.step3.types.' . ($cost->cost_type ?? __('idea.common.unspecified'))) }}
-                                                        </li>
-                                                    @empty
-                                                        <li>{{ __('idea.common.unspecified') }}</li>
-                                                    @endforelse
-                                                </ul>
-                                            </h6>
-                                        </div>
-                                    </div>
+                        {{-- Expected Profit --}}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="border rounded-3 p-3 h-100 bg-warning bg-opacity-10">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="bi bi-graph-up-arrow text-warning fs-5"></i>
+                                    <small class="text-muted fw-semibold">{{ __('idea.steps.step10.expected_profit') }}</small>
+                                </div>
+                                <div class="fw-semibold text-dark small">
+                                    @forelse($idea->profits as $profit)
+                                        <div>{!! app()->getLocale() === 'ar' ? $profit->range->label_ar : $profit->range->label_en !!}</div>
+                                        <small class="text-muted">{{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}</small>
+                                    @empty
+                                        <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
+                                    @endforelse
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- The expected profit -->
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.expected_profit') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            <ul class="text-white mb-0 list-unstyled">
-                                                @forelse($idea->profits as $profit)
-                                                    <li>
-                                                        {!! app()->getLocale() === 'ar' ? $profit->range->label_ar : $profit->range->label_en !!}
-                                                    </li>
-                                                    <li>
-                                                        —
-                                                        {{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}
-                                                    </li>
-                                                @empty
-                                                    <li>{{ __('idea.common.unspecified') }}</li>
-                                                @endforelse
-                                            </ul>
-                                        </div>
-                                    </div>
+                        {{-- Best Countries --}}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="border rounded-3 p-3 h-100 bg-info bg-opacity-10">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="bi bi-globe-americas text-info fs-5"></i>
+                                    <small class="text-muted fw-semibold">{{ __('idea.steps.step10.best_countries') }}</small>
+                                </div>
+                                <div class="fw-semibold text-dark small">
+                                    @forelse($idea->countries as $country)
+                                        @php
+                                            $countryOption = collect(__('idea.steps.step2.options'))->firstWhere('code', $country->country);
+                                            $countryName = $countryOption['name'] ?? $country->country;
+                                        @endphp
+                                        {{ $countryName }}@if (!$loop->last), @endif
+                                    @empty
+                                        {{ __('idea.common.unspecified') }}
+                                    @endforelse
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- The best countries -->
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.best_countries') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            <div class="text-white">
-                                                @forelse($idea->countries as $index => $country)
-                                                    @php
-                                                        $countryOption = collect(
-                                                            __('idea.steps.step2.options'),
-                                                        )->firstWhere('code', $country->country);
-                                                        $countryName = $countryOption['name'] ?? $country->country;
-                                                    @endphp
-                                                    {{ $countryName }}@if (!$loop->last)
-                                                        -
-                                                    @endif
-                                                @empty
-                                                    {{ __('idea.common.unspecified') }}
-                                                @endforelse
+                    </div>
+
+                    <hr class="my-4">
+
+                    {{-- Section 2: Details --}}
+                    <div class="row g-3 mb-4">
+
+                        {{-- Contact Way --}}
+                        <div class="col-lg-4">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-telephone text-primary fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.contact_way') }}</h6>
+                                </div>
+                                <ul class="list-unstyled mb-0 ps-4">
+                                    <li class="mb-2">
+                                        <i class="bi bi-phone text-success me-2"></i>
+                                        @if (app()->getLocale() === 'ar')
+                                            الهاتف النقال
+                                        @else
+                                            Mobile Phone
+                                        @endif
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-envelope text-danger me-2"></i>
+                                        @if (app()->getLocale() === 'ar')
+                                            البريد الإلكتروني
+                                        @else
+                                            Email
+                                        @endif
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {{-- Resources --}}
+                        <div class="col-lg-8">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-list-check text-primary fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.resources') }}</h6>
+                                </div>
+                                <div class="row g-2">
+                                    @forelse(array_slice($idea->resources->translated_requirements ?? [], 0, 6) as $index => $resource)
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <span class="badge bg-primary rounded-circle" style="width: 24px; height: 24px; padding: 4px;">{{ $index + 1 }}</span>
+                                                <small class="text-dark">{{ $resource }}</small>
                                             </div>
                                         </div>
-                                    </div>
+                                    @empty
+                                        <div class="col-12 text-center text-muted">{{ __('idea.common.unspecified') }}</div>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-                    <!-- Contact way + Requirements -->
-                    <div class="col-12">
-                        <div class="row g-3">
-                            <!-- Contact way -->
-                            <div class="col-lg-4 col-md-6 col-12 h-100">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.contact_way') }}
-                                            </h6>
-                                        </div>
-                                        <ol class="mb-0 d-flex flex-wrap gap-4 p-3 justify-content-center">
-                                            <li>
-                                                @if (app()->getLocale() === 'ar')
-                                                    الهاتف النقال
-                                                @else
-                                                    Mobile Phone
-                                                @endif
-                                            </li>
-                                            <li>
-                                                @if (app()->getLocale() === 'ar')
-                                                    البريد الإلكتروني
-                                                @else
-                                                    Email
-                                                @endif
-                                            </li>
-                                        </ol>
-                                    </div>
+                    <hr class="my-4">
+
+                    {{-- Section 3: Financial --}}
+                    <div class="row g-3 mb-4">
+
+                        {{-- Contribution --}}
+                        <div class="col-lg-4">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-person-check text-success fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.contribution') }}</h6>
                                 </div>
+                                @forelse ($idea->contributions as $contribution)
+                                    @php
+                                        $lines = $contribution->formatted_contribution ?? ['-'];
+                                    @endphp
+                                    <ul class="list-unstyled mb-0">
+                                        @foreach ($lines as $line)
+                                            <li class="small text-dark mb-1">• {{ $line }}</li>
+                                        @endforeach
+                                    </ul>
+                                @empty
+                                    <span class="text-muted small">{{ __('idea.common.unspecified') }}</span>
+                                @endforelse
                             </div>
+                        </div>
 
-                            <!-- Resources or Requirements -->
-                            <div class="col-lg-8 col-md-6 col-12 h-100">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.resources') }}
-                                            </h6>
-                                        </div>
-                                        <div class="rounded-8 px-3 py-4 h-100">
-                                            <ol
-                                                class="mb-0 d-flex flex-wrap gap-3 list-unstyled justify-content-center">
-                                                @forelse(array_slice($idea->resources->translated_requirements ?? [], 0, 6) as $index => $resource)
-                                                    <li class="d-flex align-items-center gap-2">
-                                                        <span class="fw-bold">{{ $index + 1 }}.</span>
-                                                        <span class="small">{{ $resource }}</span>
-                                                    </li>
-                                                @empty
-                                                    <li class="text-center text-muted">-</li>
-                                                @endforelse
-                                            </ol>
-                                        </div>
+                        {{-- Returns --}}
+                        <div class="col-lg-4">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-trophy text-warning fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.returns') }}</h6>
+                                </div>
+                                <ul class="list-unstyled mb-0">
+                                    @forelse($idea->returns->formatted_returns ?? [] as $return)
+                                        <li class="small text-dark mb-1">• {{ $return }}</li>
+                                    @empty
+                                        <li class="text-muted small">{{ __('idea.common.unspecified') }}</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                        </div>
 
-                                    </div>
+                        {{-- Capital Distribution --}}
+                        <div class="col-lg-4">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-pie-chart text-info fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.capital_distribution') }}</h6>
+                                </div>
+                                <div class="small text-dark">
+                                    @if (optional($idea->expenses)->capital_distribution)
+                                        @foreach (optional($idea->expenses)->capital_distribution as $expense)
+                                            <span>{{ $expense }}</span>
+                                            @if (!$loop->last)
+                                                <span class="mx-1">+</span>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-                    <!-- Contribution + Your requirements + Distribution -->
-                    <div class="col-12">
-                        <div class="row g-3">
-                            <!-- Contribution -->
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.contribution') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            @forelse ($idea->contributions as $contribution)
-                                                @php
-                                                    $lines = $contribution->formatted_contribution ?? ['-'];
-                                                @endphp
-                                                <ul class="mb-0 list-unstyled">
-                                                    @foreach ($lines as $line)
-                                                        <li>{{ $line }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            @empty
-                                                <ul class="mb-0 list-unstyled">
-                                                    <li>-</li>
-                                                </ul>
-                                            @endforelse
-                                        </div>
+                    <hr class="my-4">
 
-                                    </div>
+                    {{-- Section 4: Summary & Attachments --}}
+                    <div class="row g-3">
+
+                        {{-- Summary --}}
+                        <div class="col-lg-9">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-file-text text-primary fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.summary') }}</h6>
                                 </div>
+                                <p class="mb-0 text-dark">
+                                    {{ $idea->summary ?? __('idea.common.unspecified') }}
+                                </p>
                             </div>
+                        </div>
 
-                            <!-- Your returns -->
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.returns') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 h-100 d-flex align-items-center justify-content-center">
-                                            <ul class="mb-0 list-unstyled">
-                                                @foreach ($idea->returns->formatted_returns ?? [] as $return)
-                                                    <li>{{ $return }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
+                        {{-- Attachments --}}
+                        <div class="col-lg-3">
+                            <div class="border rounded-3 p-3 h-100 bg-light">
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <i class="bi bi-paperclip text-secondary fs-5"></i>
+                                    <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.attachments') }}</h6>
                                 </div>
-                            </div>
-
-                            <!-- Capital distribution -->
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.capital_distribution') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            <div>
-                                                @if (optional($idea->expenses)->capital_distribution)
-                                                    @foreach (optional($idea->expenses)->capital_distribution as $index => $expense)
-                                                        <span>{{ $expense }}</span>
-                                                        @if (!$loop->last)
-                                                            <span class="mx-1">+</span>
-                                                        @endif
-                                                    @endforeach
-                                                @else
-                                                    <span>{{ __('idea.common.unspecified') }}</span>
-                                                @endif
+                                @forelse($idea->attachments as $file)
+                                    <div class="d-flex align-items-center gap-2 mb-2 p-2 bg-white rounded-2">
+                                        <i class="bi bi-file-earmark-pdf text-danger"></i>
+                                        <div class="flex-grow-1" style="min-width: 0;">
+                                            <div class="text-truncate small fw-semibold">
+                                                {{ $file->original_name ?? basename($file->path) }}
                                             </div>
+                                            <small class="text-muted" style="font-size: 0.7rem;">
+                                                {{ $file->size_kb }}
+                                            </small>
                                         </div>
                                     </div>
-                                </div>
+                                @empty
+                                    <div class="text-center text-muted small">
+                                        {{ __('idea.common.unspecified') }}
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Attachments + Summary -->
-                    <div class="col-12">
-                        <div class="row g-3">
-                            <!-- Attachments -->
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column h-100">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.attachments') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex flex-column gap-2 justify-content-center">
-                                            @forelse($idea->attachments as $file)
-                                                <div class="d-flex gap-4 align-items-center">
-                                                    <img src="{{ asset('images/Container.png') }}" alt="File"
-                                                        width="30" height="32" />
-                                                    <div class="text-start">
-                                                        {{-- اسم الملف --}}
-                                                        <div class="fw-bold small">
-                                                            {{ $file->original_name ?? basename($file->path) }}
-                                                        </div>
-
-                                                        {{-- الحجم + تاريخ الرفع --}}
-                                                        <small class="text-white small" dir="ltr">
-                                                            {{-- الحجم بالـ KB لو عندك عمود size أو تقدر تحسبه بـ Storage::size --}}
-                                                            {{ $file->size_kb }} •
-                                                            {{ $file->created_at->format('d M, Y') }}
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            @empty
-                                                <span>{{ __('idea.common.unspecified') }}</span>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <!-- Summary -->
-                            <div class="col-lg-9 col-md-6 col-12">
-                                <div class="card bg-custom border-custom h-100 rounded-8">
-                                    <div class="card-body pt-0 px-0 d-flex flex-column h-100">
-                                        <div class="text-primary p-2 py-3 text-center bg-white rounded-top">
-                                            <h6 class="mb-0 fw-bold">
-                                                {{ __('idea.steps.step10.summary') }}
-                                            </h6>
-                                        </div>
-                                        <div
-                                            class="rounded-8 p-2 py-3 text-center h-100 d-flex align-items-center justify-content-center">
-                                            {{ $idea->summary ?? '-' }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
             </div>
-            {{-- التواصل مع صاحب الفكرة --}}
-            <div class="d-flex justify-content-center w-100 mt-4">
-                <a href="#" class="btn btn-primary rounded-4 py-3 px-5 w-100"
-                    title="{{ __('idea.summary.contact_owner') }}"
-                    aria-label="{{ __('idea.summary.contact_owner') }}">
+
+            {{-- Contact Button --}}
+            <div class="mt-4">
+                <a href="#" class="btn btn-primary btn-lg rounded-3 w-100 py-3 shadow-sm">
+                    <i class="bi bi-chat-dots me-2"></i>
                     <span class="fw-semibold">
                         {{ __('idea.summary.contact_owner') }}
                     </span>
                 </a>
             </div>
+
         </div>
     </div>
 </div>
