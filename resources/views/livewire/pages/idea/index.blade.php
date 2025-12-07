@@ -1,4 +1,15 @@
 <div class="container px-sm-0">
+    <style>
+        .country-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin: 2px;
+        }
+    </style>
     <div class="row g-3 mb-3">
         <div class="col-12">
 
@@ -13,142 +24,129 @@
             <livewire:pages.idea.components.idea-filters />
 
             <div class="d-flex flex-column gap-3 mt-4">
-                <div class="row mx-0 px-0 g-2">
+                <div class="row mx-0 px-0 g-3">
                     @forelse($ideas as $idea)
                         <div class="col-12" wire:key="idea-{{ $idea->id }}">
-                            <div class="card border-0 shadow-sm rounded-8 position-relative">
+                            <div class="card shadow-sm border-0 rounded-4">
 
-                                <!-- index -->
-                                <div class="bg-custom position-absolute
-                                    {{ app()->getLocale() === 'ar' ? 'top-0 end-0' : '' }}
-                                    bg_idea_num rounded-circle m-1"
-                                    style="background-color: #0d6efd; width: 30px; height: 30px;">
-                                    <div class="d-flex align-items-center justify-content-center h-100">
-                                        <span class="text-white fw-bold fs-6">{{ $loop->iteration }}</span>
+                                <!-- Card Header -->
+                                <div class="card-header bg-white border-0 pt-4 pb-3">
+                                    <div class="row align-items-center g-3">
+                                        <div class="col-auto">
+                                            <div class="bg-primary bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center fw-bold"
+                                                style="width: 50px; height: 50px; font-size: 1.25rem;">
+                                                {{ $loop->iteration }}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <small class="text-muted">{{ __('idea.index.idea_field_title') }}</small>
+                                            <h5 class="mb-1 fw-bold" style="color:#0d6efd">
+                                                {{ __("idea.steps.step1.options.{$idea->idea_field}") }}</h5>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="{{ route('idea.info', $idea->id) }}" wire:navigate
+                                                class="btn btn-sm btn-primary rounded-pill px-4">
+                                                <span class="me-2">{{ __('idea.index.btn_more') }}</span>
+                                                <i
+                                                    class="bi {{ app()->getLocale() === 'ar' ? 'bi-arrow-left' : 'bi-arrow-right' }}"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="card-body py-0">
-                                    <div class="d-flex flex-column">
-                                        <div class="card bg-transparent border-0 py-0">
-                                            <div class="card-body py-0 my-0">
-                                                <div class="row mx-0 px-0 my-0 py-0 align-items-center">
+                                <!-- Card Body -->
+                                <div class="card-body px-4 pb-4">
+                                    <div class="row g-3">
 
-                                                    <!-- عنوان الفكرة / المجال -->
-                                                    <div class="col-lg-3 col-md-6 col-12 p-4">
-                                                        <h6 class="fw-bold mb-0 d-flex flex-column gap-3">
-                                                            <span>{{ __('idea.index.idea_field_title') }}</span>
-
-                                                            <span
-                                                                class="text-primary">{{ __("idea.steps.step1.options.{$idea->idea_field}") }}</span>
-                                                        </h6>
-                                                    </div>
-
-                                                    <!-- رأس المال + الدول -->
-                                                    <div
-                                                        class="col-lg-4 col-md-6 col-12 p-4 border-start border-end border_custom_idea">
-
-                                                        <h6 class="fw-bold mb-2">
-                                                            <span class="d-block mb-2 p-2 text-white bg-primary rounded-1">
-                                                                {{ __('idea.index.capital_offered') }} = </span>
-                                                            @php
-                                                                $cost = $idea->costs->first();
-                                                                $range = $cost?->range;
-                                                                $label = null;
-                                                                if ($range) {
-                                                                    $label =
-                                                                        app()->getLocale() === 'ar'
-                                                                            ? $range->label_ar
-                                                                            : $range->label_en;
-                                                                }
-                                                            @endphp
-
-                                                            @if ($label)
-                                                                <span
-                                                                    class="text-success line-height-1">{!! $label !!}</span>
-                                                            @else
-                                                                {{ __('idea.summary.not_defined') }}
-                                                            @endif
-                                                        </h6>
-
-
-                                                        <h6 class="fw-bold mb-0 mt-2">
-                                                            {{ __('idea.index.desired_country') }} :
-                                                            <span class="text-muted small" style="line-height: 25px">
-
-                                                                @forelse($idea->countries as $country)
-                                                                    @php
-                                                                        $options = __('idea.steps.step2.options');
-                                                                        $countryOption = collect($options)->firstWhere(
-                                                                            'code',
-                                                                            $country->country,
-                                                                        );
-                                                                        $countryName =
-                                                                            $countryOption['name'] ?? $country->country;
-                                                                    @endphp
-
-                                                                    {{ $countryName }}@if (!$loop->last)
-                                                                        -
-                                                                    @endif
-                                                                @empty
-                                                                    -
-                                                                @endforelse
-
-                                                            </span>
-                                                        </h6>
-                                                    </div>
-
-                                                    <!-- الموارد -->
-                                                    <div class="col-lg-4 col-md-6 col-12 p-4">
-                                                        <h6 class="fw-bold mb-0 line-height-1">
-                                                            {{ __('idea.index.contributions_title') }} :
-                                                        </h6>
-
-                                                        <p class="text-muted small mt-2 mb-0">
-                                                            @php
-                                                                $contributions = [];
-
-                                                                foreach ($idea->contributions as $c) {
-                                                                    $label = match ($c->contribute_type) {
-                                                                        'sell' => __('idea.steps.step7.sell'),
-                                                                        'idea' => __('idea.steps.step7.idea'),
-                                                                        'capital' => __('idea.steps.step7.capital'),
-                                                                        'personal' => __('idea.steps.step7.personal'),
-                                                                        'both' => __('idea.steps.step7.both'),
-                                                                        default => $c->contribute_type,
-                                                                    };
-
-                                                                    $contributions[] = $label;
-                                                                }
-                                                            @endphp
-
-                                                            @if (count($contributions) > 0)
-                                                                {{ implode('، ', $contributions) }}
-                                                            @else
-                                                                {{ __('idea.index.contributions_empty') }}
-                                                            @endif
-                                                        </p>
-                                                    </div>
-
-
-
-                                                    <!-- زر تفاصيل -->
-                                                    <div class="col-md-1 col-12">
-                                                        <a class="btn underline d-flex gap-2 align-items-center text-primary"
-                                                            wire:navigate href="{{ route('idea.info', $idea->id) }}">
-                                                            <span> {{ __('idea.index.btn_more') }}</span>
-
-                                                            @if (app()->getLocale() === 'ar')
-                                                                <i class="bi bi-arrow-left fw-bold mt-1"></i>
-                                                            @else
-                                                                <i class="bi bi-arrow-right fw-bold mt-1"></i>
-                                                            @endif
-                                                        </a>
-                                                    </div>
-
+                                        <!-- Capital -->
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="border rounded-3 p-3 h-100 bg-light bg-opacity-50">
+                                                <div class="d-flex align-items-center gap-2 mb-2">
+                                                    <i class="bi bi-wallet2 text-success fs-5"></i>
+                                                    <span
+                                                        class="text-muted small fw-semibold">{{ __('idea.index.capital_offered') }}</span>
+                                                </div>
+                                                @php
+                                                    $cost = $idea->costs->first();
+                                                    $range = $cost?->range;
+                                                    $label = null;
+                                                    if ($range) {
+                                                        $label =
+                                                            app()->getLocale() === 'ar'
+                                                                ? $range->label_ar
+                                                                : $range->label_en;
+                                                    }
+                                                @endphp
+                                                <div class="fw-semibold text-dark">
+                                                    @if ($label)
+                                                        {!! $label !!}
+                                                    @else
+                                                        <span
+                                                            class="text-muted">{{ __('idea.summary.not_defined') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Countries -->
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="border rounded-3 p-3 h-100 bg-light bg-opacity-50">
+                                                <div class="d-flex align-items-center gap-2 mb-2">
+                                                    <i class="bi bi-geo-alt text-info fs-5"></i>
+                                                    <span
+                                                        class="text-muted small fw-semibold">{{ __('idea.index.desired_country') }}</span>
+                                                </div>
+                                                <div class="fw-semibold text-dark">
+                                                    @forelse($idea->countries as $country)
+                                                        @php
+                                                            $options = __('idea.steps.step2.options');
+                                                            $countryOption = collect($options)->firstWhere(
+                                                                'code',
+                                                                $country->country,
+                                                            );
+                                                            $countryName = $countryOption['name'] ?? $country->country;
+                                                        @endphp
+                                                        <span class="country-tag">{{ $countryName }}</span>
+                                                    @empty
+                                                        <span class="text-muted">-</span>
+                                                    @endforelse
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Contributions -->
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="border rounded-3 p-3 h-100 bg-light bg-opacity-50">
+                                                <div class="d-flex align-items-center gap-2 mb-2">
+                                                    <i class="bi bi-person-badge text-warning fs-5"></i>
+                                                    <span
+                                                        class="text-muted small fw-semibold">{{ __('idea.index.contributions_title') }}</span>
+                                                </div>
+                                                @php
+                                                    $contributions = [];
+                                                    foreach ($idea->contributions as $c) {
+                                                        $label = match ($c->contribute_type) {
+                                                            'sell' => __('idea.steps.step7.sell'),
+                                                            'idea' => __('idea.steps.step7.idea'),
+                                                            'capital' => __('idea.steps.step7.capital'),
+                                                            'personal' => __('idea.steps.step7.personal'),
+                                                            'both' => __('idea.steps.step7.both'),
+                                                            default => $c->contribute_type,
+                                                        };
+                                                        $contributions[] = $label;
+                                                    }
+                                                @endphp
+                                                <div class="fw-semibold text-dark small">
+                                                    @if (count($contributions) > 0)
+                                                        {{ implode('، ', $contributions) }}
+                                                    @else
+                                                        <span
+                                                            class="text-muted">{{ __('idea.index.contributions_empty') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -156,30 +154,30 @@
                         </div>
                     @empty
                         <div class="col-12">
-                            <div class="alert alert-warning text-center">
-                                {{ __('idea.index.no_ideas') }}
+                            <div class="alert alert-light border text-center py-5">
+                                <i class="bi bi-inbox text-secondary d-block mb-3" style="font-size: 3rem;"></i>
+                                <p class="text-muted mb-0">{{ __('idea.index.no_ideas') }}</p>
                             </div>
                         </div>
                     @endforelse
-
                 </div>
 
-                <!-- زر تحميل المزيد -->
+                <!-- Load More Button -->
                 @if ($hasMore)
-                    <div class="d-flex align-items-center gap-2 justify-content-center my-4">
+                    <div class="d-flex justify-content-center my-4">
                         <button type="button" wire:click="loadMore" wire:loading.attr="disabled"
-                            class="btn btn-primary py-3 px-4">
-                            <span class="small fw-bold" wire:loading.remove>
+                            class="btn btn-outline-primary rounded-pill px-5 py-2">
+                            <span wire:loading.remove wire:target="loadMore">
+                                <i class="bi bi-arrow-down-circle me-2"></i>
                                 {{ __('idea.index.btn_show_more') }}
                             </span>
-
-                            <span class="small fw-bold" wire:loading>
+                            <span wire:loading wire:target="loadMore">
+                                <span class="spinner-border spinner-border-sm me-2"></span>
                                 {{ __('idea.index.loading') }}
                             </span>
                         </button>
                     </div>
                 @endif
-
             </div>
         </div>
     </div>
