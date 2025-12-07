@@ -136,8 +136,7 @@
     .avatar-upload-btn {
         position: absolute;
         bottom: 45px;
-        {{ app()->getLocale() == 'ar' ? 'left: 0;' : 'right: 0;' }}
-        background: var(--bs-primary);
+        {{ app()->getLocale() == 'ar' ? 'left: 0;' : 'right: 0;' }} background: var(--bs-primary);
         color: white;
         border-radius: 50%;
         width: 35px;
@@ -312,7 +311,8 @@
                                                 <i class="bi bi-camera-fill"></i>
                                             </label>
                                             <input type="file" id="avatarUpload" class="d-none" accept="image/*" />
-                                            <small class="d-block mt-2 text-muted">{{ __('profile.buttons.upload_avatar') }}</small>
+                                            <small
+                                                class="d-block mt-2 text-muted">{{ __('profile.buttons.upload_avatar') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-9">
@@ -324,7 +324,8 @@
                                                             <i class="bi bi-person-badge text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">{{ __('profile.personal_info.full_name') }}</small>
+                                                            <small
+                                                                class="text-muted d-block">{{ __('profile.personal_info.full_name') }}</small>
                                                             <strong>أحمد محمد علي</strong>
                                                         </div>
                                                     </div>
@@ -337,7 +338,8 @@
                                                             <i class="bi bi-envelope text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">{{ __('profile.personal_info.email') }}</small>
+                                                            <small
+                                                                class="text-muted d-block">{{ __('profile.personal_info.email') }}</small>
                                                             <strong class="small">ahmed@email.com</strong>
                                                         </div>
                                                     </div>
@@ -350,7 +352,8 @@
                                                             <i class="bi bi-telephone text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">{{ __('profile.personal_info.phone') }}</small>
+                                                            <small
+                                                                class="text-muted d-block">{{ __('profile.personal_info.phone') }}</small>
                                                             <strong>+966 50 123 4567</strong>
                                                         </div>
                                                     </div>
@@ -363,7 +366,8 @@
                                                             <i class="bi bi-geo-alt text-white"></i>
                                                         </div>
                                                         <div>
-                                                            <small class="text-muted d-block">{{ __('profile.personal_info.location') }}</small>
+                                                            <small
+                                                                class="text-muted d-block">{{ __('profile.personal_info.location') }}</small>
                                                             <strong>الرياض، السعودية</strong>
                                                         </div>
                                                     </div>
@@ -389,7 +393,8 @@
                                             style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                                             <i class="bi bi-check-circle-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">2</h4>
-                                            <small class="opacity-75">{{ __('profile.stats.published_ideas') }}</small>
+                                            <small
+                                                class="opacity-75">{{ __('profile.stats.published_ideas') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -397,7 +402,8 @@
                                             style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                                             <i class="bi bi-people-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">3</h4>
-                                            <small class="opacity-75">{{ __('profile.stats.investment_offers') }}</small>
+                                            <small
+                                                class="opacity-75">{{ __('profile.stats.investment_offers') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -405,7 +411,8 @@
                                             style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
                                             <i class="bi bi-star-fill fs-2 mb-2"></i>
                                             <h4 class="fw-bold mb-0">4.8</h4>
-                                            <small class="opacity-75">{{ __('profile.stats.published_offers') }}</small>
+                                            <small
+                                                class="opacity-75">{{ __('profile.stats.published_offers') }}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +427,8 @@
                                             {{ __('profile.personal_info.full_name') }}
                                         </label>
                                         <input type="text" class="form-control py-3" id="fullName"
-                                            placeholder="{{ __('profile.personal_info.full_name') }}" value="أحمد محمد علي" />
+                                            placeholder="{{ __('profile.personal_info.full_name') }}"
+                                            value="أحمد محمد علي" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="username" class="form-label fw-semibold">
@@ -428,7 +436,8 @@
                                             {{ __('profile.personal_info.username') }}
                                         </label>
                                         <input type="text" class="form-control py-3" id="username"
-                                            placeholder="{{ __('profile.personal_info.username') }}" value="ahmed_mohamed" />
+                                            placeholder="{{ __('profile.personal_info.username') }}"
+                                            value="ahmed_mohamed" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="birthdate" class="form-label fw-semibold">
@@ -453,7 +462,8 @@
                                             <i class="bi bi-chat-quote text-primary me-2"></i>
                                             {{ __('profile.personal_info.bio') }}
                                         </label>
-                                        <textarea class="form-control" id="bio" rows="4" placeholder="{{ __('profile.personal_info.bio_placeholder') }}">رائد أعمال شغوف بالاستثمار في المشاريع الناشئة والتقنية</textarea>
+                                        <textarea class="form-control" id="bio" rows="4"
+                                            placeholder="{{ __('profile.personal_info.bio_placeholder') }}">رائد أعمال شغوف بالاستثمار في المشاريع الناشئة والتقنية</textarea>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-custom py-3 px-5">
@@ -502,8 +512,8 @@
                                     <i class="bi bi-geo-alt text-primary me-2"></i>
                                     {{ __('profile.contact_info.city') }}
                                 </label>
-                                <input type="text" class="form-control py-3" id="city2" placeholder="{{ __('profile.contact_info.city') }}"
-                                    value="الرياض" />
+                                <input type="text" class="form-control py-3" id="city2"
+                                    placeholder="{{ __('profile.contact_info.city') }}" value="الرياض" />
                             </div>
                             <div class="col-md-4">
                                 <label for="zipcode" class="form-label fw-semibold">
@@ -518,7 +528,8 @@
                                     <i class="bi bi-house text-primary me-2"></i>
                                     {{ __('profile.contact_info.address') }}
                                 </label>
-                                <textarea class="form-control" id="address" rows="3" placeholder="{{ __('profile.contact_info.address_placeholder') }}">حي العليا، طريق الملك فهد، الرياض</textarea>
+                                <textarea class="form-control" id="address" rows="3"
+                                    placeholder="{{ __('profile.contact_info.address_placeholder') }}">حي العليا، طريق الملك فهد، الرياض</textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-custom py-3 px-5">
@@ -581,187 +592,200 @@
         </div>
 
         <!-- Ideas Section -->
-        <div class="card info-card shadow-sm p-0">
-            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.ideas.title') }}</h5>
-                <a href="./ideas.html" class="btn btn-sm btn-outline-primary">
-                    <i class="bi bi-eye me-1"></i>
-                    {{ __('profile.buttons.view_ideas') }}
-                </a>
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold text-dark">{{ __('profile.ideas.title') }}</h5>
+                    <a href="./ideas.html" class="btn btn-sm btn-primary rounded-pill px-4">
+                        <i class="bi bi-eye me-2"></i>
+                        <span>{{ __('profile.buttons.view_ideas') }}</span>
+                    </a>
+                </div>
             </div>
+
             <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <!-- Idea 1 -->
-                    <div class="list-group-item border-0 p-0">
-                        <div class="idea-card p-4">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-lg-3">
-                                    <h6 class="fw-bold mb-2 text-primary">
-                                        <i class="bi bi-lightbulb-fill me-2"></i>
-                                        {{ __('profile.ideas.title') }}: مطلوب مشروع سياحي
-                                    </h6>
-                                    <p class="text-muted small mb-0">
+
+                <!-- Idea 1 -->
+                <div class="p-4 border-bottom">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-4">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-primary bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center flex-shrink-0 fw-bold"
+                                    style="width: 45px; height: 45px; font-size: 1.1rem;">
+                                    1
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-primary">مطلوب مشروع سياحي</h6>
+                                    <small class="text-muted">
                                         <i class="bi bi-calendar3 me-1"></i>
-                                        {{ __('profile.ideas.details.date') }}: 15 يناير 2025
-                                    </p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="d-flex flex-column gap-2">
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 500,000 ريال
-                                        </p>
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>{{ __('profile.ideas.location') }}:</strong> دول الخليج، مصر
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <p class="mb-0 small text-muted">
-                                        <i class="bi bi-briefcase me-2"></i>
-                                        {{ __('profile.ideas.details.team') }}: شركة قائمة، موظفون متخصصون
-                                    </p>
-                                </div>
-                                <div class="col-lg-2 text-lg-center">
-                                    <span class="status-badge pending">
-                                        <span class="status-indicator bg-warning"></span>
-                                        {{ __('profile.ideas.status.pending') }}
-                                    </span>
+                                        15 يناير 2025
+                                    </small>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Idea 2 -->
-                    <div class="list-group-item border-0 p-0 bg-light">
-                        <div class="idea-card p-4">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-lg-3">
-                                    <h6 class="fw-bold mb-2 text-primary">
-                                        <i class="bi bi-lightbulb-fill me-2"></i>
-                                        {{ __('profile.ideas.title') }}: تطبيق توصيل طعام
-                                    </h6>
-                                    <p class="text-muted small mb-0">
-                                        <i class="bi bi-calendar3 me-1"></i>
-                                        {{ __('profile.ideas.details.date') }}: 10 يناير 2025
-                                    </p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="d-flex flex-column gap-2">
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 300,000 ريال
-                                        </p>
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>{{ __('profile.ideas.location') }}:</strong> السعودية
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <p class="mb-0 small text-muted">
-                                        <i class="bi bi-briefcase me-2"></i>
-                                        {{ __('profile.ideas.details.team') }}: فريق تقني، خطة عمل
-                                    </p>
-                                </div>
-                                <div class="col-lg-2 text-lg-center">
-                                    <span class="status-badge published">
-                                        <span class="status-indicator bg-primary"></span>
-                                        {{ __('profile.ideas.status.published') }}
-                                    </span>
-                                </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex flex-column gap-2">
+                                <small class="text-dark">
+                                    <i class="bi bi-cash-coin text-success me-1"></i>
+                                    <strong>{{ __('profile.ideas.capital') }}:</strong> 500,000 ريال
+                                </small>
+                                <small class="text-dark">
+                                    <i class="bi bi-geo-alt text-info me-1"></i>
+                                    <strong>{{ __('profile.ideas.location') }}:</strong> دول الخليج، مصر
+                                </small>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Idea 3 -->
-                    <div class="list-group-item border-0 p-0">
-                        <div class="idea-card p-4">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-lg-3">
-                                    <h6 class="fw-bold mb-2 text-primary">
-                                        <i class="bi bi-lightbulb-fill me-2"></i>
-                                        {{ __('profile.ideas.title') }}: مصنع منتجات غذائية
-                                    </h6>
-                                    <p class="text-muted small mb-0">
-                                        <i class="bi bi-calendar3 me-1"></i>
-                                        {{ __('profile.ideas.details.date') }}: 5 يناير 2025
-                                    </p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="d-flex flex-column gap-2">
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 1,000,000 ريال
-                                        </p>
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>{{ __('profile.ideas.location') }}:</strong> مصر
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <p class="mb-0 small text-muted">
-                                        <i class="bi bi-briefcase me-2"></i>
-                                        {{ __('profile.ideas.details.team') }}: معدات، مقر، تراخيص
-                                    </p>
-                                </div>
-                                <div class="col-lg-2 text-lg-center">
-                                    <span class="status-badge rejected">
-                                        <span class="status-indicator bg-danger"></span>
-                                        {{ __('profile.ideas.status.rejected') }}
-                                    </span>
-                                </div>
-                            </div>
+                        <div class="col-lg-3">
+                            <small class="text-muted">
+                                <i class="bi bi-briefcase me-1"></i>
+                                شركة قائمة، موظفون
+                            </small>
                         </div>
-                    </div>
-
-                    <!-- Idea 4 -->
-                    <div class="list-group-item border-0 p-0 bg-light">
-                        <div class="idea-card p-4">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-lg-3">
-                                    <h6 class="fw-bold mb-2 text-primary">
-                                        <i class="bi bi-lightbulb-fill me-2"></i>
-                                        {{ __('profile.ideas.title') }}: منصة تعليمية إلكترونية
-                                    </h6>
-                                    <p class="text-muted small mb-0">
-                                        <i class="bi bi-calendar3 me-1"></i>
-                                        {{ __('profile.ideas.details.date') }}: 1 يناير 2025
-                                    </p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="d-flex flex-column gap-2">
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-cash-coin text-success me-2"></i>
-                                            <strong>{{ __('profile.ideas.capital') }}:</strong> 200,000 ريال
-                                        </p>
-                                        <p class="mb-0 small">
-                                            <i class="bi bi-geo-alt text-danger me-2"></i>
-                                            <strong>{{ __('profile.ideas.location') }}:</strong> دول الخليج
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <p class="mb-0 small text-muted">
-                                        <i class="bi bi-briefcase me-2"></i>
-                                        {{ __('profile.ideas.details.team') }}: محتوى تعليمي، مدربون
-                                    </p>
-                                </div>
-                                <div class="col-lg-2 text-lg-center">
-                                    <span class="status-badge connected">
-                                        <span class="status-indicator bg-success"></span>
-                                        {{ __('profile.ideas.status.connected') }}
-                                    </span>
-                                </div>
-                            </div>
+                        <div class="col-lg-2 text-lg-end">
+                            <span class="badge bg-warning text-dark px-3 py-2">
+                                <i class="bi bi-clock me-1"></i>
+                                {{ __('profile.ideas.status.pending') }}
+                            </span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Idea 2 -->
+                <div class="p-4 border-bottom bg-light bg-opacity-50">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-4">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-primary bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center flex-shrink-0 fw-bold"
+                                    style="width: 45px; height: 45px; font-size: 1.1rem;">
+                                    2
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-primary">تطبيق توصيل طعام</h6>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar3 me-1"></i>
+                                        10 يناير 2025
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex flex-column gap-2">
+                                <small class="text-dark">
+                                    <i class="bi bi-cash-coin text-success me-1"></i>
+                                    <strong>{{ __('profile.ideas.capital') }}:</strong> 300,000 ريال
+                                </small>
+                                <small class="text-dark">
+                                    <i class="bi bi-geo-alt text-info me-1"></i>
+                                    <strong>{{ __('profile.ideas.location') }}:</strong> السعودية
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <small class="text-muted">
+                                <i class="bi bi-briefcase me-1"></i>
+                                فريق تقني، خطة عمل
+                            </small>
+                        </div>
+                        <div class="col-lg-2 text-lg-end">
+                            <span class="badge bg-primary px-3 py-2">
+                                <i class="bi bi-check-circle me-1"></i>
+                                {{ __('profile.ideas.status.published') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Idea 3 -->
+                <div class="p-4 border-bottom">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-4">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-primary bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center flex-shrink-0 fw-bold"
+                                    style="width: 45px; height: 45px; font-size: 1.1rem;">
+                                    3
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-primary">مصنع منتجات غذائية</h6>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar3 me-1"></i>
+                                        5 يناير 2025
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex flex-column gap-2">
+                                <small class="text-dark">
+                                    <i class="bi bi-cash-coin text-success me-1"></i>
+                                    <strong>{{ __('profile.ideas.capital') }}:</strong> 1,000,000 ريال
+                                </small>
+                                <small class="text-dark">
+                                    <i class="bi bi-geo-alt text-info me-1"></i>
+                                    <strong>{{ __('profile.ideas.location') }}:</strong> مصر
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <small class="text-muted">
+                                <i class="bi bi-briefcase me-1"></i>
+                                معدات، مقر، تراخيص
+                            </small>
+                        </div>
+                        <div class="col-lg-2 text-lg-end">
+                            <span class="badge bg-danger px-3 py-2">
+                                <i class="bi bi-x-circle me-1"></i>
+                                {{ __('profile.ideas.status.rejected') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Idea 4 -->
+                <div class="p-4 bg-light bg-opacity-50">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-4">
+                            <div class="d-flex align-items-start gap-3">
+                                <div class="bg-primary bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center flex-shrink-0 fw-bold"
+                                    style="width: 45px; height: 45px; font-size: 1.1rem;">
+                                    4
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-primary">منصة تعليمية إلكترونية</h6>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar3 me-1"></i>
+                                        1 يناير 2025
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex flex-column gap-2">
+                                <small class="text-dark">
+                                    <i class="bi bi-cash-coin text-success me-1"></i>
+                                    <strong>{{ __('profile.ideas.capital') }}:</strong> 200,000 ريال
+                                </small>
+                                <small class="text-dark">
+                                    <i class="bi bi-geo-alt text-info me-1"></i>
+                                    <strong>{{ __('profile.ideas.location') }}:</strong> دول الخليج
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <small class="text-muted">
+                                <i class="bi bi-briefcase me-1"></i>
+                                محتوى تعليمي، مدربون
+                            </small>
+                        </div>
+                        <div class="col-lg-2 text-lg-end">
+                            <span class="badge bg-success px-3 py-2">
+                                <i class="bi bi-link-45deg me-1"></i>
+                                {{ __('profile.ideas.status.connected') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
-
-
