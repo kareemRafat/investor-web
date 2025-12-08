@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\Investment\InvestmentInfo;
 use App\Livewire\Pages\Investment\InvestmentSummary;
-use App\Livewire\Pages\Profile;
+use App\Livewire\Pages\Profile\Profile;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
