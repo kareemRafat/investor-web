@@ -1,4 +1,4 @@
-<div class="container py-4" dir="rtl">
+<div class="container py-4" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
     @once
         <style>
             :root {
@@ -239,7 +239,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-8">
                     <h2 class="fw-bold mb-2">{{ __('profile.title') }}</h2>
-                    <p class="mb-0 opacity-75 fs-5">أهلاً بك، يمكنك هنا متابعة إحصائياتك وتعديل بياناتك.</p>
+                    <p class="mb-0 opacity-75 fs-5">{{ __('profile.welcome_message') }}</p>
                 </div>
                 <div class="col-lg-4 text-lg-start mt-4 mt-lg-0">
                     <div
@@ -264,7 +264,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>5</h3>
-                    <span>الأفكار المطروحة</span>
+                    <span>{{ __('profile.stats.ideas_submitted') }}</span>
                 </div>
             </div>
         </div>
@@ -275,7 +275,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>2</h3>
-                    <span>أفكار منشورة</span>
+                    <span>{{ __('profile.stats.ideas_published') }}</span>
                 </div>
             </div>
         </div>
@@ -286,7 +286,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>3</h3>
-                    <span>عروض استثمار</span>
+                    <span>{{ __('profile.stats.investment_offers') }}</span>
                 </div>
             </div>
         </div>
@@ -297,7 +297,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>4.8</h3>
-                    <span>التقييم العام</span>
+                    <span>{{ __('profile.stats.overall_rating') }}</span>
                 </div>
             </div>
         </div>
@@ -305,53 +305,52 @@
 
     <div class="row">
         <div class="nav-strip sticky-top" style="top: 0; z-index: 99;">
-            <a class="nav-item active"><i class="bi bi-person"></i> البيانات الشخصية</a>
-            <a class="nav-item"><i class="bi bi-image"></i> الصورة</a>
-            <a class="nav-item"><i class="bi bi-envelope"></i> الاتصال</a>
-            <a class="nav-item"><i class="bi bi-shield-lock"></i> الأمان</a> <a class="nav-item ms-auto text-danger"><i
-                    class="bi bi-box-arrow-left"></i> خروج</a>
+            <a class="nav-item active"><i class="bi bi-person"></i> {{ __('profile.navigation.personal_data') }}</a>
+            <a class="nav-item"><i class="bi bi-image"></i> {{ __('profile.navigation.profile_picture') }}</a>
+            <a class="nav-item"><i class="bi bi-envelope"></i> {{ __('profile.navigation.contact') }}</a>
+            <a class="nav-item"><i class="bi bi-shield-lock"></i> {{ __('profile.navigation.security') }}</a>
         </div>
 
         <div class="settings-card">
             <div class="section-title">
                 <i class="bi bi-person-lines-fill text-primary"></i>
-                المعلومات الأساسية
+                {{ __('profile.basic_info.title') }}
             </div>
             <form>
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <label class="form-label">الاسم بالكامل</label>
+                        <label class="form-label">{{ __('profile.labels.full_name') }}</label>
                         <div class="custom-input-group">
                             <span class="input-icon"><i class="bi bi-person"></i></span>
                             <input type="text" class="form-control" value="أحمد محمد علي">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">اسم المستخدم</label>
+                        <label class="form-label">{{ __('profile.labels.username') }}</label>
                         <div class="custom-input-group">
                             <span class="input-icon"><i class="bi bi-at"></i></span>
                             <input type="text" class="form-control" value="ahmed_dev">
                         </div>
                     </div>
                     <div class="col-12">
-                        <label class="form-label">نبذة عنك</label>
+                        <label class="form-label">{{ __('profile.labels.bio') }}</label>
                         <div class="custom-input-group align-items-start pt-2">
                             <span class="input-icon mt-1"><i class="bi bi-chat-quote"></i></span>
                             <textarea class="form-control" rows="3">مطور برمجيات شغوف بالتقنيات الحديثة...</textarea>
                         </div>
                     </div>
                     <div class="col-12 text-end">
-                        <button type="button" class="btn btn-save">حفظ التغييرات</button>
+                        <button type="button"
+                            class="btn btn-save">{{ __('profile.basic_info.save_changes') }}</button>
                     </div>
                 </div>
             </form>
         </div>
 
-
         <div class="settings-card">
             <div class="section-title">
                 <i class="bi bi-image text-primary"></i>
-                صورة الملف الشخصي
+                {{ __('profile.profile_picture.title') }}
             </div>
             <div class="d-flex align-items-center gap-4">
                 <div class="position-relative">
@@ -363,48 +362,49 @@
                     </label>
                 </div>
                 <div>
-                    <h6 class="fw-bold mb-1">تغيير الصورة</h6>
-                    <p class="text-muted small mb-2">JPG, GIF or PNG. Max size of 800K</p>
+                    <h6 class="fw-bold mb-1">{{ __('profile.profile_picture.change_picture') }}</h6>
+                    <p class="text-muted small mb-2">{{ __('profile.profile_picture.upload_instructions') }}</p>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">رفع صورة</button>
-                        <button class="btn btn-sm btn-light text-danger rounded-pill px-3">حذف</button>
+                        <button
+                            class="btn btn-sm btn-outline-primary rounded-pill px-3">{{ __('profile.profile_picture.upload_button') }}</button>
+                        <button
+                            class="btn btn-sm btn-light text-danger rounded-pill px-3">{{ __('profile.profile_picture.delete_button') }}</button>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div class="settings-card">
             <div class="section-title">
                 <i class="bi bi-envelope-paper text-primary"></i>
-                معلومات الاتصال
+                {{ __('profile.contact_info.title') }}
             </div>
             <div class="row g-4">
                 <div class="col-md-6">
-                    <label class="form-label">البريد الإلكتروني</label>
+                    <label class="form-label">{{ __('profile.labels.email') }}</label>
                     <div class="custom-input-group bg-light">
                         <span class="input-icon"><i class="bi bi-envelope"></i></span>
                         <input type="email" class="form-control" value="ahmed@example.com" readonly>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">رقم الهاتف</label>
+                    <label class="form-label">{{ __('profile.labels.phone') }}</label>
                     <div class="custom-input-group">
                         <span class="input-icon"><i class="bi bi-telephone"></i></span>
                         <input type="tel" class="form-control" value="01000000000">
                     </div>
                 </div>
                 <div class="col-12 text-end">
-                    <button type="button" class="btn btn-save">حفظ معلومات الاتصال</button>
+                    <button type="button"
+                        class="btn btn-save">{{ __('profile.contact_info.save_contact') }}</button>
                 </div>
             </div>
         </div>
 
-
         <div class="settings-card">
             <div class="section-title">
                 <i class="bi bi-shield-lock text-danger"></i>
-                الأمان وكلمة المرور
+                {{ __('profile.security.title') }}
             </div>
             <form>
                 <div class="row g-4">
@@ -412,36 +412,40 @@
                         <div class="security-alert mb-3">
                             <i class="bi bi-exclamation-triangle-fill fs-3"></i>
                             <div>
-                                <strong class="d-block mb-1">تنبيه أمني:</strong>
-                                <small>ننصح بتغيير كلمة المرور بشكل دوري لتجنب أي اختراقات محتملة.</small>
+                                <strong class="d-block mb-1">{{ __('profile.security.alert_title') }}</strong>
+                                <small>{{ __('profile.security.alert_message') }}</small>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">كلمة المرور الحالية</label>
+                        <label class="form-label">{{ __('profile.security.current_password') }}</label>
                         <div class="custom-input-group">
                             <span class="input-icon"><i class="bi bi-key"></i></span>
-                            <input type="password" class="form-control" placeholder="********">
+                            <input type="password" class="form-control"
+                                placeholder="{{ __('profile.placeholders.current_password') }}">
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">كلمة المرور الجديدة</label>
+                        <label class="form-label">{{ __('profile.security.new_password') }}</label>
                         <div class="custom-input-group">
                             <span class="input-icon"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="form-control" placeholder="أدخل كلمة المرور الجديدة">
+                            <input type="password" class="form-control"
+                                placeholder="{{ __('profile.security.new_password_placeholder') }}">
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">تأكيد كلمة المرور</label>
+                        <label class="form-label">{{ __('profile.security.confirm_password') }}</label>
                         <div class="custom-input-group">
                             <span class="input-icon"><i class="bi bi-lock-fill"></i></span>
-                            <input type="password" class="form-control" placeholder="أعد كتابة كلمة المرور">
+                            <input type="password" class="form-control"
+                                placeholder="{{ __('profile.security.confirm_password_placeholder') }}">
                         </div>
                     </div>
 
                     <div class="col-12 text-end mt-4">
-                        <button type="button" class="btn btn-save">تحديث الأمان</button>
+                        <button type="button"
+                            class="btn btn-save">{{ __('profile.security.update_security') }}</button>
                     </div>
                 </div>
             </form>
@@ -461,7 +465,6 @@
             </div>
 
             <div class="card-body p-0">
-
                 <!-- Idea 1 -->
                 <div class="p-4 border-bottom">
                     <div class="row g-3 align-items-center">
@@ -641,9 +644,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>

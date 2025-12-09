@@ -1,97 +1,89 @@
 <?php
 
 return [
-    'title' => 'Profile',
-    'subtitle' => 'Manage your personal information and track your investment ideas',
+    'title' => 'My Profile',
+    'welcome_message' => 'Welcome, here you can follow your statistics and edit your information.',
 
     'stats' => [
-        'ideas' => 'Ideas',
-        'since' => 'Member since :year',
-        'published_ideas' => 'Published Ideas',
-        'investment_offers' => 'Investment Offers Made',
-        'published_offers' => 'Published Offers',
+        'ideas_submitted' => 'Ideas Submitted',
+        'ideas_published' => 'Published Ideas',
+        'investment_offers' => 'Investment Offers',
+        'overall_rating' => 'Overall Rating',
     ],
 
-    'tabs' => [
-        'personal' => [
-            'title' => 'Personal Information',
-            'icon' => 'bi bi-person-circle',
-        ],
-        'contact' => [
-            'title' => 'Contact Information',
-            'icon' => 'bi bi-telephone',
-        ],
-        'security' => [
-            'title' => 'Security',
-            'icon' => 'bi bi-shield-check',
-        ],
+    'navigation' => [
+        'personal_data' => 'Personal Data',
+        'profile_picture' => 'Profile Picture',
+        'contact' => 'Contact',
+        'security' => 'Security',
+        'logout' => 'Logout',
     ],
 
-    'personal_info' => [
+    'basic_info' => [
+        'title' => 'Basic Information',
         'full_name' => 'Full Name',
-        'email' => 'Email Address',
-        'phone' => 'Phone Number',
-        'location' => 'Location',
         'username' => 'Username',
-        'birthdate' => 'Birth Date',
-        'gender' => 'Gender',
         'bio' => 'About You',
-        'bio_placeholder' => 'Write a brief description about yourself...',
+        'save_changes' => 'Save Changes',
+    ],
+
+    'profile_picture' => [
+        'title' => 'Profile Picture',
+        'change_picture' => 'Change Picture',
+        'upload_instructions' => 'JPG, GIF or PNG. Max size of 800K',
+        'upload_button' => 'Upload Image',
+        'delete_button' => 'Delete',
     ],
 
     'contact_info' => [
-        'country' => 'Country',
-        'city' => 'City',
-        'zipcode' => 'Zip Code',
-        'address' => 'Full Address',
-        'address_placeholder' => 'Enter your full address...',
+        'title' => 'Contact Information',
+        'email' => 'Email Address',
+        'phone' => 'Phone Number',
+        'save_contact' => 'Save Contact Information',
     ],
 
     'security' => [
+        'title' => 'Security & Password',
+        'alert_title' => 'Security Alert:',
+        'alert_message' => 'We recommend changing your password regularly to avoid potential breaches.',
         'current_password' => 'Current Password',
         'new_password' => 'New Password',
         'confirm_password' => 'Confirm Password',
-        'security_tip' => 'Security Tip: Use a strong password containing uppercase, lowercase, numbers and symbols',
-        'forgot_password' => 'Forgot Password?',
+        'new_password_placeholder' => 'Enter new password',
+        'confirm_password_placeholder' => 'Re-enter password',
+        'update_security' => 'Update Security',
     ],
 
     'ideas' => [
-        'title' => 'Submitted Ideas',
-        'view_all' => 'View All Ideas',
+        'title' => 'Your Suggested Ideas',
+        'view_ideas' => 'View All Ideas',
         'capital' => 'Capital',
         'location' => 'Location',
         'status' => [
-            'pending' => 'Under Review',
+            'pending' => 'Pending Review',
             'published' => 'Published',
             'rejected' => 'Rejected',
-            'connected' => 'Contacted',
-        ],
-        'details' => [
-            'date' => 'Date',
-            'team' => 'Team/Requirements',
+            'connected' => 'Connected',
         ],
     ],
 
     'buttons' => [
-        'save_changes' => 'Save Changes',
-        'save_contact' => 'Save Contact Information',
-        'update_password' => 'Update Password',
-        'upload_avatar' => 'Update Profile Picture',
-        'view_ideas' => 'View All Ideas',
-    ],
-
-    'general' => [
-        'edit' => 'Edit',
         'save' => 'Save',
         'cancel' => 'Cancel',
-        'male' => 'Male',
-        'female' => 'Female',
+        'view_ideas' => 'View Ideas',
     ],
 
-    'countries' => [
-        'saudi_arabia' => 'Saudi Arabia',
-        'uae' => 'United Arab Emirates',
-        'egypt' => 'Egypt',
-        'kuwait' => 'Kuwait',
+    'labels' => [
+        'email' => 'Email Address',
+        'phone' => 'Phone Number',
+        'full_name' => 'Full Name',
+        'username' => 'Username',
+        'bio' => 'About You',
+    ],
+
+    'placeholders' => [
+        'current_password' => '********',
+        'new_password' => 'Enter new password',
+        'confirm_password' => 'Re-enter password',
     ],
 ];
