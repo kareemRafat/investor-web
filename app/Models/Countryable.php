@@ -16,4 +16,9 @@ class Countryable extends Model
     {
         return $this->morphTo();
     }
+
+    public function scopeByCountry($query, $countryCode)
+    {
+        return $query->where('country', $countryCode);
+    }
 }

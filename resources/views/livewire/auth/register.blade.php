@@ -207,21 +207,25 @@
 
 
                         <!-- residence_country -->
-                        <div class="form-floating mb-3 position-relative">
-                            <input name="residence_country" type="text" class="form-control" id="floatingAddress"
-                                placeholder="{{ __('pages.register.residence_country') }}"
-                                value="{{ old('residence_country') }}" />
-                            <label for="floatingAddress"
-                                class="form-label">{{ __('pages.register.residence_country') }}</label>
+                        <div class="form-floating">
+                            <select name="residence_country"
+                                class="form-select @error('residence_country') is-invalid @enderror"
+                                id="floatingCountry" required>
+                                <option value="">{{ __('profile.placeholders.select_country') }}</option>
+
+                                @foreach (__('profile.countries') as $code => $name)
+                                    <option value="{{ $name }}"
+                                        {{ old('residence_country') == $name ? 'selected' : '' }}>
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+                            <label for="floatingCountry">{{ __('pages.register.residence_country') }}</label>
+
                             @error('residence_country')
-                                @php
-                                    $translatedError = isset($errorTranslations[$message][$currentLocale])
-                                        ? $errorTranslations[$message][$currentLocale]
-                                        : $message;
-                                @endphp
-                                <div class="text-danger mt-2 fw-semibold">
-                                    <i class="bi bi-exclamation-circle me-2"></i>
-                                    {{ $translatedError }}
+                                <div class="invalid-feedback">
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -285,8 +289,7 @@
                         <div class="text-center my-5">
                             <span class="small">
                                 {{ __('pages.register.already_have_account') }}
-                                <a href="{{ route('login') }}" wire:navigate
-                                    class="text-decoration-none text-primary">
+                                <a href="{{ route('login') }}" wire:navigate class="text-decoration-none text-primary">
                                     {{ __('pages.register.login') }}
                                 </a>
                             </span>

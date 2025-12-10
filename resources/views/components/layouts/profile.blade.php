@@ -258,7 +258,7 @@
         </div>
 
         <div class="row mb-4">
-            <div class="col-md-3 col-sm-6 pe-0">
+            <div class="col-md-3 mb-3 col-sm-6 pe-md-0">
                 <div class="stat-card stat-purple">
                     <div class="stat-icon">
                         <i class="bi bi-lightbulb"></i>
@@ -269,7 +269,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 mb-3 col-sm-6">
                 <div class="stat-card stat-blue">
                     <div class="stat-icon">
                         <i class="bi bi-check-circle"></i>
@@ -280,7 +280,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 mb-3 col-sm-6">
                 <div class="stat-card stat-green">
                     <div class="stat-icon">
                         <i class="bi bi-graph-up-arrow"></i>
@@ -291,7 +291,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 ps-0">
+            <div class="col-md-3 mb-3 col-sm-6 ps-md-0">
                 <div class="stat-card stat-orange">
                     <div class="stat-icon">
                         <i class="bi bi-star-fill"></i>
