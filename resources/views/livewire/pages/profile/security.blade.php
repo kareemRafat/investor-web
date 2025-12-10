@@ -55,7 +55,9 @@
             <div class="col-12 text-end mt-4 d-flex justify-content-between align-items-center gap-3">
                 <div class="w-50">
                     @if (session()->has('success'))
-                        <div class="alert alert-success mb-0 text-start" role="alert">
+                        <div class="alert alert-success mb-0 text-start alert-dismissible fade show" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
                             <i class="bi bi-check-circle-fill mx-1"></i>
                             {{ session('success') }}
                         </div>
