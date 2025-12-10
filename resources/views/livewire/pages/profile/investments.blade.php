@@ -1,7 +1,7 @@
 <div class="card info-card shadow-sm">
     <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
         <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.investment_offers.title') }}</h5>
-        <a wire:navigate href="{{ route('idea.index') }}" class="btn btn-sm btn-outline-primary fw-bold">
+        <a wire:navigate href="{{ route('investor.index') }}" class="btn btn-sm btn-outline-primary fw-bold">
             <i class="bi bi-eye me-1"></i>
             {{ __('profile.investment_offers.view_all') }}
         </a>

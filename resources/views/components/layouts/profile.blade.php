@@ -235,6 +235,7 @@
             </style>
         @endonce
 
+        <!-- profile-header -->
         <div class="row">
             <div class="profile-header shadow-sm">
                 <div class="row align-items-center">
@@ -257,6 +258,7 @@
             </div>
         </div>
 
+        <!-- stats cards -->
         <div class="row mb-4">
             <div class="col-md-3 mb-3 col-sm-6 pe-md-0">
                 <div class="stat-card stat-purple">
@@ -304,6 +306,7 @@
             </div>
         </div>
 
+        <!-- sub-menu -->
         @include('components.assets.profile.sub_menu')
 
         <div class="row">

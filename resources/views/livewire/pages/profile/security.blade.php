@@ -6,10 +6,11 @@
     <form wire:submit.prevent="updatePassword">
         <div class="row g-4">
             <div class="col-12">
-                <div class="security-alert mb-3">
+                <div class="security-alert mb-3" style="color: rgb(138, 4, 4)">
                     <i class="bi bi-exclamation-triangle-fill fs-3"></i>
-                    <div>
-                        <strong class="d-block mb-1">{{ __('profile.security.alert_title') }}</strong>
+                    <div class="d-flex flex-column flex-md-row gap-md-4 align-items-md-center">
+                        <strong class="d-block mb-1"
+                            style="color: rgb(138, 4, 4)">{{ __('profile.security.alert_title') }}</strong>
                         <small>{{ __('profile.security.alert_message') }}</small>
                     </div>
                 </div>
@@ -17,38 +18,47 @@
 
             <div class="col-md-4">
                 <label class="form-label">{{ __('profile.security.current_password') }}</label>
-                <div class="custom-input-group mb-1">
+                <div class="custom-input-group mb-2">
                     <span class="input-icon"><i class="bi bi-key"></i></span>
                     <input type="password" class="form-control @error('current_password') is-invalid @enderror"
                         wire:model="current_password" placeholder="{{ __('profile.placeholders.current_password') }}">
                 </div>
                 @error('current_password')
-                    <small class="text-danger">{{ $message }}</small>
+                    <small class="text-white bg-danger py-1 px-2 rounded-1">
+                        <i class="bi bi-shield-exclamation"></i>
+                        {{ $message }}
+                    </small>
                 @enderror
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">{{ __('profile.security.new_password') }}</label>
-                <div class="custom-input-group mb-1">
+                <div class="custom-input-group mb-2">
                     <span class="input-icon"><i class="bi bi-lock"></i></span>
                     <input type="password" class="form-control @error('new_password') is-invalid @enderror"
                         wire:model="new_password" placeholder="{{ __('profile.security.new_password_placeholder') }}">
                 </div>
                 @error('new_password')
-                    <small class="text-danger">{{ $message }}</small>
+                    <small class="text-white bg-danger py-1 px-2 rounded-1">
+                        <i class="bi bi-shield-exclamation"></i>
+                        {{ $message }}
+                    </small>
                 @enderror
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">{{ __('profile.security.confirm_password') }}</label>
-                <div class="custom-input-group mb-1">
+                <div class="custom-input-group mb-2">
                     <span class="input-icon"><i class="bi bi-lock-fill"></i></span>
                     <input type="password" class="form-control @error('new_password_confirmation') is-invalid @enderror"
                         wire:model="new_password_confirmation"
                         placeholder="{{ __('profile.security.confirm_password_placeholder') }}">
                 </div>
                 @error('new_password_confirmation')
-                    <small class="text-danger">{{ $message }}</small>
+                    <small class="text-white bg-danger py-1 px-2 rounded-1">
+                        <i class="bi bi-shield-exclamation"></i>
+                        {{ $message }}
+                    </small>
                 @enderror
             </div>
 
