@@ -30,14 +30,14 @@
                     <livewire:pages.investment.investment-form.steps.step6 wire:key="step-6" />
                 @break
 
-                 @case(7)
+                @case(7)
                     <livewire:pages.investment.investment-form.steps.step7 wire:key="step-7" />
                 @break
             @endswitch
 
             <div wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
                 @if ($currentStep != 1)
-                    <button wire:click.prevent="previousStep" class="btn btn-outline-custom btn_next py-2 px-4"
+                    <button wire:click="previousStep" type="button" class="btn btn-outline-custom btn_next py-2 px-4"
                         aria-label="{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}">
                         <span class="small fw-bold d-flex align-items-center">
                             @if (app()->getLocale() === 'ar')
@@ -51,7 +51,7 @@
                     </button>
                 @endif
 
-                <button wire:click.prevent="{{ $currentStep === 7 ? 'finish' : 'nextStep' }}"
+                <button type="button" wire:click.prevent="handleNextAction" wire:target="handleNextAction"
                     class="btn {{ $currentStep === 7 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4"
                     aria-label="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}">
                     <span class="small fw-bold d-flex align-items-center">

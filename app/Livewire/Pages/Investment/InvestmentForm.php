@@ -5,11 +5,13 @@ namespace App\Livewire\Pages\Investment;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
+use Illuminate\Support\Facades\Log;
 
 class InvestmentForm extends Component
 {
     public int $currentStep = 1;
     public int $maxAllowedStep = 1;
+
     public int $totalSteps = 7;
 
     public function nextStep()
@@ -43,6 +45,16 @@ class InvestmentForm extends Component
         }
     }
 
+    public function handleNextAction()
+    {
+        Log::info('handleNextAction called', ['currentStep' => $this->currentStep, 'totalSteps' => $this->totalSteps]);
+
+        if ($this->currentStep === $this->totalSteps) {
+            return $this->finish();
+        } else {
+            return $this->nextStep();
+        }
+    }
 
     public function finish()
     {
