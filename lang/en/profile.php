@@ -143,7 +143,7 @@ return [
     ],
 
     'messages' => [
-        'profile_updated' => 'Profile updated successfully',
+        'profile_updated' => 'Profile updated',
         'update_error' => 'Error updating data',
         'saving' => 'Saving...',
         'loading' => 'Loading...',

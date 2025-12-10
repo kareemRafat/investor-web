@@ -236,32 +236,31 @@
         @endonce
 
         <!-- profile-header -->
-        <div class="row">
-            <div class="profile-header shadow-sm position-relative overflow-hidden">
-                <!-- تأثير فني خفيف في الخلفية (wave أو blob، اختياري) -->
+        <div class="col-12">
+            <div class="profile-header shadow-sm position-relative overflow-hidden py-3 py-md-5 px-4">
                 <div class="position-absolute top-0 end-0 w-50 h-100 opacity-20"
                     style="background: radial-gradient(circle at top right, #6a11cb, #2575fc); filter: blur(80px);">
                 </div>
-
-                <div class="row align-items-center position-relative">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- الجزء الأيسر: العنوان والوصف -->
-                            <div>
-                                <h2 class="fw-bold mb-2">{{ __('profile.title') }}</h2>
-                                <p class="mb-0 fs-5">{{ __('profile.welcome_message') }}</p>
-                            </div>
-
-                            <!-- الجزء الأيمن: الاسم مع لمسة فنية -->
-                            <div class="text-end position-relative">
-                                <h3 class="fw-bold mb-1 text-white px-1" style="text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
-                                    {{ auth()->user()->name }}
-                                </h3>
-                                <div
-                                    class="d-inline-flex align-items-center bg-white bg-opacity-10 backdrop-blur-sm rounded-pill px-4 py-2">
-                                    <i class="bi bi-star-fill text-warning mx-2"></i>
-                                    <small class="text-white fw-semibold">{{ __('profile.user.membership_tier') }}</small>
-                                </div>
+                <div class="row align-items-center position-relative py-3 py-md-4">
+                    <div class="col-12 col-md-6">
+                        <div
+                            class="text-center @if (app()->getLocale() == 'ar') text-md-end @else text-md-start @endif mb-3 mb-md-0">
+                            <h2 class="fw-bold mb-2 fs-4 fs-md-3">{{ __('profile.title') }}</h2>
+                            <p class="mb-0 fs-6 fs-md-5 text-white">{{ __('profile.welcome_message') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div
+                            class="text-center @if (app()->getLocale() == 'ar') text-md-start @else text-md-end @endif">
+                            <h3 class="fw-bold mb-2 text-truncate px-2 text-white"
+                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.3); font-size: clamp(1.1rem, 3vw, 1.5rem);">
+                                {{ auth()->user()->name }}
+                            </h3>
+                            <div
+                                class="d-inline-flex align-items-center bg-white bg-opacity-10 backdrop-blur-sm rounded-pill px-3 px-md-4 py-2 py-md-2">
+                                <i class="bi bi-star-fill text-warning mx-1 mx-md-2"></i>
+                                <small
+                                    class="text-white fw-semibold fs-6">{{ __('profile.user.membership_tier') }}</small>
                             </div>
                         </div>
                     </div>
@@ -275,7 +274,7 @@
         <!-- sub-menu -->
         @include('components.assets.profile.sub_menu')
 
-        <div class="row">
+        <div class="col-12">
             {{ $slot }}
         </div>
     </div>

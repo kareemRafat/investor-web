@@ -102,24 +102,27 @@
                 @enderror
             </div>
 
-            <div class="col-12 text-end mt-4 d-flex justify-content-between align-items-center gap-3">
-                <div class="w-50">
-                    @if (session()->has('success'))
-                        <div class="alert alert-success mb-0 text-start alert-dismissible fade show" role="alert">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                            <i class="bi bi-check-circle-fill mx-1"></i>
-                            {{ session('success') }}
-                        </div>
-                    @endif
+            <div class="col-12 text-end mt-4">
+                <div class="row g-3 justify-content-center align-items-center">
+                    <div class="col-12 col-md-8 order-2 order-md-1">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success mb-0 text-start alert-dismissible fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                                <i class="bi bi-check-circle-fill mx-1"></i>
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                    </div>
+                    <button type="submit" class="btn btn-save col-12 col-md-4 order-1 order-md-2 py-3"
+                        wire:loading.attr="disabled">
+                        <span wire:loading.remove>{{ __('profile.basic_info.save_changes') }}</span>
+                        <span wire:loading>
+                            <span class="spinner-border spinner-border-sm" role="status"></span>
+                            {{ __('profile.messages.saving') }}
+                        </span>
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-save" wire:loading.attr="disabled">
-                    <span wire:loading.remove>{{ __('profile.basic_info.save_changes') }}</span>
-                    <span wire:loading>
-                        <span class="spinner-border spinner-border-sm" role="status"></span>
-                        {{ __('profile.messages.saving') }}
-                    </span>
-                </button>
             </div>
         </div>
     </form>

@@ -1,6 +1,6 @@
 <!-- Header -->
 <header class="container my-3">
-    <div class="row px-2 px-xl-0">
+    <div class="@if (!request()->is('*/profile/*')) row px-2 px-xl-0 @endif ">
         <div class="d-flex align-items-center justify-content-between bg-white py-3 px-4 shadow-sm rounded-8">
             <!-- logo -->
             <a href="{{ route('main.home') }}" wire:navigate class="logo" title="Investment" aria-label="Investment">
@@ -158,7 +158,7 @@
                             <h6 class="text-muted mb-3">{{ __('header.user_account') }}</h6>
                             <ul class="list-unstyled d-flex flex-column gap-3">
                                 <li>
-                                    <a href="#" class="text-dark d-flex align-items-center gap-2 py-2">
+                                    <a href="{{ route('main.profile') }}" class="text-dark d-flex align-items-center gap-2 py-2">
                                         <i class="bi bi-person-fill fs-5 text-primary"></i>
                                         <span>{{ __('header.profile') }}</span>
                                     </a>

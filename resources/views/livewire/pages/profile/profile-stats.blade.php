@@ -1,6 +1,6 @@
 <div class="row mb-2">
     <!-- Ideas Submitted -->
-    <div class="col-md-3 mb-3 col-sm-6 pe-md-0">
+    <div class="col-md-3 mb-3 col-sm-6">
         <div class="stat-card stat-purple">
             <div class="stat-icon">
                 <i class="bi bi-lightbulb"></i>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Overall Rating -->
-    <div class="col-md-3 mb-3 col-sm-6 ps-md-0">
+    <div class="col-md-3 mb-3 col-sm-6">
         <div class="stat-card stat-orange">
             <div class="stat-icon">
                 <i class="bi bi-star-fill"></i>
