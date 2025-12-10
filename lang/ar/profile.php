@@ -58,20 +58,15 @@ return [
     ],
 
     'security' => [
-        'title' => 'الأمان وكلمة المرور',
-        'alert_title' => 'تنبيه أمني:',
-        'alert_message' => 'ننصح بتغيير كلمة المرور بشكل دوري لتجنب أي اختراقات محتملة.',
+        'title' => 'إعدادات الأمان',
+        'alert_title' => 'تنبيه أمني مهم',
+        'alert_message' => 'تأكد من استخدام كلمة مرور قوية تحتوي على حروف وأرقام ورموز',
         'current_password' => 'كلمة المرور الحالية',
         'new_password' => 'كلمة المرور الجديدة',
         'confirm_password' => 'تأكيد كلمة المرور',
         'new_password_placeholder' => 'أدخل كلمة المرور الجديدة',
-        'confirm_password_placeholder' => 'أعد كتابة كلمة المرور',
-        'update_security' => 'تحديث الأمان',
-        'password_updated' => 'تم تحديث كلمة المرور بنجاح',
-        'password_error' => 'حدث خطأ أثناء تحديث كلمة المرور',
-        'password_mismatch' => 'كلمة المرور الحالية غير صحيحة',
-        'password_min_length' => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل',
-        'password_confirmed' => 'تأكيد كلمة المرور غير متطابق',
+        'confirm_password_placeholder' => 'أكد كلمة المرور الجديدة',
+        'update_security' => 'تحديث كلمة المرور',
     ],
 
     'ideas' => [
@@ -168,6 +163,7 @@ return [
         'saved_successfully' => 'تم الحفظ بنجاح',
         'update_successful' => 'تم التحديث بنجاح',
         'error_occurred' => 'حدث خطأ أثناء الحفظ',
+        'password_updated' => 'تم تحديث كلمة المرور بنجاح',
     ],
 
     'validation' => [
@@ -184,6 +180,12 @@ return [
         'password_confirmed' => 'تأكيد كلمة المرور غير متطابق',
         'password_current' => 'كلمة المرور الحالية غير صحيحة',
         'password_different' => 'كلمة المرور الجديدة يجب أن تكون مختلفة عن الحالية',
+        'current_password_required' => 'كلمة المرور الحالية مطلوبة',
+        'current_password_incorrect' => 'كلمة المرور الحالية غير صحيحة',
+        'new_password_required' => 'كلمة المرور الجديدة مطلوبة',
+        'password_confirmation' => 'كلمات المرور غير متطابقة',
+        'password_min' => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل',
+        'confirm_password_required' => 'تأكيد كلمة المرور مطلوب',
     ],
 
     'genders' => [

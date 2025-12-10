@@ -58,20 +58,15 @@ return [
     ],
 
     'security' => [
-        'title' => 'Security & Password',
-        'alert_title' => 'Security Alert:',
-        'alert_message' => 'We recommend changing your password periodically to avoid potential breaches.',
+        'title' => 'Security Settings',
+        'alert_title' => 'Important Security Notice',
+        'alert_message' => 'Make sure to use a strong password containing letters, numbers and symbols',
         'current_password' => 'Current Password',
         'new_password' => 'New Password',
         'confirm_password' => 'Confirm Password',
         'new_password_placeholder' => 'Enter new password',
-        'confirm_password_placeholder' => 'Re-enter password',
-        'update_security' => 'Update Security',
-        'password_updated' => 'Password updated successfully',
-        'password_error' => 'Error updating password',
-        'password_mismatch' => 'Current password is incorrect',
-        'password_min_length' => 'Password must be at least 8 characters',
-        'password_confirmed' => 'Password confirmation does not match',
+        'confirm_password_placeholder' => 'Confirm new password',
+        'update_security' => 'Update Password',
     ],
 
     'ideas' => [
@@ -168,6 +163,8 @@ return [
         'saved_successfully' => 'Saved successfully',
         'update_successful' => 'Updated successfully',
         'error_occurred' => 'An error occurred while saving',
+        'password_updated' => 'Password updated successfully',
+
     ],
 
     'validation' => [
@@ -184,6 +181,12 @@ return [
         'password_confirmed' => 'Password confirmation does not match',
         'password_current' => 'Current password is incorrect',
         'password_different' => 'New password must be different from current',
+        'current_password_required' => 'Current password is required',
+        'current_password_incorrect' => 'Current password is incorrect',
+        'new_password_required' => 'New password is required',
+        'password_confirmation' => 'Passwords do not match',
+        'password_min' => 'Password must be at least 8 characters',
+        'confirm_password_required' => 'Password confirmation is required',
     ],
 
     'genders' => [
