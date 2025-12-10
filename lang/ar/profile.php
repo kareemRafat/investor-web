@@ -268,4 +268,12 @@ return [
         'privacy_settings' => 'إعدادات الخصوصية',
         'notification_settings' => 'إعدادات الإشعارات',
     ],
+
+    'user' => [
+        'membership_tier' => 'عضو مميز',
+        'member' => 'عضو',
+        'premium_member' => 'عضو مميز',
+        'vip_member' => 'عضو VIP',
+        'gold_member' => 'عضو ذهبي',
+    ],
 ];

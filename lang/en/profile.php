@@ -269,4 +269,12 @@ return [
         'privacy_settings' => 'Privacy Settings',
         'notification_settings' => 'Notification Settings',
     ],
+
+    'user' => [
+        'membership_tier' => 'Premium Member',
+        'member' => 'Member',
+        'premium_member' => 'Premium Member',
+        'vip_member' => 'VIP Member',
+        'gold_member' => 'Gold Member',
+    ],
 ];

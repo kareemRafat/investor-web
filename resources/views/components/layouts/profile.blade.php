@@ -237,20 +237,31 @@
 
         <!-- profile-header -->
         <div class="row">
-            <div class="profile-header shadow-sm">
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <h2 class="fw-bold mb-2">{{ __('profile.title') }}</h2>
-                        <p class="mb-0 fs-5">{{ __('profile.welcome_message') }}</p>
-                    </div>
-                    <div class="col-lg-4 text-lg-start mt-4 mt-lg-0">
-                        <div
-                            class="d-inline-flex align-items-center gap-3 bg-white bg-opacity-10 px-4 py-2 rounded-pill border border-white border-opacity-25">
-                            <img src="https://ui-avatars.com/api/?name=أحمد+محمد&background=random"
-                                class="rounded-circle border-2 border-white" width="40" height="40">
-                            <div class="text-start">
-                                <div class="fw-bold fs-6">أحمد محمد</div>
-                                <div class="small opacity-75" style="font-size: 0.75rem;">عضو مميز</div>
+            <div class="profile-header shadow-sm position-relative overflow-hidden">
+                <!-- تأثير فني خفيف في الخلفية (wave أو blob، اختياري) -->
+                <div class="position-absolute top-0 end-0 w-50 h-100 opacity-20"
+                    style="background: radial-gradient(circle at top right, #6a11cb, #2575fc); filter: blur(80px);">
+                </div>
+
+                <div class="row align-items-center position-relative">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- الجزء الأيسر: العنوان والوصف -->
+                            <div>
+                                <h2 class="fw-bold mb-2">{{ __('profile.title') }}</h2>
+                                <p class="mb-0 fs-5">{{ __('profile.welcome_message') }}</p>
+                            </div>
+
+                            <!-- الجزء الأيمن: الاسم مع لمسة فنية -->
+                            <div class="text-end position-relative">
+                                <h3 class="fw-bold mb-1 text-white px-1" style="text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                                    {{ auth()->user()->name }}
+                                </h3>
+                                <div
+                                    class="d-inline-flex align-items-center bg-white bg-opacity-10 backdrop-blur-sm rounded-pill px-4 py-2">
+                                    <i class="bi bi-star-fill text-warning mx-2"></i>
+                                    <small class="text-white fw-semibold">{{ __('profile.user.membership_tier') }}</small>
+                                </div>
                             </div>
                         </div>
                     </div>
