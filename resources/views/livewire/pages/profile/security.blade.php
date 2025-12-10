@@ -40,9 +40,23 @@
                 </div>
             </div>
 
-            <div class="col-12 text-end mt-4">
-                <button type="button" class="btn btn-save">{{ __('profile.security.update_security') }}</button>
+            <div class="col-12 text-end mt-4 d-flex justify-content-between align-items-center gap-3">
+                <div class="w-50">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success mb-0 text-start" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
+                <button type="submit" class="btn btn-save" wire:loading.attr="disabled">
+                    <span wire:loading.remove>{{ __('profile.security.update_security') }}</span>
+                    <span wire:loading>
+                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                        {{ __('profile.messages.saving') }}
+                    </span>
+                </button>
             </div>
+
         </div>
     </form>
 </div>

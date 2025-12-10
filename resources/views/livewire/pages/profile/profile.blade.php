@@ -84,7 +84,14 @@
                 @enderror
             </div>
 
-            <div class="col-12 text-end mt-4">
+            <div class="col-12 text-end mt-4 d-flex justify-content-between align-items-center gap-3">
+                <div class="w-50">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success mb-0 text-start" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
                 <button type="submit" class="btn btn-save" wire:loading.attr="disabled">
                     <span wire:loading.remove>{{ __('profile.basic_info.save_changes') }}</span>
                     <span wire:loading>

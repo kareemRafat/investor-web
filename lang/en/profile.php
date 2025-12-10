@@ -165,6 +165,9 @@ return [
         'file_deleted' => 'File deleted successfully',
         'file_too_large' => 'File is too large',
         'file_not_supported' => 'File type not supported',
+        'saved_successfully' => 'Saved successfully',
+        'update_successful' => 'Updated successfully',
+        'error_occurred' => 'An error occurred while saving',
     ],
 
     'validation' => [

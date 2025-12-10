@@ -165,6 +165,9 @@ return [
         'file_deleted' => 'تم حذف الملف بنجاح',
         'file_too_large' => 'الملف كبير جداً',
         'file_not_supported' => 'نوع الملف غير مدعوم',
+        'saved_successfully' => 'تم الحفظ بنجاح',
+        'update_successful' => 'تم التحديث بنجاح',
+        'error_occurred' => 'حدث خطأ أثناء الحفظ',
     ],
 
     'validation' => [
