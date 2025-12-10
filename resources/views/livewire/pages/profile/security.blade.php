@@ -20,8 +20,7 @@
                 <div class="custom-input-group mb-1">
                     <span class="input-icon"><i class="bi bi-key"></i></span>
                     <input type="password" class="form-control @error('current_password') is-invalid @enderror"
-                        wire:model="current_password"
-                        placeholder="{{ __('profile.placeholders.current_password') }}">
+                        wire:model="current_password" placeholder="{{ __('profile.placeholders.current_password') }}">
                 </div>
                 @error('current_password')
                     <small class="text-danger">{{ $message }}</small>
@@ -33,8 +32,7 @@
                 <div class="custom-input-group mb-1">
                     <span class="input-icon"><i class="bi bi-lock"></i></span>
                     <input type="password" class="form-control @error('new_password') is-invalid @enderror"
-                        wire:model="new_password"
-                        placeholder="{{ __('profile.security.new_password_placeholder') }}">
+                        wire:model="new_password" placeholder="{{ __('profile.security.new_password_placeholder') }}">
                 </div>
                 @error('new_password')
                     <small class="text-danger">{{ $message }}</small>
@@ -58,6 +56,7 @@
                 <div class="w-50">
                     @if (session()->has('success'))
                         <div class="alert alert-success mb-0 text-start" role="alert">
+                            <i class="bi bi-check-circle-fill mx-1"></i>
                             {{ session('success') }}
                         </div>
                     @endif
