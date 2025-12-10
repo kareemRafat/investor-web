@@ -1,9 +1,9 @@
 <div class="card info-card shadow-sm">
     <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-        <h5 class="mb-0 section-title fw-bold text-dark">الأفكار المقدمة</h5>
-        <a wire:navigate href="{{ route('idea.index') }}" class="btn btn-sm btn-outline-primary">
+        <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.ideas.title') }}</h5>
+        <a wire:navigate href="{{ route('idea.index') }}" class="btn btn-sm btn-outline-primary fw-bold">
             <i class="bi bi-eye me-1"></i>
-            عرض جميع الأفكار
+            {{ __('profile.ideas.view_ideas') }}
         </a>
     </div>
     <div class="card-body p-0">
@@ -66,7 +66,8 @@
                                                 @if ($label)
                                                     {!! $label !!}
                                                 @else
-                                                    <span class="text-muted">{{ __('idea.summary.not_defined') }}</span>
+                                                    <span
+                                                        class="text-muted">{{ __('idea.summary.not_defined') }}</span>
                                                 @endif
                                             </div>
                                         </div>

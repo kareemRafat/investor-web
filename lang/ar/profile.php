@@ -87,6 +87,11 @@ return [
         ],
     ],
 
+    'investment_offers' => [
+        'title' => 'عروض الإستثمار',
+        'view_all' => 'عرض جميع عروض الاستثمار',
+    ],
+
     'buttons' => [
         'save' => 'حفظ',
         'cancel' => 'إلغاء',

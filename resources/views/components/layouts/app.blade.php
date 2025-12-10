@@ -57,6 +57,16 @@
             z-index: -1;
             opacity: 0.9;
         }
+
+        .country-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin: 2px;
+        }
     </style>
 </head>
 

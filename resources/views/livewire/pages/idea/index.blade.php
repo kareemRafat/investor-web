@@ -1,15 +1,4 @@
 <div class="container px-sm-0">
-    <style>
-        .country-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: #e0f2fe;
-            color: #0369a1;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            margin: 2px;
-        }
-    </style>
     <div class="row g-3 mb-3">
         <div class="col-12">
 
