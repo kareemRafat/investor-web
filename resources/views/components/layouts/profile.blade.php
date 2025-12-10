@@ -259,52 +259,7 @@
         </div>
 
         <!-- stats cards -->
-        <div class="row mb-4">
-            <div class="col-md-3 mb-3 col-sm-6 pe-md-0">
-                <div class="stat-card stat-purple">
-                    <div class="stat-icon">
-                        <i class="bi bi-lightbulb"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>5</h3>
-                        <span>{{ __('profile.stats.ideas_submitted') }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3 col-sm-6">
-                <div class="stat-card stat-blue">
-                    <div class="stat-icon">
-                        <i class="bi bi-check-circle"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>2</h3>
-                        <span>{{ __('profile.stats.ideas_published') }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3 col-sm-6">
-                <div class="stat-card stat-green">
-                    <div class="stat-icon">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>3</h3>
-                        <span>{{ __('profile.stats.investment_offers') }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3 col-sm-6 ps-md-0">
-                <div class="stat-card stat-orange">
-                    <div class="stat-icon">
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>4.8</h3>
-                        <span>{{ __('profile.stats.overall_rating') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <livewire:pages.profile.profile-stats />
 
         <!-- sub-menu -->
         @include('components.assets.profile.sub_menu')
