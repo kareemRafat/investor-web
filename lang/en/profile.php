@@ -16,6 +16,8 @@ return [
         'profile_picture' => 'Profile Picture',
         'contact' => 'Contact Information',
         'security' => 'Security',
+        'ideas' => 'My Ideas',
+        'investments' => 'My Investments',
         'logout' => 'Logout',
     ],
 

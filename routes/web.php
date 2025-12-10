@@ -13,12 +13,14 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\Idea\IdeaForm;
 use App\Livewire\Pages\Idea\IdeaInfo;
 use App\Livewire\Pages\PrivacyPolicy;
+use App\Livewire\Pages\Profile\Ideas;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Profile\Profile;
 use App\Livewire\Pages\Idea\IdeaSummary;
 use App\Livewire\Pages\Profile\Security;
 use App\Http\Controllers\LogoutController;
 use App\Livewire\Pages\Profile\ContactInfo;
+use App\Livewire\Pages\Profile\Investments;
 use App\Livewire\Pages\Idea\Index as IdeaIndex;
 use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\Investment\InvestmentInfo;
@@ -82,6 +84,8 @@ Route::group(
                 Route::get('/personal-info', Profile::class)->name('main.profile');
                 Route::get('/contact-info', ContactInfo::class)->name('profile.contactinfo');
                 Route::get('/security', Security::class)->name('profile.security');
+                Route::get('/ideas', Ideas::class)->name('profile.ideas');
+                Route::get('/investments', Investments::class)->name('profile.investments');
             });
         });
         // to make livewire3 work with localiaztion

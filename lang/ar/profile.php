@@ -16,6 +16,8 @@ return [
         'profile_picture' => 'الصورة الشخصية',
         'contact' => 'معلومات الاتصال',
         'security' => 'الأمان',
+        'ideas' => 'أفكاري',
+        'investments' => 'استثماراتي',
         'logout' => 'خروج',
     ],
 
