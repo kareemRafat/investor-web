@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LogoutController;
 use Livewire\Livewire;
 use App\Livewire\Pages\FAQ;
 use App\Livewire\Auth\Login;
@@ -13,15 +12,18 @@ use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\Idea\IdeaForm;
 use App\Livewire\Pages\Idea\IdeaInfo;
-use App\Livewire\Pages\Idea\IdeaSummary;
-use App\Livewire\Pages\Idea\Index as IdeaIndex;
-use App\Livewire\Pages\Investment\Index as InvestmentIndex;
 use App\Livewire\Pages\PrivacyPolicy;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Pages\Profile\Profile;
+use App\Livewire\Pages\Idea\IdeaSummary;
+use App\Livewire\Pages\Profile\Security;
+use App\Http\Controllers\LogoutController;
+use App\Livewire\Pages\Profile\ContactInfo;
+use App\Livewire\Pages\Idea\Index as IdeaIndex;
 use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\Investment\InvestmentInfo;
 use App\Livewire\Pages\Investment\InvestmentSummary;
-use App\Livewire\Pages\Profile\Profile;
+use App\Livewire\Pages\Investment\Index as InvestmentIndex;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -76,9 +78,12 @@ Route::group(
             Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
 
             // profile
-            Route::get('/profile', Profile::class)->name('main.profile');
+            Route::prefix('profile')->group(function () {
+                Route::get('/personal-info', Profile::class)->name('main.profile');
+                Route::get('/contact-info', ContactInfo::class)->name('profile.contactinfo');
+                Route::get('/security', Security::class)->name('profile.security');
+            });
         });
-
         // to make livewire3 work with localiaztion
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);

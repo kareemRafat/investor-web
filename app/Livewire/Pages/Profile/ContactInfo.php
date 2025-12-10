@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Pages\Profile;
 
-use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.profile')]
-class Profile extends Component
+class ContactInfo extends Component
 {
     public function render()
     {
-        return view('livewire.pages.profile.profile');
+        return view('livewire.pages.profile.contact-info');
     }
 }
