@@ -1,3 +1,82 @@
+/* ===== lang-dropdown ===== */
+.lang-dropdown {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.lang-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 14px;
+    transition: all 0.2s;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.lang-btn:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.lang-btn i {
+    font-size: 16px;
+}
+
+.lang-menu {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: none;
+    min-width: 100px;
+}
+
+.lang-menu.show {
+    display: block;
+}
+
+.lang-item {
+    display: block;
+    padding: 10px 14px;
+    color: #475569;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.lang-item:hover {
+    background: #f8fafc;
+    color: #3b82f6;
+}
+
+.lang-item.active {
+    background: #eff6ff;
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+[dir="rtl"] .lang-dropdown {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .lang-menu {
+    right: auto;
+    left: 0;
+}
+
 /* ===== RESET & BASE STYLES ===== */
 .login-container * {
     margin: 0;
@@ -46,17 +125,24 @@
 }
 
 .login-container .brand-side::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-image:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 20%
+        ),
         linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 50px 50px, 50px 50px;
+    background-size:
+        100% 100%,
+        50px 50px,
+        50px 50px;
 }
 
 /* ===== FORM CONTAINER ===== */
@@ -109,13 +195,17 @@
 }
 
 /* RTL/LTR Support for Inputs */
-.login-container [dir="rtl"] .form-control:not(input[type="number"], .without_padding) {
+.login-container
+    [dir="rtl"]
+    .form-control:not(input[type="number"], .without_padding) {
     padding-right: 25px !important;
     padding-left: 50px !important;
     text-align: right;
 }
 
-.login-container [dir="ltr"] .form-control:not(input[type="number"], .without_padding) {
+.login-container
+    [dir="ltr"]
+    .form-control:not(input[type="number"], .without_padding) {
     padding-right: 50px !important;
     padding-left: 22px !important;
     text-align: left;
@@ -157,7 +247,7 @@
 .login-container .code-input {
     width: 50px;
     height: 40px;
-    border: 1px solid #3B82F6;
+    border: 1px solid #3b82f6;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
@@ -184,20 +274,20 @@
 }
 
 /* Floating Label (إذا استخدمتها) */
-.login-container .form-floating>label {
+.login-container .form-floating > label {
     color: #6c757d !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     margin-bottom: 10px !important;
 }
 
-.login-container [dir="rtl"] .form-floating>label {
+.login-container [dir="rtl"] .form-floating > label {
     text-align: right !important;
     right: 0 !important;
     left: auto !important;
 }
 
-.login-container [dir="ltr"] .form-floating>label {
+.login-container [dir="ltr"] .form-floating > label {
     text-align: left !important;
     left: 0 !important;
     right: auto !important;
@@ -226,7 +316,9 @@
 /* Custom Button */
 .login-container .btn-custom {
     border-radius: 8px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #3B82F6 !important;
+    background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+        #3b82f6 !important;
     color: #ffffff !important;
     padding: 12px 22px !important;
     border: none;
@@ -235,20 +327,24 @@
 }
 
 .login-container .btn-custom:hover {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #246ddb !important;
+    background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+        #246ddb !important;
     color: #ffffff !important;
 }
 
 .login-container .btn-outline-custom {
     border-radius: 8px;
     background: transparent !important;
-    color: #3B82F6 !important;
-    border: 1px solid #3B82F6 !important;
+    color: #3b82f6 !important;
+    border: 1px solid #3b82f6 !important;
     padding: 12px 22px !important;
 }
 
 .login-container .btn-outline-custom:hover {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #3B82F6 !important;
+    background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+        #3b82f6 !important;
     color: #ffffff !important;
 }
 
@@ -282,7 +378,7 @@
 }
 
 .login-container .divider::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 50%;
@@ -372,7 +468,7 @@
     border-radius: 20px;
     width: 320px;
     margin-bottom: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     animation: float 6s ease-in-out infinite;
     position: relative;
     z-index: 10;
@@ -383,13 +479,13 @@
     align-self: flex-start;
     margin-right: 40px;
     animation-delay: 1.5s;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .login-container .glass-card h5 {
     margin: 0 0 15px 0;
     font-size: 14px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
     display: flex;
     justify-content: space-between;
@@ -429,7 +525,7 @@
 .login-container .progress-bar-item {
     flex: 1;
     height: 6px;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -480,7 +576,7 @@
 }
 
 .login-container .text-primary {
-    color: #3B82F6 !important;
+    color: #3b82f6 !important;
 }
 
 .login-container .text-ellipsis-3 {
@@ -530,8 +626,13 @@
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
