@@ -17,6 +17,29 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'email-verify' => 'Verify Your Email Address',
-    'email-verify-message' => 'A new verification link has been sent to your email address.'
+    'email-verify-message' => 'A new verification link has been sent to your email address.',
+
+    'login' => [
+        'welcome_back' => 'Welcome Back',
+        'subtitle' => 'Sign in to continue your investment opportunities',
+        'google_login' => 'Continue with Google',
+        'or' => 'Or',
+        'email' => 'Email Address',
+        'email_placeholder' => 'name@example.com',
+        'password' => 'Password',
+        'password_placeholder' => '••••••••',
+        'remember_me' => 'Remember me',
+        'forgot_password' => 'Forgot password?',
+        'continue' => 'Continue',
+        'new_user' => 'New user?',
+        'signup' => 'Sign up',
+        'monthly_revenue' => 'Monthly Revenue',
+        'active_stocks' => 'Active Stocks',
+        'trend_percentage' => '8.2%',
+        'performance_text' => 'Excellent performance in technology sector',
+        'gateway_title' => 'Your Platform Connecting Ideas with Investment',
+        'gateway_description' => 'A direct network between innovators and investors to turn ideas into successful projects',
+
+    ],
 
 ];

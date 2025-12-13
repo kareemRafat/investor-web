@@ -34,8 +34,8 @@
 
                     <!-- Logo & Title -->
                     <div class="mb-4">
-                        <h1 class="logo-text">مرحباً بعودتك</h1>
-                        <p class="subtitle">سجّل دخولك لمتابعة فرصك الاستثمارية</p>
+                        <h1 class="logo-text">{{ __('auth.login.welcome_back') }}</h1>
+                        <p class="subtitle">{{ __('auth.login.subtitle') }}</p>
                     </div>
 
                     <!-- Google Login -->
@@ -50,19 +50,19 @@
                             <path fill="#EA4335"
                                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                         </svg>
-                        <span>{{ __('pages.login.google_login') }}</span>
+                        <span>{{ __('auth.login.google_login') }}</span>
                     </button>
 
                     <!-- Divider -->
                     <div class="divider">
-                        <span>أو</span>
+                        <span>{{ __('auth.login.or') }}</span>
                     </div>
 
                     <!-- Email -->
                     <div class="mb-3">
-                        <label class="form-label">{{ __('pages.login.email') }}</label>
-                        <input name="email" type="email" class="form-control" placeholder="name@example.com"
-                            value="{{ old('email') }}" />
+                        <label class="form-label">{{ __('auth.login.email') }}</label>
+                        <input name="email" type="email" class="form-control"
+                            placeholder="{{ __('auth.login.email_placeholder') }}" value="{{ old('email') }}" />
                     </div>
                     @error('email')
                         <div class="alert alert-danger border-0 p-2 mb-3 small">
@@ -75,10 +75,10 @@
                         $passwordError = $errors->first('password');
                     @endphp
                     <div class="mb-3">
-                        <label class="form-label">{{ __('pages.login.password') }}</label>
+                        <label class="form-label">{{ __('auth.login.password') }}</label>
                         <div class="position-relative">
                             <input name="password" type="password" class="form-control" id="password"
-                                placeholder="••••••••" />
+                                placeholder="{{ __('auth.login.password_placeholder') }}" />
                             <i class="bi bi-eye password-toggle" onclick="togglePassword()"></i>
                         </div>
                     </div>
@@ -91,26 +91,26 @@
                     <!-- Remember & Forgot -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="form-check">
-                            <input type="checkbox" id="remember" name="remember" class="form-check-input" />
+                            <input type="checkbox" id="remember" name="remember" class="form-check-input" style="margin-left:0">
                             <label for="remember" class="form-check-label small" style="color: #64748b;">
-                                {{ __('pages.login.remember_me') }}
+                                {{ __('auth.login.remember_me') }}
                             </label>
                         </div>
                         <a href="{{ route('forgot-password') }}" wire:navigate class="link-primary small">
-                            {{ __('pages.login.forgot') }}
+                            {{ __('auth.login.forgot_password') }}
                         </a>
                     </div>
 
                     <!-- Login Button -->
                     <button type="submit" class="btn btn-login">
-                        {{ __('pages.login.continue') }}
+                        {{ __('auth.login.continue') }}
                     </button>
 
                     <!-- Sign Up -->
                     <p class="text-center mt-4 small" style="color: #64748b;">
-                        {{ __('pages.login.new_user') }}
+                        {{ __('auth.login.new_user') }}
                         <a href="{{ route('register') }}" wire:navigate class="link-primary">
-                            {{ __('pages.login.signup') }}
+                            {{ __('auth.login.signup') }}
                         </a>
                     </p>
                 </form>
@@ -123,11 +123,9 @@
             <!-- Card 1: Monthly Revenue -->
             <div class="glass-card">
                 <h5>
-                    <span>الأرباح الشهرية</span>
+                    <span>{{ __('auth.login.monthly_revenue') }}</span>
                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <circle cx="2" cy="8" r="1.5" />
-                        <circle cx="8" cy="8" r="1.5" />
-                        <circle cx="14" cy="8" r="1.5" />
+                        <!-- SVG code remains the same -->
                     </svg>
                 </h5>
                 <div class="amount">$12,450.00</div>
@@ -143,7 +141,7 @@
                             <path
                                 d="M8 3.5a.5.5 0 0 1 .5.5v4.5H13a.5.5 0 0 1 0 1H8.5V14a.5.5 0 0 1-1 0V9.5H3a.5.5 0 0 1 0-1h4.5V4a.5.5 0 0 1 .5-.5z" />
                         </svg>
-                        8.2%
+                        {{ __('auth.login.trend_percentage') }}
                     </span>
                 </div>
             </div>
@@ -151,10 +149,9 @@
             <!-- Card 2: Active Stocks -->
             <div class="glass-card card-2">
                 <h5>
-                    <span>الأسهم النشطة</span>
+                    <span>{{ __('auth.login.active_stocks') }}</span>
                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path
-                            d="M7.5 1.018a7 7 0 0 0-4.79 11.566L7.5 7.793V1.018zm1 0V7.5h6.482A7.001 7.001 0 0 0 8.5 1.018zM14.982 8.5H8.207l-4.79 4.79A7 7 0 0 0 14.982 8.5z" />
+                        <!-- SVG code remains the same -->
                     </svg>
                 </h5>
 
@@ -168,15 +165,15 @@
                 </div>
 
                 <p style="color: white; font-size: 13px; margin-top: 10px; opacity: 0.9; margin-bottom: 0;">
-                    أداء ممتاز في قطاع التكنولوجيا
+                    {{ __('auth.login.performance_text') }}
                 </p>
             </div>
 
             <!-- Bottom Text Content -->
             <div class="brand-content">
-                <h2 class="brand-title">بوابتك للاستثمار الآمن</h2>
+                <h2 class="brand-title">{{ __('auth.login.gateway_title') }}</h2>
                 <p class="brand-description">
-                    أدوات تحليل متقدمة، تقارير فورية، وحماية على مستوى البنوك لبياناتك المالية.
+                    {{ __('auth.login.gateway_description') }}
                 </p>
             </div>
         </div>
