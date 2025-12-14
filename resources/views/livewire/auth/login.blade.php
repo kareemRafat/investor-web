@@ -91,8 +91,8 @@
                     <!-- Remember & Forgot -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="form-check">
-                            <input type="checkbox" id="remember" name="remember" class="form-check-input" style="margin-left:0">
-                            <label for="remember" class="form-check-label small" style="color: #64748b;">
+                            <label class="d-flex align-items-center gap-2 small" style="color:#64748b;">
+                                <input type="checkbox" id="remember" name="remember">
                                 {{ __('auth.login.remember_me') }}
                             </label>
                         </div>

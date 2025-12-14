@@ -40,5 +40,33 @@ return [
         'gateway_title' => 'منصتك للربح بين الأفكار والاستثمار',
         'gateway_description' => 'شبكة تواصل مباشرة بين المبتكرين وأصحاب رؤوس الأموال لتحويل الأفكار إلى مشاريع ناجحة',
     ],
+    
+    'register' => [
+        'title' => 'إنشاء حساب جديد',
+        'subtitle' => 'ابدأ رحلتك معنا بخطوات بسيطة',
+
+        'first_name' => 'الاسم الأول',
+        'last_name' => 'اسم العائلة',
+
+        'first_name_placeholder' => 'اكتب الاسم الأول',
+        'last_name_placeholder' => 'اكتب اسم العائلة',
+
+        'email' => 'البريد الإلكتروني',
+        'email_placeholder' => 'اكتب بريدك الإلكتروني',
+
+        'password' => 'كلمة المرور',
+        'password_placeholder' => 'أنشئ كلمة مرور قوية',
+
+        'confirm_password' => 'تأكيد كلمة المرور',
+        'confirm_password_placeholder' => 'أعد كتابة كلمة المرور',
+
+        'accept_terms' => 'أوافق على <a href="#" class="link-primary">الشروط والأحكام</a>',
+
+        'create_account' => 'إنشاء الحساب',
+
+        'have_account' => 'لديك حساب بالفعل؟',
+        'login' => 'تسجيل الدخول',
+    ],
+
 
 ];

@@ -42,4 +42,31 @@ return [
 
     ],
 
+    'register' => [
+        'title' => 'Create your account',
+        'subtitle' => 'Start your journey with us in just a few steps',
+
+        'first_name' => 'First name',
+        'last_name' => 'Last name',
+
+        'first_name_placeholder' => 'Enter your first name',
+        'last_name_placeholder' => 'Enter your last name',
+
+        'email' => 'Email address',
+        'email_placeholder' => 'Enter your email',
+
+        'password' => 'Password',
+        'password_placeholder' => 'Create a strong password',
+
+        'confirm_password' => 'Confirm password',
+        'confirm_password_placeholder' => 'Re-enter your password',
+
+        'accept_terms' => 'I agree to the <a href="#" class="link-primary">Terms & Conditions</a>',
+
+        'create_account' => 'Create account',
+
+        'have_account' => 'Already have an account?',
+        'login' => 'Login',
+    ],
+
 ];

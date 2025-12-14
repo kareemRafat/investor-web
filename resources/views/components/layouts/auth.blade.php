@@ -22,6 +22,7 @@
     <!-- style -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body>
@@ -29,16 +30,27 @@
     <div class="lang-dropdown">
         <button class="lang-btn" onclick="toggleLang()">
             <i class="bi bi-globe"></i>
-            <span id="currentLang">العربية</span>
+            <span id="currentLang">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    @if($localeCode == LaravelLocalization::getCurrentLocale())
+                        {{ $properties['native'] }}
+                    @endif
+                @endforeach
+            </span>
             <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
         </button>
 
         <div class="lang-menu" id="langMenu">
-            <a class="lang-item" href="http://127.0.0.1:8000/en/login">English</a>
-            <a class="lang-item active" href="http://127.0.0.1:8000/ar/login">العربية</a>
+            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <a class="lang-item {{ $localeCode == LaravelLocalization::getCurrentLocale() ? 'active' : '' }}"
+                   rel="alternate"
+                   hreflang="{{ $localeCode }}"
+                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                    {{ $properties['native'] }}
+                </a>
+            @endforeach
         </div>
     </div>
-
 
     {{ $slot }}
 
@@ -56,21 +68,20 @@
             }
         });
 
-        // Update current language on load
+        // تحديث اللغة الحالية عند التحميل
         window.addEventListener('DOMContentLoaded', function() {
-            const url = window.location.pathname;
             const currentLang = document.getElementById('currentLang');
             const items = document.querySelectorAll('.lang-item');
 
-            if (url.includes('/en/')) {
-                currentLang.textContent = 'English';
-                items.forEach(item => {
+            // تحديث حالة الـ active لكل عنصر
+            items.forEach(item => {
+                if (item.href === window.location.href) {
+                    item.classList.add('active');
+                    currentLang.textContent = item.textContent;
+                } else {
                     item.classList.remove('active');
-                    if (item.textContent.trim() === 'English') {
-                        item.classList.add('active');
-                    }
-                });
-            }
+                }
+            });
         });
     </script>
 
