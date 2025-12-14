@@ -94,4 +94,25 @@ return [
         'gateway_description' => 'Advanced analysis tools, instant reports, and bank-level protection for your financial data',
     ],
 
+    'reset_password' => [
+        'title' => 'Reset Password',
+        'subtitle' => 'Create a new password for your account',
+        'password' => 'New Password',
+        'password_confirmation' => 'Confirm New Password',
+        'confirm' => 'Update Password',
+        'note' => 'Make sure your password is strong and not used for other accounts',
+
+        'success' => 'Password has been reset successfully',
+        'invalid_token' => 'The reset link is invalid or has expired',
+        'password_requirements' => 'Password must contain:',
+        'min_length' => 'At least 8 characters',
+        'uppercase' => 'At least one uppercase letter',
+        'lowercase' => 'At least one lowercase letter',
+        'number' => 'At least one number',
+
+        'tips_title' => 'Tips for a secure password:',
+        'tip_unique' => 'Use a unique password for this site',
+        'tip_length' => 'The longer, the more secure',
+        'tip_avoid' => 'Avoid personal information like birth dates',
+    ],
 ];

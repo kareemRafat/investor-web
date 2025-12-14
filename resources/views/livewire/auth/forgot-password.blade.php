@@ -115,13 +115,8 @@
                     </div>
 
                     <!-- Back Link -->
-                    @php
-                        $previous = url()->previous();
-                        $current = url()->current();
-                    @endphp
-
                     <div class="text-center">
-                        <a href="{{ $previous !== $current ? $previous : route('login') }}" wire:navigate
+                        <a href="{{ route('login') }}" wire:navigate
                             class="link-primary small">
                             <i class="bi bi-arrow-{{ app()->getLocale() === 'ar' ? 'right' : 'left' }} me-1"></i>
                             {{ __('auth.forgot_password.back') }}
