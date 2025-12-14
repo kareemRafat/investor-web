@@ -50,11 +50,11 @@
                                     'en' => 'The password field is required.',
                                     'ar' => 'حقل كلمة المرور مطلوب.',
                                 ],
-                                'The password must be at least 8 characters.' => [
+                                'The password field must be at least 8 characters.' => [
                                     'en' => 'The password must be at least 8 characters.',
                                     'ar' => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل.',
                                 ],
-                                'The password confirmation does not match.' => [
+                                'The password field confirmation does not match.' => [
                                     'en' => 'The password confirmation does not match.',
                                     'ar' => 'تأكيد كلمة المرور غير متطابق.',
                                 ],
@@ -138,7 +138,15 @@
                                     }
                                 }
 
+                                /* Border أحمر للـ input لما فيه error */
+                                .form-control.is-invalid {
+                                    border-color: #ef4444 !important;
+                                }
 
+                                .form-control.is-invalid:focus {
+                                    border-color: #ef4444 !important;
+                                    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
+                                }
                             </style>
                         @endpush
 
@@ -146,7 +154,7 @@
                             <div class="split-container">
                                 <div class="form-side">
                                     <div class="form-container register-container">
-                                        <form method="POST" action="{{ route('register') }}">
+                                        <form method="POST" action="/register">
                                             @csrf
 
                                             <!-- Logo & Title -->
@@ -233,7 +241,9 @@
                                                         @endforeach
                                                     </select>
                                                     @error('residence_country')
-                                                        <div class="error-message">{{ $message }}</div>
+                                                        <div class="error-message">
+                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                        </div>
                                                     @enderror
                                                 </div>
 
