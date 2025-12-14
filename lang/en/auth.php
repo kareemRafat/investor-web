@@ -45,28 +45,38 @@ return [
     'register' => [
         'title' => 'Create your account',
         'subtitle' => 'Start your journey with us in just a few steps',
-
         'first_name' => 'First name',
         'last_name' => 'Last name',
-
         'first_name_placeholder' => 'Enter your first name',
         'last_name_placeholder' => 'Enter your last name',
-
         'email' => 'Email address',
         'email_placeholder' => 'Enter your email',
-
         'password' => 'Password',
         'password_placeholder' => 'Create a strong password',
-
         'confirm_password' => 'Confirm password',
         'confirm_password_placeholder' => 'Re-enter your password',
-
         'accept_terms' => 'I agree to the <a href="#" class="link-primary">Terms & Conditions</a>',
-
         'create_account' => 'Create account',
-
         'have_account' => 'Already have an account?',
         'login' => 'Login',
+    ],
+
+    'forgot_password' => [
+        'title' => 'Forgot Password?',
+        'subtitle' => 'Enter your email and we\'ll send you a reset link',
+        'email' => 'Email Address',
+        'email_placeholder' => 'name@example.com',
+        'send' => 'Send Reset Link',
+        'not_received' => 'Didn\'t receive the email?',
+        'check_spam' => 'Check your spam folder',
+        'back' => 'Back to Login',
+        'secure_accounts' => 'Secure Accounts',
+        'recovery_time' => 'Recovery Time',
+        'complete_security' => 'Complete Security',
+        'quick_recovery' => 'Quick and secure account recovery',
+        'help_title' => 'We\'re Here to Help',
+        'help_description' => 'Regain access to your account securely. We\'ll send a password reset link to your email.',
+        'minutes' => '2-5 Minutes',
     ],
 
 ];
