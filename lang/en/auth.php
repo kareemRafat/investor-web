@@ -79,4 +79,19 @@ return [
         'minutes' => '2-5 Minutes',
     ],
 
+    'verify_email' => [
+        'title' => 'Verify Your Email Address',
+        'subtitle' => 'Before continuing, please verify your email address by clicking the link we sent you',
+        'message_sent' => 'A new verification link has been sent to your email address',
+        'resend_verification' => 'Resend Verification Email',
+        'not_received' => 'Didn\'t receive the email?',
+        'check_spam' => 'Check your spam folder',
+        'secure_accounts' => 'Secure Accounts',
+        'active_users' => 'Active Users',
+        'verification_required' => 'Verification Required',
+        'security_protection' => 'Additional security protection for your account',
+        'gateway_title' => 'Your Gateway to Secure Investment',
+        'gateway_description' => 'Advanced analysis tools, instant reports, and bank-level protection for your financial data',
+    ],
+
 ];
