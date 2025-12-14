@@ -222,7 +222,7 @@
                                                     <label
                                                         class="form-label">{{ __('pages.register.residence_country') }}</label>
                                                     <select name="residence_country"
-                                                        class="form-select @error('residence_country') error @enderror">
+                                                        class="form-control  @error('residence_country') error @enderror">
                                                         <option value="">
                                                             {{ __('profile.placeholders.select_country') }}</option>
                                                         @foreach (__('profile.countries') as $name)
