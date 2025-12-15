@@ -191,6 +191,237 @@
                 font-size: 15px;
             }
         }
+
+        /* ===== ROW ITEM ===== */
+        .requirement-row {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== QUESTION LABEL ===== */
+        .question-label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        /* ===== YES/NO BUTTONS ===== */
+        .yn-buttons-wrapper {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .yn-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border: 2px solid #c7d2fe;
+            border-radius: 12px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            min-width: 70px;
+        }
+
+        .btn-check:checked+.yn-button {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (hover: hover) {
+            .yn-button:hover {
+                border-color: #667eea;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            }
+        }
+
+        /* ===== OPTIONS SECTION ===== */
+        .options-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .option-label-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: white;
+            border: 2px solid #e0e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 14px;
+        }
+
+        .option-item:has(input:checked) {
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        /* ===== NUMBER INPUT ===== */
+        .number-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .number-input-label {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        .number-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #c7d2fe;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1e293b;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .number-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .number-input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 991px) {
+            .requirement-row {
+                padding: 0.5rem;
+            }
+
+            .question-section {
+                gap: 6px;
+            }
+
+            .question-label {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+
+            .yn-button {
+                padding: 8px 12px;
+                font-size: 13px;
+                min-width: 55px;
+            }
+
+            .options-section {
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            .option-item {
+                padding: 6px 10px;
+            }
+
+            .option-item label {
+                font-size: 12px;
+            }
+
+            .number-input-wrapper {
+                margin-top: 8px;
+            }
+
+            .number-input {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+
+            .number-input-label {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .requirement-row {
+                padding: 0.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .question-label {
+                font-size: 12px;
+                padding: 7px 8px;
+            }
+
+            .yn-button {
+                padding: 7px 10px;
+                font-size: 12px;
+                min-width: 50px;
+            }
+
+            .option-label-text {
+                font-size: 12px;
+            }
+
+            .option-item {
+                padding: 5px 8px;
+            }
+
+            .option-item label {
+                font-size: 11px;
+            }
+
+            .number-input {
+                font-size: 12px;
+                padding: 7px 10px;
+            }
+
+            .number-input-label {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 

@@ -172,7 +172,7 @@ return [
                 'operating' => 'Operating Expenses',
                 'other' => 'Other',
             ],
-            'placeholder' => 'Enter amount',
+            'placeholder' => 'Enter amount %',
             'total' => 'Total',
             'perfect' => 'Perfect! The distribution is balanced.',
             'must_equal' => 'The total must equal 100%.',
