@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 class IdeaForm extends Component
 {
 
-    public int $currentStep = 5;
+    public int $currentStep = 7;
     public int $maxAllowedStep = 1;
     public int $totalSteps = 10;
 

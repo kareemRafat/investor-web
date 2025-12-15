@@ -64,10 +64,14 @@
                             <span class="text-danger fw-semibold">{{ $message }}</span>
                         @else
                             <template x-if="total === 100">
-                                <span class="text-success fw-semibold">✅ {{ __('idea.steps.step6.perfect') }}</span>
+                                <span class="text-success fw-semibold">
+                                    {{ __('idea.steps.step6.perfect') }}
+                                </span>
                             </template>
                             <template x-if="total !== 100">
-                                <span class="text-danger fw-semibold">⚠️ {{ __('idea.steps.step6.must_equal') }}</span>
+                                <span class="text-danger fw-semibold">
+                                    {{ __('idea.steps.step6.must_equal') }}
+                                </span>
                             </template>
                         @enderror
                     </div>
