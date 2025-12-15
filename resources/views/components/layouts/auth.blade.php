@@ -30,7 +30,7 @@
     <div class="lang-dropdown">
         <button class="lang-btn" onclick="toggleLang()">
             <i class="bi bi-globe"></i>
-            <span id="currentLang">
+            <span id="currentLang" class="d-none d-sm-inline">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     @if($localeCode == LaravelLocalization::getCurrentLocale())
                         {{ $properties['native'] }}
