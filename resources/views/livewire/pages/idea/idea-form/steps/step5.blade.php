@@ -3,7 +3,7 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step5.subtitle') }}" />
 
-    <div class="step_height bg-white rounded-4 shadow-lg p-3 p-md-4">
+    <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
         <div class="row g-1 g-sm-2">
 
             {{-- Establishing a company --}}

@@ -82,6 +82,7 @@ class Step4 extends Component
         return [
             'profit_type.*'  => __('idea.validation.step4.profit_type'),
             'profit_range.*' => __('idea.validation.step4.profit_range'),
+            'profit_range_id.*' => __('idea.validation.step4.profit_range'),
         ];
     }
 

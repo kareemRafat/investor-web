@@ -42,10 +42,12 @@
             </div>
             <hr class="mt-3">
         </div>
+
+        <!-- hidden client date -->
+        <x-form.hidden-client-date wire-model="data.created_at" />
     </div>
 
-    <!-- hidden client date -->
-    <x-form.hidden-client-date wire-model="data.created_at" />
+
 
     <div class="d-flex justify-content-center">
         @if ($errors->any())

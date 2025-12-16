@@ -68,6 +68,7 @@ class Step3 extends Component
         return [
             'cost_type.*'  => __('idea.validation.step3.cost_type'),
             'cost_range.*' => __('idea.validation.step3.cost_range'),
+            'range_id.*' => __('idea.validation.step3.cost_range'),
         ];
     }
 

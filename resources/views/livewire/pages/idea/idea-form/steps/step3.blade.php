@@ -10,10 +10,10 @@
 window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
 
-    <x-pages.idea-wizard.idea-header title='{{ __('pages/mainpage.submit_idea') }}'
-        subtitle='{{ __('idea.steps.step3.subtitle') }}' />
+    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
+        subtitle="{{ __('idea.steps.step3.subtitle') }}" />
 
-    <div class="step_height bg-white rounded-4 shadow-lg p-3 p-md-4">
+    <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
         <div class="row g-4 justify-content-center">
             <div class="col-12">
                 <div class="row g-3">

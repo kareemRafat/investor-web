@@ -46,48 +46,48 @@
             @endswitch
 
             {{-- buttons --}}
-            <div wire:cloak class="d-flex align-items-center gap-2 justify-content-center mt-4 mb-3">
+            <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center my-3">
                 @if ($currentStep > 1)
-                    <a wire:click.prevent="previousStep" aria-label="{{ __('idea.form.previous') }}"
-                        title="{{ __('idea.form.previous') }}" class="btn btn-outline-custom btn_next py-2 px-4">
-                        <span class="small fw-bold d-flex align-items-center">
+                    <button wire:click.prevent="previousStep" aria-label="{{ __('idea.form.previous') }}"
+                        title="{{ __('idea.form.previous') }}" class="yn-button"
+                        style="min-width: 120px; background: white; color: #667eea; border-color: #c7d2fe;">
+                        <span class="d-flex align-items-center justify-content-center gap-2">
                             @if (app()->getLocale() === 'ar')
-                                <i class="bi bi-arrow-right-circle mx-2"></i>
-                                {{ __('idea.form.previous') }}
+                                <i class="bi bi-arrow-right-circle"></i>
+                                <span>{{ __('idea.form.previous') }}</span>
                             @else
-                                <i class="bi bi-arrow-left-circle mx-2"></i>
-                                {{ __('idea.form.previous') }}
+                                <i class="bi bi-arrow-left-circle"></i>
+                                <span>{{ __('idea.form.previous') }}</span>
                             @endif
                         </span>
-                    </a>
+                    </button>
                 @endif
 
-                <a wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
+                <button wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
                     aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
-                    title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
-                    class="btn {{ $currentStep === 10 ? 'btn-outline-custom' : 'btn-custom' }} py-2 px-4">
-                    <span class="small fw-bold d-flex align-items-center">
+                    title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}" class="yn-button"
+                    style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+                    <span class="d-flex align-items-center justify-content-center gap-2">
                         @if (app()->getLocale() === 'ar')
-                            {{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}
-                            <i class="bi bi-arrow-left-circle mx-2"></i>
+                            <span>{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}</span>
+                            <i class="bi bi-arrow-left-circle"></i>
                         @else
-                            {{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}
-                            <i class="bi bi-arrow-right-circle mx-2"></i>
+                            <span>{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}</span>
+                            <i class="bi bi-arrow-right-circle"></i>
                         @endif
                     </span>
-                </a>
-
+                </button>
             </div>
         </div>
-        <div wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap">
+        <div wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap gap-2 mb-4">
             @for ($i = 1; $i <= 10; $i++)
-                <div class="stepper-item
-                    @if ($i < $currentStep) completed_step
-                    @elseif($i === $currentStep) active_step @endif"
+                <div class="stepper-item position-relative
+            @if ($i < $currentStep) completed_step
+            @elseif($i === $currentStep) active_step @endif"
                     @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
-                    style="cursor: pointer"
-                    @else
-                    style="opacity: .4; cursor: not-allowed" @endif>
+            style="cursor: pointer"
+            @else
+            style="opacity: .4; cursor: not-allowed" @endif>
                     <div class="stepper-circle">
                         @if ($i < $currentStep)
                             <i class="bi bi-check-circle-fill"></i>
@@ -98,7 +98,7 @@
                 </div>
 
                 @if ($i < 10)
-                    <div class="stepper-connector"></div>
+                    <div class="stepper-line"></div>
                 @endif
             @endfor
         </div>

@@ -21,7 +21,6 @@
     <div class="d-flex justify-content-center">
         @error('ideaField')
             <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
                 {{ $message }}
             </span>
         @enderror

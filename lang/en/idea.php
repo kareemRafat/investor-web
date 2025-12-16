@@ -294,7 +294,7 @@ return [
         ],
         'step7' => [
             'contribute_type' => 'You must select a valid contribution type',
-            'staff' => 'You must specify the staff type when contribution is capital',
+            'staff' => 'You must specify the staff type when contribution is Personal',
             'staff_person_money' => 'You must specify the staff type when contribution is both',
             'money_amount' => 'You must enter a valid money amount (minimum 1)',
             'money_percent' => 'You must enter a valid money percentage (1–100)',
