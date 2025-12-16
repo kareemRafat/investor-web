@@ -6,14 +6,15 @@
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3 justify-content-center">
             @foreach (__('investor.steps.step1.options') as $key => $label)
-                <div class="col-6 col-lg-3 col-md-6 position-relative">
+                <div class="col-12 col-sm-6 col-lg-3 position-relative">
                     <input type="radio" class="btn-check" wire:model="investorField" id="investor-{{ $key }}"
                         value="{{ $key }}" autocomplete="off" name="investorField">
 
                     <label
-                        class="btn btn-outline-primary w-100 h-100 px-1 px-md-2 py-3 rounded-8 shadow-sm fw-bold small"
+                        class="choice-component idea-variant w-100"
                         for="investor-{{ $key }}">
-                        {{ $label }}
+                        <span class="choice-text">{{ $label }}</span>
+                        <i class="bi bi-check-circle-fill check-indicator"></i>
                     </label>
                 </div>
             @endforeach
