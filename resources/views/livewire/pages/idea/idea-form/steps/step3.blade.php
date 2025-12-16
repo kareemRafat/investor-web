@@ -10,10 +10,8 @@
 window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
 
-    <x-pages.idea-wizard.idea-header
-        title='{{ __("pages/mainpage.submit_idea") }}'
-        subtitle='{{ __("idea.steps.step3.subtitle") }}'
-    />
+    <x-pages.idea-wizard.idea-header title='{{ __('pages/mainpage.submit_idea') }}'
+        subtitle='{{ __('idea.steps.step3.subtitle') }}' />
 
     <div class="step_height bg-white rounded-4 shadow-lg p-3 p-md-4">
         <div class="row g-4 justify-content-center">
@@ -107,23 +105,18 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
             </div>
         </div>
     </div>
-
-    @error('cost_type')
-        <div class="error-message-wrapper">
-            <div class="alert alert-danger rounded-3 shadow-sm mt-3 mx-auto" style="max-width: 500px;">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    <div class="d-flex justify-content-center gap-2 flex-column flex-sm-row">
+        @error('cost_type')
+            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $message }}
             </div>
-        </div>
-    @enderror
+        @enderror
 
-    @error('range_id')
-        <div class="error-message-wrapper">
-            <div class="alert alert-danger rounded-3 shadow-sm mt-3 mx-auto" style="max-width: 500px;">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        @error('range_id')
+            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $message }}
             </div>
-        </div>
-    @enderror
+        @enderror
+    </div>
 
 </div>

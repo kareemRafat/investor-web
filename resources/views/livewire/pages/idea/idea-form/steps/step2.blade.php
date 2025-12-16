@@ -21,13 +21,12 @@
             @endforeach
         </div>
     </div>
-
-    @error('countries')
-        <div class="error-message-wrapper">
-            <div class="alert alert-danger rounded-3 shadow-sm mt-3 mx-auto" style="max-width: 500px;">
+     <div class="d-flex justify-content-center">
+        @error('countries')
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                 {{ $message }}
-            </div>
-        </div>
-    @enderror
+            </span>
+        @enderror
+    </div>
 </div>

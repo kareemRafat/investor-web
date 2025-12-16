@@ -4,7 +4,7 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step1.subtitle') }}" />
 
-    <div class="step_height bg-white rounded-4 shadow-lg p-3 p-md-4">
+    <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
         <div class="row g-2 g-md-3">
             @foreach ($ideaOptions as $key => $label)
                 <div class="col-12 col-sm-6 col-lg-3">
@@ -18,12 +18,12 @@
             @endforeach
         </div>
     </div>
-    @error('ideaField')
-        <div class="error-message-wrapper">
-            <div class="alert alert-danger rounded-3 shadow-sm mt-3 mx-auto" style="max-width: 500px;">
+    <div class="d-flex justify-content-center">
+        @error('ideaField')
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                 {{ $message }}
-            </div>
-        </div>
-    @enderror
+            </span>
+        @enderror
+    </div>
 </div>

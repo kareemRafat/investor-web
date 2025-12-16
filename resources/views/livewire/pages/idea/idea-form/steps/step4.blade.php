@@ -9,10 +9,8 @@
 });
 window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
-    <x-pages.idea-wizard.idea-header
-        title='{{ __("pages/mainpage.submit_idea") }}'
-        subtitle='{{ __("idea.steps.step4.subtitle") }}'
-    />
+    <x-pages.idea-wizard.idea-header title='{{ __('pages/mainpage.submit_idea') }}'
+        subtitle='{{ __('idea.steps.step4.subtitle') }}' />
 
     <div class="step_height bg-white rounded-4 shadow-lg p-3 p-md-4">
         <div class="row g-4 justify-content-center">
@@ -122,18 +120,11 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
         </div>
     </div>
     {{-- errors --}}
-    @error('profit_type')
-        <div class="alert alert-danger rounded-3 shadow-sm mt-3 mx-auto" style="max-width: 500px;">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            {{ $message }}
-        </div>
-    @enderror
-
-    @error('profit_range_id')
-        <div class="alert alert-danger rounded-3 shadow-sm mt-3 mx-auto" style="max-width: 500px;">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            {{ $message }}
-        </div>
-    @enderror
-
+    <div class="d-flex flex-column align-items-center">
+        @if ($errors->has('profit_type') || $errors->has('profit_range_id'))
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
+                {{ $errors->first('profit_type') ?: $errors->first('profit_range_id') }}
+            </span>
+        @endif
+    </div>
 </div>
