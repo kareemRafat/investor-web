@@ -219,6 +219,11 @@ return [
             'person_money_percent' => 'You must enter a valid personal money percentage (1–100)',
         ],
         'step5' => [
+            'required' => 'Financial contribution type is required.',
+            'integer' => 'Invalid financial contribution type.',
+            'min' => 'Please select a valid option.',
+        ],
+        'step6' => [
             'summary_required' => 'A summary of the idea is required.',
             'summary_string'   => 'The summary must be text.',
             'summary_max'      => 'The summary must not exceed 2000 characters.',

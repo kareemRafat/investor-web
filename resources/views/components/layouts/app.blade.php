@@ -316,7 +316,7 @@
         /* ===== RESPONSIVE STYLES ===== */
         @media (min-width: 768px) {
             .choice-component {
-                padding: 16px 18px;
+                /* padding: 16px 18px; */
                 font-size: 16px;
             }
 

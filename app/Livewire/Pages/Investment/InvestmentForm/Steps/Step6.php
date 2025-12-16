@@ -61,13 +61,13 @@ class Step6 extends Component
     public function messages()
     {
         return [
-            'data.summary.required' => __('investor.validation.step5.summary_required'),
-            'data.summary.string'   => __('investor.validation.step5.summary_string'),
-            'data.summary.max'      => __('investor.validation.step5.summary_max'),
+            'data.summary.required' => __('investor.validation.step6.summary_required'),
+            'data.summary.string'   => __('investor.validation.step6.summary_string'),
+            'data.summary.max'      => __('investor.validation.step6.summary_max'),
 
-            'data.attachment.file'  => __('investor.validation.step5.attachments_file'),
-            'data.attachment.mimes' => __('investor.validation.step5.attachments_mimes'),
-            'data.attachment.max'   => __('investor.validation.step5.attachments_max'),
+            'data.attachment.file'  => __('investor.validation.step6.attachments_file'),
+            'data.attachment.mimes' => __('investor.validation.step6.attachments_mimes'),
+            'data.attachment.max'   => __('investor.validation.step6.attachments_max'),
         ];
     }
 

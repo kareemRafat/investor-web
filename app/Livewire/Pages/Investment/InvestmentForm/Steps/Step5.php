@@ -80,8 +80,8 @@ class Step5 extends Component
     public function messages()
     {
         return [
-            'data.money_contributions.required' => __('investor.steps.step5.required'),
-            'data.money_contributions.integer'  => __('investor.steps.step5.invalid'),
+            'data.money_contributions.required' => __('investor.validation.step5.required'),
+            'data.money_contributions.integer'  => __('investor.validation.step5.invalid'),
         ];
     }
 
