@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class InvestmentForm extends Component
 {
-    public int $currentStep = 5;
+    public int $currentStep = 1;
     public int $maxAllowedStep = 1;
 
     public int $totalSteps = 7;
