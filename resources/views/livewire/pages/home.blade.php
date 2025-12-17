@@ -1,4 +1,7 @@
 <!-- Home Section -->
+@php
+    $arrowIcon = app()->getLocale() == 'ar' ? 'bi-arrow-left-short' : 'bi-arrow-right-short';
+@endphp
 <div class="container px-sm-0">
     <div class="row g-4 home-actions">
         <!-- Submit Idea -->
@@ -8,7 +11,10 @@
                     <div class="hero-content">
                         <h3>{{ __('pages/mainpage.submit_idea') }}</h3>
                         <p>{{ __('pages/mainpage.submit_idea_description') }}</p>
-                        <span class="hero-cta">{{ __('pages/mainpage.submit_idea_cta') }}</span>
+                        <span class="hero-cta d-flex align-items-end">
+                            {{ __('pages/mainpage.submit_idea_cta') }}
+                            <i class="bi {{ $arrowIcon }} mx-1 fs-5"></i>
+                        </span>
                     </div>
                     <div class="hero-image">
                         <img src="{{ asset('images/lamp-charge.png') }}" alt="">
@@ -24,7 +30,10 @@
                     <div class="hero-content">
                         <h3>{{ __('pages/mainpage.investor') }}</h3>
                         <p>{{ __('pages/mainpage.investor_description') }}</p>
-                        <span class="hero-cta">{{ __('pages/mainpage.investor_cta') }}</span>
+                        <span class="hero-cta d-flex align-items-end">
+                            {{ __('pages/mainpage.investor_cta') }}
+                            <i class="bi {{ $arrowIcon }} mx-1 fs-5"></i>
+                        </span>
                     </div>
                     <div class="hero-image">
                         <img src="{{ asset('images/investor.png') }}" alt="">
@@ -40,7 +49,10 @@
                     <div class="hero-content">
                         <h3>{{ __('pages/mainpage.explore_ideas') }}</h3>
                         <p>{{ __('pages/mainpage.explore_ideas_description') }}</p>
-                        <span class="hero-cta">{{ __('pages/mainpage.explore_ideas_cta') }}</span>
+                        <span class="hero-cta d-flex align-items-end">
+                            {{ __('pages/mainpage.explore_ideas_cta') }}
+                            <i class="bi {{ $arrowIcon }} mx-1 fs-5"></i>
+                        </span>
                     </div>
                     <div class="hero-image">
                         <img src="{{ asset('images/search.png') }}" alt="">
@@ -56,7 +68,10 @@
                     <div class="hero-content">
                         <h3>{{ __('pages/mainpage.find_investor') }}</h3>
                         <p>{{ __('pages/mainpage.find_investor_description') }}</p>
-                        <span class="hero-cta">{{ __('pages/mainpage.find_investor_cta') }}</span>
+                        <span class="hero-cta d-flex align-items-end">
+                            {{ __('pages/mainpage.find_investor_cta') }}
+                            <i class="bi {{ $arrowIcon }} mx-1 fs-5"></i>
+                        </span>
                     </div>
                     <div class="hero-image">
                         <img src="{{ asset('images/investor-search.png') }}" alt="">
