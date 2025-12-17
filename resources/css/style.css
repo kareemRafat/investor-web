@@ -32,6 +32,11 @@
     --border-radius-md: 12px;
     --border-radius-sm: 10px;
     --transition-default: all 0.3s ease;
+
+    /* متغيرات Hero Card (مضافة) */
+    --hero-border-radius: 22px;
+    --hero-primary-color: #2563eb;
+    --hero-border-hover: #dbeafe;
 }
 
 /* ===== GLOBAL & BODY ===== */
@@ -87,6 +92,112 @@ body::before {
     text-decoration: none !important;
 }
 
+/* ===== HERO CARD STYLES ===== */
+.hero-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.hero-card {
+    position: relative;
+    min-height: 230px;
+    border-radius: var(--hero-border-radius);
+    padding: 36px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary-100);
+    border: 1px solid var(--secondary-border);
+    transition: var(--transition-default);
+    overflow: hidden;
+}
+
+.hero-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--hero-primary-color);
+    transition: all .3s ease;
+}
+
+.hero-card:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.hero-content h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.hero-content p {
+    font-size: 1rem;
+    color: var(--text-200);
+    max-width: 420px;
+    line-height: 1.6;
+}
+
+.hero-cta {
+    display: inline-block;
+    margin-top: 18px;
+    font-weight: 700;
+    color: var(--hero-primary-color);
+}
+
+.hero-image {
+    width: 140px;
+    height: 140px;
+    background: var(--primary-200);
+    border-radius: 18px;
+    padding: 22px;
+    border: 1px solid var(--secondary-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.hero-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .08);
+    border-color: var(--hero-border-hover);
+}
+
+@media (max-width: 768px) {
+    .hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px;
+    }
+
+    .hero-image {
+        width: 110px;
+        height: 110px;
+        align-self: flex-end;
+    }
+
+    .hero-content h3 {
+        font-size: 1.45rem;
+    }
+
+    .hero-content p {
+        font-size: .95rem;
+    }
+}
+
+/* ===== REST OF YOUR EXISTING STYLES ===== */
 .bg_login_google {
     background-color: var(--bg-login-google) !important;
 }

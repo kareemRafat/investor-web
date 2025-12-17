@@ -1,77 +1,68 @@
 <!-- Home Section -->
 <div class="container px-sm-0">
-    <div class="row g-3">
-
-        <!-- Submit Your Idea -->
-        <div class="col-lg-3 col-md-6 col-6">
-            <div class="d-flex flex-column h-100 ">
-                <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
-                    <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/lamp-charge.png') }}" alt="lamp-charge" class="img-fluid mx-auto"
-                            width="120" height="140" />
+    <div class="row g-4 home-actions">
+        <!-- Submit Idea -->
+        <div class="col-lg-6 col-md-6 col-12">
+            <a href="{{ route('idea.main') }}" wire:navigate class="hero-link">
+                <div class="hero-card primary">
+                    <div class="hero-content">
+                        <h3>{{ __('pages/mainpage.submit_idea') }}</h3>
+                        <p>{{ __('pages/mainpage.submit_idea_description') }}</p>
+                        <span class="hero-cta">{{ __('pages/mainpage.submit_idea_cta') }}</span>
+                    </div>
+                    <div class="hero-image">
+                        <img src="{{ asset('images/lamp-charge.png') }}" alt="">
                     </div>
                 </div>
-                <a href="{{ route('idea.main') }}" wire:navigate aria-label="Submit Your Idea" title="Submit Your Idea" type="button"
-                    class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
-                    <span class="fs-6 fw-bold">
-                        {{ __('pages/mainpage.submit_idea') }}
-                    </span>
-                </a>
-            </div>
+            </a>
         </div>
 
         <!-- Investor -->
-        <div class="col-lg-3 col-md-6 col-6">
-            <div class="d-flex flex-column h-100 ">
-                <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
-                    <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/investor.png') }}" alt="investor" class="img-fluid mx-auto"
-                            width="120" height="140" />
+        <div class="col-lg-6 col-md-6 col-12">
+            <a href="{{ route('investor.main') }}" wire:navigate class="hero-link">
+                <div class="hero-card success">
+                    <div class="hero-content">
+                        <h3>{{ __('pages/mainpage.investor') }}</h3>
+                        <p>{{ __('pages/mainpage.investor_description') }}</p>
+                        <span class="hero-cta">{{ __('pages/mainpage.investor_cta') }}</span>
+                    </div>
+                    <div class="hero-image">
+                        <img src="{{ asset('images/investor.png') }}" alt="">
                     </div>
                 </div>
-                <a href="{{ route('investor.main') }}" wire:navigate aria-label="Investor" title="Investor" type="button"
-                    class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
-                    <span class="fs-6 fw-bold">
-                        {{ __('pages/mainpage.investor') }}
-                    </span>
-                </a>
-            </div>
+            </a>
         </div>
 
         <!-- Explore Ideas -->
-        <div class="col-lg-3 col-md-6 col-6">
-            <div class="d-flex flex-column h-100 ">
-                <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
-                    <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/search.png') }}" alt="search" class="img-fluid mx-auto"
-                            width="120" height="140" />
+        <div class="col-lg-6 col-md-6 col-12">
+            <a href="{{ route('idea.index') }}" wire:navigate class="hero-link">
+                <div class="hero-card warning">
+                    <div class="hero-content">
+                        <h3>{{ __('pages/mainpage.explore_ideas') }}</h3>
+                        <p>{{ __('pages/mainpage.explore_ideas_description') }}</p>
+                        <span class="hero-cta">{{ __('pages/mainpage.explore_ideas_cta') }}</span>
+                    </div>
+                    <div class="hero-image">
+                        <img src="{{ asset('images/search.png') }}" alt="">
                     </div>
                 </div>
-                <a wire:navigate href="{{ route('idea.index') }}" aria-label="Explore Ideas" title="Explore Ideas" type="button"
-                    class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
-                    <span class="fs-6 fw-bold">
-                        {{ __('pages/mainpage.explore_ideas') }}
-                    </span>
-                </a>
-            </div>
+            </a>
         </div>
 
-        <!-- Find an Investor -->
-        <div class="col-lg-3 col-md-6 col-6">
-            <div class="d-flex flex-column h-100">
-                <div class="card bg-white shadow-sm rounded-8 mb-3 h-100 card_custom">
-                    <div class="card-body py-4 text-center d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('images/investor-search.png') }}" alt="investor-search"
-                            class="img-fluid mx-auto" width="120" height="140" />
+        <!-- Find Investor -->
+        <div class="col-lg-6 col-md-6 col-12">
+            <a href="{{ route('investor.index') }}" class="hero-link">
+                <div class="hero-card info">
+                    <div class="hero-content">
+                        <h3>{{ __('pages/mainpage.find_investor') }}</h3>
+                        <p>{{ __('pages/mainpage.find_investor_description') }}</p>
+                        <span class="hero-cta">{{ __('pages/mainpage.find_investor_cta') }}</span>
+                    </div>
+                    <div class="hero-image">
+                        <img src="{{ asset('images/investor-search.png') }}" alt="">
                     </div>
                 </div>
-                <a href="{{ route('investor.index') }}" aria-label="Find an Investor" title="Find an Investor" type="button"
-                    class="btn bg-custom p-3 rounded-8 text-center shadow-sm">
-                    <span class="fs-6 fw-bold">
-                        {{ __('pages/mainpage.find_investor') }}
-                    </span>
-                </a>
-            </div>
+            </a>
         </div>
     </div>
     <div class="row g-3 mt-2 mb-3">
@@ -188,12 +179,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- View All Ideas -->
-                            {{-- <div class="col-12">
-                                <a href="/ideas_en.html" class="btn bg-custom w-100 rounded-8 py-3">
-                                    {{ __('pages/mainpage.view_all_ideas') }}
-                                </a>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -312,12 +297,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Latest Investment Opportunities -->
-                            {{-- <div class="col-12">
-                                <a href="/investment_en.html" class="btn bg-custom w-100 rounded-8 py-3">
-                                    {{ __('pages/mainpage.view_all_opportunities') }}
-                                </a>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
