@@ -693,6 +693,51 @@ html[lang="ar"] .check-indicator {
     box-shadow: none;
 }
 
+/* مكان الدائرة حسب الاتجاه */
+html[dir="ltr"] .choice-radio-indicator {
+    right: 12px;
+}
+
+html[dir="rtl"] .choice-radio-indicator {
+    left: 12px;
+}
+
+/* شكل الدائرة الافتراضي */
+.choice-radio-indicator {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #c7d2fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+/* الصح */
+.choice-radio-indicator i {
+    color: #667eea; /* لون الصح */
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* لما يتاختار */
+.btn-check:checked + .choice-component .choice-radio-indicator {
+    background: white;              /* الدائرة تفضل بيضا */
+    border-color: #667eea;           /* بوردر واضح */
+}
+
+.btn-check:checked + .choice-component .choice-radio-indicator i {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
 /* ===== REQUIREMENT ROW ===== */
 .requirement-row {
     background: #f8f9fa;
