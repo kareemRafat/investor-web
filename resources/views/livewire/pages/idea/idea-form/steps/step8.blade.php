@@ -43,7 +43,9 @@
                                 @click.stop="toggle('profit')">
                                 <span class="choice-text">{{ __('idea.steps.step8.profit_share') }}</span>
                                 <span class="d-lg-none mobile-arrow" x-text="expanded === 'profit' ? '▲' : '▼'"></span>
-                                <i class="bi bi-check-circle-fill check-indicator d-none d-lg-block"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
 
@@ -58,7 +60,9 @@
                                             :class="{ 'disabled': activeColumn !== 'profit' }"
                                             for="profit_only_{{ $percent }}">
                                             <span class="choice-text">{{ $percent }} %</span>
-                                            <i class="bi bi-check-circle-fill check-indicator"></i>
+                                            <div class="choice-radio-indicator">
+                                                <i class="bi bi-check-lg fs-5"></i>
+                                            </div>
                                         </label>
                                     </div>
                                 @endforeach
@@ -80,7 +84,9 @@
                                 <span class="choice-text">{{ __('idea.steps.step8.one_time_sum') }}</span>
                                 <span class="d-lg-none mobile-arrow"
                                     x-text="expanded === 'one_time' ? '▲' : '▼'"></span>
-                                <i class="bi bi-check-circle-fill check-indicator d-none d-lg-block"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
 
@@ -126,7 +132,9 @@
                                 @click.stop="toggle('combo')">
                                 <span class="choice-text">{{ __('idea.steps.step8.profit_plus_sum') }}</span>
                                 <span class="d-lg-none mobile-arrow" x-text="expanded === 'combo' ? '▲' : '▼'"></span>
-                                <i class="bi bi-check-circle-fill check-indicator d-none d-lg-block"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
 
@@ -168,7 +176,9 @@
                                                     :class="{ 'disabled': activeColumn !== 'combo' }"
                                                     for="combo_percentage_{{ $percent }}">
                                                     <span class="choice-text">{{ $percent }} %</span>
-                                                    <i class="bi bi-check-circle-fill check-indicator"></i>
+                                                    <div class="choice-radio-indicator">
+                                                        <i class="bi bi-check-lg fs-5"></i>
+                                                    </div>
                                                 </label>
                                             </div>
                                         @endforeach

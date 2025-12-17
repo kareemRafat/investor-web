@@ -12,7 +12,9 @@
                         value="{{ $key }}" name="ideaField">
                     <label for="idea-{{ $key }}" class="choice-component idea-variant w-100">
                         <span class="choice-text">{{ $label }}</span>
-                        <i class="bi bi-check-circle-fill check-indicator"></i>
+                        <div class="choice-radio-indicator">
+                            <i class="bi bi-check-lg fs-5"></i>
+                        </div>
                     </label>
                 </div>
             @endforeach

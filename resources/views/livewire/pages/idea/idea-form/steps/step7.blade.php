@@ -36,7 +36,9 @@
                                 name="contribute_type" autocomplete="off">
                             <label class="choice-component w-100" for="needs">
                                 <span class="choice-text">{{ __('idea.steps.step7.sell') }}</span>
-                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
                     </div>
@@ -53,7 +55,9 @@
                                 name="contribute_type" autocomplete="off">
                             <label class="choice-component w-100" for="contribute">
                                 <span class="choice-text">{{ __('idea.steps.step7.idea') }}</span>
-                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
                     </div>
@@ -71,7 +75,9 @@
                                 autocomplete="off">
                             <label class="choice-component w-100" for="contribute_money">
                                 <span class="choice-text">{{ __('idea.steps.step7.personal') }}</span>
-                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
 
@@ -115,7 +121,9 @@
                                 autocomplete="off">
                             <label class="choice-component w-100" for="contribute_person">
                                 <span class="choice-text">{{ __('idea.steps.step7.capital') }}</span>
-                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
 
@@ -155,7 +163,9 @@
                                 autocomplete="off">
                             <label class="choice-component w-100" for="contribute_person_and_money">
                                 <span class="choice-text">{{ __('idea.steps.step7.both') }}</span>
-                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                <div class="choice-radio-indicator">
+                                    <i class="bi bi-check-lg fs-5"></i>
+                                </div>
                             </label>
                         </div>
 

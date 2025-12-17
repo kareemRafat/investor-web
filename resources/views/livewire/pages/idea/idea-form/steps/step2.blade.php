@@ -12,16 +12,20 @@
                         wire:model="countries" value="{{ $country['code'] }}"
                         x-bind:disabled="$wire.countries.length >= limit && !$wire.countries.includes('{{ $country['code'] }}')">
                     <label for="country-{{ $index }}" class="choice-component country-variant w-100"
-                        x-bind:class="{ 'disabled': $wire.countries.length >= limit && !$wire.countries.includes(
-                                '{{ $country['code'] }}') }">
+                        x-bind:class="{
+                            'disabled': $wire.countries.length >= limit && !$wire.countries.includes(
+                                '{{ $country['code'] }}')
+                        }">
                         <span class="choice-text">{{ $country['name'] }}</span>
-                        <i class="bi bi-check-circle-fill check-indicator"></i>
+                        <div class="choice-radio-indicator">
+                            <i class="bi bi-check-lg fs-5"></i>
+                        </div>
                     </label>
                 </div>
             @endforeach
         </div>
     </div>
-     <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
         @error('countries')
             <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $message }}

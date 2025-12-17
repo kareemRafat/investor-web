@@ -9,7 +9,7 @@
 });
 window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
-   <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
+    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step4.subtitle') }}" />
 
     <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
@@ -35,7 +35,9 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                     <span class="d-lg-none mobile-arrow"
                                         x-text="expandedType === 'one-time' ? '▲' : '▼'"></span>
 
-                                    <i class="bi bi-check-circle-fill check-indicator d-none d-lg-block"></i>
+                                    <div class="choice-radio-indicator">
+                                        <i class="bi bi-check-lg fs-5"></i>
+                                    </div>
                                 </label>
                             </div>
 
@@ -56,7 +58,9 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                                     {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
                                                 </span>
 
-                                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                                <div class="choice-radio-indicator">
+                                                    <i class="bi bi-check-lg fs-5"></i>
+                                                </div>
                                             </label>
                                         </div>
                                     @endforeach
@@ -84,7 +88,9 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                     <span class="d-lg-none mobile-arrow"
                                         x-text="expandedType === 'annual' ? '▲' : '▼'"></span>
 
-                                    <i class="bi bi-check-circle-fill check-indicator d-none d-lg-block"></i>
+                                    <div class="choice-radio-indicator">
+                                        <i class="bi bi-check-lg fs-5"></i>
+                                    </div>
                                 </label>
                             </div>
 
@@ -105,7 +111,9 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                                     {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
                                                 </span>
 
-                                                <i class="bi bi-check-circle-fill check-indicator"></i>
+                                                <div class="choice-radio-indicator">
+                                                    <i class="bi bi-check-lg fs-5"></i>
+                                                </div>
                                             </label>
                                         </div>
                                     @endforeach
