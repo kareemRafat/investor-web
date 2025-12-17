@@ -10,11 +10,11 @@
                     <input type="checkbox" class="btn-check" id="country-{{ $index }}" name="countries[]"
                         wire:model="countries" value="{{ $country['code'] }}"
                         x-bind:disabled="$wire.countries.length >= limit && !$wire.countries.includes('{{ $country['code'] }}')">
-                    <label
-                        class="choice-component country-variant w-100"
-                        for="country-{{ $index }}">
+                    <label class="choice-component country-variant w-100" for="country-{{ $index }}">
                         <span class="choice-text">{{ $country['name'] }}</span>
-                        <i class="bi bi-check-circle-fill check-indicator"></i>
+                        <div class="choice-radio-indicator">
+                            <i class="bi bi-check-lg fs-5"></i>
+                        </div>
                     </label>
                 </div>
             @endforeach

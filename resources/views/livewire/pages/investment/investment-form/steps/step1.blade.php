@@ -10,11 +10,11 @@
                     <input type="radio" class="btn-check" wire:model="investorField" id="investor-{{ $key }}"
                         value="{{ $key }}" autocomplete="off" name="investorField">
 
-                    <label
-                        class="choice-component idea-variant w-100"
-                        for="investor-{{ $key }}">
+                    <label class="choice-component idea-variant w-100" for="investor-{{ $key }}">
                         <span class="choice-text">{{ $label }}</span>
-                        <i class="bi bi-check-circle-fill check-indicator"></i>
+                        <div class="choice-radio-indicator">
+                            <i class="bi bi-check-lg fs-5"></i>
+                        </div>
                     </label>
                 </div>
             @endforeach
