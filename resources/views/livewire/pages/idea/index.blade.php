@@ -32,7 +32,7 @@
                                             <h5 class="mb-1 fw-bold" style="color:#0d6efd">
                                                 {{ __("idea.steps.step1.options.{$idea->idea_field}") }}</h5>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-12 col-sm-auto d-flex justify-content-end">
                                             <a href="{{ route('idea.info', $idea->id) }}" wire:navigate
                                                 class="btn btn-sm btn-primary rounded-pill px-4">
                                                 <span class="me-2">{{ __('idea.index.btn_more') }}</span>

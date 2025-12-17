@@ -30,7 +30,7 @@
                                             {{ __("investor.steps.step1.options.{$investor->investor_field}") }}
                                         </h5>
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-12 col-sm-auto d-flex justify-content-end">
                                         <a href="{{ route('investor.info', $investor->id) }}" wire:navigate
                                             class="btn btn-sm btn-primary rounded-pill px-4">
                                             <span class="me-2">{{ __('investor.index.btn_more') }}</span>
