@@ -4,11 +4,13 @@ namespace App\Filament\Resources\Ideas\Tables;
 
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
+use Illuminate\Support\Facades\Lang;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class IdeasTable
 {
@@ -37,10 +39,13 @@ class IdeasTable
                     ),
                 TextColumn::make('idea_field')
                     ->label('مجال الفكرة')
+                    ->color('indigo')
+                    ->weight('semibold')
                     ->formatStateUsing(fn($state) => __('idea.steps.step1.options.' . $state)),
                 TextColumn::make('user.name')
                     ->label('صاحب الفكرة')
                     ->default('غير معروف')
+                    ->weight('medium')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
@@ -87,13 +92,17 @@ class IdeasTable
                             $name = $found['name'] ?? $country->country;
                             return $name;
                         })->toArray();
-                    }),
+                    })
+                    ->wrap()
+                    ->width('250px')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
                     ->date()
                     ->sortable(),
             ])
             ->filters([
+
                 SelectFilter::make('idea_field')
                     ->label('مجال الفكرة')
                     ->options(function () {
@@ -101,6 +110,26 @@ class IdeasTable
                         return collect($fields)->toArray();
                     })
                     ->searchable(),
+
+                SelectFilter::make('country')
+                    ->label('الدولة')
+                    ->options(function () {
+                        $countries = __('idea.steps.step2.options', [], 'ar');
+                        return collect($countries)->mapWithKeys(function ($country) {
+                            return [
+                                $country['code'] => $country['name'],
+                            ];
+                        })->toArray();
+                    })
+                    ->query(function (Builder $query, array $data) { // لاحظ تغيير $state لـ $data
+                        return $query->when(
+                            $data['value'],
+                            fn(Builder $query, $value): Builder => $query->whereHas('countries', function ($q) use ($value) {
+                                $q->where('country', $value);
+                            })
+                        );
+                    })
+                    ->searchable()
             ], layout: FiltersLayout::AboveContent)
             ->deferFilters(false)
             ->recordActions([
