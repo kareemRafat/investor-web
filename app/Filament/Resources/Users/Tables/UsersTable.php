@@ -30,6 +30,7 @@ class UsersTable
                 // table group by Role
                 Group::make('role')
                     ->label('الصلاحية')
+                    ->titlePrefixedWithLabel(false)
                     ->getTitleFromRecordUsing(function ($record) {
                         return $record->role === \App\Enums\UserRole::ADMIN
                             ? 'المشرفون'
@@ -42,7 +43,9 @@ class UsersTable
                     }),
 
             ])
+            ->groupingSettingsHidden()
             ->defaultGroup('role')
+
             ->columns([
                 TextColumn::make('name')
                     ->label('الاسم')
@@ -114,7 +117,8 @@ class UsersTable
             ->deferFilters(false)
             ->recordActions([
                 ChangeStatusAction::make(),
-                EditAction::make(),
+                EditAction::make()
+                    ->color('info'),
                 // ->hidden(fn($record) => $record->role !== UserRole::ADMIN)
 
 

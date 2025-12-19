@@ -74,6 +74,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->spa(hasPrefetching: true)
-            ->databaseTransactions();
+            ->databaseTransactions()
+            ->darkMode(false);
     }
 }
