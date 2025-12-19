@@ -254,7 +254,7 @@ return [
         'no_ideas' => 'There are no ideas matching your investment at the moment.',
         'contact_owner' => 'Contact the investment offer owner',
         'title' => 'Investment offer summary',
-
+        'not_defined' => 'Not defined',
     ],
     'index' => [
         'page_title' => 'Investment Fund',
