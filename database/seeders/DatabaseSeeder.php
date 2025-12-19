@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +24,8 @@ class DatabaseSeeder extends Seeder
             'phone' => '01065056616',
             'job_title' => 'lawyer',
             'birth_date' => '1990-05-15',
-            'residence_country' => 'mansoura'
+            'residence_country' => 'mansoura',
+            'role' => UserRole::ADMIN,
         ]);
 
         $this->call(CostProfitRangeSeeder::class);

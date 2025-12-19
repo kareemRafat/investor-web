@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('job_title');
             $table->string('residence_country');
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('role', ['admin', 'user'])->default('user');
             $table->date('birth_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
