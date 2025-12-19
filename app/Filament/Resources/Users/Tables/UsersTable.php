@@ -25,6 +25,7 @@ class UsersTable
         return $table
             ->recordAction(null) // prevent clickable row
             ->recordUrl(null)
+            ->defaultSort('created_at', 'desc')
             ->striped()
             ->groups([
                 // table group by Role

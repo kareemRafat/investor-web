@@ -13,9 +13,15 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field', 'summary' , 'user_id' ,'created_at'];
+    protected $fillable = ['idea_field', 'summary', 'user_id', 'created_at'];
 
     // Relations
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function countries()
     {
         return $this->morphMany(Countryable::class, 'countryable');

@@ -17,7 +17,6 @@ class ChangeStatusAction
     public static function make(): Action
     {
         return Action::make('toggleStatus')
-            ->label('تغيير الحالة')
             ->label(function ($record) {
                 return $record->status === UserStatus::ACTIVE
                     ? 'تعطيل '
