@@ -59,6 +59,11 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         ];
     }
 
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role === UserRole::ADMIN;

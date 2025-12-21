@@ -23,8 +23,8 @@ class UsersTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->recordAction(null) // prevent clickable row
-            ->recordUrl(null)
+            // ->recordAction(null) // prevent clickable row
+            // ->recordUrl(null)
             ->defaultSort('created_at', 'desc')
             ->striped()
             ->groups([
@@ -121,10 +121,6 @@ class UsersTable
                 EditAction::make()
                     ->color('info'),
                 // ->hidden(fn($record) => $record->role !== UserRole::ADMIN)
-
-
-
-
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
