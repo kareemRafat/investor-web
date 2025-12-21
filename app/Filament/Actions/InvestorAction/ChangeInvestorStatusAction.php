@@ -1,28 +1,32 @@
 <?php
 
-namespace App\Filament\Actions\IdeaAction;
+namespace App\Filament\Actions\InvestorAction;
 
-use App\Enums\IdeaStatus;
-use App\Filament\Forms\Components\ClientDatetimeHidden;
 use Filament\Actions\Action;
+use App\Enums\InvestorStatus;
+use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
+use App\Filament\Forms\Components\ClientDatetimeHidden;
 
-class ChangeIdeaStatusAction
+class ChangeInvestorStatusAction
 {
     public static function make(): Action
     {
         return Action::make('changeStatus')
-            ->label(fn($record) => $record->status->getLabel() . ' - تغيير الحالة')
-            ->icon(fn($record) => $record->status->getIcon())
+            ->label('تغيير حالة المستثمر')
+            ->icon(fn($record) => match ($record->status) {
+                InvestorStatus::APPROVED => 'heroicon-o-check-circle',
+                InvestorStatus::REJECTED => 'heroicon-o-x-circle',
+                InvestorStatus::PENDING => 'heroicon-o-clock',
+                default => 'heroicon-o-arrow-path',
+            })
             ->color(fn($record) => $record->status->getColor())
-            ->extraAttributes(['class' => 'text-white'])
             ->schema([
                 Select::make('status')
                     ->label('الحالة الجديدة')
-                    ->options(IdeaStatus::getOptions())
+                    ->options(InvestorStatus::getOptions())
                     ->required()
                     ->native(false)
                     ->default(fn($record) => $record->status),
@@ -36,7 +40,7 @@ class ChangeIdeaStatusAction
             ])
             ->action(function (array $data, $record) {
 
-                $newStatus = IdeaStatus::from($data['status']);
+                $newStatus = InvestorStatus::from($data['status']);
                 $oldStatus = $record->status;
 
                 // تحديث البيانات حسب الحالة
@@ -57,7 +61,7 @@ class ChangeIdeaStatusAction
                     $updates['approved_by'] = Auth::id();
                 }
 
-                // إذا تم التعليق ، نحذف بيانات الموافقة
+                // إذا تم الرفض ، نحذف بيانات الموافقة
                 if ($newStatus->isPending()) {
                     $updates['approved_at'] = null;
                     $updates['approved_by'] = null;
@@ -65,10 +69,9 @@ class ChangeIdeaStatusAction
 
                 $record->update($updates);
 
-                // إشعار للمستخدم
                 Notification::make()
-                    ->title('تم تحديث حالة الفكرة')
-                    ->body("تم تغيير حالة الفكرة من {$oldStatus->getLabel()} إلى {$newStatus->getLabel()}")
+                    ->title('تم تحديث حالة المستثمر')
+                    ->body("تم تغيير حالة المستثمر من {$oldStatus->getLabel()} إلى {$newStatus->getLabel()}")
                     ->success()
                     ->send();
 
