@@ -7,6 +7,7 @@ use App\Enums\UserStatus;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\AssociateAction;
@@ -17,13 +18,13 @@ use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Actions\DissociateBulkAction;
+use App\Filament\Resources\Ideas\IdeaResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class IdeasRelationManager extends RelationManager
 {
     protected static string $relationship = 'ideas';
     protected static ?string $title = 'الأفكار';
-
 
     public function form(Schema $schema): Schema
     {
@@ -48,6 +49,9 @@ class IdeasRelationManager extends RelationManager
                     'costs:id,idea_id,cost_type,range_id',
                 ])
             )
+            ->emptyStateHeading('لا توجد أفكار للعضو')
+            ->emptyStateDescription('لم يتم إضافة أي أفكار بعد')
+            ->emptyStateIcon('heroicon-s-inbox')
             ->recordTitleAttribute('idea_field')
             ->columns([
                 TextColumn::make('id')
@@ -130,11 +134,16 @@ class IdeasRelationManager extends RelationManager
             ->recordActions([
                 // EditAction::make(),
                 // DissociateAction::make(),
+                ViewAction::make()
+                    ->url(
+                        fn($record): string =>
+                        IdeaResource::getUrl('view', ['record' => $record])
+                    ),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DissociateBulkAction::make(),
+                    // DissociateBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
             ]);

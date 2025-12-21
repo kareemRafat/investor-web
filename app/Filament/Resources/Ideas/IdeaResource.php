@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Ideas;
 use App\Filament\Resources\Ideas\Pages\CreateIdea;
 use App\Filament\Resources\Ideas\Pages\EditIdea;
 use App\Filament\Resources\Ideas\Pages\ListIdeas;
+use App\Filament\Resources\Ideas\Pages\ViewIdea;
 use App\Filament\Resources\Ideas\Schemas\IdeaForm;
 use App\Filament\Resources\Ideas\Tables\IdeasTable;
 use App\Models\Idea;
@@ -52,6 +53,7 @@ class IdeaResource extends Resource
     {
         return [
             'index' => ListIdeas::route('/'),
+            'view' => ViewIdea::route('/{record}'),
             'create' => CreateIdea::route('/create'),
             'edit' => EditIdea::route('/{record}/edit'),
         ];

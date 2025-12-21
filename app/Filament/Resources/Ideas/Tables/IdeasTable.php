@@ -7,6 +7,7 @@ use Filament\Actions\EditAction;
 use Illuminate\Support\Facades\Lang;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
@@ -133,6 +134,7 @@ class IdeasTable
             ], layout: FiltersLayout::AboveContent)
             ->deferFilters(false)
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
