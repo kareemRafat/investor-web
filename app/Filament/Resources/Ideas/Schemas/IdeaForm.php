@@ -12,12 +12,16 @@ class IdeaForm
     {
         return $schema
             ->components([
-                TextInput::make('user_id')
-                    ->numeric()
-                    ->default(null),
                 TextInput::make('idea_field')
-                    ->required(),
+                    ->label('مجال الفكرة')
+                    ->required()
+                    ->columnSpanFull()
+                    ->formatStateUsing(
+                        fn($state) => __('idea.steps.step1.options.' . $state)
+                    )
+                    ->disabled(),
                 Textarea::make('summary')
+                    ->label('ملخص الفكرة')
                     ->default(null)
                     ->columnSpanFull(),
             ]);

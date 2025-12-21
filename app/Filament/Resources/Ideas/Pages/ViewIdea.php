@@ -113,15 +113,56 @@ class ViewIdea extends ViewRecord
                             ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
 
                         TextEntry::make('resources.space_type')
-                            ->label('نوع المكان'),
+                            ->label('نوع المكان')
+                            ->formatStateUsing(fn($state) => filled($state) ? $state : '–'),
 
                         TextEntry::make('resources.staff')
                             ->label('موظفين')
                             ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
 
                         TextEntry::make('resources.staff_number')
-                            ->label('عدد الموظفين'),
+                            ->label('عدد الموظفين')
+                            ->formatStateUsing(fn($state) => filled($state) ? $state : '–'),
+
+                        TextEntry::make('resources.workers')
+                            ->label('عمال')
+                            ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
+
+                        TextEntry::make('resources.workers_number')
+                            ->label('عدد العمال')
+                            ->formatStateUsing(fn($state) => filled($state) ? $state : '–'),
+
+                        TextEntry::make('resources.executive_spaces')
+                            ->label('مكاتب إدارية')
+                            ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
+
+                        TextEntry::make('resources.executive_spaces_type')
+                            ->label('نوع المكاتب الإدارية')
+                            ->formatStateUsing(fn($state) => filled($state) ? $state : '–'),
+
+                        TextEntry::make('resources.equipment')
+                            ->label('معدات')
+                            ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
+
+                        TextEntry::make('resources.equipment_type')
+                            ->label('نوع المعدات')
+                            ->formatStateUsing(fn($state) => filled($state) ? $state : '–'),
+
+                        TextEntry::make('resources.software')
+                            ->label('برامج')
+                            ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
+
+                        TextEntry::make('resources.software_type')
+                            ->label('نوع البرامج')
+                            ->formatStateUsing(fn($state) => filled($state) ? $state : '–'),
+
+                        TextEntry::make('resources.website')
+                            ->label('موقع إلكتروني')
+                            ->formatStateUsing(fn($state) => $state === 'yes' ? 'نعم' : 'لا'),
+
                     ]),
+
+
 
                 Section::make('المصروفات')
                     ->columns(2)
