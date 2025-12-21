@@ -3,20 +3,45 @@
 namespace App\Models;
 
 use App\Models\IdeaCost;
+use App\Enums\IdeaStatus;
 use App\Models\IdeaProfit;
 use App\Models\IdeaReturn;
 use App\Models\IdeaExpense;
 use App\Models\IdeaResource;
 use App\Models\IdeaContribution;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Idea extends Model
 {
-    protected $fillable = ['idea_field', 'summary', 'user_id', 'created_at'];
+    protected $fillable = [
+        'idea_field',
+        'summary',
+        'user_id',
+        'created_at',
+        'status',
+        'approved_at',
+        'approved_by',
+        'rejection_reason',
+        'admin_note',
+    ];
 
-    // Relations
+    protected $casts = [
+        'status' => IdeaStatus::class,
+        'approved_at' => 'datetime',
+    ];
 
+
+    //! Relations
+
+    // Idea approver
+    public function approver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    // idea owner
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -60,5 +85,35 @@ class Idea extends Model
     public function attachments(): MorphMany
     {
         return $this->morphMany(Attachment::class, 'attachable');
+    }
+
+    public function approve(int $userId): void
+    {
+        $this->update([
+            'status' => IdeaStatus::APPROVED,
+            'approved_at' => now(),
+            'approved_by' => $userId,
+            'rejection_reason' => null,
+        ]);
+    }
+
+    public function reject(int $userId, ?string $reason = null): void
+    {
+        $this->update([
+            'status' => IdeaStatus::REJECTED,
+            'approved_at' => null,
+            'approved_by' => null,
+            'rejection_reason' => $reason,
+        ]);
+    }
+
+    public function resetApproval(): void
+    {
+        $this->update([
+            'status' => IdeaStatus::PENDING,
+            'approved_at' => null,
+            'approved_by' => null,
+            'rejection_reason' => null,
+        ]);
     }
 }

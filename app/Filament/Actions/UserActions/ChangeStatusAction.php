@@ -4,16 +4,11 @@ namespace App\Filament\Actions\UserActions;
 
 use App\Enums\UserStatus;
 use Filament\Actions\Action;
-use Filament\Support\Enums\Width;
-use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
-use Filament\Forms\Components\ToggleButtons;
 
 
 class ChangeStatusAction
 {
-    // This class can be used to for the Change Status action
-
     public static function make(): Action
     {
         return Action::make('toggleStatus')

@@ -3,12 +3,9 @@
 namespace App\Filament\Resources\Ideas\Pages;
 
 use Filament\Actions\Action;
-use Filament\Schemas\Schema;
-use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Schemas\Components\Section;
-use Filament\Infolists\Components\TextEntry;
 use App\Filament\Resources\Ideas\IdeaResource;
+use App\Filament\Actions\IdeaAction\ChangeIdeaStatusAction;
 
 class ViewIdea extends ViewRecord
 {
@@ -27,6 +24,8 @@ class ViewIdea extends ViewRecord
                     return $resource::getUrl('index');
                 })
                 ->color('gray'), // EditAction::make(),
+
+                ChangeIdeaStatusAction::make(),
 
         ];
     }
