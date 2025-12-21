@@ -18,6 +18,7 @@ class ChangeIdeaStatusAction
             ->label(fn($record) => $record->status->getLabel() . ' - تغيير الحالة')
             ->icon(fn($record) => $record->status->getIcon())
             ->color(fn($record) => $record->status->getColor())
+            ->extraAttributes(['class' => 'text-white'])
             ->schema([
                 Select::make('status')
                     ->label('الحالة الجديدة')

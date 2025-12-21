@@ -25,8 +25,8 @@ enum IdeaStatus: string implements HasLabel, HasColor
     {
         return match ($this) {
             self::PENDING => Color::Orange,  // أو 'warning'
-            self::APPROVED => Color::Green,  // أو 'success'
-            self::REJECTED => Color::Red,    // أو 'danger'
+            self::APPROVED => Color::Teal,
+            self::REJECTED => Color::Rose,
         };
     }
 
