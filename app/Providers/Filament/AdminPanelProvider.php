@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->favicon(asset('images/favicon.png'))
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Readex Pro')
             ->colors([
                 'primary' => Color::Green,
