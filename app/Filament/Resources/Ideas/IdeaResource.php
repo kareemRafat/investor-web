@@ -54,7 +54,7 @@ class IdeaResource extends Resource
         return [
             'index' => ListIdeas::route('/'),
             'view' => ViewIdea::route('/{record}'),
-            'create' => CreateIdea::route('/create'),
+            // 'create' => CreateIdea::route('/create'),
             'edit' => EditIdea::route('/{record}/edit'),
         ];
     }

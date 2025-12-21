@@ -135,8 +135,6 @@ class IdeasTable
             ->deferFilters(false)
             ->recordActions([
                 ViewAction::make(),
-                // EditAction::make()
-                //     ->label('مراجعة ملخص الفكرة'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

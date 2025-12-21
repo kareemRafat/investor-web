@@ -87,33 +87,18 @@ class Idea extends Model
         return $this->morphMany(Attachment::class, 'attachable');
     }
 
-    public function approve(int $userId): void
+    public function isPending(): bool
     {
-        $this->update([
-            'status' => IdeaStatus::APPROVED,
-            'approved_at' => now(),
-            'approved_by' => $userId,
-            'rejection_reason' => null,
-        ]);
+        return $this->status === IdeaStatus::PENDING;
     }
 
-    public function reject(int $userId, ?string $reason = null): void
+    public function isApproved(): bool
     {
-        $this->update([
-            'status' => IdeaStatus::REJECTED,
-            'approved_at' => null,
-            'approved_by' => null,
-            'rejection_reason' => $reason,
-        ]);
+        return $this->status === IdeaStatus::APPROVED;
     }
 
-    public function resetApproval(): void
+    public function isRejected(): bool
     {
-        $this->update([
-            'status' => IdeaStatus::PENDING,
-            'approved_at' => null,
-            'approved_by' => null,
-            'rejection_reason' => null,
-        ]);
+        return $this->status === IdeaStatus::REJECTED;
     }
 }
