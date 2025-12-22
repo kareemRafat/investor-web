@@ -162,7 +162,7 @@ return [
         'step7' => [
             'title' => 'ملخص لتفاصيل الإستثمار',
             'project' => 'المشروع',
-            'required_capital' => 'رأس المال المطلوب',
+            'required_capital' => 'رأس المال ',
             'expected_profit' => 'الأرباح المتوقعة',
             'best_countries' => 'أفضل الدول',
             'preferred_contact' => 'طريقة التواصل المفضلة',

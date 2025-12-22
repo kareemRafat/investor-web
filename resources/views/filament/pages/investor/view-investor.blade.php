@@ -20,10 +20,10 @@
                                 {{ app()->getLocale() === 'ar' ? 'صاحب الاستثمار' : 'Investor Owner' }}
                             </span>
                         </div>
-                        <div class="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                        <div class="text-base text-gray-700 dark:text-gray-300 font-medium">
                             {{ $this->getRecord()->user->name ?? '-' }}
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
                             {{ $this->getRecord()->user->email ?? '-' }}
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="flex items-center gap-2 mb-2">
                     <x-filament::icon icon="heroicon-o-banknotes" class="w-5 h-5 text-green-600 dark:text-green-400" />
                     <span class="text-xs font-semibold text-gray-600 dark:text-gray-400">
-                        {{ __('investor.steps.step7.contribution') }}
+                        {{ __('investor.steps.step7.required_capital') }}
                     </span>
                 </div>
                 <div class="text-sm text-gray-700 dark:text-gray-300 font-medium">
@@ -111,7 +111,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 {{-- Contact Way --}}
                 <div
-                    class="col-span-1 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+                    class="col-span-3 sm:col-span-1 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                     <div class="flex items-center gap-2 mb-3">
                         <x-filament::icon icon="heroicon-o-phone" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
                         <h6 class="font-semibold text-gray-900 dark:text-gray-100">

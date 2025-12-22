@@ -44,6 +44,7 @@ class UserForm
 
                         Select::make('residence_country')
                             ->label('دولة الإقامة')
+                            ->required()
                             ->options(
                                 fn() => collect(__('idea.steps.step2.options'))
                                     ->pluck('name', 'code')
@@ -53,6 +54,7 @@ class UserForm
 
                         DatePicker::make('birth_date')
                             ->label('تاريخ الميلاد')
+                            ->required()
                             ->native(false),
                     ])
                     ->columns(2),

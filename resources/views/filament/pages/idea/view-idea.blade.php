@@ -15,14 +15,14 @@
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-semibold text-gray-600 dark:text-gray-400 font-medium">
+                            <span class="text-xs text-gray-600 dark:text-gray-400 font-medium">
                                 {{ app()->getLocale() === 'ar' ? 'صاحب الفكرة' : 'Idea Owner' }}
                             </span>
                         </div>
-                        <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <div class="text-base font-medium text-gray-900 dark:text-gray-100">
                             {{ $this->getRecord()->user->name ?? '-' }}
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
                             {{ $this->getRecord()->user->email ?? '-' }}
                         </div>
                     </div>
@@ -139,7 +139,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {{-- Contact Way --}}
             <div
-                class="col-span-1 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+                class="col-span-3 sm:col-span-1 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                 <div class="flex items-center gap-2 mb-3">
                     <x-filament::icon icon="heroicon-o-phone" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     <h6 class="font-semibold text-gray-900 dark:text-gray-100">
@@ -188,7 +188,7 @@
         {{-- Section 3: Financial --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {{-- Contributions --}}
-            <div class="p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <div class="p-4 bg-orange-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                 <div class="flex items-center gap-2 mb-3">
                     <x-filament::icon icon="heroicon-o-user-plus" class="w-5 h-5 text-green-600 dark:text-green-400" />
                     <h6 class="font-semibold text-gray-900 dark:text-gray-100">
@@ -207,7 +207,7 @@
             </div>
 
             {{-- Returns --}}
-            <div class="p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                 <div class="flex items-center gap-2 mb-3">
                     <x-filament::icon icon="heroicon-o-trophy" class="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
                     <h6 class="font-semibold text-gray-900 dark:text-gray-100">{{ __('idea.steps.step10.returns') }}

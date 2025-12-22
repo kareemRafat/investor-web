@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Readex Pro')
             ->colors([
-                'primary' => Color::Green,
+                'primary' => Color::Purple,
                 'blue' => Color::Blue,
                 'danger' => Color::Red,
                 'gray' => Color::Zinc,

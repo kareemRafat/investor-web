@@ -2,9 +2,6 @@
 
 namespace App\Filament\Resources\Investors\Schemas;
 
-use App\Enums\InvestorStatus;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;

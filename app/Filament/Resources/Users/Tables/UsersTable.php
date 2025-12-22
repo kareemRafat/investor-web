@@ -120,7 +120,6 @@ class UsersTable
                 ChangeStatusAction::make(),
                 EditAction::make()
                     ->color('info'),
-                // ->hidden(fn($record) => $record->role !== UserRole::ADMIN)
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

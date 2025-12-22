@@ -31,6 +31,9 @@ class IdeasTable
             ->recordUrl(null)
             ->defaultSort('created_at', 'desc')
             ->striped()
+            ->emptyStateHeading('لا توجد أي افكار')
+            ->emptyStateDescription('لم يتم إضافة أي أفكار بعد')
+            ->emptyStateIcon('heroicon-s-inbox')
             ->columns([
                 TextColumn::make('id')
                     ->label('#')
@@ -101,7 +104,7 @@ class IdeasTable
                 TextColumn::make('status')
                     ->label('الحالة')
                     ->badge(),
-                    
+
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
                     ->date()

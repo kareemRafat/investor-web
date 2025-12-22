@@ -34,7 +34,7 @@
                             <div class="border rounded-3 p-3 h-100 bg-success bg-opacity-10">
                                 <div class="d-flex align-items-center gap-2 mb-2">
                                     <i class="bi bi-cash-stack text-success fs-5"></i>
-                                    <small class="text-muted fw-semibold">{{ __('investor.steps.step7.contribution') }}</small>
+                                    <small class="text-muted fw-semibold">{{ __('investor.steps.step7.required_capital') }}</small>
                                 </div>
                                 <div class="fw-semibold text-dark small">
                                     {!! $investor->contributions?->money_contribution_label ?? __('investor.common.unspecified') !!}

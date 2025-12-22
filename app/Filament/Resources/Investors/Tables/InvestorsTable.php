@@ -32,6 +32,9 @@ class InvestorsTable
             ->recordAction(null) // prevent clickable row
             ->recordUrl(null)
             ->defaultSort('created_at', 'desc')
+            ->emptyStateHeading('لا توجد عروض استثمار')
+            ->emptyStateDescription('لم يتم إضافة أي عروض استثمار بعد')
+            ->emptyStateIcon('heroicon-s-inbox')
             ->columns([
                 TextColumn::make('id')
                     ->label('#')
@@ -131,7 +134,6 @@ class InvestorsTable
             ->deferFilters(false)
 
             ->recordActions([
-                // EditAction::make(),
                 ViewAction::make()
                     ->url(
                         fn($record): string =>
