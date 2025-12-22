@@ -24,7 +24,7 @@ enum IdeaStatus: string implements HasLabel, HasColor
     public function getColor(): string | array | null
     {
         return match ($this) {
-            self::PENDING => Color::Orange,  // أو 'warning'
+            self::PENDING => Color::Orange,
             self::APPROVED => Color::Teal,
             self::REJECTED => Color::Rose,
         };

@@ -64,6 +64,11 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         return $this->hasMany(Idea::class);
     }
 
+    public function investors()
+    {
+        return $this->hasMany(Investor::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role === UserRole::ADMIN;

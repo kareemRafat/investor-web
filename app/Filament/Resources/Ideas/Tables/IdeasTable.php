@@ -4,12 +4,13 @@ namespace App\Filament\Resources\Ideas\Tables;
 
 use App\Enums\IdeaStatus;
 use Filament\Tables\Table;
+use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Resources\Ideas\IdeaResource;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class IdeasTable
@@ -96,9 +97,11 @@ class IdeasTable
                     ->wrap()
                     ->width('250px')
                     ->searchable(),
+
                 TextColumn::make('status')
                     ->label('الحالة')
                     ->badge(),
+                    
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
                     ->date()
@@ -141,9 +144,13 @@ class IdeasTable
 
             ], layout: FiltersLayout::AboveContent)
             ->deferFilters(false)
-            
+
             ->recordActions([
-                ViewAction::make(),
+                ViewAction::make()
+                    ->url(
+                        fn($record): string =>
+                        IdeaResource::getUrl('view', ['record' => $record])
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

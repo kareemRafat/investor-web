@@ -15,7 +15,7 @@ class ChangeInvestorStatusAction
     public static function make(): Action
     {
         return Action::make('changeStatus')
-            ->label('تغيير حالة المستثمر')
+            ->label(fn($record) => $record->status->getLabel() . ' - تغيير الحالة')
             ->icon(fn($record) => match ($record->status) {
                 InvestorStatus::APPROVED => 'heroicon-o-check-circle',
                 InvestorStatus::REJECTED => 'heroicon-o-x-circle',

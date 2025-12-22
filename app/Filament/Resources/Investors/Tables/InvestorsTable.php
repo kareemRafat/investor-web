@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Investors\Tables;
 
 use Filament\Tables\Table;
 use App\Enums\InvestorStatus;
-use Filament\Actions\EditAction;
+use App\Filament\Resources\Investors\InvestorResource;
 use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -27,29 +27,64 @@ class InvestorsTable
                     ->state(
                         fn($rowLoop, $livewire) => ($livewire->getTableRecordsPerPage() * ($livewire->getTablePage() - 1))
                             + $rowLoop->iteration
-                    ),
+                    )
+                    ->alignCenter(),
+
                 TextColumn::make('investor_field')
-                    ->label('مجال الإستثمار')
-                    ->color('indigo')
-                    ->weight('semibold')
-                    ->formatStateUsing(fn($state) => __('investor.steps.step1.options.' . $state)),
+                    ->label('مجال الاستثمار')
+                    ->color('teal')
+                    ->weight('medium')
+                    ->formatStateUsing(fn($state) => __('investor.steps.step1.options.' . $state))
+                    ->searchable(),
+
                 TextColumn::make('user.name')
-                    ->label('صاحب الفكرة')
+                    ->label('صاحب الاستثمار')
                     ->default('غير معروف')
                     ->weight('medium')
                     ->searchable(),
-                TextColumn::make('status')
-                    ->label('الحالة')
-                    ->badge(),
+
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
                     ->date()
                     ->sortable()
+                    ->toggleable(),
+
+                TextColumn::make('countries.country')
+                    ->label('الدول')
+                    ->badge()
+                    ->color('indigo')
+                    ->getStateUsing(function ($record) {
+                        $options = __('idea.steps.step2.options');
+                        return $record->countries->map(function ($country) use ($options) {
+                            $found = collect($options)->firstWhere('code', $country->country);
+                            $name = $found['name'] ?? $country->country;
+                            return $name;
+                        })->toArray();
+                    })
+                    ->wrap()
+                    ->width('200px')
+                    ->default('-'),
+
+                TextColumn::make('status')
+                    ->label('الحالة')
+                    ->badge(),
+
+                TextColumn::make('approved_at')
+                    ->label('تاريخ الموافقة')
+                    ->dateTime('d M Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->placeholder('لم تتم الموافقة بعد'),
+
+                TextColumn::make('approver.name')
+                    ->label('تمت الموافقة بواسطة')
+                    ->default('-')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
 
                 SelectFilter::make('investor_field')
-                    ->label('مجال الفكرة')
+                    ->label('مجال الإستثمار')
                     ->options(function () {
                         $fields = __('investor.steps.step1.options');
                         return collect($fields)->toArray();
@@ -86,7 +121,11 @@ class InvestorsTable
 
             ->recordActions([
                 // EditAction::make(),
-                ViewAction::make(),
+                ViewAction::make()
+                    ->url(
+                        fn($record): string =>
+                        InvestorResource::getUrl('view', ['record' => $record])
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
