@@ -40,4 +40,39 @@ class InvestorContribution extends Model
         return $this->belongsTo(CostProfitRange::class, 'money_contributions')
             ->where('type', 'money_contribution');
     }
+
+    public function getFormattedContributionAttribute(): array
+    {
+        $lines = [];
+
+        // نوع المساهمة
+        if ($this->contribute_type) {
+            $lines[] = __('investor.steps.step4.' . $this->contribute_type);
+        }
+
+        // لو فيه مساهمة مالية
+        if ($this->money_amount) {
+            $lines[] = __('investor.common.money') . ': ' . number_format($this->money_amount) . ' ' . __('investor.common.currency');
+        }
+
+        if ($this->money_percent) {
+            $lines[] = __('investor.common.percentage') . ': ' . $this->money_percent . '%';
+        }
+
+        // لو فيه مساهمة شخصية + مالية
+        if ($this->person_money_amount) {
+            $lines[] = __('investor.common.person_money') . ': ' . number_format($this->person_money_amount) . ' ' . __('investor.common.currency');
+        }
+
+        if ($this->person_money_percent) {
+            $lines[] = __('investor.common.person_percentage') . ': ' . $this->person_money_percent . '%';
+        }
+
+        // نوع التفرغ
+        if ($this->staff) {
+            $lines[] = __('investor.steps.step4.staff_types.' . $this->staff);
+        }
+
+        return $lines;
+    }
 }

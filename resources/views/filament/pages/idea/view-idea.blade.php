@@ -1,5 +1,52 @@
 <x-filament-panels::page>
     <div class="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+        {{-- User & Created Date Card --}}
+        <div
+            class="p-4 bg-purple-50 dark:bg-purple-950 rounded-lg shadow-sm border border-purple-100 dark:border-purple-900">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                {{-- User Info (Right - First on Mobile) --}}
+                <div class="flex items-center gap-3">
+                    <div class="flex-shrink-0">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-600 dark:bg-purple-500 flex items-center justify-center text-white font-bold">
+                            {{ strtoupper(substr($this->getRecord()->user->name ?? 'U', 0, 1)) }}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold text-gray-600 dark:text-gray-400 font-medium">
+                                {{ app()->getLocale() === 'ar' ? 'صاحب الفكرة' : 'Idea Owner' }}
+                            </span>
+                        </div>
+                        <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+                            {{ $this->getRecord()->user->name ?? '-' }}
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">
+                            {{ $this->getRecord()->user->email ?? '-' }}
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Created Date (Left - Second on Mobile) --}}
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <x-filament::icon icon="heroicon-o-calendar"
+                            class="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-400">
+                            {{ app()->getLocale() === 'ar' ? 'تاريخ الإنشاء' : 'Created At' }}
+                        </span>
+                    </div>
+                    <div class="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                        {{ $this->getRecord()->created_at?->locale(app()->getLocale())->isoFormat('DD MMMM YYYY') }}
+                    </div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">
+                        {{ $this->getRecord()->created_at?->diffForHumans() }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
         {{-- Section 1: Core Info --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {{-- Project --}}

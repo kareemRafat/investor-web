@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Ideas\Tables;
 
+use App\Enums\IdeaStatus;
 use Filament\Tables\Table;
-use Filament\Actions\EditAction;
-use Illuminate\Support\Facades\Lang;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
@@ -97,6 +96,9 @@ class IdeasTable
                     ->wrap()
                     ->width('250px')
                     ->searchable(),
+                TextColumn::make('status')
+                    ->label('الحالة')
+                    ->badge(),
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
                     ->date()
@@ -130,9 +132,16 @@ class IdeasTable
                             })
                         );
                     })
-                    ->searchable()
+                    ->searchable(),
+
+                SelectFilter::make('status')
+                    ->label('الحالة')
+                    ->options(IdeaStatus::class)
+                    ->native(false),
+
             ], layout: FiltersLayout::AboveContent)
             ->deferFilters(false)
+            
             ->recordActions([
                 ViewAction::make(),
             ])

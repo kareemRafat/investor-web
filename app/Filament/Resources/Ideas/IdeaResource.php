@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Ideas;
 
-use App\Filament\Resources\Ideas\Pages\CreateIdea;
 use App\Filament\Resources\Ideas\Pages\EditIdea;
 use App\Filament\Resources\Ideas\Pages\ListIdeas;
 use App\Filament\Resources\Ideas\Pages\ViewIdea;
@@ -24,7 +23,7 @@ class IdeaResource extends Resource
 
     protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::LightBulb;
 
-    protected static string|UnitEnum|null $navigationGroup = 'إدارة الأفكار';
+    protected static string|UnitEnum|null $navigationGroup = 'إدارة الأفكار وعروض الإستثمار';
 
     protected static ?int $navigationSort = 5;
 
@@ -54,7 +53,6 @@ class IdeaResource extends Resource
         return [
             'index' => ListIdeas::route('/'),
             'view' => ViewIdea::route('/{record}'),
-            // 'create' => CreateIdea::route('/create'),
             'edit' => EditIdea::route('/{record}/edit'),
         ];
     }
