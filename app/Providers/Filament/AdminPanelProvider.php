@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use Filament\Panel;
 use App\Enums\UserRole;
+use App\Filament\Widgets\UsersStats;
 use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
@@ -59,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+                UsersStats::class,
             ])
             ->middleware([
                 EncryptCookies::class,
