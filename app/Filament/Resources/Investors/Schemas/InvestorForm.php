@@ -15,23 +15,21 @@ class InvestorForm
     {
         return $schema
             ->components([
-                Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->default(null),
+
                 TextInput::make('investor_field')
-                    ->required(),
+                    ->label('مجال الفكرة')
+                    ->required()
+                    ->columnSpanFull()
+                    ->formatStateUsing(
+                        fn($state) => __('investor.steps.step1.options.' . $state)
+                    )
+                    ->disabled(),
                 Textarea::make('summary')
+                    ->label('ملخص عن فكرة الاستثمار')
                     ->default(null)
                     ->columnSpanFull(),
-                Select::make('status')
-                    ->options(InvestorStatus::class)
-                    ->default('pending')
-                    ->required(),
-                DateTimePicker::make('approved_at'),
-                TextInput::make('approved_by')
-                    ->numeric()
-                    ->default(null),
                 Textarea::make('admin_note')
+                    ->label('ملاحظات المشرف')
                     ->default(null)
                     ->columnSpanFull(),
             ]);

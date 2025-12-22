@@ -24,6 +24,11 @@ class IdeaForm
                     ->label('ملخص الفكرة')
                     ->default(null)
                     ->columnSpanFull(),
+
+                Textarea::make('admin_note')
+                    ->label('ملاحظات المشرف')
+                    ->default(null)
+                    ->columnSpanFull(),
             ]);
     }
 }

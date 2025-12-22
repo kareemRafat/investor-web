@@ -34,7 +34,8 @@ class ChangeInvestorStatusAction
                 Textarea::make('admin_note')
                     ->label('ملاحظات الإدارة (اختياري)')
                     ->rows(3)
-                    ->maxLength(500),
+                    ->maxLength(500)
+                    ->default(fn($record) => $record->admin_note),
 
                 ClientDatetimeHidden::make('approved_at'),
             ])
