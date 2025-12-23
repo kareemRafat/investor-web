@@ -4,6 +4,8 @@ namespace App\Providers\Filament;
 
 use Filament\Panel;
 use App\Enums\UserRole;
+use App\Filament\Widgets\IdeasStats;
+use App\Filament\Widgets\InvestorsStats;
 use App\Filament\Widgets\UsersStats;
 use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
@@ -61,6 +63,8 @@ class AdminPanelProvider extends PanelProvider
                 AccountWidget::class,
                 FilamentInfoWidget::class,
                 UsersStats::class,
+                IdeasStats::class,
+                InvestorsStats::class,
             ])
             ->middleware([
                 EncryptCookies::class,

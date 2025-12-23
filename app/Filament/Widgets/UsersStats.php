@@ -16,7 +16,8 @@ class UsersStats extends StatsOverviewWidget
                 ->color('primary')
                 ->description('عدد الإجمالي للمستخدمين المسجلين ')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->chart($this->getUserChartData()),
+                ->chart($this->getUserChartData())
+                ->columnSpanFull(),
         ];
     }
 
