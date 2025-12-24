@@ -61,7 +61,7 @@ class Index extends Component
                 'contributions.contributionRange',
                 'countries'
             ])
-
+            ->where('status', 'approved')
             // pagination by id
             ->when(
                 $this->lastId !== null,

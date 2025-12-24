@@ -14,11 +14,30 @@ class Ideas extends Component
     public Collection $ideas;
     public bool $hasMore = true;
     public ?int $lastId = null;
-    public int $perPage = 7;
+    public int $perPage = 2;
+    public ?string $statusFilter = null;
 
     public function mount(): void
     {
         $this->ideas = collect();
+        $this->loadMore();
+    }
+
+    public function setStatusFilter(?string $status): void
+    {
+        // Toggle: إذا كان نفس الـ status، نرجعه null (عرض الكل)
+        if ($this->statusFilter === $status) {
+            $this->statusFilter = null;
+        } else {
+            $this->statusFilter = $status;
+        }
+
+        // Reset everything
+        $this->ideas = collect();
+        $this->lastId = null;
+        $this->hasMore = true;
+
+        // Load fresh data
         $this->loadMore();
     }
 
@@ -31,6 +50,10 @@ class Ideas extends Component
         $query = Idea::query()
             ->with(['costs.range', 'profits.range', 'contributions', 'countries'])
             ->where('user_id', Auth::id())
+            ->when(
+                $this->statusFilter !== null,
+                fn($q) => $q->where('status', $this->statusFilter)
+            )
             ->when(
                 $this->lastId !== null,
                 fn($q) => $q->where('id', '<', $this->lastId)

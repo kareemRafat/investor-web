@@ -1,7 +1,74 @@
 <div class="card info-card shadow-sm">
-    <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-        <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.ideas.title') }}</h5>
-        <a wire:navigate href="{{ route('idea.index') }}" class="btn btn-sm btn-outline-primary fw-bold">
+
+    <style>
+        .__filter-item {
+            cursor: pointer;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .__filter-item:hover {
+            border-bottom-color: #dee2e6;
+        }
+
+        .__filter-active {
+            border-bottom-color: #495057;
+        }
+
+        .__filter-active small {
+            font-weight: 600;
+            color: #212529 !important;
+        }
+
+        .__filter-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .__filter-active .__filter-indicator {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+    <div
+        class="card-header bg-white border-0 py-3 d-flex flex-column flex-sm-row justify-content-between align-items-start">
+        <div class="d-flex flex-column">
+            <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.ideas.title') }}</h5>
+            <div class="d-flex flex-wrap justify-content-start align-items-center gap-3 mb-4 mt-2">
+                {{-- زرار الكل --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === null ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter(null)">
+                    <div class="__filter-indicator mx-2" style="background-color: #6c757d;"></div>
+                    <small class="text-muted">{{ __('profile.ideas.status.all') }}</small>
+                </div>
+
+                {{-- Approved --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === 'approved' ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter('approved')">
+                    <div class="bg-success __filter-indicator mx-2"></div>
+                    <small class="text-muted">{{ __('profile.ideas.status.approved') }}</small>
+                </div>
+
+                {{-- Pending --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === 'pending' ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter('pending')">
+                    <div class="bg-warning __filter-indicator mx-2"></div>
+                    <small class="text-muted">{{ __('profile.ideas.status.pending') }}</small>
+                </div>
+
+                {{-- Rejected --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === 'rejected' ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter('rejected')">
+                    <div class="bg-danger __filter-indicator mx-2"></div>
+                    <small class="text-muted">{{ __('profile.ideas.status.rejected') }}</small>
+                </div>
+            </div>
+        </div>
+        <a wire:navigate href="{{ route('idea.index') }}"
+            class="btn btn-sm btn-outline-primary fw-bold align-self-end align-self-sm-start">
             <i class="bi bi-eye me-1"></i>
             {{ __('profile.ideas.view_ideas') }}
         </a>
@@ -18,7 +85,15 @@
                             <div class="card-header bg-white border-0 pt-4 pb-3">
                                 <div class="row align-items-center g-3">
                                     <div class="col-auto">
-                                        <div class="bg-primary bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center fw-bold"
+                                        @php
+                                            $bg = match (true) {
+                                                $idea->status->isApproved() => 'bg-success',
+                                                $idea->status->isPending() => 'bg-warning',
+                                                default => 'bg-danger',
+                                            };
+                                        @endphp
+
+                                        <div class="{{ $bg }} bg-gradient text-white rounded-3 d-flex align-items-center justify-content-center fw-bold"
                                             style="width: 50px; height: 50px; font-size: 1.25rem;">
                                             {{ $loop->iteration }}
                                         </div>

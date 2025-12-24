@@ -10,6 +10,7 @@ use App\Models\IdeaExpense;
 use App\Models\IdeaResource;
 use App\Models\IdeaContribution;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -31,7 +32,6 @@ class Idea extends Model
         'status' => IdeaStatus::class,
         'approved_at' => 'datetime',
     ];
-
 
     //! Relations
 

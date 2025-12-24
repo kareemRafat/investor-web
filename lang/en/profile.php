@@ -75,8 +75,9 @@ return [
         'capital' => 'Capital',
         'location' => 'Location',
         'status' => [
+            'all' => 'All Ideas',
             'pending' => 'Under Review',
-            'published' => 'Published',
+            'approved' => 'Published',
             'rejected' => 'Rejected',
             'connected' => 'Connected',
         ],
@@ -85,6 +86,14 @@ return [
     'investment_offers' => [
         'title' => 'Investment Offers',
         'view_all' => 'View All Investment Offers',
+
+        'status' => [
+            'all' => 'All Offers',
+            'pending' => 'Under Review',
+            'approved' => 'Published',
+            'rejected' => 'Rejected',
+            'connected' => 'Connected',
+        ],
     ],
 
     'buttons' => [

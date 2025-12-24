@@ -75,8 +75,9 @@ return [
         'capital' => 'رأس المال',
         'location' => 'الموقع',
         'status' => [
+            'all' => 'كل الأفكار',
             'pending' => 'قيد المراجعة',
-            'published' => 'منشورة',
+            'approved' => 'منشورة',
             'rejected' => 'مرفوضة',
             'connected' => 'متصلة',
         ],
@@ -85,6 +86,14 @@ return [
     'investment_offers' => [
         'title' => 'عروض الإستثمار',
         'view_all' => 'عرض جميع عروض الاستثمار',
+
+        'status' => [
+            'all' => 'كل العروض',
+            'pending' => 'قيد المراجعة',
+            'approved' => 'منشورة',
+            'rejected' => 'مرفوضة',
+            'connected' => 'متصلة',
+        ],
     ],
 
     'buttons' => [
