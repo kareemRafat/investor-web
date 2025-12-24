@@ -145,6 +145,7 @@ return [
         ],
         'step6' => [
             'subtitle' => 'Summary of your proposed investment or partnership and its related files',
+            'investor_title' => 'write your Investment Title',
             'placeholder' => 'Write a clear summary of your investment offer',
             'confidential_info' => 'If there is any important and confidential information regarding the investment offer, we advise against stating it clearly in this summary to protect your rights and protect it from theft.',
             'max_characters' => '2000 characters maximum',
@@ -224,6 +225,10 @@ return [
             'min' => 'Please select a valid option.',
         ],
         'step6' => [
+            'investor_title_required' => 'Investor title is required.',
+            'investor_title_string'   => 'Investor title must be text.',
+            'investor_title_max'      => 'Investor title must not exceed :max characters.',
+
             'summary_required' => 'A summary of the idea is required.',
             'summary_string'   => 'The summary must be text.',
             'summary_max'      => 'The summary must not exceed 2000 characters.',

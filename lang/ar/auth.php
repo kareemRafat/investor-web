@@ -27,7 +27,7 @@ return [
         'email' => 'البريد الإلكتروني',
         'email_placeholder' => 'name@example.com',
         'password' => 'كلمة المرور',
-        'password_placeholder' => '••••••••',
+        'password_placeholder' => 'كلمة المرور',
         'remember_me' => 'تذكرني',
         'forgot_password' => 'نسيت كلمة المرور؟',
         'continue' => 'المتابعة',

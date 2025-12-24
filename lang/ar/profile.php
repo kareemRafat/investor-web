@@ -71,6 +71,7 @@ return [
     ],
 
     'ideas' => [
+        'idea_title' => 'الفكرة الاستثمارية',
         'title' => 'أفكارك المقترحة',
         'view_ideas' => 'عرض جميع الأفكار',
         'capital' => 'رأس المال',
@@ -82,11 +83,13 @@ return [
             'rejected' => 'مرفوضة',
             'connected' => 'متصلة',
         ],
+        'created_at' => 'تاريخ التقديم',
     ],
 
     'investment_offers' => [
         'title' => 'عروض الإستثمار',
         'view_all' => 'عرض جميع عروض الاستثمار',
+
 
         'status' => [
             'all' => 'كل العروض',
@@ -95,6 +98,7 @@ return [
             'rejected' => 'مرفوضة',
             'connected' => 'متصلة',
         ],
+        'created_at' => 'تاريخ التقديم',
     ],
 
     'buttons' => [

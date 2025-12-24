@@ -21,7 +21,7 @@ return [
     'submit_idea_description' => 'حوّل فكرتك إلى مشروع حقيقي وجاهز للاستثمار',
     'submit_idea_cta' => 'ابدأ الآن ',
     'investor_description' => 'اكتشف فرص استثمارية حقيقية ومدروسة',
-    'investor_cta' => 'تصفح الفرص ',
+    'investor_cta' => 'قدم عرضك ',
     'explore_ideas_description' => 'استعرض أفكار مشاريع جاهزة للنمو',
     'explore_ideas_cta' => 'استكشف ',
     'find_investor_description' => 'تواصل مع مستثمرين مناسبين لفكرتك',

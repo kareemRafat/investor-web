@@ -14,6 +14,7 @@ class Investor extends Model
 
     protected $fillable = [
         'investor_field',
+        'title',
         'summary',
         'user_id',
         'created_at',

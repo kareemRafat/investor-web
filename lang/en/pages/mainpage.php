@@ -21,7 +21,7 @@ return [
     'submit_idea_description' => 'Transform your idea into a real investment-ready project',
     'submit_idea_cta' => 'Start Now',
     'investor_description' => 'Discover real and well-studied investment opportunities',
-    'investor_cta' => 'Browse Opportunities ',
+    'investor_cta' => 'Make Your Offer',
     'explore_ideas_description' => 'Browse project ideas ready for growth',
     'explore_ideas_cta' => 'Explore ',
     'find_investor_description' => 'Connect with suitable investors for your idea',

@@ -1019,12 +1019,18 @@ html[dir="rtl"] .choice-radio-indicator {
 .__filter-indicator {
     width: 12px;
     height: 12px;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
 .__filter-active .__filter-indicator {
-    width: 15px;
-    height: 15px;
+    transform: scale(1.2);
+}
+
+/* the title in index pages */
+.card__title-card {
+    background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2);
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 991px) {

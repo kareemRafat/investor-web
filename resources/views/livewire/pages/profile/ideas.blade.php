@@ -45,8 +45,8 @@
             <div class="row mx-0 px-0 g-3">
                 @forelse($ideas as $idea)
                     <div class="col-12" wire:key="idea-{{ $idea->id }}">
-                        <div class="card shadow-sm border-0 rounded-4">
 
+                        <div class="card shadow-sm border-0 rounded-4">
                             <!-- Card Header -->
                             <div class="card-header bg-white border-0 pt-4 pb-3">
                                 <div class="row align-items-center g-3">
@@ -80,8 +80,32 @@
                                 </div>
                             </div>
 
+                            <div class="px-4 pb-2 pt-0">
+                                <div
+                                    class="d-flex flex-column flex-sm-row align-items-center justify-content-between border-top border-bottom py-2 gap-3">
+                                    <div class="d-flex align-items-center gap-3 align-self-start">
+                                        <!-- التاريخ -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="bi bi-calendar3 text-primary"></i>
+                                            <small class="text-muted">{{ __('profile.ideas.created_at') }} : </small>
+                                            <span class="fw-semibold text-dark">
+                                                {{ $idea->created_at->translatedFormat('d F Y') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- الوقت المنقضي -->
+                                    <div class="d-flex align-items-center gap-2 align-self-end">
+                                        <i class="bi bi-hourglass-split text-secondary"></i>
+                                        <span class="badge bg-light text-dark border p-2">
+                                            {{ $idea->created_at->diffForHumans() }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Card Body -->
-                            <div class="card-body px-4 pb-4">
+                            <div class="card-body px-4 pb-4 shadow-sm">
                                 <div class="row g-3">
 
                                     <!-- Capital -->

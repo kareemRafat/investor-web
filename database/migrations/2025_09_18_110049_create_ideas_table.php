@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
             $table->string('idea_field'); // step 1
+            $table->string('title')->nullable();
             $table->text('summary')->nullable();
             $table->timestamps();
         });

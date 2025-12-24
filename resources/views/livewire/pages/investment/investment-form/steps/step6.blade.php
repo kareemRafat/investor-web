@@ -5,8 +5,12 @@
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3">
+            <div class="col-12">
+                <input type="text" class="form-control border-custom rounded-5 p-2"
+                    placeholder="{{ __('investor.steps.step6.investor_title') }}" wire:model='data.investor_title'>
+            </div>
             <div class="col-12 position-relative">
-                <textarea class="form-control border-custom rounded-8 pt-3" rows="8"
+                <textarea class="form-control border-custom rounded-5 pt-3" rows="8"
                     placeholder="{{ __('investor.steps.step6.placeholder') }}" wire:model='data.summary'
                     style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};"
                     dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
@@ -23,7 +27,7 @@
 
             <div class="col-12 position-relative mt-4" dir="ltr">
                 <label for="investor-attachment"
-                    class="form-control d-flex align-items-center gap-2 cursor-pointer justify-content-between py-3 border-custom rounded-8">
+                    class="form-control d-flex align-items-center gap-2 cursor-pointer justify-content-between py-3 border-custom rounded-5">
                     <span>{{ __('investor.steps.step6.file_format') }}</span>
                     <i class="bi bi-paperclip fs-5"></i>
                 </label>

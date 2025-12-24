@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('investor_field');
+            $table->string('title')->nullable();
             $table->text('summary')->nullable();
             $table->timestamps();
         });

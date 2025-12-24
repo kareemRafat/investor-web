@@ -16,6 +16,52 @@
                     {{-- Section 1: Core Info --}}
                     <div class="row g-3 mb-4">
 
+                        {{-- title --}}
+                        <div class="mb-3">
+                            <div
+                                class="card__title-card bg-gradient-primary text-white rounded-3 p-3 position-relative overflow-hidden">
+                                <!-- خلفية زخرفية -->
+                                <div class="position-absolute top-0 end-0 opacity-25">
+                                    <i class="bi bi-stars" style="font-size: 4rem;"></i>
+                                </div>
+                                <div class="position-relative z-1">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="bi bi-quote fs-4 opacity-75"></i>
+                                        <h5 class="mb-0 fw-bold" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                                            {{ $idea->title }}
+                                        </h5>
+                                        <i class="bi bi-quote fs-4 opacity-75" style="transform: rotate(180deg);"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- time --}}
+                        <div class="pb-2 pt-0">
+                            <div
+                                class="d-flex flex-column flex-sm-row align-items-center justify-content-between border-top border-bottom py-2 gap-3">
+                                <div class="d-flex align-items-center gap-3 align-self-start">
+                                    <!-- التاريخ -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="bi bi-calendar3 text-primary"></i>
+                                        <small class="text-muted">{{ __('profile.investment_offers.created_at') }} :
+                                        </small>
+                                        <span class="fw-semibold text-dark">
+                                            {{ $idea->created_at->translatedFormat('d F Y') }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- الوقت المنقضي -->
+                                <div class="d-flex align-items-center gap-2 align-self-end">
+                                    <i class="bi bi-hourglass-split text-secondary"></i>
+                                    <span class="badge bg-light text-dark border p-2">
+                                        {{ $idea->created_at->diffForHumans() }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
                         {{-- Project --}}
                         <div class="col-lg-3 col-md-6">
                             <div class="border rounded-3 p-3 h-100 bg-primary bg-opacity-10">
@@ -39,7 +85,8 @@
                                 <div class="fw-semibold text-dark small">
                                     @forelse($idea->costs as $cost)
                                         <div>{!! app()->getLocale() === 'ar' ? $cost->range->label_ar : $cost->range->label_en !!}</div>
-                                        <small class="text-muted">{{ __('idea.steps.step3.types.' . ($cost->cost_type ?? __('idea.common.unspecified'))) }}</small>
+                                        <small
+                                            class="text-muted">{{ __('idea.steps.step3.types.' . ($cost->cost_type ?? __('idea.common.unspecified'))) }}</small>
                                     @empty
                                         <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
                                     @endforelse
@@ -52,12 +99,14 @@
                             <div class="border rounded-3 p-3 h-100 bg-warning bg-opacity-10">
                                 <div class="d-flex align-items-center gap-2 mb-2">
                                     <i class="bi bi-graph-up-arrow text-warning fs-5"></i>
-                                    <small class="text-muted fw-semibold">{{ __('idea.steps.step10.expected_profit') }}</small>
+                                    <small
+                                        class="text-muted fw-semibold">{{ __('idea.steps.step10.expected_profit') }}</small>
                                 </div>
                                 <div class="fw-semibold text-dark small">
                                     @forelse($idea->profits as $profit)
                                         <div>{!! app()->getLocale() === 'ar' ? $profit->range->label_ar : $profit->range->label_en !!}</div>
-                                        <small class="text-muted">{{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}</small>
+                                        <small
+                                            class="text-muted">{{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}</small>
                                     @empty
                                         <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
                                     @endforelse
@@ -70,15 +119,21 @@
                             <div class="border rounded-3 p-3 h-100 bg-info bg-opacity-10">
                                 <div class="d-flex align-items-center gap-2 mb-2">
                                     <i class="bi bi-globe-americas text-info fs-5"></i>
-                                    <small class="text-muted fw-semibold">{{ __('idea.steps.step10.best_countries') }}</small>
+                                    <small
+                                        class="text-muted fw-semibold">{{ __('idea.steps.step10.best_countries') }}</small>
                                 </div>
                                 <div class="fw-semibold text-dark small">
                                     @forelse($idea->countries as $country)
                                         @php
-                                            $countryOption = collect(__('idea.steps.step2.options'))->firstWhere('code', $country->country);
+                                            $countryOption = collect(__('idea.steps.step2.options'))->firstWhere(
+                                                'code',
+                                                $country->country,
+                                            );
                                             $countryName = $countryOption['name'] ?? $country->country;
                                         @endphp
-                                        {{ $countryName }}@if (!$loop->last), @endif
+                                        {{ $countryName }}@if (!$loop->last)
+                                            ,
+                                        @endif
                                     @empty
                                         {{ __('idea.common.unspecified') }}
                                     @endforelse
@@ -132,12 +187,14 @@
                                     @forelse(array_slice($idea->resources->translated_requirements ?? [], 0, 6) as $index => $resource)
                                         <div class="col-md-6">
                                             <div class="d-flex align-items-start gap-2">
-                                                <span class="badge bg-primary rounded-circle" style="width: 24px; height: 24px; padding: 4px;">{{ $index + 1 }}</span>
+                                                <span class="badge bg-primary rounded-circle"
+                                                    style="width: 24px; height: 24px; padding: 4px;">{{ $index + 1 }}</span>
                                                 <small class="text-dark">{{ $resource }}</small>
                                             </div>
                                         </div>
                                     @empty
-                                        <div class="col-12 text-center text-muted">{{ __('idea.common.unspecified') }}</div>
+                                        <div class="col-12 text-center text-muted">{{ __('idea.common.unspecified') }}
+                                        </div>
                                     @endforelse
                                 </div>
                             </div>

@@ -9,17 +9,18 @@ use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\HandlesAttachmentUpload;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Step6 extends Component
 {
     use WithFileUploads, HandlesAttachmentUpload;
 
     #[Validate([
+        'data.investor_title' => 'required|string|max:200',
         'data.summary' => 'required|string|max:2000',
         'data.attachment' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240', // 10MB max
     ])]
     public array $data = [
+        'investor_title' => null,
         'summary' => null,
         'attachment' => null,
         'created_at' => null,
@@ -36,6 +37,7 @@ class Step6 extends Component
         if (!$investor) return;
 
         $this->data['summary'] = $investor?->summary;
+        $this->data['investor_title'] = $investor?->title;
 
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $investor->attachments()->first()?->original_name ?? 'Uploaded File';
@@ -61,6 +63,10 @@ class Step6 extends Component
     public function messages()
     {
         return [
+            'data.investor_title.required' => __('investor.validation.step6.investor_title_required'),
+            'data.investor_title.string'   => __('investor.validation.step6.investor_title_string'),
+            'data.investor_title.max'      => __('investor.validation.step6.investor_title_max'),
+
             'data.summary.required' => __('investor.validation.step6.summary_required'),
             'data.summary.string'   => __('investor.validation.step6.summary_string'),
             'data.summary.max'      => __('investor.validation.step6.summary_max'),
@@ -81,6 +87,7 @@ class Step6 extends Component
 
         // DB sync
         $investor->update([
+            'title' => $this->data['investor_title'],
             'summary' => $this->data['summary'],
             'user_id' => Auth::id(),
             'created_at' => $this->data['created_at'],

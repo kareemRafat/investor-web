@@ -27,7 +27,7 @@ return [
         'email' => 'Email Address',
         'email_placeholder' => 'name@example.com',
         'password' => 'Password',
-        'password_placeholder' => '••••••••',
+        'password_placeholder' => 'Password',
         'remember_me' => 'Remember me',
         'forgot_password' => 'Forgot password?',
         'continue' => 'Continue',

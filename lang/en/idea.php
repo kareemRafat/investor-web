@@ -214,6 +214,7 @@ return [
         ],
         'step9' => [
             'subtitle' => 'Summary of the idea and its files',
+            'idea_title' => 'Write a title for your idea',
             'placeholder' => 'Write a clear summary of your idea',
             'confidential_info' => 'If there is any important and confidential information about the idea, we advise you not to mention it clearly in this summary to preserve your rights and protect it from being stolen by others.',
             'max_characters' => '2000 characters maximum',
@@ -324,6 +325,10 @@ return [
             'combo_percentage'         => 'Combo percentage must be one of the allowed values.',
         ],
         'step9' => [
+            'idea_title_required' => 'Idea title is required.',
+            'idea_title_string'   => 'Idea title must be a string.',
+            'idea_title_max'      => 'Idea title must not exceed :max characters.',
+
             'summary_required' => 'A summary of the idea is required.',
             'summary_string'   => 'The summary must be text.',
             'summary_max'      => 'The summary must not exceed 2000 characters.',

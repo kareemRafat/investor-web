@@ -71,6 +71,7 @@ return [
     ],
 
     'ideas' => [
+        'idea_title' => 'Investment Idea',
         'title' => 'Your Ideas',
         'view_ideas' => 'View All Ideas',
         'capital' => 'Capital',
@@ -82,6 +83,7 @@ return [
             'rejected' => 'Rejected',
             'connected' => 'Connected',
         ],
+        'created_at' => 'Created At',
     ],
 
     'investment_offers' => [
@@ -95,6 +97,7 @@ return [
             'rejected' => 'Rejected',
             'connected' => 'Connected',
         ],
+        'created_at' => 'Created At',
     ],
 
     'buttons' => [

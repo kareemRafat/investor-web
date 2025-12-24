@@ -16,10 +16,12 @@ class Step9 extends Component
     use WithFileUploads , HandlesAttachmentUpload;
 
     #[Validate([
+        'data.idea_title' => 'required|string|max:255',
         'data.summary' => 'required|string|max:2000',
         'data.attachment' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240', // 10MB max per file
     ])]
     public array $data = [
+        'idea_title' => null,
         'summary' => null,
         'attachment' => null,
         'created_at' => null,
@@ -36,6 +38,7 @@ class Step9 extends Component
         if (!$idea) return;
 
         $this->data['summary'] = $idea?->summary;
+        $this->data['idea_title'] = $idea?->title;
 
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $idea->attachments()->first()?->original_name ?? 'Uploaded File';
@@ -62,6 +65,10 @@ class Step9 extends Component
     public function messages()
     {
         return [
+            'data.idea_title.required' => __('idea.validation.step9.idea_title_required'),
+            'data.idea_title.string'   => __('idea.validation.step9.idea_title_string'),
+            'data.idea_title.max'      => __('idea.validation.step9.idea_title_max'),
+
             'data.summary.required' => __('idea.validation.step9.summary_required'),
             'data.summary.string'   => __('idea.validation.step9.summary_string'),
             'data.summary.max'      => __('idea.validation.step9.summary_max'),
@@ -83,6 +90,7 @@ class Step9 extends Component
 
         // DB sync
         $idea->update([
+            'title' => $this->data['idea_title'],
             'summary' => $this->data['summary'],
             'user_id' => Auth::id(),
             'created_at' => $this->data['created_at'],

@@ -18,6 +18,7 @@ class Idea extends Model
 {
     protected $fillable = [
         'idea_field',
+        'title',
         'summary',
         'user_id',
         'created_at',
