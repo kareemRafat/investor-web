@@ -27,8 +27,6 @@ class IdeasTable
                     'costs:id,idea_id,cost_type,range_id',
                 ])
             )
-            ->recordAction(null) // prevent clickable row
-            ->recordUrl(null)
             ->defaultSort('created_at', 'desc')
             ->striped()
             ->emptyStateHeading('لا توجد أي افكار')

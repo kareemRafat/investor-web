@@ -29,8 +29,6 @@ class InvestorsTable
                 ])
                     ->withCount('attachments')
             )
-            ->recordAction(null) // prevent clickable row
-            ->recordUrl(null)
             ->defaultSort('created_at', 'desc')
             ->emptyStateHeading('لا توجد عروض استثمار')
             ->emptyStateDescription('لم يتم إضافة أي عروض استثمار بعد')
