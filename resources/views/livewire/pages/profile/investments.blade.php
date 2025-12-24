@@ -82,13 +82,29 @@
                             </div>
 
                             <div class="px-4 pb-2 pt-0">
+                                {{-- title --}}
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span
+                                            class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill">
+                                            {{ __('profile.ideas.idea_title') }}
+                                        </span>
+
+                                        <h6 class="m-0 fw-bold text-dark position-relative">
+                                            {{ $investor->title }}
+                                            <span class="position-absolute start-0 bottom-0 w-100"
+                                                style="height:2px;background:linear-gradient(90deg,#0d6efd,transparent);"></span>
+                                        </h6>
+                                    </div>
+                                </div>
                                 <div
                                     class="d-flex flex-column flex-sm-row align-items-center justify-content-between border-top border-bottom py-2 gap-3">
                                     <div class="d-flex align-items-center gap-3 align-self-start">
                                         <!-- التاريخ -->
                                         <div class="d-flex align-items-center gap-2">
                                             <i class="bi bi-calendar3 text-primary"></i>
-                                            <small class="text-muted">{{ __('profile.investment_offers.created_at') }} : </small>
+                                            <small class="text-muted">{{ __('profile.investment_offers.created_at') }}
+                                                : </small>
                                             <span class="fw-semibold text-dark">
                                                 {{ $investor->created_at->translatedFormat('d F Y') }}
                                             </span>
