@@ -1,5 +1,33 @@
 <x-filament-panels::page>
     <div class="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+        {{-- idea Title Card --}}
+        <div
+            class="mb-6 px-4 py-2 bg-gray-50 dark:bg-gray-900
+           rounded-lg border border-gray-200 dark:border-gray-800">
+            <span
+                class="inline-flex items-center rounded-full
+               bg-blue-50 dark:bg-blue-950
+               text-blue-600 dark:text-blue-400
+               px-3 py-2 text-xs font-semibold mb-3">
+                {{ app()->getLocale() === 'ar' ? 'الفكرة الاستثمارية' : 'Investment Idea' }}
+            </span>
+            <div class="flex items-start gap-3">
+                {{-- Icon --}}
+                <div
+                    class="flex items-center justify-center w-9 h-9 rounded-md
+                   bg-purple-100 dark:bg-purple-900
+                   text-purple-600 dark:text-purple-400 flex-shrink-0">
+                    <x-filament::icon icon="heroicon-o-light-bulb" class="w-5 h-5" />
+                </div>
+
+                {{-- Title + Quote --}}
+                <div class="flex-1 self-center">
+                    <h1 class="text-base font-semibold text-gray-900 dark:text-gray-100 leading-snug">
+                        {{ $this->getRecord()->title }}
+                    </h1>
+                </div>
+            </div>
+        </div>
         {{-- User & Created Date Card --}}
         <div
             class="p-4 bg-purple-50 dark:bg-purple-950 rounded-lg shadow-sm border border-purple-100 dark:border-purple-900">
@@ -188,7 +216,8 @@
         {{-- Section 3: Financial --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {{-- Contributions --}}
-            <div class="p-4 bg-orange-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <div
+                class="p-4 bg-orange-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                 <div class="flex items-center gap-2 mb-3">
                     <x-filament::icon icon="heroicon-o-user-plus" class="w-5 h-5 text-green-600 dark:text-green-400" />
                     <h6 class="font-semibold text-gray-900 dark:text-gray-100">
@@ -207,7 +236,8 @@
             </div>
 
             {{-- Returns --}}
-            <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <div
+                class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                 <div class="flex items-center gap-2 mb-3">
                     <x-filament::icon icon="heroicon-o-trophy" class="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
                     <h6 class="font-semibold text-gray-900 dark:text-gray-100">{{ __('idea.steps.step10.returns') }}
