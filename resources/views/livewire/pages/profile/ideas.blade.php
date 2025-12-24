@@ -1,38 +1,4 @@
 <div class="card info-card shadow-sm">
-
-    <style>
-        .__filter-item {
-            cursor: pointer;
-            padding-bottom: 6px;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .__filter-item:hover {
-            border-bottom-color: #dee2e6;
-        }
-
-        .__filter-active {
-            border-bottom-color: #495057;
-        }
-
-        .__filter-active small {
-            font-weight: 600;
-            color: #212529 !important;
-        }
-
-        .__filter-indicator {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-        }
-
-        .__filter-active .__filter-indicator {
-            width: 18px;
-            height: 18px;
-        }
-    </style>
     <div
         class="card-header bg-white border-0 py-3 d-flex flex-column flex-sm-row justify-content-between align-items-start">
         <div class="d-flex flex-column">

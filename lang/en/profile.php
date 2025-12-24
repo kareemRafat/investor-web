@@ -8,6 +8,7 @@ return [
         'ideas_submitted' => 'Submitted Ideas',
         'ideas_published' => 'Published Ideas',
         'investment_offers' => 'Investment Offers',
+        'investment_published' => 'Published Investment Offers',
         'overall_rating' => 'Overall Rating',
     ],
 

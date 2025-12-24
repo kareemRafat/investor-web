@@ -14,11 +14,30 @@ class Investments extends Component
     public Collection $investors;
     public bool $hasMore = true;
     public ?int $lastId = null;
-    public int $perPage = 5;
+    public int $perPage = 7;
+    public ?string $statusFilter = null;
 
     public function mount(): void
     {
         $this->investors = collect();
+        $this->loadMore();
+    }
+
+    public function setStatusFilter(?string $status): void
+    {
+        // Toggle filter
+        if ($this->statusFilter === $status) {
+            $this->statusFilter = null;
+        } else {
+            $this->statusFilter = $status;
+        }
+
+        // Reset everything
+        $this->investors = collect();
+        $this->lastId = null;
+        $this->hasMore = true;
+
+        // Load fresh data
         $this->loadMore();
     }
 
@@ -35,6 +54,10 @@ class Investments extends Component
                 'countries'
             ])
             ->where('user_id', Auth::id())
+            ->when(
+                $this->statusFilter !== null,
+                fn($q) => $q->where('status', $this->statusFilter)
+            )
             ->when(
                 $this->lastId !== null,
                 fn($q) => $q->where('id', '<', $this->lastId)
@@ -56,7 +79,10 @@ class Investments extends Component
             $this->hasMore = false;
         }
 
+        // دمج النتائج الجديدة مع القديمة
         $this->investors = $this->investors->merge($query);
+
+        // تحديث آخر ID للصفحة التالية
         $this->lastId = $query->last()->id ?? null;
     }
 

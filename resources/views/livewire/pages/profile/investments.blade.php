@@ -3,17 +3,32 @@
         class="card-header bg-white border-0 py-3 d-flex flex-column flex-sm-row justify-content-between align-items-start">
         <div class="d-flex flex-column">
             <h5 class="mb-0 section-title fw-bold text-dark">{{ __('profile.investment_offers.title') }}</h5>
-            <div class="d-flex flex-wrap align-items-center gap-3 mb-4 mt-2">
-                <div class="d-flex align-items-center">
-                    <div class="bg-success mx-2" style="width: 12px; height: 12px;"></div>
+            <div class="d-flex flex-wrap justify-content-start align-items-center gap-3 mb-4 mt-2">
+                {{-- All --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === null ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter(null)">
+                    <div class="__filter-indicator mx-2" style="background-color: #6c757d;"></div>
+                    <small class="text-muted">{{ __('profile.investment_offers.status.all') }}</small>
+                </div>
+
+                {{-- Approved --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === 'approved' ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter('approved')">
+                    <div class="bg-success __filter-indicator mx-2"></div>
                     <small class="text-muted">{{ __('profile.investment_offers.status.approved') }}</small>
                 </div>
-                <div class="d-flex align-items-center">
-                    <div class="bg-warning mx-2" style="width: 12px; height: 12px;"></div>
+
+                {{-- Pending --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === 'pending' ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter('pending')">
+                    <div class="bg-warning __filter-indicator mx-2"></div>
                     <small class="text-muted">{{ __('profile.investment_offers.status.pending') }}</small>
                 </div>
-                <div class="d-flex align-items-center">
-                    <div class="bg-danger mx-2" style="width: 12px; height: 12px;"></div>
+
+                {{-- Rejected --}}
+                <div class="d-flex align-items-center __filter-item {{ $statusFilter === 'rejected' ? '__filter-active' : '' }}"
+                    wire:click="setStatusFilter('rejected')">
+                    <div class="bg-danger __filter-indicator mx-2"></div>
                     <small class="text-muted">{{ __('profile.investment_offers.status.rejected') }}</small>
                 </div>
             </div>

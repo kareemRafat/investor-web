@@ -9,17 +9,21 @@
     --text-100: #000000;
     --text-200: #6c757d;
     --text-300: #adb5bd;
-    --text-400: #3B82F6;
+    --text-400: #3b82f6;
     --text-500: #212529;
     --text-600: #555555;
-    --bg: #3B82F6;
-    --bg-body: #E6EAF5;
-    --bg-circle: #CDCFF1;
+    --bg: #3b82f6;
+    --bg-body: #e6eaf5;
+    --bg-circle: #cdcff1;
     --form-input-bg: rgba(245, 245, 245, 1);
     --bg-login-google: rgba(225, 233, 226, 1);
     --border-color: #eee;
-    --btn-bg: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #3B82F6;
-    --btn-bg-hover: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #246ddb;
+    --btn-bg:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+        #3b82f6;
+    --btn-bg-hover:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
+        #246ddb;
 
     /* متغيرات إضافية */
     --primary-border: #c7d2fe;
@@ -48,7 +52,7 @@ body {
 
 body::after,
 body::before {
-    content: '';
+    content: "";
     position: absolute;
     background-color: var(--bg-circle) !important;
     border-radius: 50%;
@@ -81,7 +85,6 @@ body::before {
     font-family: kareem;
     src: url(/fonts/ArbFONTS-LamaSans-Regular.ttf);
 }
-
 
 * {
     box-sizing: border-box;
@@ -121,7 +124,7 @@ body::before {
     width: 0;
     height: 3px;
     background: var(--hero-primary-color);
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .hero-card:hover::after {
@@ -170,7 +173,7 @@ body::before {
 
 .hero-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, .08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     border-color: var(--hero-border-hover);
 }
 
@@ -193,7 +196,7 @@ body::before {
     }
 
     .hero-content p {
-        font-size: .95rem;
+        font-size: 0.95rem;
     }
 }
 
@@ -271,21 +274,21 @@ html[lang="en"] input[type="password"] {
     padding-left: 22px !important;
 }
 
-.form-floating>label {
+.form-floating > label {
     color: var(--text-200) !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     margin-bottom: 10px !important;
 }
 
-html[lang="ar"] .form-floating>label {
+html[lang="ar"] .form-floating > label {
     text-align: right !important;
     right: 0 !important;
     left: auto !important;
     text-align: right !important;
 }
 
-html[lang="en"] .form-floating>label {
+html[lang="en"] .form-floating > label {
     text-align: left !important;
     left: 0 !important;
     right: auto !important;
@@ -380,7 +383,6 @@ nav ul li a:hover {
     width: 45px;
     height: 45px !important;
 }
-
 
 html[lang="ar"] .accordion-button::after {
     margin-right: auto !important;
@@ -493,7 +495,6 @@ html[lang="en"] .accordion-button::after {
     justify-content: center;
 }
 
-
 html[lang="ar"] .text-right {
     text-align: right !important;
 }
@@ -502,13 +503,13 @@ html[lang="en"] .text-right {
     text-align: left !important;
 }
 
-.btn-check:not(:checked)+.btn-outline-primary {
+.btn-check:not(:checked) + .btn-outline-primary {
     background-color: var(--primary-200);
     border-color: var(--primary-200);
     color: var(--text-600);
 }
 
-.btn-check:not(:checked)+.btn-outline-primary:hover {
+.btn-check:not(:checked) + .btn-outline-primary:hover {
     background-color: var(--btn-bg-hover);
     border-color: var(--btn-bg-hover);
     color: var(--text-600);
@@ -682,7 +683,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .status::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -773,32 +774,32 @@ html[lang="ar"] .check-indicator {
 }
 
 /* ===== SELECTED STATE ===== */
-.btn-check:checked+.choice-component,
-.btn-check:checked+.yn-button {
+.btn-check:checked + .choice-component,
+.btn-check:checked + .yn-button {
     border-color: #667eea;
     background: var(--gradient-primary);
     color: white;
 }
 
-.btn-check:checked+.choice-component .choice-text {
+.btn-check:checked + .choice-component .choice-text {
     color: white;
 }
 
-.btn-check:checked+.choice-component .check-indicator {
+.btn-check:checked + .choice-component .check-indicator {
     opacity: 1;
     transform: translateY(-50%) scale(1);
 }
 
 /* ===== DISABLED STATE ===== */
 .choice-component.disabled,
-.btn-check:disabled+.choice-component,
+.btn-check:disabled + .choice-component,
 .range-variant.disabled {
     opacity: var(--disabled-opacity);
     cursor: not-allowed;
     border-color: var(--secondary-border) !important;
 }
 
-.btn-check:disabled+.choice-component:hover,
+.btn-check:disabled + .choice-component:hover,
 .choice-component.disabled:hover {
     transform: none;
     box-shadow: none;
@@ -839,15 +840,14 @@ html[dir="rtl"] .choice-radio-indicator {
 
 /* لما يتاختار */
 .btn-check:checked + .choice-component .choice-radio-indicator {
-    background: white;              /* الدائرة تفضل بيضا */
-    border-color: #667eea;           /* بوردر واضح */
+    background: white; /* الدائرة تفضل بيضا */
+    border-color: #667eea; /* بوردر واضح */
 }
 
 .btn-check:checked + .choice-component .choice-radio-indicator i {
     opacity: 1;
     transform: scale(1);
 }
-
 
 /* ===== REQUIREMENT ROW ===== */
 .requirement-row {
@@ -936,7 +936,11 @@ html[dir="rtl"] .choice-radio-indicator {
 
 .option-item:has(input:checked) {
     border-color: #667eea;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.1) 0%,
+        rgba(118, 75, 162, 0.1) 100%
+    );
 }
 
 /* ===== NUMBER INPUT ===== */
@@ -990,6 +994,37 @@ html[dir="rtl"] .choice-radio-indicator {
         padding: 14px 16px;
         font-size: 15px;
     }
+}
+
+.__filter-item {
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.__filter-item:hover {
+    border-bottom-color: #dee2e6;
+}
+
+.__filter-active {
+    border-bottom-color: #495057;
+}
+
+.__filter-active small {
+    font-weight: 600;
+    color: #212529 !important;
+}
+
+.__filter-indicator {
+    width: 12px;
+    height: 12px;
+    transition: all 0.2s ease;
+}
+
+.__filter-active .__filter-indicator {
+    width: 15px;
+    height: 15px;
 }
 
 @media (max-width: 991px) {

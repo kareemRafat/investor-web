@@ -45,8 +45,8 @@
                 <i class="bi bi-star-fill"></i>
             </div>
             <div class="stat-info">
-                <h3>{{ $overallRating }}</h3>
-                <span>{{ __('profile.stats.overall_rating') }}</span>
+                <h3>{{ $investmentPublished }}</h3>
+                <span>{{ __('profile.stats.investment_published') }}</span>
             </div>
         </div>
     </div>

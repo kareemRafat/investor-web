@@ -8,6 +8,7 @@ return [
         'ideas_submitted' => 'الأفكار المطروحة',
         'ideas_published' => 'أفكار منشورة',
         'investment_offers' => 'عروض استثمار',
+        'investment_published' => 'عروض استثمار منشورة',
         'overall_rating' => 'التقييم العام',
     ],
 

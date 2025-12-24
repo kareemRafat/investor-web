@@ -14,7 +14,7 @@ class Ideas extends Component
     public Collection $ideas;
     public bool $hasMore = true;
     public ?int $lastId = null;
-    public int $perPage = 2;
+    public int $perPage = 7;
     public ?string $statusFilter = null;
 
     public function mount(): void
@@ -25,7 +25,7 @@ class Ideas extends Component
 
     public function setStatusFilter(?string $status): void
     {
-        // Toggle: إذا كان نفس الـ status، نرجعه null (عرض الكل)
+        // Toggle filter
         if ($this->statusFilter === $status) {
             $this->statusFilter = null;
         } else {
@@ -70,7 +70,7 @@ class Ideas extends Component
         $hasNext = $query->count() > $this->perPage;
 
         if ($hasNext) {
-            $query->pop(); // إزالة العنصر الإضافي
+            $query->pop();
         } else {
             $this->hasMore = false;
         }

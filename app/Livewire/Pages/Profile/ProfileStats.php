@@ -12,6 +12,7 @@ class ProfileStats extends Component
     public $userId;
     public $ideasSubmitted = 0;
     public $ideasPublished = 0;
+    public $investmentPublished = 0;
     public $investmentOffers = 0;
     public $overallRating = 0.0;
 
@@ -27,15 +28,19 @@ class ProfileStats extends Component
         $this->ideasSubmitted = Idea::where('user_id', $this->userId)->count();
 
         // الأفكار المنشورة
-        // $this->ideasPublished = Idea::where('user_id', $this->userId)
-        //     ->where('status', 'published')
-        //     ->count();
+        $this->ideasPublished = Idea::where('user_id', $this->userId)
+            ->where('status', 'approved')
+            ->count();
 
         // عروض الاستثمار
         $this->investmentOffers = Investor::where('user_id', $this->userId)->count();
 
+        //العروض المنشورة
+        $this->investmentPublished = Investor::where('user_id', $this->userId)
+            ->where('status', 'approved')
+            ->count();
     }
-    
+
     public function render()
     {
         return view('livewire.pages.profile.profile-stats');
