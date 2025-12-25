@@ -13,8 +13,11 @@ class IdeaForm extends Component
     public int $maxAllowedStep = 1;
     public int $totalSteps = 10;
 
+    public bool $isTransitioning = false;
+
     public function nextStep()
     {
+        $this->isTransitioning = true;
         $this->dispatch("validate-step-{$this->currentStep}");
     }
 
@@ -28,6 +31,9 @@ class IdeaForm extends Component
         if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
         }
+
+        // Reset transitioning state after step loads
+        $this->isTransitioning = false;
     }
 
     public function previousStep()

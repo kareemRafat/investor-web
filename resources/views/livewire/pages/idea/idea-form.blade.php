@@ -1,51 +1,79 @@
-<!-- Step 1 Section -->
 <div class="container px-sm-0">
     <div class="row g-3 mb-3">
         <div class="col-12">
+            <div class="prefix__steps-grid">
+                {{-- Skeleton Loading --}}
+                <div wire:loading.block wire:target="nextStep, previousStep, goToStep" class="prefix__skeleton-wrapper"
+                    style="display: none;">
+                    <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
+                        <div class="prefix__skeleton-header mb-4"></div>
+                        <div class="prefix__skeleton-line mb-3"></div>
+                        <div class="prefix__skeleton-line mb-3" style="width: 85%;"></div>
+                        <div class="prefix__skeleton-line mb-4" style="width: 70%;"></div>
 
-            @switch($currentStep)
-                @case(1)
-                    <livewire:pages.idea.idea-form.steps.step1 wire:key="step-1" />
-                @break
+                        <div class="row g-3 mt-3">
+                            <div class="col-12 col-sm-6">
+                                <div class="prefix__skeleton-box"></div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="prefix__skeleton-box"></div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="prefix__skeleton-box"></div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="prefix__skeleton-box"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Actual Steps Content --}}
+            <div wire:loading.class="d-none" wire:target="nextStep, previousStep, goToStep">
+                @switch($currentStep)
+                    @case(1)
+                        <livewire:pages.idea.idea-form.steps.step1 wire:key="step-1" />
+                    @break
 
-                @case(2)
-                    <livewire:pages.idea.idea-form.steps.step2 wire:key="step-2" />
-                @break
+                    @case(2)
+                        <livewire:pages.idea.idea-form.steps.step2 wire:key="step-2" />
+                    @break
 
-                @case(3)
-                    <livewire:pages.idea.idea-form.steps.step3 wire:key="step-3" />
-                @break
+                    @case(3)
+                        <livewire:pages.idea.idea-form.steps.step3 wire:key="step-3" />
+                    @break
 
-                @case(4)
-                    <livewire:pages.idea.idea-form.steps.step4 wire:key="step-4" />
-                @break
+                    @case(4)
+                        <livewire:pages.idea.idea-form.steps.step4 wire:key="step-4" />
+                    @break
 
-                @case(5)
-                    <livewire:pages.idea.idea-form.steps.step5 wire:key="step-5" />
-                @break
+                    @case(5)
+                        <livewire:pages.idea.idea-form.steps.step5 wire:key="step-5" />
+                    @break
 
-                @case(6)
-                    <livewire:pages.idea.idea-form.steps.step6 wire:key="step-6" />
-                @break
+                    @case(6)
+                        <livewire:pages.idea.idea-form.steps.step6 wire:key="step-6" />
+                    @break
 
-                @case(7)
-                    <livewire:pages.idea.idea-form.steps.step7 wire:key="step-7" />
-                @break
+                    @case(7)
+                        <livewire:pages.idea.idea-form.steps.step7 wire:key="step-7" />
+                    @break
 
-                @case(8)
-                    <livewire:pages.idea.idea-form.steps.step8 wire:key="step-8" />
-                @break
+                    @case(8)
+                        <livewire:pages.idea.idea-form.steps.step8 wire:key="step-8" />
+                    @break
 
-                @case(9)
-                    <livewire:pages.idea.idea-form.steps.step9 wire:key="step-9" />
-                @break
+                    @case(9)
+                        <livewire:pages.idea.idea-form.steps.step9 wire:key="step-9" />
+                    @break
 
-                @case(10)
-                    <livewire:pages.idea.idea-form.steps.step10 wire:key="step-10" />
-                @break
-            @endswitch
+                    @case(10)
+                        <livewire:pages.idea.idea-form.steps.step10 wire:key="step-10" />
+                    @break
+                @endswitch
+            </div>
 
-            {{-- buttons --}}
+            {{-- Buttons --}}
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center my-3">
                 @if ($currentStep > 1)
                     <button wire:click.prevent="previousStep" aria-label="{{ __('idea.form.previous') }}"
@@ -64,30 +92,41 @@
                 @endif
 
                 <button wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
+                    wire:loading.attr="disabled" wire:target="nextStep"
                     aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
-                    title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}" class="yn-button"
+                    title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
+                    class="yn-button prefix__next-button"
                     style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+
                     <span class="d-flex align-items-center justify-content-center gap-2">
-                        @if (app()->getLocale() === 'ar')
-                            <span>{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}</span>
-                            <i class="bi bi-arrow-left-circle"></i>
-                        @else
-                            <span>{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}</span>
-                            <i class="bi bi-arrow-right-circle"></i>
-                        @endif
+                        <span>{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}</span>
+
+                        {{-- Icon: Arrow or Spinner --}}
+                        <span wire:loading.remove wire:target="nextStep">
+                            @if (app()->getLocale() === 'ar')
+                                <i class="bi bi-arrow-left-circle"></i>
+                            @else
+                                <i class="bi bi-arrow-right-circle"></i>
+                            @endif
+                        </span>
+
+                        <span wire:loading wire:target="nextStep" class="spinner-border spinner-border-sm"
+                            role="status" aria-hidden="true"></span>
                     </span>
                 </button>
             </div>
         </div>
+
+        {{-- Stepper --}}
         <div wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap gap-2 mb-4">
             @for ($i = 1; $i <= 10; $i++)
                 <div class="stepper-item position-relative
             @if ($i < $currentStep) completed_step
             @elseif($i === $currentStep) active_step @endif"
                     @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
-            style="cursor: pointer"
-            @else
-            style="opacity: .4; cursor: not-allowed" @endif>
+                        style="cursor: pointer"
+                    @else
+                        style="opacity: .4; cursor: not-allowed" @endif>
                     <div class="stepper-circle">
                         @if ($i < $currentStep)
                             <i class="bi bi-check-circle-fill"></i>
