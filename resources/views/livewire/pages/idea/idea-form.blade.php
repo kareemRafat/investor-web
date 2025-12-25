@@ -1,4 +1,4 @@
-<div class="container px-sm-0">
+<div class="container px-sm-0" x-data="{ scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) } }">
     <div class="row g-3 mb-3">
         <div class="col-12">
             <div class="prefix__steps-grid">
@@ -91,7 +91,10 @@
                     </button>
                 @endif
 
-                <button wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
+                <button
+                    x-on:livewire-step-changed.window="
+            scrollToTop()
+        "wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
                     wire:loading.attr="disabled" wire:target="nextStep"
                     aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
                     title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
@@ -142,4 +145,17 @@
             @endfor
         </div>
     </div>
+    <script>
+        window.addEventListener('livewire:updated', function() {
+            // أو window.livewire.on('some-event')
+            if (document.querySelector('[wire\\:target="nextStep"], [wire\\:target="previousStep"]')) {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }, 100); // تأخير صغير عشان الـ DOM يترندر الأول
+            }
+        });
+    </script>
 </div>

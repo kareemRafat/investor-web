@@ -34,12 +34,14 @@ class IdeaForm extends Component
 
         // Reset transitioning state after step loads
         $this->isTransitioning = false;
+        $this->dispatch('livewire-step-changed');
     }
 
     public function previousStep()
     {
         if ($this->currentStep > 1) {
             $this->currentStep--;
+            $this->dispatch('livewire-step-changed');
         }
     }
 
@@ -47,6 +49,7 @@ class IdeaForm extends Component
     {
         if ($step <= $this->maxAllowedStep) {
             $this->currentStep = $step;
+            $this->dispatch('livewire-step-changed');
         }
     }
 
