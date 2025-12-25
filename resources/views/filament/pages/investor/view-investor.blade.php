@@ -1,5 +1,13 @@
 <x-filament-panels::page>
-
+    @if ($this->getRecord()->status->value === 'rejected')
+        <div class="bg-red-100 border border-red-400 text-red-800 px-6 py-4 rounded-lg shadow-sm flex items-start gap-4 mb-[-20px]">
+            <x-heroicon-o-information-circle class="h-8 w-8" />
+            <div>
+                <p class="font-semibold text-lg">هذه الفكرة تم رفضها</p>
+                <p class="text-sm mt-1"> السبب : <span class="font-medium">{{ $this->getRecord()->admin_note }}</span></p>
+            </div>
+        </div>
+    @endif
     <div class="space-y-6 bg-white p-6 rounded-lg shadow-sm">
         {{-- Investor Title Card --}}
         <div

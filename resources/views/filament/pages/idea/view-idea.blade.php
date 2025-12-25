@@ -1,4 +1,15 @@
 <x-filament-panels::page>
+    @if ($this->getRecord()->status->value === 'rejected')
+        <div
+            class="bg-red-100 border border-red-400 text-red-800 px-6 py-4 rounded-lg shadow-sm flex items-start gap-4 mb-[-20px]">
+            <x-heroicon-o-information-circle class="h-8 w-8" />
+            <div>
+                <p class="font-semibold text-lg">هذه الفكرة تم رفضها</p>
+                <p class="text-sm mt-1"> السبب : <span class="font-medium">{{ $this->getRecord()->admin_note }}</span></p>
+            </div>
+        </div>
+    @endif
+
     <div class="space-y-6 bg-white p-6 rounded-lg shadow-sm">
         {{-- idea Title Card --}}
         <div
@@ -253,7 +264,8 @@
             </div>
 
             {{-- Capital Distribution --}}
-            <div class="p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <div
+                class="p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
                 <div class="flex items-center gap-2 mb-3">
                     <x-filament::icon icon="heroicon-o-chart-pie"
                         class="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
