@@ -11,7 +11,6 @@ class InvestmentForm extends Component
 {
     public int $currentStep = 1;
     public int $maxAllowedStep = 1;
-
     public int $totalSteps = 7;
 
     public function nextStep()
