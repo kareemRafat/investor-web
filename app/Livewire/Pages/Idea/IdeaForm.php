@@ -13,11 +13,10 @@ class IdeaForm extends Component
     public int $maxAllowedStep = 1;
     public int $totalSteps = 10;
 
-    public bool $isTransitioning = false;
+    // public bool $isTransitioning = false;
 
     public function nextStep()
     {
-        $this->isTransitioning = true;
         $this->dispatch("validate-step-{$this->currentStep}");
     }
 
@@ -32,8 +31,6 @@ class IdeaForm extends Component
             $this->currentStep++;
         }
 
-        // Reset transitioning state after step loads
-        $this->isTransitioning = false;
         $this->dispatch('livewire-step-changed');
     }
 
@@ -50,6 +47,15 @@ class IdeaForm extends Component
         if ($step <= $this->maxAllowedStep) {
             $this->currentStep = $step;
             $this->dispatch('livewire-step-changed');
+        }
+    }
+
+    public function handleNextAction()
+    {
+        if ($this->currentStep === $this->totalSteps) {
+            return $this->finish();
+        } else {
+            return $this->nextStep();
         }
     }
 

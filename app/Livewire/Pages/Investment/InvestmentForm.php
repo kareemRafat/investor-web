@@ -29,12 +29,15 @@ class InvestmentForm extends Component
         if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
         }
+
+        $this->dispatch('livewire-step-changed');
     }
 
     public function previousStep()
     {
         if ($this->currentStep > 1) {
             $this->currentStep--;
+            $this->dispatch('livewire-step-changed');
         }
     }
 
@@ -42,13 +45,12 @@ class InvestmentForm extends Component
     {
         if ($step <= $this->maxAllowedStep) {
             $this->currentStep = $step;
+            $this->dispatch('livewire-step-changed');
         }
     }
 
     public function handleNextAction()
     {
-        Log::info('handleNextAction called', ['currentStep' => $this->currentStep, 'totalSteps' => $this->totalSteps]);
-
         if ($this->currentStep === $this->totalSteps) {
             return $this->finish();
         } else {

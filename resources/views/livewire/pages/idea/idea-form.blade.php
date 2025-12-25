@@ -1,35 +1,8 @@
 <div class="container px-sm-0" x-data="{ scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) } }">
     <div class="row g-3 mb-3">
         <div class="col-12">
-            <div class="prefix__steps-grid">
-                {{-- Skeleton Loading --}}
-                <div wire:loading.block wire:target="nextStep, previousStep, goToStep" class="prefix__skeleton-wrapper"
-                    style="display: none;">
-                    <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
-                        <div class="prefix__skeleton-header mb-4"></div>
-                        <div class="prefix__skeleton-line mb-3"></div>
-                        <div class="prefix__skeleton-line mb-3" style="width: 85%;"></div>
-                        <div class="prefix__skeleton-line mb-4" style="width: 70%;"></div>
-
-                        <div class="row g-3 mt-3">
-                            <div class="col-12 col-sm-6">
-                                <div class="prefix__skeleton-box"></div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="prefix__skeleton-box"></div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="prefix__skeleton-box"></div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="prefix__skeleton-box"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             {{-- Actual Steps Content --}}
-            <div wire:loading.class="d-none" wire:target="nextStep, previousStep, goToStep">
+            <div>
                 @switch($currentStep)
                     @case(1)
                         <livewire:pages.idea.idea-form.steps.step1 wire:key="step-1" />
@@ -91,11 +64,8 @@
                     </button>
                 @endif
 
-                <button
-                    x-on:livewire-step-changed.window="
-            scrollToTop()
-        "wire:click.prevent="{{ $currentStep === 10 ? 'finish' : 'nextStep' }}"
-                    wire:loading.attr="disabled" wire:target="nextStep"
+                <button x-on:livewire-step-changed.window="scrollToTop()" wire:click.prevent="handleNextAction"
+                    wire:target="handleNextAction"
                     aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
                     title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
                     class="yn-button prefix__next-button"

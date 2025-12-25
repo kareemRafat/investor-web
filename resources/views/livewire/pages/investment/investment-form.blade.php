@@ -1,5 +1,5 @@
 <!-- Step 1 Section -->
-<div class="container px-sm-0">
+<div class="container px-sm-0" x-data="{ scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) } }">
     <div class="row g-3 mb-3">
         <div class="col-12">
 
@@ -52,18 +52,28 @@
                     </button>
                 @endif
 
-                <button type="button" wire:click.prevent="handleNextAction" wire:target="handleNextAction"
-                    class="yn-button"
+                <button x-on:livewire-step-changed.window="scrollToTop()" type="button"
+                    wire:click.prevent="handleNextAction" wire:target="handleNextAction" class="yn-button"
                     style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);"
-                    aria-label="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}">
+                    aria-label="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}"
+                    title="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}">
+
                     <span class="d-flex align-items-center justify-content-center gap-2">
-                        @if (app()->getLocale() === 'ar')
-                            <span>{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}</span>
-                            <i class="bi bi-arrow-left-circle"></i>
-                        @else
-                            <span>{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}</span>
-                            <i class="bi bi-arrow-right-circle"></i>
-                        @endif
+                        {{-- Text --}}
+                        <span>{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}</span>
+
+                        {{-- Icon: Arrow (shown when NOT loading) --}}
+                        <span wire:loading.remove wire:target="handleNextAction">
+                            @if (app()->getLocale() === 'ar')
+                                <i class="bi bi-arrow-left-circle"></i>
+                            @else
+                                <i class="bi bi-arrow-right-circle"></i>
+                            @endif
+                        </span>
+
+                        {{-- Spinner (shown when loading) --}}
+                        <span wire:loading wire:target="handleNextAction" class="spinner-border spinner-border-sm"
+                            role="status" aria-hidden="true"></span>
                     </span>
                 </button>
             </div>
@@ -71,12 +81,12 @@
             <div wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap gap-2 mb-4">
                 @for ($i = 1; $i <= 7; $i++)
                     <div class="stepper-item position-relative
-            @if ($i < $currentStep) completed_step
-            @elseif($i === $currentStep) active_step @endif"
+                        @if ($i < $currentStep) completed_step
+                        @elseif($i === $currentStep) active_step @endif"
                         @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
-            style="cursor: pointer"
-            @else
-            style="opacity: .4; cursor: not-allowed" @endif>
+                        style="cursor: pointer"
+                        @else
+                        style="opacity: .4; cursor: not-allowed" @endif>
                         <div class="stepper-circle">
                             @if ($i < $currentStep)
                                 <i class="bi bi-check-circle-fill"></i>
