@@ -391,4 +391,8 @@ return [
         'reset' => 'Reset',
         'filters' => 'Filters',
     ],
+    'info' => [
+        'refuse_title' => 'This idea was rejected',
+        'refuse_reason' => 'Rejection reason '
+    ]
 ];

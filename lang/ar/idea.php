@@ -371,4 +371,8 @@ return [
         'reset' => 'إعادة ضبط',
         'filters' => 'التصفيات',
     ],
+    'info' => [
+        'refuse_title' => 'هذه الفكرة تم رفضها' ,
+        'refuse_reason' => 'سبب الرفض '
+    ]
 ];

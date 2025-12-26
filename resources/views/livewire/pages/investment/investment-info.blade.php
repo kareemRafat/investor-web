@@ -13,6 +13,28 @@
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-4">
 
+                    {{-- Refuse --}}
+                    @if ($investor->status->value === 'rejected')
+                        <div class="alert alert-danger d-flex align-items-start gap-3 shadow-sm mb-4" role="alert"
+                            style="border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill flex-shrink-0 mt-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.964 0L.165 13.233c-.457.778.091 1.767.982 1.767h13.706c.89 0 1.438-.99.982-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+
+                            <div>
+                                <h6 class="alert-heading mb-2 fw-bold">{{ __('idea.info.refuse_title') }}</h6>
+                                <p class="mb-0">
+                                    {{ __('idea.info.refuse_reason') }} :
+                                    <span class="fw-semibold">
+                                        {{ $investor->admin_note }}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+
                     {{-- Section 1: Core Info --}}
                     <div class="row g-3 mb-4">
                         <div class="mb-3">
