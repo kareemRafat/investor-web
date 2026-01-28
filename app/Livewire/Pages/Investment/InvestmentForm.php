@@ -5,7 +5,6 @@ namespace App\Livewire\Pages\Investment;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
-use Illuminate\Support\Facades\Log;
 
 class InvestmentForm extends Component
 {

@@ -79,6 +79,22 @@
                                     <i class="bi bi-telephone text-primary fs-5"></i>
                                     <h6 class="mb-0 fw-bold">{{ __('investor.steps.step7.preferred_contact') }}</h6>
                                 </div>
+                                {{-- Contact visibility status --}}
+                                <div class="mb-3">
+                                    @if ($investor->contact_visibility === 'open')
+                                        <span
+                                            class="badge bg-success d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill">
+                                            <i class="bi bi-unlock-fill"></i>
+                                            {{ __('idea.steps.step9.contact_open') }}
+                                        </span>
+                                    @else
+                                        <span
+                                            class="badge bg-secondary d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill">
+                                            <i class="bi bi-lock-fill"></i>
+                                            {{ __('idea.steps.step9.contact_closed') }}
+                                        </span>
+                                    @endif
+                                </div>
                                 <ul class="list-unstyled mb-0 ps-4">
                                     <li class="mb-2">
                                         <i class="bi bi-phone text-success me-2"></i>
@@ -192,4 +208,4 @@
             </div>
         </div>
     </div>
-</div>
+    </div>

@@ -158,6 +158,11 @@ return [
             'selected_file' => 'Uploaded file',
             'delete_file' => 'Delete file',
             'delete_confirm' => 'Are you sure you want to delete the file?',
+
+            'contact_visibility_title' => 'Contact Information',
+            'contact_closed' => 'Hide contact details',
+            'contact_open' => 'Show contact details to everyone',
+            'contact_visibility_hint' => 'You can change this option later from the idea page',
         ],
         'step7' => [
             'title' => 'Summary of your Investment Details',

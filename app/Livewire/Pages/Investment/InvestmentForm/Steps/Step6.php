@@ -18,12 +18,14 @@ class Step6 extends Component
         'data.investor_title' => 'required|string|max:200',
         'data.summary' => 'required|string|max:2000',
         'data.attachment' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240', // 10MB max
+        'data.contact_visibility' => 'required|in:open,closed',
     ])]
     public array $data = [
         'investor_title' => null,
         'summary' => null,
         'attachment' => null,
         'created_at' => null,
+        'contact_visibility' => 'closed',
     ];
 
     public $currentAttachment = null; // real file name
@@ -41,6 +43,8 @@ class Step6 extends Component
 
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $investor->attachments()->first()?->original_name ?? 'Uploaded File';
+
+        $this->data['contact_visibility'] = $investor?->contact_visibility;
 
         // Ensure $data['attachment'] is reset to avoid stale file references
         $this->data['attachment'] = null;
@@ -90,6 +94,7 @@ class Step6 extends Component
             'title' => $this->data['investor_title'],
             'summary' => $this->data['summary'],
             'user_id' => Auth::id(),
+            'contact_visibility' => $this->data['contact_visibility'],
             'created_at' => $this->data['created_at'],
         ]);
 

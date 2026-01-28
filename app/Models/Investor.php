@@ -22,6 +22,7 @@ class Investor extends Model
         'approved_at',
         'approved_by',
         'admin_note',
+        'contact_visibility'
     ];
 
     protected $casts = [
