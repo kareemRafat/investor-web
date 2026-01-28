@@ -6,12 +6,14 @@ This document outlines the next steps to fully realize the "User Plan Selection 
 - [ ] **Pricing Page:**
     - Create a dedicated `/pricing` page (or section in profile) showing Free, Monthly ($X), and Yearly ($Y) plans.
     - Implement a "Choose Plan" action that triggers the mock payment flow.
-- [ ] **Pay-Per-Use Modal:**
-    - Enhance the `UnlockContact` component to offer a "Pay $9 to Unlock Once" option if the user has 0 credits.
-    - Create a simple modal to simulate the $9 credit card transaction.
+- [ ] **Multi-Step Unlock UI (Enhance `UnlockContact` Component):**
+    - Refactor the component to support a step-based interface within the same modal:
+        - **Step 1: Selection** -> Show credit balance. Offer "Use 1 Credit", "Upgrade Plan", or "Pay $9 for One-time Access".
+        - **Step 2: Payment** -> If "Pay $9" is selected, show a mock Credit Card form.
+        - **Step 3: Reveal** -> On success (credit or payment), reveal the contact info without page reload.
 - [ ] **Mock Payment Service:**
-    - Add a `PaymentService` to handle "Mock" transactions (always returns success after a delay).
-    - Link `PaymentService` to `SubscriptionService` and `UnlockService`.
+    - Add a `PaymentService` to handle "Mock" transactions (always returns success after a 1-2 second delay).
+    - Link `PaymentService` to `SubscriptionService` (for plans) and `UnlockService` (for one-time $9 payments).
 
 ## Phase 6: Subscription Lifecycle & Expiration
 - [ ] **Expiration Command:**
