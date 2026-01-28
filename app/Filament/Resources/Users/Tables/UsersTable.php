@@ -88,6 +88,15 @@ class UsersTable
                     ->badge()
                     ->color(fn(UserStatus $state) => $state->getColor()),
 
+                TextColumn::make('plan_type')
+                    ->label('الباقة')
+                    ->badge(),
+
+                TextColumn::make('contact_credits')
+                    ->label('الرصيد')
+                    ->badge()
+                    ->color('gray'),
+
                 TextColumn::make('role')
                     ->label('الصلاحية')
                     ->badge()
@@ -114,10 +123,27 @@ class UsersTable
                     ->options(
                         collect(UserRole::class)
                     ),
+                
+                SelectFilter::make('plan_type')
+                    ->label('الباقة')
+                    ->options(\App\Enums\PlanType::class)
+                    ->native(false),
             ], layout: FiltersLayout::AboveContent)
             ->deferFilters(false)
             ->recordActions([
                 ChangeStatusAction::make(),
+                Action::make('reset_credits')
+                    ->label('تصفير الرصيد')
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('warning')
+                    ->requiresConfirmation()
+                    ->action(function ($record) {
+                        $record->update(['contact_credits' => 10]);
+                        Notification::make()
+                            ->title('تم تصفير الرصيد بنجاح')
+                            ->success()
+                            ->send();
+                    }),
                 EditAction::make()
                     ->color('info'),
             ])

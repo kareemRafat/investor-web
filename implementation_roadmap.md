@@ -33,10 +33,10 @@ This document outlines the technical steps to implement the paid contact and sub
     - Show current plan, remaining credits, and next reset date.
 
 ## Phase 4: Admin & Automation (Filament & Cron)
-- [ ] **Filament Resources:**
+- [x] **Filament Resources:**
     - Update `IdeaResource` and `InvestorResource` to show `contact_visibility` and `unlock_count`.
     - Add Admin action to manually reset user credits.
-- [ ] **Automation:**
+- [x] **Automation:**
     - Create `ResetMonthlyCredits` command.
     - Schedule the command in `routes/console.php`.
 

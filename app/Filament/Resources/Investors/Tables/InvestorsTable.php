@@ -27,7 +27,7 @@ class InvestorsTable
                     'contributions.contributionRange:id,type,label_en,label_ar',
                     'approver:id,name',
                 ])
-                    ->withCount('attachments')
+                    ->withCount(['attachments', 'contactUnlocks'])
             )
             ->defaultSort('created_at', 'desc')
             ->emptyStateHeading('لا توجد عروض استثمار')
@@ -54,6 +54,16 @@ class InvestorsTable
                     ->default('غير معروف')
                     ->weight('medium')
                     ->searchable(),
+
+                TextColumn::make('contact_visibility')
+                    ->label('ظهور البيانات')
+                    ->badge(),
+
+                TextColumn::make('contact_unlocks_count')
+                    ->label('مرات الفتح')
+                    ->badge()
+                    ->color('gray')
+                    ->sortable(),
 
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')

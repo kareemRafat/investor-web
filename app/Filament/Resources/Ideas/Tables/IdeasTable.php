@@ -25,7 +25,7 @@ class IdeasTable
                     'countries:id,country,countryable_id,countryable_type',
                     'profits:id,idea_id,profit_type,range_id',
                     'costs:id,idea_id,cost_type,range_id',
-                ])
+                ])->withCount('contactUnlocks')
             )
             ->defaultSort('created_at', 'desc')
             ->striped()
@@ -49,6 +49,14 @@ class IdeasTable
                     ->default('غير معروف')
                     ->weight('medium')
                     ->searchable(),
+                TextColumn::make('contact_visibility')
+                    ->label('ظهور البيانات')
+                    ->badge(),
+                TextColumn::make('contact_unlocks_count')
+                    ->label('مرات الفتح')
+                    ->badge()
+                    ->color('gray')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('تاريخ التقديم')
                     ->date()

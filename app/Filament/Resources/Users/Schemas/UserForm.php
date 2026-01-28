@@ -69,11 +69,23 @@ class UserForm
                             ->native(false),
 
                         Select::make('role')
-                            ->label('الحالة الوظيفية')
+                            ->label('الصلاحية')
                             ->default(null)
                             ->options(UserRole::class)
                             ->required()
                             ->native(false),
+
+                        Select::make('plan_type')
+                            ->label('نوع الباقة')
+                            ->options(\App\Enums\PlanType::class)
+                            ->required()
+                            ->native(false),
+
+                        TextInput::make('contact_credits')
+                            ->label('رصيد الفتح')
+                            ->numeric()
+                            ->required()
+                            ->default(0),
 
                         TextInput::make('password')
                             ->label('الباسورد')
