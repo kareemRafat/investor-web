@@ -344,12 +344,7 @@
 
             {{-- Contact Button --}}
             <div class="mt-4">
-                <a href="#" class="btn btn-primary btn-lg rounded-3 w-100 py-3 shadow-sm">
-                    <i class="bi bi-chat-dots me-2"></i>
-                    <span class="fw-semibold">
-                        {{ __('idea.summary.contact_owner') }}
-                    </span>
-                </a>
+                <livewire:components.unlock-contact :model="$idea" />
             </div>
 
         </div>

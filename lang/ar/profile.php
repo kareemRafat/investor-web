@@ -290,4 +290,11 @@ return [
         'vip_member' => 'عضو VIP',
         'gold_member' => 'عضو ذهبي',
     ],
+    'subscription' => [
+        'title' => 'الاشتراك والرصيد',
+        'current_plan' => 'الباقة الحالية',
+        'remaining_credits' => 'الرصيد المتبقي',
+        'next_reset' => 'تاريخ التجديد القادم',
+        'na' => 'غير متوفر',
+    ],
 ];

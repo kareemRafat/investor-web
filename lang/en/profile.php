@@ -290,4 +290,11 @@ return [
         'vip_member' => 'VIP Member',
         'gold_member' => 'Gold Member',
     ],
+    'subscription' => [
+        'title' => 'Subscription & Credits',
+        'current_plan' => 'Current Plan',
+        'remaining_credits' => 'Remaining Credits',
+        'next_reset' => 'Next Reset Date',
+        'na' => 'N/A',
+    ],
 ];

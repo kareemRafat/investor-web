@@ -22,20 +22,20 @@ class UnlockService
             return true;
         }
 
-        // Owner can always view their own contact (though they already know it)
-        if ($user->id === $model->user_id) {
+        // Owner can always view their own contact
+        if ($user->id == $model->user_id) {
             return true;
         }
 
         // Admin can always view
-        if ($user->role === \App\Enums\UserRole::ADMIN) {
+        if ($user->role === \App\Enums\UserRole::ADMIN || $user->role === 'admin' || (is_object($user->role) && $user->role->value === 'admin')) {
             return true;
         }
 
         // Check if user has already unlocked this contact
         return $user->contactUnlocks()
             ->where('unlockable_id', $model->id)
-            ->where('unlockable_type', get_class($model))
+            ->where('unlockable_type', $model->getMorphClass())
             ->exists();
     }
 
@@ -62,7 +62,7 @@ class UnlockService
         ContactUnlock::create([
             'user_id' => $user->id,
             'unlockable_id' => $model->id,
-            'unlockable_type' => get_class($model),
+            'unlockable_type' => $model->getMorphClass(),
             'method' => $method,
         ]);
 

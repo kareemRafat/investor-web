@@ -20,8 +20,8 @@ return new class extends Migration
 
             $table->enum('plan_type', ['monthly', 'yearly']);
 
-            $table->timestamp('starts_at');
-            $table->timestamp('ends_at');
+            $table->timestamp('starts_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
 
             $table->enum('status', ['active', 'expired', 'cancelled'])
                 ->default('active');

@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     "login" => [
-        'welcome_back'   => 'Welcome back 👋',
+        'welcome_back'   => 'Welcome back',
         'login_title'    => 'Log in to your account again',
         'google_login'   => 'Sign in with Google',
         'email'          => 'EMAIL',
@@ -20,7 +20,7 @@ return [
         'remember_me'    => 'Remember me',
     ],
     "register" => [
-        'welcome' => 'Welcome back 👋',
+        'welcome' => 'Welcome back',
         'create_account' => 'Create a new account',
         'google' => 'Sign up with Google',
         'or' => 'OR',
@@ -226,5 +226,26 @@ return [
         'phone'   => 'Phone Number',
         'message' => 'Message',
         'send'    => 'Send',
-    ]
+    ],
+    'unlock_contact' => [
+        'button' => 'Unlock Contact Details',
+        'details_title' => 'Contact Details',
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'modal_title' => 'Unlock Contact',
+        'modal_desc' => 'This will deduct 1 credit from your account to view the owner\'s contact details.',
+        'current_credits' => 'Your Current Credits',
+        'no_credits' => 'You do not have enough credits. Please upgrade your plan.',
+        'cancel' => 'Cancel',
+        'confirm' => 'Confirm Unlock',
+        'upgrade' => 'Upgrade Plan',
+        'processing' => 'Processing...',
+        'error_no_credits' => 'You do not have enough credits.',
+    ],
+    'plans' => [
+        'free' => 'Free',
+        'monthly' => 'Monthly',
+        'yearly' => 'Yearly',
+    ],
 ];

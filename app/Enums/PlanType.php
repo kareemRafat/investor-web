@@ -14,9 +14,9 @@ enum PlanType: string implements HasLabel, HasColor
     public function getLabel(): string
     {
         return match ($this) {
-            self::FREE => 'مجاني',
-            self::MONTHLY => 'شهري',
-            self::YEARLY => 'سنوي',
+            self::FREE => __('pages.plans.free'),
+            self::MONTHLY => __('pages.plans.monthly'),
+            self::YEARLY => __('pages.plans.yearly'),
         };
     }
 

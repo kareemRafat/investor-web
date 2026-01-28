@@ -24,12 +24,12 @@ This document outlines the technical steps to implement the paid contact and sub
     - `unlock(User $user, $model, $method)`: Deduct credits or simulate payment and record the unlock.
 
 ## Phase 3: UI Integration (Livewire & Views)
-- [ ] **Contact Visibility Guard:**
+- [x] **Contact Visibility Guard:**
     - Update Idea and Investor detail views to mask name/email/phone if not unlocked.
-- [ ] **Unlock Component:**
+- [x] **Unlock Component:**
     - Create a Livewire component for the "View Contact" button.
     - Implement the "Upgrade/Payment" Modal (Mock).
-- [ ] **User Dashboard:**
+- [x] **User Dashboard:**
     - Show current plan, remaining credits, and next reset date.
 
 ## Phase 4: Admin & Automation (Filament & Cron)
