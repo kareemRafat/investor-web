@@ -207,6 +207,11 @@ return [
             'selected_file' => 'الملف المرفوع',
             'delete_file' => 'حذف الملف',
             'delete_confirm' => 'هل أنت متأكد من حذف الملف؟',
+
+            'contact_visibility_title' => 'بيانات التواصل',
+            'contact_closed' => 'إخفاء بيانات التواصل',
+            'contact_open' => 'إظهار بيانات التواصل للجميع',
+            'contact_visibility_hint' => 'يمكنك تغيير هذا الخيار لاحقًا من صفحة الفكرة',
         ],
         'step10' => [
             'title' => 'ملخص فكرتك المميزة',
@@ -372,7 +377,7 @@ return [
         'filters' => 'التصفيات',
     ],
     'info' => [
-        'refuse_title' => 'هذه الفكرة تم رفضها' ,
+        'refuse_title' => 'هذه الفكرة تم رفضها',
         'refuse_reason' => 'سبب الرفض '
     ]
 ];

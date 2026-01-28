@@ -227,6 +227,11 @@ return [
             'selected_file' => 'Selected File',
             'delete_file' => 'Delete',
             'delete_confirm' => 'Are you sure you want to Delete ?',
+
+            'contact_visibility_title' => 'Contact Information',
+            'contact_closed' => 'Hide contact details',
+            'contact_open' => 'Show contact details to everyone',
+            'contact_visibility_hint' => 'You can change this option later from the idea page',
         ],
         'step10' => [
             'title' => 'Summary of your distinguished idea',

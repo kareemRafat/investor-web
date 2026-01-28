@@ -27,6 +27,7 @@ class Idea extends Model
         'approved_by',
         'rejection_reason',
         'admin_note',
+        'contact_visibility'
     ];
 
     protected $casts = [

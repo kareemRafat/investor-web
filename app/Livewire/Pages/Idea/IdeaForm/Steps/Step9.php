@@ -13,18 +13,20 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Step9 extends Component
 {
-    use WithFileUploads , HandlesAttachmentUpload;
+    use WithFileUploads, HandlesAttachmentUpload;
 
     #[Validate([
         'data.idea_title' => 'required|string|max:255',
         'data.summary' => 'required|string|max:2000',
         'data.attachment' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240', // 10MB max per file
+        'data.contact_visibility' => 'required|in:open,closed',
     ])]
     public array $data = [
         'idea_title' => null,
         'summary' => null,
         'attachment' => null,
         'created_at' => null,
+        'contact_visibility' => 'closed',
     ];
 
     public $currentAttachment = null; // real file name
@@ -42,6 +44,8 @@ class Step9 extends Component
 
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $idea->attachments()->first()?->original_name ?? 'Uploaded File';
+
+        $this->data['contact_visibility'] = $idea?->contact_visibility;
 
         // Ensure $data['attachment'] is reset to avoid stale file references
         $this->data['attachment'] = null;
@@ -93,6 +97,7 @@ class Step9 extends Component
             'title' => $this->data['idea_title'],
             'summary' => $this->data['summary'],
             'user_id' => Auth::id(),
+            'contact_visibility' => $this->data['contact_visibility'],
             'created_at' => $this->data['created_at'],
         ]);
 

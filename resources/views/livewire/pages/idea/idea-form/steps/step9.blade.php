@@ -25,6 +25,43 @@
                 </div>
             </div>
 
+            <div class="col-12 mt-4">
+                <label class="form-label fw-semibold mb-2">
+                    {{ __('idea.steps.step9.contact_visibility_title') }}
+                </label>
+
+                <div class="d-flex gap-4">
+
+                    {{-- Closed --}}
+                    <label
+                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2 cursor-pointer
+                   {{ ($data['contact_visibility'] ?? 'closed') === 'closed' ? 'border-primary text-primary' : 'border-custom' }}">
+                        <input type="radio" class="form-check-input" value="closed"
+                            wire:model="data.contact_visibility">
+                        <span>
+                            🔒 {{ __('idea.steps.step9.contact_closed') }}
+                        </span>
+                    </label>
+
+                    {{-- Open --}}
+                    <label
+                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2 cursor-pointer
+                   {{ ($data['contact_visibility'] ?? 'closed') === 'open' ? 'border-primary text-primary' : 'border-custom' }}">
+                        <input type="radio" class="form-check-input" value="open"
+                            wire:model="data.contact_visibility">
+                        <span>
+                            🔓 {{ __('idea.steps.step9.contact_open') }}
+                        </span>
+                    </label>
+
+                </div>
+
+                <small class="text-muted d-block mt-2">
+                    {{ __('idea.steps.step9.contact_visibility_hint') }}
+                </small>
+            </div>
+
+
             <div class="col-12 mt-4" dir="ltr">
                 <label for="idea-attachment"
                     class="form-control d-flex align-items-center gap-2 cursor-pointer justify-content-between py-3 border-custom rounded-5">
