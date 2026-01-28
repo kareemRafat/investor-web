@@ -6,7 +6,6 @@ use App\Models\User;
 use Livewire\Component;
 use App\Enums\UnlockMethod;
 use App\Services\UnlockService;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,8 +29,6 @@ class UnlockContact extends Component
 
     public function confirmUnlock()
     {
-        Log::info('confirmUnlock called for model ID: ' . $this->model->id);
-
         if (!Auth::check()) {
             return redirect()->route('login');
         }
@@ -42,8 +39,6 @@ class UnlockContact extends Component
 
     public function unlock(UnlockService $service)
     {
-        Log::info('unlock action triggered for model ID: ' . $this->model->id);
-
         if (!Auth::check()) {
             return;
         }

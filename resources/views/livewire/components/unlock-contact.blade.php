@@ -2,7 +2,6 @@
     x-data="{
         isUnlocked: @entangle('isUnlocked'),
         showModal() {
-            console.log('Alpine: open-unlock-modal received');
             const modalEl = document.getElementById('unlockModal-{{ $this->getId() }}');
             if (modalEl && window.bootstrap) {
                 let modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
@@ -12,7 +11,6 @@
             }
         },
         hideModal() {
-            console.log('Alpine: close-unlock-modal received');
             const modalEl = document.getElementById('unlockModal-{{ $this->getId() }}');
             if (modalEl && window.bootstrap) {
                 let modal = bootstrap.Modal.getInstance(modalEl);
@@ -24,8 +22,8 @@
     x-on:close-unlock-modal.window="hideModal()"
 >
     @if($isUnlocked)
-        <div class="card border-success mb-3 shadow-sm">
-            <div class="card-header bg-success text-white py-3">
+        <div class="card border-primary mb-3 shadow-sm">
+            <div class="card-header bg-primary text-white py-3">
                 <div class="d-flex align-items-center gap-2 text-white">
                     <i class="bi bi-person-check-fill fs-5 text-white"></i>
                     <h6 class="mb-0 fw-bold text-white">{{ __('pages.unlock_contact.details_title') }}</h6>
@@ -76,7 +74,6 @@
     @else
         <button type="button"
             wire:click="confirmUnlock"
-            x-on:click="console.log('Button clicked, calling confirmUnlock...')"
             class="btn btn-primary btn-lg rounded-3 w-100 py-3 shadow-sm text-white"
         >
             <i class="bi bi-unlock-fill me-2 text-white"></i>
