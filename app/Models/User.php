@@ -31,6 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         'residence_country',
         'status',
         'role',
+        'plan_type',
+        'contact_credits',
+        'credits_reset_at',
     ];
 
     /**
@@ -55,7 +58,8 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
             'password' => 'hashed',
             'status' => UserStatus::class,
             'role' => UserRole::class,
-
+            'plan_type' => \App\Enums\PlanType::class,
+            'credits_reset_at' => 'datetime',
         ];
     }
 
@@ -67,6 +71,26 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     public function investors()
     {
         return $this->hasMany(Investor::class);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function contactUnlocks()
+    {
+        return $this->hasMany(ContactUnlock::class);
+    }
+
+    public function isPremium(): bool
+    {
+        return $this->plan_type !== \App\Enums\PlanType::FREE;
+    }
+
+    public function hasCredits(): bool
+    {
+        return $this->contact_credits > 0;
     }
 
     public function canAccessPanel(Panel $panel): bool

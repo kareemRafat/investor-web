@@ -3,22 +3,23 @@
 This document outlines the technical steps to implement the paid contact and subscription logic in the Investor Web platform.
 
 ## Phase 1: Models & Enums (The Foundation)
-- [ ] **Create Enums:**
+- [x] **Create Enums:**
     - `PlanType`: `free`, `monthly`, `yearly`.
     - `SubscriptionStatus`: `active`, `expired`, `cancelled`.
     - `UnlockMethod`: `credit`, `pay_per_use`.
-- [ ] **Create Models:**
+    - `ContactVisibility`: `open`, `closed`.
+- [x] **Create Models:**
     - `Subscription`: Relationships to `User`, fillable fields (`plan_type`, `starts_at`, `ends_at`, `status`).
     - `ContactUnlock`: Polymorphic relationship (`unlockable`), relationship to `User`.
-- [ ] **Update Existing Models:**
+- [x] **Update Existing Models:**
     - `User`: Add `subscriptions()` and `contactUnlocks()` relations. Add helpers like `isPremium()`, `hasCredits()`.
-    - `Idea` & `Investor`: Add `contactUnlocks()` morphMany relation.
+    - `Idea` & `Investor`: Add `contactUnlocks()` morphMany relation and `ContactVisibility` cast.
 
 ## Phase 2: Core Logic (Service Layer)
-- [ ] **SubscriptionService:**
+- [x] **SubscriptionService:**
     - `subscribe(User $user, $plan)`: Handle mock subscription creation.
     - `resetCredits(User $user)`: Reset credits to 10 for active subscribers.
-- [ ] **UnlockService:**
+- [x] **UnlockService:**
     - `canViewContact(User $user, $model)`: Logic to check if already unlocked or if visibility is open.
     - `unlock(User $user, $model, $method)`: Deduct credits or simulate payment and record the unlock.
 

@@ -33,9 +33,15 @@ class Idea extends Model
     protected $casts = [
         'status' => IdeaStatus::class,
         'approved_at' => 'datetime',
+        'contact_visibility' => \App\Enums\ContactVisibility::class,
     ];
 
     //! Relations
+
+    public function contactUnlocks(): MorphMany
+    {
+        return $this->morphMany(ContactUnlock::class, 'unlockable');
+    }
 
     // Idea approver
     public function approver(): BelongsTo

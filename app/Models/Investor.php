@@ -28,9 +28,15 @@ class Investor extends Model
     protected $casts = [
         'status' => InvestorStatus::class,
         'approved_at' => 'datetime',
+        'contact_visibility' => \App\Enums\ContactVisibility::class,
     ];
 
     //! Relations
+
+    public function contactUnlocks(): MorphMany
+    {
+        return $this->morphMany(ContactUnlock::class, 'unlockable');
+    }
 
     // approver admin user
     public function approver(): BelongsTo
