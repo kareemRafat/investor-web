@@ -25,15 +25,6 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->enum('plan_type', ['free', 'monthly', 'yearly'])
-                ->default('free');
-
-            $table->integer('contact_credits')
-                ->default(0);
-
-            $table->timestamp('credits_reset_at')
-                ->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

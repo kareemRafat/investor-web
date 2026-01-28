@@ -23,8 +23,6 @@ return new class extends Migration
             $table->enum('method', ['credit', 'pay_per_use']);
 
             $table->timestamp('created_at')->useCurrent();
-
-            $table->index(['unlockable_type', 'unlockable_id']);
         });
     }
 
