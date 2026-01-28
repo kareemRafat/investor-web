@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
+use App\Enums\ContactVisibility;
 use App\Models\Idea;
 use App\Traits\HandlesAttachmentUpload;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class Step9 extends Component
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $idea->attachments()->first()?->original_name ?? 'Uploaded File';
 
-        $this->data['contact_visibility'] = $idea?->contact_visibility;
+        $this->data['contact_visibility'] = $idea?->contact_visibility?->value ?? 'closed';
 
         // Ensure $data['attachment'] is reset to avoid stale file references
         $this->data['attachment'] = null;

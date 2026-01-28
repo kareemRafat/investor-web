@@ -44,7 +44,7 @@ class Step6 extends Component
         // Load current attachment name if exists, or use default name
         $this->currentAttachment = $investor->attachments()->first()?->original_name ?? 'Uploaded File';
 
-        $this->data['contact_visibility'] = $investor?->contact_visibility;
+        $this->data['contact_visibility'] = $investor?->contact_visibility?->value ?? 'closed';
 
         // Ensure $data['attachment'] is reset to avoid stale file references
         $this->data['attachment'] = null;
