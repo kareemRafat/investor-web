@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <div class="container py-2" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+    <div class="container px-sm-0 py-2" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
         @once
             <style>
                 :root {
