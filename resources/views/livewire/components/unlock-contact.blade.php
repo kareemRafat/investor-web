@@ -76,7 +76,7 @@
             wire:click="confirmUnlock"
             class="btn btn-primary btn-lg rounded-3 w-100 py-3 shadow-sm text-white"
         >
-            <i class="bi bi-unlock-fill me-2 text-white"></i>
+            <i class="bi bi-unlock-fill mx-2 text-white"></i>
             <span class="fw-semibold text-white">
                 {{ __('pages.unlock_contact.button') }}
             </span>
@@ -118,7 +118,7 @@
                         <div class="d-grid gap-2">
                             @if((Auth::user()?->contact_credits ?? 0) > 0)
                                 <button type="button" class="btn btn-primary btn-lg rounded-3 py-3 text-white" wire:click="selectMethod('credit')" wire:loading.attr="disabled">
-                                    <i class="bi bi-coin me-2"></i>
+                                    <i class="bi bi-coin mx-2"></i>
                                     {{ __('pages.unlock_contact.use_credit') }}
                                 </button>
                             @else
@@ -134,7 +134,7 @@
                             </div>
 
                             <button type="button" class="btn btn-outline-primary btn-lg rounded-3 py-3" wire:click="selectMethod('payment')" wire:loading.attr="disabled">
-                                <i class="bi bi-credit-card-2-front me-2"></i>
+                                <i class="bi bi-credit-card-2-front mx-2"></i>
                                 {{ __('pages.unlock_contact.pay_9') }}
                             </button>
                         </div>

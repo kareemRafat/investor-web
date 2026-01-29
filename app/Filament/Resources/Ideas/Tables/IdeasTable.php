@@ -4,7 +4,9 @@ namespace App\Filament\Resources\Ideas\Tables;
 
 use App\Enums\IdeaStatus;
 use Filament\Tables\Table;
+use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -155,6 +157,23 @@ class IdeasTable
             ->deferFilters(false)
 
             ->recordActions([
+                Action::make('toggle_visibility')
+                    ->label(fn($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'إخفاء البيانات' : 'إظهار البيانات')
+                    ->icon(fn($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'heroicon-o-eye-slash' : 'heroicon-o-eye')
+                    ->color(fn($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'danger' : 'success')
+                    ->requiresConfirmation()
+                    ->action(function ($record) {
+                        $newVisibility = $record->contact_visibility === \App\Enums\ContactVisibility::OPEN
+                            ? \App\Enums\ContactVisibility::CLOSED
+                            : \App\Enums\ContactVisibility::OPEN;
+
+                        $record->update(['contact_visibility' => $newVisibility]);
+
+                        Notification::make()
+                            ->title('تم تحديث حالة الظهور بنجاح')
+                            ->success()
+                            ->send();
+                    }),
                 ViewAction::make()
                     ->url(
                         fn($record): string =>
