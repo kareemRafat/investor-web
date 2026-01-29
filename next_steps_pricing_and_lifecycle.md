@@ -34,11 +34,11 @@ This document outlines the next steps to fully realize the "User Plan Selection 
     - Ensure the "Unlock" button is completely replaced by the contact card automatically if the `UnlockService` returns true (Owner/Admin check).
 
 ## Phase 8: Refinement & Testing
-- [ ] **Edge Case Testing:**
+- [x] **Edge Case Testing:**
     - Test behavior when a user's subscription expires exactly while they are browsing.
     - Test behavior when a user tries to unlock with exactly 1 credit vs 0 credits.
 - [x] **Translation Audit:**
     - Ensure all new pricing and payment labels are added to `lang/ar/pages.php` and `lang/en/pages.php`.
 
 ---
-*Status: Phase 7 Complete. Phase 8 (Testing) Next.*
+*Status: Phase 8 Complete. Roadmap Finished.*
