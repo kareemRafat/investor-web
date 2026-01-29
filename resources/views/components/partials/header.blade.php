@@ -17,7 +17,7 @@
                     </li>
                     <!-- Investment Fund -->
                     <li>
-                        <x-nav-link route="investor.index" label="{{ __('header.investment') }}" />
+                        <x-nav-link route="main.pricing" label="{{ __('header.plans') }}" />
                     </li>
                     <!-- Terms of Use -->
                     <li>

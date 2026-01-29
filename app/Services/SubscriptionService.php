@@ -6,15 +6,24 @@ use App\Models\User;
 use App\Enums\PlanType;
 use App\Models\Subscription;
 use App\Enums\SubscriptionStatus;
+use App\Services\PaymentService;
 use Carbon\Carbon;
 
 class SubscriptionService
 {
+    public function __construct(
+        protected PaymentService $paymentService
+    ) {}
+
     /**
      * Mock a subscription for a user.
      */
     public function subscribe(User $user, PlanType $planType): Subscription
     {
+        // Mock payment based on plan type
+        $price = ($planType === PlanType::YEARLY) ? 149.0 : 19.0;
+        $this->paymentService->process($price);
+
         // Cancel existing active subscriptions
         $user->subscriptions()->where('status', SubscriptionStatus::ACTIVE)->update([
             'status' => SubscriptionStatus::CANCELLED,

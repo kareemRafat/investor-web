@@ -8,10 +8,15 @@ use App\Models\Investor;
 use App\Enums\UnlockMethod;
 use App\Models\ContactUnlock;
 use App\Enums\ContactVisibility;
+use App\Services\PaymentService;
 use Illuminate\Database\Eloquent\Model;
 
 class UnlockService
 {
+    public function __construct(
+        protected PaymentService $paymentService
+    ) {}
+
     /**
      * Check if a user can view the contact details of a model.
      */
@@ -55,8 +60,8 @@ class UnlockService
 
             $user->decrement('contact_credits');
         } else {
-            // Mock Pay Per Use - Logic for actual payment gateway would go here
-            // PaymentService::process($9);
+            // Mock Pay Per Use
+            $this->paymentService->process(9.0);
         }
 
         ContactUnlock::create([

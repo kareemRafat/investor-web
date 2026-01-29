@@ -24,4 +24,6 @@ return [
     'settings' => 'Settings',
     'user_account' => 'user Account',
     'menu' => 'Menu',
+    'plans' => 'Plans',
+
 ];
