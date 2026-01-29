@@ -16,13 +16,13 @@ This document outlines the next steps to fully realize the "User Plan Selection 
     - Link `PaymentService` to `SubscriptionService` (for plans) and `UnlockService` (for one-time $9 payments).
 
 ## Phase 6: Subscription Lifecycle & Expiration
-- [ ] **Expiration Command:**
+- [x] **Expiration Command:**
     - Create `CheckExpiredSubscriptions` artisan command.
     - Logic: Find active subscriptions where `ends_at <= now()`.
     - Action: Set status to `expired`, revert user `plan_type` to `free`, and set `contact_credits` to `0`.
-- [ ] **Lifecycle Scheduling:**
+- [x] **Lifecycle Scheduling:**
     - Schedule the expiration check to run hourly in `routes/console.php`.
-- [ ] **Proactive Notifications:**
+- [x] **Proactive Notifications:**
     - (Optional) Dispatch a Laravel Notification to the user when their plan expires or when credits are reset.
 
 ## Phase 7: UX & Visibility Enhancements
@@ -41,5 +41,4 @@ This document outlines the next steps to fully realize the "User Plan Selection 
     - Ensure all new pricing and payment labels are added to `lang/ar/pages.php` and `lang/en/pages.php`.
 
 ---
-
-*Status: Phase 5 Complete. Phase 6 Next.*
+*Status: Phase 6 Complete. Phase 7 Next.*

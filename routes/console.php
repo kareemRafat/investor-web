@@ -9,3 +9,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('app:reset-monthly-credits')->daily();
+Schedule::command('subscriptions:check-expired')->hourly();

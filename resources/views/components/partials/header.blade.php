@@ -38,6 +38,14 @@
                 </ul>
             </nav>
             <div class="d-none d-xl-flex gap-2 align-items-center">
+                <!-- Credit Balance Widget -->
+                @auth
+                    <div class="d-flex align-items-center bg-light px-3 py-2 rounded-4 gap-2 border">
+                        <i class="bi bi-coin text-warning"></i>
+                        <span class="small fw-bold">{{ auth()->user()->contact_credits }}</span>
+                        <small class="text-muted d-none d-lg-inline">{{ __('header.credits') }}</small>
+                    </div>
+                @endauth
                 <!-- Profile Dropdown -->
                 <div class="dropdown">
                     <button class="btn text-primary rounded-4 d-flex align-items-center gap-2 dropdown-toggle"

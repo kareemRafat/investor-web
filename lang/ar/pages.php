@@ -282,4 +282,8 @@ return [
     'profile' => [
         'plan_updated_success' => 'تم تحديث باقتك بنجاح!',
     ],
+    'notifications' => [
+        'subscription_expired_title' => 'انتهت صلاحية الاشتراك',
+        'subscription_expired_message' => 'انتهت صلاحية اشتراكك وتم تحويل حسابك إلى الخطة المجانية. جدد الآن للاستمرار في الاستمتاع بالميزات المميزة.',
+    ],
 ];

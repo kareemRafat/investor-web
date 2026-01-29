@@ -25,5 +25,6 @@ return [
     'user_account' => 'user Account',
     'menu' => 'Menu',
     'plans' => 'Plans',
+    'credits' => 'Credits',
 
 ];

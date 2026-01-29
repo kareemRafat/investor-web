@@ -283,4 +283,8 @@ return [
     'profile' => [
         'plan_updated_success' => 'Your plan has been updated successfully!',
     ],
+    'notifications' => [
+        'subscription_expired_title' => 'Subscription Expired',
+        'subscription_expired_message' => 'Your subscription has expired and your plan has been reverted to Free. Renew now to continue enjoying premium features.',
+    ],
 ];
