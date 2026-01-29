@@ -287,4 +287,8 @@ return [
         'subscription_expired_title' => 'Subscription Expired',
         'subscription_expired_message' => 'Your subscription has expired and your plan has been reverted to Free. Renew now to continue enjoying premium features.',
     ],
+    'contact_visibility' => [
+        'open' => 'Open',
+        'closed' => 'Closed',
+    ],
 ];

@@ -26,19 +26,19 @@ This document outlines the next steps to fully realize the "User Plan Selection 
     - (Optional) Dispatch a Laravel Notification to the user when their plan expires or when credits are reset.
 
 ## Phase 7: UX & Visibility Enhancements
-- [ ] **List View Badges:**
+- [x] **List View Badges:**
     - Add 🔓 (Open) or 🔒 (Closed) badges to Idea and Investor cards in the Index pages so users know the status before clicking.
-- [ ] **Credit Balance Widget:**
+- [x] **Credit Balance Widget:**
     - Add a small credit counter in the main navigation header (visible only to logged-in users).
-- [ ] **Auto-Unlock for Owners/Admins:**
+- [x] **Auto-Unlock for Owners/Admins:**
     - Ensure the "Unlock" button is completely replaced by the contact card automatically if the `UnlockService` returns true (Owner/Admin check).
 
 ## Phase 8: Refinement & Testing
 - [ ] **Edge Case Testing:**
     - Test behavior when a user's subscription expires exactly while they are browsing.
     - Test behavior when a user tries to unlock with exactly 1 credit vs 0 credits.
-- [ ] **Translation Audit:**
+- [x] **Translation Audit:**
     - Ensure all new pricing and payment labels are added to `lang/ar/pages.php` and `lang/en/pages.php`.
 
 ---
-*Status: Phase 6 Complete. Phase 7 Next.*
+*Status: Phase 7 Complete. Phase 8 (Testing) Next.*

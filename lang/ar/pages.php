@@ -286,4 +286,8 @@ return [
         'subscription_expired_title' => 'انتهت صلاحية الاشتراك',
         'subscription_expired_message' => 'انتهت صلاحية اشتراكك وتم تحويل حسابك إلى الخطة المجانية. جدد الآن للاستمرار في الاستمتاع بالميزات المميزة.',
     ],
+    'contact_visibility' => [
+        'open' => 'مفتوح',
+        'closed' => 'مغلق',
+    ],
 ];

@@ -28,7 +28,18 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <small class="text-muted">{{ __('idea.index.idea_field_title') }}</small>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <small class="text-muted">{{ __('idea.index.idea_field_title') }}</small>
+                                                @if($idea->contact_visibility === \App\Enums\ContactVisibility::OPEN)
+                                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2" style="font-size: 0.7rem;">
+                                                        <i class="bi bi-unlock-fill me-1"></i> {{ __('pages.contact_visibility.open') }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-2" style="font-size: 0.7rem;">
+                                                        <i class="bi bi-lock-fill me-1"></i> {{ __('pages.contact_visibility.closed') }}
+                                                    </span>
+                                                @endif
+                                            </div>
                                             <h5 class="mb-1 fw-bold" style="color:#0d6efd">
                                                 {{ __("idea.steps.step1.options.{$idea->idea_field}") }}</h5>
                                         </div>

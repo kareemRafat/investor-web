@@ -165,6 +165,15 @@
                         <div class="border-top pt-3">
                             <h6 class="text-muted mb-3">{{ __('header.user_account') }}</h6>
                             <ul class="list-unstyled d-flex flex-column gap-3">
+                                @auth
+                                    <li class="mb-2">
+                                        <div class="d-flex align-items-center bg-light px-3 py-2 rounded-4 gap-2 border">
+                                            <i class="bi bi-coin text-warning"></i>
+                                            <span class="small fw-bold">{{ auth()->user()->contact_credits }}</span>
+                                            <small class="text-muted">{{ __('header.credits') }}</small>
+                                        </div>
+                                    </li>
+                                @endauth
                                 <li>
                                     <a href="{{ route('main.profile') }}" class="text-dark d-flex align-items-center gap-2 py-2">
                                         <i class="bi bi-person-fill fs-5 text-primary"></i>
