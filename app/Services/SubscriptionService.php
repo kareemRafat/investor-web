@@ -21,17 +21,29 @@ class SubscriptionService
     public function subscribe(User $user, PlanType $planType): Subscription
     {
         // Mock payment based on plan type
-        $price = ($planType === PlanType::YEARLY) ? 149.0 : 19.0;
-        $this->paymentService->process($price);
+        $price = match($planType) {
+            PlanType::YEARLY => 149.0,
+            PlanType::MONTHLY => 19.0,
+            PlanType::FREE => 0.0,
+        };
+
+        if ($price > 0) {
+            $this->paymentService->process($price);
+        }
 
         // Cancel existing active subscriptions
         $user->subscriptions()->where('status', SubscriptionStatus::ACTIVE)->update([
             'status' => SubscriptionStatus::CANCELLED,
         ]);
 
-        $durationMonths = ($planType === PlanType::YEARLY) ? 12 : 1;
+        $durationMonths = match($planType) {
+            PlanType::YEARLY => 12,
+            PlanType::MONTHLY => 1,
+            PlanType::FREE => null,
+        };
+
         $startsAt = Carbon::now();
-        $endsAt = $startsAt->copy()->addMonths($durationMonths);
+        $endsAt = $durationMonths ? $startsAt->copy()->addMonths($durationMonths) : null;
 
         $subscription = Subscription::create([
             'user_id' => $user->id,
@@ -43,8 +55,8 @@ class SubscriptionService
 
         $user->update([
             'plan_type' => $planType,
-            'contact_credits' => 10,
-            'credits_reset_at' => $startsAt,
+            'contact_credits' => ($planType === PlanType::FREE) ? 0 : 10,
+            'credits_reset_at' => ($planType === PlanType::FREE) ? null : $startsAt,
         ]);
 
         return $subscription;

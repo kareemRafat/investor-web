@@ -24,8 +24,8 @@ enum PlanType: string implements HasLabel, HasColor
     {
         return match ($this) {
             self::FREE => 'gray',
-            self::MONTHLY => 'info',
-            self::YEARLY => 'success',
+            self::MONTHLY => 'success',
+            self::YEARLY => 'danger',
         };
     }
 }
