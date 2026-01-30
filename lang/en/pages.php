@@ -304,5 +304,12 @@ return [
         'cvv' => 'CVV',
         'cancel' => 'Cancel',
         'total' => 'Total',
+        'back' => 'Back to Plans',
+    ],
+    'downgrade' => [
+        'title' => 'Warning: Lose Credits',
+        'message' => 'Are you sure you want to downgrade to the Free plan? You will lose all your remaining credits immediately.',
+        'confirm' => 'Yes, Downgrade',
+        'cancel' => 'Cancel',
     ],
 ];

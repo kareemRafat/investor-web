@@ -1,5 +1,11 @@
 <div class="py-5">
     <div class="container">
+        <div class="mb-4">
+            <a href="{{ route('main.pricing') }}" class="text-decoration-none text-muted fw-bold d-inline-flex align-items-center gap-2">
+                <i class="bi {{ app()->getLocale() === 'ar' ? 'bi-arrow-right' : 'bi-arrow-left' }}"></i>
+                {{ __('pages.payment.back') }}
+            </a>
+        </div>
         <div class="text-center mb-5">
             <h2 class="fw-bold text-dark display-5 mb-3">
                 {{ __('pages.payment.title') }}
