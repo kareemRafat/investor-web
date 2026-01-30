@@ -291,4 +291,18 @@ return [
         'open' => 'Open',
         'closed' => 'Closed',
     ],
+    'payment' => [
+        'title' => 'Complete Your Subscription',
+        'plan_details' => 'Plan Details',
+        'card_info' => 'Credit Card Information',
+        'pay_button' => 'Pay :amount',
+        'success' => 'Payment successful! You are now subscribed to the :plan plan.',
+        'error' => 'Payment failed. Please try again.',
+        'name_on_card' => 'Name on Card',
+        'card_number' => 'Card Number',
+        'expiry_date' => 'Expiry Date',
+        'cvv' => 'CVV',
+        'cancel' => 'Cancel',
+        'total' => 'Total',
+    ],
 ];

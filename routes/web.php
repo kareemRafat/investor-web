@@ -66,6 +66,7 @@ Route::group(
             Route::get('/privacy-policy', PrivacyPolicy::class)->name('main.privacypolicy');
             Route::get('/about', About::class)->name('main.about');
             Route::get('/pricing', \App\Livewire\Pages\Pricing::class)->name('main.pricing');
+            Route::get('/payment/{plan}', \App\Livewire\Pages\Payment::class)->name('payment.page');
 
 
             // Submit your Idea

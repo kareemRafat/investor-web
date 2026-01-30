@@ -47,10 +47,12 @@
 
             <!-- Monthly Plan -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-primary shadow rounded-4 overflow-hidden position-relative border-2">
+                <div class="card h-100 {{ $this->isUpgrade('monthly') ? 'border-primary border-2 shadow' : 'border-0 shadow-sm' }} rounded-4 overflow-hidden position-relative">
+                    @if($this->isUpgrade('monthly'))
                     <div class="position-absolute top-0 start-50 translate-middle-x badge bg-primary px-3 py-2 rounded-bottom shadow-sm mt-1">
                         {{ __('pages.pricing.upgrade') }}
                     </div>
+                    @endif
                     <div class="card-body p-4 d-flex flex-column pt-5">
                         <div class="mb-4">
                             <h3 class="h4 fw-bold text-dark mb-2">{{ __('pages.pricing.monthly_title') }}</h3>
@@ -90,8 +92,13 @@
 
             <!-- Yearly Plan -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                    <div class="card-body p-4 d-flex flex-column">
+                <div class="card h-100 {{ $this->isUpgrade('yearly') ? 'border-primary border-2 shadow' : 'border-0 shadow-sm' }} rounded-4 overflow-hidden position-relative">
+                    @if($this->isUpgrade('yearly'))
+                    <div class="position-absolute top-0 start-50 translate-middle-x badge bg-primary px-3 py-2 rounded-bottom shadow-sm mt-1">
+                        {{ __('pages.pricing.upgrade') }}
+                    </div>
+                    @endif
+                    <div class="card-body p-4 d-flex flex-column @if($this->isUpgrade('yearly')) pt-5 @endif">
                         <div class="mb-4">
                             <h3 class="h4 fw-bold text-dark mb-2">{{ __('pages.pricing.yearly_title') }}</h3>
                             <div class="d-flex align-items-baseline">

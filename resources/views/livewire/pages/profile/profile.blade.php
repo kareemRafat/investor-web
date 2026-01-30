@@ -4,6 +4,15 @@
             <i class="bi bi-star-fill text-warning"></i>
             {{ __('profile.subscription.title') }}
         </div>
+
+        @if (session()->has('subscription_success'))
+            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <i class="bi bi-check-circle-fill mx-1"></i>
+                {{ session('subscription_success') }}
+            </div>
+        @endif
+
         <div class="row g-4 text-dark">
             <div class="col-md-4">
                 <div class="p-3 border rounded bg-light">

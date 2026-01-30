@@ -22,8 +22,8 @@ class SubscriptionService
     {
         // Mock payment based on plan type
         $price = match($planType) {
-            PlanType::YEARLY => 149.0,
-            PlanType::MONTHLY => 19.0,
+            PlanType::YEARLY => 999.0,
+            PlanType::MONTHLY => 99.0,
             PlanType::FREE => 0.0,
         };
 

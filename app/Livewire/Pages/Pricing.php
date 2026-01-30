@@ -24,12 +24,34 @@ class Pricing extends Component
             return;
         }
 
-        $subscriptionService->subscribe($user, $planType);
+        if ($planType === PlanType::FREE) {
+            $subscriptionService->subscribe($user, $planType);
+            $this->dispatch('plan-updated');
+            session()->flash('subscription_success', __('pages.profile.plan_updated_success'));
+            return redirect()->route('main.profile');
+        }
 
-        $this->dispatch('plan-updated');
-        session()->flash('success', __('pages.profile.plan_updated_success')); // I might need to add this translation too
+        return redirect()->route('payment.page', ['plan' => $plan]);
+    }
 
-        return redirect()->route('main.profile');
+    public function isUpgrade(string $targetPlan): bool
+    {
+        $user = Auth::user();
+        
+        // For guests, highlight the Monthly plan (default behavior)
+        if (!$user) {
+            return $targetPlan === 'monthly';
+        }
+
+        $currentPlan = $user->plan_type;
+        $target = PlanType::tryFrom($targetPlan);
+
+        if (!$currentPlan || !$target) {
+            return false;
+        }
+
+        // Only highlight the immediate next plan
+        return $target->getSortOrder() === ($currentPlan->getSortOrder() + 1);
     }
 
     public function render()

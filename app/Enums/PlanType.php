@@ -28,4 +28,13 @@ enum PlanType: string implements HasLabel, HasColor
             self::YEARLY => 'danger',
         };
     }
+
+    public function getSortOrder(): int
+    {
+        return match ($this) {
+            self::FREE => 0,
+            self::MONTHLY => 1,
+            self::YEARLY => 2,
+        };
+    }
 }
