@@ -56,7 +56,7 @@ class SubscriptionService
         $user->update([
             'plan_type' => $planType,
             'contact_credits' => ($planType === PlanType::FREE) ? 0 : 10,
-            'credits_reset_at' => ($planType === PlanType::FREE) ? null : $startsAt,
+            'credits_reset_at' => ($planType === PlanType::FREE) ? null : $startsAt->copy()->addMonth(),
         ]);
 
         return $subscription;

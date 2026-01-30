@@ -260,7 +260,7 @@
                                 class="d-inline-flex align-items-center bg-white bg-opacity-10 backdrop-blur-sm rounded-pill px-3 px-md-4 py-2 py-md-2">
                                 <i class="bi bi-star-fill text-warning mx-1 mx-md-2"></i>
                                 <small
-                                    class="text-white fw-semibold fs-6">{{ __('profile.user.membership_tier') }}</small>
+                                    class="text-white fw-semibold fs-6">{{ auth()->user()->plan_type->getLabel() }}</small>
                             </div>
                         </div>
                     </div>
