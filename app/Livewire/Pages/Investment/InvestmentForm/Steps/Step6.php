@@ -53,7 +53,27 @@ class Step6 extends Component
     #[On('validate-step-6')]
     public function validateStep6()
     {
+        $user = auth()->user();
+
+        // Block Free users from choosing Open
+        if ($this->data['contact_visibility'] === 'open' && $user->plan_type === \App\Enums\PlanType::FREE) {
+            $this->addError('data.contact_visibility', __('idea.steps.step9.upgrade_required_for_open'));
+            return;
+        }
+
         $this->validate();
+
+        // Check if we need to deduct a credit (Option B)
+        $investorId = session('current_investor_id');
+        if ($investorId) {
+            $investor = Investor::find($investorId);
+            if ($investor && $investor->contact_visibility?->value === 'closed' && $this->data['contact_visibility'] === 'open') {
+                if ($user->contact_credits < 1) {
+                    $this->addError('data.contact_visibility', __('pages.unlock_contact.error_no_credits'));
+                    return;
+                }
+            }
+        }
 
         $this->syncData();
 
@@ -89,12 +109,23 @@ class Step6 extends Component
         $investor = Investor::find($investorId);
         if (!$investor) return;
 
-        // DB sync
+        $user = auth()->user();
+        $newVisibility = $this->data['contact_visibility'];
+
+        // If changing from closed to open, mark for deduction on finish
+        if ($investor->contact_visibility?->value === 'closed' && $newVisibility === 'open') {
+            session(['pending_investor_visibility_credit' => true]);
+        } else if ($newVisibility === 'closed') {
+            // Reset if user changed their mind back to closed
+            session()->forget('pending_investor_visibility_credit');
+        }
+
+        // DB sync (without decrementing credit yet)
         $investor->update([
             'title' => $this->data['investor_title'],
             'summary' => $this->data['summary'],
-            'user_id' => Auth::id(),
-            'contact_visibility' => $this->data['contact_visibility'],
+            'user_id' => $user->id,
+            'contact_visibility' => $newVisibility,
             'created_at' => $this->data['created_at'],
         ]);
 

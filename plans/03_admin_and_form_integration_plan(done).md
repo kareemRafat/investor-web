@@ -17,26 +17,26 @@ Target: `app/Filament/Resources/IdeaResource.php` and `app/Filament/Resources/In
 ## 2. User-Facing Form Integration
 Target: `app/Livewire/Pages/Idea/IdeaForm.php` and `app/Livewire/Pages/Investment/InvestmentForm.php`
 
-- [ ] **Add Visibility Field:**
+- [x] **Add Visibility Field:**
     - Include a Radio or Select field for `contact_visibility` (Open vs. Closed).
-- [ ] **Authorization Logic:**
+- [x] **Authorization Logic:**
     - Ensure the "Open" option is only selectable if:
         - The user has a paid plan (`monthly` or `yearly`).
         - OR (Optional) Deduct a credit upon choosing "Open" if that's the desired policy.
     - Default the value to `closed` for free users.
-- [ ] **Validation:**
+- [x] **Validation:**
     - Add server-side validation to prevent spoofing the `contact_visibility` field.
 
 ## 3. UI/UX Visibility (Index Pages)
 Target: `resources/views/livewire/pages/idea/index.blade.php` and `resources/views/livewire/pages/investment/index.blade.php`
 
-- [ ] **Index Badges:**
+- [x] **Index Badges:**
     - Add 🔓 (Open) or 🔒 (Closed) icons/labels to the cards in the list view so users know the status before clicking.
 
 ## 4. User Dashboard/Profile
 Target: `app/Livewire/Pages/Profile/Profile.php` (and its view)
 
-- [ ] **Plan Info Widget:**
+- [x] **Plan Info Widget:**
     - Display the user's current `plan_type`.
     - Show `contact_credits` balance.
     - Show `credits_reset_at` date.

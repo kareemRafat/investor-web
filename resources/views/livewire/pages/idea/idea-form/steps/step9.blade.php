@@ -44,11 +44,16 @@
                     </label>
 
                     {{-- Open --}}
+                    @php
+                        $isFree = auth()->user()->plan_type === \App\Enums\PlanType::FREE;
+                    @endphp
                     <label
-                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2 cursor-pointer
-                   {{ ($data['contact_visibility'] ?? 'closed') === 'open' ? 'border-primary text-primary' : 'border-custom' }}">
+                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2
+                   {{ ($data['contact_visibility'] ?? 'closed') === 'open' ? 'border-primary text-primary' : 'border-custom' }}
+                   {{ $isFree ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}">
                         <input type="radio" class="form-check-input" value="open"
-                            wire:model="data.contact_visibility">
+                            wire:model="data.contact_visibility"
+                            {{ $isFree ? 'disabled' : '' }}>
                         <span>
                             🔓 {{ __('idea.steps.step9.contact_open') }}
                         </span>
@@ -56,9 +61,22 @@
 
                 </div>
 
-                <small class="text-muted d-block mt-2">
+                @if($isFree)
+                    <p class="text-danger d-block mt-2">
+                        <i class="bi bi-info-circle"></i>
+                        {{ __('idea.steps.step9.upgrade_required_for_open') }}
+                        <a href="{{ route('main.pricing') }}" class="text-primary text-decoration-underline mx-1">{{ __('idea.steps.step9.upgrade_now') }}</a>
+                    </ح>
+                @else
+                    <p class="text-info d-block mt-2">
+                        <i class="bi bi-info-circle"></i>
+                        {{ __('idea.steps.step9.open_costs_credit') }}
+                    </p>
+                @endif
+
+                <p class="text-muted d-block mt-1">
                     {{ __('idea.steps.step9.contact_visibility_hint') }}
-                </small>
+                </p>
             </div>
 
 

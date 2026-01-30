@@ -232,6 +232,9 @@ return [
             'contact_closed' => 'Hide contact details',
             'contact_open' => 'Show contact details to everyone',
             'contact_visibility_hint' => 'You can change this option later from the idea page',
+            'upgrade_required_for_open' => 'Available for Emerald & Ruby plans only.',
+            'upgrade_now' => 'Upgrade Now',
+            'open_costs_credit' => 'Making your contact info open will use 1 credit.',
         ],
         'step10' => [
             'title' => 'Summary of your distinguished idea',

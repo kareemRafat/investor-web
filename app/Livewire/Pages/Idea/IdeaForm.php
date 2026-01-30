@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 class IdeaForm extends Component
 {
 
-    public int $currentStep = 1;
+    public int $currentStep = 9;
     public int $maxAllowedStep = 1;
     public int $totalSteps = 10;
 
@@ -62,6 +62,12 @@ class IdeaForm extends Component
     public function finish()
     {
         $ideaId = session('current_idea_id');
+
+        // Deduct credit if visibility was changed to open during this session
+        if (session('pending_idea_visibility_credit')) {
+            auth()->user()->decrement('contact_credits');
+            session()->forget('pending_idea_visibility_credit');
+        }
 
         session()->forget('current_idea_id');
 

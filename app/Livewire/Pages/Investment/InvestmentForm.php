@@ -60,6 +60,12 @@ class InvestmentForm extends Component
     {
         $InvestorId = session('current_investor_id');
 
+        // Deduct credit if visibility was changed to open during this session
+        if (session('pending_investor_visibility_credit')) {
+            auth()->user()->decrement('contact_credits');
+            session()->forget('pending_investor_visibility_credit');
+        }
+
         session()->forget('current_investor_id');
 
         $this->currentStep = 1;
