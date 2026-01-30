@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand' => 'InvestFlow',
+    'brand' => 'FIKRAPEDIA',
     'nav' => [
         'about' => 'About',
         'features' => 'Features',
@@ -27,7 +27,7 @@ return [
         'story' => [
             'title' => 'Bridging the Gap Between',
             'titleHighlight' => 'Ideas and Capital',
-            'p1' => 'InvestFlow was born from a simple observation: brilliant investment ideas often fail to find funding, while investors struggle to discover opportunities that match their criteria.',
+            'p1' => 'FIKRAPEDIA was born from a simple observation: brilliant investment ideas often fail to find funding, while investors struggle to discover opportunities that match their criteria.',
             'p2' => 'Our platform eliminates these barriers by providing a seamless space where idea creators can showcase their concepts and investors can discover, evaluate, and fund opportunities with confidence.',
             'p3' => 'With advanced matching algorithms, secure transactions, and comprehensive analytics, we\'re transforming how investments are discovered and executed.',
         ],
@@ -147,7 +147,7 @@ return [
         'terms' => 'Terms of Service',
         'cookies' => 'Cookie Policy',
         'security' => 'Security',
-        'copyright' => '© 2025 InvestFlow. All rights reserved.',
+        'copyright' => '© 2025 FIKRAPEDIA. All rights reserved.',
         'language' => 'Language',
         'english' => 'English',
         'arabic' => 'العربية',
