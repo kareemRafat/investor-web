@@ -16,7 +16,7 @@
     ];
 @endphp
 
-<div x-data="{ 
+<div x-data="{
     mobileMenuOpen: false,    scrolled: false,
     scrollPercent: 0,
     showScrollTop: false,
@@ -56,10 +56,10 @@
 
                 <!-- Desktop Buttons -->
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 hover:bg-accent hover:text-accent-foreground">
+                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 hover:bg-accent hover:text-accent-foreground">
                         {{ __('landing.nav.signIn') }}
                     </a>
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 bg-primary text-primary-foreground shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105">
+                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 bg-primary text-primary-foreground shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105">
                         {{ __('landing.nav.getStarted') }}
                     </a>
                 </div>
@@ -83,8 +83,8 @@
                     <a href="#how-it-works" @click="mobileMenuOpen = false" class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.howItWorks') }}</a>
                     <a href="#stats" @click="mobileMenuOpen = false" class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.stats') }}</a>
                     <div class="flex flex-col gap-2 pt-4 border-t border-border">
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}" wire:navigate class="inline-flex items-center justify-start gap-2 h-10 px-4 text-muted-foreground hover:text-foreground">{{ __('landing.nav.signIn') }}</a>
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.getStarted') }}</a>
+                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"  class="inline-flex items-center justify-start gap-2 h-10 px-4 text-muted-foreground hover:text-foreground">{{ __('landing.nav.signIn') }}</a>
+                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"  class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.getStarted') }}</a>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     {{ __('landing.hero.subtitle') }}
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style="animation-delay: 0.3s">
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('investor.index')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
+                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('investor.index')) }}"  class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
                         {{ __('landing.hero.cta') }}
                         @if(LaravelLocalization::getCurrentLocaleDirection() === 'rtl')
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
@@ -118,7 +118,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                         @endif
                     </a>
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('idea.index')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base border-2 border-primary/50 text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300">
+                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('idea.index')) }}"  class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base border-2 border-primary/50 text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300">
                         {{ __('landing.hero.ctaSecondary') }}
                     </a>
                 </div>
@@ -295,7 +295,7 @@
                 </h2>
                 <p class="text-xl text-muted-foreground mb-10 max-w-xl mx-auto">{{ __('landing.cta.subtitle') }}</p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
+                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"  class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
                         {{ __('landing.cta.button') }}
                         @if(LaravelLocalization::getCurrentLocaleDirection() === 'rtl')
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
@@ -303,7 +303,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                         @endif
                     </a>
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}" wire:navigate class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base border-2 border-primary/50 text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300">
+                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}"  class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base border-2 border-primary/50 text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300">
                         {{ __('landing.cta.buttonSecondary') }}
                     </a>
                 </div>
@@ -330,7 +330,7 @@
                     <ul class="space-y-3 text-sm text-muted-foreground">
                         <li><a href="#features" class="hover:text-foreground transition-colors">{{ __('landing.footer.features') }}</a></li>
                         <li><a href="#how-it-works" class="hover:text-foreground transition-colors">{{ __('landing.footer.howItWorks') }}</a></li>
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.pricing')) }}" wire:navigate class="hover:text-foreground transition-colors">{{ __('landing.footer.pricing') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.pricing')) }}"  class="hover:text-foreground transition-colors">{{ __('landing.footer.pricing') }}</a></li>
                         <li><a href="#" class="hover:text-foreground transition-colors">{{ __('landing.footer.api') }}</a></li>
                     </ul>
                 </div>
@@ -340,14 +340,14 @@
                         <li><a href="#about" class="hover:text-foreground transition-colors">{{ __('landing.footer.aboutLink') }}</a></li>
                         <li><a href="#" class="hover:text-foreground transition-colors">{{ __('landing.footer.blog') }}</a></li>
                         <li><a href="#" class="hover:text-foreground transition-colors">{{ __('landing.footer.careers') }}</a></li>
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}" wire:navigate class="hover:text-foreground transition-colors">{{ __('landing.footer.contact') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}"  class="hover:text-foreground transition-colors">{{ __('landing.footer.contact') }}</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4 text-foreground">{{ __('landing.footer.legal') }}</h4>
                     <ul class="space-y-3 text-sm text-muted-foreground">
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.privacypolicy')) }}" wire:navigate class="hover:text-foreground transition-colors">{{ __('landing.footer.privacy') }}</a></li>
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms')) }}" wire:navigate class="hover:text-foreground transition-colors">{{ __('landing.footer.terms') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.privacypolicy')) }}"  class="hover:text-foreground transition-colors">{{ __('landing.footer.privacy') }}</a></li>
+                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms')) }}"  class="hover:text-foreground transition-colors">{{ __('landing.footer.terms') }}</a></li>
                         <li><a href="#" class="hover:text-foreground transition-colors">{{ __('landing.footer.cookies') }}</a></li>
                         <li><a href="#" class="hover:text-foreground transition-colors">{{ __('landing.footer.security') }}</a></li>
                     </ul>
