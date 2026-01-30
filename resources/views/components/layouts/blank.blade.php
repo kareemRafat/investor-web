@@ -25,7 +25,28 @@
         :root {
             --font-sans: 'Lama Sans', sans-serif !important;
             --font-heading: 'Lama Sans', sans-serif !important;
+            
+            /* Override blue with purple gradient values */
+            --primary: 252 70% 50% !important; /* Approx purple for HSL */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            --glow: #764ba2 !important;
         }
+        
+        .text-gradient {
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            background-image: var(--gradient-primary) !important;
+        }
+
+        .bg-primary {
+            background: var(--gradient-primary) !important;
+        }
+
+        .shadow-glow {
+            box-shadow: 0 0 60px -15px rgba(118, 75, 162, 0.4) !important;
+        }
+
         body {
             font-family: 'Lama Sans', sans-serif !important;
         }

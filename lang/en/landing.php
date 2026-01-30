@@ -128,7 +128,7 @@ return [
         'subtitle' => 'Join thousands of investors and founders who are already building the future together.',
         'button' => 'Create Free Account',
         'buttonSecondary' => 'Schedule Demo',
-        'trust' => 'No credit card required • Free forever plan available • Cancel anytime',
+        'trust' => '• Cancel anytime',
     ],
     'footer' => [
         'description' => 'The modern platform for investment ideas and opportunities. Connect, invest, grow.',

@@ -86,7 +86,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-primary"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
                     <span class="text-sm text-muted-foreground">{{ __('landing.hero.badge') }}</span>
                 </div>
-                <h1 class="font-heading text-5xl md:text-7xl font-bold leading-tight mb-6 animate-slide-up" style="animation-delay: 0.1s">
+                <h1 class="font-heading text-5xl md:text-6xl font-bold leading-tight mb-6 animate-slide-up" style="animation-delay: 0.1s">
                     {{ __('landing.hero.title') }} <span class="text-gradient">{{ __('landing.hero.titleHighlight') }}</span> {{ __('landing.hero.titleEnd') }}
                 </h1>
                 <p class="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up" style="animation-delay: 0.2s">
