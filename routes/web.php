@@ -8,6 +8,7 @@ use App\Livewire\Pages\About;
 use App\Livewire\Pages\Terms;
 use App\Livewire\Auth\Register;
 use App\Livewire\Pages\Contact;
+use App\Livewire\Pages\Landing;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Pages\Idea\IdeaForm;
@@ -28,14 +29,13 @@ use App\Livewire\Pages\Investment\InvestmentSummary;
 use App\Livewire\Pages\Investment\Index as InvestmentIndex;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-
+Route::get('/', \App\Livewire\Pages\Landing::class)->name('main.landing');
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
-
         Route::middleware(['guest'])->group(function () {
             // Authentication Routes
             Route::get('/login', Login::class)
@@ -59,7 +59,7 @@ Route::group(
 
         Route::middleware(['auth', 'verified'])->group(function () {
             // Main pages
-            Route::get('/', Home::class)->name('main.home');
+            Route::get('/home', Home::class)->name('main.home');
             Route::get('/contact', Contact::class)->name('main.contact');
             Route::get('/terms-of-use', Terms::class)->name('main.terms');
             Route::get('/faq', FAQ::class)->name('main.faq');

@@ -123,7 +123,7 @@
                                     {{ __('pages.unlock_contact.use_credit') }}
                                 </button>
                             @else
-                                <a href="{{ route('main.pricing') }}" class="btn btn-warning rounded-3 py-2 text-white text-decoration-none">
+                                <a href="{{ route('main.pricing') }}" class="btn btn-warning rounded-3 py-2 text-dark text-decoration-none">
                                     <i class="bi bi-arrow-up-circle me-2"></i>
                                     {{ __('pages.unlock_contact.upgrade') }}
                                 </a>
