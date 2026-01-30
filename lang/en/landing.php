@@ -1,0 +1,155 @@
+<?php
+
+return [
+    'brand' => 'InvestFlow',
+    'nav' => [
+        'about' => 'About',
+        'features' => 'Features',
+        'howItWorks' => 'How It Works',
+        'stats' => 'Stats',
+        'signIn' => 'Sign In',
+        'getStarted' => 'Get Started',
+    ],
+    'hero' => [
+        'badge' => 'The Future of Investment Collaboration',
+        'title' => 'Turn Your',
+        'titleHighlight' => 'Investment Ideas',
+        'titleEnd' => 'Into Reality',
+        'subtitle' => 'Share your investment ideas, discover opportunities, and connect with investors ready to fund the next big thing.',
+        'cta' => 'Start Investing',
+        'ctaSecondary' => 'Explore Ideas',
+        'noFees' => 'No Hidden Fees',
+        'secure' => 'Secure Transactions',
+        'support' => '24/7 Support',
+    ],
+    'about' => [
+        'title' => 'About',
+        'story' => [
+            'title' => 'Bridging the Gap Between',
+            'titleHighlight' => 'Ideas and Capital',
+            'p1' => 'InvestFlow was born from a simple observation: brilliant investment ideas often fail to find funding, while investors struggle to discover opportunities that match their criteria.',
+            'p2' => 'Our platform eliminates these barriers by providing a seamless space where idea creators can showcase their concepts and investors can discover, evaluate, and fund opportunities with confidence.',
+            'p3' => 'With advanced matching algorithms, secure transactions, and comprehensive analytics, we\'re transforming how investments are discovered and executed.',
+        ],
+        'description' => 'We\'re building the future of investment collaboration. Founded by investors and entrepreneurs, we understand the challenges of connecting great ideas with the right capital.',
+        'yearsOfExcellence' => 'Years of Excellence',
+        'countriesServed' => 'Countries Served',
+        'mission' => [
+            'title' => 'Our Mission',
+            'description' => 'To democratize investment opportunities by creating a transparent platform where innovative ideas meet the capital they deserve.',
+        ],
+        'vision' => [
+            'title' => 'Our Vision',
+            'description' => 'A world where every great investment idea has the opportunity to become reality, regardless of where it originates.',
+        ],
+        'values' => [
+            'title' => 'Our Values',
+            'description' => 'Transparency, integrity, and innovation drive everything we do. We believe in building trust through honest collaboration.',
+        ],
+    ],
+    'features' => [
+        'title' => 'Everything You Need to',
+        'titleHighlight' => 'Invest Smarter',
+        'subtitle' => 'A comprehensive platform designed to streamline every aspect of the investment process.',
+        'shareIdeas' => [
+            'title' => 'Share Investment Ideas',
+            'description' => 'Post your innovative investment concepts and let the community validate and refine them with expert feedback.',
+        ],
+        'createOffers' => [
+            'title' => 'Create Investment Offers',
+            'description' => 'Structure and present your investment opportunities with detailed terms, projections, and transparent documentation.',
+        ],
+        'connect' => [
+            'title' => 'Connect with Investors',
+            'description' => 'Build meaningful relationships with a network of accredited investors actively seeking new opportunities.',
+        ],
+        'secure' => [
+            'title' => 'Secure & Compliant',
+            'description' => 'Enterprise-grade security with regulatory compliance ensures your data and transactions are always protected.',
+        ],
+        'track' => [
+            'title' => 'Track Performance',
+            'description' => 'Monitor your investments with real-time analytics, detailed reports, and performance benchmarking.',
+        ],
+        'fast' => [
+            'title' => 'Fast Execution',
+            'description' => 'Streamlined processes enable quick deal closures without the traditional friction of investment platforms.',
+        ],
+    ],
+    'howItWorks' => [
+        'title' => 'How It',
+        'titleHighlight' => 'Works',
+        'subtitle' => 'Get started in four simple steps and begin your investment journey today.',
+        'step1' => [
+            'title' => 'Create Your Profile',
+            'description' => 'Set up your investor or founder profile with your goals, expertise, and investment preferences.',
+        ],
+        'step2' => [
+            'title' => 'Post or Discover Ideas',
+            'description' => 'Share your investment ideas or browse through curated opportunities that match your criteria.',
+        ],
+        'step3' => [
+            'title' => 'Connect & Negotiate',
+            'description' => 'Engage with potential partners, discuss terms, and structure deals that work for everyone.',
+        ],
+        'step4' => [
+            'title' => 'Execute & Grow',
+            'description' => 'Finalize investments securely and track your portfolio\'s growth with powerful analytics.',
+        ],
+    ],
+    'stats' => [
+        'title' => 'Trusted by',
+        'titleHighlight' => 'Thousands',
+        'subtitle' => 'Join a thriving community of investors and founders achieving their goals.',
+        'totalInvestments' => [
+            'value' => '$2.5B+',
+            'label' => 'Total Investments',
+            'description' => 'Facilitated through our platform',
+        ],
+        'activeInvestors' => [
+            'value' => '12,000+',
+            'label' => 'Active Investors',
+            'description' => 'Growing community worldwide',
+        ],
+        'fundedProjects' => [
+            'value' => '850+',
+            'label' => 'Funded Projects',
+            'description' => 'Successfully launched',
+        ],
+        'satisfaction' => [
+            'value' => '98%',
+            'label' => 'Satisfaction Rate',
+            'description' => 'From our users',
+        ],
+    ],
+    'cta' => [
+        'title' => 'Ready to Start Your',
+        'titleHighlight' => 'Investment Journey?',
+        'subtitle' => 'Join thousands of investors and founders who are already building the future together.',
+        'button' => 'Create Free Account',
+        'buttonSecondary' => 'Schedule Demo',
+        'trust' => 'No credit card required • Free forever plan available • Cancel anytime',
+    ],
+    'footer' => [
+        'description' => 'The modern platform for investment ideas and opportunities. Connect, invest, grow.',
+        'product' => 'Product',
+        'company' => 'Company',
+        'legal' => 'Legal',
+        'features' => 'Features',
+        'howItWorks' => 'How It Works',
+        'pricing' => 'Pricing',
+        'api' => 'API',
+        'aboutLink' => 'About',
+        'blog' => 'Blog',
+        'careers' => 'Careers',
+        'contact' => 'Contact',
+        'privacy' => 'Privacy Policy',
+        'terms' => 'Terms of Service',
+        'cookies' => 'Cookie Policy',
+        'security' => 'Security',
+        'copyright' => '© 2025 InvestFlow. All rights reserved.',
+        'language' => 'Language',
+        'english' => 'English',
+        'arabic' => 'العربية',
+    ],
+];

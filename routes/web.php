@@ -29,13 +29,15 @@ use App\Livewire\Pages\Investment\InvestmentSummary;
 use App\Livewire\Pages\Investment\Index as InvestmentIndex;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::get('/', \App\Livewire\Pages\Landing::class)->name('main.landing');
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
+        Route::get('/', Landing::class)->name('main.landing');
+
         Route::middleware(['guest'])->group(function () {
             // Authentication Routes
             Route::get('/login', Login::class)
@@ -70,16 +72,16 @@ Route::group(
 
 
             // Submit your Idea
-            Route::get('/ideas' , IdeaIndex::class)->name('idea.index');
+            Route::get('/ideas', IdeaIndex::class)->name('idea.index');
             Route::get('/ideas/new', IdeaForm::class)->name('idea.main');
             Route::get('/ideas/{idea}/summary', IdeaSummary::class)->name('idea.summary');
-            Route::get('/ideas/{idea}/info' , IdeaInfo::class )->name('idea.info');
+            Route::get('/ideas/{idea}/info', IdeaInfo::class)->name('idea.info');
 
             // Investor
-            Route::get('/investment' , InvestmentIndex::class)->name('investor.index');
+            Route::get('/investment', InvestmentIndex::class)->name('investor.index');
             Route::get('/investment/new', InvestmentForm::class)->name('investor.main');
             Route::get('/investment/{investment}/summary', InvestmentSummary::class)->name('investor.summary');
-            Route::get('/investment/{investment}/info' , InvestmentInfo::class )->name('investor.info');
+            Route::get('/investment/{investment}/info', InvestmentInfo::class)->name('investor.info');
 
             // profile
             Route::prefix('profile')->group(function () {
