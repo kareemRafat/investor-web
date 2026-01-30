@@ -151,7 +151,7 @@
                         @endpush
 
                         <div class="login-container register-page">
-                            <div class="split-container">
+                            <div class="split-container h-100">
                                 <div class="form-side">
                                     <div class="form-container register-container">
                                         <form method="POST" action="/register">

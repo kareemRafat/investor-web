@@ -25,7 +25,7 @@
 
 
 <div class="login-container">
-    <div class="split-container">
+    <div class="split-container h-100">
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
