@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
     <title>{{ $title ?? __('landing.brand') }}</title>
     <meta name="description" content="{{ __('landing.hero.subtitle') }}" />
-
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" crossorigin href="{{ asset('assets/landing-new/style.css') }}">
 
     <style>
@@ -25,13 +25,13 @@
         :root {
             --font-sans: 'Lama Sans', sans-serif !important;
             --font-heading: 'Lama Sans', sans-serif !important;
-            
+
             /* Override blue with purple gradient values */
             --primary: 252 70% 50% !important; /* Approx purple for HSL */
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
             --glow: #764ba2 !important;
         }
-        
+
         .text-gradient {
             -webkit-background-clip: text !important;
             background-clip: text !important;

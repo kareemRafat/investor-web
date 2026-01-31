@@ -8,8 +8,8 @@
     <meta name="keywords" content="investment, finance, portfolio" />
     <meta name="author" content="Investment Team" />
     <!-- favicon -->
-    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}" />
     <!-- title -->
     <title>{{ $title ?? 'Page Title' }}</title>
@@ -31,8 +31,8 @@
         <button class="lang-btn" onclick="toggleLang()">
             <i class="bi bi-globe"></i>
             <span id="currentLang" class="d-none d-sm-inline">
-                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    @if($localeCode == LaravelLocalization::getCurrentLocale())
+                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    @if ($localeCode == LaravelLocalization::getCurrentLocale())
                         {{ $properties['native'] }}
                     @endif
                 @endforeach
@@ -43,9 +43,8 @@
         <div class="lang-menu" id="langMenu">
             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                 <a class="lang-item {{ $localeCode == LaravelLocalization::getCurrentLocale() ? 'active' : '' }}"
-                   rel="alternate"
-                   hreflang="{{ $localeCode }}"
-                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                    rel="alternate" hreflang="{{ $localeCode }}"
+                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                     {{ $properties['native'] }}
                 </a>
             @endforeach

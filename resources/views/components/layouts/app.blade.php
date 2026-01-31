@@ -9,8 +9,8 @@
     <meta name="keywords" content="investment, finance, portfolio" />
     <meta name="author" content="Investment Team" />
     <!-- favicon -->
-    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}" />
     <!-- title -->
     <title>{{ $title ?? 'Investment | Home' }}</title>
