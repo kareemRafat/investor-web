@@ -9,6 +9,7 @@ return [
         'stats' => 'Stats',
         'signIn' => 'Sign In',
         'getStarted' => 'Get Started',
+        'startNow' => 'Start Now',
     ],
     'hero' => [
         'badge' => 'The Future of Investment Collaboration',
@@ -127,6 +128,7 @@ return [
         'titleHighlight' => 'Investment Journey?',
         'subtitle' => 'Join thousands of investors and founders who are already building the future together.',
         'button' => 'Create Free Account',
+        'startNow' => 'Start Now',
         'buttonSecondary' => 'Schedule Demo',
         'trust' => '• Cancel anytime',
     ],
