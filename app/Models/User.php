@@ -83,6 +83,14 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
         return $this->hasMany(ContactUnlock::class);
     }
 
+    public function getNextRenewalAtAttribute()
+    {
+        return $this->subscriptions()
+            ->where('status', \App\Enums\SubscriptionStatus::ACTIVE)
+            ->latest()
+            ->first()?->ends_at;
+    }
+
     public function isPremium(): bool
     {
         return $this->plan_type !== \App\Enums\PlanType::FREE;

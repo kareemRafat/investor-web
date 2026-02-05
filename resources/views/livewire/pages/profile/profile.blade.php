@@ -13,27 +13,70 @@
             </div>
         @endif
 
-        <div class="row g-4 text-dark">
-            <div class="col-md-4">
-                <div class="p-3 border rounded bg-light">
-                    <small class="text-muted d-block">{{ __('profile.subscription.current_plan') }}</small>
-                    <h5 class="fw-bold text-primary mb-0">
-                        {{ $user->plan_type->getLabel() ?? ucfirst($user->plan_type->value) }}
-                    </h5>
+        <div class="row g-3 text-dark">
+            <!-- Current Plan -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card h-100 border-0 shadow-sm bg-light rounded-3">
+                    <div class="card-body p-3 d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-award text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block lh-1 mb-1">{{ __('profile.subscription.current_plan') }}</small>
+                            <h6 class="fw-bold text-dark mb-0">
+                                {{ $user->plan_type->getLabel() ?? ucfirst($user->plan_type->value) }}
+                            </h6>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="p-3 border rounded bg-light">
-                    <small class="text-muted d-block">{{ __('profile.subscription.remaining_credits') }}</small>
-                    <h5 class="fw-bold text-success mb-0">{{ $user->contact_credits ?? 0 }}</h5>
+
+            <!-- Remaining Credits -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card h-100 border-0 shadow-sm bg-light rounded-3">
+                    <div class="card-body p-3 d-flex align-items-center">
+                        <div class="bg-success bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-unlock text-success fs-4"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block lh-1 mb-1">{{ __('profile.subscription.remaining_credits') }}</small>
+                            <h6 class="fw-bold text-dark mb-0">{{ $user->contact_credits ?? 0 }}</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="p-3 border rounded bg-light">
-                    <small class="text-muted d-block">{{ __('profile.subscription.next_reset') }}</small>
-                    <h5 class="fw-bold text-info mb-0">
-                        {{ $user->credits_reset_at ? $user->credits_reset_at->translatedFormat('d M Y') : __('profile.subscription.na') }}
-                    </h5>
+
+            <!-- Next Credits Reset -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card h-100 border-0 shadow-sm bg-light rounded-3">
+                    <div class="card-body p-3 d-flex align-items-center">
+                        <div class="bg-info bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-arrow-repeat text-info fs-4"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block lh-1 mb-1">{{ __('profile.subscription.next_reset') }}</small>
+                            <h6 class="fw-bold text-dark mb-0">
+                                {{ $user->credits_reset_at ? $user->credits_reset_at->translatedFormat('d M Y') : __('profile.subscription.na') }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Plan Renewal -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card h-100 border-0 shadow-sm bg-light rounded-3">
+                    <div class="card-body p-3 d-flex align-items-center">
+                        <div class="bg-warning bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-calendar-check text-warning fs-4"></i>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block lh-1 mb-1">{{ __('profile.subscription.next_renewal') }}</small>
+                            <h6 class="fw-bold text-dark mb-0">
+                                {{ $user->next_renewal_at ? $user->next_renewal_at->translatedFormat('d M Y') : __('profile.subscription.na') }}
+                            </h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

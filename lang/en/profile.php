@@ -294,7 +294,8 @@ return [
         'title' => 'Subscription & Credits',
         'current_plan' => 'Current Plan',
         'remaining_credits' => 'Remaining Credits',
-        'next_reset' => 'Next Reset Date',
+        'next_reset' => 'Next Credits Reset Date',
+        'next_renewal' => 'Next Plan Renewal Date',
         'na' => 'N/A',
     ],
 ];
