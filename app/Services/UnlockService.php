@@ -8,13 +8,13 @@ use App\Models\Investor;
 use App\Enums\UnlockMethod;
 use App\Models\ContactUnlock;
 use App\Enums\ContactVisibility;
-use App\Services\PaymentService;
+use App\Contracts\PaymentGatewayInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class UnlockService
 {
     public function __construct(
-        protected PaymentService $paymentService
+        protected PaymentGatewayInterface $paymentGateway
     ) {}
 
     /**
@@ -47,7 +47,7 @@ class UnlockService
     /**
      * Attempt to unlock a contact for a user.
      */
-    public function unlock(User $user, Model $model, UnlockMethod $method): bool
+    public function unlock(User $user, Model $model, UnlockMethod $method, ?string $paymentOrderId = null): bool
     {
         if ($this->canViewContact($user, $model)) {
             return true;
@@ -60,8 +60,14 @@ class UnlockService
 
             $user->decrement('contact_credits');
         } else {
-            // Mock Pay Per Use
-            $this->paymentService->process(9.0);
+            // Pay Per Use
+            if ($paymentOrderId) {
+                $this->paymentGateway->capturePayment($paymentOrderId);
+            } else {
+                // Default/Legacy flow
+                $orderId = $this->paymentGateway->createOrder(9.0);
+                $this->paymentGateway->capturePayment($orderId);
+            }
         }
 
         ContactUnlock::create([

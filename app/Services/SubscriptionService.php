@@ -6,19 +6,19 @@ use App\Models\User;
 use App\Enums\PlanType;
 use App\Models\Subscription;
 use App\Enums\SubscriptionStatus;
-use App\Services\PaymentService;
+use App\Contracts\PaymentGatewayInterface;
 use Carbon\Carbon;
 
 class SubscriptionService
 {
     public function __construct(
-        protected PaymentService $paymentService
+        protected PaymentGatewayInterface $paymentGateway
     ) {}
 
     /**
      * Mock a subscription for a user.
      */
-    public function subscribe(User $user, PlanType $planType): Subscription
+    public function subscribe(User $user, PlanType $planType, ?string $paymentOrderId = null): Subscription
     {
         // Mock payment based on plan type
         $price = match($planType) {
@@ -28,7 +28,14 @@ class SubscriptionService
         };
 
         if ($price > 0) {
-            $this->paymentService->process($price);
+            if ($paymentOrderId) {
+                // If an order ID is provided (e.g., from PayPal), capture it.
+                $this->paymentGateway->capturePayment($paymentOrderId);
+            } else {
+                // Legacy support/Mock path
+                $orderId = $this->paymentGateway->createOrder($price);
+                $this->paymentGateway->capturePayment($orderId);
+            }
         }
 
         // Cancel existing active subscriptions
