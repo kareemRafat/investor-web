@@ -17,11 +17,12 @@ The project now has a polymorphic payment architecture. We can switch between ga
 When we restart, we will focus on the actual PayPal integration.
 
 ### 1. Backend: The PayPal Driver
-- [ ] **Install SDK:** `composer require paypal/paypal-checkout-sdk`.
+- [ ] **Install Package:** `composer require srmklive/paypal`.
+- [ ] **Publish Config:** `php artisan vendor:publish --provider="Srmklive\PayPal\Providers\PayPalServiceProvider"`.
 - [ ] **Create Driver:** Implement `app/Services/Payments/Drivers/PayPalGateway.php`.
 - [ ] **Logic:**
-    - `createOrder()`: Call PayPal API to get an `order_id`.
-    - `capturePayment()`: Verify and capture the funds after user approval.
+    - `createOrder()`: Use `setApiAppContext()` and `createOrder()` to get an `id`.
+    - `capturePayment()`: Use `captureOrder()` to verify and finalize the transaction.
 
 ### 2. Frontend: Component-Based UI Strategy
 We will break down the payment interface into reusable **Blade Components** for better organization and scalability:
