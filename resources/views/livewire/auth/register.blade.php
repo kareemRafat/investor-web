@@ -106,52 +106,99 @@
                         @push('styles')
                             <style>
                                 /* ===== REGISTER PAGE OVERRIDES ===== */
-                                .login-container .split-container {
-                                    height: auto;
+                                .login-container.register-page {
+                                    height: 100vh;
+                                    overflow: hidden;
+                                }
+
+                                .login-container.register-page .split-container {
+                                    height: 100vh;
+                                    flex-direction: row-reverse;
+                                }
+
+                                .login-container.register-page .form-side {
+                                    flex: 1;
+                                    height: 100vh;
+                                    overflow-y: auto;
+                                    padding: 60px 40px;
+                                    display: flex;
+                                    align-items: flex-start;
+                                    justify-content: center;
+                                }
+
+                                .login-container.register-page .brand-side {
+                                    flex: 1;
+                                    height: 100vh;
+                                    overflow: hidden;
                                 }
 
                                 .login-container .register-container {
-                                    max-width: 600px;
+                                    max-width: 650px;
+                                    padding-bottom: 40px;
                                 }
 
                                 .register-grid {
                                     display: grid;
                                     grid-template-columns: 1fr 1fr;
-                                    gap: 16px;
+                                    gap: 20px;
                                 }
 
-                                @media (max-width: 576px) {
+                                @media (max-width: 991px) {
+                                    .login-container.register-page {
+                                        height: auto;
+                                        overflow: visible;
+                                    }
+
+                                    .login-container.register-page .split-container {
+                                        height: auto;
+                                        flex-direction: column;
+                                    }
+
+                                    .login-container.register-page .form-side {
+                                        height: auto;
+                                        overflow: visible;
+                                        padding: 40px 20px;
+                                    }
+
                                     .register-grid {
                                         grid-template-columns: 1fr;
-                                    }
-                                }
-
-                                /* ===== Reverse layout for Register page only ===== */
-                                .login-container.register-page .split-container {
-                                    flex-direction: row-reverse;
-                                }
-
-                                /* موبايل: نخليه طبيعي */
-                                @media (max-width: 991px) {
-                                    .login-container.register-page .split-container {
-                                        flex-direction: column;
+                                        gap: 15px;
                                     }
                                 }
 
                                 /* Border أحمر للـ input لما فيه error */
-                                .form-control.is-invalid {
+                                .form-control.error {
                                     border-color: #ef4444 !important;
                                 }
 
-                                .form-control.is-invalid:focus {
+                                .form-control.error:focus {
                                     border-color: #ef4444 !important;
                                     box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
+                                }
+
+                                .form-label {
+                                    font-weight: 600;
+                                    color: #475569;
+                                    margin-bottom: 8px;
+                                }
+
+                                /* Uniform input heights */
+                                .form-control {
+                                    height: 48px;
+                                }
+
+                                /* Fixed gap for error messages to prevent layout shift */
+                                .error-message {
+                                    min-height: 18px;
+                                    font-size: 12px;
+                                    margin-top: 4px;
+                                    color: #ef4444;
                                 }
                             </style>
                         @endpush
 
                         <div class="login-container register-page">
-                            <div class="split-container h-100">
+                            <div class="split-container">
                                 <div class="form-side">
                                     <div class="form-container register-container">
                                         <form method="POST" action="/register">
@@ -159,32 +206,28 @@
 
                                             <!-- Logo & Title -->
                                             <div class="mb-4 text-center">
-                                                <img src="{{ asset('images/logo.svg') }}" alt="Logo"
-                                                    class="img-fluid mb-2" width="100">
-                                                <h1 class="logo-text">{{ __('auth.register.title') }}</h1>
-                                                <p class="subtitle">{{ __('auth.register.subtitle') }}</p>
+                                                <a href="/">
+                                                    <img src="{{ asset('images/logo.svg') }}" alt="Logo"
+                                                        class="img-fluid mb-3" width="80">
+                                                </a>
+                                                <h1 class="logo-text h3 mb-2">{{ __('auth.register.title') }}</h1>
+                                                <p class="subtitle mb-4">{{ __('auth.register.subtitle') }}</p>
                                             </div>
 
                                             <!-- Register with Google -->
-                                            <div
-                                                class="mb-3 bg_login_google d-flex justify-content-center align-items-center gap-4 p-2 py-3 small rounded-2">
+                                            <button type="button" class="google-btn mb-4">
                                                 <img src="{{ asset('images/google.svg') }}" alt="Google Logo"
-                                                    class="img-fluid" width="20" height="20">
+                                                    width="20" height="20">
                                                 <span>{{ __('pages.register.google') }}</span>
-                                            </div>
+                                            </button>
 
                                             <!-- OR -->
-                                            <div class="text-center mb-3">
-                                                <label
-                                                    class="or_label d-flex justify-content-center align-items-center bg-white">
-                                                    {{ __('pages.register.or') }}
-                                                </label>
-                                            </div>
+                                            <div class="or_label mb-5"></div>
 
                                             <!-- Fields Grid -->
-                                            <div class="register-grid mb-3">
+                                            <div class="register-grid mt-2">
                                                 <!-- Name -->
-                                                <div>
+                                                <div class="mb-2">
                                                     <label class="form-label">{{ __('pages.register.name') }}</label>
                                                     <input type="text" name="name"
                                                         class="form-control @error('name') error @enderror"
@@ -198,7 +241,7 @@
                                                 </div>
 
                                                 <!-- Email -->
-                                                <div>
+                                                <div class="mb-2">
                                                     <label class="form-label">{{ __('pages.register.email') }}</label>
                                                     <input type="email" name="email"
                                                         class="form-control @error('email') error @enderror"
@@ -212,7 +255,7 @@
                                                 </div>
 
                                                 <!-- Phone -->
-                                                <div>
+                                                <div class="mb-2">
                                                     <label class="form-label">{{ __('pages.register.phone') }}</label>
                                                     <input type="tel" name="phone"
                                                         class="form-control @error('phone') error @enderror"
@@ -226,11 +269,11 @@
                                                 </div>
 
                                                 <!-- Residence Country -->
-                                                <div>
+                                                <div class="mb-2">
                                                     <label
                                                         class="form-label">{{ __('pages.register.residence_country') }}</label>
                                                     <select name="residence_country"
-                                                        class="form-control  @error('residence_country') error @enderror">
+                                                        class="form-control @error('residence_country') error @enderror">
                                                         <option value="">
                                                             {{ __('profile.placeholders.select_country') }}</option>
                                                         @foreach (__('profile.countries') as $name)
@@ -248,7 +291,7 @@
                                                 </div>
 
                                                 <!-- Job Title -->
-                                                <div>
+                                                <div class="mb-2">
                                                     <label
                                                         class="form-label">{{ __('pages.register.job_title') }}</label>
                                                     <input type="text" name="job_title"
@@ -263,7 +306,7 @@
                                                 </div>
 
                                                 <!-- Birth Date -->
-                                                <div>
+                                                <div class="mb-2">
                                                     <label
                                                         class="form-label">{{ __('pages.register.birth_date') }}</label>
                                                     <input type="date" name="birth_date"
@@ -277,9 +320,11 @@
                                                 </div>
 
                                                 <!-- Password -->
-                                                <div>
-                                                    <x-auth.password-input name="password"
-                                                        label="{{ __('pages.login.password') }}" :error="$errors->first('password')
+                                                <div class="mb-2">
+                                                    <label class="form-label">{{ __('pages.login.password') }}</label>
+                                                    <x-auth.password-input name="password" label=""
+                                                        placeholder="{{ __('auth.register.password_placeholder') }}"
+                                                        :error="$errors->first('password')
                                                             ? $errorTranslations[$errors->first('password')][
                                                                     app()->getLocale()
                                                                 ] ?? $errors->first('password')
@@ -287,31 +332,35 @@
                                                 </div>
 
                                                 <!-- Password Confirmation -->
-                                                <div>
-                                                    <x-auth.password-input name="password_confirmation"
-                                                        :label="__('pages.register.password_confirmation')" />
+                                                <div class="mb-2">
+                                                    <label
+                                                        class="form-label">{{ __('pages.register.password_confirmation') }}</label>
+                                                    <x-auth.password-input name="password_confirmation" label=""
+                                                        placeholder="{{ __('auth.register.confirm_password_placeholder') }}" />
                                                 </div>
                                             </div>
 
                                             <!-- Terms -->
-                                            <div class="form-check mb-4">
-                                                <label class="d-flex align-items-center gap-2 small"
-                                                    style="color:#64748b;">
-                                                    <input type="checkbox" name="terms">
-                                                    {!! __('auth.register.accept_terms') !!}
-                                                </label>
+                                            <div class="mb-4">
+                                                <div class="form-check d-flex align-items-center gap-2">
+                                                    <input class="form-check-input" type="checkbox" name="terms"
+                                                        id="terms">
+                                                    <label class="form-check-label small text-secondary" for="terms">
+                                                        {!! __('auth.register.accept_terms') !!}
+                                                    </label>
+                                                </div>
                                             </div>
 
                                             <!-- Submit -->
-                                            <button type="submit" class="btn btn-login w-100">
+                                            <button type="submit" class="btn btn-login w-100 mb-4">
                                                 {{ __('pages.register.continue') }}
                                             </button>
 
                                             <!-- Login Link -->
-                                            <p class="text-center mt-4 small" style="color:#64748b;">
+                                            <p class="text-center small text-secondary">
                                                 {{ __('pages.register.already_have_account') }}
                                                 <a href="{{ route('login') }}"
-                                                    class="link-primary">{{ __('pages.register.login') }}</a>
+                                                    class="link-primary fw-bold">{{ __('pages.register.login') }}</a>
                                             </p>
                                         </form>
 
