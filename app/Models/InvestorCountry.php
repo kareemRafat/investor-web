@@ -20,6 +20,7 @@ class InvestorCountry extends Model
     {
         $options = trans('investor.steps.step2.options');
         $found = collect($options)->firstWhere('code', $this->country);
+
         return $found['name'] ?? $this->country;
     }
 }

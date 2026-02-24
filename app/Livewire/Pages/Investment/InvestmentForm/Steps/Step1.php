@@ -2,14 +2,13 @@
 
 namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
-use Livewire\Component;
 use App\Models\Investor;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step1 extends Component
 {
-
     #[Validate('required')]
     public $investorField;
 

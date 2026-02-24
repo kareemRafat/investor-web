@@ -20,14 +20,13 @@ class IdeaResource extends Model
         'equipment_type',
         'software',
         'software_type',
-        'website'
+        'website',
     ];
 
     public function idea()
     {
         return $this->belongsTo(Idea::class);
     }
-
 
     public function getTranslatedRequirementsAttribute(): array
     {
@@ -38,26 +37,26 @@ class IdeaResource extends Model
         }
 
         if ($this->staff === 'yes') {
-            $resources[] = __('idea.steps.step5.staff') . ($this->staff_number ? ' ( ' . $this->staff_number . ' )' : '');
+            $resources[] = __('idea.steps.step5.staff').($this->staff_number ? ' ( '.$this->staff_number.' )' : '');
         }
 
         if ($this->workers === 'yes') {
-            $resources[] = __('idea.steps.step5.workers') . ($this->workers_number ? ' ( ' . $this->workers_number . ' )' : '');
+            $resources[] = __('idea.steps.step5.workers').($this->workers_number ? ' ( '.$this->workers_number.' )' : '');
         }
 
         if ($this->executive_spaces === 'yes') {
             $resources[] = __('idea.steps.step5.executive_spaces')
-                . ($this->executive_spaces_type ? ' ( ' . __('idea.common.' . $this->executive_spaces_type) . ' )' : '');
+                .($this->executive_spaces_type ? ' ( '.__('idea.common.'.$this->executive_spaces_type).' )' : '');
         }
 
         if ($this->equipment === 'yes') {
             $resources[] = __('idea.steps.step5.equipment')
-                . ($this->equipment_type ? ' ( ' . __('idea.common.' . $this->equipment_type) . ' )' : '');
+                .($this->equipment_type ? ' ( '.__('idea.common.'.$this->equipment_type).' )' : '');
         }
 
         if ($this->software === 'yes') {
             $resources[] = __('idea.steps.step5.software')
-                . ($this->software_type ? ' ( ' . __('idea.common.' . $this->software_type) . ' )' : '');
+                .($this->software_type ? ' ( '.__('idea.common.'.$this->software_type).' )' : '');
         }
 
         if ($this->website === 'yes') {

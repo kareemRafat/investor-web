@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources\Investors;
 
-use UnitEnum;
-use BackedEnum;
-use App\Models\Investor;
-use Filament\Tables\Table;
-use Filament\Schemas\Schema;
-use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\Investors\Pages\EditInvestor;
-use App\Filament\Resources\Investors\Pages\ViewInvestor;
 use App\Filament\Resources\Investors\Pages\ListInvestors;
+use App\Filament\Resources\Investors\Pages\ViewInvestor;
 use App\Filament\Resources\Investors\Schemas\InvestorForm;
 use App\Filament\Resources\Investors\Tables\InvestorsTable;
+use App\Models\Investor;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+use UnitEnum;
 
 class InvestorResource extends Resource
 {

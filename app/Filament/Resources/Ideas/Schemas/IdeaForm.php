@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Ideas\Schemas;
 
 use App\Enums\ContactVisibility;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class IdeaForm
@@ -19,7 +19,7 @@ class IdeaForm
                     ->required()
                     ->columnSpanFull()
                     ->formatStateUsing(
-                        fn($state) => __('idea.steps.step1.options.' . $state)
+                        fn ($state) => __('idea.steps.step1.options.'.$state)
                     )
                     ->disabled(),
 

@@ -2,12 +2,11 @@
 
 namespace App\Filament\Resources\Users\RelationManagers;
 
-use Filament\Tables\Table;
-use Filament\Schemas\Schema;
+use App\Filament\Resources\Investors\Tables\InvestorsTable;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
-use App\Filament\Resources\Investors\Tables\InvestorsTable;
-
+use Filament\Schemas\Schema;
+use Filament\Tables\Table;
 
 class InvestorsRelationManager extends RelationManager
 {

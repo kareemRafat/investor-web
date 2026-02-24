@@ -18,7 +18,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->enum('plan_type', ['free','monthly', 'yearly']);
+            $table->enum('plan_type', ['free', 'monthly', 'yearly']);
 
             $table->timestamp('starts_at')->nullable();
             $table->timestamp('ends_at')->nullable();

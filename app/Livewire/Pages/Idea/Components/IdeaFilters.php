@@ -2,16 +2,16 @@
 
 namespace App\Livewire\Pages\Idea\Components;
 
-use Livewire\Component;
 use Livewire\Attributes\Url;
+use Livewire\Component;
 
 class IdeaFilters extends Component
 {
     #[Url(history: true)]
-    public $field = "";
+    public $field = '';
 
     #[Url(history: true)]
-    public $country = "";
+    public $country = '';
 
     #[Url(history: true)]
     public $cost_range = '';
@@ -58,10 +58,10 @@ class IdeaFilters extends Component
             ->select('id', 'label_ar', 'label_en', 'type')
             ->orderBy('id')
             ->get()
-            ->map(fn($range) => [
-                'id'    => $range->id,
+            ->map(fn ($range) => [
+                'id' => $range->id,
                 'label' => $range->$labelColumn,
-                'type'  => $range->type,
+                'type' => $range->type,
             ])
             ->toArray();
     }

@@ -3,15 +3,14 @@
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step2 extends Component
 {
-
     #[Validate([
-        'countries'   => 'required|array|min:1|max:3',
+        'countries' => 'required|array|min:1|max:3',
         'countries.*' => 'string',
     ])]
     public array $countries = [];
@@ -58,8 +57,9 @@ class Step2 extends Component
     {
         $ideaId = session('current_idea_id');
 
-        if (!$ideaId) {
+        if (! $ideaId) {
             $this->addError('countries', 'Idea not found in session.');
+
             return;
         }
 
@@ -84,7 +84,7 @@ class Step2 extends Component
         }
 
         // Delete what should deleted
-        if (!empty($toDelete)) {
+        if (! empty($toDelete)) {
             $idea->countries()->whereIn('country', $toDelete)->delete();
         }
     }

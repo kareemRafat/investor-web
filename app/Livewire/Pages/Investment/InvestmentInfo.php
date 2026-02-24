@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Pages\Investment;
 
-use Livewire\Component;
 use App\Models\Investor;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 
 class InvestmentInfo extends Component
 {
@@ -19,6 +19,7 @@ class InvestmentInfo extends Component
             'attachments',
         ])->findOrFail(request()->investment);
     }
+
     #[Title('Investments Info')]
     public function render()
     {

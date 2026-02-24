@@ -14,7 +14,7 @@ class ListUsers extends ListRecords
     {
         return [
             CreateAction::make()
-                ->label('اضافة مشرف جديد')
+                ->label('اضافة مشرف جديد'),
         ];
     }
 }

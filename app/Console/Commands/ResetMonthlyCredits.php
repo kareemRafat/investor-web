@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
 use App\Enums\PlanType;
-use Illuminate\Console\Command;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Console\Command;
 
 class ResetMonthlyCredits extends Command
 {
@@ -38,14 +38,14 @@ class ResetMonthlyCredits extends Command
                 'contact_credits' => 10,
                 'credits_reset_at' => Carbon::now()->addMonth(), // Or next year if plan is yearly
             ]);
-            
+
             // If they have a yearly plan, maybe we reset every month or every year?
             // Usually monthly reset even for yearly plans is common (10/month).
             // The roadmap just says "Reset credits to 10 for active subscribers".
-            
+
             if ($user->plan_type === PlanType::YEARLY) {
-                 // For yearly, we still reset monthly usually, or we give them 120 at once.
-                 // Let's assume 10 per month for both.
+                // For yearly, we still reset monthly usually, or we give them 120 at once.
+                // Let's assume 10 per month for both.
             }
 
             $count++;

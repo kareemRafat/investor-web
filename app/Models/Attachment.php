@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
@@ -18,8 +18,9 @@ class Attachment extends Model
     public function getSizeKbAttribute(): string
     {
         if (Storage::disk('public')->exists($this->path)) {
-            return number_format(Storage::disk('public')->size($this->path) / 1024, 0) . ' KB';
+            return number_format(Storage::disk('public')->size($this->path) / 1024, 0).' KB';
         }
+
         return '-';
     }
 }

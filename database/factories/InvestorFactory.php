@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Enums\InvestorStatus;
 use App\Enums\ContactVisibility;
+use App\Enums\InvestorStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InvestorFactory extends Factory

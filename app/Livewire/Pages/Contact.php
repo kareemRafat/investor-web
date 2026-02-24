@@ -2,9 +2,8 @@
 
 namespace App\Livewire\Pages;
 
-use Livewire\Component;
 use Livewire\Attributes\Title;
-
+use Livewire\Component;
 
 class Contact extends Component
 {

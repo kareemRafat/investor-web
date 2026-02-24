@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Livewire\Livewire;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class LivewireServiceProvider extends ServiceProvider
 {
@@ -21,7 +21,7 @@ class LivewireServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         Livewire::setUpdateRoute(function ($handle) {
+        Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
         });
 

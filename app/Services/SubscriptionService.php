@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use App\Enums\PlanType;
-use App\Models\Subscription;
-use App\Enums\SubscriptionStatus;
 use App\Contracts\PaymentGatewayInterface;
+use App\Enums\PlanType;
+use App\Enums\SubscriptionStatus;
+use App\Models\Subscription;
+use App\Models\User;
 use Carbon\Carbon;
 
 class SubscriptionService
@@ -16,18 +16,18 @@ class SubscriptionService
     ) {}
 
     /**
-     * Mock a subscription for a user.
+     * Subscribe a user to a plan.
      */
-    public function subscribe(User $user, PlanType $planType, ?string $paymentOrderId = null): Subscription
+    public function subscribe(User $user, PlanType $planType, ?string $paymentOrderId = null, bool $alreadyCaptured = false): Subscription
     {
-        // Mock payment based on plan type
-        $price = match($planType) {
+        // Mock payment based on plan type if no order ID or not already captured
+        $price = match ($planType) {
             PlanType::YEARLY => 999.0,
             PlanType::MONTHLY => 99.0,
             PlanType::FREE => 0.0,
         };
 
-        if ($price > 0) {
+        if ($price > 0 && ! $alreadyCaptured) {
             if ($paymentOrderId) {
                 // If an order ID is provided (e.g., from PayPal), capture it.
                 $this->paymentGateway->capturePayment($paymentOrderId);
@@ -43,7 +43,7 @@ class SubscriptionService
             'status' => SubscriptionStatus::CANCELLED,
         ]);
 
-        $durationMonths = match($planType) {
+        $durationMonths = match ($planType) {
             PlanType::YEARLY => 12,
             PlanType::MONTHLY => 1,
             PlanType::FREE => null,

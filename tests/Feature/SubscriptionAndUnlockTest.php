@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use App\Models\Idea;
 use App\Enums\PlanType;
-use App\Enums\UnlockMethod;
-use App\Models\Subscription;
 use App\Enums\SubscriptionStatus;
+use App\Enums\UnlockMethod;
 use App\Livewire\Components\UnlockContact;
+use App\Models\Idea;
+use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Livewire\Livewire;
@@ -137,7 +137,7 @@ class SubscriptionAndUnlockTest extends TestCase
 
         // Suddenly, subscription expires and command runs
         Artisan::call('subscriptions:check-expired', []); // In reality it might be time passing
-        
+
         // Let's manually expire it for the test because check-expired looks at ends_at
         Subscription::where('user_id', $user->id)->update(['ends_at' => now()->subMinute()]);
         Artisan::call('subscriptions:check-expired');

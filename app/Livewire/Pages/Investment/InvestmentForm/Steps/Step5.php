@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
 use App\Models\CostProfitRange;
-use Livewire\Attributes\Validate;
 use App\Models\InvestorContribution;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step5 extends Component
 {
@@ -27,7 +27,7 @@ class Step5 extends Component
             $contribution = InvestorContribution::where('investor_id', $investorId)->first();
 
             // افحص العمود فقط
-            $this->disableResources = !$contribution || is_null($contribution->money_contributions);
+            $this->disableResources = ! $contribution || is_null($contribution->money_contributions);
 
             if ($contribution) {
                 $this->data = array_merge(
@@ -44,7 +44,7 @@ class Step5 extends Component
         if ($value) {
             $requiredFields = ['investor_id']; // excepted field
             $this->data = collect($this->data)
-                ->mapWithKeys(fn($v, $k) => in_array($k, $requiredFields) ? [$k => $v] : [$k => null])
+                ->mapWithKeys(fn ($v, $k) => in_array($k, $requiredFields) ? [$k => $v] : [$k => null])
                 ->toArray();
         }
     }
@@ -52,7 +52,7 @@ class Step5 extends Component
     #[On('validate-step-5')]
     public function validateStep5()
     {
-        if (!$this->disableResources) {
+        if (! $this->disableResources) {
             $this->validate();
         }
 
@@ -67,7 +67,7 @@ class Step5 extends Component
 
         if ($investorId) {
             $clean = collect($this->data)
-                ->map(fn($v) => $v === '' ? null : $v)
+                ->map(fn ($v) => $v === '' ? null : $v)
                 ->toArray();
 
             InvestorContribution::updateOrCreate(
@@ -81,14 +81,14 @@ class Step5 extends Component
     {
         return [
             'data.money_contributions.required' => __('investor.validation.step5.required'),
-            'data.money_contributions.integer'  => __('investor.validation.step5.invalid'),
+            'data.money_contributions.integer' => __('investor.validation.step5.invalid'),
         ];
     }
 
     public function render()
     {
         return view('livewire.pages.investment.investment-form.steps.step5', [
-            'moneyRanges' =>  CostProfitRange::where('type', 'money_contribution')->orderBy('id')->get()
+            'moneyRanges' => CostProfitRange::where('type', 'money_contribution')->orderBy('id')->get(),
         ]);
     }
 }

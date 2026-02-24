@@ -3,9 +3,9 @@
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step6 extends Component
 {
@@ -47,19 +47,22 @@ class Step6 extends Component
         $total = array_sum($this->data);
         if ($total !== 100) {
             $this->addError('total', __('idea.steps.step6.must_equal'));
+
             return;
         }
 
         // continue with session of the idea
         $ideaId = session('current_idea_id');
-        if (!$ideaId) {
+        if (! $ideaId) {
             $this->addError('data.company', 'Idea not found in session.');
+
             return;
         }
 
         $idea = Idea::find($ideaId);
-        if (!$idea) {
+        if (! $idea) {
             $this->addError('data.company', 'Idea not found.');
+
             return;
         }
 
@@ -78,11 +81,11 @@ class Step6 extends Component
     {
         return [
             // step6
-            'data.company.*'   => __('idea.validation.step6.company'),
-            'data.assets.*'    => __('idea.validation.step6.assets'),
-            'data.salaries.*'  => __('idea.validation.step6.salaries'),
+            'data.company.*' => __('idea.validation.step6.company'),
+            'data.assets.*' => __('idea.validation.step6.assets'),
+            'data.salaries.*' => __('idea.validation.step6.salaries'),
             'data.operating.*' => __('idea.validation.step6.operating'),
-            'data.other.*'     => __('idea.validation.step6.other'),
+            'data.other.*' => __('idea.validation.step6.other'),
         ];
     }
 

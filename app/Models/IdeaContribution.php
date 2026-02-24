@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 
 class IdeaContribution extends Model
 {
@@ -15,7 +15,7 @@ class IdeaContribution extends Model
         'money_amount',
         'money_percent',
         'person_money_amount',
-        'person_money_percent'
+        'person_money_percent',
     ];
 
     public function idea()
@@ -42,17 +42,17 @@ class IdeaContribution extends Model
                     $details = [];
 
                     // إضافة المبلغ مع العملة
-                    if (!is_null($this->money_amount)) {
+                    if (! is_null($this->money_amount)) {
                         $currency = $this->money_currency ?? __('idea.currency.sar'); // أو $this->money_currency موجود عندك
-                        $details[] = number_format($this->money_amount, 2) . ' ' . $currency;
+                        $details[] = number_format($this->money_amount, 2).' '.$currency;
                     }
 
-                    if (!is_null($this->money_percent)) {
-                        $details[] = $this->money_percent . '%';
+                    if (! is_null($this->money_percent)) {
+                        $details[] = $this->money_percent.'%';
                     }
 
-                    if (!empty($details)) {
-                        $capitalLine .= ' : ' . implode(', ', $details);
+                    if (! empty($details)) {
+                        $capitalLine .= ' : '.implode(', ', $details);
                     }
 
                     $results[] = $capitalLine;
@@ -61,8 +61,8 @@ class IdeaContribution extends Model
                 case 'personal':
                     $personalLine = __('idea.steps.step7.personal');
 
-                    if (!is_null($this->staff)) {
-                        $personalLine .= ' : ' . __('idea.steps.step7.' . $this->staff);
+                    if (! is_null($this->staff)) {
+                        $personalLine .= ' : '.__('idea.steps.step7.'.$this->staff);
                     }
 
                     $results[] = $personalLine;
@@ -73,25 +73,25 @@ class IdeaContribution extends Model
                     $capitalLine = __('idea.steps.step7.capital');
                     $capitalDetails = [];
 
-                    if (!is_null($this->person_money_amount)) {
+                    if (! is_null($this->person_money_amount)) {
                         $currency = $this->person_money_currency ?? __('idea.currency.sar');
-                        $capitalDetails[] = number_format($this->person_money_amount, 2) . ' ' . $currency;
+                        $capitalDetails[] = number_format($this->person_money_amount, 2).' '.$currency;
                     }
 
-                    if (!is_null($this->person_money_percent)) {
-                        $capitalDetails[] = $this->person_money_percent . '%';
+                    if (! is_null($this->person_money_percent)) {
+                        $capitalDetails[] = $this->person_money_percent.'%';
                     }
 
-                    if (!empty($capitalDetails)) {
-                        $capitalLine .= ' : ' . implode(', ', $capitalDetails);
+                    if (! empty($capitalDetails)) {
+                        $capitalLine .= ' : '.implode(', ', $capitalDetails);
                     }
 
                     $results[] = $capitalLine;
 
                     // مساهمة شخصية
                     $personalLine = __('idea.steps.step7.personal');
-                    if (!is_null($this->staff_person_money)) {
-                        $personalLine .= ' : ' . __('idea.steps.step7.' . $this->staff_person_money);
+                    if (! is_null($this->staff_person_money)) {
+                        $personalLine .= ' : '.__('idea.steps.step7.'.$this->staff_person_money);
                     }
 
                     $results[] = $personalLine;

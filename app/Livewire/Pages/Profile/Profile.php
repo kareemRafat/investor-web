@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Pages\Profile;
 
-use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 #[Layout('components.layouts.profile')]
 class Profile extends Component
@@ -13,10 +13,15 @@ class Profile extends Component
     public $user;
 
     public $name;
+
     public $email;
+
     public $phone;
+
     public $job_title;
+
     public $residence_country;
+
     public $birth_date;
 
     public function mount()
@@ -39,7 +44,7 @@ class Profile extends Component
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('users')->ignore($this->user->id)
+                Rule::unique('users')->ignore($this->user->id),
             ],
             'phone' => ['required', 'string', 'max:20'],
             'job_title' => ['required', 'string', 'max:100'],

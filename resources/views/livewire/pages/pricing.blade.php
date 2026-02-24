@@ -112,7 +112,7 @@
                             </li>
                         </ul>
 
-                        <a href="{{ route('payment.page', ['plan' => 'monthly']) }}" wire:navigate
+                        <a href="{{ route('payment.page', ['plan' => 'monthly']) }}"
                            class="btn {{ auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY ? 'btn-secondary disabled' : 'btn-primary' }} w-100 py-2 fw-bold shadow-sm rounded-3">
                             @if (auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY)
                                 {{ __('pages.pricing.current_plan') }}
@@ -174,7 +174,7 @@
                             </li>
                         </ul>
 
-                        <a href="{{ route('payment.page', ['plan' => 'yearly']) }}" wire:navigate
+                        <a href="{{ route('payment.page', ['plan' => 'yearly']) }}"
                            class="btn {{ auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY ? 'btn-secondary disabled' : 'btn-outline-primary' }} w-100 py-2 fw-bold rounded-3">
                             @if (auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY)
                                 {{ __('pages.pricing.current_plan') }}

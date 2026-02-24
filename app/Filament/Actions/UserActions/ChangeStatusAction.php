@@ -6,7 +6,6 @@ use App\Enums\UserStatus;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 
-
 class ChangeStatusAction
 {
     public static function make(): Action
@@ -30,9 +29,9 @@ class ChangeStatusAction
             ->requiresConfirmation()
             ->modalDescription(function ($record) {
                 if ($record->status === UserStatus::ACTIVE) {
-                    return "هل انت متأكد من تعطيل المستخدم ؟";
+                    return 'هل انت متأكد من تعطيل المستخدم ؟';
                 } else {
-                    return "هل انت متأكد من تنشيط المستخدم ؟";
+                    return 'هل انت متأكد من تنشيط المستخدم ؟';
                 }
             })
             ->action(function ($record) {
@@ -40,7 +39,7 @@ class ChangeStatusAction
                 $record->update([
                     'status' => $record->status === UserStatus::ACTIVE
                         ? UserStatus::INACTIVE
-                        : UserStatus::ACTIVE
+                        : UserStatus::ACTIVE,
                 ]);
 
                 Notification::make()

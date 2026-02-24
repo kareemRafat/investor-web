@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
-use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
 
-enum PlanType: string implements HasLabel, HasColor
+enum PlanType: string implements HasColor, HasLabel
 {
     case FREE = 'free';
     case MONTHLY = 'monthly';
@@ -20,7 +20,7 @@ enum PlanType: string implements HasLabel, HasColor
         };
     }
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::FREE => 'gray',

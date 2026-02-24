@@ -2,19 +2,16 @@
 
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
-use App\Enums\ContactVisibility;
 use App\Models\Idea;
 use App\Traits\HandlesAttachmentUpload;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use Livewire\Attributes\On;
-use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Step9 extends Component
 {
-    use WithFileUploads, HandlesAttachmentUpload;
+    use HandlesAttachmentUpload, WithFileUploads;
 
     #[Validate([
         'data.idea_title' => 'required|string|max:255',
@@ -35,10 +32,14 @@ class Step9 extends Component
     public function mount(): void
     {
         $ideaId = session('current_idea_id');
-        if (!$ideaId) return;
+        if (! $ideaId) {
+            return;
+        }
 
         $idea = Idea::with('attachments')->find($ideaId);
-        if (!$idea) return;
+        if (! $idea) {
+            return;
+        }
 
         $this->data['summary'] = $idea?->summary;
         $this->data['idea_title'] = $idea?->title;
@@ -56,10 +57,11 @@ class Step9 extends Component
     public function validateStep9()
     {
         $user = auth()->user();
-        
+
         // Block Free users from choosing Open
         if ($this->data['contact_visibility'] === 'open' && $user->plan_type === \App\Enums\PlanType::FREE) {
             $this->addError('data.contact_visibility', __('idea.steps.step9.upgrade_required_for_open'));
+
             return;
         }
 
@@ -72,6 +74,7 @@ class Step9 extends Component
             if ($idea && $idea->contact_visibility?->value === 'closed' && $this->data['contact_visibility'] === 'open') {
                 if ($user->contact_credits < 1) {
                     $this->addError('data.contact_visibility', __('pages.unlock_contact.error_no_credits'));
+
                     return;
                 }
             }
@@ -91,16 +94,16 @@ class Step9 extends Component
     {
         return [
             'data.idea_title.required' => __('idea.validation.step9.idea_title_required'),
-            'data.idea_title.string'   => __('idea.validation.step9.idea_title_string'),
-            'data.idea_title.max'      => __('idea.validation.step9.idea_title_max'),
+            'data.idea_title.string' => __('idea.validation.step9.idea_title_string'),
+            'data.idea_title.max' => __('idea.validation.step9.idea_title_max'),
 
             'data.summary.required' => __('idea.validation.step9.summary_required'),
-            'data.summary.string'   => __('idea.validation.step9.summary_string'),
-            'data.summary.max'      => __('idea.validation.step9.summary_max'),
+            'data.summary.string' => __('idea.validation.step9.summary_string'),
+            'data.summary.max' => __('idea.validation.step9.summary_max'),
 
-            'data.attachment.file'  => __('idea.validation.step9.attachments_file'),
+            'data.attachment.file' => __('idea.validation.step9.attachments_file'),
             'data.attachment.mimes' => __('idea.validation.step9.attachments_mimes'),
-            'data.attachment.max'   => __('idea.validation.step9.attachments_max'),
+            'data.attachment.max' => __('idea.validation.step9.attachments_max'),
 
         ];
     }
@@ -108,10 +111,14 @@ class Step9 extends Component
     private function syncData(): void
     {
         $ideaId = session('current_idea_id');
-        if (!$ideaId) return;
+        if (! $ideaId) {
+            return;
+        }
 
         $idea = Idea::find($ideaId);
-        if (!$idea) return;
+        if (! $idea) {
+            return;
+        }
 
         $user = auth()->user();
         $newVisibility = $this->data['contact_visibility'];
@@ -119,7 +126,7 @@ class Step9 extends Component
         // If changing from closed to open, mark for deduction on finish
         if ($idea->contact_visibility?->value === 'closed' && $newVisibility === 'open') {
             session(['pending_idea_visibility_credit' => true]);
-        } else if ($newVisibility === 'closed') {
+        } elseif ($newVisibility === 'closed') {
             // Reset if user changed their mind back to closed
             session()->forget('pending_idea_visibility_credit');
         }
@@ -133,7 +140,7 @@ class Step9 extends Component
             'created_at' => $this->data['created_at'],
         ]);
 
-        //! store attachments
+        // ! store attachments
         $this->handleAttachmentUpload($idea, $this->data['attachment']);
 
         // Update current attachment name after upload

@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\Ideas\Pages;
 
+use App\Filament\Actions\IdeaAction\ChangeIdeaStatusAction;
+use App\Filament\Resources\Ideas\IdeaResource;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
-use App\Filament\Resources\Ideas\IdeaResource;
-use App\Filament\Actions\IdeaAction\ChangeIdeaStatusAction;
 
 class ViewIdea extends ViewRecord
 {
@@ -21,11 +21,12 @@ class ViewIdea extends ViewRecord
                 ->icon('heroicon-o-arrow-left')
                 ->url(function () {
                     $resource = static::getResource();
+
                     return $resource::getUrl('index');
                 })
                 ->color('gray'), // EditAction::make(),
 
-                ChangeIdeaStatusAction::make(),
+            ChangeIdeaStatusAction::make(),
 
         ];
     }

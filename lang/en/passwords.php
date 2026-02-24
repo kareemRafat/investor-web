@@ -22,5 +22,4 @@ return [
     'password_reset_sent' => '!password reset Link has been sent',
     'email_sent' => '!Email sent successfully',
 
-
 ];

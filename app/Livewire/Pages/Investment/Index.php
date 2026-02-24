@@ -3,22 +3,28 @@
 namespace App\Livewire\Pages\Investment;
 
 use App\Models\Investor;
-use Livewire\Component;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
-use Illuminate\Support\Collection;
+use Livewire\Component;
 
 class Index extends Component
 {
     public Collection $investors;
+
     public bool $hasMore = true;
+
     public ?int $lastId = null;
+
     public int $perPage = 5;
 
     // Filters
     public $field = null;
+
     public $country = null;
+
     public $cost_range = null;
+
     public $contributionType = null;
 
     public function mount(): void
@@ -51,7 +57,7 @@ class Index extends Component
 
     public function loadMore(): void
     {
-        if (!$this->hasMore) {
+        if (! $this->hasMore) {
             return;
         }
 
@@ -59,14 +65,13 @@ class Index extends Component
             ->with([
                 'resources',
                 'contributions.contributionRange',
-                'countries'
+                'countries',
             ])
             ->where('status', 'approved')
             // pagination by id
             ->when(
                 $this->lastId !== null,
-                fn($q) =>
-                $q->where('id', '<', $this->lastId)
+                fn ($q) => $q->where('id', '<', $this->lastId)
             )
 
             // ---- filters ----
@@ -74,40 +79,33 @@ class Index extends Component
             // field filter
             ->when(
                 $this->field,
-                fn($q) =>
-                $q->where('investor_field', $this->field)
+                fn ($q) => $q->where('investor_field', $this->field)
             )
 
             // cost_range filter
             ->when(
                 $this->cost_range,
-                fn($q) =>
-                $q->whereHas(
+                fn ($q) => $q->whereHas(
                     'contributions',
-                    fn($c) =>
-                    $c->where('money_contributions', $this->cost_range)
+                    fn ($c) => $c->where('money_contributions', $this->cost_range)
                 )
             )
 
             // country filter
             ->when(
                 $this->country,
-                fn($q) =>
-                $q->whereHas(
+                fn ($q) => $q->whereHas(
                     'countries',
-                    fn($c) =>
-                    $c->where('country', $this->country)
+                    fn ($c) => $c->where('country', $this->country)
                 )
             )
 
             // contribution type
             ->when(
                 $this->contributionType,
-                fn($q) =>
-                $q->whereHas(
+                fn ($q) => $q->whereHas(
                     'contributions',
-                    fn($c) =>
-                    $c->where('contribute_type', $this->contributionType)
+                    fn ($c) => $c->where('contribute_type', $this->contributionType)
                 )
             )
 
@@ -117,6 +115,7 @@ class Index extends Component
 
         if ($query->isEmpty()) {
             $this->hasMore = false;
+
             return;
         }
 
@@ -140,7 +139,7 @@ class Index extends Component
     {
         return view('livewire.pages.investment.index', [
             'investors' => $this->investors,
-            'hasMore'   => $this->hasMore,
+            'hasMore' => $this->hasMore,
         ]);
     }
 }

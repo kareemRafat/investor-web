@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Pages;
 
-use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('components.layouts.blank')]
 class Landing extends Component

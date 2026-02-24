@@ -2,15 +2,16 @@
 
 namespace App\Livewire\Pages\Idea;
 
+use App\Models\CostProfitRange;
 use App\Models\Idea;
-use Livewire\Component;
 use App\Models\Investor;
 use Livewire\Attributes\Title;
-use App\Models\CostProfitRange;
+use Livewire\Component;
 
 class IdeaSummary extends Component
 {
     public Idea $idea;
+
     public $amount = 4;
 
     public function mount(Idea $idea)
@@ -48,7 +49,7 @@ class IdeaSummary extends Component
             $ideaCosts = $this->idea->costs->load('range'); // جلب range
             $investorRange = $investor->contributions?->contributionRange;
 
-            if (!$investorRange) {
+            if (! $investorRange) {
                 return false;
             }
 
@@ -58,10 +59,9 @@ class IdeaSummary extends Component
                     $investorRange->max_value >= $cost->range->min_value;
             });
 
-            if (!$matches) {
+            if (! $matches) {
                 return false;
             }
-
 
             return true;
         })->take($this->amount);

@@ -2,18 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\IdeaCost;
 use App\Enums\IdeaStatus;
-use App\Models\IdeaProfit;
-use App\Models\IdeaReturn;
-use App\Models\IdeaExpense;
-use App\Models\IdeaResource;
-use App\Models\IdeaContribution;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Idea extends Model
 {
@@ -30,7 +23,7 @@ class Idea extends Model
         'approved_by',
         'rejection_reason',
         'admin_note',
-        'contact_visibility'
+        'contact_visibility',
     ];
 
     protected $casts = [
@@ -39,7 +32,7 @@ class Idea extends Model
         'contact_visibility' => \App\Enums\ContactVisibility::class,
     ];
 
-    //! Relations
+    // ! Relations
 
     public function contactUnlocks(): MorphMany
     {

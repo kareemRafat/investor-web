@@ -34,6 +34,7 @@
     <x-partials.footer />
 
     @livewireScripts
+    @stack('scripts')
 
     {{-- to prevent scroll down when choose input --}}
     <script>

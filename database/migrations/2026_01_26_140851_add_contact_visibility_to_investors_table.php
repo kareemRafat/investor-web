@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('investors', function (Blueprint $table) {
-             $table->enum('contact_visibility', ['open', 'closed'])
+            $table->enum('contact_visibility', ['open', 'closed'])
                 ->default('closed')
                 ->after('summary');
         });

@@ -3,18 +3,22 @@
 namespace App\Livewire\Pages\Profile;
 
 use App\Models\Idea;
-use Livewire\Component;
-use Livewire\Attributes\Layout;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('components.layouts.profile')]
 class Ideas extends Component
 {
     public Collection $ideas;
+
     public bool $hasMore = true;
+
     public ?int $lastId = null;
+
     public int $perPage = 7;
+
     public ?string $statusFilter = null;
 
     public function mount(): void
@@ -43,7 +47,7 @@ class Ideas extends Component
 
     public function loadMore(): void
     {
-        if (!$this->hasMore) {
+        if (! $this->hasMore) {
             return;
         }
 
@@ -52,11 +56,11 @@ class Ideas extends Component
             ->where('user_id', Auth::id())
             ->when(
                 $this->statusFilter !== null,
-                fn($q) => $q->where('status', $this->statusFilter)
+                fn ($q) => $q->where('status', $this->statusFilter)
             )
             ->when(
                 $this->lastId !== null,
-                fn($q) => $q->where('id', '<', $this->lastId)
+                fn ($q) => $q->where('id', '<', $this->lastId)
             )
             ->orderByDesc('id')
             ->limit($this->perPage + 1)
@@ -64,6 +68,7 @@ class Ideas extends Component
 
         if ($query->isEmpty()) {
             $this->hasMore = false;
+
             return;
         }
 

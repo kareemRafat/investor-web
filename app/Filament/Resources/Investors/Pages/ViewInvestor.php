@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\Investors\Pages;
 
 use App\Filament\Actions\InvestorAction\ChangeInvestorStatusAction;
+use App\Filament\Resources\Investors\InvestorResource;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
-use App\Filament\Resources\Investors\InvestorResource;
 
 class ViewInvestor extends ViewRecord
 {
@@ -21,6 +21,7 @@ class ViewInvestor extends ViewRecord
                 ->icon('heroicon-o-arrow-left')
                 ->url(function () {
                     $resource = static::getResource();
+
                     return $resource::getUrl('index');
                 })
                 ->color('gray'),

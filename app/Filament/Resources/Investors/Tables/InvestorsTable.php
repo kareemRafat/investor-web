@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources\Investors\Tables;
 
-use Filament\Tables\Table;
-use Filament\Actions\Action;
 use App\Enums\InvestorStatus;
 use App\Filament\Resources\Investors\InvestorResource;
-use Filament\Actions\ViewAction;
-use Filament\Notifications\Notification;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class InvestorsTable
@@ -21,8 +21,7 @@ class InvestorsTable
     {
         return $table
             ->modifyQueryUsing(
-                fn($query) =>
-                $query->with([
+                fn ($query) => $query->with([
                     'user:id,name,email',
                     'countries',
                     'contributions:id,investor_id,contribute_type,money_contributions',
@@ -39,7 +38,7 @@ class InvestorsTable
                 TextColumn::make('id')
                     ->label('#')
                     ->state(
-                        fn($rowLoop, $livewire) => ($livewire->getTableRecordsPerPage() * ($livewire->getTablePage() - 1))
+                        fn ($rowLoop, $livewire) => ($livewire->getTableRecordsPerPage() * ($livewire->getTablePage() - 1))
                             + $rowLoop->iteration
                     )
                     ->alignCenter(),
@@ -48,7 +47,7 @@ class InvestorsTable
                     ->label('مجال الاستثمار')
                     ->color('teal')
                     ->weight('medium')
-                    ->formatStateUsing(fn($state) => __('investor.steps.step1.options.' . $state))
+                    ->formatStateUsing(fn ($state) => __('investor.steps.step1.options.'.$state))
                     ->searchable(),
 
                 TextColumn::make('user.name')
@@ -79,9 +78,11 @@ class InvestorsTable
                     ->color('indigo')
                     ->getStateUsing(function ($record) {
                         $options = __('idea.steps.step2.options');
+
                         return $record->countries->map(function ($country) use ($options) {
                             $found = collect($options)->firstWhere('code', $country->country);
                             $name = $found['name'] ?? $country->country;
+
                             return $name;
                         })->toArray();
                     })
@@ -111,6 +112,7 @@ class InvestorsTable
                     ->label('مجال الإستثمار')
                     ->options(function () {
                         $fields = __('investor.steps.step1.options');
+
                         return collect($fields)->toArray();
                     })
                     ->searchable(),
@@ -119,6 +121,7 @@ class InvestorsTable
                     ->label('الدولة')
                     ->options(function () {
                         $countries = __('investor.steps.step2.options', [], 'ar');
+
                         return collect($countries)->mapWithKeys(function ($country) {
                             return [
                                 $country['code'] => $country['name'],
@@ -128,7 +131,7 @@ class InvestorsTable
                     ->query(function (Builder $query, array $data) { // لاحظ تغيير $state لـ $data
                         return $query->when(
                             $data['value'],
-                            fn(Builder $query, $value): Builder => $query->whereHas('countries', function ($q) use ($value) {
+                            fn (Builder $query, $value): Builder => $query->whereHas('countries', function ($q) use ($value) {
                                 $q->where('country', $value);
                             })
                         );
@@ -145,9 +148,9 @@ class InvestorsTable
 
             ->recordActions([
                 Action::make('toggle_visibility')
-                    ->label(fn($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'إخفاء البيانات' : 'إظهار البيانات')
-                    ->icon(fn($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'heroicon-o-eye-slash' : 'heroicon-o-eye')
-                    ->color(fn($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'danger' : 'success')
+                    ->label(fn ($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'إخفاء البيانات' : 'إظهار البيانات')
+                    ->icon(fn ($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'heroicon-o-eye-slash' : 'heroicon-o-eye')
+                    ->color(fn ($record) => $record->contact_visibility === \App\Enums\ContactVisibility::OPEN ? 'danger' : 'success')
                     ->requiresConfirmation()
                     ->action(function ($record) {
                         $newVisibility = $record->contact_visibility === \App\Enums\ContactVisibility::OPEN
@@ -163,8 +166,7 @@ class InvestorsTable
                     }),
                 ViewAction::make()
                     ->url(
-                        fn($record): string =>
-                        InvestorResource::getUrl('view', ['record' => $record])
+                        fn ($record): string => InvestorResource::getUrl('view', ['record' => $record])
                     ),
             ])
             ->toolbarActions([

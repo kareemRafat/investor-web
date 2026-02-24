@@ -9,7 +9,7 @@ class Countryable extends Model
     protected $fillable = [
         'country',
         'countryable_type',
-        'countryable_id'
+        'countryable_id',
     ];
 
     public function countryable()

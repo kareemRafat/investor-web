@@ -45,7 +45,7 @@ return new class extends Migration
                 'status',
                 'approved_at',
                 'approved_by',
-                'admin_note'
+                'admin_note',
             ]);
         });
     }

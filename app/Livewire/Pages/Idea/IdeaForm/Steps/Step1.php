@@ -3,9 +3,9 @@
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step1 extends Component
 {

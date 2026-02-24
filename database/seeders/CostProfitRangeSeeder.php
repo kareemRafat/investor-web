@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CostProfitRangeSeeder extends Seeder
 {
@@ -117,7 +116,7 @@ class CostProfitRangeSeeder extends Seeder
             ],
 
             // money contribution
-             [
+            [
                 'min_value' => 1000,
                 'max_value' => 5000,
                 'label_en' => '$1,000 to $5,000<br>(3,700 to 18,500 SAR)',
@@ -216,7 +215,6 @@ class CostProfitRangeSeeder extends Seeder
                 'type' => 'money_contribution',
             ],
         ];
-
 
         DB::table('cost_profit_ranges')->insert($ranges);
     }

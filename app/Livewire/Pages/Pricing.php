@@ -3,17 +3,17 @@
 namespace App\Livewire\Pages;
 
 use App\Enums\PlanType;
-use Livewire\Component;
-use Livewire\Attributes\Title;
-use Illuminate\Support\Facades\Auth;
 use App\Services\SubscriptionService;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
+use Livewire\Component;
 
 class Pricing extends Component
 {
     #[Title('Pricing')]
     public function selectPlan(string $plan, SubscriptionService $subscriptionService)
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login');
         }
 
@@ -28,6 +28,7 @@ class Pricing extends Component
             $subscriptionService->subscribe($user, $planType);
             $this->dispatch('plan-updated');
             session()->flash('subscription_success', __('pages.profile.plan_updated_success'));
+
             return redirect()->route('main.profile');
         }
 
@@ -37,16 +38,16 @@ class Pricing extends Component
     public function isUpgrade(string $targetPlan): bool
     {
         $user = Auth::user();
-        
+
         // For guests, highlight the Monthly plan (default behavior)
-        if (!$user) {
+        if (! $user) {
             return $targetPlan === 'monthly';
         }
 
         $currentPlan = $user->plan_type;
         $target = PlanType::tryFrom($targetPlan);
 
-        if (!$currentPlan || !$target) {
+        if (! $currentPlan || ! $target) {
             return false;
         }
 

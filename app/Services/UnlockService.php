@@ -2,13 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use App\Models\Idea;
-use App\Models\Investor;
+use App\Contracts\PaymentGatewayInterface;
+use App\Enums\ContactVisibility;
 use App\Enums\UnlockMethod;
 use App\Models\ContactUnlock;
-use App\Enums\ContactVisibility;
-use App\Contracts\PaymentGatewayInterface;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UnlockService
@@ -54,7 +52,7 @@ class UnlockService
         }
 
         if ($method === UnlockMethod::CREDIT) {
-            if (!$user->hasCredits()) {
+            if (! $user->hasCredits()) {
                 return false;
             }
 

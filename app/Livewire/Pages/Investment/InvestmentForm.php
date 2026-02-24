@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Pages\Investment;
 
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 
 class InvestmentForm extends Component
 {
     public int $currentStep = 1;
+
     public int $maxAllowedStep = 1;
+
     public int $totalSteps = 7;
 
     public function nextStep()

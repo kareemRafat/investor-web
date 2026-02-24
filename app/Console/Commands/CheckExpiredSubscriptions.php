@@ -2,13 +2,13 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
 use App\Enums\PlanType;
-use App\Models\Subscription;
-use Illuminate\Console\Command;
 use App\Enums\SubscriptionStatus;
-use Illuminate\Support\Facades\DB;
+use App\Models\Subscription;
+use App\Models\User;
 use App\Notifications\SubscriptionExpiredNotification;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class CheckExpiredSubscriptions extends Command
 {
@@ -40,6 +40,7 @@ class CheckExpiredSubscriptions extends Command
 
         if ($expiredSubscriptions->isEmpty()) {
             $this->info('No expired subscriptions found.');
+
             return;
         }
 
@@ -58,7 +59,7 @@ class CheckExpiredSubscriptions extends Command
                         'contact_credits' => 0,
                     ]);
 
-                    $subscription->user->notify(new SubscriptionExpiredNotification());
+                    $subscription->user->notify(new SubscriptionExpiredNotification);
                 }
             });
             $count++;

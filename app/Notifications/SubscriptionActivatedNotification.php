@@ -5,14 +5,14 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-class SubscriptionExpiredNotification extends Notification
+class SubscriptionActivatedNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public string $planLabel)
     {
         //
     }
@@ -24,7 +24,7 @@ class SubscriptionExpiredNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database']; // Keeping it simple for now
+        return ['database'];
     }
 
     /**
@@ -35,9 +35,9 @@ class SubscriptionExpiredNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => __('pages.notifications.subscription_expired_title'),
-            'message' => __('pages.notifications.subscription_expired_message'),
-            'action_url' => route('main.pricing'),
+            'title' => __('pages.notifications.subscription_activated_title'),
+            'message' => __('pages.notifications.subscription_activated_message', ['plan' => $this->planLabel]),
+            'action_url' => route('main.profile'),
         ];
     }
 }

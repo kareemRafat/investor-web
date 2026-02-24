@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class InvestorContribution extends Model
 {
@@ -18,7 +18,7 @@ class InvestorContribution extends Model
         'money_percent',
         'person_money_amount',
         'person_money_percent',
-        'money_contributions'
+        'money_contributions',
     ];
 
     public function investor()
@@ -28,11 +28,11 @@ class InvestorContribution extends Model
 
     public function getMoneyContributionLabelAttribute(): ?string
     {
-        if (!$this->money_contributions) {
+        if (! $this->money_contributions) {
             return null;
         }
 
-        return __('investor.steps.step5.money_contribution_ranges.amount_' . $this->money_contributions);
+        return __('investor.steps.step5.money_contribution_ranges.amount_'.$this->money_contributions);
     }
 
     public function contributionRange()
@@ -47,30 +47,30 @@ class InvestorContribution extends Model
 
         // نوع المساهمة
         if ($this->contribute_type) {
-            $lines[] = __('investor.steps.step4.' . $this->contribute_type);
+            $lines[] = __('investor.steps.step4.'.$this->contribute_type);
         }
 
         // لو فيه مساهمة مالية
         if ($this->money_amount) {
-            $lines[] = __('investor.common.money') . ': ' . number_format($this->money_amount) . ' ' . __('investor.common.currency');
+            $lines[] = __('investor.common.money').': '.number_format($this->money_amount).' '.__('investor.common.currency');
         }
 
         if ($this->money_percent) {
-            $lines[] = __('investor.common.percentage') . ': ' . $this->money_percent . '%';
+            $lines[] = __('investor.common.percentage').': '.$this->money_percent.'%';
         }
 
         // لو فيه مساهمة شخصية + مالية
         if ($this->person_money_amount) {
-            $lines[] = __('investor.common.person_money') . ': ' . number_format($this->person_money_amount) . ' ' . __('investor.common.currency');
+            $lines[] = __('investor.common.person_money').': '.number_format($this->person_money_amount).' '.__('investor.common.currency');
         }
 
         if ($this->person_money_percent) {
-            $lines[] = __('investor.common.person_percentage') . ': ' . $this->person_money_percent . '%';
+            $lines[] = __('investor.common.person_percentage').': '.$this->person_money_percent.'%';
         }
 
         // نوع التفرغ
         if ($this->staff) {
-            $lines[] = __('investor.steps.step4.staff_types.' . $this->staff);
+            $lines[] = __('investor.steps.step4.staff_types.'.$this->staff);
         }
 
         return $lines;

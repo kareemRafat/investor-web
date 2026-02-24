@@ -3,9 +3,9 @@
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step8 extends Component
 {
@@ -27,19 +27,22 @@ class Step8 extends Component
         'return_type' => null,
     ];
 
-    public string|null $activeColumn = null;
+    public ?string $activeColumn = null;
 
     public function mount(): void
     {
         $ideaId = session('current_idea_id');
-        if (!$ideaId) return;
+        if (! $ideaId) {
+            return;
+        }
 
         $idea = Idea::find($ideaId);
-        if (!$idea || !$idea->returns) return;
+        if (! $idea || ! $idea->returns) {
+            return;
+        }
 
         $this->data = array_merge($this->data, $idea->returns->only(array_keys($this->data)));
     }
-
 
     #[On('validate-step-8')]
     public function validateStep8()
@@ -52,7 +55,7 @@ class Step8 extends Component
                 'one_time_sar',
                 'combo_dollar',
                 'combo_sar',
-                'combo_percentage'
+                'combo_percentage',
             ] as $key
         ) {
             if (array_key_exists($key, $this->data) && $this->data[$key] === '') {
@@ -64,42 +67,47 @@ class Step8 extends Component
         $this->validate();
 
         // --- شرط: لازم المستخدم يختار واحدة من التلات طرق على الأقل ---
-        $hasProfitOnly = !is_null($this->data['profit_only_percentage']);
-        $hasOneTime = !is_null($this->data['one_time_dollar']) || !is_null($this->data['one_time_sar']);
-        $hasCombo = !is_null($this->data['combo_dollar']) || !is_null($this->data['combo_sar']) || !is_null($this->data['combo_percentage']);
+        $hasProfitOnly = ! is_null($this->data['profit_only_percentage']);
+        $hasOneTime = ! is_null($this->data['one_time_dollar']) || ! is_null($this->data['one_time_sar']);
+        $hasCombo = ! is_null($this->data['combo_dollar']) || ! is_null($this->data['combo_sar']) || ! is_null($this->data['combo_percentage']);
 
         if (! $hasProfitOnly && ! $hasOneTime && ! $hasCombo) {
             $this->addError('data', __('idea.steps.step8.choose_one'));
+
             return;
         }
 
         // --- تحقق One-time: لازم عملة واحدة فقط لو دخل أي حاجة هنا ---
-        $oneTimeCount = (!is_null($this->data['one_time_dollar']) ? 1 : 0) + (!is_null($this->data['one_time_sar']) ? 1 : 0);
+        $oneTimeCount = (! is_null($this->data['one_time_dollar']) ? 1 : 0) + (! is_null($this->data['one_time_sar']) ? 1 : 0);
         if ($oneTimeCount > 1) {
             // دخل الدولار والريال معًا — مش مسموح
             $this->addError('one_time', __('idea.steps.step8.only_one_currency'));
+
             return;
         }
         // ملاحظة: لو $oneTimeCount === 0 يبقى الـ choose_one فوق ممكن يكون غطى الحالة (يعتمد على أي اختيار آخر)
 
         // --- تحقق Combo: لازم عملة واحدة فقط AND نسبة موجودة ---
-        $comboCurrencyCount = (!is_null($this->data['combo_dollar']) ? 1 : 0) + (!is_null($this->data['combo_sar']) ? 1 : 0);
-        $comboHasPercentage = !is_null($this->data['combo_percentage']);
+        $comboCurrencyCount = (! is_null($this->data['combo_dollar']) ? 1 : 0) + (! is_null($this->data['combo_sar']) ? 1 : 0);
+        $comboHasPercentage = ! is_null($this->data['combo_percentage']);
 
         if ($comboCurrencyCount > 1) {
             $this->addError('combo', __('idea.steps.step8.only_one_currency'));
+
             return;
         }
 
         if ($comboCurrencyCount === 1 && ! $comboHasPercentage) {
             // دخل عملة بس من غير نسبة
             $this->addError('combo', __('idea.steps.step8.combo_percentage_required'));
+
             return;
         }
 
         if ($comboCurrencyCount === 0 && $comboHasPercentage) {
             // دخل نسبة بس بدون عملة
             $this->addError('combo', __('idea.steps.step8.combo_currency_required'));
+
             return;
         }
 
@@ -107,8 +115,6 @@ class Step8 extends Component
         $this->syncData();
         $this->dispatch('go-to-next-step');
     }
-
-
 
     public function render()
     {
@@ -134,10 +140,14 @@ class Step8 extends Component
     private function syncData(): void
     {
         $ideaId = session('current_idea_id');
-        if (!$ideaId) return;
+        if (! $ideaId) {
+            return;
+        }
 
         $idea = Idea::find($ideaId);
-        if (!$idea) return;
+        if (! $idea) {
+            return;
+        }
 
         // تحديد return_type بناءً على القيم المختارة
         $type = $this->data['return_type'] ?? null;

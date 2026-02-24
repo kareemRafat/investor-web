@@ -2,17 +2,16 @@
 
 namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
-use Livewire\Component;
 use App\Models\Investor;
-use Livewire\Attributes\On;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
-use Illuminate\Support\Facades\Auth;
 use App\Traits\HandlesAttachmentUpload;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Step6 extends Component
 {
-    use WithFileUploads, HandlesAttachmentUpload;
+    use HandlesAttachmentUpload, WithFileUploads;
 
     #[Validate([
         'data.investor_title' => 'required|string|max:200',
@@ -33,10 +32,14 @@ class Step6 extends Component
     public function mount(): void
     {
         $investorId = session('current_investor_id');
-        if (!$investorId) return;
+        if (! $investorId) {
+            return;
+        }
 
         $investor = Investor::with('attachments')->find($investorId);
-        if (!$investor) return;
+        if (! $investor) {
+            return;
+        }
 
         $this->data['summary'] = $investor?->summary;
         $this->data['investor_title'] = $investor?->title;
@@ -58,6 +61,7 @@ class Step6 extends Component
         // Block Free users from choosing Open
         if ($this->data['contact_visibility'] === 'open' && $user->plan_type === \App\Enums\PlanType::FREE) {
             $this->addError('data.contact_visibility', __('idea.steps.step9.upgrade_required_for_open'));
+
             return;
         }
 
@@ -70,6 +74,7 @@ class Step6 extends Component
             if ($investor && $investor->contact_visibility?->value === 'closed' && $this->data['contact_visibility'] === 'open') {
                 if ($user->contact_credits < 1) {
                     $this->addError('data.contact_visibility', __('pages.unlock_contact.error_no_credits'));
+
                     return;
                 }
             }
@@ -79,6 +84,7 @@ class Step6 extends Component
 
         $this->dispatch('go-to-next-step');
     }
+
     public function render()
     {
         return view('livewire.pages.investment.investment-form.steps.step6');
@@ -88,26 +94,30 @@ class Step6 extends Component
     {
         return [
             'data.investor_title.required' => __('investor.validation.step6.investor_title_required'),
-            'data.investor_title.string'   => __('investor.validation.step6.investor_title_string'),
-            'data.investor_title.max'      => __('investor.validation.step6.investor_title_max'),
+            'data.investor_title.string' => __('investor.validation.step6.investor_title_string'),
+            'data.investor_title.max' => __('investor.validation.step6.investor_title_max'),
 
             'data.summary.required' => __('investor.validation.step6.summary_required'),
-            'data.summary.string'   => __('investor.validation.step6.summary_string'),
-            'data.summary.max'      => __('investor.validation.step6.summary_max'),
+            'data.summary.string' => __('investor.validation.step6.summary_string'),
+            'data.summary.max' => __('investor.validation.step6.summary_max'),
 
-            'data.attachment.file'  => __('investor.validation.step6.attachments_file'),
+            'data.attachment.file' => __('investor.validation.step6.attachments_file'),
             'data.attachment.mimes' => __('investor.validation.step6.attachments_mimes'),
-            'data.attachment.max'   => __('investor.validation.step6.attachments_max'),
+            'data.attachment.max' => __('investor.validation.step6.attachments_max'),
         ];
     }
 
     private function syncData(): void
     {
         $investorId = session('current_investor_id');
-        if (!$investorId) return;
+        if (! $investorId) {
+            return;
+        }
 
         $investor = Investor::find($investorId);
-        if (!$investor) return;
+        if (! $investor) {
+            return;
+        }
 
         $user = auth()->user();
         $newVisibility = $this->data['contact_visibility'];
@@ -115,7 +125,7 @@ class Step6 extends Component
         // If changing from closed to open, mark for deduction on finish
         if ($investor->contact_visibility?->value === 'closed' && $newVisibility === 'open') {
             session(['pending_investor_visibility_credit' => true]);
-        } else if ($newVisibility === 'closed') {
+        } elseif ($newVisibility === 'closed') {
             // Reset if user changed their mind back to closed
             session()->forget('pending_investor_visibility_credit');
         }
@@ -129,7 +139,7 @@ class Step6 extends Component
             'created_at' => $this->data['created_at'],
         ]);
 
-        //! store attachments
+        // ! store attachments
         $this->handleAttachmentUpload($investor, $this->data['attachment']);
 
         // Update current attachment name after upload

@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Pages\Profile;
 
-use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('components.layouts.profile')]
 class ContactInfo extends Component

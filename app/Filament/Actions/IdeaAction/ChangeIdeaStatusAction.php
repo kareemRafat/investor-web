@@ -15,9 +15,9 @@ class ChangeIdeaStatusAction
     public static function make(): Action
     {
         return Action::make('changeStatus')
-            ->label(fn($record) => $record->status->getLabel() . ' - تغيير الحالة')
-            ->icon(fn($record) => $record->status->getIcon())
-            ->color(fn($record) => $record->status->getColor())
+            ->label(fn ($record) => $record->status->getLabel().' - تغيير الحالة')
+            ->icon(fn ($record) => $record->status->getIcon())
+            ->color(fn ($record) => $record->status->getColor())
             ->extraAttributes(['class' => 'text-white'])
             ->schema([
                 Select::make('status')
@@ -25,13 +25,13 @@ class ChangeIdeaStatusAction
                     ->options(IdeaStatus::getOptions())
                     ->required()
                     ->native(false)
-                    ->default(fn($record) => $record->status),
+                    ->default(fn ($record) => $record->status),
 
                 Textarea::make('admin_note')
                     ->label('ملاحظات الإدارة (اختياري)')
                     ->rows(3)
                     ->maxLength(500)
-                    ->default(fn($record) => $record->admin_note),
+                    ->default(fn ($record) => $record->admin_note),
 
                 ClientDatetimeHidden::make('approved_at'),
             ])
@@ -78,7 +78,7 @@ class ChangeIdeaStatusAction
             })
             ->requiresConfirmation()
             ->modalHeading('تغيير حالة الفكرة')
-            ->modalDescription(fn($record) => "أنت على وشك تغيير حالة الفكرة: {$record->idea}")
+            ->modalDescription(fn ($record) => "أنت على وشك تغيير حالة الفكرة: {$record->idea}")
             ->modalSubmitActionLabel('تأكيد التغيير');
     }
 }

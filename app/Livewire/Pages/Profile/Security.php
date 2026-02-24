@@ -2,17 +2,19 @@
 
 namespace App\Livewire\Pages\Profile;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('components.layouts.profile')]
 class Security extends Component
 {
     public $current_password;
+
     public $new_password;
+
     public $new_password_confirmation;
 
     protected function rules()

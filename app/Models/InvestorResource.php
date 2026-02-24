@@ -37,26 +37,26 @@ class InvestorResource extends Model
         }
 
         if ($this->staff === 'yes') {
-            $resources[] = __('investor.steps.step3.staff') . ($this->staff_number ? ' ( ' . $this->staff_number . ' )' : '');
+            $resources[] = __('investor.steps.step3.staff').($this->staff_number ? ' ( '.$this->staff_number.' )' : '');
         }
 
         if ($this->workers === 'yes') {
-            $resources[] = __('investor.steps.step3.workers') . ($this->workers_number ? ' ( ' . $this->workers_number . ' )' : '');
+            $resources[] = __('investor.steps.step3.workers').($this->workers_number ? ' ( '.$this->workers_number.' )' : '');
         }
 
         if ($this->executive_spaces === 'yes') {
             $resources[] = __('investor.steps.step3.executive_spaces')
-                . ($this->executive_spaces_type ? ' ( ' . __('investor.common.' . $this->executive_spaces_type) . ' )' : '');
+                .($this->executive_spaces_type ? ' ( '.__('investor.common.'.$this->executive_spaces_type).' )' : '');
         }
 
         if ($this->equipment === 'yes') {
             $resources[] = __('investor.steps.step3.equipment')
-                . ($this->equipment_type ? ' ( ' . __('investor.common.' . $this->equipment_type) . ' )' : '');
+                .($this->equipment_type ? ' ( '.__('investor.common.'.$this->equipment_type).' )' : '');
         }
 
         if ($this->software === 'yes') {
             $resources[] = __('investor.steps.step3.software')
-                . ($this->software_type ? ' ( ' . __('investor.common.' . $this->software_type) . ' )' : '');
+                .($this->software_type ? ' ( '.__('investor.common.'.$this->software_type).' )' : '');
         }
 
         if ($this->website === 'yes') {

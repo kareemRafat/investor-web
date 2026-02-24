@@ -4,10 +4,10 @@
 - [x] **Step 1:** Install PayPal Package
 - [x] **Step 2:** Create PayPalGateway Driver
 - [x] **Step 3:** Transactions Table (Minimal)
-- [x] **Step 4:** Livewire Component & Backend Flow (Partially: Frontend Navigation Added)
+- [x] **Step 4:** Livewire Component & Backend Flow
 - [x] **Step 5:** Minimal Webhook Listener
-- [ ] **Step 6:** Validation
-- [ ] **Step 7:** Post-Payment UX & Redirects
+- [x] **Step 6:** Validation
+- [x] **Step 7:** Post-Payment UX & Redirects
 
 ---
 
@@ -105,31 +105,31 @@ Create table:
 
 ---
 
-## 🔐 Step 6 — Validation [Pending]
+## 🔐 Step 6 — Validation [Completed]
 
 Always validate on backend:
-- [ ] Amount matches plan price
-- [ ] Currency correct
-- [ ] Order not already captured
-- [ ] User authentication and authorization
+- [x] Amount matches plan price
+- [x] Currency correct
+- [x] Order not already captured
+- [x] User authentication and authorization
 
 ---
 
-## 🏁 Step 7 — Post-Payment UX & Redirects [New]
+## 🏁 Step 7 — Post-Payment UX & Redirects [Completed]
 
 Define the user journey after the payment interaction:
-- [ ] **Success:** 
-    - [ ] Redirect to a dedicated `/payment/success` page OR show a high-quality success state on the current page.
-    - [ ] Trigger a "Thank You" notification/email.
-    - [ ] Immediately reflect the new status (e.g., Credits updated, Premium badge visible).
-- [ ] **Cancel:** 
-    - [ ] Close the popup and stay on the payment page.
-    - [ ] Show a non-intrusive "Payment cancelled" message.
-    - [ ] Allow the user to try again or choose a different method.
-- [ ] **Error:** 
-    - [ ] Show a clear error message (e.g., "Insufficient funds" or "Gateway error").
-    - [ ] Log the error for support.
-    - [ ] Keep the transaction record as `failed` with the error message.
+- [x] **Success:** 
+    - [x] Redirect to a dedicated `/payment/success` page OR show a high-quality success state on the current page. (Redirected to Profile with high-quality flash message)
+    - [x] Trigger a "Thank You" notification/email. (SubscriptionActivatedNotification added)
+    - [x] Immediately reflect the new status (e.g., Credits updated, Premium badge visible).
+- [x] **Cancel:** 
+    - [x] Close the popup and stay on the payment page.
+    - [x] Show a non-intrusive "Payment cancelled" message.
+    - [x] Allow the user to try again or choose a different method.
+- [x] **Error:** 
+    - [x] Show a clear error message (e.g., "Insufficient funds" or "Gateway error").
+    - [x] Log the error for support.
+    - [x] Keep the transaction record as `failed` with the error message.
 
 ---
 

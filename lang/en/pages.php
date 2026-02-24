@@ -7,19 +7,19 @@ return [
     | pages
     |--------------------------------------------------------------------------
     */
-    "login" => [
-        'welcome_back'   => 'Welcome back',
-        'login_title'    => 'Log in to your account again',
-        'google_login'   => 'Sign in with Google',
-        'email'          => 'EMAIL',
-        'password'       => 'Password',
-        'forgot'         => 'Forgot Password ?',
-        'continue'       => 'Continue',
-        'new_user'       => 'New user?',
-        'signup'         => 'Sign up now',
-        'remember_me'    => 'Remember me',
+    'login' => [
+        'welcome_back' => 'Welcome back',
+        'login_title' => 'Log in to your account again',
+        'google_login' => 'Sign in with Google',
+        'email' => 'EMAIL',
+        'password' => 'Password',
+        'forgot' => 'Forgot Password ?',
+        'continue' => 'Continue',
+        'new_user' => 'New user?',
+        'signup' => 'Sign up now',
+        'remember_me' => 'Remember me',
     ],
-    "register" => [
+    'register' => [
         'welcome' => 'Welcome back',
         'create_account' => 'Create a new account',
         'google' => 'Sign up with Google',
@@ -54,7 +54,7 @@ return [
         'confirm' => 'Confirm',
         'note' => 'Passwords must match',
     ],
-    "about" => [
+    'about' => [
         'title' => 'About Us',
         'heading' => 'We build bridges between ideas and investment',
         'text' => "Our platform aims to enable safe and effective connections between
@@ -76,13 +76,13 @@ return [
             Our vision is to foster innovation, empower ambitious individuals, and create a positive,
             sustainable impact within the worlds of entrepreneurship and investment.",
     ],
-    "terms" => [
+    'terms' => [
         'title' => 'Terms of Use',
-        'intro' => "Welcome to [Platform Name]. By using this platform, you agree to comply with these terms and conditions. Please read them carefully.",
+        'intro' => 'Welcome to [Platform Name]. By using this platform, you agree to comply with these terms and conditions. Please read them carefully.',
 
         'acceptance' => [
             'title' => 'Acceptance of Terms',
-            'text'  => "By using the platform, you acknowledge that you have read, understood, and agreed to these terms. If you do not agree to these terms, you may not use the platform.",
+            'text' => 'By using the platform, you acknowledge that you have read, understood, and agreed to these terms. If you do not agree to these terms, you may not use the platform.',
         ],
 
         'obligations' => [
@@ -97,135 +97,135 @@ return [
 
         'intellectual' => [
             'title' => 'Intellectual Property Rights',
-            'text'  => "All content on the platform, including text, graphics, logos, and images, is owned by [Platform Name] and protected by copyright laws.",
+            'text' => 'All content on the platform, including text, graphics, logos, and images, is owned by [Platform Name] and protected by copyright laws.',
         ],
 
         'disclaimer' => [
             'title' => 'Disclaimer',
-            'text'  => "The platform is provided \"as is\" without any warranties. We do not guarantee the accuracy, completeness, or reliability of any content. Investing involves risks, and you are responsible for your decisions.",
+            'text' => 'The platform is provided "as is" without any warranties. We do not guarantee the accuracy, completeness, or reliability of any content. Investing involves risks, and you are responsible for your decisions.',
         ],
 
         'liability' => [
             'title' => 'Limitation of Liability',
-            'text'  => "[Platform Name] will not be liable for any direct or indirect damages arising from your use of or inability to use the platform.",
+            'text' => '[Platform Name] will not be liable for any direct or indirect damages arising from your use of or inability to use the platform.',
         ],
 
         'termination' => [
             'title' => 'Termination of Use',
-            'text'  => "We reserve the right to suspend or terminate your access to the platform at any time and for any reason, without prior notice.",
+            'text' => 'We reserve the right to suspend or terminate your access to the platform at any time and for any reason, without prior notice.',
         ],
 
         'law' => [
             'title' => 'Governing Law',
-            'text'  => "These terms are governed by and construed in accordance with the laws of [Country/State], without regard to conflict of law principles.",
+            'text' => 'These terms are governed by and construed in accordance with the laws of [Country/State], without regard to conflict of law principles.',
         ],
 
         'changes' => [
             'title' => 'Changes to Terms',
-            'text'  => "We may update the terms of use from time to time. Updates will be posted on this page, and your continued use of the platform constitutes acceptance of the modified terms.",
+            'text' => 'We may update the terms of use from time to time. Updates will be posted on this page, and your continued use of the platform constitutes acceptance of the modified terms.',
         ],
 
         'contact' => [
             'title' => 'Contact Us',
-            'text'  => "If you have any questions regarding the terms of use, you can contact us at:",
-            'email' => "Email: terms@yourdomain.com",
+            'text' => 'If you have any questions regarding the terms of use, you can contact us at:',
+            'email' => 'Email: terms@yourdomain.com',
         ],
     ],
     'privacy' => [
-        'intro' => "We at INVESTMENT are committed to protecting our users’ privacy and ensuring the confidentiality of their data. This policy explains how information is collected, used, processed, and protected.",
+        'intro' => 'We at INVESTMENT are committed to protecting our users’ privacy and ensuring the confidentiality of their data. This policy explains how information is collected, used, processed, and protected.',
 
         'collect' => [
-            'title' => "Information We Collect",
-            'subtitle' => "We collect various types of information to enhance our services, including:",
+            'title' => 'Information We Collect',
+            'subtitle' => 'We collect various types of information to enhance our services, including:',
             'items' => [
-                'name' => "Full name",
-                'email' => "Email address",
-                'phone' => "Phone number",
-                'user_type' => "User type (Investor / Idea Owner)",
-                'usage' => "Usage data (e.g., pages you visit or actions you perform)",
-                'cookies' => "Cookies",
+                'name' => 'Full name',
+                'email' => 'Email address',
+                'phone' => 'Phone number',
+                'user_type' => 'User type (Investor / Idea Owner)',
+                'usage' => 'Usage data (e.g., pages you visit or actions you perform)',
+                'cookies' => 'Cookies',
             ],
         ],
 
         'use' => [
-            'title' => "How We Use the Information",
-            'subtitle' => "We use the collected information to:",
+            'title' => 'How We Use the Information',
+            'subtitle' => 'We use the collected information to:',
             'items' => [
-                'experience' => "Improve user experience and personalize content",
-                'communicate' => "Communicate with you regarding your account or our services",
-                'offers' => "Send updates and promotional offers (with your consent)",
-                'analysis' => "Conduct analytical and statistical purposes",
+                'experience' => 'Improve user experience and personalize content',
+                'communicate' => 'Communicate with you regarding your account or our services',
+                'offers' => 'Send updates and promotional offers (with your consent)',
+                'analysis' => 'Conduct analytical and statistical purposes',
             ],
         ],
 
         'sharing' => [
-            'title' => "Information Sharing",
-            'desc' => "We do not sell or share your personal information with third parties except in the following cases:",
+            'title' => 'Information Sharing',
+            'desc' => 'We do not sell or share your personal information with third parties except in the following cases:',
             'items' => [
-                'consent' => "With your explicit consent",
-                'legal' => "In response to an official legal request",
-                'partners' => "With service partners (e.g., email providers) under strict protection agreements",
+                'consent' => 'With your explicit consent',
+                'legal' => 'In response to an official legal request',
+                'partners' => 'With service partners (e.g., email providers) under strict protection agreements',
             ],
         ],
 
         'contact' => [
-            'title' => "Contact Us",
-            'desc' => "If you have any questions regarding this Privacy Policy, feel free to contact us.",
+            'title' => 'Contact Us',
+            'desc' => 'If you have any questions regarding this Privacy Policy, feel free to contact us.',
         ],
 
         'security' => [
-            'title' => "Information Security",
-            'desc' => "We use appropriate security technologies and procedures to protect your data from unauthorized access or misuse.",
+            'title' => 'Information Security',
+            'desc' => 'We use appropriate security technologies and procedures to protect your data from unauthorized access or misuse.',
         ],
 
         'cookies' => [
-            'title' => "Cookies",
-            'desc' => "We use cookies to enhance performance and analyze platform usage. You can disable cookies through your browser settings.",
+            'title' => 'Cookies',
+            'desc' => 'We use cookies to enhance performance and analyze platform usage. You can disable cookies through your browser settings.',
         ],
 
         'rights' => [
-            'title' => "User Rights",
-            'desc' => "You have the right to:",
+            'title' => 'User Rights',
+            'desc' => 'You have the right to:',
             'items' => [
-                'access' => "Access your personal data",
-                'modify' => "Request modification or deletion of your data",
-                'withdraw' => "Withdraw your consent to data usage",
+                'access' => 'Access your personal data',
+                'modify' => 'Request modification or deletion of your data',
+                'withdraw' => 'Withdraw your consent to data usage',
             ],
         ],
 
         'changes' => [
-            'title' => "Changes to the Privacy Policy",
-            'desc' => "We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised review date.",
+            'title' => 'Changes to the Privacy Policy',
+            'desc' => 'We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised review date.',
         ],
     ],
     'faq' => [
-        'q1' => "What is the Investment Platform?",
-        'a1' => "It is a digital platform designed to connect innovative idea owners and startups with investors seeking promising investment opportunities. We provide a safe and transparent environment to facilitate investment and support entrepreneurs.",
+        'q1' => 'What is the Investment Platform?',
+        'a1' => 'It is a digital platform designed to connect innovative idea owners and startups with investors seeking promising investment opportunities. We provide a safe and transparent environment to facilitate investment and support entrepreneurs.',
 
-        'q2' => "How can I register on the platform?",
-        'a2' => "You can easily register by clicking the \"Login\" button at the top of the page, then selecting \"Create a new account\". You will need to enter some basic information and choose your account type (idea owner or investor).",
+        'q2' => 'How can I register on the platform?',
+        'a2' => 'You can easily register by clicking the "Login" button at the top of the page, then selecting "Create a new account". You will need to enter some basic information and choose your account type (idea owner or investor).',
 
-        'q3' => "Is my data and information safe on the platform?",
+        'q3' => 'Is my data and information safe on the platform?',
         'a3' => "Yes, we take data security very seriously. We use the latest encryption technologies and security measures to protect all users' personal and financial data. You can review our \"Privacy Policy\" for more details.",
 
-        'q4' => "How do I present my idea or project to investors?",
-        'a4' => "After registering your account as an \"idea owner\", you can go to the \"Ideas Fund\" section and click \"Add your idea\". You will need to fill out a detailed form about your project, including a description, business plan, and the required investment amount.",
+        'q4' => 'How do I present my idea or project to investors?',
+        'a4' => 'After registering your account as an "idea owner", you can go to the "Ideas Fund" section and click "Add your idea". You will need to fill out a detailed form about your project, including a description, business plan, and the required investment amount.',
 
-        'q5' => "What are the criteria for accepting ideas and projects?",
-        'a5' => "We look for innovative ideas with a clear business model, high growth potential, and a specialized team. The idea should solve a real problem or meet an existing market need. Each project is carefully reviewed by our team to ensure its quality and feasibility.",
+        'q5' => 'What are the criteria for accepting ideas and projects?',
+        'a5' => 'We look for innovative ideas with a clear business model, high growth potential, and a specialized team. The idea should solve a real problem or meet an existing market need. Each project is carefully reviewed by our team to ensure its quality and feasibility.',
 
-        'q6' => "How does the investment process work for investors?",
-        'a6' => "Investors can browse listed projects, review their details, and communicate directly with project owners. When making an investment decision, everything is handled through our secure platform, which facilitates legal and financial procedures.",
+        'q6' => 'How does the investment process work for investors?',
+        'a6' => 'Investors can browse listed projects, review their details, and communicate directly with project owners. When making an investment decision, everything is handled through our secure platform, which facilitates legal and financial procedures.',
 
-        'q7' => "Are there any fees for using the platform?",
-        'a7' => "For project owners, we charge a small success fee from the amount raised. For investors, browsing projects and initial communication is free. You can view the detailed fee structure in the \"Terms of Use\" section.",
+        'q7' => 'Are there any fees for using the platform?',
+        'a7' => 'For project owners, we charge a small success fee from the amount raised. For investors, browsing projects and initial communication is free. You can view the detailed fee structure in the "Terms of Use" section.',
     ],
     'contact' => [
-        'name'    => 'Name',
-        'email'   => 'Email',
-        'phone'   => 'Phone Number',
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone Number',
         'message' => 'Message',
-        'send'    => 'Send',
+        'send' => 'Send',
     ],
     'unlock_contact' => [
         'button' => 'Unlock Contact Details',
@@ -289,6 +289,8 @@ return [
     'notifications' => [
         'subscription_expired_title' => 'Subscription Expired',
         'subscription_expired_message' => 'Your subscription has expired and your plan has been reverted to Free. Renew now to continue enjoying premium features.',
+        'subscription_activated_title' => 'Subscription Activated',
+        'subscription_activated_message' => 'Welcome to the :plan! Your subscription is now active.',
     ],
     'contact_visibility' => [
         'open' => 'Open',
@@ -297,10 +299,12 @@ return [
     'payment' => [
         'title' => 'Complete Your Subscription',
         'plan_details' => 'Plan Details',
+        'method' => 'Payment Method',
         'card_info' => 'Credit Card Information',
         'pay_button' => 'Pay :amount',
         'success' => 'Payment successful! You are now subscribed to the :plan plan.',
         'error' => 'Payment failed. Please try again.',
+        'cancelled' => 'Payment was cancelled.',
         'name_on_card' => 'Name on Card',
         'card_number' => 'Card Number',
         'expiry_date' => 'Expiry Date',
@@ -308,6 +312,7 @@ return [
         'cancel' => 'Cancel',
         'total' => 'Total',
         'back' => 'Back to Plans',
+        'paypal_config_error' => 'PayPal is not configured correctly. Please contact support.',
     ],
     'downgrade' => [
         'title' => 'Warning: Lose Credits',

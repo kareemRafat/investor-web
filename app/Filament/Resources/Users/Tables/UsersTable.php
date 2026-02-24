@@ -5,18 +5,16 @@ namespace App\Filament\Resources\Users\Tables;
 use App\Enums\UserRole;
 use App\Enums\UserStatus;
 use App\Filament\Actions\UserActions\ChangeStatusAction;
-use Filament\Tables\Table;
 use Filament\Actions\Action;
-use Filament\Actions\EditAction;
-use Filament\Tables\Grouping\Group;
-use Illuminate\Support\Facades\Auth;
 use Filament\Actions\BulkActionGroup;
-use Filament\Forms\Components\Select;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
 use Filament\Notifications\Notification;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Grouping\Group;
+use Filament\Tables\Table;
 
 class UsersTable
 {
@@ -86,7 +84,7 @@ class UsersTable
                 TextColumn::make('status')
                     ->label('الحالة')
                     ->badge()
-                    ->color(fn(UserStatus $state) => $state->getColor()),
+                    ->color(fn (UserStatus $state) => $state->getColor()),
 
                 TextColumn::make('plan_type')
                     ->label('الباقة')
@@ -100,8 +98,8 @@ class UsersTable
                 TextColumn::make('role')
                     ->label('الصلاحية')
                     ->badge()
-                    ->formatStateUsing(fn(UserRole $state) => $state)
-                    ->color(fn(UserRole $state) => $state->getColor()),
+                    ->formatStateUsing(fn (UserRole $state) => $state)
+                    ->color(fn (UserRole $state) => $state->getColor()),
 
                 TextColumn::make('created_at')
                     ->label('تاريخ التسجيل')
@@ -123,7 +121,7 @@ class UsersTable
                     ->options(
                         collect(UserRole::class)
                     ),
-                
+
                 SelectFilter::make('plan_type')
                     ->label('الباقة')
                     ->options(\App\Enums\PlanType::class)

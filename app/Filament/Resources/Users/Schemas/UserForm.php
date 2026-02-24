@@ -4,13 +4,11 @@ namespace App\Filament\Resources\Users\Schemas;
 
 use App\Enums\UserRole;
 use App\Enums\UserStatus;
-use Filament\Schemas\Schema;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Schemas\Schema;
 
 class UserForm
 {
@@ -41,12 +39,11 @@ class UserForm
                             ->label('الوظيفة')
                             ->required(),
 
-
                         Select::make('residence_country')
                             ->label('دولة الإقامة')
                             ->required()
                             ->options(
-                                fn() => collect(__('idea.steps.step2.options'))
+                                fn () => collect(__('idea.steps.step2.options'))
                                     ->pluck('name', 'code')
                                     ->toArray()
                             )
@@ -58,7 +55,6 @@ class UserForm
                             ->native(false),
                     ])
                     ->columns(2),
-
 
                 Section::make('بيانات الحساب')
                     ->schema([
@@ -92,26 +88,26 @@ class UserForm
                             ->password()
                             ->revealable()
                             ->helperText(
-                                fn($record) => $record && $record->exists
+                                fn ($record) => $record && $record->exists
                                     ? 'فى حالة عدم الرغبة فى تعديل الباسورد يرجى ترك الحقل فارغاً'
                                     : null
                             )
-                            ->required(fn($record) => ! $record || ! $record->exists)
+                            ->required(fn ($record) => ! $record || ! $record->exists)
                             ->rule(
-                                fn($record) => $record && $record->exists
+                                fn ($record) => $record && $record->exists
                                     ? ['nullable', 'confirmed', 'min:8']
                                     : ['required', 'confirmed', 'min:8']
                             )
-                            ->dehydrated(fn($state) => filled($state))
-                            ->dehydrateStateUsing(fn($state) => filled($state) ? \Illuminate\Support\Facades\Hash::make($state) : null),
+                            ->dehydrated(fn ($state) => filled($state))
+                            ->dehydrateStateUsing(fn ($state) => filled($state) ? \Illuminate\Support\Facades\Hash::make($state) : null),
 
                         TextInput::make('password_confirmation')
                             ->label('تـاكـيد الـباسورد')
                             ->password()
                             ->revealable()
-                            ->required(fn($record) => ! $record || ! $record->exists)
+                            ->required(fn ($record) => ! $record || ! $record->exists)
                             ->rule(
-                                fn($record) => $record && $record->exists
+                                fn ($record) => $record && $record->exists
                                     ? ['required_with:password']
                                     : ['required']
                             )

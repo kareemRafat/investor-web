@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Enums\InvestorStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Investor extends Model
 {
@@ -22,7 +22,7 @@ class Investor extends Model
         'approved_at',
         'approved_by',
         'admin_note',
-        'contact_visibility'
+        'contact_visibility',
     ];
 
     protected $casts = [
@@ -31,7 +31,7 @@ class Investor extends Model
         'contact_visibility' => \App\Enums\ContactVisibility::class,
     ];
 
-    //! Relations
+    // ! Relations
 
     public function contactUnlocks(): MorphMany
     {

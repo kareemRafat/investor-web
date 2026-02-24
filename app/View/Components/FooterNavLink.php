@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class FooterNavLink extends Component
 {
     public string $route;
+
     public string $label;
 
     public function __construct(string $route, string $label)

@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
 use App\Models\InvestorResource;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step3 extends Component
 {
@@ -25,19 +25,19 @@ class Step3 extends Component
         'data.website' => 'required|in:yes,no',
     ])]
     public array $data = [
-        'company'         => null,
-        'space_type'      => null,
-        'staff'           => null,
-        'staff_number'    => null,
-        'workers'         => null,
-        'workers_number'  => null,
+        'company' => null,
+        'space_type' => null,
+        'staff' => null,
+        'staff_number' => null,
+        'workers' => null,
+        'workers_number' => null,
         'executive_spaces' => null,
         'executive_spaces_type' => null,
-        'equipment'       => null,
-        'equipment_type'  => null,
-        'software'        => null,
-        'software_type'   => null,
-        'website'         => null,
+        'equipment' => null,
+        'equipment_type' => null,
+        'software' => null,
+        'software_type' => null,
+        'website' => null,
     ];
 
     public bool $disableResources = false;
@@ -73,7 +73,7 @@ class Step3 extends Component
         if ($value) {
             $requiredFields = ['investor_id']; // excepted field
             $this->data = collect($this->data)
-                ->mapWithKeys(fn($v, $k) => in_array($k, $requiredFields) ? [$k => $v] : [$k => null])
+                ->mapWithKeys(fn ($v, $k) => in_array($k, $requiredFields) ? [$k => $v] : [$k => null])
                 ->toArray();
         }
     }
@@ -81,7 +81,7 @@ class Step3 extends Component
     #[On('validate-step-3')]
     public function validateStep3()
     {
-        if (!$this->disableResources) {
+        if (! $this->disableResources) {
             $this->validate();
         }
 
@@ -99,27 +99,28 @@ class Step3 extends Component
     {
         return [
             // step5
-            'data.company.*'               => __('idea.validation.step5.company'),
-            'data.space_type.*'            => __('idea.validation.step5.space_type'),
-            'data.staff.*'                 => __('idea.validation.step5.staff'),
-            'data.staff_number.*'          => __('idea.validation.step5.staff_number'),
-            'data.workers.*'               => __('idea.validation.step5.workers'),
-            'data.workers_number.*'        => __('idea.validation.step5.workers_number'),
-            'data.executive_spaces.*'      => __('idea.validation.step5.executive_spaces'),
+            'data.company.*' => __('idea.validation.step5.company'),
+            'data.space_type.*' => __('idea.validation.step5.space_type'),
+            'data.staff.*' => __('idea.validation.step5.staff'),
+            'data.staff_number.*' => __('idea.validation.step5.staff_number'),
+            'data.workers.*' => __('idea.validation.step5.workers'),
+            'data.workers_number.*' => __('idea.validation.step5.workers_number'),
+            'data.executive_spaces.*' => __('idea.validation.step5.executive_spaces'),
             'data.executive_spaces_type.*' => __('idea.validation.step5.executive_spaces_type'),
-            'data.equipment.*'             => __('idea.validation.step5.equipment'),
-            'data.equipment_type.*'        => __('idea.validation.step5.equipment_type'),
-            'data.software.*'              => __('idea.validation.step5.software'),
-            'data.software_type.*'         => __('idea.validation.step5.software_type'),
-            'data.website.*'               => __('idea.validation.step5.website'),
+            'data.equipment.*' => __('idea.validation.step5.equipment'),
+            'data.equipment_type.*' => __('idea.validation.step5.equipment_type'),
+            'data.software.*' => __('idea.validation.step5.software'),
+            'data.software_type.*' => __('idea.validation.step5.software_type'),
+            'data.website.*' => __('idea.validation.step5.website'),
         ];
     }
 
     public function syncResource(): void
     {
         $investorId = session('current_investor_id');
-        if (!$investorId) {
+        if (! $investorId) {
             $this->addError('data', 'Investor not found in session.');
+
             return;
         }
 

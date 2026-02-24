@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
+use Filament\Support\Colors\Color;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
-use Filament\Support\Colors\Color;
 
-enum IdeaStatus: string implements HasLabel, HasColor
+enum IdeaStatus: string implements HasColor, HasLabel
 {
     case PENDING = 'pending';
     case APPROVED = 'approved';
@@ -21,7 +21,7 @@ enum IdeaStatus: string implements HasLabel, HasColor
         };
     }
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::PENDING => Color::Orange,

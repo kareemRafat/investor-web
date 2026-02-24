@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Investors\Schemas;
 
 use App\Enums\ContactVisibility;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class InvestorForm
@@ -20,7 +20,7 @@ class InvestorForm
                     ->required()
                     ->columnSpanFull()
                     ->formatStateUsing(
-                        fn($state) => __('investor.steps.step1.options.' . $state)
+                        fn ($state) => __('investor.steps.step1.options.'.$state)
                     )
                     ->disabled(),
 

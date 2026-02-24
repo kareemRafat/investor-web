@@ -3,10 +3,9 @@
 namespace App\Livewire\Pages\Idea\IdeaForm\Steps;
 
 use App\Models\Idea;
-use Livewire\Component;
-use Livewire\Attributes\On;
 use App\Models\IdeaContribution;
-use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class Step7 extends Component
 {
@@ -39,7 +38,7 @@ class Step7 extends Component
     public function validateStep7()
     {
         $this->validate();
-        
+
         $this->syncContribution();
 
         $this->dispatch('go-to-next-step');
@@ -61,7 +60,7 @@ class Step7 extends Component
         // للـ capital فقط
         if ($this->data['contribute_type'] === 'capital') {
             // لو دخل الاثنين مع بعض
-            if (!empty($this->data['money_amount']) && !empty($this->data['money_percent'])) {
+            if (! empty($this->data['money_amount']) && ! empty($this->data['money_percent'])) {
                 $rules['data.money_amount'] = 'prohibited';
                 $rules['data.money_percent'] = 'prohibited';
             }
@@ -79,7 +78,7 @@ class Step7 extends Component
         // للـ both فقط
         if ($this->data['contribute_type'] === 'both') {
             // لو دخل الاثنين مع بعض
-            if (!empty($this->data['person_money_amount']) && !empty($this->data['person_money_percent'])) {
+            if (! empty($this->data['person_money_amount']) && ! empty($this->data['person_money_percent'])) {
                 $rules['data.person_money_amount'] = 'prohibited';
                 $rules['data.person_money_percent'] = 'prohibited';
             }

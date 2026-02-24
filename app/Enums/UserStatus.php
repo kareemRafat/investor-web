@@ -5,7 +5,7 @@ namespace App\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum UserStatus: string implements HasLabel, HasColor
+enum UserStatus: string implements HasColor, HasLabel
 {
     case ACTIVE = 'active';
     case INACTIVE = 'inactive';
@@ -18,7 +18,7 @@ enum UserStatus: string implements HasLabel, HasColor
         };
     }
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::ACTIVE => 'success',

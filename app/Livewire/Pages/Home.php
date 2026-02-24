@@ -3,10 +3,9 @@
 namespace App\Livewire\Pages;
 
 use App\Models\Idea;
-use Livewire\Component;
 use App\Models\Investor;
 use Livewire\Attributes\Title;
-
+use Livewire\Component;
 
 class Home extends Component
 {
@@ -34,6 +33,7 @@ class Home extends Component
     public function getShortName($fullName)
     {
         $parts = explode(' ', trim($fullName));
+
         return $parts[0] ?? '';
     }
 }

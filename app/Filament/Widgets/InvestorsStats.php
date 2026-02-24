@@ -2,8 +2,8 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Investor;
 use App\Enums\InvestorStatus;
+use App\Models\Investor;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -69,4 +69,3 @@ class InvestorsStats extends StatsOverviewWidget
             ->toArray();
     }
 }
-

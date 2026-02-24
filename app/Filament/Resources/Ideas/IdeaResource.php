@@ -9,11 +9,11 @@ use App\Filament\Resources\Ideas\Schemas\IdeaForm;
 use App\Filament\Resources\Ideas\Tables\IdeasTable;
 use App\Models\Idea;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class IdeaResource extends Resource
 {

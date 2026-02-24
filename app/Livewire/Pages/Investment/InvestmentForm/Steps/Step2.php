@@ -2,15 +2,15 @@
 
 namespace App\Livewire\Pages\Investment\InvestmentForm\Steps;
 
-use Livewire\Component;
 use App\Models\Investor;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Step2 extends Component
 {
     #[Validate([
-        'countries'   => 'required|array|min:1|max:3',
+        'countries' => 'required|array|min:1|max:3',
         'countries.*' => 'string',
     ])]
     public array $countries = [];
@@ -55,15 +55,17 @@ class Step2 extends Component
     {
         $investorId = session('current_investor_id');
 
-        if (!$investorId) {
+        if (! $investorId) {
             $this->addError('countries', 'Investor not found in session.');
+
             return;
         }
 
         $investor = Investor::find($investorId);
 
-        if (!$investor) {
+        if (! $investor) {
             $this->addError('countries', 'Investor not found.');
+
             return;
         }
 
@@ -85,7 +87,7 @@ class Step2 extends Component
         }
 
         // Delete what should be deleted
-        if (!empty($toDelete)) {
+        if (! empty($toDelete)) {
             $investor->countries()->whereIn('country', $toDelete)->delete();
         }
     }

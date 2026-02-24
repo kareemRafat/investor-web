@@ -3,22 +3,28 @@
 namespace App\Livewire\Pages\Idea;
 
 use App\Models\Idea;
-use Livewire\Component;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
-use Illuminate\Support\Collection;
+use Livewire\Component;
 
 class Index extends Component
 {
     public Collection $ideas;
+
     public bool $hasMore = true;
+
     public ?int $lastId = null; // مؤشر الصفحة التالية
+
     public int $perPage = 5;
 
     // Filters
     public $field = null;
+
     public $country = null;
+
     public $cost_range = null;
+
     public $contributionType = null;
 
     public function mount(): void
@@ -50,56 +56,48 @@ class Index extends Component
 
     public function loadMore(): void
     {
-        if (!$this->hasMore) {
+        if (! $this->hasMore) {
             return;
         }
 
         $query = Idea::query()
             ->with(['costs.range', 'profits.range', 'contributions'])
-            ->where('status' , 'approved')
+            ->where('status', 'approved')
             ->when(
                 $this->lastId !== null,
-                fn($q) =>
-                $q->where('id', '<', $this->lastId)
+                fn ($q) => $q->where('id', '<', $this->lastId)
             )
 
             // field
             ->when(
                 $this->field,
-                fn($q) =>
-                $q->where('idea_field', $this->field)
+                fn ($q) => $q->where('idea_field', $this->field)
             )
 
             // cost range (direct relation)
             ->when(
                 $this->cost_range,
-                fn($q) =>
-                $q->whereHas(
+                fn ($q) => $q->whereHas(
                     'costs',
-                    fn($c) =>
-                    $c->where('range_id', $this->cost_range)
+                    fn ($c) => $c->where('range_id', $this->cost_range)
                 )
             )
 
             // country
             ->when(
                 $this->country,
-                fn($q) =>
-                $q->whereHas(
+                fn ($q) => $q->whereHas(
                     'countries',
-                    fn($c) =>
-                    $c->where('country', $this->country)
+                    fn ($c) => $c->where('country', $this->country)
                 )
             )
 
             // contributions
             ->when(
                 $this->contributionType,
-                fn($q) =>
-                $q->whereHas(
+                fn ($q) => $q->whereHas(
                     'contributions',
-                    fn($c) =>
-                    $c->where('contribute_type', $this->contributionType)
+                    fn ($c) => $c->where('contribute_type', $this->contributionType)
                 )
             )
             ->orderByDesc('id')
@@ -108,6 +106,7 @@ class Index extends Component
 
         if ($query->isEmpty()) {
             $this->hasMore = false;
+
             return;
         }
 
@@ -126,12 +125,11 @@ class Index extends Component
         $this->lastId = $query->last()->id ?? null;
     }
 
-
     #[Title('Explore Ideas')]
     public function render()
     {
         return view('livewire.pages.idea.index', [
-            'ideas'   => $this->ideas,
+            'ideas' => $this->ideas,
             'hasMore' => $this->hasMore,
         ]);
     }

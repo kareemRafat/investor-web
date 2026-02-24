@@ -2,15 +2,17 @@
 
 namespace App\Livewire\Pages\Investment;
 
-use App\Models\Investor;
 use App\Models\Idea;
-use Livewire\Component;
+use App\Models\Investor;
 use Illuminate\Support\Collection;
+use Livewire\Component;
 
 class InvestmentSummary extends Component
 {
     public Investor $investor;
+
     public Collection $matchingIdeas;
+
     public int $amount = 5;
 
     public function mount($investment)
@@ -39,13 +41,15 @@ class InvestmentSummary extends Component
             $ideaCosts = $idea->costs->pluck('range')->filter();
             $matchCapital = $ideaCosts->contains(function ($range) {
                 $investorContribution = $this->investor->contributions?->contributionRange;
-                if (!$investorContribution) return false;
+                if (! $investorContribution) {
+                    return false;
+                }
 
                 return $range->min_value <= $investorContribution->max_value &&
                     $range->max_value >= $investorContribution->min_value;
             });
 
-            if (!$matchCapital) {
+            if (! $matchCapital) {
                 return false;
             }
 

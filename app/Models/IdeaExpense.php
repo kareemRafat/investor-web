@@ -12,7 +12,7 @@ class IdeaExpense extends Model
         'assets',
         'salaries',
         'operating',
-        'other'
+        'other',
     ];
 
     protected $casts = [
@@ -35,8 +35,8 @@ class IdeaExpense extends Model
         $distribution = [];
 
         foreach ($map as $field => $label) {
-            if (!is_null($this->$field)) {
-                $distribution[] = $label . ': ' . intval($this->$field) . '%';
+            if (! is_null($this->$field)) {
+                $distribution[] = $label.': '.intval($this->$field).'%';
             }
         }
 

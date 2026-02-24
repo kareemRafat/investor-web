@@ -11,9 +11,9 @@ trait HandlesAttachmentUpload
     /**
      * Handle file upload for a model with polymorphic attachments.
      *
-     * @param Model $model The model instance (e.g., Investor, Idea) with attachments relation
-     * @param TemporaryUploadedFile|null $attachment The uploaded file
-     * @param string $baseStoragePath The base storage path (e.g., 'attachments')
+     * @param  Model  $model  The model instance (e.g., Investor, Idea) with attachments relation
+     * @param  TemporaryUploadedFile|null  $attachment  The uploaded file
+     * @param  string  $baseStoragePath  The base storage path (e.g., 'attachments')
      */
     public function handleAttachmentUpload(Model $model, $attachment, string $baseStoragePath = 'attachments'): void
     {
@@ -43,5 +43,4 @@ trait HandlesAttachmentUpload
             $this->data['attachment'] = null;
         }
     }
-
 }
