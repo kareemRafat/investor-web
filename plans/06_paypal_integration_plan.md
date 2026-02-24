@@ -23,17 +23,32 @@ When we restart, we will focus on the actual PayPal integration.
 - [ ] **Logic:**
     - `createOrder()`: Use `setApiAppContext()` and `createOrder()` to get an `id`.
     - `capturePayment()`: Use `captureOrder()` to verify and finalize the transaction.
+    - **Error Handling:** Implement robust error handling for API calls, logging detailed responses.
 
 ### 2. Frontend: Component-Based UI Strategy
-We will break down the payment interface into reusable **Blade Components** for better organization and scalability:
+We will break down the payment interface into reusable **Blade Components** for better organization and scalability. The payment page will display plan details and a suitable payment form.
 
-- [ ] **`x-payments.paypal-buttons`**: A dedicated component to load the PayPal SDK and render the smart buttons.
+- [ ] **`x-payments.paypal-buttons`**: A dedicated component to load the PayPal SDK and render the smart buttons. When clicked, these typically open an in-context pop-up for authorization without leaving the site.
 - [ ] **`x-payments.card-form`**: A polished, reusable credit card form used for both **Mock** and **Stripe** drivers.
 - [ ] **`x-payments.loading-overlay`**: A global, professional "Processing Payment..." spinner for all methods.
 - [ ] **Dynamic Container:** The main `Payment.php` Livewire page will act as the orchestrator, switching between these components based on the active driver.
+- [ ] **Success/Failure UX:** Implement clear UI feedback and redirection for successful payments, cancelled payments, and payment failures.
 
 ### 3. Database & Tracking
-- [ ] **Migration:** Add `transaction_id` and `payment_gateway` columns to `subscriptions` and `contact_unlocks` tables for audit trails.
+- [ ] **Dedicated Transactions Table:** Create a new `transactions` table to store all payment attempts, their statuses, and relevant metadata (e.g., `gateway_transaction_id`, `amount`, `currency`, `status`, full API response payload). This provides an audit trail independent of `subscriptions` or `contact_unlocks`.
+- [ ] **Migration for related models:** Add `transaction_id` and `payment_gateway` columns to `subscriptions` and `contact_unlocks` tables, linking them to the `transactions` table.
+
+### 4. Webhooks (Asynchronous Payment Notifications)
+- [ ] **Webhook Route:** Define a dedicated `POST /webhooks/paypal` route to receive asynchronous payment notifications from PayPal (e.g., `PAYMENT.CAPTURE.COMPLETED`).
+- [ ] **Webhook Handler:** Implement a handler to process these notifications, update the `transactions` table, and trigger corresponding subscription or unlock updates.
+- [ ] **Webhook Security:** Implement signature verification for incoming webhooks to ensure authenticity.
+
+### 5. Security & Validation
+- [ ] **Amount Validation:** Before capturing payment, verify that the received amount matches the expected amount for the chosen plan on the backend.
+
+### 6. Environment & Currency Configuration
+- [ ] **Environment Variables:** Clearly define and use environment variables for PayPal API credentials (Client ID, Secret) and mode (Sandbox/Live).
+- [ ] **Currency Handling:** Ensure the PayPal driver correctly handles the configured currency (e.g., USD or SAR) and that frontend displays match.
 
 ---
 
@@ -43,4 +58,4 @@ We will break down the payment interface into reusable **Blade Components** for 
 3.  **Final Currency:** Confirm if we are using **USD** or another currency.
 
 ---
-*Last Updated: February 22, 2026*
+*Last Updated: February 24, 2026*
