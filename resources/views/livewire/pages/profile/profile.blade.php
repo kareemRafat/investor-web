@@ -5,14 +5,6 @@
             {{ __('profile.subscription.title') }}
         </div>
 
-        @if (session()->has('subscription_success'))
-            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <i class="bi bi-check-circle-fill mx-1"></i>
-                {{ session('subscription_success') }}
-            </div>
-        @endif
-
         <div class="row g-3 text-dark">
             <!-- Current Plan -->
             <div class="col-xl-3 col-md-6">

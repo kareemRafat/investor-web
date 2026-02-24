@@ -232,6 +232,17 @@
                 .security-alert strong {
                     color: var(--danger-color);
                 }
+
+                /* === RTL Adjustments === */
+                [dir="rtl"] .alert-dismissible .btn-close {
+                    left: 0;
+                    right: auto;
+                }
+
+                [dir="rtl"] .alert-dismissible {
+                    padding-left: 3rem;
+                    padding-right: 1.25rem;
+                }
             </style>
         @endonce
 
@@ -270,6 +281,23 @@
 
         <!-- stats cards -->
         <livewire:pages.profile.profile-stats />
+
+        @if (session()->has('subscription_success'))
+            <div class="col-12 mt-4">
+                <div class="alert alert-success alert-dismissible fade show shadow-sm border-0 rounded-4 p-4" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-success bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-check-circle-fill text-success fs-3"></i>
+                        </div>
+                        <div>
+                            <h5 class="alert-heading fw-bold mb-1">{{ __('pages.payment.success_title') ?? 'Success!' }}</h5>
+                            <p class="mb-0">{{ session('subscription_success') }}</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
 
         <!-- sub-menu -->
         @include('components.assets.profile.sub_menu')

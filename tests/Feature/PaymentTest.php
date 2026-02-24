@@ -3,15 +3,14 @@
 namespace Tests\Feature;
 
 use App\Enums\PlanType;
-use App\Models\User;
 use App\Models\Transaction;
-use App\Models\Subscription;
-use App\Services\Payments\PaymentManager;
+use App\Models\User;
 use App\Services\Payments\Drivers\PayPalGateway;
+use App\Services\Payments\PaymentManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Tests\TestCase;
 use Mockery;
+use Tests\TestCase;
 
 class PaymentTest extends TestCase
 {
@@ -69,14 +68,14 @@ class PaymentTest extends TestCase
                                     [
                                         'amount' => [
                                             'value' => '99.00',
-                                            'currency_code' => 'USD'
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                            'currency_code' => 'USD',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ]);
 
         $this->instance(PaymentManager::class, tap(Mockery::mock(PaymentManager::class), function ($mock) use ($mockGateway) {
@@ -86,7 +85,8 @@ class PaymentTest extends TestCase
         Livewire::actingAs($user)
             ->test(\App\Livewire\Pages\Payment::class, ['plan' => 'monthly'])
             ->call('capturePayPalOrder', 'PAYPAL-ORDER-123')
-            ->assertReturned(['status' => 'success', 'redirect' => route('main.profile')]);
+            ->assertRedirect(route('main.profile'))
+            ->assertSessionHas('subscription_success');
 
         $user->refresh();
         $this->assertEquals(PlanType::MONTHLY, $user->plan_type);
@@ -112,7 +112,7 @@ class PaymentTest extends TestCase
     public function it_prevents_duplicate_capture()
     {
         $user = User::factory()->create();
-        
+
         // Create an existing transaction
         Transaction::factory()->create([
             'gateway_order_id' => 'PAYPAL-ORDER-123',

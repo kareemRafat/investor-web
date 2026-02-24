@@ -87,11 +87,7 @@
                         return @this.createPayPalOrder();
                     },
                     onApprove: function(data, actions) {
-                        return @this.capturePayPalOrder(data.orderID).then(response => {
-                            if (response.status === 'success') {
-                                window.location.href = response.redirect;
-                            }
-                        });
+                        return @this.capturePayPalOrder(data.orderID);
                     },
                     onCancel: function(data) {
                         @this.handlePayPalCancel();

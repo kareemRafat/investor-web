@@ -98,7 +98,7 @@ class Payment extends Component
             $currency = config('paypal.currency', 'USD');
 
             $orderId = $paymentManager->driver('paypal')->createOrder($amount, $currency, [
-                'description' => __('pages.pricing.plans').': '.$planType->getLabel(),
+                'description' => 'Subscription: '.$planType->value,
             ]);
 
             return $orderId;
@@ -150,7 +150,7 @@ class Payment extends Component
                     return ['status' => 'error', 'message' => __('pages.payment.error')];
                 }
 
-                return DB::transaction(function () use ($user, $planType, $result, $orderId, $subscriptionService) {
+                return DB::transaction(function () use ($user, $planType, $result, $orderId, $subscriptionService, $capturedAmount, $capturedCurrency) {
                     // Create the subscription
                     $subscription = $subscriptionService->subscribe($user, $planType, $orderId, true);
 
@@ -174,7 +174,9 @@ class Payment extends Component
 
                     session()->flash('subscription_success', __('pages.payment.success', ['plan' => $planType->getLabel()]));
 
-                    return ['status' => 'success', 'redirect' => route('main.profile')];
+                    $this->redirect(route('main.profile'), navigate: false);
+
+                    return ['status' => 'success'];
                 });
             } else {
                 $user = Auth::user();
