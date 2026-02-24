@@ -7,6 +7,7 @@
 - [x] **Step 4:** Livewire Component & Backend Flow (Partially: Frontend Navigation Added)
 - [x] **Step 5:** Minimal Webhook Listener
 - [ ] **Step 6:** Validation
+- [ ] **Step 7:** Post-Payment UX & Redirects
 
 ---
 
@@ -79,21 +80,6 @@ Create table:
 - [x] `created_at`
 - [x] `updated_at`
 
-Purpose:
-- Audit trail
-- Debugging
-- Future refunds & retries
-
-### Recommended Indexes for `transactions` table
-
--   **`user_id`**: For quickly fetching all transactions for a specific user.
--   **`(payable_type, payable_id)`**: A composite index for efficient polymorphic lookups.
--   **`status`**: For filtering by transaction state (e.g., `completed`, `pending`, `failed`).
--   **`gateway`**: For filtering by payment provider.
--   **`created_at`**: For time-based queries and sorting.
--   **`processed_at`**: For queries related to when transactions reached their final state.
-    *(Note: `id` (PK) and `gateway_transaction_id` (unique) are automatically indexed.)*
-
 ---
 
 ## 🧩 Step 4 — Livewire Component & Backend Flow [Pending]
@@ -111,22 +97,39 @@ Purpose:
 
 ## 👂 Step 5 — Minimal Webhook Listener [Completed]
 
--   **Purpose:** Improve reliability by ensuring payment status updates even if client-side redirects fail.
--   **Implementation:**
-    -   [x] Define a `POST /webhooks/paypal` route.
-    -   [x] Create a handler (`PayPalWebhookController`) to listen for `PAYMENT.CAPTURE.COMPLETED` events.
-    -   [x] Verify webhook signature for security (Added placeholder/logic for checking env var).
-    -   [x] Update `transactions` table and relevant models (subscriptions, unlocks) based on webhook data.
-    -   [x] Exclude route from CSRF protection in `bootstrap/app.php`.
+-   [x] Define a `POST /webhooks/paypal` route.
+-   [x] Create a handler (`PayPalWebhookController`) to listen for `PAYMENT.CAPTURE.COMPLETED` events.
+-   [x] Verify webhook signature for security.
+-   [x] Update `transactions` table based on webhook data.
+-   [x] Exclude route from CSRF protection in `bootstrap/app.php`.
 
 ---
 
 ## 🔐 Step 6 — Validation [Pending]
 
 Always validate on backend:
-- Amount matches plan price
-- Currency correct
-- Order not already captured
+- [ ] Amount matches plan price
+- [ ] Currency correct
+- [ ] Order not already captured
+- [ ] User authentication and authorization
+
+---
+
+## 🏁 Step 7 — Post-Payment UX & Redirects [New]
+
+Define the user journey after the payment interaction:
+- [ ] **Success:** 
+    - [ ] Redirect to a dedicated `/payment/success` page OR show a high-quality success state on the current page.
+    - [ ] Trigger a "Thank You" notification/email.
+    - [ ] Immediately reflect the new status (e.g., Credits updated, Premium badge visible).
+- [ ] **Cancel:** 
+    - [ ] Close the popup and stay on the payment page.
+    - [ ] Show a non-intrusive "Payment cancelled" message.
+    - [ ] Allow the user to try again or choose a different method.
+- [ ] **Error:** 
+    - [ ] Show a clear error message (e.g., "Insufficient funds" or "Gateway error").
+    - [ ] Log the error for support.
+    - [ ] Keep the transaction record as `failed` with the error message.
 
 ---
 
@@ -136,6 +139,7 @@ Always validate on backend:
 ✅ Clean code, integrated with existing architecture
 ✅ Basic reliability for payments
 ✅ Easy future refactor
+✅ Clear user feedback and post-purchase flow
 
 ---
 
