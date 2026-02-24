@@ -112,14 +112,14 @@
                             </li>
                         </ul>
 
-                        <button wire:click="selectPlan('monthly')" @if (auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY) disabled @endif
-                            class="btn {{ auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY ? 'btn-secondary' : 'btn-primary' }} w-100 py-2 fw-bold shadow-sm rounded-3">
+                        <a href="{{ route('payment.page', ['plan' => 'monthly']) }}" wire:navigate
+                           class="btn {{ auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY ? 'btn-secondary disabled' : 'btn-primary' }} w-100 py-2 fw-bold shadow-sm rounded-3">
                             @if (auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY)
                                 {{ __('pages.pricing.current_plan') }}
                             @else
                                 {{ __('pages.pricing.choose_plan') }}
                             @endif
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -174,14 +174,14 @@
                             </li>
                         </ul>
 
-                        <button wire:click="selectPlan('yearly')" @if (auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY) disabled @endif
-                            class="btn {{ auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY ? 'btn-secondary' : 'btn-outline-primary' }} w-100 py-2 fw-bold rounded-3">
+                        <a href="{{ route('payment.page', ['plan' => 'yearly']) }}" wire:navigate
+                           class="btn {{ auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY ? 'btn-secondary disabled' : 'btn-outline-primary' }} w-100 py-2 fw-bold rounded-3">
                             @if (auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY)
                                 {{ __('pages.pricing.current_plan') }}
                             @else
                                 {{ __('pages.pricing.choose_plan') }}
                             @endif
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

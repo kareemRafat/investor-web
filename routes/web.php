@@ -1,39 +1,38 @@
 <?php
 
-use Livewire\Livewire;
-use App\Livewire\Pages\FAQ;
-use App\Livewire\Auth\Login;
-use App\Livewire\Pages\Home;
-use App\Livewire\Pages\About;
-use App\Livewire\Pages\Terms;
-use App\Livewire\Auth\Register;
-use App\Livewire\Pages\Contact;
-use App\Livewire\Pages\Landing;
-use App\Livewire\Auth\ResetPassword;
+use App\Http\Controllers\LogoutController;
 use App\Livewire\Auth\ForgotPassword;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Pages\About;
+use App\Livewire\Pages\Contact;
+use App\Livewire\Pages\FAQ;
+use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Idea\IdeaForm;
 use App\Livewire\Pages\Idea\IdeaInfo;
-use App\Livewire\Pages\PrivacyPolicy;
-use App\Livewire\Pages\Profile\Ideas;
-use Illuminate\Support\Facades\Route;
-use App\Livewire\Pages\Profile\Profile;
 use App\Livewire\Pages\Idea\IdeaSummary;
-use App\Livewire\Pages\Profile\Security;
-use App\Http\Controllers\LogoutController;
-use App\Livewire\Pages\Profile\ContactInfo;
-use App\Livewire\Pages\Profile\Investments;
 use App\Livewire\Pages\Idea\Index as IdeaIndex;
+use App\Livewire\Pages\Investment\Index as InvestmentIndex;
 use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\Investment\InvestmentInfo;
 use App\Livewire\Pages\Investment\InvestmentSummary;
-use App\Livewire\Pages\Investment\Index as InvestmentIndex;
+use App\Livewire\Pages\Landing;
+use App\Livewire\Pages\PrivacyPolicy;
+use App\Livewire\Pages\Profile\ContactInfo;
+use App\Livewire\Pages\Profile\Ideas;
+use App\Livewire\Pages\Profile\Investments;
+use App\Livewire\Pages\Profile\Profile;
+use App\Livewire\Pages\Profile\Security;
+use App\Livewire\Pages\Terms;
+use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ],
     function () {
         Route::get('/', Landing::class)->name('main.landing');
@@ -48,9 +47,8 @@ Route::group(
                 ->name('forgot-password');
             Route::get('/reset-password/{token}', ResetPassword::class)
                 ->name('password.reset');
-            Route::get('/reset-password', fn() => abort(404)); // to prevent get error when access without token
+            Route::get('/reset-password', fn () => abort(404)); // to prevent get error when access without token
         });
-
 
         // main page
         Route::middleware(['auth'])->group(function () {
@@ -69,7 +67,6 @@ Route::group(
             Route::get('/about', About::class)->name('main.about');
             Route::get('/pricing', \App\Livewire\Pages\Pricing::class)->name('main.pricing');
             Route::get('/payment/{plan}', \App\Livewire\Pages\Payment::class)->name('payment.page');
-
 
             // Submit your Idea
             Route::get('/ideas', IdeaIndex::class)->name('idea.index');
@@ -101,3 +98,8 @@ Route::group(
         });
     }
 );
+
+// Payment Webhooks
+// Excluded from CSRF in bootstrap/app.php
+Route::post('webhooks/paypal', App\Http\Controllers\Webhooks\PayPalWebhookController::class)
+    ->name('webhooks.paypal');

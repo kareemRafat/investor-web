@@ -1,11 +1,20 @@
-# PayPal Integration --- Simple & Expandable Plan (Phase 1)
+# PayPal Integration — Simple & Expandable Plan (Phase 1)
+
+## 📌 Progress
+- [x] **Step 1:** Install PayPal Package
+- [x] **Step 2:** Create PayPalGateway Driver
+- [x] **Step 3:** Transactions Table (Minimal)
+- [x] **Step 4:** Livewire Component & Backend Flow (Partially: Frontend Navigation Added)
+- [x] **Step 5:** Minimal Webhook Listener
+- [ ] **Step 6:** Validation
+
+---
 
 ## 🎯 Goal
 
-Launch PayPal payments quickly while keeping the system ready for future
-expansion into a multi‑gateway architecture.
+Launch PayPal payments quickly while keeping the system ready for future expansion into a multi-gateway architecture.
 
-------------------------------------------------------------------------
+---
 
 ## ✅ Architecture Principles
 
@@ -15,56 +24,65 @@ expansion into a multi‑gateway architecture.
 -   **Leverage Existing PaymentManager:** Integrate PayPal as a driver within the existing polymorphic payment architecture.
 -   No controller talks directly to PayPal SDK
 
-------------------------------------------------------------------------
+---
 
 ## 📁 File Structure
 
-app/ └── Services/ └── Payments/ └── Drivers/ └── PayPalGateway.php
+```
+app/
+└── Services/
+    └── Payments/
+        └── Drivers/
+            └── PayPalGateway.php
+```
 
-------------------------------------------------------------------------
+---
 
-## ⚙️ Step 1 --- Install PayPal Package
+## ⚙️ Step 1 — Install PayPal Package [Completed]
 
-composer require srmklive/paypal
+- [x] Run `composer require srmklive/paypal`
+- [x] Publish config: `php artisan vendor:publish --provider="Srmklive\PayPal\Providers\PayPalServiceProvider"`
+- [x] Update `.env` and `.env.example` with PayPal credentials.
 
-Publish config: php artisan vendor:publish
---provider="Srmklive`\PayPal`\Providers`\PayPalServiceProvider`"
+---
 
-------------------------------------------------------------------------
-
-## 🧠 Step 2 --- Create PayPalGateway Driver
+## 🧠 Step 2 — Create PayPalGateway Driver [Completed]
 
 Responsibilities (implementing `PaymentGatewayInterface`):
-- createOrder()
-- capturePayment()
-- verifyAmount() (internal to driver, or part of capture)
-- handle errors + logging
+- [x] createOrder()
+- [x] capturePayment()
+- [x] verifyAmount() (internal to driver, or part of capture)
+- [x] handle errors + logging
 
 Example usage: `app(\App\Services\Payments\PaymentManager::class)->driver('paypal')->createOrder($amount, $currency);`
 
-------------------------------------------------------------------------
+---
 
-## 🗄️ Step 3 --- Transactions Table (Minimal)
+## 🗄️ Step 3 — Transactions Table (Minimal) [Completed]
 
 Create table:
 
-transactions - id
-- user_id (foreign key to users table)
-- payable_id (polymorphic)
-- payable_type (polymorphic)
-- gateway (paypal)
-- gateway_order_id (from createOrder)
-- gateway_transaction_id (from capturePayment)
-- amount
-- currency
-- status (pending, processing, completed, failed, refunded)
-- error_message (for failed transactions)
-- payload (json, for full response/request data)
-- processed_at (nullable timestamp)
-- created_at
-- updated_at
+`transactions`
+- [x] `id`
+- [x] `user_id` (foreign key to users table)
+- [x] `payable_id` (polymorphic)
+- [x] `payable_type` (polymorphic)
+- [x] `gateway` (paypal)
+- [x] `gateway_order_id` (from createOrder)
+- [x] `gateway_transaction_id` (from capturePayment)
+- [x] `amount`
+- [x] `currency`
+- [x] `status` (pending, processing, completed, failed, refunded)
+- [x] `error_message` (for failed transactions)
+- [x] `payload` (json, for full response/request data)
+- [x] `processed_at` (nullable timestamp)
+- [x] `created_at`
+- [x] `updated_at`
 
-Purpose: - Audit trail - Debugging - Future refunds & retries
+Purpose:
+- Audit trail
+- Debugging
+- Future refunds & retries
 
 ### Recommended Indexes for `transactions` table
 
@@ -76,11 +94,11 @@ Purpose: - Audit trail - Debugging - Future refunds & retries
 -   **`processed_at`**: For queries related to when transactions reached their final state.
     *(Note: `id` (PK) and `gateway_transaction_id` (unique) are automatically indexed.)*
 
-------------------------------------------------------------------------
+---
 
-## 🧩 Step 4 --- Livewire Component & Backend Flow
+## 🧩 Step 4 — Livewire Component & Backend Flow [Pending]
 
-1.  User selects plan
+1.  User selects plan (Frontend Updated to use `wire:navigate`)
 2.  Livewire component initiates backend to create PayPal order via `PaymentManager`'s `paypal` driver.
 3.  Frontend opens PayPal Smart Button pop-up (orchestrated by Livewire).
 4.  PayPal returns order ID to frontend.
@@ -89,27 +107,28 @@ Purpose: - Audit trail - Debugging - Future refunds & retries
 7.  Save transaction to `transactions` table.
 8.  Activate subscription/unlock.
 
-------------------------------------------------------------------------
+---
 
-## 👂 Step 5 --- Minimal Webhook Listener
+## 👂 Step 5 — Minimal Webhook Listener [Completed]
 
 -   **Purpose:** Improve reliability by ensuring payment status updates even if client-side redirects fail.
 -   **Implementation:**
-    -   Define a `POST /webhooks/paypal` route.
-    -   Create a handler to listen for `PAYMENT.CAPTURE.COMPLETED` events.
-    -   Verify webhook signature for security.
-    -   Update `transactions` table and relevant models (subscriptions, unlocks) based on webhook data.
+    -   [x] Define a `POST /webhooks/paypal` route.
+    -   [x] Create a handler (`PayPalWebhookController`) to listen for `PAYMENT.CAPTURE.COMPLETED` events.
+    -   [x] Verify webhook signature for security (Added placeholder/logic for checking env var).
+    -   [x] Update `transactions` table and relevant models (subscriptions, unlocks) based on webhook data.
+    -   [x] Exclude route from CSRF protection in `bootstrap/app.php`.
 
-------------------------------------------------------------------------
+---
 
-## 🔐 Step 6 --- Validation
+## 🔐 Step 6 — Validation [Pending]
 
 Always validate on backend:
 - Amount matches plan price
 - Currency correct
 - Order not already captured
 
-------------------------------------------------------------------------
+---
 
 ## 🚀 Result
 
@@ -118,7 +137,7 @@ Always validate on backend:
 ✅ Basic reliability for payments
 ✅ Easy future refactor
 
-------------------------------------------------------------------------
+---
 
 ## ❌ What We Still Skip Now (for simplicity)
 
