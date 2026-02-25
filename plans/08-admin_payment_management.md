@@ -7,8 +7,8 @@ Provide the site owner/admin with full visibility into all financial transaction
 
 ## 📌 Progress
 - [x] **Milestone 1:** Basic Transaction Management
-- [ ] **Milestone 2:** User & Purchase Integration
-- [ ] **Milestone 3:** Financial Analytics Dashboard
+- [x] **Milestone 2:** User & Purchase Integration
+- [x] **Milestone 3:** Financial Analytics Dashboard
 - [ ] **Milestone 4:** Advanced Auditing Tools
 
 ---
@@ -28,21 +28,21 @@ Provide the site owner/admin with full visibility into all financial transaction
     - **JSON Payload Viewer:** Display the raw PayPal response for debugging.
     - Link to the `payable` model (Subscription or Unlock).
 
-### Milestone 2: User & Purchase Integration
+### Milestone 2: User & Purchase Integration [Completed]
 *Goal: View transactions in the context of specific users and products.*
 
-- [ ] **Task 2.1:** Create `TransactionsRelationManager`.
-- [ ] **Task 2.2:** Attach Relation Manager to `UserResource`.
-- [ ] **Task 2.3:** Add "Total Spent" column or stat to the `UserResource` list.
+- [x] **Task 2.1:** Create `TransactionsRelationManager`.
+- [x] **Task 2.2:** Attach Relation Manager to `UserResource`.
+- [x] **Task 2.3:** Add "Total Spent" column or stat to the `UserResource` list.
 
-### Milestone 3: Financial Analytics Dashboard
+### Milestone 3: Financial Analytics Dashboard [Completed]
 *Goal: At-a-glance revenue monitoring.*
 
-- [ ] **Task 3.1:** Create `RevenueStatsWidget`:
+- [x] **Task 3.1:** Create `RevenueStatsWidget`:
     - Total Revenue (Month/Year/All-time).
     - Success vs. Failure rate chart.
-- [ ] **Task 3.2:** Create `RecentTransactionsWidget` for the main dashboard.
-- [ ] **Task 3.3:** Add active subscription counts (Emerald vs. Ruby).
+- [x] **Task 3.2:** Create `RecentTransactionsWidget` for the main dashboard.
+- [x] **Task 3.3:** Add active subscription counts (Emerald vs. Ruby).
 
 ### Milestone 4: Advanced Auditing Tools
 *Goal: Resolve payment discrepancies manually.*

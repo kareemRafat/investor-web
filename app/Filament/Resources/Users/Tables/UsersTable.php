@@ -90,10 +90,31 @@ class UsersTable
                     ->label('الباقة')
                     ->badge(),
 
+                TextColumn::make('ideas_count')
+                    ->label('الأفكار')
+                    ->counts('ideas')
+                    ->badge()
+                    ->color('gray')
+                    ->sortable(),
+
+                TextColumn::make('investors_count')
+                    ->label('عروض الاستثمار')
+                    ->counts('investors')
+                    ->badge()
+                    ->color('gray')
+                    ->sortable(),
+
                 TextColumn::make('contact_credits')
                     ->label('الرصيد')
                     ->badge()
                     ->color('gray'),
+
+                TextColumn::make('completed_transactions_sum_amount')
+                    ->label('إجمالي الدفع')
+                    ->sum('completedTransactions', 'amount')
+                    ->money('USD', locale: 'en')
+                    ->sortable()
+                    ->color('success'),
 
                 TextColumn::make('role')
                     ->label('الصلاحية')

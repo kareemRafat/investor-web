@@ -4,6 +4,9 @@ namespace App\Providers\Filament;
 
 use App\Filament\Widgets\IdeasStats;
 use App\Filament\Widgets\InvestorsStats;
+use App\Filament\Widgets\RecentTransactions;
+use App\Filament\Widgets\RevenueStats;
+use App\Filament\Widgets\SubscriptionOverview;
 use App\Filament\Widgets\UsersStats;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -64,6 +67,9 @@ class AdminPanelProvider extends PanelProvider
                 UsersStats::class,
                 IdeasStats::class,
                 InvestorsStats::class,
+                RevenueStats::class,
+                SubscriptionOverview::class,
+                // RecentTransactions::class,
             ])
             ->middleware([
                 EncryptCookies::class,

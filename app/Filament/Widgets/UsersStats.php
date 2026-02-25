@@ -8,6 +8,8 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class UsersStats extends StatsOverviewWidget
 {
+    protected static bool $isLazy = true;
+
     protected function getStats(): array
     {
         return [

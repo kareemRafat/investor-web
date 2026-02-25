@@ -11,27 +11,28 @@ use App\Filament\Resources\Transactions\Schemas\TransactionInfolist;
 use App\Filament\Resources\Transactions\Tables\TransactionsTable;
 use App\Models\Transaction;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use UnitEnum;
 
 class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChartPie;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::ChartPie;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::ClipboardDocumentCheck;
 
     protected static string|UnitEnum|null $navigationGroup = 'إدارة الإشتراكات';
 
     protected static ?int $navigationSort = 6;
 
-    protected static ?string $modelLabel = 'الإشتراكات';
+    protected static ?string $modelLabel = 'المعاملة';
 
-    protected static ?string $pluralModelLabel = 'الإشتراكات';
+    protected static ?string $pluralModelLabel = 'المعاملات';
 
     public static function form(Schema $schema): Schema
     {
@@ -46,6 +47,12 @@ class TransactionResource extends Resource
     public static function table(Table $table): Table
     {
         return TransactionsTable::configure($table);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->with(['user']);
     }
 
     public static function getRelations(): array

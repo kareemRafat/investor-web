@@ -27,7 +27,7 @@ class TransactionsTable
 
                 TextColumn::make('amount')
                     ->label('المبلغ')
-                    ->money(fn ($record) => $record->currency)
+                    ->money(fn ($record) => $record->currency, locale: 'en')
                     ->sortable(),
 
                 TextColumn::make('gateway')

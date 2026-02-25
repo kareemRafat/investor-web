@@ -9,6 +9,8 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class InvestorsStats extends StatsOverviewWidget
 {
+    protected static bool $isLazy = true;
+
     protected function getStats(): array
     {
         return [

@@ -22,7 +22,7 @@ class TransactionInfolist
 
                                 TextEntry::make('amount')
                                     ->label('المبلغ')
-                                    ->money(fn ($record) => $record->currency),
+                                    ->money(fn ($record) => $record->currency, locale: 'en'),
 
                                 TextEntry::make('status')
                                     ->label('الحالة')

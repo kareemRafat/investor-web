@@ -83,6 +83,16 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasMany(ContactUnlock::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function completedTransactions()
+    {
+        return $this->hasMany(Transaction::class)->where('status', 'completed');
+    }
+
     public function getNextRenewalAtAttribute()
     {
         return $this->subscriptions()
