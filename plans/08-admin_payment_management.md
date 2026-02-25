@@ -9,7 +9,7 @@ Provide the site owner/admin with full visibility into all financial transaction
 - [x] **Milestone 1:** Basic Transaction Management
 - [x] **Milestone 2:** User & Purchase Integration
 - [x] **Milestone 3:** Financial Analytics Dashboard
-- [ ] **Milestone 4:** Advanced Auditing Tools
+- [/] **Milestone 4:** Advanced Auditing Tools (Partially Complete)
 
 ---
 
@@ -43,11 +43,12 @@ Provide the site owner/admin with full visibility into all financial transaction
     - Success vs. Failure rate chart.
 - [x] **Task 3.2:** Create `RecentTransactionsWidget` for the main dashboard.
 - [x] **Task 3.3:** Add active subscription counts (Emerald vs. Ruby).
+- [x] **Performance Optimization:** Implemented lazy loading and query consolidation for all dashboard widgets, including custom loading spinners for better UX.
 
-### Milestone 4: Advanced Auditing Tools
+### Milestone 4: Advanced Auditing Tools [In Progress]
 *Goal: Resolve payment discrepancies manually.*
 
-- [ ] **Task 4.1:** Manual "Verify Status" Action:
+- [x] **Task 4.1:** Manual "Verify Status" Action:
     - Add a button on the Transaction page to re-poll PayPal API if a webhook was missed.
 - [ ] **Task 4.2:** Export Functionality:
     - Add "Export to Excel/CSV" for accounting and tax purposes.

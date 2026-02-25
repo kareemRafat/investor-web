@@ -82,16 +82,16 @@ Create table:
 
 ---
 
-## 🧩 Step 4 — Livewire Component & Backend Flow [Pending]
+## 🧩 Step 4 — Livewire Component & Backend Flow [Completed]
 
-1.  User selects plan (Frontend Updated to use `wire:navigate`)
-2.  Livewire component initiates backend to create PayPal order via `PaymentManager`'s `paypal` driver.
-3.  Frontend opens PayPal Smart Button pop-up (orchestrated by Livewire).
-4.  PayPal returns order ID to frontend.
-5.  Livewire component sends order ID to backend for capture.
-6.  Backend captures payment via `PaymentManager`'s `paypal` driver.
-7.  Save transaction to `transactions` table.
-8.  Activate subscription/unlock.
+1.  [x] User selects plan (Frontend Updated to use `wire:navigate`)
+2.  [x] Livewire component initiates backend to create PayPal order via `PaymentManager`'s `paypal` driver.
+3.  [x] Frontend opens PayPal Smart Button pop-up (orchestrated by Livewire).
+4.  [x] PayPal returns order ID to frontend.
+5.  [x] Livewire component sends order ID to backend for capture.
+6.  [x] Backend captures payment via `PaymentManager`'s `paypal` driver.
+7.  [x] Save transaction to `transactions` table.
+8.  [x] Activate subscription/unlock.
 
 ---
 

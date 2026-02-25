@@ -17,7 +17,7 @@ class EditTransaction extends EditRecord
             Action::make('back')
                 ->label('العودة')
                 ->icon('heroicon-o-arrow-left')
-                ->url(fn () => url()->previous())
+                ->url(TransactionResource::getUrl('index'))
                 ->color('gray'),
             ViewAction::make(),
         ];

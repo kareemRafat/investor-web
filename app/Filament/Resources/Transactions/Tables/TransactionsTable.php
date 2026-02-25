@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Transactions\Tables;
 
+use App\Filament\Actions\TransactionActions\VerifyPayPalStatusAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
@@ -24,6 +25,16 @@ class TransactionsTable
                     ->label('المستخدم')
                     ->searchable()
                     ->sortable(),
+
+                TextColumn::make('payable_type')
+                    ->label('الخدمة/المنتج')
+                    ->formatStateUsing(fn (string $state, $record): string => match ($state) {
+                        'App\Models\Subscription' => 'إشتراك (' . ($record->payable?->plan_type?->getLabel() ?? '---') . ')',
+                        'App\Models\ContactUnlock' => 'فتح بيانات تواصل',
+                        default => 'أخرى',
+                    })
+                    ->badge()
+                    ->color('gray'),
 
                 TextColumn::make('amount')
                     ->label('المبلغ')
@@ -135,6 +146,7 @@ class TransactionsTable
             ->filtersFormColumns(4)
             ->deferFilters(false)
             ->recordActions([
+                // VerifyPayPalStatusAction::make(),
                 ViewAction::make(),
                 // EditAction::make()->color('info'),
             ])
