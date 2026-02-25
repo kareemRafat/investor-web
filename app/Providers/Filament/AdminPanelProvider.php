@@ -4,7 +4,6 @@ namespace App\Providers\Filament;
 
 use App\Filament\Widgets\IdeasStats;
 use App\Filament\Widgets\InvestorsStats;
-use App\Filament\Widgets\RecentTransactions;
 use App\Filament\Widgets\RevenueStats;
 use App\Filament\Widgets\SubscriptionOverview;
 use App\Filament\Widgets\UsersStats;
@@ -62,14 +61,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                // AccountWidget::class,
+                // FilamentInfoWidget::class,
                 UsersStats::class,
                 IdeasStats::class,
                 InvestorsStats::class,
                 RevenueStats::class,
                 SubscriptionOverview::class,
-                // RecentTransactions::class,
             ])
             ->middleware([
                 EncryptCookies::class,
