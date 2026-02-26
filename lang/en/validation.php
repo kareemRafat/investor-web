@@ -194,6 +194,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'residence_country' => 'residence country',
+        'job_title' => 'job title',
+        'birth_date' => 'birth date',
+        'terms' => 'terms and conditions',
+    ],
 
 ];

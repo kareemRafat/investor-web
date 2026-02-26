@@ -39,11 +39,11 @@
 @endpush
 
 <div class="login-container verify-email-container">
-    <div class="split-container">
+    <div class="split-container" x-data="{ loading: false }">
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form method="POST" action="{{ route('verification.send') }}">
+                <form method="POST" action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('verification.send')) }}" x-on:submit="loading = true">
                     @csrf
                     <div class="d-flex flex-column gap-3">
                         <!-- Logo -->
@@ -67,8 +67,15 @@
                             </div>
                         @endif
 
-                        <button type="submit" class="btn btn-login w-100">
-                            {{ __('auth.verify_email.resend_verification') }}
+                        <button type="submit"
+                            class="btn btn-login w-100 d-flex align-items-center justify-content-center gap-2"
+                            x-bind:class="{ 'is-loading': loading }" style="min-height: 48px;">
+                            <span x-show="loading" x-cloak class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            <span
+                                x-text="loading ? '{{ __('auth.verify_email.resend_verification') }}...' : '{{ __('auth.verify_email.resend_verification') }}'">
+                                {{ __('auth.verify_email.resend_verification') }}
+                            </span>
                         </button>
 
                         <p class="text-center mt-3 small" style="color:#64748b;">

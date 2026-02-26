@@ -35,6 +35,7 @@ class CreateNewUser implements CreatesNewUsers
             'job_title' => ['required', 'string', 'max:255'],
             'residence_country' => ['required', 'string', 'max:255'],
             'birth_date' => ['required', 'date', 'before:today'],
+            'terms' => ['required', 'accepted'],
 
         ])->validate();
 

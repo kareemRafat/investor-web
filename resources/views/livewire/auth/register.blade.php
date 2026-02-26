@@ -1,109 +1,4 @@
-                        @php
-                            $currentLocale = app()->getLocale();
-
-                            // Manual error translation mapping
-                            $errorTranslations = [
-                                // Name errors
-                                'The name field is required.' => [
-                                    'en' => 'The name field is required.',
-                                    'ar' => 'حقل الاسم مطلوب.',
-                                ],
-                                'The name must be at least 2 characters.' => [
-                                    'en' => 'The name must be at least 2 characters.',
-                                    'ar' => 'يجب أن يكون الاسم على الأقل حرفين.',
-                                ],
-                                'The name may not be greater than 255 characters.' => [
-                                    'en' => 'The name may not be greater than 255 characters.',
-                                    'ar' => 'يجب ألا يتجاوز الاسم 255 حرف.',
-                                ],
-
-                                // Email errors
-                                'The email field is required.' => [
-                                    'en' => 'The email field is required.',
-                                    'ar' => 'حقل البريد الإلكتروني مطلوب.',
-                                ],
-                                'The email must be a valid email address.' => [
-                                    'en' => 'The email must be a valid email address.',
-                                    'ar' => 'يجب أن يكون البريد الإلكتروني عنوان بريد إلكتروني صالحاً.',
-                                ],
-                                'The email has already been taken.' => [
-                                    'en' => 'The email has already been taken.',
-                                    'ar' => 'البريد الإلكتروني مُستخدم من قبل.',
-                                ],
-
-                                // Phone errors
-                                'The phone field is required.' => [
-                                    'en' => 'The phone field is required.',
-                                    'ar' => 'حقل الهاتف مطلوب.',
-                                ],
-                                'The phone format is invalid.' => [
-                                    'en' => 'The phone format is invalid.',
-                                    'ar' => 'تنسيق الهاتف غير صالح.',
-                                ],
-                                'The phone has already been taken.' => [
-                                    'en' => 'The phone has already been taken.',
-                                    'ar' => 'رقم الهاتف مُستخدم من قبل.',
-                                ],
-
-                                // Password errors
-                                'The password field is required.' => [
-                                    'en' => 'The password field is required.',
-                                    'ar' => 'حقل كلمة المرور مطلوب.',
-                                ],
-                                'The password field must be at least 8 characters.' => [
-                                    'en' => 'The password must be at least 8 characters.',
-                                    'ar' => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل.',
-                                ],
-                                'The password field confirmation does not match.' => [
-                                    'en' => 'The password confirmation does not match.',
-                                    'ar' => 'تأكيد كلمة المرور غير متطابق.',
-                                ],
-                                'The password must contain at least one uppercase letter.' => [
-                                    'en' => 'The password must contain at least one uppercase letter.',
-                                    'ar' => 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.',
-                                ],
-                                'The password must contain at least one lowercase letter.' => [
-                                    'en' => 'The password must contain at least one lowercase letter.',
-                                    'ar' => 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.',
-                                ],
-                                'The password must contain at least one number.' => [
-                                    'en' => 'The password must contain at least one number.',
-                                    'ar' => 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.',
-                                ],
-                                'The password must contain at least one symbol.' => [
-                                    'en' => 'The password must contain at least one symbol.',
-                                    'ar' => 'يجب أن تحتوي كلمة المرور على رمز واحد على الأقل.',
-                                ],
-
-                                // Country errors
-                                'The residence country field is required.' => [
-                                    'en' => 'The residence country field is required.',
-                                    'ar' => 'حقل بلد الإقامة مطلوب.',
-                                ],
-
-                                // Job title errors
-                                'The job title field is required.' => [
-                                    'en' => 'The job title field is required.',
-                                    'ar' => 'حقل المسمى الوظيفي مطلوب.',
-                                ],
-
-                                // Birth date errors
-                                'The birth date field is required.' => [
-                                    'en' => 'The birth date field is required.',
-                                    'ar' => 'حقل تاريخ الميلاد مطلوب.',
-                                ],
-                                'The birth date does not match the format Y-m-d.' => [
-                                    'en' => 'The birth date format is invalid.',
-                                    'ar' => 'تنسيق تاريخ الميلاد غير صالح.',
-                                ],
-                                'The birth date must be a date before today.' => [
-                                    'en' => 'The birth date must be a date before today.',
-                                    'ar' => 'يجب أن يكون تاريخ الميلاد قبل اليوم.',
-                                ],
-                            ];
-                        @endphp
-
-                        @push('styles')
+@push('styles')
                             <style>
                                 /* ===== REGISTER PAGE OVERRIDES ===== */
                                 .login-container.register-page {
@@ -194,14 +89,40 @@
                                     margin-top: 4px;
                                     color: #ef4444;
                                 }
+
+                                .form-check-input-custom {
+                                    width: 18px !important;
+                                    height: 18px !important;
+                                    margin: 0 !important;
+                                    cursor: pointer;
+                                }
+
+                                .form-check-label-custom {
+                                    cursor: pointer;
+                                    margin: 0 !important;
+                                    line-height: 1;
+                                    user-select: none;
+                                }
+
+                                .btn-login .spinner-border {
+                                    width: 1.1rem;
+                                    height: 1.1rem;
+                                    border-width: 0.15em;
+                                }
+
+                                /* Loading state helper */
+                                .btn-login.is-loading {
+                                    pointer-events: none;
+                                    opacity: 0.8;
+                                }
                             </style>
                         @endpush
 
                         <div class="login-container register-page">
-                            <div class="split-container">
+                            <div class="split-container" x-data="{ loading: false }">
                                 <div class="form-side">
                                     <div class="form-container register-container">
-                                        <form method="POST" action="/register">
+                                        <form method="POST" action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register.store')) }}" x-on:submit="loading = true">
                                             @csrf
 
                                             <!-- Logo & Title -->
@@ -235,7 +156,7 @@
                                                         placeholder="{{ __('pages.register.name') }}">
                                                     @error('name')
                                                         <div class="error-message">
-                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                            {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
@@ -249,7 +170,7 @@
                                                         placeholder="{{ __('pages.register.email') }}">
                                                     @error('email')
                                                         <div class="error-message">
-                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                            {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
@@ -263,7 +184,7 @@
                                                         placeholder="{{ __('pages.register.phone') }}">
                                                     @error('phone')
                                                         <div class="error-message">
-                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                            {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
@@ -285,7 +206,7 @@
                                                     </select>
                                                     @error('residence_country')
                                                         <div class="error-message">
-                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                            {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
@@ -300,7 +221,7 @@
                                                         placeholder="{{ __('pages.register.job_title') }}">
                                                     @error('job_title')
                                                         <div class="error-message">
-                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                            {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
@@ -314,7 +235,7 @@
                                                         value="{{ old('birth_date') }}">
                                                     @error('birth_date')
                                                         <div class="error-message">
-                                                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                                            {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
@@ -324,11 +245,7 @@
                                                     <label class="form-label">{{ __('pages.login.password') }}</label>
                                                     <x-auth.password-input name="password" label=""
                                                         placeholder="{{ __('auth.register.password_placeholder') }}"
-                                                        :error="$errors->first('password')
-                                                            ? $errorTranslations[$errors->first('password')][
-                                                                    app()->getLocale()
-                                                                ] ?? $errors->first('password')
-                                                            : null" />
+                                                        :error="$errors->first('password')" />
                                                 </div>
 
                                                 <!-- Password Confirmation -->
@@ -342,18 +259,30 @@
 
                                             <!-- Terms -->
                                             <div class="mb-4">
-                                                <div class="form-check d-flex align-items-center gap-2">
-                                                    <input class="form-check-input" type="checkbox" name="terms"
-                                                        id="terms">
-                                                    <label class="form-check-label small text-secondary" for="terms">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <input class="form-check-input-custom" type="checkbox" name="terms"
+                                                        id="terms" x-bind:disabled="loading">
+                                                    <label class="form-check-label-custom small text-secondary" for="terms">
                                                         {!! __('auth.register.accept_terms') !!}
                                                     </label>
                                                 </div>
+                                                @error('terms')
+                                                    <p class="text-danger small mt-1 mb-0">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
 
                                             <!-- Submit -->
-                                            <button type="submit" class="btn btn-login w-100 mb-4">
-                                                {{ __('pages.register.continue') }}
+                                            <button type="submit"
+                                                class="btn btn-login w-100 mb-4 d-flex align-items-center justify-content-center gap-2"
+                                                x-bind:class="{ 'is-loading': loading }" style="min-height: 48px;">
+                                                <span x-show="loading" x-cloak class="spinner-border spinner-border-sm"
+                                                    role="status" aria-hidden="true"></span>
+                                                <span
+                                                    x-text="loading ? '{{ __('pages.register.continue') }}...' : '{{ __('pages.register.continue') }}'">
+                                                    {{ __('pages.register.continue') }}
+                                                </span>
                                             </button>
 
                                             <!-- Login Link -->

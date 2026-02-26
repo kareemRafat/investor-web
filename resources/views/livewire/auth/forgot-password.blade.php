@@ -1,28 +1,3 @@
-@php
-    $errorTranslations = [
-        'The email field is required.' => [
-            'en' => 'The email field is required.',
-            'ar' => 'حقل البريد الإلكتروني مطلوب.',
-        ],
-        'The email must be a valid email address.' => [
-            'en' => 'The email must be a valid email address.',
-            'ar' => 'يجب أن يكون البريد الإلكتروني عنوان بريد إلكتروني صالحاً.',
-        ],
-        "We can't find a user with that email address." => [
-            'en' => "We can't find a user with that email address.",
-            'ar' => 'لا يمكننا العثور على مستخدم بعنوان البريد الإلكتروني هذا.',
-        ],
-        'Please wait before retrying.' => [
-            'en' => 'Please wait before retrying.',
-            'ar' => 'يرجى الانتظار قبل المحاولة مرة أخرى.',
-        ],
-        'The selected email is invalid.' => [
-            'en' => 'The selected email is invalid.',
-            'ar' => 'البريد الإلكتروني المحدد غير صالح.',
-        ],
-    ];
-@endphp
-
 @push('styles')
     <style>
         /* ===== FORGOT PASSWORD PAGE STYLES ===== */
@@ -63,11 +38,11 @@
 @endpush
 
 <div class="login-container forgot-password-container">
-    <div class="split-container">
+    <div class="split-container" x-data="{ loading: false }">
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form action="/forgot-password" method="POST">
+                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('password.email')) }}" method="POST" x-on:submit="loading = true">
                     @csrf
 
                     <!-- Logo & Title -->
@@ -90,7 +65,7 @@
 
                     @error('email')
                         <div class="alert alert-danger border-0 p-2 mb-3 small">
-                            {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                            {{ $message }}
                         </div>
                     @enderror
 
@@ -102,8 +77,15 @@
                     @endif
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-login w-100 mb-3">
-                        {{ __('auth.forgot_password.send') }}
+                    <button type="submit"
+                        class="btn btn-login w-100 mb-3 d-flex align-items-center justify-content-center gap-2"
+                        x-bind:class="{ 'is-loading': loading }" style="min-height: 48px;">
+                        <span x-show="loading" x-cloak class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        <span
+                            x-text="loading ? '{{ __('auth.forgot_password.send') }}...' : '{{ __('auth.forgot_password.send') }}'">
+                            {{ __('auth.forgot_password.send') }}
+                        </span>
                     </button>
 
                     <!-- Info Text -->

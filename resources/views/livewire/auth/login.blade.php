@@ -1,28 +1,3 @@
-@php
-    $errorTranslations = [
-        'The email field is required.' => [
-            'en' => 'The email field is required.',
-            'ar' => 'البريد الإلكتروني مطلوب.',
-        ],
-        'The email must be a valid email address.' => [
-            'en' => 'The email must be a valid email address.',
-            'ar' => 'صيغة البريد الإلكتروني غير صحيحة.',
-        ],
-        'The password field is required.' => [
-            'en' => 'The password field is required.',
-            'ar' => 'كلمة المرور مطلوبة.',
-        ],
-        'The password must be at least 8 characters.' => [
-            'en' => 'The password must be at least 8 characters.',
-            'ar' => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل.',
-        ],
-        'These credentials do not match our records.' => [
-            'en' => 'These credentials do not match our records.',
-            'ar' => 'بيانات الاعتماد غير صحيحة.',
-        ],
-    ];
-@endphp
-
 @push('styles')
     <style>
         /* ===== LOGIN PAGE OVERRIDES ===== */
@@ -113,7 +88,7 @@
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form action="/login" method="POST" id="loginForm" x-on:submit="loading = true">
+                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login.store')) }}" method="POST" id="loginForm" x-on:submit="loading = true">
                     @csrf
 
                     <!-- Logo & Title -->
@@ -144,28 +119,25 @@
                             x-bind:readonly="loading" />
                         @error('email')
                             <div class="text-danger small mt-1">
-                                {{ $errorTranslations[$message][app()->getLocale()] ?? $message }}
+                                {{ $message }}
                             </div>
                         @enderror
                     </div>
 
                     <!-- Password -->
-                    @php
-                        $passwordError = $errors->first('password');
-                    @endphp
                     <div class="mb-3">
                         <label class="form-label">{{ __('auth.login.password') }}</label>
                         <div class="position-relative">
                             <input name="password" type="password"
-                                class="form-control @if ($passwordError) is-invalid @endif" id="password"
+                                class="form-control @error('password') is-invalid @enderror" id="password"
                                 placeholder="{{ __('auth.login.password_placeholder') }}" x-bind:readonly="loading" />
                             <i class="bi bi-eye password-toggle" onclick="togglePassword()"></i>
                         </div>
-                        @if ($passwordError)
+                        @error('password')
                             <div class="text-danger small mt-1">
-                                {{ $errorTranslations[$passwordError][app()->getLocale()] ?? $passwordError }}
+                                {{ $message }}
                             </div>
-                        @endif
+                        @enderror
                     </div>
 
                     <!-- Remember & Forgot -->

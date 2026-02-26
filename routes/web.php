@@ -26,6 +26,11 @@ use App\Livewire\Pages\Profile\Profile;
 use App\Livewire\Pages\Profile\Security;
 use App\Livewire\Pages\Terms;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
+use Laravel\Fortify\Http\Controllers\NewPasswordController;
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -41,12 +46,24 @@ Route::group(
             // Authentication Routes
             Route::get('/login', Login::class)
                 ->name('login');
+            Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+                ->name('login.store');
+
             Route::get('/register', Register::class)
                 ->name('register');
+            Route::post('/register', [RegisteredUserController::class, 'store'])
+                ->name('register.store');
+
             Route::get('/forgot-password', ForgotPassword::class)
                 ->name('forgot-password');
+            Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+                ->name('password.email');
+
             Route::get('/reset-password/{token}', ResetPassword::class)
                 ->name('password.reset');
+            Route::post('/reset-password', [NewPasswordController::class, 'store'])
+                ->name('password.update');
+
             Route::get('/reset-password', fn () => abort(404)); // to prevent get error when access without token
         });
 
@@ -54,6 +71,8 @@ Route::group(
         Route::middleware(['auth'])->group(function () {
             Route::get('/verify-email', \App\Livewire\Auth\VerifyEmail::class)
                 ->name('verify-email');
+            Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+                ->name('verification.send');
             Route::post('/logout', LogoutController::class)->name('logout');
         });
 

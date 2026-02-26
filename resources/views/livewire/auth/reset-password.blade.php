@@ -39,11 +39,11 @@
 @endpush
 
 <div class="login-container reset-password-container">
-    <div class="split-container">
+    <div class="split-container" x-data="{ loading: false }">
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form action="{{ route('password.update') }}" method="POST">
+                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('password.update')) }}" method="POST" x-on:submit="loading = true">
                     @csrf
                     <input type="hidden" name="token" value="{{ request()->route('token') }}">
                     <input type="hidden" name="email" value="{{ request()->email }}">
@@ -88,7 +88,7 @@
                         @error('email')
                             <div class="alert alert-danger border-0 p-2 mb-3 small">
                                 <i class="bi bi-exclamation-circle me-2"></i>
-                                {{ __('auth.reset_password.invalid_token') }}
+                                {{ $message }}
                             </div>
                         @enderror
 
@@ -100,8 +100,15 @@
                         @endif
 
                         <!-- Submit -->
-                        <button type="submit" class="btn btn-login w-100">
-                            {{ __('auth.reset_password.confirm') }}
+                        <button type="submit"
+                            class="btn btn-login w-100 d-flex align-items-center justify-content-center gap-2"
+                            x-bind:class="{ 'is-loading': loading }" style="min-height: 48px;">
+                            <span x-show="loading" x-cloak class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            <span
+                                x-text="loading ? '{{ __('auth.reset_password.confirm') }}...' : '{{ __('auth.reset_password.confirm') }}'">
+                                {{ __('auth.reset_password.confirm') }}
+                            </span>
                         </button>
 
 

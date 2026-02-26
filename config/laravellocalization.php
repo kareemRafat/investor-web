@@ -346,5 +346,5 @@ return [
     // Defaults to []
     'urlsIgnored' => ['/skipped'],
 
-    'httpMethodsIgnored' => ['POST', 'PUT', 'PATCH', 'DELETE'],
+    'httpMethodsIgnored' => ['PUT', 'PATCH', 'DELETE'],
 ];
