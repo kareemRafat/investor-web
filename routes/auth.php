@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\LogoutController;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
@@ -15,6 +16,11 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 use Laravel\Fortify\Http\Requests\VerifyEmailRequest;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+// Google Authentication
+Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])
+    ->middleware(['web', 'guest'])
+    ->name('auth.google.redirect');
 
 Route::group(
     [
@@ -58,6 +64,11 @@ Route::group(
         });
     }
 );
+
+// Google Callback (Outside localization group to match the URI in Google Console)
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])
+    ->middleware(['web', 'guest'])
+    ->name('auth.google.callback');
 
 // Localized and Signed Verification Link (Outside localization group to avoid double prefix)
 Route::get('/{locale}/email/verify/{id}/{hash}', function ($locale, VerifyEmailRequest $request) {

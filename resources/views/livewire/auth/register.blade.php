@@ -136,11 +136,11 @@
                                             </div>
 
                                             <!-- Register with Google -->
-                                            <button type="button" class="google-btn mb-4">
+                                            <a href="{{ route('auth.google.redirect') }}" class="google-btn mb-4 text-decoration-none" x-bind:class="{ 'pe-none opacity-50': loading }">
                                                 <img src="{{ asset('images/google.svg') }}" alt="Google Logo"
                                                     width="20" height="20">
                                                 <span>{{ __('pages.register.google') }}</span>
-                                            </button>
+                                            </a>
 
                                             <!-- OR -->
                                             <div class="or_label mb-5"></div>

@@ -102,10 +102,10 @@
                     </div>
 
                     <!-- Google Login -->
-                    <button type="button" class="google-btn mb-4" x-bind:disabled="loading">
+                    <a href="{{ route('auth.google.redirect') }}" class="google-btn mb-4 text-decoration-none" x-bind:class="{ 'pe-none opacity-50': loading }">
                         <img src="{{ asset('images/google.svg') }}" alt="Google Logo" width="20" height="20">
                         <span>{{ __('auth.login.google_login') }}</span>
-                    </button>
+                    </a>
 
                     <!-- Divider -->
                     <div class="or_label mb-4"></div>
