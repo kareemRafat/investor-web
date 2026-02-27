@@ -261,7 +261,7 @@
                                             <div class="mb-4">
                                                 <div class="d-flex align-items-center gap-2">
                                                     <input class="form-check-input-custom" type="checkbox" name="terms"
-                                                        id="terms" x-bind:disabled="loading">
+                                                        id="terms">
                                                     <label class="form-check-label-custom small text-secondary" for="terms">
                                                         {!! __('auth.register.accept_terms') !!}
                                                     </label>
