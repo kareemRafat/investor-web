@@ -21,7 +21,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        \Laravel\Fortify\Fortify::ignoreRoutes();
     }
 
     /**

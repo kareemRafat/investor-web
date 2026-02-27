@@ -69,9 +69,10 @@ Route::group(
 
         // main page
         Route::middleware(['auth'])->group(function () {
-            Route::get('/verify-email', \App\Livewire\Auth\VerifyEmail::class)
-                ->name('verify-email');
+            Route::get('/email/verify', \App\Livewire\Auth\VerifyEmail::class)
+                ->name('verification.notice');
             Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+                ->middleware(['throttle:6,1'])
                 ->name('verification.send');
             Route::post('/logout', LogoutController::class)->name('logout');
         });
@@ -108,6 +109,7 @@ Route::group(
                 Route::get('/investments', Investments::class)->name('profile.investments');
             });
         });
+
         // to make livewire3 work with localiaztion
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
@@ -117,6 +119,15 @@ Route::group(
         });
     }
 );
+
+// Localized and Signed Verification Link
+Route::get('/{locale}/email/verify/{id}/{hash}', function ($locale, \Laravel\Fortify\Http\Requests\VerifyEmailRequest $request) {
+    app()->setLocale($locale);
+
+    return app(\Laravel\Fortify\Http\Controllers\VerifyEmailController::class)->__invoke($request);
+})->middleware(['web', 'auth', 'signed', 'throttle:6,1'])
+    ->name('verification.verify')
+    ->where('locale', '[a-zA-Z]{2}');
 
 // Payment Webhooks
 // Excluded from CSRF in bootstrap/app.php
