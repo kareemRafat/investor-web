@@ -36,5 +36,14 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+        \Illuminate\Auth\Notifications\VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new \Illuminate\Notifications\Messages\MailMessage)
+                ->subject(__('auth.verify_email.title'))
+                ->view('emails.verify-email', [
+                    'url' => $url,
+                    'name' => $notifiable->name,
+                ]);
+        });
     }
 }
