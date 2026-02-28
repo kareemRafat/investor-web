@@ -14,9 +14,10 @@ class ContactMessageInfolist
         return $schema
             ->components([
                 Section::make('تفاصيل الرسالة')
-                    ->schema([
+                    ->columnSpanFull()
+                    ->components([
                         Grid::make(2)
-                            ->schema([
+                            ->components([
                                 TextEntry::make('name')
                                     ->label('الاسم'),
 
@@ -41,8 +42,7 @@ class ContactMessageInfolist
                                     ->label('الرسالة')
                                     ->columnSpanFull(),
                             ]),
-                    ])
-                    ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

@@ -16,5 +16,18 @@ class ContactMessage extends Model
         'phone',
         'subject',
         'message',
+        'status',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            //
+        ];
+    }
 }
