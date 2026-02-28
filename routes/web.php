@@ -24,6 +24,13 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/livewire/update', $handle);
+});
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('/livewire/livewire.js', $handle);
+});
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -63,14 +70,6 @@ Route::group(
                 Route::get('/ideas', Ideas::class)->name('profile.ideas');
                 Route::get('/investments', Investments::class)->name('profile.investments');
             });
-        });
-
-        // to make livewire3 work with localiaztion
-        Livewire::setUpdateRoute(function ($handle) {
-            return Route::post('/livewire/update', $handle);
-        });
-        Livewire::setScriptRoute(function ($handle) {
-            return Route::get('/livewire/livewire.js', $handle);
         });
     }
 );

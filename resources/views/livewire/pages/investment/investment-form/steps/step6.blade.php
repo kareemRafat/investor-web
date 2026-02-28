@@ -98,6 +98,52 @@
                     </div>
                 @endif
             </div>
+
+            @if ($showProfileFields)
+                <div class="col-12 mt-4 pt-3 border-top">
+                    <h6 class="fw-bold mb-3 text-primary">
+                        <i class="bi bi-person-badge me-2"></i>
+                        {{ __('profile.completion_title') }}
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">{{ __('pages.register.job_title') }}</label>
+                            <input type="text" wire:model="job_title" class="form-control border-custom rounded-5"
+                                placeholder="{{ __('profile.placeholders.job_title') }}">
+                            @error('job_title')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">{{ __('pages.register.phone') }}</label>
+                            <input type="tel" wire:model="phone" class="form-control border-custom rounded-5"
+                                placeholder="{{ __('profile.placeholders.phone') }}">
+                            @error('phone')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label fw-semibold">{{ __('pages.register.birth_date') }}</label>
+                            <input type="date" wire:model="birth_date" class="form-control border-custom rounded-5">
+                            @error('birth_date')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">{{ __('pages.register.residence_country') }}</label>
+                            <select wire:model="residence_country" class="form-select border-custom rounded-5">
+                                <option value="">{{ __('profile.placeholders.select_country') }}</option>
+                                @foreach (__('profile.countries') as $code => $name)
+                                    <option value="{{ $name }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                            @error('residence_country')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

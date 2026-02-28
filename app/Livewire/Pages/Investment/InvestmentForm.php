@@ -53,9 +53,9 @@ class InvestmentForm extends Component
     {
         if ($this->currentStep === $this->totalSteps) {
             return $this->finish();
-        } else {
-            return $this->nextStep();
         }
+
+        return $this->nextStep();
     }
 
     public function finish()

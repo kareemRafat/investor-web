@@ -14,8 +14,6 @@ class IdeaForm extends Component
 
     public int $totalSteps = 10;
 
-    // public bool $isTransitioning = false;
-
     public function nextStep()
     {
         $this->dispatch("validate-step-{$this->currentStep}");
@@ -43,7 +41,7 @@ class IdeaForm extends Component
         }
     }
 
-    public function goToStep(int $step): void
+    public function goToStep(int $step)
     {
         if ($step <= $this->maxAllowedStep) {
             $this->currentStep = $step;
@@ -55,9 +53,9 @@ class IdeaForm extends Component
     {
         if ($this->currentStep === $this->totalSteps) {
             return $this->finish();
-        } else {
-            return $this->nextStep();
         }
+
+        return $this->nextStep();
     }
 
     public function finish()
@@ -76,6 +74,12 @@ class IdeaForm extends Component
         $this->maxAllowedStep = 1;
 
         return $this->redirect(route('idea.summary', ['idea' => $ideaId]), navigate: true);
+    }
+
+    #[On('refresh-form')]
+    public function refreshForm()
+    {
+        $this->dispatch('$refresh');
     }
 
     #[Title('Submit Your Idea')]

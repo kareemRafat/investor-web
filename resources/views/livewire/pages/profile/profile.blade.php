@@ -1,4 +1,16 @@
 <div>
+    @if (! $user->hasCompleteProfile())
+        <div class="alert alert-warning border-0 shadow-sm rounded-4 mb-4 p-3 d-flex align-items-center">
+            <div class="bg-warning bg-opacity-20 p-2 rounded-3 me-3">
+                <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+            </div>
+            <div>
+                <h6 class="fw-bold mb-1">{{ __('profile.incomplete_profile.title') }}</h6>
+                <p class="small mb-0 text-muted">{{ __('profile.incomplete_profile.message') }}</p>
+            </div>
+        </div>
+    @endif
+
     <div class="settings-card mb-4">
         <div class="section-title">
             <i class="bi bi-star-fill text-warning"></i>

@@ -2,7 +2,9 @@
 
 return [
     'title' => 'My Profile',
-    'welcome_message' => 'Welcome, you can track your statistics and modify your data here.',
+    'welcome_message' => 'Welcome! please complete the remaining details of your profile.',
+
+    'completion_title' => 'Complete Your Profile Details',
 
     'stats' => [
         'ideas_submitted' => 'Submitted Ideas',
@@ -297,5 +299,11 @@ return [
         'next_reset' => 'Next Credits Reset Date',
         'next_renewal' => 'Next Plan Renewal Date',
         'na' => 'N/A',
+    ],
+
+    'incomplete_profile' => [
+        'title' => 'Complete Your Profile',
+        'message' => 'Please fill in your job title, phone, and country to unlock all features.',
+        'cta' => 'Update Profile',
     ],
 ];

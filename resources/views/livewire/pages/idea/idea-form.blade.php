@@ -65,7 +65,10 @@
                 @endif
 
                 <button x-on:livewire-step-changed.window="scrollToTop()" type="button"
-                    wire:click.prevent="handleNextAction" wire:target="handleNextAction" class="yn-button"
+                    wire:click.prevent="handleNextAction" 
+                    wire:loading.attr="disabled"
+                    wire:target="handleNextAction" 
+                    class="yn-button"
                     style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);"
                     aria-label="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}"
                     title="{{ $currentStep === 10 ? __('idea.form.finish') : __('idea.form.next') }}">

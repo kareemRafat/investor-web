@@ -112,6 +112,14 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->contact_credits > 0;
     }
 
+    public function hasCompleteProfile(): bool
+    {
+        return ! empty($this->job_title) &&
+               ! empty($this->phone) &&
+               ! empty($this->residence_country) &&
+               ! empty($this->birth_date);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role === UserRole::ADMIN;

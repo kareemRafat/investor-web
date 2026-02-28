@@ -29,8 +29,23 @@ class Step6 extends Component
 
     public $currentAttachment = null; // real file name
 
+    public $job_title;
+    public $phone;
+    public $residence_country;
+    public $birth_date;
+    public bool $showProfileFields = false;
+
     public function mount(): void
     {
+        $user = auth()->user();
+        if (! $user->hasCompleteProfile()) {
+            $this->showProfileFields = true;
+            $this->job_title = $user->job_title;
+            $this->phone = $user->phone;
+            $this->residence_country = $user->residence_country;
+            $this->birth_date = $user->birth_date;
+        }
+
         $investorId = session('current_investor_id');
         if (! $investorId) {
             return;
@@ -66,6 +81,22 @@ class Step6 extends Component
         }
 
         $this->validate();
+
+        if ($this->showProfileFields) {
+            $this->validate([
+                'job_title' => 'required|string|max:255',
+                'phone' => 'required|string|max:255',
+                'residence_country' => 'required|string|max:255',
+                'birth_date' => 'required|date|before:today',
+            ]);
+
+            $user->update([
+                'job_title' => $this->job_title,
+                'phone' => $this->phone,
+                'residence_country' => $this->residence_country,
+                'birth_date' => $this->birth_date,
+            ]);
+        }
 
         // Check if we need to deduct a credit (Option B)
         $investorId = session('current_investor_id');

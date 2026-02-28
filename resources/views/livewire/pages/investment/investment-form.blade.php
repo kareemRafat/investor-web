@@ -4,36 +4,37 @@
         <div class="col-12">
 
             {{-- steps --}}
+            <div>
+                @switch($currentStep)
+                    @case(1)
+                        <livewire:pages.investment.investment-form.steps.step1 wire:key="step-1" />
+                    @break
 
-            @switch($currentStep)
-                @case(1)
-                    <livewire:pages.investment.investment-form.steps.step1 wire:key="step-1" />
-                @break
+                    @case(2)
+                        <livewire:pages.investment.investment-form.steps.step2 wire:key="step-2" />
+                    @break
 
-                @case(2)
-                    <livewire:pages.investment.investment-form.steps.step2 wire:key="step-2" />
-                @break
+                    @case(3)
+                        <livewire:pages.investment.investment-form.steps.step3 wire:key="step-3" />
+                    @break
 
-                @case(3)
-                    <livewire:pages.investment.investment-form.steps.step3 wire:key="step-3" />
-                @break
+                    @case(4)
+                        <livewire:pages.investment.investment-form.steps.step4 wire:key="step-4" />
+                    @break
 
-                @case(4)
-                    <livewire:pages.investment.investment-form.steps.step4 wire:key="step-4" />
-                @break
+                    @case(5)
+                        <livewire:pages.investment.investment-form.steps.step5 wire:key="step-5" />
+                    @break
 
-                @case(5)
-                    <livewire:pages.investment.investment-form.steps.step5 wire:key="step-5" />
-                @break
+                    @case(6)
+                        <livewire:pages.investment.investment-form.steps.step6 wire:key="step-6" />
+                    @break
 
-                @case(6)
-                    <livewire:pages.investment.investment-form.steps.step6 wire:key="step-6" />
-                @break
-
-                @case(7)
-                    <livewire:pages.investment.investment-form.steps.step7 wire:key="step-7" />
-                @break
-            @endswitch
+                    @case(7)
+                        <livewire:pages.investment.investment-form.steps.step7 wire:key="step-7" />
+                    @break
+                @endswitch
+            </div>
 
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center mt-4 mb-3">
                 @if ($currentStep != 1)
@@ -53,7 +54,10 @@
                 @endif
 
                 <button x-on:livewire-step-changed.window="scrollToTop()" type="button"
-                    wire:click.prevent="handleNextAction" wire:target="handleNextAction" class="yn-button"
+                    wire:click.prevent="handleNextAction" 
+                    wire:loading.attr="disabled"
+                    wire:target="handleNextAction" 
+                    class="yn-button"
                     style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);"
                     aria-label="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}"
                     title="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}">
