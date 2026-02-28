@@ -17,41 +17,65 @@
                                     <div class="row mx-0 px-0 g-2">
                                         <!-- data -->
                                         <div class="col-12 col-xl-5 col-lg-6">
-                                            <form action="">
+                                            @if (session()->has('success'))
+                                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    {{ session('success') }}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                                            @endif
+
+                                            <form wire:submit="submit">
                                                 <!-- NAME -->
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="floatingName"
+                                                    <input type="text" wire:model="name" class="form-control @error('name') is-invalid @enderror" id="floatingName"
                                                         placeholder="{{ __('pages.contact.name') }}" />
                                                     <label for="floatingName"
                                                         class="form-label">{{ __('pages.contact.name') }}</label>
+                                                    @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                                 </div>
 
                                                 <!-- EMAIL -->
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" id="floatingEmail"
+                                                    <input type="email" wire:model="email" class="form-control @error('email') is-invalid @enderror" id="floatingEmail"
                                                         placeholder="{{ __('pages.contact.email') }}" />
                                                     <label for="floatingEmail"
                                                         class="form-label">{{ __('pages.contact.email') }}</label>
+                                                    @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                                 </div>
 
                                                 <!-- PHONE NUMBER -->
                                                 <div class="form-floating mb-3">
-                                                    <input type="tel" class="form-control" id="floatingPhone"
+                                                    <input type="tel" wire:model="phone" class="form-control @error('phone') is-invalid @enderror" id="floatingPhone"
                                                         placeholder="{{ __('pages.contact.phone') }}" />
                                                     <label for="floatingPhone"
                                                         class="form-label">{{ __('pages.contact.phone') }}</label>
+                                                    @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                                </div>
+
+                                                <!-- SUBJECT (Hidden or visible, I'll make it a simple text field for now or keep default) -->
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" wire:model="subject" class="form-control @error('subject') is-invalid @enderror" id="floatingSubject"
+                                                        placeholder="{{ __('pages.contact.subject') }}" />
+                                                    <label for="floatingSubject"
+                                                        class="form-label">{{ __('pages.contact.subject') }}</label>
+                                                    @error('subject') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                                 </div>
 
                                                 <!-- MESSAGE -->
                                                 <div class="form-floating mb-3">
-                                                    <textarea class="form-control" id="floatingMessage" placeholder="{{ __('pages.contact.message') }}" rows="5"></textarea>
+                                                    <textarea wire:model="message" class="form-control @error('message') is-invalid @enderror" id="floatingMessage" placeholder="{{ __('pages.contact.message') }}" style="height: 150px"></textarea>
                                                     <label for="floatingMessage"
                                                         class="form-label">{{ __('pages.contact.message') }}</label>
+                                                    @error('message') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                                 </div>
 
                                                 <!-- submit button -->
-                                                <button type="submit" class="btn btn-custom py-2 px-4">
-                                                    <span class="small">{{ __('pages.contact.send') }}</span>
+                                                <button type="submit" class="btn btn-custom py-2 px-4" wire:loading.attr="disabled">
+                                                    <span wire:loading.remove>{{ __('pages.contact.send') }}</span>
+                                                    <span wire:loading>
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        {{ __('pages.contact.sending') }}...
+                                                    </span>
                                                 </button>
                                             </form>
                                         </div>

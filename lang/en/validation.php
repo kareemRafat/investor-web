@@ -199,6 +199,11 @@ return [
         'job_title' => 'job title',
         'birth_date' => 'birth date',
         'terms' => 'terms and conditions',
+        'name' => 'name',
+        'email' => 'email address',
+        'phone' => 'phone number',
+        'subject' => 'subject',
+        'message' => 'message',
     ],
 
 ];

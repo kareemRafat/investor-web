@@ -224,8 +224,12 @@ return [
         'name' => 'Name',
         'email' => 'Email',
         'phone' => 'Phone Number',
+        'subject' => 'Subject',
+        'subject_default' => 'General Inquiry',
         'message' => 'Message',
         'send' => 'Send',
+        'sending' => 'Sending',
+        'success' => 'Your message has been sent successfully. We will get back to you soon!',
     ],
     'unlock_contact' => [
         'button' => 'Unlock Contact Details',
