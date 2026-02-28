@@ -14,6 +14,7 @@ use Filament\Notifications\Notification;
 use Filament\Support\Enums\Size;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Collection;
@@ -67,7 +68,9 @@ class ContactMessagesTable
                         'read' => 'مقروءة',
                         'unread' => 'غير مقروءة',
                     ]),
-            ])
+            ], layout: FiltersLayout::AboveContent)
+            ->filtersFormColumns(4)
+            ->deferFilters(false)
             ->recordActions([
                 ViewAction::make()
                     ->mountUsing(function (ContactMessage $record, \Filament\Schemas\Schema $form) {
