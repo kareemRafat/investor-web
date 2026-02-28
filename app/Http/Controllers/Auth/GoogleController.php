@@ -56,21 +56,28 @@ class GoogleController extends Controller
                     ->with('error', __('auth.account_not_active'));
             }
 
-            // Update google_id if it's not set yet
+            // Update google_id if not already done
             if (! $user->google_id) {
-                $user->update(['google_id' => $googleUser->id]);
+                $user->forceFill(['google_id' => $googleUser->id])->save();
+            }
+
+            // Mark as verified if not already
+            if (! $user->hasVerifiedEmail()) {
+                $user->markEmailAsVerified();
             }
         } else {
-            // Create new user if they don't exist
+            // Create new verified user if they don't exist
             $user = User::create([
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'google_id' => $googleUser->id,
-                'email_verified_at' => now(),
                 'status' => UserStatus::ACTIVE,
                 'role' => UserRole::USER,
                 'plan_type' => PlanType::FREE,
             ]);
+
+            // Don`t send verification email to google user
+            $user->markEmailAsVerified();
         }
 
         Auth::login($user);
