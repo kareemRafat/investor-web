@@ -120,6 +120,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
                ! empty($this->birth_date);
     }
 
+    public function sendEmailVerificationNotification()
+    {
+        $this->notifyNow(new \Illuminate\Auth\Notifications\VerifyEmail);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role === UserRole::ADMIN;

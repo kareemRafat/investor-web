@@ -10,6 +10,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 
 class GoogleController extends Controller
 {
@@ -28,16 +29,33 @@ class GoogleController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-        } catch (\Exception $e) {
+        } catch (InvalidStateException $e) {
             return redirect()
                 ->route('login', ['locale' => app()->getLocale()])
-                ->with('error', 'Google authentication failed.');
+                ->with('error', __('auth.failed'));
+        } catch (Exception $e) {
+            return redirect()
+                ->route('login', ['locale' => app()->getLocale()])
+                ->with('error', __('auth.google_failed'));
+        }
+
+        if (! $googleUser->email) {
+            return redirect()
+                ->route('login', ['locale' => app()->getLocale()])
+                ->with('error', __('auth.google_no_email'));
         }
 
         // Find user by email
         $user = User::where('email', $googleUser->email)->first();
 
         if ($user) {
+            // Check if user is banned/active
+            if ($user->status !== UserStatus::ACTIVE) {
+                return redirect()
+                    ->route('login', ['locale' => app()->getLocale()])
+                    ->with('error', __('auth.account_not_active'));
+            }
+
             // Update google_id if it's not set yet
             if (! $user->google_id) {
                 $user->update(['google_id' => $googleUser->id]);
@@ -52,7 +70,6 @@ class GoogleController extends Controller
                 'status' => UserStatus::ACTIVE,
                 'role' => UserRole::USER,
                 'plan_type' => PlanType::FREE,
-                // phone, job_title, residence_country remain null here
             ]);
         }
 

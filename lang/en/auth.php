@@ -16,6 +16,9 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'google_failed' => 'Google authentication failed. Please try again.',
+    'google_no_email' => 'No email was provided by Google.',
+    'account_not_active' => 'Your account is not active. Please contact support.',
     'email-verify' => 'Verify Your Email Address',
     'email-verify-message' => 'A new verification link has been sent to your email address.',
 
