@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Webhooks;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Services\SubscriptionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -11,6 +12,10 @@ use Throwable;
 
 class PayPalWebhookController extends Controller
 {
+    public function __construct(
+        protected SubscriptionService $subscriptionService
+    ) {}
+
     /**
      * Handle the incoming PayPal webhook.
      */
@@ -96,8 +101,16 @@ class PayPalWebhookController extends Controller
 
         Log::info("PayPal Webhook: Transaction {$transaction->id} marked as completed.");
 
-        // Here we would trigger subscription activation logic if needed
-        // e.g., via an event or direct service call
-        // event(new PaymentSucceeded($transaction));
+        // Fulfill subscription if the transaction is for a subscription
+        if ($transaction->payable_type === \App\Models\Subscription::class) {
+            $this->subscriptionService->subscribe(
+                $transaction->user,
+                $transaction->payable->plan_type,
+                $orderId,
+                true // Payment is already captured by PayPal
+            );
+
+            Log::info("PayPal Webhook: Subscription fulfilled for Transaction {$transaction->id}");
+        }
     }
 }
