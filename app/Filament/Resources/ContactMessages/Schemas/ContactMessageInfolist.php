@@ -39,10 +39,10 @@ class ContactMessageInfolist
 
                                 TextEntry::make('message')
                                     ->label('الرسالة')
-                                    ->columnSpanFull()
-                                    ->extraAttributes(['class' => 'whitespace-pre-wrap']),
+                                    ->columnSpanFull(),
                             ]),
-                    ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

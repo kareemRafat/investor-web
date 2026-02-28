@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ContactMessages\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -33,7 +34,7 @@ class ContactMessagesTable
 
                 TextColumn::make('created_at')
                     ->label('تاريخ الإرسال')
-                    ->dateTime('Y-m-d H:i')
+                    ->dateTime('Y-m-d')
                     ->sortable(),
             ])
             ->filters([
@@ -41,6 +42,7 @@ class ContactMessagesTable
             ])
             ->recordActions([
                 ViewAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

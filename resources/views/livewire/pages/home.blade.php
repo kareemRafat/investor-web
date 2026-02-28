@@ -80,7 +80,7 @@
             </a>
         </div>
     </div>
-    <div class="row g-3 mt-2 mb-3">
+    {{-- <div class="row g-3 mt-2 mb-3">
         <div class="col-lg-6 col-12">
             <div class="card border-0 shadow-sm rounded-8">
                 <div class="card-body">
@@ -317,5 +317,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
