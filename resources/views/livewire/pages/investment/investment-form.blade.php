@@ -9,7 +9,7 @@
         <div class="col-12">
 
             {{-- steps --}}
-            <div class="position-relative" wire:loading.class="opacity-50" wire:target="nextStep, previousStep, goToStep, save">
+            <div class="position-relative" wire:loading.class="opacity-50" wire:target="handleNextAction, previousStep, goToStep, save">
                 <div x-show="step === 1" x-transition>
                     @include('livewire.pages.investment.steps.step1')
                 </div>
