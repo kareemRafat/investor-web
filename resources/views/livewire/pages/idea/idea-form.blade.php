@@ -91,26 +91,28 @@
                 }
             } else if (this.step === 8) {
                 const data = this.state.step8.data;
-                if (!data.return_type) {
+                const isPresent = (val) => val !== null && val !== undefined && String(val).trim() !== '';
+
+                if (!isPresent(data.return_type)) {
                     this.errors['state.step8.data'] = this.validationMessages['returns.choose_one'];
                     isValid = false;
-                } else if (data.return_type === 'profit_only') {
-                    if (!data.profit_only_percentage) {
+                } else if (data.return_type === 'profit') {
+                    if (!isPresent(data.profit_only_percentage)) {
                         this.errors['state.step8.data.profit_only_percentage'] = this.validationMessages['returns.profit_only_percentage'];
                         isValid = false;
                     }
                 } else if (data.return_type === 'one_time') {
-                    if (!data.one_time_dollar && !data.one_time_sar) {
+                    if (!isPresent(data.one_time_dollar) && !isPresent(data.one_time_sar)) {
                         this.errors['state.step8.one_time'] = this.validationMessages['returns.only_one_currency'];
                         isValid = false;
                     }
                 } else if (data.return_type === 'combo') {
-                    if (!data.combo_percentage) {
-                        this.errors['state.step8.combo'] = this.validationMessages['returns.combo_percentage_required'];
+                    if (!isPresent(data.combo_percentage)) {
+                        this.errors['state.step8.combo_percentage'] = this.validationMessages['returns.combo_percentage_required'];
                         isValid = false;
                     }
-                    if (!data.combo_dollar && !data.combo_sar) {
-                        this.errors['state.step8.combo'] = this.validationMessages['returns.combo_currency_required'];
+                    if (!isPresent(data.combo_dollar) && !isPresent(data.combo_sar)) {
+                        this.errors['state.step8.combo_currency'] = this.validationMessages['returns.combo_currency_required'];
                         isValid = false;
                     }
                 }
