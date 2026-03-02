@@ -8,18 +8,12 @@
             <div class="col-12">
                 <input type="text" class="form-control border-custom rounded-5 p-2"
                     placeholder="{{ __('idea.steps.step9.idea_title') }}" wire:model='state.step9.data.idea_title'>
-                <template x-if="errors['state.step9.data.idea_title']">
-                    <small class="text-danger" x-text="errors['state.step9.data.idea_title']"></small>
-                </template>
             </div>
             <div class="col-12">
                 <textarea class="form-control border-custom rounded-5 pt-3" rows="8"
                     placeholder="{{ __('idea.steps.step9.placeholder') }}" wire:model='state.step9.data.summary'
                     style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};"
                     dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
-                <template x-if="errors['state.step9.data.summary']">
-                    <small class="text-danger" x-text="errors['state.step9.data.summary']"></small>
-                </template>
 
                 <div class="d-flex justify-content-between gap-3 mt-2">
                     <small class="text-muted text-start text-primary">
@@ -120,9 +114,6 @@
                             @error('state.step9.job_title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <template x-if="errors['state.step9.job_title']">
-                                <small class="text-danger" x-text="errors['state.step9.job_title']"></small>
-                            </template>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">{{ __('pages.register.phone') }}</label>
@@ -131,9 +122,6 @@
                             @error('state.step9.phone')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <template x-if="errors['state.step9.phone']">
-                                <small class="text-danger" x-text="errors['state.step9.phone']"></small>
-                            </template>
                         </div>
                         <div class="col-md-12">
                             <label class="form-label fw-semibold">{{ __('pages.register.birth_date') }}</label>
@@ -141,9 +129,6 @@
                             @error('state.step9.birth_date')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <template x-if="errors['state.step9.birth_date']">
-                                <small class="text-danger" x-text="errors['state.step9.birth_date']"></small>
-                            </template>
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">{{ __('pages.register.residence_country') }}</label>
@@ -156,9 +141,6 @@
                             @error('state.step9.residence_country')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <template x-if="errors['state.step9.residence_country']">
-                                <small class="text-danger" x-text="errors['state.step9.residence_country']"></small>
-                            </template>
                         </div>
                     </div>
                 </div>

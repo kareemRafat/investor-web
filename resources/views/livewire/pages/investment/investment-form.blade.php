@@ -78,14 +78,16 @@
                 }
             } else if (this.step === 6) {
                 const data = this.state.step6.data;
-                if (!data.investor_title || data.investor_title.length < 5) { this.errors['state.step6.data.investor_title'] = this.validationMessages['profile.title']; isValid = false; }
-                if (!data.summary || data.summary.length < 20) { this.errors['state.step6.data.summary'] = this.validationMessages['profile.summary']; isValid = false; }
+                const isPresent = (val) => val !== null && val !== undefined && String(val).trim() !== '';
+
+                if (!isPresent(data.investor_title)) { this.errors['state.step6.data.investor_title'] = this.validationMessages['profile.title']; isValid = false; }
+                if (!isPresent(data.summary)) { this.errors['state.step6.data.summary'] = this.validationMessages['profile.summary']; isValid = false; }
                 
                 if (this.state.step6.showProfileFields) {
-                    if (!this.state.step6.job_title) { this.errors['state.step6.job_title'] = this.validationMessages['profile.job_title']; isValid = false; }
-                    if (!this.state.step6.phone) { this.errors['state.step6.phone'] = this.validationMessages['profile.phone']; isValid = false; }
-                    if (!this.state.step6.residence_country) { this.errors['state.step6.residence_country'] = this.validationMessages['profile.residence_country']; isValid = false; }
-                    if (!this.state.step6.birth_date) { this.errors['state.step6.birth_date'] = this.validationMessages['profile.birth_date']; isValid = false; }
+                    if (!isPresent(this.state.step6.job_title)) { this.errors['state.step6.job_title'] = this.validationMessages['profile.job_title']; isValid = false; }
+                    if (!isPresent(this.state.step6.phone)) { this.errors['state.step6.phone'] = this.validationMessages['profile.phone']; isValid = false; }
+                    if (!isPresent(this.state.step6.residence_country)) { this.errors['state.step6.residence_country'] = this.validationMessages['profile.residence_country']; isValid = false; }
+                    if (!isPresent(this.state.step6.birth_date)) { this.errors['state.step6.birth_date'] = this.validationMessages['profile.birth_date']; isValid = false; }
                 }
             }
 
