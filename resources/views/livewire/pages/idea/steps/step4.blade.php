@@ -134,5 +134,13 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                 {{ $errors->first('state.step4.profit_type') ?: $errors->first('state.step4.profit_range_id') }}
             </span>
         @endif
+        <template x-if="errors['state.step4.profit_type']">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step4.profit_type']">
+            </span>
+        </template>
+        <template x-if="errors['state.step4.profit_range_id']">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step4.profit_range_id']">
+            </span>
+        </template>
     </div>
 </div>

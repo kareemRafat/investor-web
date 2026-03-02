@@ -230,11 +230,14 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex flex-column align-items-center mt-3">
         @if ($errors->any())
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold">
                 {{ $errors->first() }}
             </span>
         @endif
+        <div x-show="Object.keys(errors).length > 0" class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
+            <span x-text="Object.values(errors)[0]"></span>
+        </div>
     </div>
 </div>

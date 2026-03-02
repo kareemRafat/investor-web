@@ -11,6 +11,7 @@ use App\Livewire\Pages\Idea\Traits\Step6;
 use App\Livewire\Pages\Idea\Traits\Step7;
 use App\Livewire\Pages\Idea\Traits\Step8;
 use App\Livewire\Pages\Idea\Traits\Step9;
+use App\Livewire\Traits\HasFrontendValidation;
 use App\Models\Idea;
 use App\Models\IdeaContribution;
 use App\Models\IdeaExpense;
@@ -23,7 +24,7 @@ use Livewire\WithFileUploads;
 
 class IdeaForm extends Component
 {
-    use Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, WithFileUploads;
+    use HasFrontendValidation, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, WithFileUploads;
 
     public int $currentStep = 1;
 

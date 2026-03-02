@@ -24,11 +24,15 @@
             @endforeach
         </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex flex-column align-items-center">
         @error('state.step2.countries')
             <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $message }}
             </span>
         @enderror
+        <template x-if="errors['state.step2.countries']">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step2.countries']">
+            </span>
+        </template>
     </div>
 </div>

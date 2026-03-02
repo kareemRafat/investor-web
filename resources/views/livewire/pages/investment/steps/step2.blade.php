@@ -26,4 +26,9 @@
             <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">{{ $message }}</span>
         </div>
     @enderror
+    <template x-if="errors['state.step2.countries']">
+        <div class="d-flex justify-content-center">
+            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step2.countries']"></span>
+        </div>
+    </template>
 </div>

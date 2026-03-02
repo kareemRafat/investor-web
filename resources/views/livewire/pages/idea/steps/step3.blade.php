@@ -113,18 +113,26 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center gap-2 flex-column flex-sm-row">
+    <div class="d-flex justify-content-center gap-2 flex-column align-items-center">
         @error('state.step3.cost_type')
             <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $message }}
             </div>
         @enderror
+        <template x-if="errors['state.step3.cost_type']">
+            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step3.cost_type']">
+            </div>
+        </template>
 
         @error('state.step3.range_id')
             <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
                 {{ $message }}
             </div>
         @enderror
+        <template x-if="errors['state.step3.range_id']">
+            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step3.range_id']">
+            </div>
+        </template>
     </div>
 
 </div>

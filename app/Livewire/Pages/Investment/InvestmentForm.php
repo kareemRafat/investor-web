@@ -9,6 +9,7 @@ use App\Livewire\Pages\Investment\Traits\Step4;
 use App\Livewire\Pages\Investment\Traits\Step5;
 use App\Livewire\Pages\Investment\Traits\Step6;
 use App\Livewire\Pages\Investment\Traits\Step7;
+use App\Livewire\Traits\HasFrontendValidation;
 use App\Models\Investor;
 use App\Models\InvestorContribution;
 use App\Models\InvestorResource;
@@ -19,7 +20,7 @@ use Livewire\WithFileUploads;
 
 class InvestmentForm extends Component
 {
-    use Step1, Step2, Step3, Step4, Step5, Step6, Step7, WithFileUploads;
+    use HasFrontendValidation, Step1, Step2, Step3, Step4, Step5, Step6, Step7, WithFileUploads;
 
     public int $currentStep = 1;
 
