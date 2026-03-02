@@ -1,39 +1,36 @@
-<!-- Step 1 Section -->
-<div class="container px-sm-0" x-data="{ scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) } }">
+<div class="container px-sm-0" 
+     x-data="{ 
+        step: @entangle('currentStep'),
+        scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) } 
+     }"
+     x-on:livewire-step-changed.window="scrollToTop()">
+    
     <div class="row g-3 mb-3">
         <div class="col-12">
 
             {{-- steps --}}
-            <div>
-                @switch($currentStep)
-                    @case(1)
-                        <livewire:pages.investment.investment-form.steps.step1 wire:key="step-1" />
-                    @break
-
-                    @case(2)
-                        <livewire:pages.investment.investment-form.steps.step2 wire:key="step-2" />
-                    @break
-
-                    @case(3)
-                        <livewire:pages.investment.investment-form.steps.step3 wire:key="step-3" />
-                    @break
-
-                    @case(4)
-                        <livewire:pages.investment.investment-form.steps.step4 wire:key="step-4" />
-                    @break
-
-                    @case(5)
-                        <livewire:pages.investment.investment-form.steps.step5 wire:key="step-5" />
-                    @break
-
-                    @case(6)
-                        <livewire:pages.investment.investment-form.steps.step6 wire:key="step-6" />
-                    @break
-
-                    @case(7)
-                        <livewire:pages.investment.investment-form.steps.step7 wire:key="step-7" />
-                    @break
-                @endswitch
+            <div class="position-relative" wire:loading.class="opacity-50">
+                <div x-show="step === 1" x-transition>
+                    @include('livewire.pages.investment.steps.step1')
+                </div>
+                <div x-show="step === 2" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step2')
+                </div>
+                <div x-show="step === 3" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step3')
+                </div>
+                <div x-show="step === 4" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step4')
+                </div>
+                <div x-show="step === 5" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step5')
+                </div>
+                <div x-show="step === 6" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step6')
+                </div>
+                <div x-show="step === 7" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step7')
+                </div>
             </div>
 
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center mt-4 mb-3">
@@ -53,7 +50,7 @@
                     </button>
                 @endif
 
-                <button x-on:livewire-step-changed.window="scrollToTop()" type="button"
+                <button type="button"
                     wire:click.prevent="handleNextAction" 
                     wire:loading.attr="disabled"
                     wire:target="handleNextAction" 

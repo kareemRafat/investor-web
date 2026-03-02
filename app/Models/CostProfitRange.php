@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CostProfitRange extends Model
 {
-    protected $fillable = ['type', 'label', 'min_value', 'max_value'];
+    public $timestamps = false;
+
+    protected $fillable = ['type', 'label_en', 'label_ar', 'min_value', 'max_value'];
 }
