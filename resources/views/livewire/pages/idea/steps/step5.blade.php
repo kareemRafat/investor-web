@@ -320,10 +320,10 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        @error('state.step5.data.company')
+        @if ($errors->any())
             <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                {{ $message }}
+                {{ $errors->first() }}
             </span>
-        @enderror
+        @endif
     </div>
 </div>
