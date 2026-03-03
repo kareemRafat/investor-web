@@ -1,7 +1,9 @@
 <div>
     {{-- step header --}}
     <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
-        subtitle="{{ __('investor.steps.step5.subtitle') }}" />
+        subtitle="{{ __('investor.steps.step5.subtitle') }}"
+        :currentStep="$currentStep"
+        :totalSteps="$totalSteps" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         {{-- Disable All --}}

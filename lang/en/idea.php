@@ -257,6 +257,7 @@ return [
         'sar' => 'SAR',
     ],
     'form' => [
+        'step_number' => ':current / :total',
         'previous' => 'Previous',
         'next' => 'Next',
         'finish' => 'Submit Your Idea',

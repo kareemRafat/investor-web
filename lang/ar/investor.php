@@ -187,6 +187,7 @@ return [
         'sar' => 'ريال سعودي',
     ],
     'form' => [
+        'step_number' => ':current / :total',
         'previous' => 'السابق',
         'next' => 'التالي',
         'finish' => 'قدم طلبك',

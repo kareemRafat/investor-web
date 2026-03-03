@@ -1,6 +1,8 @@
 <div>
-    <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.investor_details') }}"
-        subtitle="{{ __('investor.steps.step7.title') }}" />
+    <x-pages.investor-wizard.investor-header title="{{ __('pages/mainpage.investor_details') }}"
+        subtitle="{{ __('investor.steps.step7.title') }}"
+        :currentStep="$currentStep"
+        :totalSteps="$totalSteps" />
 
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
         <div class="row g-3">

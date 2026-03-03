@@ -1,7 +1,9 @@
 <div>
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="{{ __('idea.steps.step10.title') }}" />
+        subtitle="{{ __('idea.steps.step10.title') }}"
+        :currentStep="$currentStep"
+        :totalSteps="$totalSteps" />
 
     {{-- Debug Info (Remove after fix) --}}
     <div class="alert alert-warning py-1 small mb-2 d-none">

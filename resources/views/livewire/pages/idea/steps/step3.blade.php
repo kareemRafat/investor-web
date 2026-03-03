@@ -2,7 +2,9 @@
     window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
-        subtitle="{{ __('idea.steps.step3.subtitle') }}" />
+        subtitle="{{ __('idea.steps.step3.subtitle') }}"
+        :currentStep="$currentStep"
+        :totalSteps="$totalSteps" />
 
     <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
         <div class="row g-4 justify-content-center">
