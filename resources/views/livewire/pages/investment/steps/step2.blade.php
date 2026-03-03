@@ -9,7 +9,8 @@
                 <div class="col-12 col-sm-6 col-lg-3 position-relative">
                     <input type="checkbox" class="btn-check" id="country-{{ $index }}" name="countries[]"
                         wire:model="state.step2.countries" value="{{ $country['code'] }}"
-                        x-bind:disabled="$wire.state.step2.countries.length >= limit && !$wire.state.step2.countries.includes('{{ $country['code'] }}')">
+                        x-bind:disabled="$wire.state.step2.countries.length >= limit && !$wire.state.step2.countries.includes(
+                            '{{ $country['code'] }}')">
                     <label class="choice-component country-variant w-100" for="country-{{ $index }}">
                         <span class="choice-text">{{ $country['name'] }}</span>
                         <div class="choice-radio-indicator">
@@ -21,16 +22,16 @@
         </div>
     </div>
 
-    @error('state.step2.countries')
-        <div class="d-flex justify-content-center">
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
-                <span>{{ $message }}</span>
+    <div class="d-flex flex-column align-items-center">
+        @error('state.step2.countries')
+            <div class="d-flex justify-content-center">
+                <div class="error-alert-custom">
+                    <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                    <span>{{ $message }}</span>
+                </div>
             </div>
-        </div>
-    @enderror
-    <div x-show="errors['state.step2.countries']" class="d-flex justify-content-center">
-        <div class="error-alert-custom">
+        @enderror
+        <div x-show="errors['state.step2.countries']" class="error-alert-custom">
             <i class="bi bi-exclamation-circle-fill fs-5"></i>
             <span x-text="errors['state.step2.countries']"></span>
         </div>
