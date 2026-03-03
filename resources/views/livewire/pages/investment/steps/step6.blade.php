@@ -152,9 +152,13 @@
 
     <div class="d-flex flex-column align-items-center mt-3">
         @if ($errors->any())
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold">{{ $errors->first() }}</span>
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $errors->first() }}</span>
+            </div>
         @endif
-        <div x-show="Object.keys(errors).length > 0" class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
+        <div x-show="Object.keys(errors).length > 0" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
             <span x-text="Object.values(errors)[0]"></span>
         </div>
     </div>

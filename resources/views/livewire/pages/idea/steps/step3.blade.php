@@ -115,24 +115,26 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
     </div>
     <div class="d-flex justify-content-center gap-2 flex-column align-items-center">
         @error('state.step3.cost_type')
-            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                {{ $message }}
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $message }}</span>
             </div>
         @enderror
-        <template x-if="errors['state.step3.cost_type']">
-            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step3.cost_type']">
-            </div>
-        </template>
+        <div x-show="errors['state.step3.cost_type']" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step3.cost_type']"></span>
+        </div>
 
         @error('state.step3.range_id')
-            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                {{ $message }}
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $message }}</span>
             </div>
         @enderror
-        <template x-if="errors['state.step3.range_id']">
-            <div class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step3.range_id']">
-            </div>
-        </template>
+        <div x-show="errors['state.step3.range_id']" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step3.range_id']"></span>
+        </div>
     </div>
 
 </div>

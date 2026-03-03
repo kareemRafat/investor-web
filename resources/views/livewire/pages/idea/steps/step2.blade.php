@@ -26,13 +26,14 @@
     </div>
     <div class="d-flex flex-column align-items-center">
         @error('state.step2.countries')
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                {{ $message }}
-            </span>
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $message }}</span>
+            </div>
         @enderror
-        <template x-if="errors['state.step2.countries']">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step2.countries']">
-            </span>
-        </template>
+        <div x-show="errors['state.step2.countries']" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step2.countries']"></span>
+        </div>
     </div>
 </div>

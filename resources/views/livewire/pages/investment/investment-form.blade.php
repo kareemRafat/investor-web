@@ -103,6 +103,35 @@
         $watch('step', () => { errors = {}; });
      "
      x-on:livewire-step-changed.window="scrollToTop()">
+
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .error-alert-custom {
+            animation: shake 0.5s ease-in-out, fadeIn 0.3s ease-in-out;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 12px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            margin-top: 1rem;
+            text-align: center;
+            justify-content: center;
+        }
+    </style>
     
     <div class="row g-3 mb-3">
         <div class="col-12">

@@ -23,12 +23,16 @@
 
     @error('state.step1.investorField')
         <div class="d-flex justify-content-center">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">{{ $message }}</span>
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $message }}</span>
+            </div>
         </div>
     @enderror
-    <template x-if="errors['state.step1.investorField']">
-        <div class="d-flex justify-content-center">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step1.investorField']"></span>
+    <div x-show="errors['state.step1.investorField']" class="d-flex justify-content-center">
+        <div class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step1.investorField']"></span>
         </div>
-    </template>
+    </div>
 </div>

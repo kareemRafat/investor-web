@@ -130,17 +130,18 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
     {{-- errors --}}
     <div class="d-flex flex-column align-items-center">
         @if ($errors->has('state.step4.profit_type') || $errors->has('state.step4.profit_range_id'))
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                {{ $errors->first('state.step4.profit_type') ?: $errors->first('state.step4.profit_range_id') }}
-            </span>
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $errors->first('state.step4.profit_type') ?: $errors->first('state.step4.profit_range_id') }}</span>
+            </div>
         @endif
-        <template x-if="errors['state.step4.profit_type']">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step4.profit_type']">
-            </span>
-        </template>
-        <template x-if="errors['state.step4.profit_range_id']">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step4.profit_range_id']">
-            </span>
-        </template>
+        <div x-show="errors['state.step4.profit_type']" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step4.profit_type']"></span>
+        </div>
+        <div x-show="errors['state.step4.profit_range_id']" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step4.profit_range_id']"></span>
+        </div>
     </div>
 </div>

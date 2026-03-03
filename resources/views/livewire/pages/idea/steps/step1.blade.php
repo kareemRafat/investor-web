@@ -21,13 +21,14 @@
     </div>
     <div class="d-flex flex-column align-items-center">
         @error('state.step1.ideaField')
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3">
-                {{ $message }}
-            </span>
+            <div class="error-alert-custom">
+                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <span>{{ $message }}</span>
+            </div>
         @enderror
-        <template x-if="errors['state.step1.ideaField']">
-            <span class="text-white bg-danger rounded py-2 px-4 text-center fw-bold mt-3" x-text="errors['state.step1.ideaField']">
-            </span>
-        </template>
+        <div x-show="errors['state.step1.ideaField']" class="error-alert-custom">
+            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <span x-text="errors['state.step1.ideaField']"></span>
+        </div>
     </div>
 </div>
