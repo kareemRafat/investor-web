@@ -22,8 +22,9 @@ This plan aims to eliminate the lag during step transitions in the `IdeaForm` an
 - [ ] **Task 1.3: Lazy Server Rendering**
     - Replace `x-show="step === X"` with Blade `@if($currentStep === X)` logic.
     - This ensures the server only generates HTML for the active step, drastically reducing response size.
-- [ ] **Task 1.4: Optimized Data Fetching**
-    - Update `Step3` and `Step4` traits to only fetch `CostProfitRange` when `$currentStep` is 3 or 4.
+- [ ] **Task 1.4: Cached Data Fetching**
+    - Update `Step3` and `Step4` traits to fetch `CostProfitRange` only when `$currentStep` is 3 or 4.
+    - Implement Laravel Caching (`Cache::remember` for 24 hours / 86400s) for these ranges to eliminate database hits for static data.
 
 ## Milestone 2: InvestmentForm Snappy Navigation
 **Goal:** Apply the same high-performance pattern to the Investor form.
