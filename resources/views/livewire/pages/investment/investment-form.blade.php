@@ -163,17 +163,25 @@
 
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center mt-4 mb-3">
                 @if ($currentStep != 1)
-                    <button wire:click="previousStep" type="button" class="yn-button"
+                    <button wire:click="previousStep" 
+                        wire:loading.attr="disabled"
+                        wire:target="previousStep"
+                        type="button" class="yn-button"
                         style="min-width: 120px; background: white; color: #667eea; border-color: #c7d2fe;"
                         aria-label="{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}">
                         <span class="d-flex align-items-center justify-content-center gap-2">
-                            @if (app()->getLocale() === 'ar')
-                                <i class="bi bi-arrow-right-circle"></i>
-                                <span>{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}</span>
-                            @else
-                                <i class="bi bi-arrow-left-circle"></i>
-                                <span>{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}</span>
-                            @endif
+                            <span wire:loading.remove wire:target="previousStep">
+                                @if (app()->getLocale() === 'ar')
+                                    <i class="bi bi-arrow-right-circle"></i>
+                                @else
+                                    <i class="bi bi-arrow-left-circle"></i>
+                                @endif
+                            </span>
+
+                            {{-- Spinner --}}
+                            <span wire:loading wire:target="previousStep" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+                            <span>{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}</span>
                         </span>
                     </button>
                 @endif
