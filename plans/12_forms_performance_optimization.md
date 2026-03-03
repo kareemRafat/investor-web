@@ -53,6 +53,21 @@ This plan aims to eliminate the lag during step transitions in the `IdeaForm` an
 
 ---
 
+## Milestone 4: Static Data Migration (Max Performance)
+**Goal:** Eliminate database overhead for fixed ranges and options.
+
+- [ ] **Task 4.1: Identify Static Entities**
+    - Confirm all types in `CostProfitRange` (one-time, annual, money_contribution) are fixed.
+- [ ] **Task 4.2: Create Backed Enums**
+    - Implement `App\Enums\CostRange`, `App\Enums\ProfitRange`, etc., to hold the IDs, labels (AR/EN), and min/max values.
+- [ ] **Task 4.3: Model Refactoring**
+    - Update `IdeaCost`, `IdeaProfit`, and `InvestorContribution` to use Enum Casting for `range_id`.
+    - Remove the `cost_profit_ranges` table and its foreign key constraints once the migration is verified.
+- [ ] **Task 4.4: Seed/Migration Cleanup**
+    - Update database seeders to use Enum values instead of hardcoded IDs.
+
+---
+
 ## Technical Summary of Changes
 | Feature | Old Way (Slow) | New Way (Fast) |
 | :--- | :--- | :--- |
@@ -60,3 +75,5 @@ This plan aims to eliminate the lag during step transitions in the `IdeaForm` an
 | **Rendering** | `x-show` (All steps in HTML) | `@if` (One step in HTML) |
 | **State** | Included translations in JSON | Static Blade/Method data |
 | **Queries** | Run on every request | Run only on specific steps |
+| **Static Data** | Database Table + Joins | PHP Enums (In-Memory) |
+| **Validation** | Server-only | Alpine (Instant) + Server (Secure) |
