@@ -18,6 +18,7 @@ class TransactionsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->with(['user', 'payable']))
             ->defaultSort('created_at', 'desc')
             ->striped()
             ->columns([

@@ -48,7 +48,8 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->withCount(['ideas', 'investors']);
+            ->withCount(['ideas', 'investors'])
+            ->withSum('completedTransactions', 'amount');
     }
 
     public static function getRelations(): array

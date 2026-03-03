@@ -92,14 +92,12 @@ class UsersTable
 
                 TextColumn::make('ideas_count')
                     ->label('الأفكار')
-                    ->counts('ideas')
                     ->badge()
                     ->color('gray')
                     ->sortable(),
 
                 TextColumn::make('investors_count')
                     ->label('عروض الاستثمار')
-                    ->counts('investors')
                     ->badge()
                     ->color('gray')
                     ->sortable(),
@@ -111,9 +109,9 @@ class UsersTable
 
                 TextColumn::make('completed_transactions_sum_amount')
                     ->label('إجمالي الدفع')
-                    ->sum('completedTransactions', 'amount')
                     ->money('USD', locale: 'en')
                     ->sortable()
+                    ->default(0)
                     ->color('success'),
 
                 TextColumn::make('role')
