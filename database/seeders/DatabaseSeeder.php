@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
             'role' => UserRole::ADMIN,
         ]);
 
-        $this->call(CostProfitRangeSeeder::class);
+        // $this->call(CostProfitRangeSeeder::class);
     }
 }

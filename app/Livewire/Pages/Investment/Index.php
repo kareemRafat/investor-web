@@ -64,7 +64,7 @@ class Index extends Component
         $query = Investor::query()
             ->with([
                 'resources',
-                'contributions.contributionRange',
+                'contributions',
                 'countries',
             ])
             ->where('status', 'approved')
