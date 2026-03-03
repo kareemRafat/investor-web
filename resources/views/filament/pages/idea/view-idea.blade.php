@@ -113,7 +113,7 @@
                 </div>
                 <div class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
                     @forelse($this->getRecord()->costs as $cost)
-                        <div class="font-medium">{!! app()->getLocale() === 'ar' ? $cost->range->label_ar : $cost->range->label_en !!}</div>
+                        <div class="font-medium">{!! $cost->range_id?->label() !!}</div>
                         <div class="text-xs text-gray-500 dark:text-gray-400">
                             {{ __('idea.steps.step3.types.' . ($cost->cost_type ?? 'unspecified')) }}
                         </div>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
                     @forelse($this->getRecord()->profits as $profit)
-                        <div class="font-medium">{!! app()->getLocale() === 'ar' ? $profit->range->label_ar : $profit->range->label_en !!}</div>
+                        <div class="font-medium">{!! $profit->range_id?->label() !!}</div>
                         <div class="text-xs text-gray-500 dark:text-gray-400">
                             {{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}
                         </div>
