@@ -18,10 +18,10 @@ class InvestmentSummary extends Component
     public function mount($investment)
     {
         // جلب بيانات المستثمر مع الموارد والدول والمساهمات
-        $this->investor = Investor::with(['resources', 'countries', 'contributions.contributionRange'])->findOrFail($investment);
+        $this->investor = Investor::with(['resources', 'countries', 'contributions'])->findOrFail($investment);
 
         // جلب جميع الأفكار مع العلاقات اللازمة
-        $ideas = Idea::with(['resources', 'costs.range', 'countries', 'contributions'])->get();
+        $ideas = Idea::with(['resources', 'costs', 'countries', 'contributions'])->get();
 
         // فلترة الأفكار حسب الأولويات
         $this->matchingIdeas = $ideas->filter(function ($idea) {
@@ -38,15 +38,20 @@ class InvestmentSummary extends Component
             }
 
             //  رأس المال (فلترة حسب الـ cost.range)
-            $ideaCosts = $idea->costs->pluck('range')->filter();
-            $matchCapital = $ideaCosts->contains(function ($range) {
-                $investorContribution = $this->investor->contributions?->contributionRange;
-                if (! $investorContribution) {
+            $ideaCosts = $idea->costs;
+            $investorRange = $this->investor->contributions?->money_contributions;
+
+            if (! $investorRange) {
+                return false;
+            }
+
+            $matchCapital = $ideaCosts->contains(function ($cost) use ($investorRange) {
+                if (! $cost->range_id) {
                     return false;
                 }
 
-                return $range->min_value <= $investorContribution->max_value &&
-                    $range->max_value >= $investorContribution->min_value;
+                return $investorRange->min() <= $cost->range_id->max() &&
+                    ($investorRange->max() === null || $investorRange->max() >= $cost->range_id->min());
             });
 
             if (! $matchCapital) {

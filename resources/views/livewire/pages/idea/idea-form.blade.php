@@ -1,8 +1,46 @@
 <div class="container px-sm-0" 
      x-data="{ 
-        step: @entangle('currentStep'),
+        step: @entangle('currentStep').live,
         totalSteps: 10,
         state: @entangle('state'),
+        
+        // Flattened variables for steps to avoid ReferenceErrors
+        expandedType: null,
+        isMobile: window.innerWidth < 992,
+        limit: 3,
+        
+        // Step 7 Idea variables
+        get contribute_type() { return this.state.step7.data.contribute_type },
+        set contribute_type(val) { this.state.step7.data.contribute_type = val },
+        
+        get staff() { return this.state.step7.data.staff },
+        set staff(val) { this.state.step7.data.staff = val },
+        
+        get staff_person_money() { return this.state.step7.data.staff_person_money },
+        set staff_person_money(val) { this.state.step7.data.staff_person_money = val },
+        
+        get money_amount() { return this.state.step7.data.money_amount },
+        set money_amount(val) { this.state.step7.data.money_amount = val },
+        
+        get money_percent() { return this.state.step7.data.money_percent },
+        set money_percent(val) { this.state.step7.data.money_percent = val },
+        
+        get person_money_amount() { return this.state.step7.data.person_money_amount },
+        set person_money_amount(val) { this.state.step7.data.person_money_amount = val },
+        
+        get person_money_percent() { return this.state.step7.data.person_money_percent },
+        set person_money_percent(val) { this.state.step7.data.person_money_percent = val },
+
+        resetFields(type) {
+            this.money_amount = null;
+            this.money_percent = null;
+            this.person_money_amount = null;
+            this.person_money_percent = null;
+            this.staff = null;
+            this.staff_person_money = null;
+            this.contribute_type = type;
+        },
+
         errors: {},
         validationMessages: @js($this->getValidationMessages()),
         scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) },
@@ -185,41 +223,52 @@
 
             {{-- steps --}}
             <div class="position-relative" wire:loading.class="opacity-50" wire:target="handleNextAction, previousStep, goToStep, save">
-                <div x-show="step === 1" x-transition>
-                    @include('livewire.pages.idea.steps.step1')
-                </div>
-                <div x-show="step === 2" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step2')
-                </div>
-                <div x-show="step === 3" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step3')
-                </div>
-                <div x-show="step === 4" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step4')
-                </div>
-                <div x-show="step === 5" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step5')
-                </div>
-                <div x-show="step === 6" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step6')
-                </div>
-                <div x-show="step === 7" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step7')
-                </div>
-                <div x-show="step === 8" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step8')
-                </div>
-                <div x-show="step === 9" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step9')
-                </div>
-                <div x-show="step === 10" x-transition x-cloak>
-                    @include('livewire.pages.idea.steps.step10')
-                </div>
+                @if($currentStep === 1)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step1')
+                    </div>
+                @elseif($currentStep === 2)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step2')
+                    </div>
+                @elseif($currentStep === 3)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step3')
+                    </div>
+                @elseif($currentStep === 4)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step4')
+                    </div>
+                @elseif($currentStep === 5)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step5')
+                    </div>
+                @elseif($currentStep === 6)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step6')
+                    </div>
+                @elseif($currentStep === 7)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step7')
+                    </div>
+                @elseif($currentStep === 8)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step8')
+                    </div>
+                @elseif($currentStep === 9)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step9')
+                    </div>
+                @elseif($currentStep === 10)
+                    <div x-transition>
+                        @include('livewire.pages.idea.steps.step10')
+                    </div>
+                @endif
             </div>
 
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center mt-4 mb-3">
                 @if ($currentStep != 1)
-                    <button wire:click="previousStep" 
+                    <button @click="$wire.previousStep()" 
                         wire:loading.attr="disabled"
                         wire:target="previousStep"
                         type="button" class="yn-button"
@@ -234,7 +283,7 @@
                                 @endif
                             </span>
                             
-                            {{-- Spinner --}}
+                            {{-- Spinner (shown only when previousStep is active) --}}
                             <span wire:loading wire:target="previousStep" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 
                             <span>{{ $currentStep === 10 ? __('idea.form.edit') : __('idea.form.previous') }}</span>
@@ -276,16 +325,24 @@
                     <div class="stepper-item position-relative
                         @if ($i < $currentStep) completed_step
                         @elseif($i === $currentStep) active_step @endif"
-                        @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
+                        @if ($i <= $maxAllowedStep) @click="$wire.goToStep({{ $i }})"
                         style="cursor: pointer"
                         @else
                         style="opacity: .4; cursor: not-allowed" @endif>
                         <div class="stepper-circle">
-                            @if ($i < $currentStep)
-                                <i class="bi bi-check-circle-fill"></i>
-                            @else
-                                {{ $i }}
-                            @endif
+                            {{-- Show number or checkmark when NOT loading --}}
+                            <div wire:loading.remove wire:target="goToStep({{ $i }})">
+                                @if ($i < $currentStep)
+                                    <i class="bi bi-check-circle-fill"></i>
+                                @else
+                                    {{ $i }}
+                                @endif
+                            </div>
+                            
+                            {{-- Show spinner when this specific step is loading --}}
+                            <div wire:loading wire:target="goToStep({{ $i }})">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="width: 1rem; height: 1rem;"></span>
+                            </div>
                         </div>
                     </div>
 

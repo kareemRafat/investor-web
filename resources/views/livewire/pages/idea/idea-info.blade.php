@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="fw-semibold text-dark small">
                                     @forelse($idea->costs as $cost)
-                                        <div>{!! app()->getLocale() === 'ar' ? $cost->range->label_ar : $cost->range->label_en !!}</div>
+                                        <div>{!! $cost->range_id?->label() !!}</div>
                                         <small
                                             class="text-muted">{{ __('idea.steps.step3.types.' . ($cost->cost_type ?? __('idea.common.unspecified'))) }}</small>
                                     @empty
@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="fw-semibold text-dark small">
                                     @forelse($idea->profits as $profit)
-                                        <div>{!! app()->getLocale() === 'ar' ? $profit->range->label_ar : $profit->range->label_en !!}</div>
+                                        <div>{!! $profit->range_id?->label() !!}</div>
                                         <small
                                             class="text-muted">{{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}</small>
                                     @empty

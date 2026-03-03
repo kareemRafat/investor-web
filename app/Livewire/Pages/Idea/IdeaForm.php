@@ -14,7 +14,9 @@ use App\Livewire\Pages\Idea\Traits\Step9;
 use App\Livewire\Traits\HasFrontendValidation;
 use App\Models\Idea;
 use App\Models\IdeaContribution;
+use App\Models\IdeaCost;
 use App\Models\IdeaExpense;
+use App\Models\IdeaProfit;
 use App\Models\IdeaResource;
 use App\Models\IdeaReturn;
 use Illuminate\Support\Facades\DB;
@@ -301,8 +303,14 @@ class IdeaForm extends Component
         ]);
 
         $idea->setRelation('countries', collect($this->state['step2']['countries'])->map(fn ($c) => (object) ['country' => $c]));
-        $idea->setRelation('costs', collect([(object) ['cost_type' => $this->state['step3']['cost_type'], 'range_id' => $this->state['step3']['range_id']]]));
-        $idea->setRelation('profits', collect([(object) ['profit_type' => $this->state['step4']['profit_type'], 'range_id' => $this->state['step4']['profit_range_id']]]));
+        $idea->setRelation('costs', collect([new IdeaCost([
+            'cost_type' => $this->state['step3']['cost_type'],
+            'range_id' => $this->state['step3']['range_id'] ? (int) $this->state['step3']['range_id'] : null,
+        ])]));
+        $idea->setRelation('profits', collect([new IdeaProfit([
+            'profit_type' => $this->state['step4']['profit_type'],
+            'range_id' => $this->state['step4']['profit_range_id'] ? (int) $this->state['step4']['profit_range_id'] : null,
+        ])]));
         $idea->setRelation('resources', collect([new IdeaResource($this->state['step5']['data'])]));
         $idea->setRelation('expenses', collect([new IdeaExpense($this->state['step6']['data'])]));
         $idea->setRelation('contributions', collect([new IdeaContribution($this->state['step7']['data'])]));
@@ -324,6 +332,14 @@ class IdeaForm extends Component
     #[Title('Submit Your Idea')]
     public function render()
     {
-        return view('livewire.pages.idea.idea-form');
+        return view('livewire.pages.idea.idea-form', [
+            'idea' => $this->idea,
+            'ideaOptions' => __('idea.steps.step1.options'),
+            'step2Options' => __('idea.steps.step2.options'),
+            'oneTimeRanges' => \App\Enums\CostProfitRange::filterByType('one-time'),
+            'annualRanges' => \App\Enums\CostProfitRange::filterByType('annual'),
+            'oneTimeProfitRanges' => \App\Enums\CostProfitRange::filterByType('one-time'),
+            'annualProfitRanges' => \App\Enums\CostProfitRange::filterByType('annual'),
+        ]);
     }
 }

@@ -64,7 +64,7 @@
                                                                 @php
                                                                     $contributionLabel =
                                                                         $investor->contributions
-                                                                            ->money_contribution_label ?? null;
+                                                                            ?->money_contributions?->label();
                                                                 @endphp
 
                                                                 {!! $contributionLabel ?? 'لايوجد' !!}

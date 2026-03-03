@@ -68,17 +68,16 @@
                                                     <!-- رأس المال والدول -->
                                                     <div class="col-lg-4 col-md-6 col-12 p-4 border_custom_idea">
                                                         @php
-                                                            $range = $investor->contributions?->contributionRange;
-                                                            $locale = app()->getLocale();
-                                                        @endphp
+                                                                    $contributionLabel = $idea->investor?->contributions?->money_contributions?->label();
+                                                                @endphp
                                                         {{-- راس المال --}}
                                                         <h6 class="fw-bold mb-2 d-flex flex-column gap-2">
                                                             <span class="p-2 text-white bg-primary rounded-1">
                                                                 {{ __('investor.summary.capital_expected') }} =
                                                             </span>
                                                             <span class="text-success line-height-1">
-                                                                @if ($range)
-                                                                    {!! $locale === 'ar' ? $range->label_ar : $range->label_en !!}
+                                                                @if ($contributionLabel)
+                                                                    {!! $contributionLabel !!}
                                                                 @else
                                                                     {{ __('investor.summary.capital_not_defined') }}
                                                                 @endif

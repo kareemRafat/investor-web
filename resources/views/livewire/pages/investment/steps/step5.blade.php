@@ -14,14 +14,14 @@
         </div>
         <div class="row g-4 justify-content-center">
             <div class="row g-3">
-                @foreach ($this->moneyRanges as $index => $range)
+                @foreach ($moneyRanges as $index => $range)
                     <div class="col-12 col-md-3">
                         <input type="radio" class="btn-check" wire:model="state.step5.data.money_contributions"
-                            id="amount-{{ $range->id }}" value="{{ $range->id }}" autocomplete="off"
+                            id="amount-{{ $range->value }}" value="{{ $range->value }}" autocomplete="off"
                             @disabled($state['step5']['disableResources'])>
-                        <label class="choice-component range-variant w-100" for="amount-{{ $range->id }}">
+                        <label class="choice-component range-variant w-100" for="amount-{{ $range->value }}">
                             <span class="choice-text">
-                                {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
+                                {!! $range->label() !!}
                             </span>
                             <div class="choice-radio-indicator">
                                 <i class="bi bi-check-lg fs-5"></i>

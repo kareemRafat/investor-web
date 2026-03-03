@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CostProfitRange;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,13 @@ class InvestorContribution extends Model
         'money_contributions',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'money_contributions' => CostProfitRange::class,
+        ];
+    }
+
     public function investor()
     {
         return $this->belongsTo(Investor::class);
@@ -28,17 +36,7 @@ class InvestorContribution extends Model
 
     public function getMoneyContributionLabelAttribute(): ?string
     {
-        if (! $this->money_contributions) {
-            return null;
-        }
-
-        return __('investor.steps.step5.money_contribution_ranges.amount_'.$this->money_contributions);
-    }
-
-    public function contributionRange()
-    {
-        return $this->belongsTo(CostProfitRange::class, 'money_contributions')
-            ->where('type', 'money_contribution');
+        return $this->money_contributions?->label();
     }
 
     public function getFormattedContributionAttribute(): array

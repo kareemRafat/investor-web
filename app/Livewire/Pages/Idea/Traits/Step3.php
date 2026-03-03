@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Idea\Traits;
 
-use App\Models\CostProfitRange;
+use App\Enums\CostProfitRange;
 use App\Models\Idea;
 
 trait Step3
@@ -16,7 +16,7 @@ trait Step3
                 $cost = $idea->costs()->first();
                 if ($cost) {
                     $this->state['step3']['cost_type'] = $cost->cost_type;
-                    $this->state['step3']['range_id'] = $cost->range_id;
+                    $this->state['step3']['range_id'] = $cost->range_id?->value;
                 }
             }
         }
@@ -26,7 +26,7 @@ trait Step3
     {
         $this->validate([
             'state.step3.cost_type' => 'required|in:one-time,annual',
-            'state.step3.range_id' => 'required|exists:cost_profit_ranges,id',
+            'state.step3.range_id' => 'required|integer',
         ], [
             'state.step3.cost_type.*' => __('idea.validation.step3.cost_type'),
             'state.step3.range_id.*' => __('idea.validation.step3.cost_range'),
@@ -35,11 +35,11 @@ trait Step3
 
     public function getOneTimeRangesProperty()
     {
-        return CostProfitRange::where('type', 'one-time')->get();
+        return CostProfitRange::filterByType('one-time');
     }
 
     public function getAnnualRangesProperty()
     {
-        return CostProfitRange::where('type', 'annual')->get();
+        return CostProfitRange::filterByType('annual');
     }
 }

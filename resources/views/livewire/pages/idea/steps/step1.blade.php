@@ -5,7 +5,7 @@
 
     <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
         <div class="row g-2 g-md-3">
-            @foreach ($state['step1']['ideaOptions'] as $key => $label)
+            @foreach ($ideaOptions as $key => $label)
                 <div class="col-12 col-sm-6 col-lg-3">
                     <input type="radio" class="btn-check" wire:model="state.step1.ideaField" id="idea-{{ $key }}"
                         value="{{ $key }}" name="ideaField">

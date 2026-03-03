@@ -104,7 +104,7 @@
                                         class="text-muted fw-semibold">{{ __('investor.steps.step7.required_capital') }}</small>
                                 </div>
                                 <div class="fw-semibold text-dark small">
-                                    {!! $investor->contributions?->money_contribution_label ?? __('investor.common.unspecified') !!}
+                                    {!! $investor->contributions?->money_contributions?->label() ?? __('investor.common.unspecified') !!}
                                 </div>
                             </div>
                         </div>

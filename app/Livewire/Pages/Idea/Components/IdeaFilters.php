@@ -51,17 +51,11 @@ class IdeaFilters extends Component
 
     protected function loadCostRanges()
     {
-        $locale = app()->getLocale();
-        $labelColumn = $locale === 'ar' ? 'label_ar' : 'label_en';
-
-        $this->costRanges = \App\Models\CostProfitRange::query()
-            ->select('id', 'label_ar', 'label_en', 'type')
-            ->orderBy('id')
-            ->get()
+        $this->costRanges = collect(\App\Enums\CostProfitRange::cases())
             ->map(fn ($range) => [
-                'id' => $range->id,
-                'label' => $range->$labelColumn,
-                'type' => $range->type,
+                'id' => $range->value,
+                'label' => $range->label(),
+                'type' => $range->type(),
             ])
             ->toArray();
     }

@@ -5,10 +5,6 @@
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
         <div class="row g-3">
 
-            @php
-                $investor = $this->investor;
-            @endphp
-
             <!-- Project + Capital + Expected Profit + Best Countries -->
             <div class="col-12">
 
@@ -37,7 +33,11 @@
                                     class="text-muted fw-semibold">{{ __('investor.steps.step7.contribution') }}</small>
                             </div>
                             <div class="fw-semibold text-dark small">
-                                {!! $investor->contributions->money_contribution_label ?? '-' !!}
+                                @php
+                                    $moneyRangeId = $state['step5']['data']['money_contributions'];
+                                    $moneyRange = $moneyRangeId ? \App\Enums\CostProfitRange::tryFrom((int)$moneyRangeId) : null;
+                                @endphp
+                                {!! $moneyRange?->label() ?? '-' !!}
                             </div>
                         </div>
                     </div>

@@ -3,12 +3,14 @@
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step10.title') }}" />
 
+    {{-- Debug Info (Remove after fix) --}}
+    <div class="alert alert-warning py-1 small mb-2 d-none">
+        Debug: S3 Range: {{ var_export($this->state['step3']['range_id'], true) }} 
+        | S4 Range: {{ var_export($this->state['step4']['profit_range_id'], true) }}
+    </div>
+
     <div class="step_height bg-white rounded-3 shadow-sm p-3 p-md-3 p-lg-4 pb-5">
         <div class="row g-3">
-
-            @php
-                $idea = $this->idea;
-            @endphp
 
             {{-- Section 1: Core Info --}}
             <div class="col-12">
@@ -22,7 +24,7 @@
                                 <small class="text-muted fw-semibold">{{ __('idea.steps.step10.project') }}</small>
                             </div>
                             <h6 class="mb-0 fw-bold text-primary">
-                                {{ __('idea.steps.step1.options.' . ($idea->idea_field ?? '-')) }}
+                                {{ __('idea.steps.step1.options.' . ($this->state['step1']['ideaField'] ?? '-')) }}
                             </h6>
                         </div>
                     </div>
@@ -35,16 +37,16 @@
                                 <small class="text-muted fw-semibold">{{ __('idea.steps.step10.capital') }}</small>
                             </div>
                             <div class="fw-semibold text-dark small">
-                                @forelse($idea->costs as $cost)
-                                    @php
-                                        $costRange = \App\Models\CostProfitRange::find($cost->range_id);
-                                    @endphp
-                                    <div>{!! app()->getLocale() === 'ar' ? $costRange?->label_ar : $costRange?->label_en !!}</div>
-                                    <small
-                                        class="text-muted">{{ __('idea.steps.step3.types.' . ($cost->cost_type ?? '-')) }}</small>
-                                @empty
-                                    <span class="text-muted">-</span>
-                                @endforelse
+                                @php
+                                    $costRangeId = $this->state['step3']['range_id'];
+                                    $costRange = $costRangeId ? \App\Enums\CostProfitRange::tryFrom((int)$costRangeId) : null;
+                                @endphp
+                                @if($costRange)
+                                    <div>{!! $costRange->label() !!}</div>
+                                    <small class="text-muted">{{ __('idea.steps.step3.types.' . ($this->state['step3']['cost_type'] ?? __('idea.common.unspecified'))) }}</small>
+                                @else
+                                    <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -58,16 +60,16 @@
                                     class="text-muted fw-semibold">{{ __('idea.steps.step10.expected_profit') }}</small>
                             </div>
                             <div class="fw-semibold text-dark small">
-                                @forelse($idea->profits as $profit)
-                                    @php
-                                        $profitRange = \App\Models\CostProfitRange::find($profit->range_id);
-                                    @endphp
-                                    <div>{!! app()->getLocale() === 'ar' ? $profitRange?->label_ar : $profitRange?->label_en !!}</div>
-                                    <small
-                                        class="text-muted">{{ __('idea.steps.step4.types.' . (str_replace('-', '_', $profit->profit_type) ?? '-')) }}</small>
-                                @empty
-                                    <span class="text-muted">-</span>
-                                @endforelse
+                                @php
+                                    $profitRangeId = $this->state['step4']['profit_range_id'];
+                                    $profitRange = $profitRangeId ? \App\Enums\CostProfitRange::tryFrom((int)$profitRangeId) : null;
+                                @endphp
+                                @if($profitRange)
+                                    <div>{!! $profitRange->label() !!}</div>
+                                    <small class="text-muted">{{ __('idea.steps.step4.types.' . (str_replace('-', '_', $this->state['step4']['profit_type']) ?? '-')) }}</small>
+                                @else
+                                    <span class="text-muted">{{ __('idea.common.unspecified') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -1,13 +1,5 @@
-<div x-data="{
-    selectedType: @entangle('state.step4.profit_type'),
-    selectedRange: @entangle('state.step4.profit_range_id'),
-    expandedType: null,
-    isMobile: window.innerWidth < 992,
-}" x-init="$watch('selectedType', () => {
-    selectedRange = null;
-    $wire.set('state.step4.profit_range_id', null);
-});
-window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
+<div x-init="
+    window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step4.subtitle') }}" />
@@ -24,10 +16,12 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                             <!-- main type -->
                             <div class="col-12">
                                 <input type="radio" class="btn-check" id="profit-one-time" value="one-time"
-                                    x-model="selectedType" name="profit_type" autocomplete="off">
+                                    x-model="state.step4.profit_type" 
+                                    wire:model.live="state.step4.profit_type" 
+                                    @click="state.step4.profit_range_id = null; if (isMobile) expandedType = expandedType === 'one-time' ? null : 'one-time'"
+                                    name="profit_type" autocomplete="off">
 
-                                <label class="choice-component cost-variant w-100" for="profit-one-time"
-                                    @click="if (isMobile) expandedType = expandedType === 'one-time' ? null : 'one-time'">
+                                <label class="choice-component cost-variant w-100" for="profit-one-time">
                                     <span class="choice-text">
                                         {{ __('idea.steps.step4.types.one_time') }}
                                     </span>
@@ -44,18 +38,20 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                             <!-- ranges -->
                             <div class="col-12" x-show="!isMobile || expandedType === 'one-time'" x-transition>
                                 <div class="row g-2 g-md-3">
-                                    @foreach ($this->oneTimeProfitRanges as $range)
+                                    @foreach ($oneTimeProfitRanges as $range)
                                         <div class="col-12 col-md-6">
                                             <input type="radio" class="btn-check"
-                                                id="profit-one-time-{{ $range->id }}" value="{{ $range->id }}"
-                                                x-model="selectedRange" :disabled="selectedType !== 'one-time'"
+                                                id="profit-one-time-{{ $range->value }}" value="{{ $range->value }}"
+                                                x-model="state.step4.profit_range_id" 
+                                                wire:model.live="state.step4.profit_range_id" 
+                                                :disabled="state.step4.profit_type !== 'one-time'"
                                                 autocomplete="off">
 
                                             <label class="choice-component range-variant w-100"
-                                                :class="{ 'disabled': selectedType !== 'one-time' }"
-                                                for="profit-one-time-{{ $range->id }}">
-                                                <span class="choice-text">
-                                                    {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
+                                                :class="{ 'disabled': state.step4.profit_type !== 'one-time' }"
+                                                for="profit-one-time-{{ $range->value }}">
+                                                <span class="choice-text text-center">
+                                                    {!! $range->label() !!}
                                                 </span>
 
                                                 <div class="choice-radio-indicator">
@@ -77,10 +73,12 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                             <!-- main type -->
                             <div class="col-12">
                                 <input type="radio" class="btn-check" id="profit-annual" value="annual"
-                                    x-model="selectedType" name="profit_type" autocomplete="off">
+                                    x-model="state.step4.profit_type" 
+                                    wire:model.live="state.step4.profit_type" 
+                                    @click="state.step4.profit_range_id = null; if (isMobile) expandedType = expandedType === 'annual' ? null : 'annual'"
+                                    name="profit_type" autocomplete="off">
 
-                                <label class="choice-component cost-variant w-100" for="profit-annual"
-                                    @click="if (isMobile) expandedType = expandedType === 'annual' ? null : 'annual'">
+                                <label class="choice-component cost-variant w-100" for="profit-annual">
                                     <span class="choice-text">
                                         {{ __('idea.steps.step4.types.annual') }}
                                     </span>
@@ -97,18 +95,20 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                             <!-- ranges -->
                             <div class="col-12" x-show="!isMobile || expandedType === 'annual'" x-transition>
                                 <div class="row g-2 g-md-3">
-                                    @foreach ($this->annualProfitRanges as $range)
+                                    @foreach ($annualProfitRanges as $range)
                                         <div class="col-12 col-md-6">
                                             <input type="radio" class="btn-check"
-                                                id="profit-annual-{{ $range->id }}" value="{{ $range->id }}"
-                                                x-model="selectedRange" :disabled="selectedType !== 'annual'"
+                                                id="profit-annual-{{ $range->value }}" value="{{ $range->value }}"
+                                                x-model="state.step4.profit_range_id" 
+                                                wire:model.live="state.step4.profit_range_id" 
+                                                :disabled="state.step4.profit_type !== 'annual'"
                                                 autocomplete="off">
 
                                             <label class="choice-component range-variant w-100"
-                                                :class="{ 'disabled': selectedType !== 'annual' }"
-                                                for="profit-annual-{{ $range->id }}">
-                                                <span class="choice-text">
-                                                    {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
+                                                :class="{ 'disabled': state.step4.profit_type !== 'annual' }"
+                                                for="profit-annual-{{ $range->value }}">
+                                                <span class="choice-text text-center">
+                                                    {!! $range->label() !!}
                                                 </span>
 
                                                 <div class="choice-radio-indicator">

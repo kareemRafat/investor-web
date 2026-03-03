@@ -276,6 +276,11 @@ class InvestmentForm extends Component
     #[Title('Find Investor')]
     public function render()
     {
-        return view('livewire.pages.investment.investment-form');
+        return view('livewire.pages.investment.investment-form', [
+            'investor' => $this->investor,
+            'investorOptions' => __('investor.steps.step1.options'),
+            'step2Options' => __('investor.steps.step2.options'),
+            'moneyRanges' => \App\Enums\CostProfitRange::filterByType('money_contribution'),
+        ]);
     }
 }

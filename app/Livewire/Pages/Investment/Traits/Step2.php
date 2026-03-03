@@ -8,7 +8,6 @@ trait Step2
 {
     public function initStep2()
     {
-        $this->state['step2']['options'] = __('investor.steps.step2.options');
         $investorId = session('current_investor_id');
         if ($investorId) {
             $this->state['step2']['countries'] = Investor::find($investorId)

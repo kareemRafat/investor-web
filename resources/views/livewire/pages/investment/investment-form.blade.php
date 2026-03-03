@@ -1,12 +1,51 @@
-<div class="container px-sm-0" x-data="{
-    step: @entangle('currentStep'),
-    totalSteps: 7,
-    state: @entangle('state'),
-    errors: {},
-    validationMessages: @js($this->getValidationMessages()),
-    scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) },
-    get progress() { return (this.step / this.totalSteps) * 100 },
-    validate() {
+<div class="container px-sm-0" 
+     x-data="{ 
+        step: @entangle('currentStep').live,
+        totalSteps: 7,
+        state: @entangle('state'),
+        
+        // Flattened variables
+        expandedType: null,
+        isMobile: window.innerWidth < 992,
+        limit: 3,
+        
+        // Step 4 Investment variables
+        get contribute_type() { return this.state.step4.data.contribute_type },
+        set contribute_type(val) { this.state.step4.data.contribute_type = val },
+        
+        get staff() { return this.state.step4.data.staff },
+        set staff(val) { this.state.step4.data.staff = val },
+        
+        get staff_person_money() { return this.state.step4.data.staff_person_money },
+        set staff_person_money(val) { this.state.step4.data.staff_person_money = val },
+        
+        get money_amount() { return this.state.step4.data.money_amount },
+        set money_amount(val) { this.state.step4.data.money_amount = val },
+        
+        get money_percent() { return this.state.step4.data.money_percent },
+        set money_percent(val) { this.state.step4.data.money_percent = val },
+        
+        get person_money_amount() { return this.state.step4.data.person_money_amount },
+        set person_money_amount(val) { this.state.step4.data.person_money_amount = val },
+        
+        get person_money_percent() { return this.state.step4.data.person_money_percent },
+        set person_money_percent(val) { this.state.step4.data.person_money_percent = val },
+
+        resetFields(type) {
+            this.money_amount = null;
+            this.money_percent = null;
+            this.person_money_amount = null;
+            this.person_money_percent = null;
+            this.staff = null;
+            this.staff_person_money = null;
+            this.contribute_type = type;
+        },
+
+        errors: {},
+        validationMessages: @js($this->getValidationMessages()),
+        scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) },
+        get progress() { return (this.step / this.totalSteps) * 100 },
+        validate() {
         this.errors = {};
         let isValid = true;
 
@@ -176,35 +215,51 @@ $watch('step', () => { errors = {}; });"
     <div class="row g-3 mb-3">
         <div class="col-12">
 
+            <!-- Progress Bar -->
+            <div class="progress mb-4" style="height: 6px; background-color: #e2e8f0; border-radius: 3px;">
+                <div class="progress-bar" role="progressbar" 
+                     :style="`width: ${progress}%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);`" 
+                     :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
             {{-- steps --}}
             <div class="position-relative" wire:loading.class="opacity-50"
                 wire:target="handleNextAction, previousStep, goToStep, save">
-                <div x-show="step === 1" x-transition>
-                    @include('livewire.pages.investment.steps.step1')
-                </div>
-                <div x-show="step === 2" x-transition x-cloak>
-                    @include('livewire.pages.investment.steps.step2')
-                </div>
-                <div x-show="step === 3" x-transition x-cloak>
-                    @include('livewire.pages.investment.steps.step3')
-                </div>
-                <div x-show="step === 4" x-transition x-cloak>
-                    @include('livewire.pages.investment.steps.step4')
-                </div>
-                <div x-show="step === 5" x-transition x-cloak>
-                    @include('livewire.pages.investment.steps.step5')
-                </div>
-                <div x-show="step === 6" x-transition x-cloak>
-                    @include('livewire.pages.investment.steps.step6')
-                </div>
-                <div x-show="step === 7" x-transition x-cloak>
-                    @include('livewire.pages.investment.steps.step7')
-                </div>
+                @if($currentStep === 1)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step1')
+                    </div>
+                @elseif($currentStep === 2)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step2')
+                    </div>
+                @elseif($currentStep === 3)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step3')
+                    </div>
+                @elseif($currentStep === 4)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step4')
+                    </div>
+                @elseif($currentStep === 5)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step5')
+                    </div>
+                @elseif($currentStep === 6)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step6')
+                    </div>
+                @elseif($currentStep === 7)
+                    <div x-transition>
+                        @include('livewire.pages.investment.steps.step7')
+                    </div>
+                @endif
             </div>
 
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center mt-4 mb-3">
                 @if ($currentStep != 1)
-                    <button wire:click="previousStep" wire:loading.attr="disabled" wire:target="previousStep"
+                    <button @click="$wire.previousStep()" wire:loading.attr="disabled"
+                        wire:target="previousStep"
                         type="button" class="yn-button"
                         style="min-width: 120px; background: white; color: #667eea; border-color: #c7d2fe;"
                         aria-label="{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}">
@@ -218,8 +273,7 @@ $watch('step', () => { errors = {}; });"
                             </span>
 
                             {{-- Spinner --}}
-                            <span wire:loading wire:target="previousStep" class="spinner-border spinner-border-sm"
-                                role="status" aria-hidden="true"></span>
+                            <span wire:loading wire:target="previousStep" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 
                             <span>{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}</span>
                         </span>
@@ -257,16 +311,25 @@ $watch('step', () => { errors = {}; });"
                     <div class="stepper-item position-relative
                         @if ($i < $currentStep) completed_step
                         @elseif($i === $currentStep) active_step @endif"
-                        @if ($i <= $maxAllowedStep) wire:click="goToStep({{ $i }})"
+                        @if ($i <= $maxAllowedStep) @click="$wire.goToStep({{ $i }})"
                         style="cursor: pointer"
                         @else
                         style="opacity: .4; cursor: not-allowed" @endif>
                         <div class="stepper-circle">
-                            @if ($i < $currentStep)
-                                <i class="bi bi-check-circle-fill"></i>
-                            @else
-                                {{ $i }}
-                            @endif
+                            {{-- Show number or checkmark when NOT loading --}}
+                            <div wire:loading.remove wire:target="goToStep({{ $i }})">
+                                @if ($i < $currentStep)
+                                    <i class="bi bi-check-circle-fill"></i>
+                                @else
+                                    {{ $i }}
+                                @endif
+                            </div>
+
+                            {{-- Show spinner when this specific step is loading --}}
+                            <div wire:loading wire:target="goToStep({{ $i }})">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                    style="width: 1rem; height: 1rem;"></span>
+                            </div>
                         </div>
                     </div>
 

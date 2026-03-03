@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Idea;
 
-use App\Models\CostProfitRange;
+use App\Enums\CostProfitRange;
 use App\Models\Idea;
 use App\Models\Investor;
 use Livewire\Attributes\Title;
@@ -28,7 +28,7 @@ class IdeaSummary extends Component
     public function render()
     {
         // جلب جميع المستثمرين مع العلاقات اللازمة
-        $investors = Investor::with(['contributions.contributionRange', 'countries', 'resources'])
+        $investors = Investor::with(['contributions', 'countries', 'resources'])
             ->get();
 
         // فلترة المستثمرين حسب المطابقة مع الفكرة
@@ -46,8 +46,8 @@ class IdeaSummary extends Component
             }
 
             //  رأس المال / المساهمة المالية
-            $ideaCosts = $this->idea->costs->load('range'); // جلب range
-            $investorRange = $investor->contributions?->contributionRange;
+            $ideaCosts = $this->idea->costs;
+            $investorRange = $investor->contributions?->money_contributions;
 
             if (! $investorRange) {
                 return false;
@@ -55,8 +55,12 @@ class IdeaSummary extends Component
 
             // تحقق إذا المبلغ المعروض يقع ضمن أي نطاق تكلفة للفكرة
             $matches = $ideaCosts->contains(function ($cost) use ($investorRange) {
-                return $investorRange->min_value <= $cost->range->max_value &&
-                    $investorRange->max_value >= $cost->range->min_value;
+                if (! $cost->range_id) {
+                    return false;
+                }
+
+                return $investorRange->min() <= $cost->range_id->max() &&
+                    ($investorRange->max() === null || $investorRange->max() >= $cost->range_id->min());
             });
 
             if (! $matches) {
@@ -66,7 +70,7 @@ class IdeaSummary extends Component
             return true;
         })->take($this->amount);
 
-        $moneyRanges = CostProfitRange::where('type', 'money_contribution')->get()->keyBy('id');
+        $moneyRanges = collect(CostProfitRange::filterByType('money_contribution'))->keyBy('value');
 
         return view('livewire.pages.idea.idea-summary', [
             'investors' => $matchingInvestors,

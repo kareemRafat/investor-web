@@ -1,14 +1,5 @@
-<div x-data="{
-    selectedType: @entangle('state.step3.cost_type'),
-    selectedRange: @entangle('state.step3.range_id'),
-    expandedType: null,
-    isMobile: window.innerWidth < 992,
-}" x-init="$watch('selectedType', () => {
-    selectedRange = null;
-    $wire.set('state.step3.range_id', null);
-});
-window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
-
+<div x-init="
+    window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
 
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step3.subtitle') }}" />
@@ -25,9 +16,11 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                 <!-- main button -->
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="one-time" value="one-time"
-                                        x-model="selectedType" name="cost_type" autocomplete="off">
-                                    <label class="choice-component cost-variant w-100" for="one-time"
-                                        @click="if (isMobile) expandedType = expandedType === 'one-time' ? null : 'one-time'">
+                                        x-model="state.step3.cost_type" 
+                                        wire:model.live="state.step3.cost_type"
+                                        @click="state.step3.range_id = null; if (isMobile) expandedType = expandedType === 'one-time' ? null : 'one-time'"
+                                        name="cost_type" autocomplete="off">
+                                    <label class="choice-component cost-variant w-100" for="one-time">
                                         <span class="choice-text">{{ __('idea.steps.step3.types.one-time') }}</span>
                                         <span class="d-lg-none mobile-arrow"
                                             x-text="expandedType === 'one-time' ? '▲' : '▼'"></span>
@@ -40,17 +33,19 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                 <!-- one-time ranges -->
                                 <div class="col-12" x-show="!isMobile || expandedType === 'one-time'" x-transition>
                                     <div class="row g-2 g-md-3">
-                                        @foreach ($this->oneTimeRanges as $range)
+                                        @foreach ($oneTimeRanges as $range)
                                             <div class="col-12 col-md-6">
                                                 <input type="radio" class="btn-check"
-                                                    id="one-time-{{ $range->id }}" value="{{ $range->id }}"
-                                                    x-model="selectedRange" :disabled="selectedType !== 'one-time'"
+                                                    id="one-time-{{ $range->value }}" value="{{ $range->value }}"
+                                                    x-model="state.step3.range_id"
+                                                    wire:model.live="state.step3.range_id" 
+                                                    :disabled="state.step3.cost_type !== 'one-time'"
                                                     autocomplete="off">
                                                 <label class="choice-component range-variant w-100"
-                                                    :class="{ 'disabled': selectedType !== 'one-time' }"
-                                                    for="one-time-{{ $range->id }}">
-                                                    <span class="choice-text">
-                                                        {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
+                                                    :class="{ 'disabled': state.step3.cost_type !== 'one-time' }"
+                                                    for="one-time-{{ $range->value }}">
+                                                    <span class="choice-text text-center">
+                                                        {!! $range->label() !!}
                                                     </span>
                                                     <div class="choice-radio-indicator">
                                                         <i class="bi bi-check-lg fs-5"></i>
@@ -71,9 +66,11 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                 <!-- main button -->
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="annual" value="annual"
-                                        x-model="selectedType" name="cost_type" autocomplete="off">
-                                    <label class="choice-component cost-variant w-100" for="annual"
-                                        @click="if (isMobile) expandedType = expandedType === 'annual' ? null : 'annual'">
+                                        x-model="state.step3.cost_type"
+                                        wire:model.live="state.step3.cost_type" 
+                                        @click="state.step3.range_id = null; if (isMobile) expandedType = expandedType === 'annual' ? null : 'annual'"
+                                        name="cost_type" autocomplete="off">
+                                    <label class="choice-component cost-variant w-100" for="annual">
                                         <span class="choice-text">{{ __('idea.steps.step3.types.annual') }}</span>
                                         <span class="d-lg-none mobile-arrow"
                                             x-text="expandedType === 'annual' ? '▲' : '▼'"></span>
@@ -86,16 +83,18 @@ window.addEventListener('resize', () => isMobile = window.innerWidth < 992);">
                                 <!-- annual ranges -->
                                 <div class="col-12" x-show="!isMobile || expandedType === 'annual'" x-transition>
                                     <div class="row g-2 g-md-3">
-                                        @foreach ($this->annualRanges as $range)
+                                        @foreach ($annualRanges as $range)
                                             <div class="col-12 col-md-6">
-                                                <input type="radio" class="btn-check" id="annual-{{ $range->id }}"
-                                                    value="{{ $range->id }}" x-model="selectedRange"
-                                                    :disabled="selectedType !== 'annual'" autocomplete="off">
+                                                <input type="radio" class="btn-check" id="annual-{{ $range->value }}"
+                                                    value="{{ $range->value }}" 
+                                                    x-model="state.step3.range_id"
+                                                    wire:model.live="state.step3.range_id"
+                                                    :disabled="state.step3.cost_type !== 'annual'" autocomplete="off">
                                                 <label class="choice-component range-variant w-100"
-                                                    :class="{ 'disabled': selectedType !== 'annual' }"
-                                                    for="annual-{{ $range->id }}">
-                                                    <span class="choice-text">
-                                                        {!! app()->getLocale() === 'ar' ? $range->label_ar : $range->label_en !!}
+                                                    :class="{ 'disabled': state.step3.cost_type !== 'annual' }"
+                                                    for="annual-{{ $range->value }}">
+                                                    <span class="choice-text text-center">
+                                                        {!! $range->label() !!}
                                                     </span>
                                                     <div class="choice-radio-indicator">
                                                         <i class="bi bi-check-lg fs-5"></i>

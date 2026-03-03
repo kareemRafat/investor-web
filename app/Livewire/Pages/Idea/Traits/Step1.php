@@ -8,8 +8,6 @@ trait Step1
 {
     public function initStep1()
     {
-        $this->state['step1']['ideaOptions'] = __('idea.steps.step1.options');
-
         $ideaId = session('current_idea_id');
         if ($ideaId) {
             $idea = Idea::find($ideaId);

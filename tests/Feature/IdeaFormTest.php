@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Enums\CostProfitRange;
 use App\Livewire\Pages\Idea\IdeaForm;
-use App\Models\CostProfitRange;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -46,17 +46,14 @@ class IdeaFormTest extends TestCase
             'plan_type' => \App\Enums\PlanType::MONTHLY,
         ]);
 
-        $costRange = CostProfitRange::create(['type' => 'one-time', 'label_en' => '10k', 'label_ar' => '10k']);
-        $profitRange = CostProfitRange::create(['type' => 'annual', 'label_en' => '50k', 'label_ar' => '50k']);
-
         Livewire::actingAs($user)
             ->test(IdeaForm::class)
             ->set('state.step1.ideaField', 'tech')
             ->set('state.step2.countries', ['US'])
             ->set('state.step3.cost_type', 'one-time')
-            ->set('state.step3.range_id', $costRange->id)
+            ->set('state.step3.range_id', CostProfitRange::ONE_TIME_1K_5K->value)
             ->set('state.step4.profit_type', 'annual')
-            ->set('state.step4.profit_range_id', $profitRange->id)
+            ->set('state.step4.profit_range_id', CostProfitRange::ANNUAL_11K_20K->value)
             ->set('state.step5.data.company', 'yes')
             ->set('state.step5.data.staff', 'no')
             ->set('state.step5.data.workers', 'no')
@@ -94,7 +91,7 @@ class IdeaFormTest extends TestCase
         $this->assertDatabaseHas('idea_costs', [
             'idea_id' => $idea->id,
             'cost_type' => 'one-time',
-            'range_id' => $costRange->id,
+            'range_id' => 1,
         ]);
 
         $this->assertDatabaseHas('idea_expenses', [
