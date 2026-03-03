@@ -63,13 +63,6 @@
     <div class="row g-3 mb-3">
         <div class="col-12">
 
-            <!-- Progress Bar -->
-            <div class="progress mb-3" style="height: 6px; background-color: #e2e8f0; border-radius: 3px;">
-                <div class="progress-bar" role="progressbar"
-                     :style="`width: ${progress}%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);`"
-                     :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
             {{-- steps --}}
             <div class="position-relative" wire:loading.class="opacity-50"
                 wire:target="handleNextAction, previousStep, goToStep, save">

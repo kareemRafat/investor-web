@@ -83,6 +83,8 @@ document.addEventListener('alpine:init', () => {
                 }
             } else if (this.step === 4) {
                 const data = this.state.step4.data;
+                const isPresent = (val) => val !== null && val !== undefined && String(val).trim() !== '';
+
                 if (!data.contribute_type) {
                     this.errors['state.step4.data.contribute_type'] = this.validationMessages['contribution.type'];
                     isValid = false;
@@ -92,15 +94,22 @@ document.addEventListener('alpine:init', () => {
                         isValid = false;
                     }
                 } else if (data.contribute_type === 'capital') {
-                    if (!data.money_amount && !data.money_percent) {
+                    if (isPresent(data.money_amount) && isPresent(data.money_percent)) {
+                        this.errors['state.step4.data.money_amount'] = this.validationMessages['contribution.money_both_prohibited'];
+                        isValid = false;
+                    } else if (!isPresent(data.money_amount) && !isPresent(data.money_percent)) {
                         this.errors['state.step4.data.money_amount'] = this.validationMessages['contribution.money_required_one'];
                         isValid = false;
                     }
                 } else if (data.contribute_type === 'both') {
-                    if (!data.person_money_amount && !data.person_money_percent) {
+                    if (isPresent(data.person_money_amount) && isPresent(data.person_money_percent)) {
+                        this.errors['state.step4.data.person_money_amount'] = this.validationMessages['contribution.person_money_both_prohibited'];
+                        isValid = false;
+                    } else if (!isPresent(data.person_money_amount) && !isPresent(data.person_money_percent)) {
                         this.errors['state.step4.data.person_money_amount'] = this.validationMessages['contribution.person_money_required_one'];
                         isValid = false;
                     }
+
                     if (!data.staff_person_money) {
                         this.errors['state.step4.data.staff_person_money'] = this.validationMessages['contribution.staff_person_money'];
                         isValid = false;
