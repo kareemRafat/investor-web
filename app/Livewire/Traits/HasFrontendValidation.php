@@ -53,6 +53,8 @@ trait HasFrontendValidation
             'contribution.person_money_percent' => __('idea.validation.step7.person_money_percent'),
             'contribution.money_required_one' => __('idea.validation.step7.money_required_one'),
             'contribution.person_money_required_one' => __('idea.validation.step7.person_money_required_one'),
+            'contribution.money_both_prohibited' => __('idea.validation.step7.money_both_prohibited'),
+            'contribution.person_money_both_prohibited' => __('idea.validation.step7.person_money_both_prohibited'),
 
             // Step 8 (Idea) - Returns
             'returns.profit_only_percentage' => __('idea.validation.step8.profit_only_percentage'),
