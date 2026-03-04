@@ -27,7 +27,7 @@ class UserResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'إدارة المستخدمين';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 6;
 
     protected static ?string $modelLabel = 'عضو'; // Singular
 

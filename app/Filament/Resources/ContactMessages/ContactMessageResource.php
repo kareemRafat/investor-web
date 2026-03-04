@@ -22,8 +22,7 @@ class ContactMessageResource extends Resource
 
     protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::ChatBubbleBottomCenterText;
 
-    protected static string|UnitEnum|null $navigationGroup = 'إدارة التواصل';
-
+    protected static string|UnitEnum|null $navigationGroup = 'إدارة المستخدمين';
 
     protected static ?string $modelLabel = 'رسالة تواصل';
 

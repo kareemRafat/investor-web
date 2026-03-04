@@ -88,35 +88,58 @@
                                     <!-- وسائل التواصل -->
                                     <div class="d-flex justify-content-center flex-wrap gap-3 mt-0">
                                         <!-- twitter -->
-                                        <a href="https://twitter.com/yourprofile" target="_blank"
-                                            class="d-flex align-items-center justify-content-center rounded-circle icon_social"
-                                            rel="noopener noreferrer" title="Twitter" aria-label="Twitter">
-                                            <i class="bi bi-twitter-x fs-6 text-white"></i>
-                                        </a>
-                                        <!-- custom ni -->
-                                        <a href="https://ni.com/yourprofile" target="_blank"
-                                            class="d-flex align-items-center justify-content-center rounded-circle icon_social"
-                                            rel="noopener noreferrer" title="ni" aria-label="ni">
-                                            <span class="fw-bold fs-5 text-white">ni</span>
-                                        </a>
+                                        @if($twitter = settings('twitter_url'))
+                                            <a href="{{ $twitter }}" target="_blank"
+                                                class="d-flex align-items-center justify-content-center rounded-circle icon_social"
+                                                rel="noopener noreferrer" title="Twitter" aria-label="Twitter">
+                                                <i class="bi bi-twitter-x fs-6 text-white"></i>
+                                            </a>
+                                        @endif
+
                                         <!-- dribbble -->
-                                        <a href="https://dribbble.com/yourprofile" target="_blank"
-                                            class="d-flex align-items-center justify-content-center rounded-circle icon_social"
-                                            rel="noopener noreferrer" title="Dribbble" aria-label="Dribbble">
-                                            <i class="bi bi-dribbble fs-6 text-white"></i>
-                                        </a>
+                                        @if($dribbble = settings('dribbble_url'))
+                                            <a href="{{ $dribbble }}" target="_blank"
+                                                class="d-flex align-items-center justify-content-center rounded-circle icon_social"
+                                                rel="noopener noreferrer" title="Dribbble" aria-label="Dribbble">
+                                                <i class="bi bi-dribbble fs-6 text-white"></i>
+                                            </a>
+                                        @endif
+
                                         <!-- instagram -->
-                                        <a href="https://instagram.com/yourprofile" target="_blank"
-                                            class="d-flex align-items-center justify-content-center rounded-circle icon_social"
-                                            rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
-                                            <i class="bi bi-instagram fs-6 text-white"></i>
-                                        </a>
+                                        @if($instagram = settings('instagram_url'))
+                                            <a href="{{ $instagram }}" target="_blank"
+                                                class="d-flex align-items-center justify-content-center rounded-circle icon_social"
+                                                rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+                                                <i class="bi bi-instagram fs-6 text-white"></i>
+                                            </a>
+                                        @endif
+
                                         <!-- facebook -->
-                                        <a href="https://facebook.com/yourprofile" target="_blank"
-                                            class="d-flex align-items-center justify-content-center rounded-circle icon_social"
-                                            rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
-                                            <i class="bi bi-facebook fs-6 text-white"></i>
-                                        </a>
+                                        @if($facebook = settings('facebook_url'))
+                                            <a href="{{ $facebook }}" target="_blank"
+                                                class="d-flex align-items-center justify-content-center rounded-circle icon_social"
+                                                rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                                                <i class="bi bi-facebook fs-6 text-white"></i>
+                                            </a>
+                                        @endif
+
+                                        <!-- linkedin -->
+                                        @if($linkedin = settings('linkedin_url'))
+                                            <a href="{{ $linkedin }}" target="_blank"
+                                                class="d-flex align-items-center justify-content-center rounded-circle icon_social"
+                                                rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                                                <i class="bi bi-linkedin fs-6 text-white"></i>
+                                            </a>
+                                        @endif
+
+                                        <!-- whatsapp -->
+                                        @if($whatsapp = settings('whatsapp_number'))
+                                            <a href="https://wa.me/{{ $whatsapp }}" target="_blank"
+                                                class="d-flex align-items-center justify-content-center rounded-circle icon_social"
+                                                rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp">
+                                                <i class="bi bi-whatsapp fs-6 text-white"></i>
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

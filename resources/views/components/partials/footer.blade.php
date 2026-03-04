@@ -11,14 +11,26 @@
                     {{ __('header.footer.about_text') }}
                 </p>
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-muted fs-4 hover-primary" aria-label="Facebook"><i
-                            class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-muted fs-4 hover-primary" aria-label="Instagram"><i
-                            class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-muted fs-4 hover-primary" aria-label="Twitter"><i
-                            class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="text-muted fs-4 hover-primary" aria-label="YouTube"><i
-                            class="bi bi-youtube"></i></a>
+                    @if($facebook = settings('facebook_url'))
+                        <a href="{{ $facebook }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="Facebook"><i
+                                class="bi bi-facebook"></i></a>
+                    @endif
+                    @if($instagram = settings('instagram_url'))
+                        <a href="{{ $instagram }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="Instagram"><i
+                                class="bi bi-instagram"></i></a>
+                    @endif
+                    @if($twitter = settings('twitter_url'))
+                        <a href="{{ $twitter }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="Twitter"><i
+                                class="bi bi-twitter-x"></i></a>
+                    @endif
+                    @if($linkedin = settings('linkedin_url'))
+                        <a href="{{ $linkedin }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="LinkedIn"><i
+                                class="bi bi-linkedin"></i></a>
+                    @endif
+                    @if($whatsapp = settings('whatsapp_number'))
+                        <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="WhatsApp"><i
+                                class="bi bi-whatsapp"></i></a>
+                    @endif
                 </div>
             </div>
 
