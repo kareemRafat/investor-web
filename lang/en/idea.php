@@ -27,6 +27,7 @@ return [
     ],
     'steps' => [
         'step1' => [
+            'title' => 'Idea Field',
             'subtitle' => 'What is your idea`s field?',
             'options' => [
                 'health' => 'Health and beauty',
@@ -58,6 +59,7 @@ return [
             ],
         ],
         'step2' => [
+            'title' => 'Target Countries',
             'subtitle' => 'The best countries /regions to implement the idea in (3 countries at most)',
             'options' => [
                 ['code' => 'LB', 'name' => 'Lebanon'],
@@ -97,6 +99,7 @@ return [
             ],
         ],
         'step3' => [
+            'title' => 'Estimated Cost',
             'subtitle' => 'The estimated cost of implementing the idea',
 
             'types' => [
@@ -125,6 +128,7 @@ return [
             ],
         ],
         'step4' => [
+            'title' => 'Expected Profits',
             'subtitle' => 'The expected profits from implementing the idea',
 
             'types' => [
@@ -153,6 +157,7 @@ return [
             ],
         ],
         'step5' => [
+            'title' => 'Requirements',
             'subtitle' => 'Requirements for implementing the idea',
             'company' => 'Establishing a company',
             'office_spaces' => 'Office spaces',
@@ -164,6 +169,7 @@ return [
             'website' => 'Website',
         ],
         'step6' => [
+            'title' => 'Capital Distribution',
             'subtitle' => 'Distribution of the capital required to implement the idea',
             'fields' => [
                 'company' => 'Establishing a company',
@@ -178,6 +184,7 @@ return [
             'must_equal' => 'The total must equal 100%.',
         ],
         'step7' => [
+            'title' => 'Your Contribution',
             'subtitle' => 'Your contribution to implementing the idea is:',
             'sell' => 'I would like to sell the idea completely without any contribution to its implementation',
             'idea' => 'I will only contribute the idea',
@@ -192,7 +199,7 @@ return [
             'total_error' => 'The total percentage must equal 100%.',
         ],
         'step8' => [
-            'title' => 'Submit Idea',
+            'title' => 'Your Requirements',
             'subtitle' => 'Your specific requirements in exchange for the idea',
             'profit_share' => 'A share of the profits',
             'one_time_sum' => 'A one-time sum of money',
@@ -212,6 +219,7 @@ return [
 
         ],
         'step9' => [
+            'title' => 'Summary & Files',
             'subtitle' => 'Summary of the idea and its files',
             'idea_title' => 'Write a title for your idea',
             'placeholder' => 'Write a clear summary of your idea',
@@ -236,7 +244,8 @@ return [
             'open_costs_credit' => 'Making your contact info open will use 1 credit.',
         ],
         'step10' => [
-            'title' => 'Summary of your distinguished idea',
+            'title' => 'Final Review',
+            'subtitle' => 'Summary of your distinguished idea',
             'project' => 'The project',
             'classification' => 'Idea classification',
             'capital' => 'The required capital amount',

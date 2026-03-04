@@ -27,6 +27,7 @@ return [
     ],
     'steps' => [
         'step1' => [
+            'title' => 'Investment Field',
             'subtitle' => 'The fields in which you would like to invest or participate',
             'options' => [
                 'health' => 'Health and beauty',
@@ -58,6 +59,7 @@ return [
             ],
         ],
         'step2' => [
+            'title' => 'Target Countries',
             'subtitle' => 'The best countries /regions to implement the idea in (3 countries at most)',
             'options' => [
                 ['code' => 'LB', 'name' => 'Lebanon'],
@@ -97,6 +99,7 @@ return [
             ],
         ],
         'step3' => [
+            'title' => 'Available Resources',
             'subtitle' => 'The resources you own and wish to invest or share in the business',
             'checkbox' => 'I do not wish to contribute any resources',
             'company' => 'Establishing a company',
@@ -109,6 +112,7 @@ return [
             'website' => 'Website',
         ],
         'step4' => [
+            'title' => 'Desired Contributions',
             'subtitle' => 'The contributions you would like to have included in the distinguished idea',
             'sell' => 'I want to buy the idea completely without any contribution from its owner in implementing it',
             'idea' => 'I want to have only the idea for partnership without any other contributions from the idea owner',
@@ -123,6 +127,7 @@ return [
             'total_error' => 'The total must be 100%.',
         ],
         'step5' => [
+            'title' => 'Financial Contribution',
             'subtitle' => 'The amounts that you own and would like to invest or participate in business with',
             'checkbox' => 'I do not wish to contribute any financial amounts',
             'money_contribution_ranges' => [
@@ -144,6 +149,7 @@ return [
 
         ],
         'step6' => [
+            'title' => 'Summary & Files',
             'subtitle' => 'Summary of your proposed investment or partnership and its related files',
             'investor_title' => 'write your Investment Title',
             'placeholder' => 'Write a clear summary of your investment offer',
@@ -168,7 +174,8 @@ return [
             'open_costs_credit' => 'Making your contact info open will use 1 credit.',
         ],
         'step7' => [
-            'title' => 'Summary of your Investment Details',
+            'title' => 'Final Review',
+            'subtitle' => 'Summary of your Investment Details',
             'project' => 'The project',
             'required_capital' => 'The required capital',
             'expected_profit' => 'The expected profit',
