@@ -75,7 +75,7 @@
                 <div class="hidden md:flex items-center gap-4">
                     @guest
                         <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 hover:bg-accent hover:text-accent-foreground">
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border-2 border-primary/50 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 border-primary/50 text-foreground hover:bg-primary/10 transition-all duration-300">
                             {{ __('landing.nav.signIn') }}
                         </a>
                         <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
@@ -125,7 +125,7 @@
                     <div class="flex flex-col gap-2 pt-4 border-t border-border">
                         @guest
                             <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"
-                                class="inline-flex items-center justify-start gap-2 h-10 px-4 text-muted-foreground hover:text-foreground">{{ __('landing.nav.signIn') }}</a>
+                                class="inline-flex items-center justify-start gap-2 h-10 px-4 rounded-md text-muted-foreground border-2 border-primary/50 hover:bg-gradient-to-r hover:from-[#667eea] hover:to-[#764ba2] hover:text-white hover:border-transparent transition-all duration-300">{{ __('landing.nav.signIn') }}</a>
                             <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
                                 class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.getStarted') }}</a>
                         @endguest
@@ -570,7 +570,7 @@
                     <div class="flex flex-col gap-2">
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                                class="inline-flex items-center justify-start gap-2 h-9 px-3 rounded-md text-sm font-medium transition-colors {{ app()->getLocale() === $localeCode ? 'bg-primary text-primary-foreground' : 'border border-input bg-background hover:bg-accent hover:text-accent-foreground' }}">
+                                class="inline-flex items-center justify-start gap-2 h-9 px-3 rounded-md text-sm font-medium transition-all duration-300 {{ app()->getLocale() === $localeCode ? 'bg-primary text-primary-foreground' : 'border-2 border-primary/50 text-foreground hover:bg-primary/10 transition-all duration-300' }}">
                                 {{ $properties['native'] }}
                             </a>
                         @endforeach
@@ -580,7 +580,7 @@
             <div class="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="text-sm text-muted-foreground">{{ __('landing.footer.copyright') }}</p>
                 <div class="flex items-center gap-4">
-                    @if($twitter = settings('twitter_url'))
+                    @if ($twitter = settings('twitter_url'))
                         <a href="{{ $twitter }}" target="_blank"
                             class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -592,43 +592,54 @@
                             </svg></a>
                     @endif
 
-                    @if($instagram = settings('instagram_url'))
+                    @if ($instagram = settings('instagram_url'))
                         <a href="{{ $instagram }}" target="_blank"
                             class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="w-5 h-5">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5">
+                                </rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                             </svg></a>
                     @endif
 
-                    @if($facebook = settings('facebook_url'))
+                    @if ($facebook = settings('facebook_url'))
                         <a href="{{ $facebook }}" target="_blank"
                             class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                             </svg>
                         </a>
                     @endif
 
-                    @if($linkedin = settings('linkedin_url'))
+                    @if ($linkedin = settings('linkedin_url'))
                         <a href="{{ $linkedin }}" target="_blank"
                             class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
                                 <rect width="4" height="12" x="2" y="9"></rect>
                                 <circle cx="4" cy="4" r="2"></circle>
                             </svg>
                         </a>
                     @endif
 
-                    @if($whatsapp = settings('whatsapp_number'))
+                    @if ($whatsapp = settings('whatsapp_number'))
                         <a href="https://wa.me/{{ $whatsapp }}" target="_blank"
                             class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
                             </svg>
                         </a>
                     @endif
