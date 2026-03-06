@@ -325,4 +325,10 @@ return [
         'confirm' => 'Yes, Downgrade',
         'cancel' => 'Cancel',
     ],
+    'error_404' => [
+        'title' => '404 - Page Not Found',
+        'heading' => 'Page Not Found',
+        'message' => 'The page you are looking for is unavailable. Explore our latest investment opportunities from the home page.',
+        'button' => 'Back to Home',
+    ],
 ];
