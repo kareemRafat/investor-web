@@ -39,10 +39,6 @@ Route::group(
     function () {
         Route::get('/', Landing::class)->name('main.landing');
 
-        Route::get('/test-404', function () {
-            return view('errors.419');
-        })->name('test.404');
-
         Route::middleware(['auth', 'verified'])->group(function () {
             // Main pages
             Route::get('/home', Home::class)->name('main.home');
