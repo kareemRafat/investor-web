@@ -331,4 +331,10 @@ return [
         'message' => 'The page you are looking for is unavailable. Explore our latest investment opportunities from the home page.',
         'button' => 'Back to Home',
     ],
+    'error_500' => [
+        'title' => '500 - Server Error',
+        'heading' => 'Oops, Something Went Wrong',
+        'message' => 'We are experiencing some technical difficulties. Our team is working on it. Please try again later.',
+        'button' => 'Back to Home',
+    ],
 ];

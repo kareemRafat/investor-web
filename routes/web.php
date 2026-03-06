@@ -40,7 +40,7 @@ Route::group(
         Route::get('/', Landing::class)->name('main.landing');
 
         Route::get('/test-404', function () {
-            return view('test-404');
+            return view('errors.404');
         })->name('test.404');
 
         Route::middleware(['auth', 'verified'])->group(function () {
