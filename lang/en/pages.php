@@ -337,4 +337,16 @@ return [
         'message' => 'We are experiencing some technical difficulties. Our team is working on it. Please try again later.',
         'button' => 'Back to Home',
     ],
+    'error_403' => [
+        'title' => '403 - Forbidden',
+        'heading' => 'Access Denied',
+        'message' => 'You do not have the necessary permissions to access this page. Please contact support if you believe this is an error.',
+        'button' => 'Back to Home',
+    ],
+    'error_419' => [
+        'title' => '419 - Page Expired',
+        'heading' => 'Session Expired',
+        'message' => 'The page has been open for too long. Please refresh the page and try again.',
+        'button' => 'Refresh Page',
+    ],
 ];
