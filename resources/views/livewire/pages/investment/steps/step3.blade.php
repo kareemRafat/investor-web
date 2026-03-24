@@ -43,7 +43,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section">
+                            <div class="options-section"
+                                :style="state.step3.data.company !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step3.data.space_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <span class="option-label-text">{{ __('investor.steps.step3.office_spaces') }}</span>
                                 <div class="option-item">
                                     <input class="form-check-input m-0" type="radio" name="space_type"
@@ -91,7 +93,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="number-input-wrapper">
+                            <div class="number-input-wrapper"
+                                :style="state.step3.data.staff !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step3.data.staff_number'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <label for="staff_number" class="number-input-label">
                                     {{ __('investor.common.number') }}
                                 </label>
@@ -130,7 +134,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="number-input-wrapper">
+                            <div class="number-input-wrapper"
+                                :style="state.step3.data.workers !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step3.data.workers_number'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <label for="workers_number" class="number-input-label">
                                     {{ __('investor.common.number') }}
                                 </label>
@@ -169,7 +175,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section">
+                            <div class="options-section"
+                                :style="state.step3.data.executive_spaces !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step3.data.executive_spaces_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <div class="option-item">
                                     <input class="form-check-input m-0" type="radio" name="executive_spaces_type"
                                         id="factory_open" wire:model="state.step3.data.executive_spaces_type" value="open_spaces" @disabled($state['step3']['disableResources'])>
@@ -223,7 +231,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section">
+                            <div class="options-section"
+                                :style="state.step3.data.equipment !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step3.data.equipment_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <div class="option-item">
                                     <input type="radio" class="form-check-input m-0" id="Industrial"
                                         wire:model="state.step3.data.equipment_type" value="industrial" name="equipment_type" @disabled($state['step3']['disableResources'])>
@@ -277,7 +287,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section">
+                            <div class="options-section"
+                                :style="state.step3.data.software !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step3.data.software_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <div class="option-item">
                                     <input type="radio" class="form-check-input m-0" id="static"
                                         wire:model="state.step3.data.software_type" value="static" name="software_type" @disabled($state['step3']['disableResources'])>

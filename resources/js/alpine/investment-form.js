@@ -45,6 +45,13 @@ document.addEventListener('alpine:init', () => {
         validationMessages: config.validationMessages,
         scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) },
         get progress() { return (this.step / this.totalSteps) * 100 },
+
+        clearError(path) {
+            if (path && this.errors[path]) {
+                delete this.errors[path];
+            }
+        },
+
         validate() {
             this.errors = {};
             let isValid = true;
@@ -142,7 +149,6 @@ document.addEventListener('alpine:init', () => {
         },
 
         init() {
-            this.$watch('state', () => { this.errors = {}; });
             this.$watch('step', () => { this.errors = {}; });
         }
     }));

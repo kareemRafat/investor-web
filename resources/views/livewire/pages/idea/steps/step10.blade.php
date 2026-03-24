@@ -7,7 +7,7 @@
 
     {{-- Debug Info (Remove after fix) --}}
     <div class="alert alert-warning py-1 small mb-2 d-none">
-        Debug: S3 Range: {{ var_export($this->state['step3']['range_id'], true) }} 
+        Debug: S3 Range: {{ var_export($this->state['step3']['range_id'], true) }}
         | S4 Range: {{ var_export($this->state['step4']['profit_range_id'], true) }}
     </div>
 
@@ -115,48 +115,10 @@
                 <div class="row g-3 mb-4">
 
                     {{-- Contact Way --}}
-                    <div class="col-lg-4">
-                        <div class="border rounded-3 p-3 h-100 bg-light">
-
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <i class="bi bi-telephone text-primary fs-5"></i>
-                                <h6 class="mb-0 fw-bold">{{ __('idea.steps.step10.contact_way') }}</h6>
-                            </div>
-
-                            {{-- Contact visibility status --}}
-                            <div class="mb-3">
-                                @if ($idea->contact_visibility === 'open')
-                                    <span
-                                        class="badge bg-success d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill">
-                                        <i class="bi bi-unlock-fill"></i>
-                                        {{ __('idea.steps.step9.contact_open') }}
-                                    </span>
-                                @else
-                                    <span
-                                        class="badge bg-secondary d-inline-flex align-items-center gap-1 px-3 py-2 rounded-pill">
-                                        <i class="bi bi-lock-fill"></i>
-                                        {{ __('idea.steps.step9.contact_closed') }}
-                                    </span>
-                                @endif
-                            </div>
-
-                            <ul class="list-unstyled mb-0 ps-4">
-                                <li class="mb-2">
-                                    <i class="bi bi-phone text-success me-2"></i>
-                                    {{ app()->getLocale() === 'ar' ? 'الهاتف النقال' : 'Mobile Phone' }}
-                                </li>
-                                <li>
-                                    <i class="bi bi-envelope text-danger me-2"></i>
-                                    {{ app()->getLocale() === 'ar' ? 'البريد الإلكتروني' : 'Email' }}
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-
+                    {{-- removed by client order --}}
 
                     {{-- Resources --}}
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="border rounded-3 p-3 h-100 bg-light">
                             <div class="d-flex align-items-center gap-2 mb-3">
                                 <i class="bi bi-list-check text-primary fs-5"></i>

@@ -34,7 +34,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section" style="{{ $state['step5']['data']['company'] !== 'yes' ? 'opacity: 0.5;' : '' }}">
+                            <div class="options-section"
+                                :style="state.step5.data.company !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step5.data.space_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <span class="option-label-text">{{ __('idea.steps.step5.office_spaces') }}</span>
                                 <div class="option-item">
                                     <input class="form-check-input m-0" type="radio" name="space_type"
@@ -84,7 +86,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="number-input-wrapper" style="{{ $state['step5']['data']['staff'] !== 'yes' ? 'opacity: 0.5;' : '' }}">
+                            <div class="number-input-wrapper"
+                                :style="state.step5.data.staff !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step5.data.staff_number'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <label for="staff_number" class="number-input-label">
                                     {{ __('idea.common.number') }}
                                 </label>
@@ -124,7 +128,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="number-input-wrapper" style="{{ $state['step5']['data']['workers'] !== 'yes' ? 'opacity: 0.5;' : '' }}">
+                            <div class="number-input-wrapper"
+                                :style="state.step5.data.workers !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step5.data.workers_number'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <label for="workers_number" class="number-input-label">
                                     {{ __('idea.common.number') }}
                                 </label>
@@ -164,7 +170,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section" style="{{ $state['step5']['data']['executive_spaces'] !== 'yes' ? 'opacity: 0.5;' : '' }}">
+                            <div class="options-section"
+                                :style="state.step5.data.executive_spaces !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step5.data.executive_spaces_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <div class="option-item">
                                     <input class="form-check-input m-0" type="radio" name="executive_spaces_type"
                                         id="factory_open" wire:model="state.step5.data.executive_spaces_type"
@@ -221,7 +229,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section" style="{{ $state['step5']['data']['equipment'] !== 'yes' ? 'opacity: 0.5;' : '' }}">
+                            <div class="options-section"
+                                :style="state.step5.data.equipment !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step5.data.equipment_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <div class="option-item">
                                     <input type="radio" class="form-check-input m-0" id="Industrial"
                                         wire:model="state.step5.data.equipment_type" value="industrial" name="equipment_type"
@@ -278,7 +288,9 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section" style="{{ $state['step5']['data']['software'] !== 'yes' ? 'opacity: 0.5;' : '' }}">
+                            <div class="options-section"
+                                :style="state.step5.data.software !== 'yes' ? 'opacity: 0.5' : 'opacity: 1'"
+                                :class="errors['state.step5.data.software_type'] ? 'border border-2 border-danger rounded-3 p-2' : ''">
                                 <div class="option-item">
                                     <input type="radio" class="form-check-input m-0" id="static"
                                         wire:model="state.step5.data.software_type" value="static" name="software_type"

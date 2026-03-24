@@ -4,7 +4,9 @@
         state: @entangle('state'),
         validationMessages: @js($this->getValidationMessages())
      })"
-     x-on:livewire-step-changed.window="scrollToTop()">
+     x-on:livewire-step-changed.window="scrollToTop()"
+     @input="clearError($event.target.getAttribute('wire:model') || $event.target.getAttribute('wire:model.live'))"
+     @change="clearError($event.target.getAttribute('wire:model') || $event.target.getAttribute('wire:model.live'))">
 
     <div class="row g-3 mb-3">
         <div class="col-12">

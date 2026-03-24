@@ -68,11 +68,11 @@ class IdeaForm extends Component
         ],
         'step6' => [
             'data' => [
-                'company' => 0,
-                'assets' => 0,
-                'salaries' => 0,
-                'operating' => 0,
-                'other' => 0,
+                'company' => null,
+                'assets' => null,
+                'salaries' => null,
+                'operating' => null,
+                'other' => null,
             ],
         ],
         'step7' => [
