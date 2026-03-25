@@ -38,9 +38,6 @@ trait HandlesAttachmentUpload
                 'path' => $path,
                 'original_name' => $attachment->getClientOriginalName(),
             ]);
-
-            // Reset the property after upload
-            $this->data['attachment'] = null;
         }
     }
 }
