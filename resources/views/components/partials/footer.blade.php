@@ -72,20 +72,39 @@
                 </ul>
             </div>
 
-            <!-- Newsletter -->
+            <!-- Support & Trust -->
             <div class="col-lg-4 col-md-4 col-12">
-                <h6 class="fw-bold text-dark mb-4">{{ __('header.footer.newsletter_title') }}</h6>
-                <p class="text-muted small mb-3">{{ __('header.footer.newsletter_text') }}</p>
-                <div class="input-group mb-3">
-                    <input type="email"
-                        class="form-control form-control-sm border-end-0 rounded-pill rounded-end-0 ps-3"
-                        placeholder="email@example.com">
-                    <button class="btn btn-primary btn-sm rounded-pill px-3 fw-bold {{ app()->getLocale() == 'ar' ? 'rounded-end-0' : 'rounded-start-0' }}"
-                    type="button">
-                    {{ __('header.footer.subscribe') }}
-                    </button>
+                <h6 class="fw-bold text-dark mb-4">{{ __('header.footer.support_title') }}</h6>
+
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-light p-2 rounded-3 text-primary">
+                            <i class="bi bi-headset fs-5"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 small fw-bold text-dark">{{ __('header.footer.support_subtitle') }}</p>
+                            <a href="{{ route('main.contact') }}" class="small text-muted text-decoration-none hover-primary">{{ __('header.contact') }}</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-light p-2 rounded-3 text-success">
+                            <i class="bi bi-shield-check fs-5"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 small fw-bold text-dark">{{ __('header.footer.secure_title') }}</p>
+                            <p class="mb-0 small text-muted">{{ __('header.footer.secure_text') }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center gap-3 mt-4">
+
+                <!-- Payment Methods -->
+                <div class="d-flex gap-3 align-items-center mb-4 opacity-75">
+                    <i class="bi bi-paypal fs-3 text-primary" title="PayPal"></i>
+                    <i class="bi bi-credit-card-2-front fs-3 text-dark" title="Credit Card"></i>
+                    <i class="bi bi-shield-lock fs-3 text-success" title="Secure Payment"></i>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
                     <div class="dropdown">
                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle px-3"
                             type="button" data-bs-toggle="dropdown">
