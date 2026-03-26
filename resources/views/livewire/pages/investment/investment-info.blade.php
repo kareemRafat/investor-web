@@ -144,7 +144,7 @@
                         <div class="row g-3 mb-4">
 
                             {{-- Contact Way --}}
-                            <div class="col-lg-4">
+                            {{-- <div class="col-lg-4">
                                 <div class="border rounded-3 p-3 h-100 bg-light">
                                     <div class="d-flex align-items-center gap-2 mb-3">
                                         <i class="bi bi-telephone text-primary fs-5"></i>
@@ -169,10 +169,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- Requirements --}}
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="border rounded-3 p-3 h-100 bg-light">
                                     <div class="d-flex align-items-center gap-2 mb-3">
                                         <i class="bi bi-list-check text-primary fs-5"></i>

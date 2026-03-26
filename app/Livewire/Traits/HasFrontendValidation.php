@@ -84,4 +84,12 @@ trait HasFrontendValidation
             'state.step5.data.money_contributions' => __('investor.validation.step5.required'),
         ];
     }
+
+    /**
+     * Prevent MethodNotFoundException when Alpine/Livewire objects are serialized on the frontend.
+     */
+    public function toJSON(): array
+    {
+        return [];
+    }
 }
