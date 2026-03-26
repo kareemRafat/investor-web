@@ -45,8 +45,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         \Illuminate\Auth\Notifications\VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            $locale = $notifiable->preferredLocale();
             return (new \Illuminate\Notifications\Messages\MailMessage)
-                ->subject(__('auth.verify_email.title'))
+                ->subject(__('auth.verify_email.title', [], $locale))
                 ->view('emails.verify-email', [
                     'url' => $url,
                     'name' => $notifiable->name,

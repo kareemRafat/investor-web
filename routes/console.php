@@ -10,3 +10,4 @@ Artisan::command('inspire', function () {
 
 Schedule::command('app:reset-monthly-credits')->daily();
 Schedule::command('subscriptions:check-expired')->hourly();
+Schedule::command('app:send-subscription-expiry-reminders')->dailyAt('09:00');

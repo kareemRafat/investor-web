@@ -43,10 +43,10 @@ This document outlines the milestones and tasks for implementing the five key em
 ## Milestone 3: Automation & Scheduling
 *Goal: Set up the automated 3-day expiry reminder.*
 
-- [ ] **Task 3.1: Create Expiry Reminder Command**
+- [x] **Task 3.1: Create Expiry Reminder Command**
     - Create `App\Console\Commands\SendSubscriptionExpiryReminders`.
     - Implement logic to find active subscriptions ending in exactly 3 days.
-- [ ] **Task 3.2: Schedule the Command**
+- [x] **Task 3.2: Schedule the Command**
     - Add the command to `routes/console.php` to run daily (e.g., `at('09:00')`).
 
 ## Milestone 4: Verification & Localization
