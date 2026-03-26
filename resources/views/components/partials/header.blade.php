@@ -55,54 +55,57 @@
                         <i class="bi bi-person-circle fs-5"></i>
                         <span class="d-none d-lg-inline">{{ auth()->user()->name ?? __('header.profile') }}</span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-8 p-2 mt-2"
-                        aria-labelledby="profileDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm rounded-8 p-3 mt-2"
+                        aria-labelledby="profileDropdown" style="min-width: 220px;">
                         <!-- Profile Link -->
                         <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-1 px-3 rounded-6 small"
+                            <a class="dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded-6"
                                 href="{{ route('main.profile') }}" wire:navigate>
-                                <i class="bi bi-person-fill text-primary"></i>
-                                <span>{{ __('header.profile') }}</span>
+                                <i class="bi bi-person-fill text-primary fs-5"></i>
+                                <span class="fw-medium">{{ __('header.profile') }}</span>
                             </a>
                         </li>
+
                         <li>
-                            <hr class="dropdown-divider my-2">
+                            <hr class="dropdown-divider my-2 opacity-50">
                         </li>
+
+                        <!-- Language Section -->
+                        <li class="px-3 py-2">
+                            <div class="d-flex align-items-center gap-2 text-muted mb-2">
+                                <i class="bi bi-globe2 small"></i>
+                                <span class="small fw-bold text-uppercase tracking-wider">{{ __('landing.footer.language') }}</span>
+                            </div>
+                            <div class="d-flex flex-column gap-1">
+                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3 rounded-6 small {{ app()->getLocale() == $localeCode ? 'bg-light text-primary fw-bold' : '' }}"
+                                        rel="alternate" hreflang="{{ $localeCode }}"
+                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        <span>{{ $properties['native'] }}</span>
+                                        @if(app()->getLocale() == $localeCode)
+                                            <i class="bi bi-check2 text-primary"></i>
+                                        @endif
+                                    </a>
+                                @endforeach
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider my-2 opacity-50">
+                        </li>
+
                         <!-- Logout Form -->
                         <li>
                             <form method="POST" action="{{ route('logout') }}" id="logoutForm">
                                 @csrf
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-1 px-3 rounded-6 text-danger small"
+                                <a class="dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded-6 text-danger"
                                     href="#"
                                     onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        width="20" height="20" class="flex-shrink-0">
-                                        <path fill-rule="evenodd"
-                                            d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-
-                                    <span>{{ __('header.logout') }}</span>
+                                    <i class="bi bi-box-arrow-right fs-5"></i>
+                                    <span class="fw-medium">{{ __('header.logout') }}</span>
                                 </a>
                             </form>
                         </li>
-                    </ul>
-                </div>
-                <!-- language -->
-                <div class="dropdown">
-                    <button class="btn text-primary dropdown-toggle" type="button" id="languageDropdown"
-                        data-bs-toggle="dropdown" aria-expanded="false" title="Choose Language">
-                        <i class="bi bi-globe2"></i>
-                    </button>
-                    <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="languageDropdown">
-                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <li>
-                                <a class="dropdown-item text-center" rel="alternate" hreflang="{{ $localeCode }}"
-                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    {{ $properties['native'] }}
-                                </a>
-                            </li>
-                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -133,32 +136,6 @@
                             <li><x-nav-link route="main.contact" label="{{ __('header.contact') }}" /></li>
 
                         </ul>
-                        <!-- make language as accordion! -->
-                        <div class="accordion mt-3" id="languageAccordionMobile">
-                            <div class="accordion-item border-0">
-                                <h2 class="accordion-header" id="headingLanguageMobile">
-                                    <button
-                                        class="accordion-button collapsed bg-white text-dark mx-0 px-0 d-flex justify-content-between"
-                                        type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseLanguageMobile" aria-expanded="false"
-                                        aria-controls="collapseLanguageMobile" title="Choose Language">
-                                        Choose Language
-                                    </button>
-                                </h2>
-                                <div id="collapseLanguageMobile" class="accordion-collapse collapse"
-                                    aria-labelledby="headingLanguageMobile" data-bs-parent="#languageAccordionMobile">
-                                    <div class="accordion-body px-0">
-                                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                            <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
-                                                <li><a class="text-dark py-2" hreflang="{{ $localeCode }}"
-                                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
-                                                </li>
-                                        @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </nav>
                     <div class="d-flex flex-column gap-3 mt-4">
                         <!-- User Profile Section in Mobile Menu -->
@@ -175,12 +152,32 @@
                                     </li>
                                 @endauth
                                 <li>
-                                    <a href="{{ route('main.profile') }}" class="text-dark d-flex align-items-center gap-2 py-2">
+                                    <a href="{{ route('main.profile') }}" class="text-dark d-flex align-items-center gap-3 py-2">
                                         <i class="bi bi-person-fill fs-5 text-primary"></i>
-                                        <span>{{ __('header.profile') }}</span>
+                                        <span class="fw-medium">{{ __('header.profile') }}</span>
                                     </a>
                                 </li>
+
+                                <!-- Mobile Language Switcher -->
                                 <li class="mt-2">
+                                    <div class="bg-light p-3 rounded-4 border">
+                                        <div class="d-flex align-items-center gap-2 text-muted mb-3">
+                                            <i class="bi bi-globe2 small"></i>
+                                            <span class="small fw-bold text-uppercase tracking-wider">{{ __('landing.footer.language') }}</span>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                <a class="flex-fill text-center py-2 px-3 rounded-3 small text-decoration-none {{ app()->getLocale() == $localeCode ? 'bg-primary text-white fw-bold' : 'bg-white text-dark border' }}"
+                                                    rel="alternate" hreflang="{{ $localeCode }}"
+                                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                    {{ $properties['native'] }}
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="mt-3">
                                     <form method="POST" action="{{ route('logout') }}" id="logoutFormMobile">
                                         @csrf
                                         <a class="btn btn-outline-danger rounded-4 w-100 d-flex align-items-center justify-content-center gap-2 py-3"

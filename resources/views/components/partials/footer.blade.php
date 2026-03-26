@@ -4,8 +4,7 @@
             <!-- Brand & About -->
             <div class="col-lg-4 col-md-12">
                 <div class="d-flex align-items-center gap-2 mb-3">
-                    <img src="{{ asset('images/logo.svg') }}" alt="logo" width="40" height="40" />
-                    <h4 class="fw-bold mb-0 text-primary">Investor</h4>
+                    <img src="{{ asset('images/logo.png') }}" class="img-fluid" alt="logo" width="120" height="120" />
                 </div>
                 <p class="text-muted mb-4 pe-lg-4">
                     {{ __('header.footer.about_text') }}
