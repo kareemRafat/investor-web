@@ -68,8 +68,8 @@
                         @endif
 
                         <button type="submit"
-                            class="btn btn-login w-100 d-flex align-items-center justify-content-center gap-2"
-                            x-bind:class="{ 'is-loading': loading }" style="min-height: 48px;">
+                            class="btn btn-login w-100 d-flex align-items-center justify-content-center gap-2 py-1"
+                            x-bind:class="{ 'is-loading': loading }" style="min-height: 35px;">
                             <span x-show="loading" x-cloak class="spinner-border spinner-border-sm" role="status"
                                 aria-hidden="true"></span>
                             <span
