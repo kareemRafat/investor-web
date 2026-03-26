@@ -49,7 +49,7 @@
                         <!-- Logo -->
                         <div class="mb-3 text-center">
                             <a href="/" wire:navigate>
-                                <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid"
+                                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid"
                                     width="100">
                             </a>
                         </div>

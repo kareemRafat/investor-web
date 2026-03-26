@@ -128,7 +128,7 @@
                                             <!-- Logo & Title -->
                                             <div class="mb-4 text-center">
                                                 <a href="/">
-                                                    <img src="{{ asset('images/logo.svg') }}" alt="Logo"
+                                                    <img src="{{ asset('images/logo.png') }}" alt="Logo"
                                                         class="img-fluid mb-3" width="80">
                                                 </a>
                                                 <h1 class="logo-text h3 mb-2">{{ __('auth.register.title') }}</h1>

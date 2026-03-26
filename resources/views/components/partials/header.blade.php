@@ -4,7 +4,7 @@
         <div class="d-flex align-items-center justify-content-between bg-white py-3 px-4 shadow-sm rounded-8">
             <!-- logo -->
             <a href="{{ route('main.landing') }}" class="logo" title="Investment" aria-label="Investment">
-                <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid" width="120" height="120" />
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="120" height="120" />
             </a>
             <!-- menu items -->
             <nav class="d-none d-xl-flex">

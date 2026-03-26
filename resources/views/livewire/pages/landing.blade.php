@@ -46,17 +46,8 @@
             <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <a href="/" class="flex items-center gap-2 group">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-6 h-6 text-primary-foreground">
-                            <line x1="12" x2="12" y1="20" y2="10"></line>
-                            <line x1="18" x2="18" y1="20" y2="4"></line>
-                            <line x1="6" x2="6" y1="20" y2="16"></line>
-                        </svg>
-                    </div>
-                    <span class="font-heading font-bold text-xl">{{ __('landing.brand') }}</span>
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid"
+                                    width="120">
                 </a>
 
                 <!-- Desktop Nav -->

@@ -48,8 +48,8 @@
                     <!-- Logo & Title -->
                     <div class="mb-4">
                         <a href="/" wire:navigate>
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid mb-3"
-                                width="80">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid mb-3"
+                                width="120">
                         </a>
                         <h1 class="logo-text">{{ __('auth.forgot_password.title') }}</h1>
                         <p class="subtitle">{{ __('auth.forgot_password.subtitle') }}</p>

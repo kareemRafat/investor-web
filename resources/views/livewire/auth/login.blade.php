@@ -14,7 +14,7 @@
             flex: 1;
             height: 100vh;
             overflow-y: auto;
-            padding: 60px 40px;
+            /* padding: 60px 40px; */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -94,8 +94,8 @@
                     <!-- Logo & Title -->
                     <div class="mb-4 text-center">
                         <a href="/">
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid mb-3"
-                                width="80">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid mb-3"
+                                width="120">
                         </a>
                         <h1 class="logo-text h3 mb-2">{{ __('auth.login.welcome_back') }}</h1>
                         <p class="subtitle mb-4">{{ __('auth.login.subtitle') }}</p>
@@ -154,7 +154,7 @@
                     </div>
 
                     <!-- Login Button -->
-                    <button type="submit" 
+                    <button type="submit"
                         class="btn btn-login w-100 mb-4 d-flex align-items-center justify-content-center gap-2"
                         x-bind:class="{ 'is-loading': loading }"
                         style="min-height: 48px;">

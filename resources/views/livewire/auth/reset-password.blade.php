@@ -51,7 +51,7 @@
                     <div class="d-flex flex-column gap-3">
                         <!-- Logo -->
                         <div class="mb-3 text-center">
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid" width="100">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" width="100">
                         </div>
 
                         <!-- Titles -->
