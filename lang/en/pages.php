@@ -318,6 +318,9 @@ return [
         'total' => 'Total',
         'back' => 'Back to Plans',
         'paypal_config_error' => 'PayPal is not configured correctly. Please contact support.',
+        'unlock_title' => 'Contact Details Unlock',
+        'price_unlock' => '$9',
+        'unlock_success' => 'Payment successful! Contact details are now unlocked.',
     ],
     'downgrade' => [
         'title' => 'Warning: Lose Credits',

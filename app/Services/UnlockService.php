@@ -57,15 +57,6 @@ class UnlockService
             }
 
             $user->decrement('contact_credits');
-        } else {
-            // Pay Per Use
-            if ($paymentOrderId) {
-                $this->paymentGateway->capturePayment($paymentOrderId);
-            } else {
-                // Default/Legacy flow
-                $orderId = $this->paymentGateway->createOrder(9.0);
-                $this->paymentGateway->capturePayment($orderId);
-            }
         }
 
         ContactUnlock::create([

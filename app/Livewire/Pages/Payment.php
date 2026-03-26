@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Notifications\SubscriptionActivatedNotification;
 use App\Services\Payments\PaymentManager;
 use App\Services\SubscriptionService;
+use App\Services\UnlockService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,10 @@ class Payment extends Component
 {
     public $plan;
 
+    public $unlockable_id;
+
+    public $unlockable_type;
+
     public $errorMessage = '';
 
     public function mount($plan)
@@ -26,14 +31,23 @@ class Payment extends Component
             return redirect()->route('login');
         }
 
-        if (! in_array($plan, ['monthly', 'yearly'])) {
+        if (! in_array($plan, ['monthly', 'yearly', 'unlock'])) {
             return redirect()->route('main.pricing');
         }
 
-        // Prevent upgrading if already on this plan
-        $planType = PlanType::tryFrom($plan);
-        if (Auth::user()->plan_type === $planType) {
-            return redirect()->route('main.pricing');
+        if ($plan === 'unlock') {
+            $this->unlockable_id = request()->query('unlockable_id');
+            $this->unlockable_type = request()->query('unlockable_type');
+
+            if (! $this->unlockable_id || ! $this->unlockable_type) {
+                return redirect()->route('main.pricing');
+            }
+        } else {
+            // Prevent upgrading if already on this plan
+            $planType = PlanType::tryFrom($plan);
+            if (Auth::user()->plan_type === $planType) {
+                return redirect()->route('main.pricing');
+            }
         }
 
         $this->plan = $plan;
@@ -65,6 +79,21 @@ class Payment extends Component
     }
 
     /**
+     * Get the back URL based on the plan type.
+     */
+    public function getBackUrlProperty(): string
+    {
+        if ($this->plan === 'unlock' && $this->unlockable_id && $this->unlockable_type) {
+            $routeName = $this->unlockable_type === \App\Models\Idea::class ? 'idea.info' : 'investor.info';
+            $routeParam = $this->unlockable_type === \App\Models\Idea::class ? 'idea' : 'investment';
+
+            return route($routeName, [$routeParam => $this->unlockable_id]);
+        }
+
+        return route('main.pricing');
+    }
+
+    /**
      * Get the PayPal Client ID based on the current mode.
      */
     public function getPayPalClientIdProperty(): string
@@ -88,17 +117,23 @@ class Payment extends Component
         $this->errorMessage = '';
 
         try {
-            $planType = PlanType::from($this->plan);
-            $amount = match ($planType) {
-                PlanType::YEARLY => 999.0,
-                PlanType::MONTHLY => 99.0,
-                PlanType::FREE => 0.0,
-            };
+            if ($this->plan === 'unlock') {
+                $amount = 9.0;
+                $description = 'Contact Unlock';
+            } else {
+                $planType = PlanType::from($this->plan);
+                $amount = match ($planType) {
+                    PlanType::YEARLY => 999.0,
+                    PlanType::MONTHLY => 99.0,
+                    PlanType::FREE => 0.0,
+                };
+                $description = 'Subscription: '.$planType->value;
+            }
 
             $currency = config('paypal.currency', 'USD');
 
             $orderId = $paymentManager->driver('paypal')->createOrder($amount, $currency, [
-                'description' => 'Subscription: '.$planType->value,
+                'description' => $description,
             ]);
 
             return $orderId;
@@ -111,9 +146,9 @@ class Payment extends Component
     }
 
     /**
-     * Capture a PayPal order and activate subscription.
+     * Capture a PayPal order and activate subscription or unlock contact.
      */
-    public function capturePayPalOrder(string $orderId, PaymentManager $paymentManager, SubscriptionService $subscriptionService)
+    public function capturePayPalOrder(string $orderId, PaymentManager $paymentManager, SubscriptionService $subscriptionService, UnlockService $unlockService)
     {
         $this->errorMessage = '';
 
@@ -130,18 +165,23 @@ class Payment extends Component
             $result = $paymentManager->driver('paypal')->capturePayment($orderId);
 
             if ($result['status'] === 'completed') {
-                $planType = PlanType::from($this->plan);
                 $user = Auth::user();
 
                 // 2. Validation: Verify amount and currency from PayPal response
                 $capturedAmount = $result['payload']['purchase_units'][0]['payments']['captures'][0]['amount']['value'] ?? 0;
                 $capturedCurrency = $result['payload']['purchase_units'][0]['payments']['captures'][0]['amount']['currency_code'] ?? '';
 
-                $expectedAmount = match ($planType) {
-                    PlanType::YEARLY => 999.0,
-                    PlanType::MONTHLY => 99.0,
-                    PlanType::FREE => 0.0,
-                };
+                if ($this->plan === 'unlock') {
+                    $expectedAmount = 9.0;
+                } else {
+                    $planType = PlanType::from($this->plan);
+                    $expectedAmount = match ($planType) {
+                        PlanType::YEARLY => 999.0,
+                        PlanType::MONTHLY => 99.0,
+                        PlanType::FREE => 0.0,
+                    };
+                }
+
                 $expectedCurrency = config('paypal.currency', 'USD');
 
                 if ((float) $capturedAmount !== (float) $expectedAmount || $capturedCurrency !== $expectedCurrency) {
@@ -150,31 +190,69 @@ class Payment extends Component
                     return ['status' => 'error', 'message' => __('pages.payment.error')];
                 }
 
-                return DB::transaction(function () use ($user, $planType, $result, $orderId, $subscriptionService, $capturedAmount, $capturedCurrency) {
-                    // Create the subscription
-                    $subscription = $subscriptionService->subscribe($user, $planType, $orderId, true);
+                return DB::transaction(function () use ($user, $result, $orderId, $subscriptionService, $unlockService, $capturedAmount, $capturedCurrency) {
+                    if ($this->plan === 'unlock') {
+                        $model = $this->unlockable_type::findOrFail($this->unlockable_id);
 
-                    // Record the transaction
-                    Transaction::create([
-                        'user_id' => $user->id,
-                        'payable_id' => $subscription->id,
-                        'payable_type' => Subscription::class,
-                        'gateway' => 'paypal',
-                        'gateway_order_id' => $orderId,
-                        'gateway_transaction_id' => $result['transaction_id'],
-                        'amount' => $capturedAmount,
-                        'currency' => $capturedCurrency,
-                        'status' => 'completed',
-                        'payload' => $result['payload'],
-                        'processed_at' => Carbon::now(),
-                    ]);
+                        // Unlock contact via service
+                        $unlockService->unlock($user, $model, \App\Enums\UnlockMethod::PAY_PER_USE, $orderId);
 
-                    // Send notification
-                    $user->notify(new SubscriptionActivatedNotification($planType->getLabel()));
+                        $unlockRecord = \App\Models\ContactUnlock::where('user_id', $user->id)
+                            ->where('unlockable_id', $this->unlockable_id)
+                            ->where('unlockable_type', $this->unlockable_type)
+                            ->latest()
+                            ->first();
 
-                    session()->flash('subscription_success', __('pages.payment.success', ['plan' => $planType->getLabel()]));
+                        // Record the transaction
+                        Transaction::create([
+                            'user_id' => $user->id,
+                            'payable_id' => $unlockRecord->id,
+                            'payable_type' => \App\Models\ContactUnlock::class,
+                            'gateway' => 'paypal',
+                            'gateway_order_id' => $orderId,
+                            'gateway_transaction_id' => $result['transaction_id'],
+                            'amount' => $capturedAmount,
+                            'currency' => $capturedCurrency,
+                            'status' => 'completed',
+                            'payload' => $result['payload'],
+                            'processed_at' => Carbon::now(),
+                        ]);
 
-                    $this->redirect(route('main.profile'), navigate: false);
+                        session()->flash('subscription_success', __('pages.payment.unlock_success'));
+
+                        // Redirect back to model info
+                        $routeName = $this->unlockable_type === \App\Models\Idea::class ? 'idea.info' : 'investor.info';
+                        $routeParam = $this->unlockable_type === \App\Models\Idea::class ? 'idea' : 'investment';
+
+                        $this->redirect(route($routeName, [$routeParam => $this->unlockable_id]), navigate: false);
+
+                    } else {
+                        $planType = PlanType::from($this->plan);
+                        // Create the subscription
+                        $subscription = $subscriptionService->subscribe($user, $planType, $orderId, true);
+
+                        // Record the transaction
+                        Transaction::create([
+                            'user_id' => $user->id,
+                            'payable_id' => $subscription->id,
+                            'payable_type' => Subscription::class,
+                            'gateway' => 'paypal',
+                            'gateway_order_id' => $orderId,
+                            'gateway_transaction_id' => $result['transaction_id'],
+                            'amount' => $capturedAmount,
+                            'currency' => $capturedCurrency,
+                            'status' => 'completed',
+                            'payload' => $result['payload'],
+                            'processed_at' => Carbon::now(),
+                        ]);
+
+                        // Send notification
+                        $user->notify(new SubscriptionActivatedNotification($planType->getLabel()));
+
+                        session()->flash('subscription_success', __('pages.payment.success', ['plan' => $planType->getLabel()]));
+
+                        $this->redirect(route('main.profile'), navigate: false);
+                    }
 
                     return ['status' => 'success'];
                 });

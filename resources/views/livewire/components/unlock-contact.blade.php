@@ -101,82 +101,47 @@
                         </div>
                     @endif
 
-                    @if($step === 1)
-                        <div class="mb-4">
-                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
-                                <i class="bi bi-credit-card text-primary fs-3"></i>
-                            </div>
-                            <p class="text-muted">{{ __('pages.unlock_contact.modal_desc') }}</p>
+                    <div class="mb-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                            <i class="bi bi-unlock text-primary fs-3"></i>
                         </div>
+                        <p class="text-muted">{{ __('pages.unlock_contact.modal_desc') }}</p>
+                    </div>
 
-                        <div class="card bg-light border-0 rounded-3 mb-4 text-dark">
-                            <div class="card-body d-flex justify-content-between align-items-center py-2">
-                                <span class="text-dark small fw-semibold">{{ __('pages.unlock_contact.current_credits') }}</span>
-                                <span class="badge bg-primary">{{ Auth::user()?->contact_credits ?? 0 }}</span>
-                            </div>
+                    <div class="card bg-light border-0 rounded-3 mb-4 text-dark">
+                        <div class="card-body d-flex justify-content-between align-items-center py-2">
+                            <span class="text-dark small fw-semibold">{{ __('pages.unlock_contact.current_credits') }}</span>
+                            <span class="badge bg-primary rounded-pill px-3">{{ Auth::user()?->contact_credits ?? 0 }}</span>
                         </div>
+                    </div>
 
-                        <div class="d-grid gap-2">
-                            @if((Auth::user()?->contact_credits ?? 0) > 0)
-                                <button type="button" class="btn btn-primary rounded-3 py-2 text-white" wire:click="selectMethod('credit')" wire:loading.attr="disabled">
-                                    <i class="bi bi-coin mx-2"></i>
-                                    {{ __('pages.unlock_contact.use_credit') }}
-                                </button>
-                            @else
-                                <a href="{{ route('main.pricing') }}" class="btn btn-warning rounded-3 py-2 text-dark text-decoration-none">
-                                    <i class="bi bi-arrow-up-circle me-2"></i>
-                                    {{ __('pages.unlock_contact.upgrade') }}
-                                </a>
-                            @endif
-
-                            <div class="position-relative my-2">
-                                <hr class="text-muted">
-                                <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">OR</span>
-                            </div>
-
-                            <button type="button" class="btn btn-outline-primary rounded-3 py-2" wire:click="selectMethod('payment')" wire:loading.attr="disabled">
-                                <i class="bi bi-credit-card-2-front mx-2"></i>
-                                {{ __('pages.unlock_contact.pay_9') }}
+                    <div class="d-grid gap-3">
+                        @if((Auth::user()?->contact_credits ?? 0) > 0)
+                            <button type="button" class="btn btn-primary rounded-3 py-2 text-white fw-bold d-flex align-items-center justify-content-center gap-2" 
+                                wire:click="selectMethod('credit')" wire:loading.attr="disabled">
+                                <i class="bi bi-coin"></i>
+                                {{ __('pages.unlock_contact.use_credit') }}
                             </button>
+                        @else
+                            <a href="{{ route('main.pricing') }}" class="btn btn-outline-primary rounded-3 py-2 fw-bold d-flex align-items-center justify-content-center gap-2 text-decoration-none">
+                                <i class="bi bi-arrow-up-circle"></i>
+                                {{ __('pages.unlock_contact.upgrade') }}
+                            </a>
+                        @endif
+
+                        <div class="position-relative my-2">
+                            <hr class="text-muted opacity-25">
+                            <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small fw-semibold">
+                                {{ app()->getLocale() === 'ar' ? 'أو' : 'OR' }}
+                            </span>
                         </div>
-                    @elseif($step === 2)
-                        <div class="text-start">
-                            <button type="button" class="btn btn-link text-decoration-none p-0 mb-3 text-dark small" wire:click="$set('step', 1)">
-                                <i class="bi bi-arrow-left me-1"></i> {{ __('pages.unlock_contact.back') }}
-                            </button>
-                            <h6 class="fw-bold mb-4">{{ __('pages.unlock_contact.payment_title') }}</h6>
 
-                            <div class="mb-3">
-                                <label class="form-label small fw-semibold">{{ __('pages.unlock_contact.card_number') }}</label>
-                                <input type="text" class="form-control form-control-sm" wire:model="cardNumber" placeholder="0000 0000 0000 0000">
-                            </div>
-
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="mb-3">
-                                        <label class="form-label small fw-semibold">{{ __('pages.unlock_contact.expiry_date') }}</label>
-                                        <input type="text" class="form-control form-control-sm" wire:model="expiryDate" placeholder="MM/YY">
-                                    </div>
-                                </div>
-                                <div class="col-5">
-                                    <div class="mb-3">
-                                        <label class="form-label small fw-semibold">{{ __('pages.unlock_contact.cvv') }}</label>
-                                        <input type="text" class="form-control form-control-sm" wire:model="cvv" placeholder="123">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="button" class="btn btn-primary w-100 rounded-3 py-2 mt-3 text-white" wire:click="processPayment" wire:loading.attr="disabled">
-                                <span wire:loading.remove>
-                                    <i class="bi bi-shield-lock me-2"></i> {{ __('pages.unlock_contact.pay_now') }} ($9)
-                                </span>
-                                <span wire:loading>
-                                    <span class="spinner-border spinner-border-sm me-1 text-white"></span>
-                                    {{ __('pages.unlock_contact.processing') }}
-                                </span>
-                            </button>
-                        </div>
-                    @endif
+                        <button type="button" class="btn btn-success rounded-3 py-2 text-white fw-bold d-flex align-items-center justify-content-center gap-2" 
+                            wire:click="selectMethod('pay_per_use')" wire:loading.attr="disabled">
+                            <i class="bi bi-credit-card-2-front"></i>
+                            {{ __('pages.unlock_contact.pay_9') }}
+                        </button>
+                    </div>
                 </div>
                 <div class="modal-footer border-top-0 p-4 pt-0">
                     <button type="button" class="btn btn-light rounded-3 px-4 w-100 py-2" data-bs-dismiss="modal">{{ __('pages.unlock_contact.cancel') }}</button>

@@ -17,13 +17,7 @@ class UnlockContact extends Component
 
     public string $errorMessage = '';
 
-    public int $step = 1; // 1: Selection, 2: Payment
-
-    public string $cardNumber = '';
-
-    public string $expiryDate = '';
-
-    public string $cvv = '';
+    public int $step = 1;
 
     public function mount(Model $model, UnlockService $service)
     {
@@ -54,34 +48,12 @@ class UnlockContact extends Component
         if ($method === 'credit') {
             $this->unlock($service, UnlockMethod::CREDIT);
         } else {
-            $this->step = 2;
-        }
-    }
-
-    public function processPayment(UnlockService $service)
-    {
-        if (! Auth::check()) {
-            return;
-        }
-
-        $this->errorMessage = '';
-
-        // Mock validation
-        if (empty($this->cardNumber) || strlen($this->cardNumber) < 16) {
-            $this->errorMessage = __('validation.min.string', ['attribute' => __('pages.unlock_contact.card_number'), 'min' => 16]);
-
-            return;
-        }
-
-        /** @var User $user */
-        $user = Auth::user();
-
-        if ($service->unlock($user, $this->model, UnlockMethod::PAY_PER_USE)) {
-            $this->isUnlocked = true;
-            $this->dispatch('close-unlock-modal');
-            $this->dispatch('contact-unlocked');
-        } else {
-            $this->errorMessage = 'Payment failed. Please try again.';
+            // Redirect to payment page with $9 plan/unlock info
+            return redirect()->route('payment.page', [
+                'plan' => 'unlock',
+                'unlockable_id' => $this->model->id,
+                'unlockable_type' => $this->model->getMorphClass(),
+            ]);
         }
     }
 

@@ -1,7 +1,7 @@
 <div class="py-5">
     <div class="container">
         <div class="mb-4">
-            <a href="{{ route('main.pricing') }}" class="text-decoration-none text-muted fw-bold d-inline-flex align-items-center gap-2">
+            <a href="{{ $this->backUrl }}" class="text-decoration-none text-muted fw-bold d-inline-flex align-items-center gap-2">
                 <i class="bi {{ app()->getLocale() === 'ar' ? 'bi-arrow-right' : 'bi-arrow-left' }}"></i>
                 {{ __('pages.payment.back') }}
             </a>
@@ -25,8 +25,10 @@
                             <span class="fw-bold text-primary h5 mb-0">
                                 @if($plan === 'monthly')
                                     {{ __('pages.pricing.monthly_title') }}
-                                @else
+                                @elseif($plan === 'yearly')
                                     {{ __('pages.pricing.yearly_title') }}
+                                @else
+                                    {{ __('pages.payment.unlock_title') }}
                                 @endif
                             </span>
                         </div>
@@ -36,8 +38,10 @@
                             <span class="display-6 fw-bold text-dark">
                                 @if($plan === 'monthly')
                                     {{ __('pages.pricing.price_monthly') }}
-                                @else
+                                @elseif($plan === 'yearly')
                                     {{ __('pages.pricing.price_yearly') }}
+                                @else
+                                    {{ __('pages.payment.price_unlock') }}
                                 @endif
                             </span>
                         </div>
@@ -68,7 +72,7 @@
                         @endif
                         
                         <div class="d-grid mt-4">
-                            <a href="{{ route('main.pricing') }}" class="btn btn-outline-secondary btn-lg fw-bold">{{ __('pages.payment.cancel') }}</a>
+                            <a href="{{ $this->backUrl }}" class="btn btn-outline-secondary btn-lg fw-bold">{{ __('pages.payment.cancel') }}</a>
                         </div>
                     </div>
                 </div>
