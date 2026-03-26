@@ -4,6 +4,7 @@ namespace App\Filament\Actions\IdeaAction;
 
 use App\Enums\IdeaStatus;
 use App\Filament\Forms\Components\ClientDatetimeHidden;
+use App\Notifications\IdeaStatusChangedNotification;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -73,8 +74,15 @@ class ChangeIdeaStatusAction
                     ->success()
                     ->send();
 
-                // يمكنك إرسال إشعار للمستخدم صاحب الفكرة
-                // $record->user->notify(new IdeaStatusChanged($record));
+                // إشعار للمستخدم صاحب الفكرة
+                if ($record->user) {
+                    $record->user->notify(new IdeaStatusChangedNotification(
+                        $record->title,
+                        $newStatus->getLabel(),
+                        route('idea.info', ['idea' => $record->id]),
+                        $data['admin_note'] ?? null
+                    ));
+                }
             })
             ->requiresConfirmation()
             ->modalHeading('تغيير حالة الفكرة')

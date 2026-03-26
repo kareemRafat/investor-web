@@ -19,6 +19,7 @@ use App\Models\IdeaExpense;
 use App\Models\IdeaProfit;
 use App\Models\IdeaResource;
 use App\Models\IdeaReturn;
+use App\Notifications\SubmissionConfirmationNotification;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -203,6 +204,11 @@ class IdeaForm extends Component
                     'created_at' => $this->state['step9']['data']['created_at'] ?? now(),
                 ]
             );
+
+            // Notify user of new submission
+            if ($idea->wasRecentlyCreated) {
+                $user->notify(new SubmissionConfirmationNotification('idea', route('idea.info', ['idea' => $idea->id])));
+            }
 
             // Credit deduction logic
             if (session('pending_idea_visibility_credit') ||

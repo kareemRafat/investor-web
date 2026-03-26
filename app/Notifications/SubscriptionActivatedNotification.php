@@ -3,6 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class SubscriptionActivatedNotification extends Notification
@@ -24,7 +26,25 @@ class SubscriptionActivatedNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['mail'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     */
+    public function toMail(object $notifiable): MailMessage
+    {
+        $locale = $notifiable->preferredLocale();
+
+        return (new MailMessage)
+            ->subject(__('pages.notifications.subscription_activated_title', [], $locale))
+            ->view('emails.subscription-status', [
+                'notifiable' => $notifiable,
+                'title' => __('pages.notifications.subscription_activated_title', [], $locale),
+                'messageText' => __('pages.notifications.subscription_activated_message', ['plan' => $this->planLabel], $locale),
+                'url' => route('main.profile'),
+                'actionText' => __('notifications.welcome_action', [], $locale),
+            ]);
     }
 
     /**
@@ -34,9 +54,11 @@ class SubscriptionActivatedNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $locale = $notifiable->preferredLocale();
+
         return [
-            'title' => __('pages.notifications.subscription_activated_title'),
-            'message' => __('pages.notifications.subscription_activated_message', ['plan' => $this->planLabel]),
+            'title' => __('pages.notifications.subscription_activated_title', [], $locale),
+            'message' => __('pages.notifications.subscription_activated_message', ['plan' => $this->planLabel], $locale),
             'action_url' => route('main.profile'),
         ];
     }

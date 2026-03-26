@@ -13,6 +13,7 @@ use App\Livewire\Traits\HasFrontendValidation;
 use App\Models\Investor;
 use App\Models\InvestorContribution;
 use App\Models\InvestorResource;
+use App\Notifications\SubmissionConfirmationNotification;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -174,6 +175,11 @@ class InvestmentForm extends Component
                     'created_at' => $this->state['step6']['data']['created_at'] ?? now(),
                 ]
             );
+
+            // Notify user of new submission
+            if ($investor->wasRecentlyCreated) {
+                $user->notify(new SubmissionConfirmationNotification('investor', route('investor.info', ['investment' => $investor->id])));
+            }
 
             // Credit deduction logic
             if (session('pending_investor_visibility_credit') ||

@@ -54,7 +54,7 @@ class Investments extends Component
         $query = Investor::query()
             ->with([
                 'resources',
-                'contributions.contributionRange',
+                'contributions',
                 'countries',
             ])
             ->where('user_id', Auth::id())

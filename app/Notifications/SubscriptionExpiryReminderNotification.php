@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SubscriptionExpiredNotification extends Notification
+class SubscriptionExpiryReminderNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public string $planLabel)
     {
         //
     }
@@ -37,13 +37,10 @@ class SubscriptionExpiredNotification extends Notification
         $locale = $notifiable->preferredLocale();
 
         return (new MailMessage)
-            ->subject(__('pages.notifications.subscription_expired_title', [], $locale))
-            ->view('emails.subscription-status', [
+            ->subject(__('notifications.expiry_reminder_title', [], $locale))
+            ->view('emails.subscription-expiry-reminder', [
                 'notifiable' => $notifiable,
-                'title' => __('pages.notifications.subscription_expired_title', [], $locale),
-                'messageText' => __('pages.notifications.subscription_expired_message', [], $locale),
-                'url' => route('main.pricing'),
-                'actionText' => __('notifications.expiry_reminder_action', [], $locale),
+                'planLabel' => $this->planLabel,
             ]);
     }
 
@@ -57,8 +54,8 @@ class SubscriptionExpiredNotification extends Notification
         $locale = $notifiable->preferredLocale();
 
         return [
-            'title' => __('pages.notifications.subscription_expired_title', [], $locale),
-            'message' => __('pages.notifications.subscription_expired_message', [], $locale),
+            'title' => __('notifications.expiry_reminder_title', [], $locale),
+            'message' => __('notifications.expiry_reminder_body', ['plan' => $this->planLabel], $locale),
             'action_url' => route('main.pricing'),
         ];
     }

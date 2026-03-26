@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SubscriptionExpiredNotification extends Notification
+class SubmissionConfirmationNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public string $type, public string $url)
     {
         //
     }
@@ -35,15 +35,16 @@ class SubscriptionExpiredNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $locale = $notifiable->preferredLocale();
+        $typeLabel = $this->type === 'idea' 
+            ? __('idea.summary.title', [], $locale) 
+            : __('investor.steps.step7.project', [], $locale);
 
         return (new MailMessage)
-            ->subject(__('pages.notifications.subscription_expired_title', [], $locale))
-            ->view('emails.subscription-status', [
+            ->subject(__('notifications.submission_received_title', [], $locale))
+            ->view('emails.submission-confirmation', [
                 'notifiable' => $notifiable,
-                'title' => __('pages.notifications.subscription_expired_title', [], $locale),
-                'messageText' => __('pages.notifications.subscription_expired_message', [], $locale),
-                'url' => route('main.pricing'),
-                'actionText' => __('notifications.expiry_reminder_action', [], $locale),
+                'typeLabel' => $typeLabel,
+                'url' => $this->url,
             ]);
     }
 
@@ -55,11 +56,14 @@ class SubscriptionExpiredNotification extends Notification
     public function toArray(object $notifiable): array
     {
         $locale = $notifiable->preferredLocale();
+        $typeLabel = $this->type === 'idea' 
+            ? __('idea.summary.title', [], $locale) 
+            : __('investor.steps.step7.project', [], $locale);
 
         return [
-            'title' => __('pages.notifications.subscription_expired_title', [], $locale),
-            'message' => __('pages.notifications.subscription_expired_message', [], $locale),
-            'action_url' => route('main.pricing'),
+            'title' => __('notifications.submission_received_title', [], $locale),
+            'message' => __('notifications.submission_received_body', ['type' => $typeLabel], $locale),
+            'action_url' => $this->url,
         ];
     }
 }

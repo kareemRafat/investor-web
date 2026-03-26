@@ -6,7 +6,10 @@ use App\Contracts\PaymentGatewayInterface;
 use App\Enums\ContactVisibility;
 use App\Enums\UnlockMethod;
 use App\Models\ContactUnlock;
+use App\Models\Idea;
+use App\Models\Investor;
 use App\Models\User;
+use App\Notifications\ContactUnlockedNotification;
 use Illuminate\Database\Eloquent\Model;
 
 class UnlockService
@@ -65,6 +68,15 @@ class UnlockService
             'unlockable_type' => $model->getMorphClass(),
             'method' => $method,
         ]);
+
+        // Notify the owner of the model
+        if ($model->user) {
+            $url = $model instanceof Idea
+                ? route('idea.info', ['idea' => $model->id])
+                : route('investor.info', ['investment' => $model->id]);
+
+            $model->user->notify(new ContactUnlockedNotification($model->title, $url));
+        }
 
         return true;
     }

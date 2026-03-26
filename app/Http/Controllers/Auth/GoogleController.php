@@ -63,7 +63,9 @@ class GoogleController extends Controller
 
             // Mark as verified if not already
             if (! $user->hasVerifiedEmail()) {
-                $user->markEmailAsVerified();
+                if ($user->markEmailAsVerified()) {
+                    event(new Verified($user));
+                }
             }
         } else {
             // Create new verified user if they don't exist
@@ -77,7 +79,9 @@ class GoogleController extends Controller
             ]);
 
             // Don`t send verification email to google user
-            $user->markEmailAsVerified();
+            if ($user->markEmailAsVerified()) {
+                event(new Verified($user));
+            }
         }
 
         Auth::login($user);

@@ -7,15 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SubscriptionExpiredNotification extends Notification
+class IdeaStatusChangedNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public string $title,
+        public string $statusLabel,
+        public string $url,
+        public ?string $adminNote = null
+    ) {
         //
     }
 
@@ -37,13 +41,13 @@ class SubscriptionExpiredNotification extends Notification
         $locale = $notifiable->preferredLocale();
 
         return (new MailMessage)
-            ->subject(__('pages.notifications.subscription_expired_title', [], $locale))
-            ->view('emails.subscription-status', [
+            ->subject(__('notifications.status_updated_title', [], $locale))
+            ->view('emails.idea-status-changed', [
                 'notifiable' => $notifiable,
-                'title' => __('pages.notifications.subscription_expired_title', [], $locale),
-                'messageText' => __('pages.notifications.subscription_expired_message', [], $locale),
-                'url' => route('main.pricing'),
-                'actionText' => __('notifications.expiry_reminder_action', [], $locale),
+                'title' => $this->title,
+                'statusLabel' => $this->statusLabel,
+                'url' => $this->url,
+                'adminNote' => $this->adminNote,
             ]);
     }
 
@@ -57,9 +61,10 @@ class SubscriptionExpiredNotification extends Notification
         $locale = $notifiable->preferredLocale();
 
         return [
-            'title' => __('pages.notifications.subscription_expired_title', [], $locale),
-            'message' => __('pages.notifications.subscription_expired_message', [], $locale),
-            'action_url' => route('main.pricing'),
+            'title' => __('notifications.status_updated_title', [], $locale),
+            'message' => __('notifications.status_updated_body', ['title' => $this->title, 'status' => $this->statusLabel], $locale),
+            'action_url' => $this->url,
+            'admin_note' => $this->adminNote,
         ];
     }
 }
