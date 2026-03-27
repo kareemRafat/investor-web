@@ -11,6 +11,7 @@ return [
     'home' => 'Home',
     'about' => 'About Us',
     'investment' => 'Investment Fund',
+    'idea' => 'Idea Fund',
     'terms' => 'Terms of Use',
     'privacy' => 'Privacy Policy',
     'faq' => 'FAQ',
@@ -28,7 +29,7 @@ return [
     'credits' => 'Credits',
 
     'footer' => [
-        'about_title' => 'About Investor',
+        'about_title' => 'About FikraPedia',
         'about_text' => 'We connect visionary entrepreneurs with strategic investors to build the future of industry and technology.',
         'useful_links' => 'Useful Links',
         'categories' => 'Top Categories',
@@ -39,7 +40,7 @@ return [
         'support_subtitle' => 'Need any assistance?',
         'secure_title' => 'Verified & Secure',
         'secure_text' => 'Your transactions and data are always protected.',
-        'copyright' => 'Investor Platform © :year. All rights reserved.',
+        'copyright' => 'FikraPedia Platform © :year. All rights reserved.',
         'support' => 'Support',
     ],
 ];
