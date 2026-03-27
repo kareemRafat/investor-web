@@ -143,13 +143,13 @@
         <hr class="text-muted opacity-10">
 
         <!-- Copyright -->
-        <div class="row py-3">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <div class="d-flex justify-content-center py-3 gap-4">
+            <div class="mb-3 mb-md-0">
                 <span class="small text-muted">
                     {{ __('header.footer.copyright', ['year' => date('Y')]) }}
                 </span>
             </div>
-            <div class="col-md-6 text-center text-md-end">
+            <div>
                 <ul class="list-inline mb-0 small">
                     <li class="list-inline-item mx-2"><a href="{{ route('main.terms') }}"
                             class="text-muted text-decoration-none">{{ __('header.terms') }}</a></li>
