@@ -4,30 +4,32 @@
             <!-- Brand & About -->
             <div class="col-lg-4 col-md-12">
                 <div class="d-flex align-items-center gap-2 mb-3">
-                    <img src="{{ asset('images/logo.png') }}" class="img-fluid" alt="logo" width="120" height="120" />
+                    <img src="{{ asset('images/logo.png') }}" class="img-fluid" alt="logo" width="120"
+                        height="120" />
                 </div>
                 <p class="text-muted mb-4 pe-lg-4">
                     {{ __('header.footer.about_text') }}
                 </p>
                 <div class="d-flex gap-3">
-                    @if($facebook = settings('facebook_url'))
-                        <a href="{{ $facebook }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="Facebook"><i
-                                class="bi bi-facebook"></i></a>
+                    @if ($facebook = settings('facebook_url'))
+                        <a href="{{ $facebook }}" target="_blank" class="text-muted fs-4 hover-primary"
+                            aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                     @endif
-                    @if($instagram = settings('instagram_url'))
-                        <a href="{{ $instagram }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="Instagram"><i
-                                class="bi bi-instagram"></i></a>
+                    @if ($instagram = settings('instagram_url'))
+                        <a href="{{ $instagram }}" target="_blank" class="text-muted fs-4 hover-primary"
+                            aria-label="Instagram"><i class="bi bi-instagram"></i></a>
                     @endif
-                    @if($twitter = settings('twitter_url'))
-                        <a href="{{ $twitter }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="Twitter"><i
-                                class="bi bi-twitter-x"></i></a>
+                    @if ($twitter = settings('twitter_url'))
+                        <a href="{{ $twitter }}" target="_blank" class="text-muted fs-4 hover-primary"
+                            aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
                     @endif
-                    @if($linkedin = settings('linkedin_url'))
-                        <a href="{{ $linkedin }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="LinkedIn"><i
-                                class="bi bi-linkedin"></i></a>
+                    @if ($linkedin = settings('linkedin_url'))
+                        <a href="{{ $linkedin }}" target="_blank" class="text-muted fs-4 hover-primary"
+                            aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                     @endif
-                    @if($whatsapp = settings('whatsapp_number'))
-                        <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="text-muted fs-4 hover-primary" aria-label="WhatsApp"><i
+                    @if ($whatsapp = settings('whatsapp_number'))
+                        <a href="https://wa.me/{{ $whatsapp }}" target="_blank"
+                            class="text-muted fs-4 hover-primary" aria-label="WhatsApp"><i
                                 class="bi bi-whatsapp"></i></a>
                     @endif
                 </div>
@@ -41,8 +43,12 @@
                             class="text-muted text-decoration-none hover-primary">{{ __('header.home') }}</a></li>
                     <li><a href="{{ route('main.about') }}"
                             class="text-muted text-decoration-none hover-primary">{{ __('header.about') }}</a></li>
+                    <li><a href="{{ route('investor.index') }}"
+                            class="text-muted text-decoration-none hover-primary">{{ __('header.investment') }}</a>
+                    </li>
                     <li><a href="{{ route('idea.index') }}"
-                            class="text-muted text-decoration-none hover-primary">{{ __('header.investment') }}</a></li>
+                            class="text-muted text-decoration-none hover-primary">{{ __('header.idea') }}</a>
+                    </li>
                     <li><a href="{{ route('main.pricing') }}"
                             class="text-muted text-decoration-none hover-primary">{{ __('header.plans') }}</a></li>
                     <li><a href="{{ route('main.faq') }}"
@@ -83,7 +89,8 @@
                         </div>
                         <div>
                             <p class="mb-0 small fw-bold text-dark">{{ __('header.footer.support_subtitle') }}</p>
-                            <a href="{{ route('main.contact') }}" class="small text-muted text-decoration-none hover-primary">{{ __('header.contact') }}</a>
+                            <a href="{{ route('main.contact') }}"
+                                class="small text-muted text-decoration-none hover-primary">{{ __('header.contact') }}</a>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
@@ -106,15 +113,22 @@
 
                 <div class="d-flex align-items-center gap-3">
                     <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle px-3"
-                            type="button" data-bs-toggle="dropdown">
+                        @php
+                            $currentLocale = LaravelLocalization::getCurrentLocale();
+                            $targetLocale = $currentLocale === 'ar' ? 'en' : 'ar';
+                            $supportedLocales = LaravelLocalization::getSupportedLocales();
+                        @endphp
+
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle px-3" type="button"
+                            data-bs-toggle="dropdown">
                             <i class="bi bi-translate me-1"></i>
-                            {{ LaravelLocalization::getCurrentLocaleNative() }}
+                            {{ $supportedLocales[$targetLocale]['native'] }}
                         </button>
                         <ul class="dropdown-menu shadow border-0">
-                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            @foreach ($supportedLocales as $localeCode => $properties)
                                 <li>
-                                    <a class="dropdown-item small" rel="alternate" hreflang="{{ $localeCode }}"
+                                    <a class="dropdown-item small {{ $localeCode === $currentLocale ? 'active' : '' }}"
+                                        rel="alternate" hreflang="{{ $localeCode }}"
                                         href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                         {{ $properties['native'] }}
                                     </a>
@@ -129,13 +143,13 @@
         <hr class="text-muted opacity-10">
 
         <!-- Copyright -->
-        <div class="row pt-3">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <div class="d-flex justify-content-center py-3 gap-4">
+            <div class="mb-3 mb-md-0">
                 <span class="small text-muted">
                     {{ __('header.footer.copyright', ['year' => date('Y')]) }}
                 </span>
             </div>
-            <div class="col-md-6 text-center text-md-end">
+            <div>
                 <ul class="list-inline mb-0 small">
                     <li class="list-inline-item mx-2"><a href="{{ route('main.terms') }}"
                             class="text-muted text-decoration-none">{{ __('header.terms') }}</a></li>
