@@ -135,13 +135,11 @@
                                             </div>
                                             @php
                                                 $contribution = $investor->contributions;
-                                                $range = $contribution?->contributionRange;
+                                                $label = $contribution?->money_contribution_label;
                                             @endphp
                                             <div class="fw-semibold text-dark">
-                                                @if ($range)
-                                                    {!! $range->{app()->getLocale() == 'ar' ? 'label_ar' : 'label_en'} !!}
-                                                @elseif ($contribution?->money_contributions)
-                                                    {{ $contribution->money_contribution_label }}
+                                                @if ($label)
+                                                    {!! $label !!}
                                                 @else
                                                     <span
                                                         class="text-muted">{{ __('investor.summary.not_defined') }}</span>

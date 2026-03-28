@@ -110,14 +110,7 @@
                                                 </div>
                                                 @php
                                                     $cost = $idea->costs->first();
-                                                    $range = $cost?->range;
-                                                    $label = null;
-                                                    if ($range) {
-                                                        $label =
-                                                            app()->getLocale() === 'ar'
-                                                                ? $range->label_ar
-                                                                : $range->label_en;
-                                                    }
+                                                    $label = $cost?->range_id?->label();
                                                 @endphp
                                                 <div class="fw-semibold text-dark">
                                                     @if ($label)
