@@ -52,7 +52,7 @@ class Ideas extends Component
         }
 
         $query = Idea::query()
-            ->with(['costs.range', 'profits.range', 'contributions', 'countries'])
+            ->with(['costs', 'profits', 'contributions', 'countries'])
             ->where('user_id', Auth::id())
             ->when(
                 $this->statusFilter !== null,
