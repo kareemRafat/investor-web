@@ -7,6 +7,7 @@ return [
         'features' => 'Features',
         'howItWorks' => 'How It Works',
         'stats' => 'Stats',
+        'terms' => 'Terms',
         'signIn' => 'Sign In',
         'getStarted' => 'Get Started',
         'startNow' => 'Start Now',

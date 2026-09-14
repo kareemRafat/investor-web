@@ -7,6 +7,7 @@ return [
         'features' => 'المميزات',
         'howItWorks' => 'كيف نعمل',
         'stats' => 'الإحصائيات',
+        'terms' => 'الشروط',
         'signIn' => 'تسجيل الدخول',
         'getStarted' => 'ابدأ الآن',
         'startNow' => 'ابدأ الآن',

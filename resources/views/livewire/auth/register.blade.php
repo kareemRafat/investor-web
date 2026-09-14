@@ -252,7 +252,8 @@
                         <div class="d-flex align-items-center gap-2">
                             <input class="form-check-input-custom" type="checkbox" name="terms" id="terms">
                             <label class="form-check-label-custom small text-secondary" for="terms">
-                                {!! __('auth.register.accept_terms') !!}
+                                @php($termsUrl = LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms.landing')))
+                                {!! str_replace('<a href="#"', '<a target="_blank" rel="noopener" href="' . $termsUrl . '"', __('auth.register.accept_terms')) !!}
                             </label>
                         </div>
                         @error('terms')

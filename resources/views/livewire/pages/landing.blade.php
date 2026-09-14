@@ -12,6 +12,7 @@
 <a data-nav="features" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#features">{{ __('landing.nav.features') }}</a>
 <a data-nav="stats" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#stats">{{ __('landing.nav.stats') }}</a>
 <a data-nav="how-it-works" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
+<a class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms.landing')) }}">{{ __('landing.nav.terms') }}</a>
 </nav>
 <!-- Desktop Actions + Lang Switcher -->
 <div class="hidden md:flex items-center gap-4">
@@ -47,6 +48,7 @@
 <a data-nav="features" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#features">{{ __('landing.nav.features') }}</a>
 <a data-nav="stats" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#stats">{{ __('landing.nav.stats') }}</a>
 <a data-nav="how-it-works" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms.landing')) }}">{{ __('landing.nav.terms') }}</a>
 <div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
 <span class="text-label-md font-label-md text-on-surface-variant">{{ __('landing.nav.language') }}</span>
 <div class="flex items-center bg-surface-container-high p-1 rounded-full border border-outline-variant/40">
