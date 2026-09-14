@@ -77,11 +77,6 @@
             margin-bottom: 8px;
         }
 
-        /* Uniform input heights */
-        .form-control {
-            height: 48px;
-        }
-
         /* Fixed gap for error messages to prevent layout shift */
         .error-message {
             min-height: 18px;
@@ -235,14 +230,14 @@
                         <!-- Password -->
                         <div class="mb-2">
                             <label class="form-label">{{ __('pages.login.password') }}</label>
-                            <x-auth.password-input name="password" label=""
+                            <x-auth.password-input name="password"
                                 placeholder="{{ __('auth.register.password_placeholder') }}" :error="$errors->first('password')" />
                         </div>
 
                         <!-- Password Confirmation -->
                         <div class="mb-2">
                             <label class="form-label">{{ __('pages.register.password_confirmation') }}</label>
-                            <x-auth.password-input name="password_confirmation" label=""
+                            <x-auth.password-input name="password_confirmation"
                                 placeholder="{{ __('auth.register.confirm_password_placeholder') }}" />
                         </div>
                     </div>

@@ -60,8 +60,14 @@
                         <p class="subtitle">{{ __('auth.reset_password.subtitle') }}</p>
 
                         <!-- Password -->
-                        <x-auth.password-input name="password" :label="__('auth.reset_password.password')" />
-                        <x-auth.password-input name="password_confirmation" :label="__('auth.reset_password.password_confirmation')" />
+                        <div>
+                            <label class="form-label">{{ __('auth.reset_password.password') }}</label>
+                            <x-auth.password-input name="password" placeholder="{{ __('auth.reset_password.password') }}" :error="$errors->first('password')" />
+                        </div>
+                        <div>
+                            <label class="form-label">{{ __('auth.reset_password.password_confirmation') }}</label>
+                            <x-auth.password-input name="password_confirmation" placeholder="{{ __('auth.reset_password.password_confirmation') }}" :error="$errors->first('password_confirmation')" />
+                        </div>
 
                         <!-- Password Requirements -->
                         {{-- <div class="card border-0 bg-light p-3 mb-3">

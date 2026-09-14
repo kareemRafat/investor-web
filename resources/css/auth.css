@@ -180,8 +180,8 @@
     width: 100%;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 15px;
+    padding: 9px 14px;
+    font-size: 14px;
     transition: all 0.2s;
     background-color: #f5f5f5;
     color: #6c757d;
@@ -352,9 +352,9 @@
     border: 2px solid #e2e8f0;
     background: white;
     border-radius: 8px;
-    padding: 12px;
+    padding: 9px;
     transition: all 0.2s;
-    font-size: 15px;
+    font-size: 14px;
     color: #334155;
     font-weight: 500;
     width: 100%;
@@ -659,13 +659,13 @@
     }
 
     .login-container .form-control {
-        padding: 10px 14px;
+        padding: 9px 14px;
         font-size: 14px;
     }
 
     .login-container .btn-login,
     .login-container .google-btn {
-        padding: 12px;
+        padding: 9px;
         font-size: 14px;
     }
 }

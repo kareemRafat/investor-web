@@ -51,10 +51,6 @@
             display: block;
         }
 
-        .form-control {
-            height: 48px;
-        }
-
         .btn-login .spinner-border {
             width: 1.1rem;
             height: 1.1rem;
