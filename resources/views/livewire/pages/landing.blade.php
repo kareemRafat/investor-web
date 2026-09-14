@@ -1,645 +1,676 @@
-@php
-    $featureIcons = [
-        'shareIdeas' =>
-            '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path>',
-        'createOffers' =>
-            '<path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"></path><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"></path><path d="m2 16 6 6"></path><circle cx="16" cy="9" r="2.9"></circle><circle cx="6" cy="5" r="3"></circle>',
-        'connect' =>
-            '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
-        'secure' => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path d="m9 12 2 2 4-4"></path>',
-        'track' => '<path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path>',
-        'fast' => '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>',
-    ];
+<div>
+<!-- Fixed Top Navigation Bar -->
+<header class="bg-surface-container-lowest/80 dark:bg-inverse-surface/80 backdrop-blur-md docked full-width top-0 fixed z-50 shadow-sm border-b border-outline-variant/30 transition-all duration-200 w-full">
+<div class="flex justify-between items-center w-full px-space-md md:px-margin mx-auto h-16 md:h-20 px-8">
+<!-- Logo image -->
+<a class="flex items-center gap-2 group transition-transform duration-200 hover:scale-[1.02]" href="/">
+<img alt="FIKRAPEDIA Logo" class="h-9 md:h-11 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
+</a>
+<!-- Desktop Anchor Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-semibold border-b-2 border-primary pb-1 font-label-lg text-label-lg transition-colors duration-200" href="#about">{{ __('landing.nav.about') }}</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#features">{{ __('landing.nav.features') }}</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#stats">{{ __('landing.nav.stats') }}</a>
+</nav>
+<!-- Desktop Actions + Lang Switcher -->
+<div class="hidden md:flex items-center gap-4">
+@guest
+<a class="px-4 py-2 rounded-lg text-label-lg font-label-lg text-primary font-semibold hover:bg-surface-container-high transition-colors duration-150" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}">{{ __('landing.nav.signIn') }}</a>
+<a class="custom-gradient-btn text-on-primary px-5 py-2.5 rounded-lg text-label-lg font-label-lg font-semibold shadow-md shadow-primary-container/20 hover:brightness-110 active:scale-[0.98] transition-all duration-150 flex items-center gap-1.5" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}">{{ __('landing.nav.getStarted') }}</a>
+@endguest
+@auth
+<a class="custom-gradient-btn text-on-primary px-5 py-2.5 rounded-lg text-label-lg font-label-lg font-semibold shadow-md shadow-primary-container/20 hover:brightness-110 active:scale-[0.98] transition-all duration-150 flex items-center gap-1.5" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}">{{ __('landing.nav.startNow') }}</a>
+@endauth
+<!-- Language Switcher Pill -->
+<div class="flex items-center border border-outline-variant/40 bg-surface-container-low p-1 rounded-full text-label-md">
+@foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+@if (app()->getLocale() === $localeCode)
+<span class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-bold bg-primary text-on-primary shadow-sm">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</span>
+@else
+<a class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-medium text-on-surface-variant hover:text-primary" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</a>
+@endif
+@endforeach
+</div>
+</div>
+<!-- Mobile Hamburger Button -->
+<div class="flex items-center gap-2 md:hidden">
+<button aria-label="Toggle Navigation Menu" class="p-2 text-primary focus:outline-none" id="mobile-menu-btn">
+<span class="material-symbols-outlined text-[28px]">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer Overlay -->
+<div class="hidden md:hidden bg-surface-container-lowest border-b border-outline-variant/30 px-space-md py-4 shadow-lg transition-all" id="mobile-menu">
+<div class="flex flex-col gap-3">
+<a class="text-primary font-semibold py-2 font-label-lg text-label-lg" href="#about">{{ __('landing.nav.about') }}</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#features">{{ __('landing.nav.features') }}</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#stats">{{ __('landing.nav.stats') }}</a>
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
+<span class="text-label-md font-label-md text-on-surface-variant">{{ __('landing.nav.language') }}</span>
+<div class="flex items-center bg-surface-container-high p-1 rounded-full border border-outline-variant/40">
+@foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+@if (app()->getLocale() === $localeCode)
+<span class="px-3 py-1 rounded-full text-label-md font-label-md font-bold bg-primary text-on-primary">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</span>
+@else
+<a class="px-3 py-1 rounded-full text-label-md font-label-md font-medium text-on-surface-variant" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</a>
+@endif
+@endforeach
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2">
+@guest
+<a class="text-center py-2.5 rounded-lg border border-primary text-primary font-semibold text-label-lg font-label-lg" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}">{{ __('landing.nav.signIn') }}</a>
+<a class="text-center custom-gradient-btn text-on-primary py-2.5 rounded-lg font-semibold text-label-lg font-label-lg" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}">{{ __('landing.nav.getStarted') }}</a>
+@endguest
+@auth
+<a class="text-center custom-gradient-btn text-on-primary py-2.5 rounded-lg font-semibold text-label-lg font-label-lg col-span-2" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}">{{ __('landing.nav.startNow') }}</a>
+@endauth
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-28 md:pt-36 pb-space-2xl md:pb-space-3xl overflow-hidden hero-pattern">
+<!-- Ambient Blue Radial Glows -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-[720px] max-w-full h-[420px] rounded-full pointer-events-none -z-10 bg-gradient-to-b from-[#005ba5]/10 via-[#00437d]/5 to-transparent blur-3xl"></div>
+<div class="absolute top-1/4 right-1/4 translate-x-1/3 w-[360px] h-[280px] rounded-full pointer-events-none -z-10 bg-gradient-to-br from-[#fedc00]/15 via-[#ffe252]/5 to-transparent blur-3xl"></div>
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center">
+<!-- Feature Pill Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm mb-6 animate-pulse">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">bolt</span>
+<span class="text-label-md font-label-md font-semibold text-primary">{{ __('landing.hero.pill') }}</span>
+</div>
+<!-- Headline -->
+<h1 class="font-headline-xl md:font-display text-headline-xl-mobile md:text-display text-on-surface max-w-4xl mx-auto leading-tight md:leading-[1.15] mb-6">
+<span>{{ __('landing.hero.title1') }}</span>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#005BA5] via-[#00437d] to-[#6d5e00]">{{ __('landing.hero.titleHighlight') }}</span>
+<span>{{ __('landing.hero.title2') }}</span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">{{ __('landing.hero.subtitle') }}</p>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+<a class="w-full sm:w-auto custom-gradient-btn text-on-primary px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-semibold shadow-lg shadow-primary-container/25 hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 group" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('investor.index')) }}">
+<span>{{ __('landing.hero.ctaPrimary') }}</span>
+<span class="material-symbols-outlined text-[20px] text-secondary-container group-hover:translate-x-1 rtl-flip transition-transform">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto bg-surface-container-lowest border-2 border-primary-container text-primary px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors duration-150 text-center" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('idea.index')) }}">{{ __('landing.hero.ctaSecondary') }}</a>
+</div>
+<!-- Trust Badges with Pulsing Dots -->
+<div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 pt-4 border-t border-outline-variant/30 max-w-2xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">{{ __('landing.hero.trust1') }}</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">{{ __('landing.hero.trust2') }}</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">{{ __('landing.hero.trust3') }}</span>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-y border-outline-variant/30" id="about">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-tertiary-fixed text-primary font-label-md text-label-md font-semibold">{{ __('landing.about.tag') }}</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4">{{ __('landing.about.heading') }}</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.about.subheading') }}</p>
+</div>
+<!-- Two-Column Showcase -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+  <!-- Left Storytelling Column (lg:col-span-7) -->
+  <div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-10 rounded-2xl border border-outline-variant/40 shadow-sm flex flex-col justify-between relative overflow-hidden">
+    <!-- Ambient Glow Background Element -->
+    <div class="absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br from-[#005ba5]/10 to-transparent rounded-full blur-2xl pointer-events-none -z-10"></div>
+    <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-tr from-[#fedc00]/10 to-transparent rounded-full blur-2xl pointer-events-none -z-10"></div>
 
-    $stepIcons = [
-        '1' =>
-            '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" x2="19" y1="8" y2="14"></line><line x1="22" x2="16" y1="11" y2="11"></line>',
-        '2' => '<circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path>',
-        '3' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
-        '4' =>
-            '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline>',
-    ];
-@endphp
+    <div>
+      <!-- Branded Pill Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 mb-4">
+        <span class="material-symbols-outlined text-[16px] text-primary">insights</span>
+        <span class="font-label-md text-label-md font-bold tracking-wider text-primary uppercase">{{ __('landing.about.storyBadge') }}</span>
+      </div>
 
-<div x-data="{
-    mobileMenuOpen: false,
-    scrolled: false,
-    scrollPercent: 0,
-    showScrollTop: false,
-    init() {
-        window.addEventListener('scroll', () => {
-            this.scrolled = window.scrollY > 20;
-            this.showScrollTop = window.scrollY > 300;
+      <!-- Narrative Heading -->
+      <h3 class="font-headline-lg md:font-headline-xl text-headline-sm md:text-headline-md font-bold text-on-surface tracking-tight mb-4">
+        {{ __('landing.about.storyTitle') }}
+      </h3>
 
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            this.scrollPercent = (winScroll / height) * 100;
-        });
-    },
-    scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      <!-- Narrative Story Text -->
+      <div class="space-y-3 mb-8">
+        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          {{ __('landing.about.p1') }}
+        </p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          {{ __('landing.about.p2') }}
+        </p>
+      </div>
+
+      <!-- 2-Column Mini-Card Feature Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <!-- Card 1: Precision Matchmaking Engine -->
+        <div class="p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 hover:border-primary/40 transition-colors flex flex-col gap-2.5">
+          <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">hub</span>
+          </div>
+          <div>
+            <h4 class="font-title-md text-body-md font-bold text-on-surface mb-1">{{ __('landing.about.mini1Title') }}</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              {{ __('landing.about.mini1Desc') }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Institutional Deal Rooms -->
+        <div class="p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 hover:border-primary/40 transition-colors flex flex-col gap-2.5">
+          <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">verified_user</span>
+          </div>
+          <div>
+            <h4 class="font-title-md text-body-md font-bold text-on-surface mb-1">{{ __('landing.about.mini2Title') }}</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              {{ __('landing.about.mini2Desc') }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Badge Pills Row -->
+    <div class="pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-2.5">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-md font-semibold">
+        <span class="text-secondary font-bold">✓</span> {{ __('landing.about.badge1') }}
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-md font-semibold">
+        <span class="text-secondary font-bold">✓</span> {{ __('landing.about.badge2') }}
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 text-on-surface text-label-md font-semibold">
+        <span class="text-primary font-bold">✓</span> {{ __('landing.about.badge3') }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Right Stat Showcase Column (lg:col-span-5) -->
+  <div class="lg:col-span-5 flex flex-col">
+    <div class="relative bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-high p-8 md:p-10 rounded-2xl border border-primary/20 shadow-md flex flex-col justify-between h-full overflow-hidden">
+      <!-- Top Branded Indicator Pill -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold shadow-sm">
+          <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+          <span>{{ __('landing.about.verifiedPill') }}</span>
+        </div>
+        <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary border border-outline-variant/30">
+          <span class="material-symbols-outlined text-[20px]">military_tech</span>
+        </div>
+      </div>
+
+      <!-- Metric Stats Block -->
+      <div class="flex flex-col gap-6">
+        <!-- Stat 1 -->
+        <div class="flex flex-col">
+          <div class="font-display text-display text-primary leading-none font-extrabold flex items-baseline gap-1">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">5+</span>
+          </div>
+          <div class="font-title-md text-title-md text-on-surface font-bold mt-2">{{ __('landing.about.yearsTitle') }}</div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            {{ __('landing.about.yearsDesc') }}
+          </p>
+        </div>
+
+        <!-- Divider Line -->
+        <div class="h-px w-full bg-gradient-to-r from-outline-variant/40 via-outline-variant/20 to-transparent"></div>
+
+        <!-- Stat 2 -->
+        <div class="flex flex-col">
+          <div class="font-display text-display text-primary leading-none font-extrabold flex items-baseline gap-1">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">50+</span>
+          </div>
+          <div class="font-title-md text-title-md text-on-surface font-bold mt-2">{{ __('landing.about.countriesTitle') }}</div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            {{ __('landing.about.countriesDesc') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Live Metric Banner Micro-Card -->
+      <div class="mt-8 pt-5 border-t border-outline-variant/30 bg-surface-container-lowest/80 p-4 rounded-xl border border-outline-variant/30 flex items-start gap-3 shadow-sm">
+        <div class="w-8 h-8 rounded-lg bg-secondary-container/30 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+          <span class="material-symbols-outlined text-[18px]">shield</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface leading-snug font-medium">
+          {{ __('landing.about.bannerStart') }} <span class="font-bold text-primary">$2.5B</span> {{ __('landing.about.bannerEnd') }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Feature Cards: Mission, Vision, Values -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Mission -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
+<img src="{{ asset('images/landing/mission.jpg') }}" alt="{{ __('landing.about.missionTitle') }}" class="w-full h-full object-cover">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">track_changes</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">{{ __('landing.about.missionTitle') }}</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ __('landing.about.missionDesc') }}</p>
+</div>
+</div>
+<!-- Vision -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
+<img src="{{ asset('images/landing/vision.jpg') }}" alt="{{ __('landing.about.visionTitle') }}" class="w-full h-full object-cover">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">{{ __('landing.about.visionTitle') }}</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ __('landing.about.visionDesc') }}</p>
+</div>
+</div>
+<!-- Values -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
+<img src="{{ asset('images/landing/values.jpg') }}" alt="{{ __('landing.about.valuesTitle') }}" class="w-full h-full object-cover">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">{{ __('landing.about.valuesTitle') }}</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ __('landing.about.valuesDesc') }}</p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-lowest" id="features">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold">{{ __('landing.features.tag') }}</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4">{{ __('landing.features.title') }}</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.subtitle') }}</p>
+</div>
+<!-- 6 Interactive Cards (3-column grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]">lightbulb</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{{ __('landing.features.f1Title') }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.f1Desc') }}</p>
+</div>
+<!-- Feature 2 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]">handshake</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{{ __('landing.features.f2Title') }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.f2Desc') }}</p>
+</div>
+<!-- Feature 3 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{{ __('landing.features.f3Title') }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.f3Desc') }}</p>
+</div>
+<!-- Feature 4 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{{ __('landing.features.f4Title') }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.f4Desc') }}</p>
+</div>
+<!-- Feature 5 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]">query_stats</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{{ __('landing.features.f5Title') }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.f5Desc') }}</p>
+</div>
+<!-- Feature 6 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]">bolt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{{ __('landing.features.f6Title') }}</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.features.f6Desc') }}</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Band -->
+<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary" id="stats">
+<!-- Subtle Golden/Blue ambient glow circles -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin relative z-10">
+<div class="text-center max-w-3xl mx-auto mb-12">
+<span class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold">{{ __('landing.stats.tag') }}</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-primary mt-3 mb-4">{{ __('landing.stats.title') }}</h2>
+<p class="font-body-md text-body-md text-tertiary-fixed">{{ __('landing.stats.subtitle') }}</p>
+</div>
+<!-- 4 Cardless Metrics -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 text-center"><!-- Stat 1 -->
+<div>
+<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="2.5" data-decimals="1" data-prefix="$" data-suffix="B+">$2.5B+</span></div>
+<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c1Label') }}</div>
+<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c1Desc') }}</p>
+</div>
+<!-- Stat 2 -->
+<div>
+<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="12000" data-decimals="0" data-prefix="" data-suffix="+">12,000+</span></div>
+<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c2Label') }}</div>
+<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c2Desc') }}</p>
+</div>
+<!-- Stat 3 -->
+<div>
+<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="850" data-decimals="0" data-prefix="" data-suffix="+">850+</span></div>
+<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c3Label') }}</div>
+<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c3Desc') }}</p>
+</div>
+<!-- Stat 4 -->
+<div>
+<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="98" data-decimals="0" data-prefix="" data-suffix="%">98%</span></div>
+<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c4Label') }}</div>
+<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c4Desc') }}</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-t border-outline-variant/30 relative" id="how-it-works">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-tertiary-fixed text-primary font-label-md text-label-md font-semibold">{{ __('landing.hiw.tag') }}</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4">{{ __('landing.hiw.title') }}</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">{{ __('landing.hiw.subtitle') }}</p>
+</div>
+<!-- 4 Connected Steps Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl custom-gradient-btn text-on-primary font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              01
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">{{ __('landing.hiw.s1Title') }}</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.hiw.s1Desc') }}</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>{{ __('landing.hiw.s1Foot') }}</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip">chevron_right</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl custom-gradient-btn text-on-primary font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              02
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">{{ __('landing.hiw.s2Title') }}</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.hiw.s2Desc') }}</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>{{ __('landing.hiw.s2Foot') }}</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip">chevron_right</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl custom-gradient-btn text-on-primary font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              03
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">{{ __('landing.hiw.s3Title') }}</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.hiw.s3Desc') }}</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>{{ __('landing.hiw.s3Foot') }}</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip">chevron_right</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-fixed font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              04
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">{{ __('landing.hiw.s4Title') }}</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.hiw.s4Desc') }}</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span>{{ __('landing.hiw.s4Foot') }}</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Band -->
+<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary" id="cta">
+<!-- Subtle Golden/Blue ambient glow circles -->
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center relative z-10">
+<h2 class="font-headline-xl md:font-display text-headline-xl-mobile md:text-display max-w-3xl mx-auto leading-tight mb-6">{{ __('landing.cta.title') }}</h2>
+<p class="font-body-lg text-body-lg text-tertiary-fixed max-w-2xl mx-auto mb-10">{{ __('landing.cta.subtitle') }}</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+@guest
+<a class="w-full sm:w-auto bg-secondary-container text-on-secondary-fixed px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-bold shadow-lg hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}">
+<span>{{ __('landing.cta.btnPrimary') }}</span>
+<span class="material-symbols-outlined text-[20px] rtl-flip">arrow_forward</span>
+</a>
+@endguest
+@auth
+<a class="w-full sm:w-auto bg-secondary-container text-on-secondary-fixed px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-bold shadow-lg hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}">
+<span>{{ __('landing.cta.startNow') }}</span>
+<span class="material-symbols-outlined text-[20px] rtl-flip">arrow_forward</span>
+</a>
+@endauth
+</div>
+<p class="font-caption text-caption text-tertiary-fixed opacity-90 flex items-center justify-center gap-4 flex-wrap">{{ __('landing.cta.trust') }}</p>
+</div>
+</section>
+<!-- Comprehensive Footer -->
+<footer class="bg-surface-container dark:bg-inverse-surface border-t border-outline-variant/40 pt-space-2xl md:pt-space-3xl pb-10">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin flex flex-col gap-space-xl">
+<!-- 5 Columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+<!-- Col 1: Brand & Bio -->
+<div class="lg:col-span-1 flex flex-col gap-4">
+<a class="inline-block group" href="/">
+<img alt="FIKRAPEDIA" class="h-10 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
+</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{{ __('landing.footer.desc') }}</p>
+</div>
+<!-- Col 2: Product -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4">{{ __('landing.footer.product') }}</h4>
+<ul class="flex flex-col gap-2.5">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#features">{{ __('landing.nav.features') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.pricing')) }}">{{ __('landing.footer.pricing') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#">{{ __('landing.footer.api') }}</a></li>
+</ul>
+</div>
+<!-- Col 3: Company -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4">{{ __('landing.footer.company') }}</h4>
+<ul class="flex flex-col gap-2.5">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#about">{{ __('landing.footer.about') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#">{{ __('landing.footer.blog') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#">{{ __('landing.footer.careers') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}">{{ __('landing.footer.contact') }}</a></li>
+</ul>
+</div>
+<!-- Col 4: Legal -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4">{{ __('landing.footer.legal') }}</h4>
+<ul class="flex flex-col gap-2.5">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.privacypolicy')) }}">{{ __('landing.footer.privacy') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms')) }}">{{ __('landing.footer.terms') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#">{{ __('landing.footer.cookies') }}</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" href="#">{{ __('landing.footer.compliance') }}</a></li>
+</ul>
+</div>
+<!-- Col 5: Language & Currency -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">language</span>
+<span>{{ __('landing.footer.locale') }}</span>
+</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">{{ __('landing.footer.localeDesc') }}</p>
+<div class="grid grid-cols-2 gap-2">
+@foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+@if (app()->getLocale() === $localeCode)
+<span class="w-full py-2 px-3 text-center border rounded-lg text-label-md font-label-md font-bold bg-primary text-on-primary border-primary">{{ $properties['native'] }}</span>
+@else
+<a class="w-full py-2 px-3 text-center border border-outline-variant/40 rounded-lg text-label-md font-label-md font-bold bg-surface-container-lowest text-primary hover:border-primary transition-colors" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
+@endif
+@endforeach
+</div>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.footer.copyright') }}</p>
+<!-- Social Links -->
+<div class="flex items-center gap-3">
+<a aria-label="Twitter/X" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</a>
+<a aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">work</span>
+</a>
+<a aria-label="Community" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Floating Scroll To Top Button with Progress Ring -->
+<button aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-surface-container-lowest shadow-xl border border-outline-variant/40 flex items-center justify-center text-primary opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 active:scale-95" id="scrollToTopBtn" onclick="scrollToTop()">
+<svg class="w-12 h-12 -rotate-90 absolute inset-0">
+<circle class="text-surface-container-high fill-none" cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"></circle>
+<circle class="text-primary fill-none transition-[stroke-dashoffset] duration-75" cx="24" cy="24" id="scrollProgress" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-width="2.5"></circle>
+</svg>
+<span class="material-symbols-outlined text-[22px] relative z-10">expand_less</span>
+</button>
+<!-- Interactive JavaScript -->
+<script>
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
     }
-}">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass py-3">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="/" class="flex items-center group">
-                    <img src="{{ asset('images/logo.webp') }}" alt="logo"
-                        class="h-12 w-auto group-hover:scale-105 transition-transform" />
-                </a>
 
-                <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#about"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.about') }}</a>
-                    <a href="#features"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.features') }}</a>
-                    <a href="#how-it-works"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.howItWorks') }}</a>
-                    <a href="#stats"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.stats') }}</a>
-                </div>
+    // Scroll-to-Top with Circular Progress Indicator
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    const scrollCircle = document.getElementById('scrollProgress');
+    const totalCircumference = 2 * Math.PI * 20; // radius = 20 => ~125.66
 
-                <!-- Desktop Buttons -->
-                <div class="hidden md:flex items-center gap-4">
-                    @guest
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 hover-gradient">
-                            {{ __('landing.nav.signIn') }}
-                        </a>
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 bg-primary text-primary-foreground shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105">
-                            {{ __('landing.nav.getStarted') }}
-                        </a>
-                    @endguest
-                    @auth
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 bg-primary text-primary-foreground shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105">
-                            {{ __('landing.nav.startNow') }}
-                        </a>
-                    @endauth
-                    <!-- Language Switcher -->
-                    <div class="inline-flex items-center rounded-md border border-border bg-background p-1 gap-1">
-                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            @if (app()->getLocale() === $localeCode)
-                                <span
-                                    class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium bg-primary text-primary-foreground">
-                                    {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
-                                </span>
-                            @else
-                                <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                                    class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                                    {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
-                                </a>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollFraction = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
 
-                <!-- Mobile Toggle -->
-                <button class="md:hidden text-foreground" @click="mobileMenuOpen = !mobileMenuOpen">
-                    <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-6 h-6">
-                        <line x1="4" x2="20" y1="12" y2="12"></line>
-                        <line x1="4" x2="20" y1="6" y2="6"></line>
-                        <line x1="4" x2="20" y1="18" y2="18"></line>
-                    </svg>
-                    <svg x-show="mobileMenuOpen" x-cloak xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
-                        <path d="M18 6 6 18"></path>
-                        <path d="m6 6 12 12"></path>
-                    </svg>
-                </button>
-            </div>
+      // Update circle progress
+      const offset = totalCircumference - (scrollFraction * totalCircumference);
+      if (scrollCircle) {
+        scrollCircle.style.strokeDashoffset = offset;
+      }
 
-            <!-- Mobile Menu -->
-            <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
-                class="md:hidden mt-4 pb-4 border-t border-border pt-4" x-cloak>
-                <div class="flex flex-col gap-4">
-                    <a href="#about" @click="mobileMenuOpen = false"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.about') }}</a>
-                    <a href="#features" @click="mobileMenuOpen = false"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.features') }}</a>
-                    <a href="#how-it-works" @click="mobileMenuOpen = false"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.howItWorks') }}</a>
-                    <a href="#stats" @click="mobileMenuOpen = false"
-                        class="text-muted-foreground hover:text-foreground transition-colors">{{ __('landing.nav.stats') }}</a>
-                    <div class="flex flex-col gap-2 pt-4 border-t border-border">
-                        @guest
-                            <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"
-                                class="inline-flex items-center justify-start gap-2 h-10 px-4 rounded-md text-muted-foreground hover-gradient">{{ __('landing.nav.signIn') }}</a>
-                            <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
-                                class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.getStarted') }}</a>
-                        @endguest
-                        @auth
-                            <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}"
-                                class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.startNow') }}</a>
-                        @endauth
-                        <!-- Language Switcher -->
-                        <div class="inline-flex items-center rounded-md border border-border bg-background p-1 gap-1">
-                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                @if (app()->getLocale() === $localeCode)
-                                    <span
-                                        class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium bg-primary text-primary-foreground">
-                                        {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
-                                    </span>
-                                @else
-                                    <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                                        class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium text-muted-foreground">
-                                        {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
-                                    </a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+      // Show/Hide Button past 250px
+      if (scrollTop > 250) {
+        scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+        scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+        scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    });
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-glow rounded-full blur-3xl animate-pulse-glow"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-glow rounded-full blur-3xl animate-pulse-glow"
-            style="animation-delay: 1.5s"></div>
-        <div class="absolute inset-0 opacity-[0.03]"
-            style="background-image: linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px); background-size: 60px 60px">
-        </div>
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
 
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="max-w-4xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-slide-up">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-4 h-4 text-primary">
-                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-                        <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-                        <path d="M10 9H8"></path>
-                        <path d="M16 13H8"></path>
-                        <path d="M16 17H8"></path>
-                    </svg>
-                    <span class="text-sm text-muted-foreground">{{ __('landing.hero.badge') }}</span>
-                </div>
-                <h1 class="font-heading text-5xl md:text-6xl font-bold leading-tight mb-6 animate-slide-up"
-                    style="animation-delay: 0.1s">
-                    {{ __('landing.hero.title') }} <span
-                        class="text-gradient">{{ __('landing.hero.titleHighlight') }}</span>
-                    {{ __('landing.hero.titleEnd') }}
-                </h1>
-                <p class="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up"
-                    style="animation-delay: 0.2s">
-                    {{ __('landing.hero.subtitle') }}
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up"
-                    style="animation-delay: 0.3s">
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('investor.index')) }}"
-                        class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
-                        {{ __('landing.hero.cta') }}
-                        @if (LaravelLocalization::getCurrentLocaleDirection() === 'rtl')
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1">
-                                <path d="m12 19-7-7 7-7"></path>
-                                <path d="M19 12H5"></path>
-                            </svg>
-                        @else
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1">
-                                <path d="M5 12h14"></path>
-                                <path d="m12 5 7 7-7 7"></path>
-                            </svg>
-                        @endif
-                    </a>
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('idea.index')) }}"
-                        class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base border-2 border-primary/50 text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300">
-                        {{ __('landing.hero.ctaSecondary') }}
-                    </a>
-                </div>
+    // Animated Count-Up for Stat Numbers (runs once when scrolled into view)
+    function animateCountUp(el) {
+      const target = parseFloat(el.dataset.target || '0');
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 2000;
+      const startTime = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+        el.textContent = prefix + value.toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        }) + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
 
-                <div class="mt-16 flex flex-wrap items-center justify-center gap-8 text-muted-foreground animate-slide-up"
-                    style="animation-delay: 0.4s">
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                        <span class="text-sm">{{ __('landing.hero.noFees') }}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                        <span class="text-sm">{{ __('landing.hero.secure') }}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                        <span class="text-sm">{{ __('landing.hero.support') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-secondary/30 relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">
-                    {{ __('landing.about.title') }} <span class="text-gradient">{{ __('landing.brand') }}</span>
-                </h2>
-                <p class="text-muted-foreground text-lg leading-relaxed">{{ __('landing.about.description') }}</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
-                <div>
-                    <h3 class="font-heading text-2xl md:text-3xl font-bold mb-6">
-                        {{ __('landing.about.story.title') }} <span
-                            class="text-gradient">{{ __('landing.about.story.titleHighlight') }}</span>
-                    </h3>
-                    <p class="text-muted-foreground leading-relaxed mb-4">{{ __('landing.about.story.p1') }}</p>
-                    <p class="text-muted-foreground leading-relaxed mb-4">{{ __('landing.about.story.p2') }}</p>
-                    <p class="text-muted-foreground leading-relaxed">{{ __('landing.about.story.p3') }}</p>
-                </div>
-                <div class="relative">
-                    <div
-                        class="aspect-square rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 border border-border flex items-center justify-center shadow-elevated text-center p-8">
-                        <div>
-                            <div class="font-heading text-6xl md:text-7xl font-bold text-gradient mb-4">5+</div>
-                            <div class="text-muted-foreground text-lg">{{ __('landing.about.yearsOfExcellence') }}
-                            </div>
-                            <div class="mt-6 pt-6 border-t border-border">
-                                <div class="font-heading text-3xl font-bold text-foreground mb-1">50+</div>
-                                <div class="text-muted-foreground text-sm">{{ __('landing.about.countriesServed') }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
-                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <!-- Mission -->
-                <div
-                    class="p-8 rounded-2xl bg-background border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-glow group">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-8 h-8 text-primary">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <circle cx="12" cy="12" r="6"></circle>
-                            <circle cx="12" cy="12" r="2"></circle>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-xl font-semibold mb-3">{{ __('landing.about.mission.title') }}</h3>
-                    <p class="text-muted-foreground leading-relaxed">{{ __('landing.about.mission.description') }}</p>
-                </div>
-                <!-- Vision -->
-                <div
-                    class="p-8 rounded-2xl bg-background border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-glow group">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-8 h-8 text-primary">
-                            <path
-                                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
-                            </path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-xl font-semibold mb-3">{{ __('landing.about.vision.title') }}</h3>
-                    <p class="text-muted-foreground leading-relaxed">{{ __('landing.about.vision.description') }}</p>
-                </div>
-                <!-- Values -->
-                <div
-                    class="p-8 rounded-2xl bg-background border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-glow group">
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-8 h-8 text-primary">
-                            <path
-                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-xl font-semibold mb-3">{{ __('landing.about.values.title') }}</h3>
-                    <p class="text-muted-foreground leading-relaxed">{{ __('landing.about.values.description') }}</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-24 bg-background relative">
-        <div class="container mx-auto px-6 text-center">
-            <div class="max-w-2xl mx-auto mb-16">
-                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">
-                    {{ __('landing.features.title') }} <span
-                        class="text-gradient">{{ __('landing.features.titleHighlight') }}</span>
-                </h2>
-                <p class="text-muted-foreground text-lg">{{ __('landing.features.subtitle') }}</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach (['shareIdeas', 'createOffers', 'connect', 'secure', 'track', 'fast'] as $feature)
-                    <div
-                        class="group p-8 rounded-2xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-glow text-start">
-                        <div
-                            class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors text-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="w-7 h-7">{!! $featureIcons[$feature] !!}</svg>
-                        </div>
-                        <h3 class="font-heading text-xl font-semibold mb-3">
-                            {{ __('landing.features.' . $feature . '.title') }}</h3>
-                        <p class="text-muted-foreground leading-relaxed">
-                            {{ __('landing.features.' . $feature . '.description') }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-24 bg-gradient-hero relative overflow-hidden">
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-glow rounded-full blur-3xl opacity-50">
-        </div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="max-w-2xl mx-auto mb-16">
-                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">
-                    {{ __('landing.howItWorks.title') }} <span
-                        class="text-gradient">{{ __('landing.howItWorks.titleHighlight') }}</span>
-                </h2>
-                <p class="text-muted-foreground text-lg">{{ __('landing.howItWorks.subtitle') }}</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                @foreach (['1', '2', '3', '4'] as $step)
-                    <div class="relative">
-                        @if (!$loop->last)
-                            <div
-                                class="hidden lg:block absolute top-12 w-full h-[2px]
-                        {{ LaravelLocalization::getCurrentLocaleDirection() === 'rtl' ? 'right-[60%] bg-gradient-to-l' : 'left-[60%] bg-gradient-to-r' }} from-primary/50 to-transparent">
-                            </div>
-                        @endif
-                        <div
-                            class="relative p-6 rounded-2xl glass text-center group hover:shadow-glow transition-all duration-500">
-                            <span
-                                class="absolute -top-3 w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center {{ LaravelLocalization::getCurrentLocaleDirection() === 'rtl' ? '-left-3' : '-right-3' }}">
-                                0{{ $step }}
-                            </span>
-                            <div
-                                class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="w-8 h-8 text-primary">{!! $stepIcons[$step] !!}</svg>
-                            </div>
-                            <h3 class="font-heading text-xl font-semibold mb-3">
-                                {{ __('landing.howItWorks.step' . $step . '.title') }}</h3>
-                            <p class="text-muted-foreground text-sm leading-relaxed">
-                                {{ __('landing.howItWorks.step' . $step . '.description') }}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section id="stats" class="py-24 bg-background relative">
-        <div class="container mx-auto px-6 text-center">
-            <div class="max-w-2xl mx-auto mb-16">
-                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">
-                    {{ __('landing.stats.title') }} <span
-                        class="text-gradient">{{ __('landing.stats.titleHighlight') }}</span>
-                </h2>
-                <p class="text-muted-foreground text-lg">{{ __('landing.stats.subtitle') }}</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach (['totalInvestments', 'activeInvestors', 'fundedProjects', 'satisfaction'] as $stat)
-                    <div
-                        class="p-8 rounded-2xl bg-gradient-card border border-border text-center hover:border-primary/30 transition-all duration-500 hover:shadow-glow group">
-                        <div class="font-heading text-4xl md:text-5xl font-bold text-gradient mb-2">
-                            {{ __('landing.stats.' . $stat . '.value') }}</div>
-                        <div class="font-semibold text-foreground mb-1">{{ __('landing.stats.' . $stat . '.label') }}
-                        </div>
-                        <div class="text-sm text-muted-foreground">{{ __('landing.stats.' . $stat . '.description') }}
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 bg-gradient-hero relative overflow-hidden">
-        <div class="absolute inset-0 bg-glow opacity-30"></div>
-        <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent">
-        </div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-                    {{ __('landing.cta.title') }} <span
-                        class="text-gradient">{{ __('landing.cta.titleHighlight') }}</span>
-                </h2>
-                <p class="text-xl text-muted-foreground mb-10 max-w-xl mx-auto">{{ __('landing.cta.subtitle') }}</p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    @guest
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
-                            class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
-                            {{ __('landing.cta.button') }}
-                            @if (LaravelLocalization::getCurrentLocaleDirection() === 'rtl')
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1">
-                                    <path d="m12 19-7-7 7-7"></path>
-                                    <path d="M19 12H5"></path>
-                                </svg>
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1">
-                                    <path d="M5 12h14"></path>
-                                    <path d="m12 5 7 7-7 7"></path>
-                                </svg>
-                            @endif
-                        </a>
-                    @endguest
-                    @auth
-                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}"
-                            class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base bg-primary text-primary-foreground font-semibold shadow-glow hover:shadow-[0_0_80px_-10px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300">
-                            {{ __('landing.cta.startNow') }}
-                            @if (LaravelLocalization::getCurrentLocaleDirection() === 'rtl')
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1">
-                                    <path d="m12 19-7-7 7-7"></path>
-                                    <path d="M19 12H5"></path>
-                                </svg>
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 ms-1">
-                                    <path d="M5 12h14"></path>
-                                    <path d="m12 5 7 7-7 7"></path>
-                                </svg>
-                            @endif
-                        </a>
-                    @endauth
-                    <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}"
-                        class="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg text-base border-2 border-primary/50 text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300">
-                        {{ __('landing.cta.buttonSecondary') }}
-                    </a>
-                </div>
-                <p class="mt-8 text-sm text-muted-foreground">{{ __('landing.cta.trust') }}</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-card border-t border-border py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-5 gap-12 mb-12">
-                <div class="md:col-span-1">
-                    <a href="/" class="flex items-center mb-4">
-                        <img src="{{ asset('images/logo.webp') }}" alt="logo" class="h-10 w-auto" />
-                    </a>
-                    <p class="text-muted-foreground text-sm leading-relaxed">{{ __('landing.footer.description') }}
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-foreground">{{ __('landing.footer.product') }}</h4>
-                    <ul class="space-y-3 text-sm text-muted-foreground">
-                        <li><a href="#features"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.features') }}</a>
-                        </li>
-                        <li><a href="#how-it-works"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.howItWorks') }}</a>
-                        </li>
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.pricing')) }}"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.pricing') }}</a>
-                        </li>
-                        <li><a href="#"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.api') }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-foreground">{{ __('landing.footer.company') }}</h4>
-                    <ul class="space-y-3 text-sm text-muted-foreground">
-                        <li><a href="#about"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.aboutLink') }}</a>
-                        </li>
-                        <li><a href="#"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.blog') }}</a>
-                        </li>
-                        <li><a href="#"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.careers') }}</a>
-                        </li>
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.contact') }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-foreground">{{ __('landing.footer.legal') }}</h4>
-                    <ul class="space-y-3 text-sm text-muted-foreground">
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.privacypolicy')) }}"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.privacy') }}</a>
-                        </li>
-                        <li><a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms')) }}"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.terms') }}</a>
-                        </li>
-                        <li><a href="#"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.cookies') }}</a>
-                        </li>
-                        <li><a href="#"
-                                class="hover:text-foreground transition-colors">{{ __('landing.footer.security') }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 flex items-center gap-2 text-foreground">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-4 h-4">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                            <path d="M2 12h20"></path>
-                        </svg>
-                        {{ __('landing.footer.language') }}
-                    </h4>
-                    <div class="flex flex-col gap-2">
-                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
-                                class="inline-flex items-center justify-start gap-2 h-9 px-3 rounded-md text-sm font-medium transition-colors {{ app()->getLocale() === $localeCode ? 'bg-primary text-primary-foreground' : 'border border-input bg-background hover:bg-accent hover:text-accent-foreground' }}">
-                                {{ $properties['native'] }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-sm text-muted-foreground">{{ __('landing.footer.copyright') }}</p>
-                <div class="flex items-center gap-4">
-                    <a href="#"
-                        class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-5 h-5">
-                            <path
-                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
-                            </path>
-                        </svg></a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-5 h-5">
-                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                        </svg></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top -->
-    <button x-show="showScrollTop" @click="scrollToTop()" x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 translate-y-10" x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 translate-y-10" class="fixed bottom-6 right-6 z-50 group cursor-pointer"
-        aria-label="Scroll to top" x-cloak>
-        <div class="relative w-12 h-12">
-            <svg class="w-12 h-12 -rotate-90 absolute inset-0">
-                <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" fill="none"
-                    class="text-muted"></circle>
-                <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" fill="none"
-                    stroke-linecap="round" class="text-primary transition-all duration-100"
-                    :style="`stroke-dasharray: 125.66; stroke-dashoffset: ${125.66 - (scrollPercent / 100 * 125.66)}`">
-                </circle>
-            </svg>
-            <div
-                class="absolute inset-1 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:border-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="h-5 w-5 text-foreground transition-all duration-300 group-hover:text-primary-foreground group-hover:-translate-y-0.5">
-                    <path d="m18 15-6-6-6 6"></path>
-                </svg>
-            </div>
-        </div>
-    </button>
+    const counters = document.querySelectorAll('.count-up');
+    if (counters.length) {
+      if ('IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCountUp(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        counters.forEach((el) => counterObserver.observe(el));
+      } else {
+        counters.forEach(animateCountUp);
+      }
+    }
+</script>
 </div>

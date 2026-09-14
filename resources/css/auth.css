@@ -113,7 +113,7 @@
 
 .login-container .brand-side {
     flex: 1;
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #005BA5 0%, #003E73 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -469,7 +469,6 @@
     width: 320px;
     margin-bottom: 24px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    animation: float 6s ease-in-out infinite;
     position: relative;
     z-index: 10;
 }
@@ -478,7 +477,6 @@
     width: 280px;
     align-self: flex-start;
     margin-right: 40px;
-    animation-delay: 1.5s;
     background: rgba(255, 255, 255, 0.12);
 }
 
@@ -622,17 +620,6 @@
 
 .login-container [dir="ltr"] .text-end {
     text-align: right !important;
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes float {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-12px);
-    }
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
