@@ -4,14 +4,14 @@
 <div class="flex justify-between items-center w-full px-space-md md:px-margin mx-auto h-16 md:h-20 px-8">
 <!-- Logo image -->
 <a class="flex items-center gap-2 group transition-transform duration-200 hover:scale-[1.02]" href="/">
-<img alt="FIKRAPEDIA Logo" class="h-9 md:h-11 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
+<img alt="FIKRAPEDIA Logo" class="h-12 md:h-14 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
 </a>
 <!-- Desktop Anchor Links -->
 <nav class="hidden md:flex items-center gap-8">
-<a class="text-primary font-semibold border-b-2 border-primary pb-1 font-label-lg text-label-lg transition-colors duration-200" href="#about">{{ __('landing.nav.about') }}</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#features">{{ __('landing.nav.features') }}</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#stats">{{ __('landing.nav.stats') }}</a>
+<a data-nav="about" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#about">{{ __('landing.nav.about') }}</a>
+<a data-nav="features" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#features">{{ __('landing.nav.features') }}</a>
+<a data-nav="stats" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#stats">{{ __('landing.nav.stats') }}</a>
+<a data-nav="how-it-works" class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
 </nav>
 <!-- Desktop Actions + Lang Switcher -->
 <div class="hidden md:flex items-center gap-4">
@@ -43,10 +43,10 @@
 <!-- Mobile Drawer Overlay -->
 <div class="hidden md:hidden bg-surface-container-lowest border-b border-outline-variant/30 px-space-md py-4 shadow-lg transition-all" id="mobile-menu">
 <div class="flex flex-col gap-3">
-<a class="text-primary font-semibold py-2 font-label-lg text-label-lg" href="#about">{{ __('landing.nav.about') }}</a>
-<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#features">{{ __('landing.nav.features') }}</a>
-<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
-<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#stats">{{ __('landing.nav.stats') }}</a>
+<a data-nav="about" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#about">{{ __('landing.nav.about') }}</a>
+<a data-nav="features" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#features">{{ __('landing.nav.features') }}</a>
+<a data-nav="stats" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#stats">{{ __('landing.nav.stats') }}</a>
+<a data-nav="how-it-works" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
 <div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
 <span class="text-label-md font-label-md text-on-surface-variant">{{ __('landing.nav.language') }}</span>
 <div class="flex items-center bg-surface-container-high p-1 rounded-full border border-outline-variant/40">
@@ -125,7 +125,7 @@
 </div>
 </section>
 <!-- About Section -->
-<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-y border-outline-variant/30" id="about">
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-y border-outline-variant/30 scroll-mt-16 md:scroll-mt-20" id="about">
 <div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
 <!-- Section Header -->
 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -266,7 +266,7 @@
 <div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
 <div>
 <div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
-<img src="{{ asset('images/landing/mission.jpg') }}" alt="{{ __('landing.about.missionTitle') }}" class="w-full h-full object-cover">
+<img src="{{ asset('images/landing/mission.webp') }}" alt="{{ __('landing.about.missionTitle') }}" class="w-full h-full object-cover">
 </div>
 <div class="flex items-center gap-3 mb-3">
 <div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
@@ -281,7 +281,7 @@
 <div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
 <div>
 <div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
-<img src="{{ asset('images/landing/vision.jpg') }}" alt="{{ __('landing.about.visionTitle') }}" class="w-full h-full object-cover">
+<img src="{{ asset('images/landing/vision.webp') }}" alt="{{ __('landing.about.visionTitle') }}" class="w-full h-full object-cover">
 </div>
 <div class="flex items-center gap-3 mb-3">
 <div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
@@ -296,7 +296,7 @@
 <div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
 <div>
 <div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
-<img src="{{ asset('images/landing/values.jpg') }}" alt="{{ __('landing.about.valuesTitle') }}" class="w-full h-full object-cover">
+<img src="{{ asset('images/landing/values.webp') }}" alt="{{ __('landing.about.valuesTitle') }}" class="w-full h-full object-cover">
 </div>
 <div class="flex items-center gap-3 mb-3">
 <div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
@@ -310,7 +310,7 @@
 </div>
 </section>
 <!-- Features Section -->
-<section class="py-space-2xl md:py-space-3xl bg-surface-container-lowest" id="features">
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-lowest scroll-mt-16 md:scroll-mt-20" id="features">
 <div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <span class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold">{{ __('landing.features.tag') }}</span>
@@ -371,7 +371,7 @@
 </div>
 </section>
 <!-- Stats Band -->
-<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary" id="stats">
+<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary scroll-mt-16 md:scroll-mt-20" id="stats">
 <!-- Subtle Golden/Blue ambient glow circles -->
 <div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -410,7 +410,7 @@
 </div>
 </section>
 <!-- How It Works Section -->
-<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-t border-outline-variant/30 relative" id="how-it-works">
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-t border-outline-variant/30 relative scroll-mt-16 md:scroll-mt-20" id="how-it-works">
 <div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <span class="px-3.5 py-1 rounded-full bg-tertiary-fixed text-primary font-label-md text-label-md font-semibold">{{ __('landing.hiw.tag') }}</span>
@@ -479,7 +479,7 @@
 </div>
 </section>
 <!-- Final CTA Band -->
-<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary" id="cta">
+<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary scroll-mt-16 md:scroll-mt-20" id="cta">
 <!-- Subtle Golden/Blue ambient glow circles -->
 <div class="absolute -top-24 -left-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -511,7 +511,7 @@
 <!-- Col 1: Brand & Bio -->
 <div class="lg:col-span-1 flex flex-col gap-4">
 <a class="inline-block group" href="/">
-<img alt="FIKRAPEDIA" class="h-10 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
+<img alt="FIKRAPEDIA" class="h-12 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
 </a>
 <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{{ __('landing.footer.desc') }}</p>
 </div>
@@ -598,6 +598,35 @@
       mobileBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
       });
+    }
+
+    // Navbar scroll-spy: highlight the link of the section currently in view
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const spySections = ['about', 'features', 'stats', 'how-it-works']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    function setActiveNav(id) {
+      navLinks.forEach((link) => {
+        const active = link.dataset.nav === id;
+        const inDrawer = !!link.closest('#mobile-menu');
+        link.classList.toggle('text-primary', active);
+        link.classList.toggle('text-on-surface-variant', !active);
+        if (!inDrawer) {
+          link.classList.toggle('border-primary', active);
+          link.classList.toggle('border-transparent', !active);
+        }
+      });
+    }
+    setActiveNav('about');
+    if ('IntersectionObserver' in window && spySections.length) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(entry.target.id);
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      spySections.forEach((section) => spy.observe(section));
     }
 
     // Scroll-to-Top with Circular Progress Indicator
