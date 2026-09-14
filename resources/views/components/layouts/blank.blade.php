@@ -43,6 +43,11 @@
             background: var(--gradient-primary) !important;
         }
 
+        .hover-gradient:hover {
+            background: var(--gradient-primary) !important;
+            color: hsl(var(--primary-foreground)) !important;
+        }
+
         .shadow-glow {
             box-shadow: 0 0 60px -15px rgba(118, 75, 162, 0.4) !important;
         }

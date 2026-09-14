@@ -1,0 +1,1012 @@
+<!DOCTYPE html><html class="scroll-smooth" dir="ltr" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FIKRAPEDIA - Investment Collaboration Platform</title>
+<!-- Google Fonts: Plus Jakarta Sans, Inter, Cairo -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-container": "#706000",
+            "on-tertiary-fixed-variant": "#13487d",
+            "secondary-container": "#fedc00",
+            "on-primary-fixed": "#001c39",
+            "tertiary-fixed": "#d4e3ff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#dce2f7",
+            "inverse-on-surface": "#edf0ff",
+            "secondary-fixed-dim": "#e4c500",
+            "on-tertiary-container": "#b7d3ff",
+            "on-secondary-fixed-variant": "#524600",
+            "secondary": "#6d5e00",
+            "outline-variant": "#c1c6d3",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#2d5b92",
+            "surface-dim": "#d3daef",
+            "error-container": "#ffdad6",
+            "surface": "#f9f9ff",
+            "surface-tint": "#0e5faa",
+            "tertiary-fixed-dim": "#a4c9ff",
+            "on-primary-container": "#b8d3ff",
+            "on-background": "#141b2b",
+            "on-secondary-fixed": "#211b00",
+            "surface-container-low": "#f1f3ff",
+            "on-error": "#ffffff",
+            "primary-container": "#005ba5",
+            "outline": "#727782",
+            "surface-bright": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#001c39",
+            "on-surface-variant": "#414751",
+            "background": "#f9f9ff",
+            "primary": "#00437d",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#004884",
+            "surface-container-high": "#e1e8fd",
+            "primary-fixed-dim": "#a4c9ff",
+            "primary-fixed": "#d4e3ff",
+            "inverse-surface": "#293040",
+            "secondary-fixed": "#ffe252",
+            "surface-variant": "#dce2f7",
+            "surface-container": "#e9edff",
+            "error": "#ba1a1a",
+            "inverse-primary": "#a4c9ff",
+            "tertiary": "#0b4378",
+            "on-surface": "#141b2b"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-2xl": "3rem",
+            "gutter-mobile": "1rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2rem",
+            "space-3xl": "4.5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem"
+          },
+          fontFamily: {
+            "body-sm": ["Inter", "Cairo", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "title-md": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "display-mobile": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "body-md": ["Inter", "Cairo", "sans-serif"],
+            "body-lg": ["Inter", "Cairo", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-xl-mobile": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "caption": ["Inter", "Cairo", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "display": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "label-lg": ["Plus Jakarta Sans", "Cairo", "sans-serif"]
+          },
+          fontSize: {
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "display-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    [dir="rtl"] .rtl-flip {
+      transform: scaleX(-1);
+    }
+    .custom-gradient-btn {
+      background: linear-gradient(135deg, #005BA5 0%, #003E73 100%);
+    }
+    .hero-pattern {
+      background-image: radial-gradient(rgba(0, 91, 165, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-fixed">
+<!-- Fixed Top Navigation Bar (Shared Component: TopNavBar) -->
+<header class="bg-surface-container-lowest/80 dark:bg-inverse-surface/80 backdrop-blur-md docked full-width top-0 fixed z-50 shadow-sm border-b border-outline-variant/30 transition-all duration-200 w-full">
+<div class="flex justify-between items-center w-full px-space-md md:px-margin mx-auto h-16 md:h-20 px-8">
+<!-- Logo image -->
+<a class="flex items-center gap-2 group transition-transform duration-200 hover:scale-[1.02]" href="#">
+<img alt="FIKRAPEDIA Logo" class="h-9 md:h-11 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WFPJSNNRaHhw3jBrL8YORaBNfPuJJV8HuwusyOt4yH6wD3Ap0XudDcO3OyOLpb5u6LU5fjW_wiyGQNY-ETsVchpojudkG_2qQsVnBHQcJ60RAw0xDmtR5shuUS0k27FWBQHuSmK2NgedSxTEOYjWvqDdcJdf_ZO68JcpXWEZBWx-mWSA877IOZWXFXdDBITIFVzwCXGa-_UvSJqpBwfCHvgWxfQh0ZuggKWwq0qDD9diIKeQgD54RQFt0">
+</a>
+<!-- Desktop Anchor Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-semibold border-b-2 border-primary pb-1 font-label-lg text-label-lg transition-colors duration-200" data-i18n="nav_about" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" data-i18n="nav_features" href="#features">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" data-i18n="nav_how_it_works" href="#how-it-works">How It Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium" data-i18n="nav_stats" href="#stats">Stats</a>
+</nav>
+<!-- Desktop Actions + Lang Switcher -->
+<div class="hidden md:flex items-center gap-4">
+<!-- Language Switcher Pill -->
+<div class="flex items-center border border-outline-variant/40 bg-surface-container-low p-1 rounded-full text-label-md">
+  <button class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-bold bg-primary text-on-primary shadow-sm" id="lang-en" onclick="setLanguage('en')">EN</button>
+  <button class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-medium text-on-surface-variant hover:text-primary" id="lang-ar" onclick="setLanguage('ar')">عربي</button>
+</div>
+<a class="px-4 py-2 rounded-lg text-label-lg font-label-lg text-primary font-semibold hover:bg-surface-container-high transition-colors duration-150" data-i18n="btn_signin" href="#signin">Sign In</a>
+<a class="custom-gradient-btn text-on-primary px-5 py-2.5 rounded-lg text-label-lg font-label-lg font-semibold shadow-md shadow-primary-container/20 hover:brightness-110 active:scale-[0.98] transition-all duration-150 flex items-center gap-1.5" data-i18n="btn_get_started" href="#cta">Get Started</a>
+</div>
+<!-- Mobile Hamburger Button -->
+<div class="flex items-center gap-2 md:hidden">
+<button aria-label="Toggle Navigation Menu" class="p-2 text-primary focus:outline-none" id="mobile-menu-btn">
+<span class="material-symbols-outlined text-[28px]" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer Overlay -->
+<div class="hidden md:hidden bg-surface-container-lowest border-b border-outline-variant/30 px-space-md py-4 shadow-lg transition-all" id="mobile-menu">
+<div class="flex flex-col gap-3">
+<a class="text-primary font-semibold py-2 font-label-lg text-label-lg" data-i18n="nav_about" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" data-i18n="nav_features" href="#features">Features</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" data-i18n="nav_how_it_works" href="#how-it-works">How It Works</a>
+<a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg" data-i18n="nav_stats" href="#stats">Stats</a>
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
+<span class="text-label-md font-label-md text-on-surface-variant" data-i18n="lang_select_title">Language</span>
+<div class="flex items-center bg-surface-container-high p-1 rounded-full border border-outline-variant/40">
+<button class="px-3 py-1 rounded-full text-label-md font-label-md font-bold bg-primary text-on-primary" onclick="setLanguage('en')">EN</button>
+<button class="px-3 py-1 rounded-full text-label-md font-label-md font-medium text-on-surface-variant" onclick="setLanguage('ar')">عربي</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2">
+<a class="text-center py-2.5 rounded-lg border border-primary text-primary font-semibold text-label-lg font-label-lg" data-i18n="btn_signin" href="#signin">Sign In</a>
+<a class="text-center custom-gradient-btn text-on-primary py-2.5 rounded-lg font-semibold text-label-lg font-label-lg" data-i18n="btn_get_started" href="#cta">Get Started</a>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-28 md:pt-36 pb-space-2xl md:pb-space-3xl overflow-hidden hero-pattern">
+<!-- Ambient Blue Radial Glows -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-[720px] max-w-full h-[420px] rounded-full pointer-events-none -z-10 bg-gradient-to-b from-[#005ba5]/10 via-[#00437d]/5 to-transparent blur-3xl"></div>
+<div class="absolute top-1/4 right-1/4 translate-x-1/3 w-[360px] h-[280px] rounded-full pointer-events-none -z-10 bg-gradient-to-br from-[#fedc00]/15 via-[#ffe252]/5 to-transparent blur-3xl"></div>
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center">
+<!-- Feature Pill Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm mb-6 animate-pulse">
+<span class="material-symbols-outlined text-[18px] text-secondary-container" data-icon="bolt">bolt</span>
+<span class="text-label-md font-label-md font-semibold text-primary" data-i18n="hero_pill">The Future of Investment Collaboration</span>
+</div>
+<!-- Headline -->
+<h1 class="font-headline-xl md:font-display text-headline-xl-mobile md:text-display text-on-surface max-w-4xl mx-auto leading-tight md:leading-[1.15] mb-6">
+<span data-i18n="hero_title_part1" class="">Turn Your</span>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#005BA5] via-[#00437d] to-[#6d5e00]" data-i18n="hero_title_highlight">Investment Ideas</span>
+<span data-i18n="hero_title_part2" class="">Into Reality</span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10" data-i18n="hero_subtitle">Share your investment ideas, discover opportunities, and connect with investors ready to fund the next big thing.</p>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+<a class="w-full sm:w-auto custom-gradient-btn text-on-primary px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-semibold shadow-lg shadow-primary-container/25 hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 group" href="#cta">
+<span data-i18n="hero_cta_primary" class="">Start Investing</span>
+<span class="material-symbols-outlined text-[20px] text-secondary-container group-hover:translate-x-1 rtl-flip transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto bg-surface-container-lowest border-2 border-primary-container text-primary px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors duration-150 text-center" data-i18n="hero_cta_secondary" href="#features">Explore Ideas</a>
+</div>
+<!-- Trust Badges with Pulsing Dots -->
+<div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 pt-4 border-t border-outline-variant/30 max-w-2xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface" data-i18n="trust_no_fees">No Hidden Fees</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface" data-i18n="trust_secure">Secure Transactions</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface" data-i18n="trust_support">24/7 Support</span>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-y border-outline-variant/30" id="about">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-tertiary-fixed text-primary font-label-md text-label-md font-semibold" data-i18n="about_tag">About FIKRAPEDIA</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4" data-i18n="about_heading">Bridging the Gap Between Ideas and Capital</h2>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="about_subheading">We're building the future of investment collaboration by empowering visionary innovators and active syndicates.</p>
+</div>
+<!-- Two-Column Showcase -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+  <!-- Left Storytelling Column (lg:col-span-7) -->
+  <div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-10 rounded-2xl border border-outline-variant/40 shadow-sm flex flex-col justify-between relative overflow-hidden">
+    <!-- Ambient Glow Background Element -->
+    <div class="absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br from-[#005ba5]/10 to-transparent rounded-full blur-2xl pointer-events-none -z-10"></div>
+    <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-tr from-[#fedc00]/10 to-transparent rounded-full blur-2xl pointer-events-none -z-10"></div>
+
+    <div>
+      <!-- Branded Pill Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 mb-4">
+        <span class="material-symbols-outlined text-[16px] text-primary" data-icon="insights">insights</span>
+        <span class="font-label-md text-label-md font-bold tracking-wider text-primary uppercase">Venture Acceleration</span>
+      </div>
+
+      <!-- Narrative Heading -->
+      <h3 class="font-headline-lg md:font-headline-xl text-headline-sm md:text-headline-md font-bold text-on-surface tracking-tight mb-4" data-i18n="about_story_title">
+        Catalyzing High-Impact Deals &amp; Capital Formation
+      </h3>
+
+      <!-- Narrative Story Text -->
+      <div class="space-y-3 mb-8">
+        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="about_p1">
+          Every year, thousands of breakthrough ventures stall simply because brilliant creators lack access to institutional networks. FIKRAPEDIA directly addresses this friction by democratizing deal access, syndicate curation, and capital deployment.
+        </p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          By connecting visionary founders directly with verified allocators in a compliant, secure environment, we accelerate funding cycles from months to days while preserving founder equity and investor clarity.
+        </p>
+      </div>
+
+      <!-- 2-Column Mini-Card Feature Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <!-- Card 1: Precision Matchmaking Engine -->
+        <div class="p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 hover:border-primary/40 transition-colors flex flex-col gap-2.5">
+          <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]" data-icon="hub">hub</span>
+          </div>
+          <div>
+            <h4 class="font-title-md text-body-md font-bold text-on-surface mb-1">Precision Matchmaking Engine</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="about_p2">
+              Intelligent algorithmic pairing based on investment thesis, growth stage, sector verticals, and target ticket size.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Institutional Deal Rooms -->
+        <div class="p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 hover:border-primary/40 transition-colors flex flex-col gap-2.5">
+          <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]" data-icon="verified_user">verified_user</span>
+          </div>
+          <div>
+            <h4 class="font-title-md text-body-md font-bold text-on-surface mb-1">Institutional Deal Rooms</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="about_p3">
+              Integrated diligence rooms, regulated escrow safeguards, and standardized legal SAFE frameworks for frictionless closing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Badge Pills Row -->
+    <div class="pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-2.5">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-md font-semibold">
+        <span class="text-secondary font-bold">✓</span> 100% Vetted Allocators
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-md font-semibold">
+        <span class="text-secondary font-bold">✓</span> Smart Escrow Security
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 text-on-surface text-label-md font-semibold">
+        <span class="text-primary font-bold">✓</span> Global Deal Velocity
+      </span>
+    </div>
+  </div>
+
+  <!-- Right Stat Showcase Column (lg:col-span-5) -->
+  <div class="lg:col-span-5 flex flex-col">
+    <div class="relative bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-high p-8 md:p-10 rounded-2xl border border-primary/20 shadow-md flex flex-col justify-between h-full overflow-hidden">
+      <!-- Top Branded Indicator Pill -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold shadow-sm">
+          <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="">Verified Track Record</span>
+        </div>
+        <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary border border-outline-variant/30">
+          <span class="material-symbols-outlined text-[20px]" data-icon="military_tech">military_tech</span>
+        </div>
+      </div>
+
+      <!-- Metric Stats Block -->
+      <div class="flex flex-col gap-6">
+        <!-- Stat 1 -->
+        <div class="flex flex-col">
+          <div class="font-display text-display text-primary leading-none font-extrabold flex items-baseline gap-1">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">5+</span>
+          </div>
+          <div class="font-title-md text-title-md text-on-surface font-bold mt-2" data-i18n="stat_years_title">Years of Excellence</div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed" data-i18n="stat_years_desc">
+            Driving venture velocity, syndicate formation, and cross-border investor relations globally.
+          </p>
+        </div>
+
+        <!-- Divider Line -->
+        <div class="h-px w-full bg-gradient-to-r from-outline-variant/40 via-outline-variant/20 to-transparent"></div>
+
+        <!-- Stat 2 -->
+        <div class="flex flex-col">
+          <div class="font-display text-display text-primary leading-none font-extrabold flex items-baseline gap-1">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">50+</span>
+          </div>
+          <div class="font-title-md text-title-md text-on-surface font-bold mt-2" data-i18n="stat_countries_title">Countries Served</div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed" data-i18n="stat_countries_desc">
+            Cross-border capital deployment across high-growth emerging and tier-1 startup ecosystems.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Live Metric Banner Micro-Card -->
+      <div class="mt-8 pt-5 border-t border-outline-variant/30 bg-surface-container-lowest/80 p-4 rounded-xl border border-outline-variant/30 flex items-start gap-3 shadow-sm">
+        <div class="w-8 h-8 rounded-lg bg-secondary-container/30 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+          <span class="material-symbols-outlined text-[18px]" data-icon="shield">shield</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface leading-snug font-medium">
+          Over <span class="font-bold text-primary">$2.5B</span> syndicated across breakthrough technology, healthcare, and sustainable infrastructure.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Feature Cards: Mission, Vision, Values -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Mission -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmt1fVI4accJIMYPj2l2iaXFXTNMdbzcn8r6NhfxAwPCBAkeXdf0QybLduGhqOv8O_Rg01F6HHMGMc-kZExGxlot-kuj63Ou4D7lz9HIb-tum5bffPLdGBZVHmFOpi2dtdQRCPXQ1YauGaoQBLtPANNs9GveYofcA1IXdjE9tMxxIT8o51ZkSQQg57Psq-WgwaG5BvV_omX1bG80APu6v6LF3_qk6bY24cZeqi0yJyBZyd0_IVLFdA" alt="Our Mission" class="w-full h-full object-cover">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="track_changes">track_changes</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface" data-i18n="card_mission_title">Our Mission</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="card_mission_desc">To provide every creator with equal opportunity to unlock funding and give investors unparalleled pipeline discovery.</p>
+</div>
+</div>
+<!-- Vision -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeeTVVbx4x8So7nQhqWGn6Z78_6iOiXzBUS7ZnZZkEUFKGLIqy5UQkvFRYabXIwYeyDE54DGtjkch96h54uFmVbbyRSjGgS-y0JHMmMDmlEisR7KlHMGQtc5n3pOg_dzO5xmI3-GRyLsDM-hJRxJcnD_gtjp_qz-8YFRaeLsq5OvAD__OicjXMKdAwfCVe6M1OSwD94ZDPrJnv79bDThDJ4cUhfcXs8buoHEUWUjYW9CxqSBx8AZ21" alt="Our Vision" class="w-full h-full object-cover">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface" data-i18n="card_vision_title">Our Vision</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="card_vision_desc">To become the undisputed international nexus where great entrepreneurial sparks evolve into industry-defining enterprises.</p>
+</div>
+</div>
+<!-- Values -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface-container-low border border-outline-variant/30 group-hover:scale-[1.02] transition-transform duration-300">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU7-kA31-gKm3HVMpkx-hGwX1caB0Mrvw52AyHWHOG8pD25hgt-MK6pxAa5mwK4B4GySq3QwuA5HyJijY5R2vjxAMzV3XzE4s2q-xadXqwpKo6RshhPuCtCwfUOk2lmlgCpCEj-GTh-pqPeCYTnw4DR4i05fyff7cfUEYdmOyANZ37oybpWhsWP0s3wO4qFOGH4I-OFpRMEet6VR1Jkq8zM6WDlpA30xvJUwIpjoW8KtLYep0NftdX" alt="Our Values" class="w-full h-full object-cover">
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface" data-i18n="card_values_title">Our Values</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-i18n="card_values_desc">Radical transparency, institutional integrity, relentless founder obsession, and collaborative growth across every vertical.</p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-lowest" id="features">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold" data-i18n="features_tag">Platform Architecture</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4" data-i18n="features_title">Everything You Need to Invest Smarter</h2>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="features_subtitle">Engineered to give both founders and capital allocators frictionless deal-making capabilities with enterprise reliability.</p>
+</div>
+<!-- 6 Interactive Cards (3-column grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]" data-icon="lightbulb">lightbulb</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3" data-i18n="feat_1_title">Share Investment Ideas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="feat_1_desc">Present structured pitch decks, cap tables, traction milestones, and funding tranches to verified syndicates.</p>
+</div>
+<!-- Feature 2 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]" data-icon="handshake">handshake</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3" data-i18n="feat_2_title">Create Investment Offers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="feat_2_desc">Propose tailored SAFE notes, convertible debt, or direct equity terms seamlessly with pre-configured legal templates.</p>
+</div>
+<!-- Feature 3 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]" data-icon="groups">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3" data-i18n="feat_3_title">Connect with Investors</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="feat_3_desc">Directly message vetted angels, family office directors, and institutional GPs in encrypted private deal spaces.</p>
+</div>
+<!-- Feature 4 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]" data-icon="verified_user">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3" data-i18n="feat_4_title">Secure &amp; Compliant</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="feat_4_desc">Built-in KYC/AML checks, identity verification, and multi-jurisdictional compliance protocols protecting both parties.</p>
+</div>
+<!-- Feature 5 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]" data-icon="query_stats">query_stats</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3" data-i18n="feat_5_title">Track Performance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="feat_5_desc">Real-time portfolio tracking, investor updates, financial burn charts, and milestone verification dashboards.</p>
+</div>
+<!-- Feature 6 -->
+<div class="p-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest hover:border-primary-container/60 hover:-translate-y-1 transition-all duration-200 hover:shadow-lg">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary mb-6 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[30px]" data-icon="bolt">bolt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3" data-i18n="feat_6_title">Fast Execution</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="feat_6_desc">Close funding rounds 4x faster with programmatic signature workflows and instant bank wire escrow transfers.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-low border-t border-outline-variant/30 relative" id="how-it-works">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-tertiary-fixed text-primary font-label-md text-label-md font-semibold" data-i18n="hiw_tag">Streamlined Flow</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4" data-i18n="hiw_title">How It Works</h2>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="hiw_subtitle">From registration to allocation, follow our simple four-step syndicate roadmap.</p>
+</div>
+<!-- 4 Connected Steps Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl custom-gradient-btn text-on-primary font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              01
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2" data-i18n="step_1_title">Create Your Profile</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="step_1_desc">Set up your founder or accredited investor credentials in under three minutes with digital KYC.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span data-i18n="step_verify" class="">Quick Verification</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl custom-gradient-btn text-on-primary font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              02
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2" data-i18n="step_2_title">Post or Discover Ideas</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="step_2_desc">Showcase vetted ventures with multimedia decks or browse high-yield verticals matching your thesis.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span data-i18n="step_curated" class="">Curated Directory</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl custom-gradient-btn text-on-primary font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              03
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2" data-i18n="step_3_title">Connect &amp; Negotiate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="step_3_desc">Directly collaborate through secure virtual deal rooms with real-time term sheet iteration.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span data-i18n="step_encrypted" class="">Secure Rooms</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 flex flex-col justify-between shadow-sm relative group hover:border-primary transition-colors">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-fixed font-bold font-headline-sm text-headline-sm flex items-center justify-center mb-6 shadow-sm">
+              04
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2" data-i18n="step_4_title">Execute &amp; Grow</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="step_4_desc">Finalize syndication, fund milestones via regulated escrow, and track long-term equity growth.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center text-primary font-label-md text-label-md font-semibold gap-1">
+<span data-i18n="step_escrow" class="">Protected Escrow</span>
+<span class="material-symbols-outlined text-[16px] rtl-flip" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Band -->
+<section class="py-space-2xl md:py-space-3xl bg-surface-container-lowest" id="stats">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold" data-i18n="stats_tag">Platform Scale</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4" data-i18n="stats_title">Trusted by Thousands of Allocators</h2>
+<p class="font-body-md text-body-md text-on-surface-variant" data-i18n="stats_subtitle">Proven venture acceleration across key innovation corridors.</p>
+</div>
+<!-- 4 Big Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Stat 1 -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-fixed transition-colors">
+        <span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+      </div>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-caption font-semibold bg-surface-container-low text-primary border border-outline-variant/20">Verified</span>
+    </div>
+    <div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight mb-1">$2.5B+</div>
+    <div class="font-title-md text-title-md text-on-surface font-semibold mb-2" data-i18n="stat_card_1_label">Total Investments</div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="stat_card_1_desc">Capital syndicated across global ventures.</p>
+  </div>
+</div>
+<!-- Stat 2 -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-fixed transition-colors">
+        <span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+      </div>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-caption font-semibold bg-surface-container-low text-primary border border-outline-variant/20">Global</span>
+    </div>
+    <div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight mb-1">12,000+</div>
+    <div class="font-title-md text-title-md text-on-surface font-semibold mb-2" data-i18n="stat_card_2_label">Active Investors</div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="stat_card_2_desc">Accredited angels, family offices &amp; VC firms.</p>
+  </div>
+</div>
+<!-- Stat 3 -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-fixed transition-colors">
+        <span class="material-symbols-outlined text-[20px]" data-icon="rocket_launch">rocket_launch</span>
+      </div>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-caption font-semibold bg-surface-container-low text-primary border border-outline-variant/20">Funded</span>
+    </div>
+    <div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight mb-1">850+</div>
+    <div class="font-title-md text-title-md text-on-surface font-semibold mb-2" data-i18n="stat_card_3_label">Funded Projects</div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="stat_card_3_desc">Breakthrough tech, fintech, and green ventures.</p>
+  </div>
+</div>
+<!-- Stat 4 -->
+<div class="group bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 hover:border-primary/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-fixed transition-colors">
+        <span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+      </div>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-caption font-semibold bg-secondary-container/30 text-on-surface border border-outline-variant/20">Top Rated</span>
+    </div>
+    <div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight mb-1">98%</div>
+    <div class="font-title-md text-title-md text-on-surface font-semibold mb-2" data-i18n="stat_card_4_label">Satisfaction Rate</div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="stat_card_4_desc">Seamless deal execution and support rating.</p>
+  </div>
+</div></div>
+</div>
+</section>
+<!-- Final CTA Band -->
+<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary" id="cta">
+<!-- Subtle Golden/Blue ambient glow circles -->
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center relative z-10">
+<h2 class="font-headline-xl md:font-display text-headline-xl-mobile md:text-display max-w-3xl mx-auto leading-tight mb-6" data-i18n="cta_title">Ready to Start Your Investment Journey?</h2>
+<p class="font-body-lg text-body-lg text-tertiary-fixed max-w-2xl mx-auto mb-10" data-i18n="cta_subtitle">Join founders and investors scaling tomorrow's landmark innovations today.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+<a class="w-full sm:w-auto bg-secondary-container text-on-secondary-fixed px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-bold shadow-lg hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2" href="#register">
+<span data-i18n="cta_btn_primary" class="">Create Free Account</span>
+<span class="material-symbols-outlined text-[20px] rtl-flip" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto bg-transparent border-2 border-on-primary text-on-primary px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-on-primary/10 transition-colors duration-150 text-center" data-i18n="cta_btn_secondary" href="#demo">Schedule Demo</a>
+</div>
+<p class="font-caption text-caption text-tertiary-fixed opacity-90 flex items-center justify-center gap-4 flex-wrap" data-i18n="cta_trust_note">• Cancel anytime • Instant verification • Institutional grade security</p>
+</div>
+</section>
+<!-- Comprehensive Footer (Shared Component: Footer) -->
+<footer class="bg-surface-container dark:bg-inverse-surface border-t border-outline-variant/40 pt-space-2xl md:pt-space-3xl pb-10">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin flex flex-col gap-space-xl">
+<!-- 5 Columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+<!-- Col 1: Brand & Bio -->
+<div class="lg:col-span-1 flex flex-col gap-4">
+<a class="inline-block group" href="#">
+<img alt="FIKRAPEDIA" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WFPJSNNRaHhw3jBrL8YORaBNfPuJJV8HuwusyOt4yH6wD3Ap0XudDcO3OyOLpb5u6LU5fjW_wiyGQNY-ETsVchpojudkG_2qQsVnBHQcJ60RAw0xDmtR5shuUS0k27FWBQHuSmK2NgedSxTEOYjWvqDdcJdf_ZO68JcpXWEZBWx-mWSA877IOZWXFXdDBITIFVzwCXGa-_UvSJqpBwfCHvgWxfQh0ZuggKWwq0qDD9diIKeQgD54RQFt0">
+</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed" data-i18n="footer_desc">The modern platform for investment ideas and opportunities. Connect, invest, grow.</p>
+</div>
+<!-- Col 2: Product -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4" data-i18n="footer_col_product">Product</h4>
+<ul class="flex flex-col gap-2.5">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="nav_features" href="#features">Features</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="nav_how_it_works" href="#how-it-works">How It Works</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_pricing" href="#stats">Pricing</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_api" href="#about">Developer API</a></li>
+</ul>
+</div>
+<!-- Col 3: Company -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4" data-i18n="footer_col_company">Company</h4>
+<ul class="flex flex-col gap-2.5">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_about_us" href="#about">About Us</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_blog" href="#about">Blog &amp; Insights</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_careers" href="#about">Careers</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_contact" href="#cta">Contact Support</a></li>
+</ul>
+</div>
+<!-- Col 4: Legal -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4" data-i18n="footer_col_legal">Legal</h4>
+<ul class="flex flex-col gap-2.5">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_privacy" href="#">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_terms" href="#">Terms of Service</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_cookie" href="#">Cookie Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" data-i18n="footer_compliance" href="#">Due Diligence &amp; Security</a></li>
+</ul>
+</div>
+<!-- Col 5: Language & Currency -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="language">language</span>
+<span data-i18n="footer_locale" class="">Locale</span>
+</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4" data-i18n="footer_locale_desc">Switch application language and display mode:</p>
+<div class="grid grid-cols-2 gap-2">
+<button class="w-full py-2 px-3 text-center border border-outline-variant/40 rounded-lg text-label-md font-label-md font-bold bg-surface-container-lowest text-primary hover:border-primary transition-colors" onclick="setLanguage('en')">
+              English (EN)
+            </button>
+<button class="w-full py-2 px-3 text-center border border-outline-variant/40 rounded-lg text-label-md font-label-md font-bold bg-surface-container-lowest text-primary hover:border-primary transition-colors" onclick="setLanguage('ar')">
+              العربية (AR)
+            </button>
+</div>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="footer_copyright">© 2025 FIKRAPEDIA. All rights reserved. Connecting breakthrough ventures with visionary capital.</p>
+<!-- Social Links -->
+<div class="flex items-center gap-3">
+<a aria-label="Twitter/X" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="share">share</span>
+</a>
+<a aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="work">work</span>
+</a>
+<a aria-label="Community" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="public">public</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Floating Scroll To Top Button with Progress Ring -->
+<button aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-surface-container-lowest shadow-xl border border-outline-variant/40 flex items-center justify-center text-primary opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 active:scale-95" id="scrollToTopBtn" onclick="scrollToTop()">
+<svg class="w-12 h-12 -rotate-90 absolute inset-0">
+<circle class="text-surface-container-high fill-none" cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"></circle>
+<circle class="text-primary fill-none transition-[stroke-dashoffset] duration-75" cx="24" cy="24" id="scrollProgress" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-width="2.5"></circle>
+</svg>
+<span class="material-symbols-outlined text-[22px] relative z-10" data-icon="expand_less">expand_less</span>
+</button>
+<!-- Interactive JavaScript -->
+<script>
+    // Bilingual Content Dictionary
+    const translations = {
+      en: {
+        nav_about: "About",
+        nav_features: "Features",
+        nav_how_it_works: "How It Works",
+        nav_stats: "Stats",
+        btn_signin: "Sign In",
+        btn_get_started: "Get Started",
+        lang_select_title: "Language",
+        hero_pill: "The Future of Investment Collaboration",
+        hero_title_part1: "Turn Your",
+        hero_title_highlight: "Investment Ideas",
+        hero_title_part2: "Into Reality",
+        hero_subtitle: "Share your investment ideas, discover opportunities, and connect with investors ready to fund the next big thing.",
+        hero_cta_primary: "Start Investing",
+        hero_cta_secondary: "Explore Ideas",
+        trust_no_fees: "No Hidden Fees",
+        trust_secure: "Secure Transactions",
+        trust_support: "24/7 Support",
+        about_tag: "About FIKRAPEDIA",
+        about_heading: "Bridging the Gap Between Ideas and Capital",
+        about_subheading: "We're building the future of investment collaboration by empowering visionary innovators and active syndicates.",
+        about_story_title: "Catalyzing High-Impact Deals",
+        about_p1: "Every year, thousands of breakthrough ventures stall simply because brilliant creators lack access to institutional networks. FIKRAPEDIA directly addresses this friction by democratizing deal access and syndication transparency.",
+        about_p2: "Our intelligent matchmaking algorithms pair founder pitch decks with accredited angels, family offices, and seed syndicates that align precisely with sector, stage, and geography.",
+        about_p3: "With integrated virtual deal rooms, audited escrow frameworks, and standardized due diligence analytics, we ensure execution is fast, safe, and transparent.",
+        stat_years_title: "Years of Excellence",
+        stat_years_desc: "Driving venture velocity and investor relations globally.",
+        stat_countries_title: "Countries Served",
+        stat_countries_desc: "Cross-border capital deployment across emerging & tier-1 markets.",
+        card_mission_title: "Our Mission",
+        card_mission_desc: "To provide every creator with equal opportunity to unlock funding and give investors unparalleled pipeline discovery.",
+        card_vision_title: "Our Vision",
+        card_vision_desc: "To become the undisputed international nexus where great entrepreneurial sparks evolve into industry-defining enterprises.",
+        card_values_title: "Our Values",
+        card_values_desc: "Radical transparency, institutional integrity, relentless founder obsession, and collaborative growth across every vertical.",
+        features_tag: "Platform Architecture",
+        features_title: "Everything You Need to Invest Smarter",
+        features_subtitle: "Engineered to give both founders and capital allocators frictionless deal-making capabilities with enterprise reliability.",
+        feat_1_title: "Share Investment Ideas",
+        feat_1_desc: "Present structured pitch decks, cap tables, traction milestones, and funding tranches to verified syndicates.",
+        feat_2_title: "Create Investment Offers",
+        feat_2_desc: "Propose tailored SAFE notes, convertible debt, or direct equity terms seamlessly with pre-configured legal templates.",
+        feat_3_title: "Connect with Investors",
+        feat_3_desc: "Directly message vetted angels, family office directors, and institutional GPs in encrypted private deal spaces.",
+        feat_4_title: "Secure & Compliant",
+        feat_4_desc: "Built-in KYC/AML checks, identity verification, and multi-jurisdictional compliance protocols protecting both parties.",
+        feat_5_title: "Track Performance",
+        feat_5_desc: "Real-time portfolio tracking, investor updates, financial burn charts, and milestone verification dashboards.",
+        feat_6_title: "Fast Execution",
+        feat_6_desc: "Close funding rounds 4x faster with programmatic signature workflows and instant bank wire escrow transfers.",
+        hiw_tag: "Streamlined Flow",
+        hiw_title: "How It Works",
+        hiw_subtitle: "From registration to allocation, follow our simple four-step syndicate roadmap.",
+        step_1_title: "Create Your Profile",
+        step_1_desc: "Set up your founder or accredited investor credentials in under three minutes with digital KYC.",
+        step_verify: "Quick Verification",
+        step_2_title: "Post or Discover Ideas",
+        step_2_desc: "Showcase vetted ventures with multimedia decks or browse high-yield verticals matching your thesis.",
+        step_curated: "Curated Directory",
+        step_3_title: "Connect & Negotiate",
+        step_3_desc: "Directly collaborate through secure virtual deal rooms with real-time term sheet iteration.",
+        step_encrypted: "Secure Rooms",
+        step_4_title: "Execute & Grow",
+        step_4_desc: "Finalize syndication, fund milestones via regulated escrow, and track long-term equity growth.",
+        step_escrow: "Protected Escrow",
+        stats_tag: "Platform Scale",
+        stats_title: "Trusted by Thousands of Allocators",
+        stats_subtitle: "Proven venture acceleration across key innovation corridors.",
+        stat_card_1_label: "Total Investments",
+        stat_card_1_desc: "Capital syndicated across global ventures.",
+        stat_card_2_label: "Active Investors",
+        stat_card_2_desc: "Accredited angels, family offices & VC firms.",
+        stat_card_3_label: "Funded Projects",
+        stat_card_3_desc: "Breakthrough tech, fintech, and green ventures.",
+        stat_card_4_label: "Satisfaction Rate",
+        stat_card_4_desc: "Seamless deal execution and support rating.",
+        cta_title: "Ready to Start Your Investment Journey?",
+        cta_subtitle: "Join founders and investors scaling tomorrow's landmark innovations today.",
+        cta_btn_primary: "Create Free Account",
+        cta_btn_secondary: "Schedule Demo",
+        cta_trust_note: "• Cancel anytime • Instant verification • Institutional grade security",
+        footer_desc: "The modern platform for investment ideas and opportunities. Connect, invest, grow.",
+        footer_col_product: "Product",
+        footer_pricing: "Pricing",
+        footer_api: "Developer API",
+        footer_col_company: "Company",
+        footer_about_us: "About Us",
+        footer_blog: "Blog & Insights",
+        footer_careers: "Careers",
+        footer_contact: "Contact Support",
+        footer_col_legal: "Legal",
+        footer_privacy: "Privacy Policy",
+        footer_terms: "Terms of Service",
+        footer_cookie: "Cookie Policy",
+        footer_compliance: "Due Diligence & Security",
+        footer_locale: "Locale",
+        footer_locale_desc: "Switch application language and display mode:",
+        footer_copyright: "© 2025 FIKRAPEDIA. All rights reserved. Connecting breakthrough ventures with visionary capital."
+      },
+      ar: {
+        nav_about: "عن المنصة",
+        nav_features: "المميزات",
+        nav_how_it_works: "كيف نعمل",
+        nav_stats: "الإحصائيات",
+        btn_signin: "تسجيل الدخول",
+        btn_get_started: "ابدأ الآن",
+        lang_select_title: "اللغة",
+        hero_pill: "مستقبل التعاون الاستثماري",
+        hero_title_part1: "حوّل",
+        hero_title_highlight: "أفكارك الاستثمارية",
+        hero_title_part2: "إلى واقع ملموس",
+        hero_subtitle: "شارك أفكارك الاستثمارية، واكتشف الفرص الواعدة، وتواصل مباشرة مع مستثمرين مستعدين لتمويل قفزتك القادمة.",
+        hero_cta_primary: "ابدأ الاستثمار",
+        hero_cta_secondary: "استكشف الأفكار",
+        trust_no_fees: "بدون رسوم خفية",
+        trust_secure: "معاملات مؤمنة بالكامل",
+        trust_support: "دعم فني متواصل 24/7",
+        about_tag: "عن فكرة بيديا",
+        about_heading: "سد الفجوة بين الأفكار ورؤوس الأموال",
+        about_subheading: "نبني بيئة استثمارية تمكّن المبتكرين الطموحين وتربطهم بالمجموعات الاستثمارية الرائدة.",
+        about_story_title: "تسريع الصفقات ذات الأثر العالي",
+        about_p1: "سنوياً، تتوقف آلاف المشاريع الواعدة لمجرد افتقار أصحابها إلى شبكات رأس المال المؤسسي. فكرة بيديا صُممت خصيصاً لإزالة هذه العقبات عبر إتاحة الوصول الشفاف والمباشر للصفقات.",
+        about_p2: "خوارزميات المطابقة الذكية لدينا تربط عروض رواد الأعمال مع مستثمرين ملائكيين، ومكاتب عائلية، وصناديق رأس مال جريء تتوافق تماماً مع القطاع ومرحلة النمو.",
+        about_p3: "من خلال غرف الصفقات الافتراضية، وحسابات الضمان المالي المعتمدة، وأدوات التدقيق الموحدة، نضمن تنفيذاً آمناً وسريعاً وموثوقاً.",
+        stat_years_title: "سنوات من التميز",
+        stat_years_desc: "نقود سرعة الصفقات وبناء علاقات استثمارية مستدامة عالمياً.",
+        stat_countries_title: "دولة حول العالم",
+        stat_countries_desc: "توزيع رؤوس الأموال عبر الحدود في الأسواق الناشئة والرئيسية.",
+        card_mission_title: "رسالتنا",
+        card_mission_desc: "منح كل صاحب فكرة ريادية فرصة عادلة للحصول على التمويل، وتمكين المستثمرين من استكشاف صفقات نوعية.",
+        card_vision_title: "رؤيتنا",
+        card_vision_desc: "أن نكون الوجهة العالمية الموثوقة التي تتحول فيها شرارات الأفكار إلى كيانات اقتصادية رائدة.",
+        card_values_title: "قيمنا",
+        card_values_desc: "الشفافية التامة، والنزاهة المؤسسية، والاهتمام الاستثنائي بنجاح الرواد والنمو التعاوني.",
+        features_tag: "هندسة المنصة",
+        features_title: "كل ما تحتاجه للاستثمار بذكاء واحترافية",
+        features_subtitle: "صُممت لتوفر للمؤسسين والمستثمرين تجربة عقد صفقات خالية من التعقيد وبأعلى موثوقية مؤسسية.",
+        feat_1_title: "مشاركة الأفكار الاستثمارية",
+        feat_1_desc: "عرض ملفات المشاريع، وهيكل الملكية، والمؤشرات المحققة على مستثمرين معتمدين وموثقين.",
+        feat_2_title: "تقديم عروض الاستثمار",
+        feat_2_desc: "صياغة مذكرات SAFE، أو سندات قابلة للتحويل، أو صفقات أسهم مباشرة باستخدام نماذج قانونية معتمدة.",
+        feat_3_title: "التواصل المباشر مع المستثمرين",
+        feat_3_desc: "محادثات فورية مشفرة ومؤمنة مع مستثمرين ملائكيين ومديري صناديق استثمارية.",
+        feat_4_title: "أمان وامتثال معتمد",
+        feat_4_desc: "تحقق رقمي من الهوية (KYC) وفحص الامتثال المالي الدولي لضمان حماية جميع الأطراف.",
+        feat_5_title: "متابعة أداء الاستثمار",
+        feat_5_desc: "لوحات تحكم لحظية لمتابعة المحفظة الاستثمارية، وتقارير المؤسسين الدورية، ونسب الإنجاز.",
+        feat_6_title: "تنفيذ فائق السرعة",
+        feat_6_desc: "إتمام جولات التمويل بسرعة تزيد بأربعة أضعاف بفضل التوقيع الرقمي والتحويل المالي المباشر للضمان.",
+        hiw_tag: "مسار مبسط",
+        hiw_title: "كيف تعمل المنصة",
+        hiw_subtitle: "من التسجيل وحتى تخصيص رأس المال في أربع خطوات مدروسة وميسرة.",
+        step_1_title: "إنشاء حسابك",
+        step_1_desc: "إعداد ملفك كرائد أعمال أو كمستثمر معتمد خلال دقائق معدودة مع التحقق الرقمي.",
+        step_verify: "توثيق سريع",
+        step_2_title: "نشر الأفكار أو استكشافها",
+        step_2_desc: "اعرض مشروعك بعرض تقديمي مفصل أو تصفح فرصاً ذات عائد مرتفع توافق معاييرك.",
+        step_curated: "دليل منتقى بعناية",
+        step_3_title: "التواصل والتفاوض",
+        step_3_desc: "تعاون مباشر عبر غرف الصفقات الافتراضية مع إمكانية تعديل الشروط والشروط المبدئية مباشرة.",
+        step_encrypted: "غرف مؤمنة بالكامل",
+        step_4_title: "التنفيذ والنمو",
+        step_4_desc: "إتمام التمويل، وصرف الدفعات عبر حسابات ضمان مرخصة، ومتابعة نمو الحصة الاستثمارية.",
+        step_escrow: "حساب ضمان محمي",
+        stats_tag: "حجم المنصة",
+        stats_title: "موثوقة من آلاف المستثمرين",
+        stats_subtitle: "تسريع مثبت لوتيرة نمو المشاريع عبر أبرز مراكز الابتكار.",
+        stat_card_1_label: "إجمالي الاستثمارات",
+        stat_card_1_desc: "رؤوس أموال تم حشدها لمشاريع واعدة عالمياً.",
+        stat_card_2_label: "مستثمر نشط",
+        stat_card_2_desc: "مستثمرون ملائكيون، ومكاتب عائلية، وصناديق استثمار.",
+        stat_card_3_label: "مشروع تم تمويله",
+        stat_card_3_desc: "في مجالات التقنية، والتقنية المالية، والاستدامة.",
+        stat_card_4_label: "نسبة الرضا",
+        stat_card_4_desc: "تقييم التميز في سرعة تنفيذ الصفقات وجودة الدعم.",
+        cta_title: "هل أنت مستعد لبدء رحلتك الاستثمارية؟",
+        cta_subtitle: "انضم اليوم إلى رواد الأعمال والمستثمرين الذين يصنعون معالم ابتكارات المستقبل.",
+        cta_btn_primary: "إنشاء حساب مجاني",
+        cta_btn_secondary: "طلب عرض توضيحي",
+        cta_trust_note: "• إلغاء في أي وقت • توثيق فوري • أمان بمستوى مصرفي",
+        footer_desc: "المنصة الحديثة للأفكار والفرص الاستثمارية. تواصل، استثمر، وانمُ بثقة.",
+        footer_col_product: "المنتج",
+        footer_pricing: "الأسعار",
+        footer_api: "واجهة المطورين API",
+        footer_col_company: "الشركة",
+        footer_about_us: "من نحن",
+        footer_blog: "المدونة والتحليلات",
+        footer_careers: "الوظائف",
+        footer_contact: "دعم العملاء",
+        footer_col_legal: "قانوني",
+        footer_privacy: "سياسة الخصوصية",
+        footer_terms: "شروط الخدمة",
+        footer_cookie: "سياسة ملفات الارتباط",
+        footer_compliance: "العناية الواجبة والامتثال",
+        footer_locale: "اللغة والمنطقة",
+        footer_locale_desc: "تغيير لغة العرض واتجاه واجهة المنصة:",
+        footer_copyright: "© 2025 فكرة بيديا. جميع الحقوق محفوظة. نربط المشاريع الرائدة برؤوس الأموال الطموحة."
+      }
+    };
+
+    // Language Toggle Function
+    function setLanguage(lang) {
+      const html = document.documentElement;
+      html.setAttribute('lang', lang);
+      html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+      // Update button visual styles
+      const btnEn = document.getElementById('lang-en');
+      const btnAr = document.getElementById('lang-ar');
+      if (btnEn && btnAr) {
+        if (lang === 'en') {
+          btnEn.className = "px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-bold bg-primary text-on-primary shadow-sm";
+          btnAr.className = "px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-medium text-on-surface-variant hover:text-primary";
+        } else {
+          btnAr.className = "px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-bold bg-primary text-on-primary shadow-sm";
+          btnEn.className = "px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-medium text-on-surface-variant hover:text-primary";
+        }
+      }
+
+      // Update translatable texts
+      const dict = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+    }
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Scroll-to-Top with Circular Progress Indicator
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    const scrollCircle = document.getElementById('scrollProgress');
+    const totalCircumference = 2 * Math.PI * 20; // radius = 20 => ~125.66
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollFraction = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+
+      // Update circle progress
+      const offset = totalCircumference - (scrollFraction * totalCircumference);
+      if (scrollCircle) {
+        scrollCircle.style.strokeDashoffset = offset;
+      }
+
+      // Show/Hide Button past 250px
+      if (scrollTop > 250) {
+        scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+        scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+        scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+
+</body></html>

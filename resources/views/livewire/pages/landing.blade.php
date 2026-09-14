@@ -45,18 +45,9 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="/" class="flex items-center gap-2 group">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-6 h-6 text-primary-foreground">
-                            <line x1="12" x2="12" y1="20" y2="10"></line>
-                            <line x1="18" x2="18" y1="20" y2="4"></line>
-                            <line x1="6" x2="6" y1="20" y2="16"></line>
-                        </svg>
-                    </div>
-                    <span class="font-heading font-bold text-xl">{{ __('landing.brand') }}</span>
+                <a href="/" class="flex items-center group">
+                    <img src="{{ asset('images/logo.webp') }}" alt="logo"
+                        class="h-12 w-auto group-hover:scale-105 transition-transform" />
                 </a>
 
                 <!-- Desktop Nav -->
@@ -75,7 +66,7 @@
                 <div class="hidden md:flex items-center gap-4">
                     @guest
                         <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 hover:bg-accent hover:text-accent-foreground">
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring h-10 px-4 py-2 hover-gradient">
                             {{ __('landing.nav.signIn') }}
                         </a>
                         <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
@@ -89,6 +80,22 @@
                             {{ __('landing.nav.startNow') }}
                         </a>
                     @endauth
+                    <!-- Language Switcher -->
+                    <div class="inline-flex items-center rounded-md border border-border bg-background p-1 gap-1">
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            @if (app()->getLocale() === $localeCode)
+                                <span
+                                    class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium bg-primary text-primary-foreground">
+                                    {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
+                                </span>
+                            @else
+                                <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                                    class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                                    {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
 
                 <!-- Mobile Toggle -->
@@ -125,7 +132,7 @@
                     <div class="flex flex-col gap-2 pt-4 border-t border-border">
                         @guest
                             <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}"
-                                class="inline-flex items-center justify-start gap-2 h-10 px-4 text-muted-foreground hover:text-foreground">{{ __('landing.nav.signIn') }}</a>
+                                class="inline-flex items-center justify-start gap-2 h-10 px-4 rounded-md text-muted-foreground hover-gradient">{{ __('landing.nav.signIn') }}</a>
                             <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
                                 class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.getStarted') }}</a>
                         @endguest
@@ -133,6 +140,22 @@
                             <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}"
                                 class="inline-flex items-center justify-center gap-2 h-12 px-4 bg-primary text-primary-foreground font-semibold rounded-md shadow-glow">{{ __('landing.nav.startNow') }}</a>
                         @endauth
+                        <!-- Language Switcher -->
+                        <div class="inline-flex items-center rounded-md border border-border bg-background p-1 gap-1">
+                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                @if (app()->getLocale() === $localeCode)
+                                    <span
+                                        class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium bg-primary text-primary-foreground">
+                                        {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
+                                    </span>
+                                @else
+                                    <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                                        class="inline-flex items-center h-8 px-3 rounded-md text-sm font-medium text-muted-foreground">
+                                        {{ $localeCode === 'ar' ? 'عربي' : 'EN' }}
+                                    </a>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -489,18 +512,8 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-5 gap-12 mb-12">
                 <div class="md:col-span-1">
-                    <a href="/" class="flex items-center gap-2 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="w-6 h-6 text-primary-foreground">
-                                <line x1="12" x2="12" y1="20" y2="10"></line>
-                                <line x1="18" x2="18" y1="20" y2="4"></line>
-                                <line x1="6" x2="6" y1="20" y2="16"></line>
-                            </svg>
-                        </div>
-                        <span class="font-heading font-bold text-xl">{{ __('landing.brand') }}</span>
+                    <a href="/" class="flex items-center mb-4">
+                        <img src="{{ asset('images/logo.webp') }}" alt="logo" class="h-10 w-auto" />
                     </a>
                     <p class="text-muted-foreground text-sm leading-relaxed">{{ __('landing.footer.description') }}
                     </p>
