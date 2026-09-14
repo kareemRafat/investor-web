@@ -35,7 +35,7 @@ return [
         'newsletter_title' => 'Stay Updated',
         'newsletter_text' => 'Join our newsletter to receive the latest opportunities.',
         'subscribe' => 'Subscribe',
-        'copyright' => 'Investor Platform © :year. All rights reserved.',
+        'copyright' => 'FikraPedia © :year. All rights reserved.',
         'support' => 'Support',
     ],
 ];

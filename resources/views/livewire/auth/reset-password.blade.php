@@ -43,7 +43,8 @@
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('password.update')) }}" method="POST" x-on:submit="loading = true">
+                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('password.update')) }}"
+                    method="POST" x-on:submit="loading = true">
                     @csrf
                     <input type="hidden" name="token" value="{{ request()->route('token') }}">
                     <input type="hidden" name="email" value="{{ request()->email }}">
@@ -51,7 +52,7 @@
                     <div class="d-flex flex-column gap-3">
                         <!-- Logo -->
                         <div class="mb-3 text-center">
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid" width="100">
+                            <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="img-fluid" width="100">
                         </div>
 
                         <!-- Titles -->
@@ -119,8 +120,7 @@
                     </div>
                     <!-- Back Link -->
                     <div class="text-center mt-1">
-                        <a href="{{  route('login') }}" wire:navigate
-                            class="link-primary small">
+                        <a href="{{ route('login') }}" wire:navigate class="link-primary small">
                             <i class="bi bi-arrow-{{ app()->getLocale() === 'ar' ? 'right' : 'left' }} me-1"></i>
                             {{ __('auth.forgot_password.back') }}
                         </a>

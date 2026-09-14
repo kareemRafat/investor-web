@@ -88,21 +88,23 @@
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login.store')) }}" method="POST" id="loginForm" x-on:submit="loading = true">
+                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login.store')) }}"
+                    method="POST" id="loginForm" x-on:submit="loading = true">
                     @csrf
 
                     <!-- Logo & Title -->
                     <div class="mb-4 text-center">
                         <a href="/">
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid mb-3"
-                                width="80">
+                            <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="img-fluid mb-3"
+                                width="150">
                         </a>
                         <h1 class="logo-text h3 mb-2">{{ __('auth.login.welcome_back') }}</h1>
                         <p class="subtitle mb-4">{{ __('auth.login.subtitle') }}</p>
                     </div>
 
                     <!-- Google Login -->
-                    <a href="{{ route('auth.google.redirect') }}" class="google-btn mb-4 text-decoration-none" x-bind:class="{ 'pe-none opacity-50': loading }">
+                    <a href="{{ route('auth.google.redirect') }}" class="google-btn mb-4 text-decoration-none"
+                        x-bind:class="{ 'pe-none opacity-50': loading }">
                         <img src="{{ asset('images/google.svg') }}" alt="Google Logo" width="20" height="20">
                         <span>{{ __('auth.login.google_login') }}</span>
                     </a>
@@ -113,8 +115,7 @@
                     <!-- Email -->
                     <div class="mb-3">
                         <label class="form-label">{{ __('auth.login.email') }}</label>
-                        <input name="email" type="email"
-                            class="form-control @error('email') is-invalid @enderror"
+                        <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             placeholder="{{ __('auth.login.email_placeholder') }}" value="{{ old('email') }}"
                             x-bind:readonly="loading" />
                         @error('email')
@@ -130,7 +131,8 @@
                         <div class="position-relative">
                             <input name="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" id="password"
-                                placeholder="{{ __('auth.login.password_placeholder') }}" x-bind:readonly="loading" />
+                                placeholder="{{ __('auth.login.password_placeholder') }}"
+                                x-bind:readonly="loading" />
                             <i class="bi bi-eye password-toggle" onclick="togglePassword()"></i>
                         </div>
                         @error('password')
@@ -143,7 +145,8 @@
                     <!-- Remember & Forgot -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="d-flex align-items-center gap-2">
-                            <input class="form-check-input-custom" type="checkbox" id="remember" name="remember" x-bind:disabled="loading">
+                            <input class="form-check-input-custom" type="checkbox" id="remember" name="remember"
+                                x-bind:disabled="loading">
                             <label class="form-check-label-custom small text-secondary" for="remember">
                                 {{ __('auth.login.remember_me') }}
                             </label>
@@ -154,12 +157,13 @@
                     </div>
 
                     <!-- Login Button -->
-                    <button type="submit" 
+                    <button type="submit"
                         class="btn btn-login w-100 mb-4 d-flex align-items-center justify-content-center gap-2"
-                        x-bind:class="{ 'is-loading': loading }"
-                        style="min-height: 48px;">
-                        <span x-show="loading" x-cloak class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        <span x-text="loading ? '{{ __('auth.login.continue') }}...' : '{{ __('auth.login.continue') }}'">
+                        x-bind:class="{ 'is-loading': loading }" style="min-height: 48px;">
+                        <span x-show="loading" x-cloak class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        <span
+                            x-text="loading ? '{{ __('auth.login.continue') }}...' : '{{ __('auth.login.continue') }}'">
                             {{ __('auth.login.continue') }}
                         </span>
                     </button>

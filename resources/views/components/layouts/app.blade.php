@@ -11,7 +11,7 @@
     <!-- favicon -->
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.webp') }}" />
     <!-- title -->
     <title>{{ $title ?? 'Investment | Home' }}</title>
     <!-- Bootstrap Icons -->

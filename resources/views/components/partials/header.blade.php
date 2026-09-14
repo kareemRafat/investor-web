@@ -4,7 +4,8 @@
         <div class="d-flex align-items-center justify-content-between bg-white py-3 px-4 shadow-sm rounded-8">
             <!-- logo -->
             <a href="{{ route('main.landing') }}" wire:navigate class="logo" title="Investment" aria-label="Investment">
-                <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid" width="120" height="120" />
+                <img src="{{ asset('images/logo.webp') }}" alt="logo" class="img-fluid" width="120"
+                    height="120" />
             </a>
             <!-- menu items -->
             <nav class="d-none d-xl-flex">
@@ -175,7 +176,8 @@
                                     </li>
                                 @endauth
                                 <li>
-                                    <a href="{{ route('main.profile') }}" class="text-dark d-flex align-items-center gap-2 py-2">
+                                    <a href="{{ route('main.profile') }}"
+                                        class="text-dark d-flex align-items-center gap-2 py-2">
                                         <i class="bi bi-person-fill fs-5 text-primary"></i>
                                         <span>{{ __('header.profile') }}</span>
                                     </a>

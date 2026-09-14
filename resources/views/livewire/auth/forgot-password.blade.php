@@ -42,14 +42,15 @@
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('password.email')) }}" method="POST" x-on:submit="loading = true">
+                <form action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('password.email')) }}"
+                    method="POST" x-on:submit="loading = true">
                     @csrf
 
                     <!-- Logo & Title -->
                     <div class="mb-4">
                         <a href="/" wire:navigate>
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid mb-3"
-                                width="80">
+                            <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="img-fluid mb-3"
+                                width="150">
                         </a>
                         <h1 class="logo-text">{{ __('auth.forgot_password.title') }}</h1>
                         <p class="subtitle">{{ __('auth.forgot_password.subtitle') }}</p>
@@ -98,8 +99,7 @@
 
                     <!-- Back Link -->
                     <div class="text-center">
-                        <a href="{{ route('login') }}" wire:navigate
-                            class="link-primary small">
+                        <a href="{{ route('login') }}" wire:navigate class="link-primary small">
                             <i class="bi bi-arrow-{{ app()->getLocale() === 'ar' ? 'right' : 'left' }} me-1"></i>
                             {{ __('auth.forgot_password.back') }}
                         </a>

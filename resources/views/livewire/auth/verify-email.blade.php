@@ -43,13 +43,15 @@
         <!-- Form Side -->
         <div class="form-side">
             <div class="form-container">
-                <form method="POST" action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('verification.send')) }}" x-on:submit="loading = true">
+                <form method="POST"
+                    action="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('verification.send')) }}"
+                    x-on:submit="loading = true">
                     @csrf
                     <div class="d-flex flex-column gap-3">
                         <!-- Logo -->
                         <div class="mb-3 text-center">
                             <a href="/" wire:navigate>
-                                <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="img-fluid"
+                                <img src="{{ asset('images/logo.webp') }}" alt="Logo" class="img-fluid"
                                     width="100">
                             </a>
                         </div>
