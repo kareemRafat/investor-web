@@ -115,4 +115,72 @@ class InvestmentFormTest extends TestCase
         $user->refresh();
         $this->assertEquals(9, $user->contact_credits);
     }
+
+    /** @test */
+    public function it_validates_in_background_via_next_step_validated()
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(InvestmentForm::class)
+            // Invalid step 1 stays put with errors (client was on step 1)
+            ->call('nextStepValidated', 1)
+            ->assertHasErrors(['state.step1.investorField' => 'required'])
+            ->assertSet('currentStep', 1)
+            // Valid step 1 advances + unlocks step 2
+            ->set('state.step1.investorField', 'industrial')
+            ->call('nextStepValidated', 1)
+            ->assertHasNoErrors()
+            ->assertSet('currentStep', 2)
+            ->assertSet('maxAllowedStep', 2)
+            // Resync path: client went back to 1 then forward again
+            ->call('nextStepValidated', 1)
+            ->assertHasNoErrors()
+            ->assertSet('currentStep', 2);
+    }
+
+    /** @test */
+    public function it_finishes_the_wizard_after_validating_all_steps()
+    {
+        $user = User::factory()->create([
+            'contact_credits' => 10,
+            'plan_type' => \App\Enums\PlanType::MONTHLY,
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(InvestmentForm::class)
+            ->set('state.step1.investorField', 'industrial')
+            ->set('state.step2.countries', ['US', 'SA'])
+            ->set('state.step3.disableResources', false)
+            ->set('state.step3.data.company', 'yes')
+            ->set('state.step3.data.space_type', 'large')
+            ->set('state.step3.data.staff', 'no')
+            ->set('state.step3.data.workers', 'no')
+            ->set('state.step3.data.executive_spaces', 'no')
+            ->set('state.step3.data.equipment', 'no')
+            ->set('state.step3.data.software', 'no')
+            ->set('state.step3.data.website', 'no')
+            ->set('state.step4.data.contribute_type', 'capital')
+            ->set('state.step4.data.money_amount', 10000)
+            ->set('state.step5.data.money_contributions', 1)
+            ->set('state.step6.data.investor_title', 'Big Investor')
+            ->set('state.step6.data.summary', 'I want to invest in tech projects.')
+            ->set('state.step6.data.contact_visibility', 'open')
+            ->set('state.step6.job_title', 'Engineer')
+            ->set('state.step6.phone', '0500000000')
+            ->set('state.step6.residence_country', 'Saudi Arabia')
+            ->set('state.step6.birth_date', '1990-01-01')
+            ->call('finishWizard')
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('investors', [
+            'user_id' => $user->id,
+            'title' => 'Big Investor',
+            'investor_field' => 'industrial',
+            'contact_visibility' => 'open',
+        ]);
+
+        $user->refresh();
+        $this->assertEquals(9, $user->contact_credits);
+    }
 }

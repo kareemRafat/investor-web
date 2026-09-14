@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Idea\Traits;
 
+use App\Livewire\Forms\Idea\Step1Form;
 use App\Models\Idea;
 
 trait Step1
@@ -19,10 +20,6 @@ trait Step1
 
     public function validateStep1()
     {
-        $this->validate([
-            'state.step1.ideaField' => 'required',
-        ], [
-            'state.step1.ideaField.required' => __('idea.validation.step1.idea_field'),
-        ]);
+        $this->validate(Step1Form::rules(), Step1Form::messages());
     }
 }

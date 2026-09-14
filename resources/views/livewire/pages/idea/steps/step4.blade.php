@@ -16,12 +16,12 @@
                             <!-- main type -->
                             <div class="col-12">
                                 <input type="radio" class="btn-check" id="profit-one-time" value="one-time"
-                                    x-model="state.step4.profit_type" 
-                                    wire:model.live="state.step4.profit_type" 
+                                    x-model="state.step4.profit_type"
                                     @click="state.step4.profit_range_id = null; if (isMobile) expandedType = expandedType === 'one-time' ? null : 'one-time'"
                                     name="profit_type" autocomplete="off">
 
-                                <label class="choice-component cost-variant w-100" for="profit-one-time">
+                                <label class="choice-component cost-variant w-100 @error('state.step4.profit_type') choice-invalid @enderror" for="profit-one-time"
+                                    :class="{ 'choice-invalid': errors['state.step4.profit_type'] }">
                                     <span class="choice-text">
                                         {{ __('idea.steps.step4.types.one_time') }}
                                     </span>
@@ -42,13 +42,12 @@
                                         <div class="col-12 col-md-6">
                                             <input type="radio" class="btn-check"
                                                 id="profit-one-time-{{ $range->value }}" value="{{ $range->value }}"
-                                                x-model="state.step4.profit_range_id" 
-                                                wire:model.live="state.step4.profit_range_id" 
+                                                x-model="state.step4.profit_range_id"
                                                 :disabled="state.step4.profit_type !== 'one-time'"
                                                 autocomplete="off">
 
-                                            <label class="choice-component range-variant w-100"
-                                                :class="{ 'disabled': state.step4.profit_type !== 'one-time' }"
+                                            <label class="choice-component range-variant w-100 @error('state.step4.profit_range_id') choice-invalid @enderror"
+                                                :class="{ 'disabled': state.step4.profit_type !== 'one-time', 'choice-invalid': errors['state.step4.profit_range_id'] }"
                                                 for="profit-one-time-{{ $range->value }}">
                                                 <span class="choice-text text-center">
                                                     {!! $range->label() !!}
@@ -73,12 +72,12 @@
                             <!-- main type -->
                             <div class="col-12">
                                 <input type="radio" class="btn-check" id="profit-annual" value="annual"
-                                    x-model="state.step4.profit_type" 
-                                    wire:model.live="state.step4.profit_type" 
+                                    x-model="state.step4.profit_type"
                                     @click="state.step4.profit_range_id = null; if (isMobile) expandedType = expandedType === 'annual' ? null : 'annual'"
                                     name="profit_type" autocomplete="off">
 
-                                <label class="choice-component cost-variant w-100" for="profit-annual">
+                                <label class="choice-component cost-variant w-100 @error('state.step4.profit_type') choice-invalid @enderror" for="profit-annual"
+                                    :class="{ 'choice-invalid': errors['state.step4.profit_type'] }">
                                     <span class="choice-text">
                                         {{ __('idea.steps.step4.types.annual') }}
                                     </span>
@@ -99,13 +98,12 @@
                                         <div class="col-12 col-md-6">
                                             <input type="radio" class="btn-check"
                                                 id="profit-annual-{{ $range->value }}" value="{{ $range->value }}"
-                                                x-model="state.step4.profit_range_id" 
-                                                wire:model.live="state.step4.profit_range_id" 
+                                                x-model="state.step4.profit_range_id"
                                                 :disabled="state.step4.profit_type !== 'annual'"
                                                 autocomplete="off">
 
-                                            <label class="choice-component range-variant w-100"
-                                                :class="{ 'disabled': state.step4.profit_type !== 'annual' }"
+                                            <label class="choice-component range-variant w-100 @error('state.step4.profit_range_id') choice-invalid @enderror"
+                                                :class="{ 'disabled': state.step4.profit_type !== 'annual', 'choice-invalid': errors['state.step4.profit_range_id'] }"
                                                 for="profit-annual-{{ $range->value }}">
                                                 <span class="choice-text text-center">
                                                     {!! $range->label() !!}
@@ -130,17 +128,17 @@
     {{-- errors --}}
     <div class="d-flex flex-column align-items-center">
         @if ($errors->has('state.step4.profit_type') || $errors->has('state.step4.profit_range_id'))
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <div class="field-error">
+                <i class="bi bi-exclamation-circle-fill"></i>
                 <span>{{ $errors->first('state.step4.profit_type') ?: $errors->first('state.step4.profit_range_id') }}</span>
             </div>
         @endif
-        <div x-show="errors['state.step4.profit_type']" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+        <div x-show="errors['state.step4.profit_type']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
             <span x-text="errors['state.step4.profit_type']"></span>
         </div>
-        <div x-show="errors['state.step4.profit_range_id']" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+        <div x-show="errors['state.step4.profit_range_id']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
             <span x-text="errors['state.step4.profit_range_id']"></span>
         </div>
     </div>

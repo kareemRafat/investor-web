@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Investment\Traits;
 
+use App\Livewire\Forms\Investment\Step2Form;
 use App\Models\Investor;
 
 trait Step2
@@ -19,11 +20,6 @@ trait Step2
 
     public function validateStep2()
     {
-        $this->validate([
-            'state.step2.countries' => 'required|array|min:1|max:3',
-            'state.step2.countries.*' => 'string',
-        ], [
-            'state.step2.countries.required' => __('investor.validation.step2.countries'),
-        ]);
+        $this->validate(Step2Form::rules(), Step2Form::messages());
     }
 }

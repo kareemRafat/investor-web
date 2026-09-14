@@ -108,6 +108,43 @@ class InvestmentForm extends Component
         $this->goToNextStep();
     }
 
+    /**
+     * Instant-nav endpoint: Alpine advances the UI optimistically, then calls
+     * this in the background with the step the user was on. On success the
+     * server pointers align; on ValidationException Livewire pushes the
+     * failed step back down via entanglement (automatic rollback).
+     */
+    public function nextStepValidated(int $clientStep)
+    {
+        $this->currentStep = max(1, min($clientStep, $this->totalSteps - 1));
+
+        $method = "validateStep{$this->currentStep}";
+        if (method_exists($this, $method)) {
+            $this->$method();
+        }
+
+        $this->goToNextStep();
+    }
+
+    /**
+     * Finish endpoint: validates every step (dot-skipping can't bypass
+     * server rules) then runs the normal save flow.
+     */
+    public function finishWizard()
+    {
+        for ($i = 1; $i < $this->totalSteps; $i++) {
+            $method = "validateStep{$i}";
+            if (method_exists($this, $method)) {
+                $this->currentStep = $i;
+                $this->$method();
+            }
+        }
+
+        $this->currentStep = $this->totalSteps;
+
+        return $this->save();
+    }
+
     public function goToNextStep()
     {
         if ($this->maxAllowedStep < $this->totalSteps) {
@@ -260,9 +297,10 @@ class InvestmentForm extends Component
         $contributionData['money_contributions'] = $this->state['step5']['data']['money_contributions'];
         $investor->setRelation('contributions', new InvestorContribution($contributionData));
 
-        // Handle attachments for preview
+        // Handle attachments for preview (summary step only — skip the query
+        // on every intermediate navigation).
         $investorId = session('current_investor_id');
-        if ($investorId) {
+        if ($investorId && $this->currentStep === $this->totalSteps) {
             $realInvestor = Investor::find($investorId);
             if ($realInvestor) {
                 $investor->id = $realInvestor->id;

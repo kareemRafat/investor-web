@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Idea\Traits;
 
 use App\Enums\CostProfitRange;
+use App\Livewire\Forms\Idea\Step4Form;
 use App\Models\Idea;
 
 trait Step4
@@ -24,13 +25,7 @@ trait Step4
 
     public function validateStep4()
     {
-        $this->validate([
-            'state.step4.profit_type' => 'required|in:one-time,annual',
-            'state.step4.profit_range_id' => 'required|integer',
-        ], [
-            'state.step4.profit_type.*' => __('idea.validation.step4.profit_type'),
-            'state.step4.profit_range_id.*' => __('idea.validation.step4.profit_range'),
-        ]);
+        $this->validate(Step4Form::rules(), Step4Form::messages());
     }
 
     public function getOneTimeProfitRangesProperty()

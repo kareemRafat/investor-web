@@ -11,10 +11,11 @@
                         x-model="state.step2.countries" value="{{ $country['code'] }}"
                         x-bind:disabled="state.step2.countries.length >= limit && !state.step2.countries.includes(
                             '{{ $country['code'] }}')">
-                    <label class="choice-component country-variant w-100" for="country-{{ $index }}"
+                    <label class="choice-component country-variant w-100 @error('state.step2.countries') choice-invalid @enderror" for="country-{{ $index }}"
                         x-bind:class="{
                             'disabled': state.step2.countries.length >= limit && !state.step2.countries.includes(
-                                '{{ $country['code'] }}')
+                                '{{ $country['code'] }}'),
+                            'choice-invalid': errors['state.step2.countries']
                         }">
                         <span class="choice-text">{{ $country['name'] }}</span>
                         <div class="choice-radio-indicator">
@@ -29,14 +30,14 @@
     <div class="d-flex flex-column align-items-center">
         @error('state.step2.countries')
             <div class="d-flex justify-content-center">
-                <div class="error-alert-custom">
-                    <i class="bi bi-exclamation-circle-fill fs-5"></i>
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
                     <span>{{ $message }}</span>
                 </div>
             </div>
         @enderror
-        <div x-show="errors['state.step2.countries']" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+        <div x-show="errors['state.step2.countries']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
             <span x-text="errors['state.step2.countries']"></span>
         </div>
     </div>

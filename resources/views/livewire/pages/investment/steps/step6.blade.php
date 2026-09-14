@@ -6,12 +6,24 @@
     <div class="step_height bg-white rounded-8 shadow-sm p-3 p-md-3 p-lg-4">
         <div class="row g-3">
             <div class="col-12">
-                <input type="text" class="form-control border-custom rounded-5 p-2"
-                    placeholder="{{ __('investor.steps.step6.investor_title') }}" wire:model='state.step6.data.investor_title'>
+                <input type="text" class="form-control border-custom rounded-5 p-2 @error('state.step6.data.investor_title') is-invalid @enderror"
+                    :class="errors['state.step6.data.investor_title'] && 'is-invalid'"
+                    placeholder="{{ __('investor.steps.step6.investor_title') }}" x-model="state.step6.data.investor_title">
+                @error('state.step6.data.investor_title')
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                @enderror
+                <div x-show="errors['state.step6.data.investor_title']" class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span x-text="errors['state.step6.data.investor_title']"></span>
+                </div>
             </div>
             <div class="col-12 position-relative">
-                <textarea class="form-control border-custom rounded-5 pt-3" rows="8"
-                    placeholder="{{ __('investor.steps.step6.placeholder') }}" wire:model='state.step6.data.summary'
+                <textarea class="form-control border-custom rounded-5 pt-3 @error('state.step6.data.summary') is-invalid @enderror" rows="8"
+                    :class="errors['state.step6.data.summary'] && 'is-invalid'"
+                    placeholder="{{ __('investor.steps.step6.placeholder') }}" x-model="state.step6.data.summary"
                     style="text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};"
                     dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}"></textarea>
 
@@ -22,6 +34,16 @@
                     <small class="text-primary">
                         {{ __('investor.steps.step6.max_characters') }}
                     </small>
+                </div>
+                @error('state.step6.data.summary')
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                @enderror
+                <div x-show="errors['state.step6.data.summary']" class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span x-text="errors['state.step6.data.summary']"></span>
                 </div>
             </div>
 
@@ -34,10 +56,10 @@
 
                     {{-- Closed --}}
                     <label
-                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2 cursor-pointer
-                   {{ ($state['step6']['data']['contact_visibility'] ?? 'closed') === 'closed' ? 'border-primary text-primary' : 'border-custom' }}">
+                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2 cursor-pointer @error('state.step6.data.contact_visibility') choice-invalid @enderror"
+                        :class="(state.step6.data.contact_visibility ?? 'closed') === 'closed' ? 'border-primary text-primary' : 'border-custom'">
                         <input type="radio" class="form-check-input" value="closed"
-                            wire:model="state.step6.data.contact_visibility">
+                            x-model="state.step6.data.contact_visibility">
                         <span>
                             🔒 {{ __('investor.steps.step6.contact_closed') }}
                         </span>
@@ -48,17 +70,27 @@
                         $isFree = auth()->user()->plan_type === \App\Enums\PlanType::FREE;
                     @endphp
                     <label
-                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2
-                   {{ ($state['step6']['data']['contact_visibility'] ?? 'closed') === 'open' ? 'border-primary text-primary' : 'border-custom' }}
-                   {{ $isFree ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}">
+                        class="d-flex align-items-center gap-2 border rounded-5 px-3 py-2 {{ $isFree ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }} @error('state.step6.data.contact_visibility') choice-invalid @enderror"
+                        :class="(state.step6.data.contact_visibility ?? 'closed') === 'open' ? 'border-primary text-primary' : 'border-custom'">
                         <input type="radio" class="form-check-input" value="open"
-                            wire:model="state.step6.data.contact_visibility"
+                            x-model="state.step6.data.contact_visibility"
                             {{ $isFree ? 'disabled' : '' }}>
                         <span>
                             🔓 {{ __('investor.steps.step6.contact_open') }}
                         </span>
                     </label>
 
+                </div>
+
+                @error('state.step6.data.contact_visibility')
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                @enderror
+                <div x-show="errors['state.step6.data.contact_visibility']" class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span x-text="errors['state.step6.data.contact_visibility']"></span>
                 </div>
 
                 @if($isFree)
@@ -97,6 +129,12 @@
                         </small>
                     </div>
                 @endif
+                @error('state.step6.data.attachment')
+                    <div class="mt-2 field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                @enderror
             </div>
 
             @if ($state['step6']['showProfileFields'])
@@ -108,30 +146,43 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">{{ __('pages.register.job_title') }}</label>
-                            <input type="text" wire:model="state.step6.job_title" class="form-control border-custom rounded-5"
+                            <input type="text" x-model="state.step6.job_title" class="form-control border-custom rounded-5 @error('state.step6.job_title') is-invalid @enderror"
+                                :class="errors['state.step6.job_title'] && 'is-invalid'"
                                 placeholder="{{ __('profile.placeholders.job_title') }}">
                             @error('state.step6.job_title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
+                            <div x-show="errors['state.step6.job_title']">
+                                <small class="text-danger" x-text="errors['state.step6.job_title']"></small>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">{{ __('pages.register.phone') }}</label>
-                            <input type="tel" wire:model="state.step6.phone" class="form-control border-custom rounded-5"
+                            <input type="tel" x-model="state.step6.phone" class="form-control border-custom rounded-5 @error('state.step6.phone') is-invalid @enderror"
+                                :class="errors['state.step6.phone'] && 'is-invalid'"
                                 placeholder="{{ __('profile.placeholders.phone') }}">
                             @error('state.step6.phone')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
+                            <div x-show="errors['state.step6.phone']">
+                                <small class="text-danger" x-text="errors['state.step6.phone']"></small>
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <label class="form-label fw-semibold">{{ __('pages.register.birth_date') }}</label>
-                            <input type="date" wire:model="state.step6.birth_date" class="form-control border-custom rounded-5">
+                            <input type="date" x-model="state.step6.birth_date" class="form-control border-custom rounded-5 @error('state.step6.birth_date') is-invalid @enderror"
+                                :class="errors['state.step6.birth_date'] && 'is-invalid'">
                             @error('state.step6.birth_date')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
+                            <div x-show="errors['state.step6.birth_date']">
+                                <small class="text-danger" x-text="errors['state.step6.birth_date']"></small>
+                            </div>
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">{{ __('pages.register.residence_country') }}</label>
-                            <select wire:model="state.step6.residence_country" class="form-select border-custom rounded-5">
+                            <select x-model="state.step6.residence_country" class="form-select border-custom rounded-5 @error('state.step6.residence_country') is-invalid @enderror"
+                                :class="errors['state.step6.residence_country'] && 'is-invalid'">
                                 <option value="">{{ __('profile.placeholders.select_country') }}</option>
                                 @foreach (__('profile.countries') as $code => $name)
                                     <option value="{{ $name }}">{{ $name }}</option>
@@ -140,6 +191,9 @@
                             @error('state.step6.residence_country')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
+                            <div x-show="errors['state.step6.residence_country']">
+                                <small class="text-danger" x-text="errors['state.step6.residence_country']"></small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -150,16 +204,4 @@
     <!-- hidden client date -->
     <x-form.hidden-client-date wire-model="state.step6.data.created_at" />
 
-    <div class="d-flex flex-column align-items-center mt-3">
-        @if ($errors->any())
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
-                <span>{{ $errors->first() }}</span>
-            </div>
-        @endif
-        <div x-show="Object.keys(errors).length > 0" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
-            <span x-text="Object.values(errors)[0]"></span>
-        </div>
-    </div>
 </div>

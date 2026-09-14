@@ -7,9 +7,10 @@
         <div class="row g-2 g-md-3">
             @foreach ($ideaOptions as $key => $label)
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <input type="radio" class="btn-check" wire:model="state.step1.ideaField" id="idea-{{ $key }}"
+                    <input type="radio" class="btn-check" x-model="state.step1.ideaField" id="idea-{{ $key }}"
                         value="{{ $key }}" name="ideaField">
-                    <label for="idea-{{ $key }}" class="choice-component idea-variant w-100">
+                    <label for="idea-{{ $key }}" class="choice-component idea-variant w-100 @error('state.step1.ideaField') choice-invalid @enderror"
+                        :class="{ 'choice-invalid': errors['state.step1.ideaField'] }">
                         <span class="choice-text">{{ $label }}</span>
                         <div class="choice-radio-indicator">
                             <i class="bi bi-check-lg fs-5"></i>
@@ -21,13 +22,13 @@
     </div>
     <div class="d-flex flex-column align-items-center">
         @error('state.step1.ideaField')
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <div class="field-error">
+                <i class="bi bi-exclamation-circle-fill"></i>
                 <span>{{ $message }}</span>
             </div>
         @enderror
-        <div x-show="errors['state.step1.ideaField']" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+        <div x-show="errors['state.step1.ideaField']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
             <span x-text="errors['state.step1.ideaField']"></span>
         </div>
     </div>

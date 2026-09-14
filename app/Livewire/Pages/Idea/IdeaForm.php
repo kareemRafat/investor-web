@@ -137,6 +137,43 @@ class IdeaForm extends Component
         $this->goToNextStep();
     }
 
+    /**
+     * Instant-nav endpoint: Alpine advances the UI optimistically, then calls
+     * this in the background with the step the user was on. On success the
+     * server pointers align; on ValidationException Livewire pushes the
+     * failed step back down via entanglement (automatic rollback).
+     */
+    public function nextStepValidated(int $clientStep)
+    {
+        $this->currentStep = max(1, min($clientStep, $this->totalSteps - 1));
+
+        $method = "validateStep{$this->currentStep}";
+        if (method_exists($this, $method)) {
+            $this->$method();
+        }
+
+        $this->goToNextStep();
+    }
+
+    /**
+     * Finish endpoint: validates every step (dot-skipping can't bypass
+     * server rules) then runs the normal save flow.
+     */
+    public function finishWizard()
+    {
+        for ($i = 1; $i < $this->totalSteps; $i++) {
+            $method = "validateStep{$i}";
+            if (method_exists($this, $method)) {
+                $this->currentStep = $i;
+                $this->$method();
+            }
+        }
+
+        $this->currentStep = $this->totalSteps;
+
+        return $this->save();
+    }
+
     public function goToNextStep()
     {
         if ($this->maxAllowedStep < $this->totalSteps) {
@@ -316,9 +353,10 @@ class IdeaForm extends Component
         $idea->setRelation('contributions', collect([new IdeaContribution($this->state['step7']['data'])]));
         $idea->setRelation('returns', new IdeaReturn($this->state['step8']['data']));
 
-        // Real attachments if we have an ID
+        // Real attachments only matter on the summary step — skip the query
+        // on every intermediate navigation.
         $ideaId = session('current_idea_id');
-        if ($ideaId) {
+        if ($ideaId && $this->currentStep === $this->totalSteps) {
             $realIdea = Idea::find($ideaId);
             if ($realIdea) {
                 $idea->id = $realIdea->id;

@@ -39,6 +39,45 @@ class IdeaFormTest extends TestCase
     }
 
     /** @test */
+    public function it_validates_in_background_via_next_step_validated()
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(IdeaForm::class)
+            // Invalid step 1 stays put with errors (client was on step 1)
+            ->call('nextStepValidated', 1)
+            ->assertHasErrors(['state.step1.ideaField' => 'required'])
+            ->assertSet('currentStep', 1)
+            // Valid step 1 advances + unlocks step 2
+            ->set('state.step1.ideaField', 'tech')
+            ->call('nextStepValidated', 1)
+            ->assertHasNoErrors()
+            ->assertSet('currentStep', 2)
+            ->assertSet('maxAllowedStep', 2)
+            // Resync path: client went back to 1 then forward again
+            ->call('nextStepValidated', 1)
+            ->assertHasNoErrors()
+            ->assertSet('currentStep', 2);
+    }
+
+    /** @test */
+    public function it_rejects_finish_when_any_step_is_invalid()
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(IdeaForm::class)
+            ->set('state.step1.ideaField', 'tech')
+            // Step 2 countries missing -> finish must fail before touching the DB
+            ->call('finishWizard')
+            ->assertHasErrors(['state.step2.countries' => 'required'])
+            ->assertSet('currentStep', 2);
+
+        $this->assertDatabaseMissing('ideas', ['user_id' => $user->id]);
+    }
+
+    /** @test */
     public function it_saves_the_entire_idea_form_in_one_go()
     {
         $user = User::factory()->create([

@@ -16,11 +16,11 @@
                                 <!-- main button -->
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="one-time" value="one-time"
-                                        x-model="state.step3.cost_type" 
-                                        wire:model.live="state.step3.cost_type"
+                                        x-model="state.step3.cost_type"
                                         @click="state.step3.range_id = null; if (isMobile) expandedType = expandedType === 'one-time' ? null : 'one-time'"
                                         name="cost_type" autocomplete="off">
-                                    <label class="choice-component cost-variant w-100" for="one-time">
+                                    <label class="choice-component cost-variant w-100 @error('state.step3.cost_type') choice-invalid @enderror" for="one-time"
+                                        :class="{ 'choice-invalid': errors['state.step3.cost_type'] }">
                                         <span class="choice-text">{{ __('idea.steps.step3.types.one-time') }}</span>
                                         <span class="d-lg-none mobile-arrow"
                                             x-text="expandedType === 'one-time' ? '▲' : '▼'"></span>
@@ -38,11 +38,10 @@
                                                 <input type="radio" class="btn-check"
                                                     id="one-time-{{ $range->value }}" value="{{ $range->value }}"
                                                     x-model="state.step3.range_id"
-                                                    wire:model.live="state.step3.range_id" 
                                                     :disabled="state.step3.cost_type !== 'one-time'"
                                                     autocomplete="off">
-                                                <label class="choice-component range-variant w-100"
-                                                    :class="{ 'disabled': state.step3.cost_type !== 'one-time' }"
+                                                <label class="choice-component range-variant w-100 @error('state.step3.range_id') choice-invalid @enderror"
+                                                    :class="{ 'disabled': state.step3.cost_type !== 'one-time', 'choice-invalid': errors['state.step3.range_id'] }"
                                                     for="one-time-{{ $range->value }}">
                                                     <span class="choice-text text-center">
                                                         {!! $range->label() !!}
@@ -67,10 +66,10 @@
                                 <div class="col-12">
                                     <input type="radio" class="btn-check" id="annual" value="annual"
                                         x-model="state.step3.cost_type"
-                                        wire:model.live="state.step3.cost_type" 
                                         @click="state.step3.range_id = null; if (isMobile) expandedType = expandedType === 'annual' ? null : 'annual'"
                                         name="cost_type" autocomplete="off">
-                                    <label class="choice-component cost-variant w-100" for="annual">
+                                    <label class="choice-component cost-variant w-100 @error('state.step3.cost_type') choice-invalid @enderror" for="annual"
+                                        :class="{ 'choice-invalid': errors['state.step3.cost_type'] }">
                                         <span class="choice-text">{{ __('idea.steps.step3.types.annual') }}</span>
                                         <span class="d-lg-none mobile-arrow"
                                             x-text="expandedType === 'annual' ? '▲' : '▼'"></span>
@@ -86,12 +85,11 @@
                                         @foreach ($annualRanges as $range)
                                             <div class="col-12 col-md-6">
                                                 <input type="radio" class="btn-check" id="annual-{{ $range->value }}"
-                                                    value="{{ $range->value }}" 
+                                                    value="{{ $range->value }}"
                                                     x-model="state.step3.range_id"
-                                                    wire:model.live="state.step3.range_id"
                                                     :disabled="state.step3.cost_type !== 'annual'" autocomplete="off">
-                                                <label class="choice-component range-variant w-100"
-                                                    :class="{ 'disabled': state.step3.cost_type !== 'annual' }"
+                                                <label class="choice-component range-variant w-100 @error('state.step3.range_id') choice-invalid @enderror"
+                                                    :class="{ 'disabled': state.step3.cost_type !== 'annual', 'choice-invalid': errors['state.step3.range_id'] }"
                                                     for="annual-{{ $range->value }}">
                                                     <span class="choice-text text-center">
                                                         {!! $range->label() !!}
@@ -114,24 +112,24 @@
     </div>
     <div class="d-flex justify-content-center gap-2 flex-column align-items-center">
         @error('state.step3.cost_type')
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <div class="field-error">
+                <i class="bi bi-exclamation-circle-fill"></i>
                 <span>{{ $message }}</span>
             </div>
         @enderror
-        <div x-show="errors['state.step3.cost_type']" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+        <div x-show="errors['state.step3.cost_type']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
             <span x-text="errors['state.step3.cost_type']"></span>
         </div>
 
         @error('state.step3.range_id')
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
+            <div class="field-error">
+                <i class="bi bi-exclamation-circle-fill"></i>
                 <span>{{ $message }}</span>
             </div>
         @enderror
-        <div x-show="errors['state.step3.range_id']" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
+        <div x-show="errors['state.step3.range_id']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
             <span x-text="errors['state.step3.range_id']"></span>
         </div>
     </div>

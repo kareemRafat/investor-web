@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Pages\Investment\Traits;
 
+use App\Livewire\Forms\Investment\Step6Form;
 use App\Models\Investor;
 use App\Traits\HandlesAttachmentUpload;
-use Livewire\WithFileUploads;
 
 trait Step6
 {
-    use HandlesAttachmentUpload, WithFileUploads;
+    use HandlesAttachmentUpload;
 
     public function initStep6()
     {
@@ -44,33 +44,10 @@ trait Step6
             return;
         }
 
-        $rules = [
-            'state.step6.data.investor_title' => 'required|string|max:200',
-            'state.step6.data.summary' => 'required|string|max:2000',
-            'state.step6.data.attachment' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:10240',
-            'state.step6.data.contact_visibility' => 'required|in:open,closed',
-        ];
-
-        if ($this->state['step6']['showProfileFields']) {
-            $rules['state.step6.job_title'] = 'required|string|max:255';
-            $rules['state.step6.phone'] = 'required|string|max:255';
-            $rules['state.step6.residence_country'] = 'required|string|max:255';
-            $rules['state.step6.birth_date'] = 'required|date|before:today';
-        }
-
-        $this->validate($rules, [
-            'state.step6.data.investor_title.required' => __('investor.validation.step6.investor_title_required'),
-            'state.step6.data.investor_title.string' => __('investor.validation.step6.investor_title_string'),
-            'state.step6.data.investor_title.max' => __('investor.validation.step6.investor_title_max'),
-
-            'state.step6.data.summary.required' => __('investor.validation.step6.summary_required'),
-            'state.step6.data.summary.string' => __('investor.validation.step6.summary_string'),
-            'state.step6.data.summary.max' => __('investor.validation.step6.summary_max'),
-
-            'state.step6.data.attachment.file' => __('investor.validation.step6.attachments_file'),
-            'state.step6.data.attachment.mimes' => __('investor.validation.step6.attachments_mimes'),
-            'state.step6.data.attachment.max' => __('investor.validation.step6.attachments_max'),
-        ]);
+        $this->validate(
+            Step6Form::rules((bool) $this->state['step6']['showProfileFields']),
+            Step6Form::messages()
+        );
 
         // Check credits if changing from closed to open
         $investorId = session('current_investor_id');

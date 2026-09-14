@@ -1,29 +1,4 @@
-<div x-data="{
-    return_type: @entangle('state.step8.data.return_type'),
-    activeColumn: @entangle('state.step8.data.return_type'),
-    expanded: null,
-    isMobile: window.innerWidth < 992,
-    toggle(column) {
-        if (this.isMobile) {
-            this.expanded = this.expanded === column ? null : column;
-        }
-    },
-    clearOther(type) {
-        this.activeColumn = type;
-        if (type !== 'profit') {
-            $wire.set('state.step8.data.profit_only_percentage', null);
-        }
-        if (type !== 'one_time') {
-            $wire.set('state.step8.data.one_time_dollar', null);
-            $wire.set('state.step8.data.one_time_sar', null);
-        }
-        if (type !== 'combo') {
-            $wire.set('state.step8.data.combo_dollar', null);
-            $wire.set('state.step8.data.combo_sar', null);
-            $wire.set('state.step8.data.combo_percentage', null);
-        }
-    }
-}" x-init="window.addEventListener('resize', () => isMobile = window.innerWidth < 992)">
+<div x-init="window.addEventListener('resize', () => isMobile = window.innerWidth < 992)">
 
     {{-- step header --}}
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
@@ -34,11 +9,12 @@
 
             {{-- Profit Share --}}
             <div class="col-lg-4 col-md-6 col-12">
-                <div class="requirement-row h-100">
+                <div class="requirement-row h-100 @error('state.step8.data.profit_only_percentage') choice-invalid @enderror @error('state.step8.data') choice-invalid @enderror"
+                    :class="{ 'choice-invalid': errors['state.step8.data.profit_only_percentage'] || errors['state.step8.data'] }">
                     <div class="row g-3">
                         <div class="col-12">
-                            <input type="radio" class="btn-check" id="profit_only" wire:model="state.step8.data.return_type"
-                                value="profit" @change="clearOther('profit')">
+                            <input type="radio" class="btn-check" id="profit_only" x-model="state.step8.data.return_type"
+                                value="profit" @change="clearStep8('profit')">
                             <label class="choice-component cost-variant w-100" for="profit_only"
                                 @click.stop="toggle('profit')">
                                 <span class="choice-text">{{ __('idea.steps.step8.profit_share') }}</span>
@@ -54,10 +30,10 @@
                                 @foreach ([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75] as $percent)
                                     <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
                                         <input type="radio" class="btn-check" id="profit_only_{{ $percent }}"
-                                            value="{{ $percent }}" wire:model="state.step8.data.profit_only_percentage"
-                                            name="profit_only_percentage" :disabled="activeColumn !== 'profit'">
+                                            value="{{ $percent }}" x-model="state.step8.data.profit_only_percentage"
+                                            name="profit_only_percentage" :disabled="state.step8.data.return_type !== 'profit'">
                                         <label class="choice-component range-variant w-100"
-                                            :class="{ 'disabled': activeColumn !== 'profit' }"
+                                            :class="{ 'disabled': state.step8.data.return_type !== 'profit' }"
                                             for="profit_only_{{ $percent }}">
                                             <span class="choice-text">{{ $percent }} %</span>
                                             <div class="choice-radio-indicator">
@@ -74,11 +50,12 @@
 
             {{-- One-time sum --}}
             <div class="col-lg-4 col-md-6 col-12">
-                <div class="requirement-row h-100">
+                <div class="requirement-row h-100 @error('state.step8.data.one_time_dollar') choice-invalid @enderror @error('state.step8.data.one_time_sar') choice-invalid @enderror @error('state.step8.one_time') choice-invalid @enderror @error('state.step8.data') choice-invalid @enderror"
+                    :class="{ 'choice-invalid': errors['state.step8.data.one_time_dollar'] || errors['state.step8.data.one_time_sar'] || errors['state.step8.one_time'] || errors['state.step8.one_time_dollar'] || errors['state.step8.one_time_sar'] || errors['state.step8.data'] }">
                     <div class="row g-3">
                         <div class="col-12">
-                            <input type="radio" class="btn-check" id="one_time" wire:model="state.step8.data.return_type"
-                                value="one_time" @change="clearOther('one_time')">
+                            <input type="radio" class="btn-check" id="one_time" x-model="state.step8.data.return_type"
+                                value="one_time" @change="clearStep8('one_time')">
                             <label class="choice-component cost-variant w-100" for="one_time"
                                 @click.stop="toggle('one_time')">
                                 <span class="choice-text">{{ __('idea.steps.step8.one_time_sum') }}</span>
@@ -98,8 +75,8 @@
                                             <span class="currency-label">{{ __('idea.currency.dollar') }}</span>
                                         </div>
                                         <div style="flex: 1;">
-                                            <input type="number" class="number-input" wire:model="state.step8.data.one_time_dollar"
-                                                placeholder="$" :disabled="activeColumn !== 'one_time'">
+                                            <input type="number" class="number-input" x-model="state.step8.data.one_time_dollar"
+                                                placeholder="$" :disabled="state.step8.data.return_type !== 'one_time'">
                                         </div>
                                     </div>
                                 </div>
@@ -110,8 +87,8 @@
                                             <span class="currency-label">{{ __('idea.currency.sar') }}</span>
                                         </div>
                                         <div style="flex: 1;">
-                                            <input type="number" class="number-input" wire:model="state.step8.data.one_time_sar"
-                                                placeholder="﷼" :disabled="activeColumn !== 'one_time'">
+                                            <input type="number" class="number-input" x-model="state.step8.data.one_time_sar"
+                                                placeholder="﷼" :disabled="state.step8.data.return_type !== 'one_time'">
                                         </div>
                                     </div>
                                 </div>
@@ -123,11 +100,12 @@
 
             {{-- Combo --}}
             <div class="col-lg-4 col-md-12 col-12">
-                <div class="requirement-row h-100">
+                <div class="requirement-row h-100 @error('state.step8.data.combo_dollar') choice-invalid @enderror @error('state.step8.data.combo_sar') choice-invalid @enderror @error('state.step8.data.combo_percentage') choice-invalid @enderror @error('state.step8.combo') choice-invalid @enderror @error('state.step8.data') choice-invalid @enderror"
+                    :class="{ 'choice-invalid': errors['state.step8.data.combo_dollar'] || errors['state.step8.data.combo_sar'] || errors['state.step8.data.combo_percentage'] || errors['state.step8.combo'] || errors['state.step8.combo_percentage'] || errors['state.step8.combo_currency'] || errors['state.step8.data'] }">
                     <div class="row g-3">
                         <div class="col-12">
-                            <input type="radio" class="btn-check" id="combo" wire:model="state.step8.data.return_type"
-                                value="combo" @change="clearOther('combo')">
+                            <input type="radio" class="btn-check" id="combo" x-model="state.step8.data.return_type"
+                                value="combo" @change="clearStep8('combo')">
                             <label class="choice-component cost-variant w-100" for="combo"
                                 @click.stop="toggle('combo')">
                                 <span class="choice-text">{{ __('idea.steps.step8.profit_plus_sum') }}</span>
@@ -146,8 +124,8 @@
                                             <span class="currency-label">{{ __('idea.currency.dollar') }}</span>
                                         </div>
                                         <div style="flex: 1;">
-                                            <input type="number" class="number-input" wire:model="state.step8.data.combo_dollar"
-                                                placeholder="$" :disabled="activeColumn !== 'combo'">
+                                            <input type="number" class="number-input" x-model="state.step8.data.combo_dollar"
+                                                placeholder="$" :disabled="state.step8.data.return_type !== 'combo'">
                                         </div>
                                     </div>
                                 </div>
@@ -158,8 +136,8 @@
                                             <span class="currency-label">{{ __('idea.currency.sar') }}</span>
                                         </div>
                                         <div style="flex: 1;">
-                                            <input type="number" class="number-input" wire:model="state.step8.data.combo_sar"
-                                                placeholder="﷼" :disabled="activeColumn !== 'combo'">
+                                            <input type="number" class="number-input" x-model="state.step8.data.combo_sar"
+                                                placeholder="﷼" :disabled="state.step8.data.return_type !== 'combo'">
                                         </div>
                                     </div>
                                 </div>
@@ -170,10 +148,10 @@
                                             <div class="col-6 {{ $percent == 75 ? 'col-12' : '' }}">
                                                 <input type="radio" class="btn-check"
                                                     id="combo_percentage_{{ $percent }}"
-                                                    value="{{ $percent }}" wire:model="state.step8.data.combo_percentage"
-                                                    :disabled="activeColumn !== 'combo'">
+                                                    value="{{ $percent }}" x-model="state.step8.data.combo_percentage"
+                                                    :disabled="state.step8.data.return_type !== 'combo'">
                                                 <label class="choice-component range-variant w-100"
-                                                    :class="{ 'disabled': activeColumn !== 'combo' }"
+                                                    :class="{ 'disabled': state.step8.data.return_type !== 'combo' }"
                                                     for="combo_percentage_{{ $percent }}">
                                                     <span class="choice-text">{{ $percent }} %</span>
                                                     <div class="choice-radio-indicator">
@@ -195,15 +173,42 @@
 
     {{-- Errors --}}
     <div class="d-flex flex-column align-items-center mt-3">
-        @if ($errors->any())
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
-                <span>{{ $errors->first() }}</span>
-            </div>
-        @endif
-        <div x-show="Object.keys(errors).length > 0" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
-            <span x-text="Object.values(errors)[0]"></span>
+        @php
+            $step8ErrorKeys = [
+                'state.step8.data.profit_only_percentage',
+                'state.step8.data.one_time_dollar',
+                'state.step8.data.one_time_sar',
+                'state.step8.data.combo_dollar',
+                'state.step8.data.combo_sar',
+                'state.step8.data.combo_percentage',
+                'state.step8.data',
+                'state.step8.one_time',
+                'state.step8.combo',
+            ];
+        @endphp
+        @foreach ($step8ErrorKeys as $errorKey)
+            @error($errorKey)
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span>{{ $message }}</span>
+                </div>
+            @enderror
+        @endforeach
+        <div x-show="errors['state.step8.data.profit_only_percentage']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <span x-text="errors['state.step8.data.profit_only_percentage']"></span>
+        </div>
+        <div x-show="errors['state.step8.one_time_dollar'] || errors['state.step8.one_time_sar'] || errors['state.step8.one_time']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <span x-text="errors['state.step8.one_time_dollar'] || errors['state.step8.one_time_sar'] || errors['state.step8.one_time']"></span>
+        </div>
+        <div x-show="errors['state.step8.combo_dollar'] || errors['state.step8.combo_sar'] || errors['state.step8.combo_percentage'] || errors['state.step8.combo'] || errors['state.step8.combo_currency']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <span x-text="errors['state.step8.combo_dollar'] || errors['state.step8.combo_sar'] || errors['state.step8.combo_percentage'] || errors['state.step8.combo'] || errors['state.step8.combo_currency']"></span>
+        </div>
+        <div x-show="errors['state.step8.data']" class="field-error">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <span x-text="errors['state.step8.data']"></span>
         </div>
     </div>
 </div>

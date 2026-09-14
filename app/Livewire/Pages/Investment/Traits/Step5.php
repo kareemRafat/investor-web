@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Investment\Traits;
 
 use App\Enums\CostProfitRange;
+use App\Livewire\Forms\Investment\Step5Form;
 use App\Models\InvestorContribution;
 
 trait Step5
@@ -40,11 +41,7 @@ trait Step5
     public function validateStep5()
     {
         if (! $this->state['step5']['disableResources']) {
-            $this->validate([
-                'state.step5.data.money_contributions' => 'required|integer',
-            ], [
-                'state.step5.data.money_contributions.required' => __('investor.validation.step5.required'),
-            ]);
+            $this->validate(Step5Form::rules(), Step5Form::messages());
         }
     }
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Idea\Traits;
 
 use App\Enums\CostProfitRange;
+use App\Livewire\Forms\Idea\Step3Form;
 use App\Models\Idea;
 
 trait Step3
@@ -24,13 +25,7 @@ trait Step3
 
     public function validateStep3()
     {
-        $this->validate([
-            'state.step3.cost_type' => 'required|in:one-time,annual',
-            'state.step3.range_id' => 'required|integer',
-        ], [
-            'state.step3.cost_type.*' => __('idea.validation.step3.cost_type'),
-            'state.step3.range_id.*' => __('idea.validation.step3.cost_range'),
-        ]);
+        $this->validate(Step3Form::rules(), Step3Form::messages());
     }
 
     public function getOneTimeRangesProperty()

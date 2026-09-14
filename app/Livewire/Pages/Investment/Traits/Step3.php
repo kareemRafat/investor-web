@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Investment\Traits;
 
+use App\Livewire\Forms\Investment\Step3Form;
 use App\Models\InvestorResource;
 
 trait Step3
@@ -41,35 +42,7 @@ trait Step3
     public function validateStep3()
     {
         if (! $this->state['step3']['disableResources']) {
-            $this->validate([
-                'state.step3.data.company' => 'required|in:yes,no',
-                'state.step3.data.space_type' => 'required_if:state.step3.data.company,yes|nullable|in:large,small',
-                'state.step3.data.staff' => 'required|in:yes,no',
-                'state.step3.data.staff_number' => 'required_if:state.step3.data.staff,yes|nullable|integer|min:1',
-                'state.step3.data.workers' => 'required|in:yes,no',
-                'state.step3.data.workers_number' => 'required_if:state.step3.data.workers,yes|nullable|integer|min:1',
-                'state.step3.data.executive_spaces' => 'required|in:yes,no',
-                'state.step3.data.executive_spaces_type' => 'required_if:state.step3.data.executive_spaces,yes|nullable|in:open_spaces,factory,land_space',
-                'state.step3.data.equipment' => 'required|in:yes,no',
-                'state.step3.data.equipment_type' => 'required_if:state.step3.data.equipment,yes|nullable|in:industrial,electronic,other',
-                'state.step3.data.software' => 'required|in:yes,no',
-                'state.step3.data.software_type' => 'required_if:state.step3.data.software,yes|nullable|in:static,dynamic',
-                'state.step3.data.website' => 'required|in:yes,no',
-            ], [
-                'state.step3.data.company.*' => __('idea.validation.step5.company'),
-                'state.step3.data.space_type.*' => __('idea.validation.step5.space_type'),
-                'state.step3.data.staff.*' => __('idea.validation.step5.staff'),
-                'state.step3.data.staff_number.*' => __('idea.validation.step5.staff_number'),
-                'state.step3.data.workers.*' => __('idea.validation.step5.workers'),
-                'state.step3.data.workers_number.*' => __('idea.validation.step5.workers_number'),
-                'state.step3.data.executive_spaces.*' => __('idea.validation.step5.executive_spaces'),
-                'state.step3.data.executive_spaces_type.*' => __('idea.validation.step5.executive_spaces_type'),
-                'state.step3.data.equipment.*' => __('idea.validation.step5.equipment'),
-                'state.step3.data.equipment_type.*' => __('idea.validation.step5.equipment_type'),
-                'state.step3.data.software.*' => __('idea.validation.step5.software'),
-                'state.step3.data.software_type.*' => __('idea.validation.step5.software_type'),
-                'state.step3.data.website.*' => __('idea.validation.step5.website'),
-            ]);
+            $this->validate(Step3Form::rules(), Step3Form::messages());
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Investment\Traits;
 
+use App\Livewire\Forms\Investment\Step1Form;
 use App\Models\Investor;
 
 trait Step1
@@ -19,10 +20,6 @@ trait Step1
 
     public function validateStep1()
     {
-        $this->validate([
-            'state.step1.investorField' => 'required',
-        ], [
-            'state.step1.investorField.required' => __('investor.validation.step1.investor_field'),
-        ]);
+        $this->validate(Step1Form::rules(), Step1Form::messages());
     }
 }

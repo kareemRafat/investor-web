@@ -1,62 +1,37 @@
 <div class="container px-sm-0"
      x-data="investmentForm({
-        step: @entangle('currentStep').live,
+        step: @entangle('currentStep'),
         state: @entangle('state'),
+        maxAllowed: {{ $maxAllowedStep }},
         validationMessages: @js($this->getValidationMessages())
      })"
     x-on:livewire-step-changed.window="scrollToTop()">
 
     <style>
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            20% {
-                transform: translateX(-8px);
-            }
-
-            40% {
-                transform: translateX(8px);
-            }
-
-            60% {
-                transform: translateX(-8px);
-            }
-
-            80% {
-                transform: translateX(8px);
-            }
+        [x-cloak] { display: none !important; }
+        .choice-invalid {
+            box-shadow: none !important;
+            outline: 2px solid #dc3545 !important;
+            outline-offset: -2px;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .number-input.is-invalid {
+            border-color: #dc3545 !important;
+            box-shadow: none !important;
         }
-
-        .error-alert-custom {
-            animation: shake 0.5s ease-in-out, fadeIn 0.3s ease-in-out;
-            background-color: #dc3545;
-            color: white;
-            border-radius: 12px;
-            padding: 12px 24px;
+        .form-control.is-invalid,
+        .form-select.is-invalid {
+            box-shadow: none !important;
+        }
+        .field-error {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
-            margin-top: 1rem;
-            text-align: center;
             justify-content: center;
+            gap: 8px;
+            color: #dc3545;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            text-align: center;
         }
     </style>
 
@@ -70,49 +45,41 @@
                      :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
-            {{-- steps --}}
+            {{-- steps (all pre-rendered; Alpine switches instantly with zero requests) --}}
             <div class="position-relative" wire:loading.class="opacity-50"
-                wire:target="handleNextAction, previousStep, goToStep, save">
-                @if($currentStep === 1)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step1')
-                    </div>
-                @elseif($currentStep === 2)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step2')
-                    </div>
-                @elseif($currentStep === 3)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step3')
-                    </div>
-                @elseif($currentStep === 4)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step4')
-                    </div>
-                @elseif($currentStep === 5)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step5')
-                    </div>
-                @elseif($currentStep === 6)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step6')
-                    </div>
-                @elseif($currentStep === 7)
-                    <div x-transition>
-                        @include('livewire.pages.investment.steps.step7')
-                    </div>
-                @endif
+                wire:target="nextStepValidated, finishWizard, save">
+                <div x-show="step === 1" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step1')
+                </div>
+                <div x-show="step === 2" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step2')
+                </div>
+                <div x-show="step === 3" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step3')
+                </div>
+                <div x-show="step === 4" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step4')
+                </div>
+                <div x-show="step === 5" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step5')
+                </div>
+                <div x-show="step === 6" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step6')
+                </div>
+                <div x-show="step === 7" x-transition x-cloak>
+                    @include('livewire.pages.investment.steps.step7')
+                </div>
             </div>
 
             <div wire:cloak class="d-flex align-items-center gap-3 justify-content-center mt-4 mb-3">
-                @if ($currentStep != 1)
-                    <button @click="$wire.previousStep()" wire:loading.attr="disabled"
-                        wire:target="previousStep"
+                <div x-show="step != 1">
+                    <button @click="goPrev()" :disabled="busy"
+                        wire:loading.attr="disabled"
+                        wire:target="nextStepValidated, finishWizard"
                         type="button" class="yn-button"
-                        style="min-width: 120px; background: white; color: #667eea; border-color: #c7d2fe;"
-                        aria-label="{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}">
+                        style="min-width: 120px; background: white; color: #667eea; border-color: #c7d2fe;">
                         <span class="d-flex align-items-center justify-content-center gap-2">
-                            <span wire:loading.remove wire:target="previousStep">
+                            <span>
                                 @if (app()->getLocale() === 'ar')
                                     <i class="bi bi-arrow-right-circle"></i>
                                 @else
@@ -120,26 +87,24 @@
                                 @endif
                             </span>
 
-                            {{-- Spinner --}}
-                            <span wire:loading wire:target="previousStep" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-
-                            <span>{{ $currentStep === 7 ? __('investor.form.edit') : __('investor.form.previous') }}</span>
+                            <span x-show="step === 7">{{ __('investor.form.edit') }}</span>
+                            <span x-show="step !== 7">{{ __('investor.form.previous') }}</span>
                         </span>
                     </button>
-                @endif
+                </div>
 
-                <button type="button" @click.prevent="validate() ? $wire.handleNextAction() : null"
-                    wire:loading.attr="disabled" wire:target="handleNextAction" class="yn-button"
-                    style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);"
-                    aria-label="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}"
-                    title="{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}">
+                <button type="button" x-show="step !== 7"
+                    @click="goNext()"
+                    :disabled="busy"
+                    wire:loading.attr="disabled" wire:target="nextStepValidated" class="yn-button"
+                    style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
 
                     <span class="d-flex align-items-center justify-content-center gap-2">
                         {{-- Text --}}
-                        <span>{{ $currentStep === 7 ? __('investor.form.finish') : __('investor.form.next') }}</span>
+                        <span>{{ __('investor.form.next') }}</span>
 
                         {{-- Icon: Arrow (shown when NOT loading) --}}
-                        <span wire:loading.remove wire:target="handleNextAction">
+                        <span wire:loading.remove wire:target="nextStepValidated">
                             @if (app()->getLocale() === 'ar')
                                 <i class="bi bi-arrow-left-circle"></i>
                             @else
@@ -147,8 +112,24 @@
                             @endif
                         </span>
 
-                        {{-- Spinner (shown when loading) --}}
-                        <span wire:loading wire:target="handleNextAction" class="spinner-border spinner-border-sm"
+                        {{-- Spinner (shown when validating in background) --}}
+                        <span wire:loading wire:target="nextStepValidated" class="spinner-border spinner-border-sm"
+                            role="status" aria-hidden="true"></span>
+                    </span>
+                </button>
+
+                <button type="button" x-show="step === 7" x-cloak
+                    @click="finish()"
+                    :disabled="busy"
+                    wire:loading.attr="disabled" wire:target="finishWizard" class="yn-button"
+                    style="min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+
+                    <span class="d-flex align-items-center justify-content-center gap-2">
+                        <span>{{ __('investor.form.finish') }}</span>
+                        <span wire:loading.remove wire:target="finishWizard">
+                            <i class="bi bi-check-circle"></i>
+                        </span>
+                        <span wire:loading wire:target="finishWizard" class="spinner-border spinner-border-sm"
                             role="status" aria-hidden="true"></span>
                     </span>
                 </button>
@@ -156,28 +137,13 @@
 
             <div wire:cloak class="stepper d-flex align-items-center justify-content-center flex-wrap gap-2 mb-4">
                 @for ($i = 1; $i <= 7; $i++)
-                    <div class="stepper-item position-relative
-                        @if ($i < $currentStep) completed_step
-                        @elseif($i === $currentStep) active_step @endif"
-                        @if ($i <= $maxAllowedStep) @click="$wire.goToStep({{ $i }})"
-                        style="cursor: pointer"
-                        @else
-                        style="opacity: .4; cursor: not-allowed" @endif>
+                    <div class="stepper-item position-relative"
+                        :class="{ 'completed_step': {{ $i }} < step, 'active_step': {{ $i }} === step }"
+                        @click="goToStep({{ $i }})"
+                        :style="{{ $i }} <= maxStep ? 'cursor: pointer' : 'opacity: .4; cursor: not-allowed'">
                         <div class="stepper-circle">
-                            {{-- Show number or checkmark when NOT loading --}}
-                            <div wire:loading.remove wire:target="goToStep({{ $i }})">
-                                @if ($i < $currentStep)
-                                    <i class="bi bi-check-circle-fill"></i>
-                                @else
-                                    {{ $i }}
-                                @endif
-                            </div>
-
-                            {{-- Show spinner when this specific step is loading --}}
-                            <div wire:loading wire:target="goToStep({{ $i }})">
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                                    style="width: 1rem; height: 1rem;"></span>
-                            </div>
+                            <span x-show="{{ $i }} < step"><i class="bi bi-check-circle-fill"></i></span>
+                            <span x-show="{{ $i }} >= step">{{ $i }}</span>
                         </div>
                     </div>
 

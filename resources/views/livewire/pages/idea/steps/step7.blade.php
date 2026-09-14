@@ -5,6 +5,20 @@
 
     <div class="step_height bg-white rounded-4 shadow-sm p-3 p-md-4">
         <div class="row g-1 g-sm-2">
+            <div class="col-12" x-show="errors['state.step7.data.contribute_type']">
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span x-text="errors['state.step7.data.contribute_type']"></span>
+                </div>
+            </div>
+            @error('state.step7.data.contribute_type')
+                <div class="col-12">
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                </div>
+            @enderror
 
             <!-- بيع الفكرة -->
             <div class="col-12">
@@ -14,7 +28,7 @@
                             <input type="radio" class="btn-check" id="needs"
                                 x-model="state.step7.data.contribute_type" @change="resetFields('sell')" value="sell"
                                 name="contribute_type" autocomplete="off">
-                            <label class="choice-component w-100" for="needs">
+                            <label class="choice-component w-100 @error('state.step7.data.contribute_type') choice-invalid @enderror" :class="{ 'choice-invalid': errors['state.step7.data.contribute_type'] }" for="needs">
                                 <span class="choice-text">{{ __('idea.steps.step7.sell') }}</span>
                                 <div class="choice-radio-indicator">
                                     <i class="bi bi-check-lg fs-5"></i>
@@ -33,7 +47,7 @@
                             <input type="radio" class="btn-check" id="contribute"
                                 x-model="state.step7.data.contribute_type" @change="resetFields('idea')" value="idea"
                                 name="contribute_type" autocomplete="off">
-                            <label class="choice-component w-100" for="contribute">
+                            <label class="choice-component w-100 @error('state.step7.data.contribute_type') choice-invalid @enderror" :class="{ 'choice-invalid': errors['state.step7.data.contribute_type'] }" for="contribute">
                                 <span class="choice-text">{{ __('idea.steps.step7.idea') }}</span>
                                 <div class="choice-radio-indicator">
                                     <i class="bi bi-check-lg fs-5"></i>
@@ -53,7 +67,7 @@
                                 x-model="state.step7.data.contribute_type"
                                 @change="resetFields('personal')" value="personal" name="contribute_type"
                                 autocomplete="off">
-                            <label class="choice-component w-100" for="contribute_money">
+                            <label class="choice-component w-100 @error('state.step7.data.contribute_type') choice-invalid @enderror" :class="{ 'choice-invalid': errors['state.step7.data.contribute_type'] }" for="contribute_money">
                                 <span class="choice-text">{{ __('idea.steps.step7.personal') }}</span>
                                 <div class="choice-radio-indicator">
                                     <i class="bi bi-check-lg fs-5"></i>
@@ -62,7 +76,8 @@
                         </div>
 
                         <div class="col-12 col-lg-5">
-                            <div class="options-section">
+                            <div class="options-section @error('state.step7.data.staff') choice-invalid @enderror"
+                                :class="{ 'choice-invalid': errors['state.step7.data.staff'] }">
                                 <div class="option-item">
                                     <input type="radio" class="form-check-input m-0" id="staff_yes"
                                         x-model="state.step7.data.staff" value="full_time" name="staff">
@@ -90,6 +105,21 @@
                 </div>
             </div>
 
+            <div class="col-12" x-show="errors['state.step7.data.staff']">
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span x-text="errors['state.step7.data.staff']"></span>
+                </div>
+            </div>
+            @error('state.step7.data.staff')
+                <div class="col-12">
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                </div>
+            @enderror
+
             <!-- المساهمة برأس المال -->
             <div class="col-12">
                 <div class="requirement-row">
@@ -99,7 +129,7 @@
                                 x-model="state.step7.data.contribute_type"
                                 @change="resetFields('capital')" value="capital" name="contribute_type"
                                 autocomplete="off">
-                            <label class="choice-component w-100" for="contribute_person">
+                            <label class="choice-component w-100 @error('state.step7.data.contribute_type') choice-invalid @enderror" :class="{ 'choice-invalid': errors['state.step7.data.contribute_type'] }" for="contribute_person">
                                 <span class="choice-text">{{ __('idea.steps.step7.capital') }}</span>
                                 <div class="choice-radio-indicator">
                                     <i class="bi bi-check-lg fs-5"></i>
@@ -114,16 +144,18 @@
                                     <label for="money_amount" class="number-input-label">
                                         {{ __('idea.steps.step7.amount') }}
                                     </label>
-                                    <input type="number" class="number-input w-100" id="money_amount"
+                                    <input type="number" class="number-input w-100 @error('state.step7.data.money_amount') is-invalid @enderror @error('state.step7.data.money_percent') is-invalid @enderror" id="money_amount"
                                         x-model="state.step7.data.money_amount" name="money_amount"
+                                        :class="{ 'is-invalid': errors['state.step7.data.money_amount'] || errors['state.step7.data.money_percent'] }"
                                         placeholder="$" />
                                 </div>
                                 <div class="number-input-wrapper">
                                     <label for="money_percent" class="number-input-label">
                                         {{ __('idea.steps.step7.percent') }}
                                     </label>
-                                    <input type="number" class="number-input w-100" id="money_percent"
+                                    <input type="number" class="number-input w-100 @error('state.step7.data.money_amount') is-invalid @enderror @error('state.step7.data.money_percent') is-invalid @enderror" id="money_percent"
                                         x-model="state.step7.data.money_percent" name="money_percent"
+                                        :class="{ 'is-invalid': errors['state.step7.data.money_amount'] || errors['state.step7.data.money_percent'] }"
                                         placeholder="%" />
                                 </div>
                             </div>
@@ -131,6 +163,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-12" x-show="errors['state.step7.data.money_amount'] || errors['state.step7.data.money_percent']">
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span x-text="errors['state.step7.data.money_amount'] || errors['state.step7.data.money_percent']"></span>
+                </div>
+            </div>
+            @error('state.step7.data.money_amount')
+                <div class="col-12">
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                </div>
+            @enderror
+            @error('state.step7.data.money_percent')
+                <div class="col-12">
+                    <div class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>{{ $message }}</span>
+                    </div>
+                </div>
+            @enderror
 
             <!-- المساهمة الشخصية + رأس المال -->
             <div class="col-12">
@@ -141,7 +196,7 @@
                                 x-model="state.step7.data.contribute_type"
                                 @change="resetFields('both')" value="both" name="contribute_type"
                                 autocomplete="off">
-                            <label class="choice-component w-100" for="contribute_person_and_money">
+                            <label class="choice-component w-100 @error('state.step7.data.contribute_type') choice-invalid @enderror" :class="{ 'choice-invalid': errors['state.step7.data.contribute_type'] }" for="contribute_person_and_money">
                                 <span class="choice-text">{{ __('idea.steps.step7.both') }}</span>
                                 <div class="choice-radio-indicator">
                                     <i class="bi bi-check-lg fs-5"></i>
@@ -157,21 +212,24 @@
                                         <label for="person_money_amount" class="number-input-label">
                                             {{ __('idea.steps.step7.amount') }}
                                         </label>
-                                        <input type="number" class="number-input w-100" id="person_money_amount"
-                                            x-model="state.step7.data.person_money_amount"
-                                            name="person_money_amount" placeholder="$" />
+                                    <input type="number" class="number-input w-100 @error('state.step7.data.person_money_amount') is-invalid @enderror @error('state.step7.data.person_money_percent') is-invalid @enderror" id="person_money_amount"
+                                        x-model="state.step7.data.person_money_amount"
+                                        :class="{ 'is-invalid': errors['state.step7.data.person_money_amount'] || errors['state.step7.data.person_money_percent'] }"
+                                        name="person_money_amount" placeholder="$" />
                                     </div>
                                     <div class="number-input-wrapper">
                                         <label for="person_money_percent" class="number-input-label">
                                             {{ __('idea.steps.step7.percent') }}
                                         </label>
-                                        <input type="number" class="number-input w-100" id="person_money_percent"
-                                            x-model="state.step7.data.person_money_percent"
-                                            name="person_money_percent" placeholder="%" />
+                                    <input type="number" class="number-input w-100 @error('state.step7.data.person_money_amount') is-invalid @enderror @error('state.step7.data.person_money_percent') is-invalid @enderror" id="person_money_percent"
+                                        x-model="state.step7.data.person_money_percent"
+                                        :class="{ 'is-invalid': errors['state.step7.data.person_money_amount'] || errors['state.step7.data.person_money_percent'] }"
+                                        name="person_money_percent" placeholder="%" />
                                     </div>
                                 </div>
 
-                                <div class="options-section">
+                                <div class="options-section @error('state.step7.data.staff_person_money') choice-invalid @enderror"
+                                    :class="{ 'choice-invalid': errors['state.step7.data.staff_person_money'] }">
                                     <div class="option-item">
                                         <input type="radio" class="form-check-input m-0"
                                             id="staff_yes_person_money"
@@ -206,17 +264,36 @@
 
         </div>
     </div>
-    {{-- Errors --}}
     <div class="d-flex flex-column align-items-center mt-2">
-        @if ($errors->any())
-            <div class="error-alert-custom">
-                <i class="bi bi-exclamation-circle-fill fs-5"></i>
-                <span>{{ $errors->first() }}</span>
+        <div class="col-12" x-show="errors['state.step7.data.person_money_amount'] || errors['state.step7.data.person_money_percent'] || errors['state.step7.data.staff_person_money']">
+            <div class="field-error">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                <span x-text="errors['state.step7.data.person_money_amount'] || errors['state.step7.data.person_money_percent'] || errors['state.step7.data.staff_person_money']"></span>
             </div>
-        @endif
-        <div x-show="Object.keys(errors).length > 0" class="error-alert-custom">
-            <i class="bi bi-exclamation-circle-fill fs-5"></i>
-            <span x-text="Object.values(errors)[0]"></span>
         </div>
+        @error('state.step7.data.person_money_amount')
+            <div class="col-12">
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span>{{ $message }}</span>
+                </div>
+            </div>
+        @enderror
+        @error('state.step7.data.person_money_percent')
+            <div class="col-12">
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span>{{ $message }}</span>
+                </div>
+            </div>
+        @enderror
+        @error('state.step7.data.staff_person_money')
+            <div class="col-12">
+                <div class="field-error">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    <span>{{ $message }}</span>
+                </div>
+            </div>
+        @enderror
     </div>
 </div>

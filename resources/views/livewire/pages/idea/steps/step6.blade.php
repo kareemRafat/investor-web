@@ -1,17 +1,4 @@
-<div x-data="{
-    company: @entangle('state.step6.data.company'),
-    assets: @entangle('state.step6.data.assets'),
-    salaries: @entangle('state.step6.data.salaries'),
-    operating: @entangle('state.step6.data.operating'),
-    other: @entangle('state.step6.data.other'),
-    get total() {
-        return Number(this.company || 0) +
-            Number(this.assets || 0) +
-            Number(this.salaries || 0) +
-            Number(this.operating || 0) +
-            Number(this.other || 0);
-    }
-}">
+<div>
     <x-pages.idea-wizard.idea-header title="{{ __('pages/mainpage.submit_idea') }}"
         subtitle="{{ __('idea.steps.step6.subtitle') }}" />
 
@@ -40,8 +27,10 @@
                             <div class="col-12 col-lg-7">
                                 <div class="d-flex align-items-center gap-2">
                                     <input type="number" min="0" max="100"
-                                        x-model.number="{{ $key }}" wire:model="state.step6.data.{{ $key }}"
-                                        class="number-input" placeholder="{{ __('idea.steps.step6.placeholder') }}" />
+                                        x-model.number="state.step6.data.{{ $key }}"
+                                        class="number-input @error('state.step6.total') is-invalid @enderror"
+                                        :class="errors['state.step6.total'] && 'is-invalid'"
+                                        placeholder="{{ __('idea.steps.step6.placeholder') }}" />
                                     <div class="text-light">
                                         <span class="bg_icon rounded-circle">
                                             <i class="bi bi-percent"></i>
@@ -56,24 +45,28 @@
 
             <div class="col-12 mt-4">
                 <div class="text-center">
-                    <div class="fw-bold fs-4 mb-2" :class="total === 100 ? 'text-success' : 'text-danger'">
-                        {{ __('idea.steps.step6.total') }}: <span x-text="total"></span>%
+                    <div class="fw-bold fs-4 mb-2" :class="step6Total === 100 ? 'text-success' : 'text-danger'">
+                        {{ __('idea.steps.step6.total') }}: <span x-text="step6Total"></span>%
                     </div>
                     <div class="small">
                         @error('state.step6.total')
                             <span class="text-danger fw-semibold">{{ $message }}</span>
                         @else
-                            <template x-if="total === 100">
+                            <template x-if="step6Total === 100">
                                 <span class="text-success fw-semibold">
                                     {{ __('idea.steps.step6.perfect') }}
                                 </span>
                             </template>
-                            <template x-if="total !== 100">
+                            <template x-if="step6Total !== 100">
                                 <span class="text-danger fw-semibold">
                                     {{ __('idea.steps.step6.must_equal') }}
                                 </span>
                             </template>
                         @enderror
+                    </div>
+                    <div x-show="errors['state.step6.total']" class="field-error">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span x-text="errors['state.step6.total']"></span>
                     </div>
                 </div>
             </div>
