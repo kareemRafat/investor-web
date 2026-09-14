@@ -78,57 +78,61 @@ return [
     ],
     'terms' => [
         'title' => 'Terms of Use',
-        'intro' => 'Welcome to [Platform Name]. By using this platform, you agree to comply with these terms and conditions. Please read them carefully.',
+        'toc' => 'On this page',
+        'top' => 'Back to top',
+        'intro' => 'Welcome to FikraPedia, the platform that connects founders who have investment ideas with investors looking for new opportunities. By creating an account or using the platform, you agree to comply with these Terms of Use. Please read them carefully.',
 
         'acceptance' => [
             'title' => 'Acceptance of Terms',
-            'text' => 'By using the platform, you acknowledge that you have read, understood, and agreed to these terms. If you do not agree to these terms, you may not use the platform.',
+            'text' => 'By registering an account, posting an investment idea, submitting an investment offer, or otherwise using FikraPedia, you acknowledge that you have read, understood, and agreed to these terms and to our Privacy Policy. If you do not agree, you may not use the platform.',
         ],
 
         'obligations' => [
             'title' => 'User Obligations',
             'items' => [
-                'You must be of legal age to enter into contracts.',
-                'You agree to provide accurate and complete information when registering.',
-                'You are responsible for maintaining the confidentiality of your account and password.',
-                'You agree not to use the platform for any unlawful or prohibited purpose.',
+                'You must be at least 18 years old and legally able to enter into binding contracts.',
+                'You agree to provide accurate and complete information when registering and to keep your account details up to date.',
+                'You are responsible for maintaining the confidentiality of your password and for all activity under your account.',
+                'Any investment idea or offer you publish must be truthful, lawful, and must not mislead other users.',
+                'You agree not to use the platform for any unlawful purpose, spam, fraud, or infringement of others’ rights.',
+                'You agree to use contact credits and subscription plans fairly and only as described on the pricing page.',
             ],
         ],
 
         'intellectual' => [
             'title' => 'Intellectual Property Rights',
-            'text' => 'All content on the platform, including text, graphics, logos, and images, is owned by [Platform Name] and protected by copyright laws.',
+            'text' => 'The FikraPedia name, logo, design, and all platform content are owned by FikraPedia and protected by intellectual property laws. You keep full ownership of the investment ideas and offers you publish, but by publishing them you grant FikraPedia a worldwide license to display and promote them on the platform.',
         ],
 
         'disclaimer' => [
             'title' => 'Disclaimer',
-            'text' => 'The platform is provided "as is" without any warranties. We do not guarantee the accuracy, completeness, or reliability of any content. Investing involves risks, and you are responsible for your decisions.',
+            'text' => 'FikraPedia is a meeting place for founders and investors, not a financial advisor or broker. All content is provided "as is" without warranties of any kind. Every investment carries risk, including the possible loss of capital, so always perform your own due diligence before committing funds.',
         ],
 
         'liability' => [
             'title' => 'Limitation of Liability',
-            'text' => '[Platform Name] will not be liable for any direct or indirect damages arising from your use of or inability to use the platform.',
+            'text' => 'FikraPedia is not a party to any agreement, deal, or transaction concluded between founders and investors through the platform. To the maximum extent permitted by law, FikraPedia shall not be liable for any direct or indirect loss arising from your use of the platform or from investment decisions you make.',
         ],
 
         'termination' => [
             'title' => 'Termination of Use',
-            'text' => 'We reserve the right to suspend or terminate your access to the platform at any time and for any reason, without prior notice.',
+            'text' => 'We may suspend or terminate your account at any time, with or without notice, if you violate these terms, misuse contact credits or subscriptions, or engage in fraud, spam, or any unlawful activity.',
         ],
 
         'law' => [
             'title' => 'Governing Law',
-            'text' => 'These terms are governed by and construed in accordance with the laws of [Country/State], without regard to conflict of law principles.',
+            'text' => 'These terms are governed by the applicable laws of the country in which the services are provided to you. Any dispute shall first be addressed amicably, and if unresolved, shall be submitted to the competent courts.',
         ],
 
         'changes' => [
             'title' => 'Changes to Terms',
-            'text' => 'We may update the terms of use from time to time. Updates will be posted on this page, and your continued use of the platform constitutes acceptance of the modified terms.',
+            'text' => 'We may update the Terms of Use from time to time. The updated version will be posted on this page along with its update date, and your continued use of the platform after posting constitutes acceptance of the modified terms.',
         ],
 
         'contact' => [
             'title' => 'Contact Us',
-            'text' => 'If you have any questions regarding the terms of use, you can contact us at:',
-            'email' => 'Email: terms@yourdomain.com',
+            'text' => 'If you have any questions about these Terms of Use, contact our support team at:',
+            'email' => 'support@fikrapedia.com',
         ],
     ],
     'privacy' => [
