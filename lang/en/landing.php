@@ -111,7 +111,6 @@ return [
         'btnPrimary' => 'Create Free Account',
         'startNow' => 'Start Now',
         'btnSecondary' => 'Schedule Demo',
-        'trust' => '• Cancel anytime • Instant verification • Institutional grade security',
     ],
     'footer' => [
         'desc' => 'The modern platform for investment ideas and opportunities. Connect, invest, grow.',

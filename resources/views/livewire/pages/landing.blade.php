@@ -80,7 +80,7 @@
 <div class="absolute top-1/4 right-1/4 translate-x-1/3 w-[360px] h-[280px] rounded-full pointer-events-none -z-10 bg-gradient-to-br from-[#fedc00]/15 via-[#ffe252]/5 to-transparent blur-3xl"></div>
 <div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center">
 <!-- Feature Pill Badge -->
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm mb-6 animate-pulse">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm mb-6">
 <span class="material-symbols-outlined text-[18px] text-secondary-container">bolt</span>
 <span class="text-label-md font-label-md font-semibold text-primary">{{ __('landing.hero.pill') }}</span>
 </div>
@@ -100,27 +100,18 @@
 </a>
 <a class="w-full sm:w-auto bg-surface-container-lowest border-2 border-primary-container text-primary px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors duration-150 text-center" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('idea.index')) }}">{{ __('landing.hero.ctaSecondary') }}</a>
 </div>
-<!-- Trust Badges with Pulsing Dots -->
+<!-- Trust Badges -->
 <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 pt-4 border-t border-outline-variant/30 max-w-2xl mx-auto">
 <div class="flex items-center gap-2">
-<span class="relative flex h-3 w-3">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-</span>
+<span class="h-2.5 w-2.5 rounded-full bg-primary"></span>
 <span class="font-label-md text-label-md font-semibold text-on-surface">{{ __('landing.hero.trust1') }}</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="relative flex h-3 w-3">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-</span>
+<span class="h-2.5 w-2.5 rounded-full bg-primary"></span>
 <span class="font-label-md text-label-md font-semibold text-on-surface">{{ __('landing.hero.trust2') }}</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="relative flex h-3 w-3">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-</span>
+<span class="h-2.5 w-2.5 rounded-full bg-primary"></span>
 <span class="font-label-md text-label-md font-semibold text-on-surface">{{ __('landing.hero.trust3') }}</span>
 </div>
 </div>
@@ -373,40 +364,31 @@
 </div>
 </section>
 <!-- Stats Band -->
-<section class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary scroll-mt-16 md:scroll-mt-20" id="stats">
-<!-- Subtle Golden/Blue ambient glow circles -->
-<div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
-<div class="max-w-[1280px] mx-auto px-space-md md:px-margin relative z-10">
-<div class="text-center max-w-3xl mx-auto mb-12">
-<span class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold">{{ __('landing.stats.tag') }}</span>
-<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-primary mt-3 mb-4">{{ __('landing.stats.title') }}</h2>
+<section class="relative py-16 md:py-20 custom-gradient-btn text-on-primary overflow-hidden scroll-mt-16 md:scroll-mt-20" id="stats">
+<div class="absolute -top-20 -left-20 w-72 h-72 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-20 -right-20 w-72 h-72 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[1100px] mx-auto px-space-md md:px-margin relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<span class="text-secondary-container font-label-md text-label-md font-semibold uppercase tracking-wider">{{ __('landing.stats.tag') }}</span>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-primary mt-2 mb-3">{{ __('landing.stats.title') }}</h2>
 <p class="font-body-md text-body-md text-tertiary-fixed">{{ __('landing.stats.subtitle') }}</p>
 </div>
-<!-- 4 Cardless Metrics -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 text-center"><!-- Stat 1 -->
-<div>
-<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="2.5" data-decimals="1" data-prefix="$" data-suffix="B+">$2.5B+</span></div>
-<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c1Label') }}</div>
-<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c1Desc') }}</p>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/20 border border-white/20 rounded-2xl overflow-hidden shadow-lg">
+<div class="bg-surface-container-lowest py-8 px-6 text-center">
+<div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span class="count-up" data-target="2.5" data-decimals="1" data-prefix="$" data-suffix="B+">$2.5B+</span></div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">{{ __('landing.stats.c1Label') }}</div>
 </div>
-<!-- Stat 2 -->
-<div>
-<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="12000" data-decimals="0" data-prefix="" data-suffix="+">12,000+</span></div>
-<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c2Label') }}</div>
-<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c2Desc') }}</p>
+<div class="bg-surface-container-lowest py-8 px-6 text-center">
+<div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span class="count-up" data-target="12000" data-decimals="0" data-prefix="" data-suffix="+">12,000+</span></div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">{{ __('landing.stats.c2Label') }}</div>
 </div>
-<!-- Stat 3 -->
-<div>
-<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="850" data-decimals="0" data-prefix="" data-suffix="+">850+</span></div>
-<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c3Label') }}</div>
-<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c3Desc') }}</p>
+<div class="bg-surface-container-lowest py-8 px-6 text-center">
+<div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span class="count-up" data-target="850" data-decimals="0" data-prefix="" data-suffix="+">850+</span></div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">{{ __('landing.stats.c3Label') }}</div>
 </div>
-<!-- Stat 4 -->
-<div>
-<div class="font-display text-display-mobile md:text-display font-extrabold leading-none"><span class="text-secondary-container count-up" data-target="98" data-decimals="0" data-prefix="" data-suffix="%">98%</span></div>
-<div class="font-title-md text-title-md text-on-primary font-semibold mt-3">{{ __('landing.stats.c4Label') }}</div>
-<p class="font-body-sm text-body-sm text-tertiary-fixed mt-1">{{ __('landing.stats.c4Desc') }}</p>
+<div class="bg-surface-container-lowest py-8 px-6 text-center">
+<div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span class="count-up" data-target="98" data-decimals="0" data-prefix="" data-suffix="%">98%</span></div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">{{ __('landing.stats.c4Label') }}</div>
 </div>
 </div>
 </div>
@@ -488,7 +470,7 @@
 <div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center relative z-10">
 <h2 class="font-headline-xl md:font-display text-headline-xl-mobile md:text-display max-w-3xl mx-auto leading-tight mb-6">{{ __('landing.cta.title') }}</h2>
 <p class="font-body-lg text-body-lg text-tertiary-fixed max-w-2xl mx-auto mb-10">{{ __('landing.cta.subtitle') }}</p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
 @guest
 <a class="w-full sm:w-auto bg-secondary-container text-on-secondary-fixed px-8 py-4 rounded-lg font-headline-sm text-headline-sm font-bold shadow-lg hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2" href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}">
 <span>{{ __('landing.cta.btnPrimary') }}</span>
@@ -502,7 +484,6 @@
 </a>
 @endauth
 </div>
-<p class="font-caption text-caption text-tertiary-fixed opacity-90 flex items-center justify-center gap-4 flex-wrap">{{ __('landing.cta.trust') }}</p>
 </div>
 </section>
 <!-- Comprehensive Footer -->
