@@ -11,12 +11,9 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-<<<<<<< HEAD
-=======
     <!-- Material Symbols Outlined -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <!-- Landing styles (Tailwind v4) -->
->>>>>>> 4dc4bec213abed0917f4bfea4ecbf0503609b781
     @vite(['resources/css/landing.css'])
     @livewireStyles
 </head>

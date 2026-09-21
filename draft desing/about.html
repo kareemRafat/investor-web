@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | FIKRAPEDIA - Bridging Ideas &amp; Capital</title>
+<!-- Google Fonts: Plus Jakarta Sans, Inter, Cairo -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration matching Design System Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#dce2f7",
+            "surface-container-low": "#f1f3ff",
+            "on-tertiary-fixed": "#001c39",
+            "tertiary-container": "#2d5b92",
+            "surface-container-highest": "#dce2f7",
+            "surface-bright": "#f9f9ff",
+            "on-tertiary-fixed-variant": "#13487d",
+            "secondary-container": "#fedc00",
+            "on-primary-container": "#b8d3ff",
+            "surface-container-high": "#e1e8fd",
+            "inverse-on-surface": "#edf0ff",
+            "outline": "#727782",
+            "surface": "#f9f9ff",
+            "on-surface-variant": "#414751",
+            "surface-tint": "#0e5faa",
+            "primary-container": "#005ba5",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#a4c9ff",
+            "on-secondary-fixed": "#211b00",
+            "surface-dim": "#d3daef",
+            "outline-variant": "#c1c6d3",
+            "secondary-fixed": "#ffe252",
+            "secondary-fixed-dim": "#e4c500",
+            "on-secondary-container": "#706000",
+            "inverse-primary": "#a4c9ff",
+            "primary": "#00437d",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#141b2b",
+            "tertiary-fixed-dim": "#a4c9ff",
+            "on-primary-fixed-variant": "#004884",
+            "primary-fixed": "#d4e3ff",
+            "tertiary-fixed": "#d4e3ff",
+            "on-secondary-fixed-variant": "#524600",
+            "background": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "tertiary": "#0b4378",
+            "secondary": "#6d5e00",
+            "surface-container": "#e9edff",
+            "on-tertiary-container": "#b7d3ff",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#293040",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#001c39",
+            "on-background": "#141b2b"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-2xl": "3rem",
+            "space-3xl": "4.5rem",
+            "margin": "2rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "gutter-mobile": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "body-md": ["Inter", "Cairo", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "label-lg": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "body-lg": ["Inter", "Cairo", "sans-serif"],
+            "body-sm": ["Inter", "Cairo", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "display": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-xl-mobile": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "title-md": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "display-mobile": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "Cairo", "sans-serif"],
+            "caption": ["Inter", "Cairo", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "title-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "display-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .bg-grid-dots {
+      background-image: radial-gradient(rgba(0, 91, 165, 0.12) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+    }
+    .primary-gradient {
+      background: linear-gradient(135deg, #005BA5 0%, #003E73 100%);
+    }
+    .gold-accent-glow {
+      box-shadow: 0 0 20px 2px rgba(254, 220, 0, 0.35);
+    }
+    .institutional-card-shadow {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    .institutional-hover-shadow:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 91, 165, 0.12), 0 8px 10px -6px rgba(0, 91, 165, 0.06);
+    }
+    [dir="rtl"] .rtl-mirror {
+      transform: scaleX(-1);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col relative selection:bg-secondary-container selection:text-on-secondary-fixed">
+<!-- Atmospheric Background Glow Elements -->
+<div aria-hidden="true" class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="absolute top-1/3 -right-32 w-96 h-96 bg-secondary-container/15 rounded-full blur-3xl"></div>
+<div class="absolute bottom-10 left-1/4 w-[36rem] h-[36rem] bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute inset-0 bg-grid-dots opacity-40"></div>
+</div>
+<!-- SHARED COMPONENT 1: TopNavBar -->
+<header class="docked full-width top-0 fixed z-50 bg-surface-container-lowest/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-all duration-200">
+<div class="flex justify-between items-center w-full px-space-md md:px-margin max-w-[1280px] mx-auto h-16 md:h-20">
+<!-- Brand Logo -->
+<a aria-label="FIKRAPEDIA Home" class="flex items-center gap-space-sm group focus:outline-none" href="#">
+<img alt="FIKRAPEDIA Brandmark" class="h-9 md:h-11 w-auto object-contain transition-transform duration-150 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida/AEtjO1UG75qN9cMvbqq2ZgkGEagHfUWj4n6uQgTOmaQvYRckLMNu9jo6DPqwTc17Uxk2-YU3uU7gEimQLHU6viAWQw-5b4puqyaXkIT7VOaHZZmPFAPuOGSiMMdfs5EwgQbSIu4XWODtDWFBSPg26MdieTfTF9Kslr6KAwH7NeB6yH4ZO3GtqO0S_pelgr9c2xc8uwmoveuTiqt4LlpRJcg7KkDB6kmlF3zSLgRpOq5WDRkh4Tl_zawB4S2fjQs"/>
+</a>
+<!-- Desktop Nav Links: Shared Components JSON match -->
+<nav aria-label="Global Navigation" class="hidden md:flex items-center gap-space-lg text-label-lg font-label-lg">
+<!-- Active link: About (Exact match requirement) -->
+<a class="text-primary dark:text-inverse-primary font-semibold border-b-2 border-primary dark:border-inverse-primary pb-1 transition-colors duration-200" href="#about">
+          About
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#features">
+          Features
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#how-it-works">
+          How It Works
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#impact">
+          Impact
+        </a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-space-sm md:gap-space-md">
+<!-- Bilingual Segmented Switcher [EN | عربي] with tooltip -->
+<div class="relative group/lang flex items-center bg-surface-container p-0.5 rounded-full border border-outline-variant/40" title="Switch language / تغيير اللغة">
+<button class="px-2.5 py-1 text-label-md font-label-md rounded-full bg-surface-container-lowest text-primary shadow-xs font-bold transition-all" id="lang-en" onclick="setLanguage('en')">
+            EN
+          </button>
+<button class="px-2.5 py-1 text-label-md font-label-md rounded-full text-on-surface-variant hover:text-primary transition-all" id="lang-ar" onclick="setLanguage('ar')">
+            عربي
+          </button>
+<!-- Tooltip -->
+<div class="absolute -bottom-8 right-0 hidden group-hover/lang:flex items-center px-2 py-1 bg-inverse-surface text-inverse-on-surface text-caption font-caption rounded shadow-md whitespace-nowrap z-20 pointer-events-none">
+<span class="material-symbols-outlined text-xs mr-1">language</span> Native RTL ready
+          </div>
+</div>
+<!-- Trailing Secondary Action (Sign In) -->
+<a class="hidden sm:inline-flex text-label-lg font-label-lg text-primary hover:text-primary-container px-3 py-2 rounded-lg transition-colors duration-200 active:scale-[0.98]" href="#signin">
+          Sign In
+        </a>
+<!-- Trailing Primary Action (Get Started) -->
+<a class="primary-gradient text-on-primary text-label-lg font-label-lg px-4 md:px-5 py-2.5 rounded-lg shadow-sm hover:brightness-105 active:scale-[0.98] transition-all duration-150 flex items-center gap-1.5 font-semibold" href="#get-started">
+<span>Get Started</span>
+<span class="material-symbols-outlined text-sm rtl-mirror">arrow_forward</span>
+</a>
+<!-- Mobile Menu Trigger -->
+<button aria-label="Toggle navigation menu" class="md:hidden p-2 text-on-surface-variant hover:text-primary focus:outline-none" onclick="document.getElementById('mobile-drawer').classList.toggle('hidden')" type="button">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer -->
+<div class="hidden md:hidden border-t border-outline-variant/30 bg-surface-container-lowest px-space-md py-4 space-y-3" id="mobile-drawer">
+<a class="block py-2 text-primary font-semibold border-b border-primary/20" href="#about">About</a>
+<a class="block py-2 text-on-surface-variant font-medium" href="#features">Features</a>
+<a class="block py-2 text-on-surface-variant font-medium" href="#how-it-works">How It Works</a>
+<a class="block py-2 text-on-surface-variant font-medium" href="#impact">Impact</a>
+<div class="pt-2 flex items-center justify-between border-t border-outline-variant/20">
+<a class="text-primary font-semibold" href="#signin">Sign In</a>
+<a class="primary-gradient text-on-primary px-4 py-1.5 rounded-lg text-sm font-semibold" href="#get-started">Get Started</a>
+</div>
+</div>
+</header>
+<!-- Main Content Wrapper with Top Margin for Fixed Docked Bar -->
+<main class="relative z-10 pt-20 md:pt-28 flex-1">
+<!-- 1. HERO SECTION -->
+<section class="max-w-[1280px] mx-auto px-space-md md:px-margin pt-6 md:pt-12 pb-space-2xl md:pb-space-3xl">
+<div class="text-center max-w-3xl mx-auto space-y-4 md:space-y-6">
+<!-- Institutional Pill Badge -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/40 text-primary text-label-md font-label-md shadow-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container gold-accent-glow animate-pulse"></span>
+<span class="tracking-wide uppercase font-bold text-caption text-primary">Venture Acceleration Platform</span>
+</div>
+<!-- Headline Display -->
+<h1 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold tracking-tight text-on-surface">
+          Bridging the Gap Between <span class="text-primary-container relative inline-block">Ideas &amp; Capital<span class="absolute -bottom-1 left-0 right-0 h-1 bg-secondary-container rounded-full"></span></span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          We are empowering visionary innovators and active syndicates with institutional deal rooms, algorithmic matching, and borderless venture flow.
+        </p>
+<!-- CTAs -->
+<div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+<a class="primary-gradient text-on-primary font-label-lg text-label-lg px-6 py-3 rounded-lg shadow-md hover:brightness-105 transition-all -translate-y-0.5 flex items-center gap-2" href="#our-story">
+<span>Explore Our Journey</span>
+<span class="material-symbols-outlined text-lg rtl-mirror">expand_more</span>
+</a>
+<a class="border-2 border-primary text-primary hover:bg-surface-container-low font-label-lg text-label-lg px-6 py-3 rounded-lg transition-all flex items-center gap-2" href="#pitch-directory">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+<span>Accredited Syndicates</span>
+</a>
+</div>
+</div>
+<!-- Hero Photographic Banner with Trust Badges -->
+<div class="mt-10 md:mt-14 relative rounded-3xl overflow-hidden border border-outline-variant/30 shadow-xl group">
+<div class="h-64 sm:h-80 md:h-[460px] w-full relative overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="An imposing low-angle view of a modern corporate glass skyscraper reflecting soft golden dusk sunlight under a clear azure sky. The architecture embodies structural institutional permanence and venture capital authority with crisp geometric glass mullions, high dynamic range clarity, and clean corporate blue atmospheric tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZnHUyJLjXUO3JfN6I4a6BdzGyOPYCws71FaYntg-6gUVZqjWtKgSJdIDHwHIIbaFgGmnyK8n_I7mRI_2KzabGZfAPDvqjIdTDDUsdVeA5H7ri-3-wpdsE2ey1kAAp_LyxYHVj_OsuJtJ-t3a56c4JfASVStkSlwoOPrAeGaTmXUMaHhxYTE-3Iy-Az9in0okOu0b0jTX1xo2z1m_F8PIGnCqvqEFOl9LkDygQ8xFMwiC4Jwo9mEYl"/>
+<!-- Deep Blue Gradient Vignette -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/60 via-transparent to-primary/40"></div>
+</div>
+<!-- Floating Trust Badges inside Banner -->
+<div class="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 flex flex-wrap items-end justify-between gap-4">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-2xl border border-outline-variant/40 shadow-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">$2.5B+ Syndicated</p>
+<p class="font-caption text-caption text-on-surface-variant">Validated Cross-Border Capital</p>
+</div>
+</div>
+<div class="hidden sm:flex bg-surface-container-lowest/90 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-2xl border border-outline-variant/40 shadow-lg items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Top Tier Allocators</p>
+<p class="font-caption text-caption text-on-surface-variant">Strict Institutional Due Diligence</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. OUR STORY SECTION -->
+<section class="bg-surface-container-lowest/60 border-y border-outline-variant/30 py-space-2xl md:py-space-3xl relative" id="our-story">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-gutter items-center">
+<!-- Narrative Column (Left, 7 cols) -->
+<div class="lg:col-span-7 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">history_edu</span>
+<span>Our Genesis &amp; Philosophy</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface tracking-tight">
+              Democratizing Deal Access &amp; Accelerating Venture Velocity
+            </h2>
+<div class="space-y-4 text-on-surface-variant font-body-md text-body-md leading-relaxed">
+<p>
+                Every year, thousands of breakthrough ventures stall simply because brilliant creators lack direct access to institutional networks and accredited family offices. Traditional venture corridors remain siloed behind opaque relationships and geographical barriers.
+              </p>
+<p>
+                FIKRAPEDIA was founded to dismantle these legacy friction points. We democratize high-conviction deal access, compressing funding cycles from arduous quarters into data-verified days through automated investor-founder alignment and tamper-proof governance.
+              </p>
+</div>
+<!-- Structured Mini-Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+<div class="p-5 rounded-2xl bg-surface border border-outline-variant/40 hover:border-primary-container/40 transition-all institutional-card-shadow">
+<div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-xl">hub</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface mb-1">Precision Matchmaking</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Algorithmic pairing based on mandate theses, lifecycle stage, domain expertise, and ticket thresholds.
+                </p>
+</div>
+<div class="p-5 rounded-2xl bg-surface border border-outline-variant/40 hover:border-primary-container/40 transition-all institutional-card-shadow">
+<div class="w-9 h-9 rounded-lg bg-secondary-container/30 text-secondary flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-xl">folder_special</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface mb-1">Institutional Deal Rooms</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Integrated diligence rooms with standardized legal SAFE frameworks, cap table verification, and instant audit trails.
+                </p>
+</div>
+</div>
+<!-- Trust Pills Row -->
+<div class="pt-3 flex flex-wrap items-center gap-3 text-caption font-caption text-on-surface-variant">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full text-primary font-semibold">
+<span class="material-symbols-outlined text-sm">check_circle</span> 100% Vetted Allocators
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full text-primary font-semibold">
+<span class="material-symbols-outlined text-sm">enhanced_encryption</span> Smart Escrow Security
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full text-primary font-semibold">
+<span class="material-symbols-outlined text-sm">bolt</span> Global Deal Velocity
+              </span>
+</div>
+</div>
+<!-- Photographic Column (Right, 5 cols) -->
+<div class="lg:col-span-5 relative">
+<div class="relative mx-auto rounded-3xl overflow-hidden border border-outline-variant/40 shadow-2xl group">
+<img class="w-full h-80 sm:h-96 lg:h-[460px] object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A focused, diverse collaborative startup founding team gathered around an oak boardroom table in a sunlit industrial loft office. The founders examine financial models on laptops and handwritten blueprint charts, bathed in warm directional sunlight. The scene reflects high entrepreneurial vitality, rigorous strategic planning, and modern startup discipline in a light corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwZnSckvB3ckapVJZtcMOjjV-L1j49AWV7a5FRJ7NAADJlCJscbaGFXqYlgvb83-n2DyzYNCn6avxgb3do_G6ASqP272o2ng8goIZDlBw2QwA6apn_DLBaF1rA9FBZcHpSc4etpBNEHarorKA6PwXT929gtuup-gAZWvS7UJ7_XxvlIdMfit_rnYmuN-x-60rrOGa7YgOKruyCYMd_unHIpZYsJSUwmr-qOCUyl3jlPt0gWwHASYH_"/>
+<!-- Subtle overlay -->
+<div class="absolute inset-0 bg-primary/10"></div>
+<!-- Spotlight Metric Overlay Card -->
+<div class="absolute -bottom-1 -right-1 bg-surface-container-lowest p-5 rounded-tl-2xl border-t border-l border-outline-variant/40 shadow-xl max-w-[220px]">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Speed to Close</span>
+</div>
+<p class="font-headline-lg text-headline-lg font-bold text-primary">18 Days</p>
+<p class="font-caption text-caption text-on-surface-variant">Average seed syndicate close down from 90 days</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. STATS BAND -->
+<section class="max-w-[1280px] mx-auto px-space-md md:px-margin my-space-2xl md:my-space-3xl">
+<div class="primary-gradient rounded-3xl p-8 md:p-12 text-on-primary shadow-2xl relative overflow-hidden">
+<!-- Background Ambient Accent -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-secondary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative z-10">
+<div class="space-y-1 lg:border-r border-white/20 pr-4">
+<div class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold tracking-tight text-white flex items-center">
+<span>$2.5B+</span>
+</div>
+<p class="font-title-md text-title-md font-semibold text-secondary-container">Total Capital Deployed</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">Syndicated across 850+ venture rounds</p>
+</div>
+<div class="space-y-1 lg:border-r border-white/20 pr-4">
+<div class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold tracking-tight text-white flex items-center">
+<span>12,000+</span>
+</div>
+<p class="font-title-md text-title-md font-semibold text-secondary-container">Active Allocators</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">Verified Angels, VCs, and Family Offices</p>
+</div>
+<div class="space-y-1 sm:border-r border-white/20 pr-4">
+<div class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold tracking-tight text-white flex items-center">
+<span>850+</span>
+</div>
+<p class="font-title-md text-title-md font-semibold text-secondary-container">Funded Projects</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">From Pre-Seed to Series B scale</p>
+</div>
+<div class="space-y-1">
+<div class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold tracking-tight text-white flex items-center">
+<span>98%</span>
+</div>
+<p class="font-title-md text-title-md font-semibold text-secondary-container">Founder Satisfaction</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">Transparent deal rooms and governance</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. MISSION / VISION / VALUES (3 CARDS) -->
+<section class="max-w-[1280px] mx-auto px-space-md md:px-margin pb-space-2xl md:pb-space-3xl">
+<div class="text-center max-w-2xl mx-auto mb-10 md:mb-14 space-y-3">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">
+          The Pillars Driving Our Platform
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Built on institutional principles, driven by founder empathy, and unified by transparent collaboration.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Mission Card -->
+<div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/40 overflow-hidden institutional-card-shadow institutional-hover-shadow transition-all duration-300 flex flex-col group -translate-y-0 hover:-translate-y-2">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Two corporate leaders shaking hands firmly across a glass conference table in a modern corporate venture capital office. Natural morning sunlight illuminates the handshake, highlighting clean tailored business cuffs and polished surfaces. The mood captures institutional trust, contract finalization, mutual alignment, and high-stakes financial partnership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ1VDHNdlHJ1WaBJUHAvLr1OAqkcyxEEoicmvyCGAAZp6xqvLjgOCNEj4HQWEJjHPCaKU8QBW0YwwI8cgMuaQ0q--Cf0CMECP01DLELlFX78wNNUuHBO5Zi_X1AVFj-Om1Q8EkTOIly_vc1SC4CY9LN3NLLa6ZP80DmW0FMzLLlvJRk5BOdM4w2FNB8BbMKJlE9IJ2532C9c5NIZM5vU2_IvuKa8G-qmS0M3ytwhlFSjkLQqgkAZGq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-2xl">track_changes</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<span class="text-caption font-caption font-bold tracking-wider text-primary uppercase">Empowerment</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Our Mission</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                To provide every visionary creator with equal opportunity to unlock funding, and grant institutional allocators unparalleled, borderless pipeline discovery.
+              </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between text-caption font-caption text-primary font-semibold">
+<span>Standardized Diligence</span>
+<span class="material-symbols-outlined text-sm rtl-mirror">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Vision Card -->
+<div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/40 overflow-hidden institutional-card-shadow institutional-hover-shadow transition-all duration-300 flex flex-col group -translate-y-0 hover:-translate-y-2">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An innovative technology workspace with founders analyzing real-time financial software metrics and predictive artificial intelligence algorithms on dual monitors. Crisp modern lighting, sharp clean lines, corporate blue ambient tones, and a forward-looking technological atmosphere reflecting future venture strategy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMuKcEt68huxsWbLUv7tCaLMcURTDMZ9kmhTP7sdwyVy3BaymYyPzvjj2VO8F1uYRaRia6ptDjsZWmQO-allLnjGtGqiEMLSg9oIDc2KKfsVyV_brK05qsC7Aa-d78PgP8n2IF3sTgU10yhKai5Zs_-wzca4oTVbaSXsJ0Sh1h-2tVcjnm90UmILhi5wUS8r3tWCQvv3Bu_gHjkrUS6jx6U3K8Pvmm_2AYItWrzBUi-aIRJpKSk5Qz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-fixed flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-2xl">visibility</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<span class="text-caption font-caption font-bold tracking-wider text-secondary uppercase">Future Horizons</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Our Vision</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                To become the undisputed international nexus where great entrepreneurial sparks evolve into industry-defining enterprises without institutional friction.
+              </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between text-caption font-caption text-primary font-semibold">
+<span>Next-Gen Syndication</span>
+<span class="material-symbols-outlined text-sm rtl-mirror">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Values Card -->
+<div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/40 overflow-hidden institutional-card-shadow institutional-hover-shadow transition-all duration-300 flex flex-col group -translate-y-0 hover:-translate-y-2">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A diverse group of international business partners and startup founders joining their hands in unity in the center of an airy contemporary meeting space. Overhead bright, high-key ambient corporate lighting with natural expressions of shared triumph, integrity, mutual respect, and collaborative strength." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHzHPOvvwbVLJMj5gxyfxhkHQDn3OhEFAoRRxavVOwEAR8vpt_Z57r2urdiBuZC6hrY1Xn5uDAV5R0mim8547-OfBKh3uWQGiUQCI1qAVTnC8QdFBb7-3qrmVdXcVq22dw6xuECyTfL9lZInqfxPXaOk4PQT7oae1z6X2K7USxG5hsaUK_qFw2Xz7lKbMc7vmU99HS2oEnJ_-po7QdrQik_4CtvPGwPasO0FzGVlLQj1fZPuTqiSr9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<span class="text-caption font-caption font-bold tracking-wider text-primary uppercase">Core Integrity</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Our Values</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Radical transparency, institutional integrity, relentless founder obsession, and collaborative wealth creation across every regional vertical.
+              </p>
+</div>
+<div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between text-caption font-caption text-primary font-semibold">
+<span>Uncompromising Ethics</span>
+<span class="material-symbols-outlined text-sm rtl-mirror">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. GLOBAL REACH STRIP -->
+<section class="max-w-[1280px] mx-auto px-space-md md:px-margin pb-space-2xl md:pb-space-3xl">
+<div class="bg-surface-container rounded-3xl border border-outline-variant/40 p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+<!-- Stylized World Map Indicator -->
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center shadow-md shrink-0">
+<span class="material-symbols-outlined text-3xl">public</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">5+ Years of Excellence · 50+ Countries Served</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connecting MENA, European, and North American capital corridors seamlessly.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="px-4 py-2 bg-surface-container-lowest rounded-xl border border-outline-variant/40 text-center">
+<p class="font-label-lg text-label-lg font-bold text-primary">MENA &amp; GCC</p>
+<p class="font-caption text-caption text-on-surface-variant">Primary Hub</p>
+</div>
+<div class="px-4 py-2 bg-surface-container-lowest rounded-xl border border-outline-variant/40 text-center">
+<p class="font-label-lg text-label-lg font-bold text-primary">Europe &amp; US</p>
+<p class="font-caption text-caption text-on-surface-variant">Syndicate Corridors</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. HIGH-CONVERSION CTA BAND -->
+<section class="max-w-[1280px] mx-auto px-space-md md:px-margin pb-space-2xl md:pb-space-3xl">
+<div class="primary-gradient rounded-3xl p-8 md:p-14 text-center text-on-primary shadow-2xl relative overflow-hidden">
+<!-- Ambient Gold Blob -->
+<div class="absolute -top-24 -left-24 w-72 h-72 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-2xl mx-auto space-y-4 relative z-10">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold tracking-tight text-white">
+            Ready to Start Your Investment Journey?
+          </h2>
+<p class="font-body-lg text-body-md md:text-body-lg text-on-primary-container">
+            Join founders and accredited allocators scaling tomorrow’s landmark innovations today.
+          </p>
+<div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+<!-- High-Conversion Gold Button -->
+<a class="bg-secondary-container text-on-secondary-fixed font-headline-sm text-label-lg font-bold px-8 py-3.5 rounded-lg shadow-lg hover:brightness-105 hover:-translate-y-0.5 active:scale-[0.98] transition-all flex items-center gap-2 gold-accent-glow" href="#register">
+<span>Create Free Account</span>
+<span class="material-symbols-outlined text-lg rtl-mirror">arrow_forward</span>
+</a>
+<!-- Outlined Secondary Button -->
+<a class="border-2 border-white/60 text-white hover:bg-white/10 font-label-lg text-label-lg px-8 py-3.5 rounded-lg transition-all flex items-center gap-2 font-semibold" href="#demo">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+<span>Schedule Demo</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- SHARED COMPONENT 2: Footer (5-Column Institutional Layout) -->
+<footer class="docked full-width bottom bg-surface-container dark:bg-inverse-surface border-t border-outline-variant/40 mt-auto">
+<div class="max-w-[1280px] mx-auto px-space-md md:px-margin py-space-2xl md:py-space-3xl flex flex-col gap-space-xl">
+<!-- Top 5-Column Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<!-- Col 1: Brand & Identity -->
+<div class="lg:col-span-1 space-y-4">
+<a class="inline-block focus:outline-none" href="#">
+<img alt="FIKRAPEDIA Brand Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UG75qN9cMvbqq2ZgkGEagHfUWj4n6uQgTOmaQvYRckLMNu9jo6DPqwTc17Uxk2-YU3uU7gEimQLHU6viAWQw-5b4puqyaXkIT7VOaHZZmPFAPuOGSiMMdfs5EwgQbSIu4XWODtDWFBSPg26MdieTfTF9Kslr6KAwH7NeB6yH4ZO3GtqO0S_pelgr9c2xc8uwmoveuTiqt4LlpRJcg7KkDB6kmlF3zSLgRpOq5WDRkh4Tl_zawB4S2fjQs"/>
+</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant leading-relaxed">
+            Connecting breakthrough ventures with visionary capital across international corridors.
+          </p>
+<div class="flex items-center gap-3 pt-1 text-primary dark:text-inverse-primary">
+<a aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center border border-outline-variant/30 hover:-translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined text-base">share</span>
+</a>
+<a aria-label="X Platform" class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center border border-outline-variant/30 hover:-translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined text-base">tag</span>
+</a>
+<a aria-label="Security Portal" class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center border border-outline-variant/30 hover:-translate-y-0.5 transition-transform" href="#">
+<span class="material-symbols-outlined text-base">lock</span>
+</a>
+</div>
+</div>
+<!-- Col 2: Product -->
+<div class="space-y-3">
+<h5 class="text-title-md font-title-md font-semibold text-primary dark:text-inverse-primary">Product</h5>
+<ul class="space-y-2 text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">How It Works</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Pitch Directory</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Syndicates</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Due Diligence Rooms</a></li>
+</ul>
+</div>
+<!-- Col 3: Company -->
+<div class="space-y-3">
+<h5 class="text-title-md font-title-md font-semibold text-primary dark:text-inverse-primary">Company</h5>
+<ul class="space-y-2 text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+<li><a class="text-primary dark:text-inverse-primary font-semibold" href="#about">About Us</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Ecosystem</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Press &amp; Media</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Contact Support</a></li>
+</ul>
+</div>
+<!-- Col 4: Legal & Governance -->
+<div class="space-y-3">
+<h5 class="text-title-md font-title-md font-semibold text-primary dark:text-inverse-primary">Governance</h5>
+<ul class="space-y-2 text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Security &amp; Compliance</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Escrow Protection</a></li>
+<li><a class="hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Accredited Verification</a></li>
+</ul>
+</div>
+<!-- Col 5: Locale & Arabic Support -->
+<div class="space-y-3">
+<h5 class="text-title-md font-title-md font-semibold text-primary dark:text-inverse-primary">Region &amp; Locale</h5>
+<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+            Native bilingual support engineered for international and Gulf venture corridors.
+          </p>
+<div class="pt-2">
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/40 text-primary dark:text-inverse-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="toggleDirection()">
+<span class="material-symbols-outlined text-base">swap_horiz</span>
+<span id="rtl-toggle-label">Switch to Arabic (RTL)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Copyright Bottom Bar -->
+<div class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+<p>© 2025 FIKRAPEDIA. All rights reserved. Connecting breakthrough ventures with visionary capital.</p>
+<div class="flex items-center gap-4 text-caption font-caption">
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span> System Status: All Deal Rooms Operational
+          </span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bilingual & Interactive Micro-Interactions Script -->
+<script>
+    function setLanguage(lang) {
+      const html = document.documentElement;
+      const btnEn = document.getElementById('lang-en');
+      const btnAr = document.getElementById('lang-ar');
+      const rtlLabel = document.getElementById('rtl-toggle-label');
+
+      if (lang === 'ar') {
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+        btnAr.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-xs', 'font-bold');
+        btnAr.classList.remove('text-on-surface-variant');
+        btnEn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-xs', 'font-bold');
+        btnEn.classList.add('text-on-surface-variant');
+        if (rtlLabel) rtlLabel.textContent = 'التبديل إلى الإنجليزية (LTR)';
+      } else {
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', 'en');
+        btnEn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-xs', 'font-bold');
+        btnEn.classList.remove('text-on-surface-variant');
+        btnAr.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-xs', 'font-bold');
+        btnAr.classList.add('text-on-surface-variant');
+        if (rtlLabel) rtlLabel.textContent = 'Switch to Arabic (RTL)';
+      }
+    }
+
+    function toggleDirection() {
+      const currentDir = document.documentElement.getAttribute('dir');
+      setLanguage(currentDir === 'rtl' ? 'en' : 'ar');
+    }
+  </script>
+</body></html>

@@ -1,21 +1,6 @@
 <div>
-<!-- Slim Top Bar -->
-<header class="bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/30 sticky top-0 z-50">
-<div class="flex justify-between items-center w-full px-space-md md:px-margin mx-auto h-16 md:h-20 px-8">
-<a class="flex items-center group transition-transform duration-200 hover:scale-[1.02]" href="/">
-<img alt="FIKRAPEDIA Logo" class="h-12 md:h-14 w-auto object-contain" src="{{ asset('images/logo.webp') }}">
-</a>
-<div class="flex items-center border border-outline-variant/40 bg-surface-container-low p-1 rounded-full text-label-md">
-@foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-@if (app()->getLocale() === $localeCode)
-<span class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-bold bg-primary text-on-primary shadow-sm">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</span>
-@else
-<a class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-medium text-on-surface-variant hover:text-primary" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</a>
-@endif
-@endforeach
-</div>
-</div>
-</header>
+<x-landing.navbar />
+<div class="pt-16 md:pt-20">
 
 <!-- Page Hero -->
 <section class="relative pt-14 md:pt-20 pb-10 md:pb-12 overflow-hidden hero-pattern">
@@ -193,10 +178,6 @@
 @endauth
 </div>
 
-<!-- Mini Footer -->
-<footer class="border-t border-outline-variant/30 py-8">
-<div class="max-w-[1280px] mx-auto px-space-md md:px-margin text-center">
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-0">{{ __('landing.footer.copyright') }}</p>
-</div>
-</footer>
+<!-- Shared Footer -->
+<x-landing.footer />
 </div>

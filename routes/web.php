@@ -13,6 +13,9 @@ use App\Livewire\Pages\Investment\InvestmentForm;
 use App\Livewire\Pages\Investment\InvestmentInfo;
 use App\Livewire\Pages\Investment\InvestmentSummary;
 use App\Livewire\Pages\Landing;
+use App\Livewire\Pages\Landing\LandingContact;
+use App\Livewire\Pages\Landing\LandingFaq;
+use App\Livewire\Pages\Landing\LandingPrivacy;
 use App\Livewire\Pages\LandingTerms;
 use App\Livewire\Pages\PrivacyPolicy;
 use App\Livewire\Pages\Profile\ContactInfo;
@@ -40,6 +43,9 @@ Route::group(
     function () {
         Route::get('/', Landing::class)->name('main.landing');
         Route::get('/terms', LandingTerms::class)->name('main.terms.landing');
+        Route::get('/contact-us', LandingContact::class)->name('main.contact.landing');
+        Route::get('/help', LandingFaq::class)->name('main.faq.landing');
+        Route::get('/privacy', LandingPrivacy::class)->name('main.privacy.landing');
 
         Route::middleware(['auth', 'verified'])->group(function () {
             // Main pages

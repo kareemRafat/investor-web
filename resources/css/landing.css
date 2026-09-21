@@ -1,8 +1,13 @@
 @import "tailwindcss" source(none);
 
 @source "../views/components/layouts/blank.blade.php";
+@source "../views/components/landing/navbar.blade.php";
+@source "../views/components/landing/footer.blade.php";
 @source "../views/livewire/pages/landing.blade.php";
 @source "../views/livewire/pages/landing-terms.blade.php";
+@source "../views/livewire/pages/landing/landing-contact.blade.php";
+@source "../views/livewire/pages/landing/landing-faq.blade.php";
+@source "../views/livewire/pages/landing/landing-privacy.blade.php";
 
 /*
  * Classes toggled at runtime by the inline script in landing.blade.php
@@ -178,4 +183,26 @@
 .hero-pattern {
     background-image: radial-gradient(rgba(0, 91, 165, 0.08) 1px, transparent 1px);
     background-size: 28px 28px;
+}
+
+/* ===== CONTACT DRAFT TOKENS (ported from draft desing/contact.html) ===== */
+.card-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+.card-shadow-hover:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 91, 165, 0.08), 0 8px 10px -6px rgba(0, 91, 165, 0.04);
+    transform: translateY(-2px);
+}
+
+.golden-glow-sm {
+    box-shadow: 0 0 16px 2px rgba(254, 220, 0, 0.35);
+}
+
+.glow-blob-blue {
+    background: radial-gradient(circle, rgba(0, 91, 165, 0.08) 0%, rgba(0, 91, 165, 0) 70%);
+}
+
+.glow-blob-gold {
+    background: radial-gradient(circle, rgba(254, 220, 0, 0.12) 0%, rgba(254, 220, 0, 0) 70%);
 }

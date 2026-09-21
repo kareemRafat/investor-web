@@ -1,111 +1,5 @@
 <div>
-    <!-- Fixed Top Navigation Bar -->
-    <header
-        class="bg-surface-container-lowest/80 dark:bg-inverse-surface/80 backdrop-blur-md top-0 fixed z-50 shadow-sm border-b border-outline-variant/30 transition-all duration-200 w-full">
-        <div class="flex justify-between items-center w-full px-space-md md:px-margin mx-auto h-16 md:h-20 px-8">
-            <!-- Logo image -->
-            <a class="flex items-center gap-2 group transition-transform duration-200 hover:scale-[1.02]" href="/">
-                <img alt="FIKRAPEDIA Logo" class="h-12 md:h-14 w-auto object-contain"
-                    src="{{ asset('images/logo.webp') }}">
-            </a>
-            <!-- Desktop Anchor Links -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a data-nav="about"
-                    class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
-                    href="#about">{{ __('landing.nav.about') }}</a>
-                <a data-nav="features"
-                    class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
-                    href="#features">{{ __('landing.nav.features') }}</a>
-                <a data-nav="stats"
-                    class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
-                    href="#stats">{{ __('landing.nav.stats') }}</a>
-                <a data-nav="how-it-works"
-                    class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
-                    href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
-                <a class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
-                    href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms.landing')) }}">{{ __('landing.nav.terms') }}</a>
-            </nav>
-            <!-- Desktop Actions + Lang Switcher -->
-            <div class="hidden md:flex items-center gap-4">
-                @guest
-                    <a class="px-4 py-2 rounded-lg text-label-lg font-label-lg text-primary font-semibold hover:bg-surface-container-high transition-colors duration-150"
-                        href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}">{{ __('landing.nav.signIn') }}</a>
-                    <a class="custom-gradient-btn text-on-primary px-5 py-2.5 rounded-lg text-label-lg font-label-lg font-semibold shadow-md shadow-primary-container/20 hover:brightness-110 active:scale-[0.98] transition-all duration-150 flex items-center gap-1.5"
-                        href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}">{{ __('landing.nav.getStarted') }}</a>
-                @endguest
-                @auth
-                    <a class="custom-gradient-btn text-on-primary px-5 py-2.5 rounded-lg text-label-lg font-label-lg font-semibold shadow-md shadow-primary-container/20 hover:brightness-110 active:scale-[0.98] transition-all duration-150 flex items-center gap-1.5"
-                        href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}">{{ __('landing.nav.startNow') }}</a>
-                @endauth
-                <!-- Language Switcher Pill -->
-                <div
-                    class="flex items-center border border-outline-variant/40 bg-surface-container-low p-1 rounded-full text-label-md">
-                    @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        @if (app()->getLocale() === $localeCode)
-                            <span
-                                class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-bold bg-primary text-on-primary shadow-sm">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</span>
-                        @else
-                            <a class="px-3 py-1 rounded-full text-label-md font-label-md transition-all duration-150 font-medium text-on-surface-variant hover:text-primary"
-                                href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</a>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-            <!-- Mobile Hamburger Button -->
-            <div class="flex items-center gap-2 md:hidden">
-                <button aria-label="Toggle Navigation Menu" class="p-2 text-primary focus:outline-none"
-                    id="mobile-menu-btn">
-                    <x-heroicon-o-bars-3 class="w-7 h-7" />
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Drawer Overlay -->
-        <div class="hidden md:hidden bg-surface-container-lowest border-b border-outline-variant/30 px-space-md py-4 shadow-lg transition-all"
-            id="mobile-menu">
-            <div class="flex flex-col gap-3">
-                <a data-nav="about" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
-                    href="#about">{{ __('landing.nav.about') }}</a>
-                <a data-nav="features"
-                    class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
-                    href="#features">{{ __('landing.nav.features') }}</a>
-                <a data-nav="stats" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
-                    href="#stats">{{ __('landing.nav.stats') }}</a>
-                <a data-nav="how-it-works"
-                    class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
-                    href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a>
-                <a class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
-                    href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms.landing')) }}">{{ __('landing.nav.terms') }}</a>
-                <div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
-                    <span
-                        class="text-label-md font-label-md text-on-surface-variant">{{ __('landing.nav.language') }}</span>
-                    <div
-                        class="flex items-center bg-surface-container-high p-1 rounded-full border border-outline-variant/40">
-                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            @if (app()->getLocale() === $localeCode)
-                                <span
-                                    class="px-3 py-1 rounded-full text-label-md font-label-md font-bold bg-primary text-on-primary">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</span>
-                            @else
-                                <a class="px-3 py-1 rounded-full text-label-md font-label-md font-medium text-on-surface-variant"
-                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $localeCode === 'ar' ? 'عربي' : 'EN' }}</a>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-2 pt-2">
-                    @guest
-                        <a class="text-center py-2.5 rounded-lg border border-primary text-primary font-semibold text-label-lg font-label-lg"
-                            href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('login')) }}">{{ __('landing.nav.signIn') }}</a>
-                        <a class="text-center custom-gradient-btn text-on-primary py-2.5 rounded-lg font-semibold text-label-lg font-label-lg"
-                            href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}">{{ __('landing.nav.getStarted') }}</a>
-                    @endguest
-                    @auth
-                        <a class="text-center custom-gradient-btn text-on-primary py-2.5 rounded-lg font-semibold text-label-lg font-label-lg col-span-2"
-                            href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.home')) }}">{{ __('landing.nav.startNow') }}</a>
-                    @endauth
-                </div>
-            </div>
-        </div>
-    </header>
+    <x-landing.navbar />
     <!-- Hero Section -->
     <section class="relative pt-28 md:pt-36 pb-space-2xl md:pb-space-3xl overflow-hidden hero-pattern">
         <!-- Ambient Blue Radial Glows -->
@@ -274,9 +168,9 @@
                 <!-- Right Stat Showcase Column (lg:col-span-5) -->
                 <div class="lg:col-span-5 flex flex-col">
                     <div
-                        class="relative bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-high p-8 md:p-10 rounded-2xl border border-primary/20 shadow-md flex flex-col justify-between h-full overflow-hidden">
+                        class="relative bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-high p-8 md:p-10 rounded-2xl border border-primary/20 shadow-md flex flex-col justify-start gap-8 h-full overflow-hidden">
                         <!-- Top Branded Indicator Pill -->
-                        <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center justify-between">
                             <div
                                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold shadow-sm">
                                 <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
@@ -324,18 +218,6 @@
                             </div>
                         </div>
 
-                        <!-- Bottom Live Metric Banner Micro-Card -->
-                        <div
-                            class="mt-8 pt-5 border-t border-outline-variant/30 bg-surface-container-lowest/80 p-4 rounded-xl border border-outline-variant/30 flex items-start gap-3 shadow-sm">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-secondary-container/30 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
-                                <x-heroicon-o-shield-check class="w-[18px] h-[18px]" />
-                            </div>
-                            <p class="font-body-sm text-body-sm text-on-surface leading-snug font-medium">
-                                {{ __('landing.about.bannerStart') }} <span
-                                    class="font-bold text-primary">$2.5B</span> {{ __('landing.about.bannerEnd') }}
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -514,33 +396,34 @@
                     {{ __('landing.stats.title') }}</h2>
                 <p class="font-body-md text-body-md text-tertiary-fixed">{{ __('landing.stats.subtitle') }}</p>
             </div>
+            @php($pctSuffix = app()->getLocale() === 'ar' ? '٪' : '%')
             <div
                 class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/20 border border-white/20 rounded-2xl overflow-hidden shadow-lg">
                 <div class="bg-surface-container-lowest py-8 px-6 text-center">
                     <div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span
-                            class="count-up" data-target="2.5" data-decimals="1" data-prefix="$"
-                            data-suffix="B+">$2.5B+</span></div>
+                            class="count-up" data-target="90" data-decimals="0" data-prefix=""
+                            data-suffix="{{ $pctSuffix }}">{{ app()->getLocale() === 'ar' ? '٩٠٪' : '90%' }}</span></div>
                     <div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">
                         {{ __('landing.stats.c1Label') }}</div>
                 </div>
                 <div class="bg-surface-container-lowest py-8 px-6 text-center">
                     <div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span
-                            class="count-up" data-target="12000" data-decimals="0" data-prefix=""
-                            data-suffix="+">12,000+</span></div>
+                            class="count-up" data-target="88" data-decimals="0" data-prefix=""
+                            data-suffix="{{ $pctSuffix }}">{{ app()->getLocale() === 'ar' ? '٨٨٪' : '88%' }}</span></div>
                     <div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">
                         {{ __('landing.stats.c2Label') }}</div>
                 </div>
                 <div class="bg-surface-container-lowest py-8 px-6 text-center">
                     <div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span
-                            class="count-up" data-target="850" data-decimals="0" data-prefix=""
-                            data-suffix="+">850+</span></div>
+                            class="count-up" data-target="75" data-decimals="0" data-prefix=""
+                            data-suffix="{{ $pctSuffix }}">{{ app()->getLocale() === 'ar' ? '٧٥٪' : '75%' }}</span></div>
                     <div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">
                         {{ __('landing.stats.c3Label') }}</div>
                 </div>
                 <div class="bg-surface-container-lowest py-8 px-6 text-center">
                     <div class="font-headline-lg text-headline-lg font-extrabold text-primary leading-none"><span
                             class="count-up" data-target="98" data-decimals="0" data-prefix=""
-                            data-suffix="%">98%</span></div>
+                            data-suffix="{{ $pctSuffix }}">{{ app()->getLocale() === 'ar' ? '٩٨٪' : '98%' }}</span></div>
                     <div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-2">
                         {{ __('landing.stats.c4Label') }}</div>
                 </div>
@@ -641,6 +524,147 @@
             </div>
         </div>
     </section>
+    <!-- Pricing Section -->
+    <section
+        class="py-space-2xl md:py-space-3xl bg-surface-container-lowest border-t border-outline-variant/30 scroll-mt-16 md:scroll-mt-20"
+        id="pricing">
+        <div class="max-w-[1280px] mx-auto px-space-md md:px-margin">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span
+                    class="px-3.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-md text-label-md font-bold">{{ __('landing.footer.pricing') }}</span>
+                <h2
+                    class="font-headline-lg md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mt-3 mb-4">
+                    {{ __('pages.pricing.title') }}</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">{{ __('pages.pricing.subtitle') }}</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-6">
+                <!-- Free -->
+                <div
+                    class="bg-surface-container-lowest p-6 md:p-8 rounded-2xl border {{ $this->isUpgrade('free') ? 'border-primary shadow-lg' : 'border-outline-variant/40' }} flex flex-col">
+                    @if ($this->isUpgrade('free'))
+                        <span
+                            class="self-center -mt-10 mb-4 px-4 py-1.5 rounded-full bg-primary text-on-primary text-label-md font-label-md font-bold shadow">{{ __('pages.pricing.upgrade') }}</span>
+                    @endif
+                    <div
+                        class="w-11 h-11 rounded-xl bg-secondary-container/40 text-primary flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-[24px]">rocket_launch</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
+                        {{ __('pages.pricing.free_title') }}</h3>
+                    <p class="font-display text-display text-on-surface font-extrabold leading-none mb-6">
+                        {{ __('pages.pricing.price_free') }}</p>
+                    <ul class="flex flex-col gap-3 mb-8 grow">
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_ideas') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_investors') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.support') }}
+                        </li>
+                    </ul>
+                    @guest
+                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
+                            class="text-center border-2 border-primary text-primary px-6 py-3 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors">{{ __('pages.pricing.choose_plan') }}</a>
+                    @else
+                        <button wire:click="selectPlan('free')" @disabled(auth()->user()?->plan_type === \App\Enums\PlanType::FREE)
+                            class="border-2 border-primary text-primary px-6 py-3 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors disabled:opacity-50">{{ auth()->user()?->plan_type === \App\Enums\PlanType::FREE ? __('pages.pricing.current_plan') : __('pages.pricing.choose_plan') }}</button>
+                    @endguest
+                </div>
+
+                <!-- Monthly -->
+                <div
+                    class="bg-surface-container-lowest p-6 md:p-8 rounded-2xl border {{ $this->isUpgrade('monthly') ? 'border-primary shadow-lg' : 'border-outline-variant/40' }} flex flex-col relative">
+                    @if ($this->isUpgrade('monthly'))
+                        <span
+                            class="self-center -mt-10 mb-4 px-4 py-1.5 rounded-full bg-primary text-on-primary text-label-md font-label-md font-bold shadow">{{ __('pages.pricing.upgrade') }}</span>
+                    @endif
+                    <div
+                        class="w-11 h-11 rounded-xl custom-gradient-btn text-on-primary flex items-center justify-center shadow-sm mb-4">
+                        <span class="material-symbols-outlined text-[24px]">diamond</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
+                        {{ __('pages.pricing.monthly_title') }}</h3>
+                    <p class="mb-6"><span
+                            class="font-display text-display text-primary font-extrabold leading-none">{{ __('pages.pricing.price_monthly') }}</span>
+                        <span
+                            class="font-body-sm text-body-sm text-on-surface-variant">{{ __('pages.pricing.per_month') }}</span>
+                    </p>
+                    <ul class="flex flex-col gap-3 mb-8 grow">
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_ideas') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_investors') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.monthly_credits') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.open_contact_posts') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.priority_support') }}
+                        </li>
+                    </ul>
+                    @guest
+                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
+                            class="text-center custom-gradient-btn text-on-primary px-6 py-3 rounded-lg font-headline-sm text-headline-sm font-semibold shadow-lg shadow-primary-container/25 hover:brightness-105 active:scale-[0.98] transition-all">{{ __('pages.pricing.choose_plan') }}</a>
+                    @else
+                        <a href="{{ route('payment.page', ['plan' => 'monthly']) }}"
+                            class="text-center custom-gradient-btn text-on-primary px-6 py-3 rounded-lg font-headline-sm text-headline-sm font-semibold shadow-lg shadow-primary-container/25 hover:brightness-105 active:scale-[0.98] transition-all">{{ auth()->user()?->plan_type === \App\Enums\PlanType::MONTHLY ? __('pages.pricing.current_plan') : __('pages.pricing.choose_plan') }}</a>
+                    @endauth
+                </div>
+
+                <!-- Yearly -->
+                <div
+                    class="bg-surface-container-lowest p-6 md:p-8 rounded-2xl border {{ $this->isUpgrade('yearly') ? 'border-primary shadow-lg' : 'border-outline-variant/40' }} flex flex-col relative">
+                    <span
+                        class="absolute top-4 end-4 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-md font-label-md font-bold">{{ __('pages.pricing.save_20') }}</span>
+                    @if ($this->isUpgrade('yearly'))
+                        <span
+                            class="self-center -mt-10 mb-4 px-4 py-1.5 rounded-full bg-primary text-on-primary text-label-md font-label-md font-bold shadow">{{ __('pages.pricing.upgrade') }}</span>
+                    @endif
+                    <div
+                        class="w-11 h-11 rounded-xl bg-secondary-container text-on-secondary-fixed flex items-center justify-center shadow-sm mb-4">
+                        <span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
+                        {{ __('pages.pricing.yearly_title') }}</h3>
+                    <p class="mb-6"><span
+                            class="font-display text-display text-on-surface font-extrabold leading-none">{{ __('pages.pricing.price_yearly') }}</span>
+                        <span
+                            class="font-body-sm text-body-sm text-on-surface-variant">{{ __('pages.pricing.per_year') }}</span>
+                    </p>
+                    <ul class="flex flex-col gap-3 mb-8 grow">
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_ideas') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_investors') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.monthly_credits') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.open_contact_posts') }}
+                        </li>
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
+                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.whatsapp_support') }}
+                        </li>
+                    </ul>
+                    @guest
+                        <a href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('register')) }}"
+                            class="text-center border-2 border-primary text-primary px-6 py-3 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors">{{ __('pages.pricing.choose_plan') }}</a>
+                    @else
+                        <a href="{{ route('payment.page', ['plan' => 'yearly']) }}"
+                            class="text-center border-2 border-primary text-primary px-6 py-3 rounded-lg font-headline-sm text-headline-sm font-semibold hover:bg-surface-container-high transition-colors">{{ auth()->user()?->plan_type === \App\Enums\PlanType::YEARLY ? __('pages.pricing.current_plan') : __('pages.pricing.choose_plan') }}</a>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Final CTA Band -->
     <section
         class="relative py-space-2xl md:py-space-3xl overflow-hidden custom-gradient-btn text-on-primary scroll-mt-16 md:scroll-mt-20"
@@ -676,143 +700,13 @@
             </div>
         </div>
     </section>
-    <!-- Comprehensive Footer -->
-    <footer
-        class="bg-surface-container dark:bg-inverse-surface border-t border-outline-variant/40 pt-space-2xl md:pt-space-3xl pb-10">
-        <div class="max-w-[1280px] mx-auto px-space-md md:px-margin flex flex-col gap-space-xl">
-            <!-- 5 Columns -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-                <!-- Col 1: Brand & Bio -->
-                <div class="lg:col-span-1 flex flex-col gap-4">
-                    <a class="inline-block group" href="/">
-                        <img alt="FIKRAPEDIA" class="h-12 w-auto object-contain"
-                            src="{{ asset('images/logo.webp') }}">
-                    </a>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                        {{ __('landing.footer.desc') }}</p>
-                </div>
-                <!-- Col 2: Product -->
-                <div>
-                    <h4 class="font-title-md text-title-md text-on-surface mb-4">{{ __('landing.footer.product') }}
-                    </h4>
-                    <ul class="flex flex-col gap-2.5">
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#features">{{ __('landing.nav.features') }}</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#how-it-works">{{ __('landing.nav.howItWorks') }}</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.pricing')) }}">{{ __('landing.footer.pricing') }}</a>
-                        </li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#">{{ __('landing.footer.api') }}</a></li>
-                    </ul>
-                </div>
-                <!-- Col 3: Company -->
-                <div>
-                    <h4 class="font-title-md text-title-md text-on-surface mb-4">{{ __('landing.footer.company') }}
-                    </h4>
-                    <ul class="flex flex-col gap-2.5">
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#about">{{ __('landing.footer.about') }}</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#">{{ __('landing.footer.blog') }}</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#">{{ __('landing.footer.careers') }}</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.contact')) }}">{{ __('landing.footer.contact') }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Col 4: Legal -->
-                <div>
-                    <h4 class="font-title-md text-title-md text-on-surface mb-4">{{ __('landing.footer.legal') }}
-                    </h4>
-                    <ul class="flex flex-col gap-2.5">
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.privacypolicy')) }}">{{ __('landing.footer.privacy') }}</a>
-                        </li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale(), route('main.terms')) }}">{{ __('landing.footer.terms') }}</a>
-                        </li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#">{{ __('landing.footer.cookies') }}</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm"
-                                href="#">{{ __('landing.footer.compliance') }}</a></li>
-                    </ul>
-                </div>
-                <!-- Col 5: Language & Currency -->
-                <div>
-                    <h4 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2">
-                        <x-heroicon-o-globe-alt class="w-5 h-5" />
-                        <span>{{ __('landing.footer.locale') }}</span>
-                    </h4>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
-                        {{ __('landing.footer.localeDesc') }}</p>
-                    <div class="grid grid-cols-2 gap-2">
-                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            @if (app()->getLocale() === $localeCode)
-                                <span
-                                    class="w-full py-2 px-3 text-center border rounded-lg text-label-md font-label-md font-bold bg-primary text-on-primary border-primary">{{ $properties['native'] }}</span>
-                            @else
-                                <a class="w-full py-2 px-3 text-center border border-outline-variant/40 rounded-lg text-label-md font-label-md font-bold bg-surface-container-lowest text-primary hover:border-primary transition-colors"
-                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <!-- Bottom Bar -->
-            <div
-                class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.footer.copyright') }}</p>
-                <!-- Social Links -->
-                <div class="flex items-center gap-3">
-                    <a aria-label="Twitter/X"
-                        class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors"
-                        href="#">
-                        <x-heroicon-o-share class="w-[18px] h-[18px]" />
-                    </a>
-                    <a aria-label="LinkedIn"
-                        class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors"
-                        href="#">
-                        <x-heroicon-o-briefcase class="w-[18px] h-[18px]" />
-                    </a>
-                    <a aria-label="Community"
-                        class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors"
-                        href="#">
-                        <x-heroicon-o-globe-alt class="w-[18px] h-[18px]" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Floating Scroll To Top Button with Progress Ring -->
-    <button aria-label="Scroll to top"
-        class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-surface-container-lowest shadow-xl border border-outline-variant/40 flex items-center justify-center text-primary opacity-0 pointer-events-none transition-all duration-300 hover:scale-105 active:scale-95"
-        id="scrollToTopBtn" onclick="scrollToTop()">
-        <svg class="w-12 h-12 -rotate-90 absolute inset-0">
-            <circle class="text-surface-container-high fill-none" cx="24" cy="24" r="20"
-                stroke="currentColor" stroke-width="2.5"></circle>
-            <circle class="text-primary fill-none transition-[stroke-dashoffset] duration-75" cx="24"
-                cy="24" id="scrollProgress" r="20" stroke="currentColor" stroke-dasharray="125.6"
-                stroke-dashoffset="125.6" stroke-width="2.5"></circle>
-        </svg>
-        <x-heroicon-o-chevron-up class="w-[22px] h-[22px] relative z-10" />
-    </button>
-    <!-- Interactive JavaScript -->
+    <x-landing.footer />
+    <!-- Landing-specific JavaScript (scroll-spy + count-up). Mobile menu + scroll-to-top live in x-landing.footer. -->
     <script>
-        // Mobile Menu Toggle
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
 
         // Navbar scroll-spy: highlight the link of the section currently in view
         const navLinks = document.querySelectorAll('[data-nav]');
-        const spySections = ['about', 'features', 'stats', 'how-it-works']
+        const spySections = ['about', 'features', 'stats', 'how-it-works', 'pricing']
             .map((id) => document.getElementById(id))
             .filter(Boolean);
 
@@ -842,45 +736,13 @@
             spySections.forEach((section) => spy.observe(section));
         }
 
-        // Scroll-to-Top with Circular Progress Indicator
-        const scrollBtn = document.getElementById('scrollToTopBtn');
-        const scrollCircle = document.getElementById('scrollProgress');
-        const totalCircumference = 2 * Math.PI * 20; // radius = 20 => ~125.66
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollFraction = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
-
-            // Update circle progress
-            const offset = totalCircumference - (scrollFraction * totalCircumference);
-            if (scrollCircle) {
-                scrollCircle.style.strokeDashoffset = offset;
-            }
-
-            // Show/Hide Button past 250px
-            if (scrollTop > 250) {
-                scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
-                scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
-            } else {
-                scrollBtn.classList.add('opacity-0', 'pointer-events-none');
-                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
         // Animated Count-Up for Stat Numbers (runs once when scrolled into view)
         function animateCountUp(el) {
             const target = parseFloat(el.dataset.target || '0');
             const decimals = parseInt(el.dataset.decimals || '0', 10);
             const prefix = el.dataset.prefix || '';
             const suffix = el.dataset.suffix || '';
+            const numberLocale = document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US';
             const duration = 2000;
             const startTime = performance.now();
 
@@ -888,7 +750,7 @@
                 const progress = Math.min((now - startTime) / duration, 1);
                 const eased = 1 - Math.pow(1 - progress, 3);
                 const value = target * eased;
-                el.textContent = prefix + value.toLocaleString('en-US', {
+                el.textContent = prefix + value.toLocaleString(numberLocale, {
                     minimumFractionDigits: decimals,
                     maximumFractionDigits: decimals
                 }) + suffix;
