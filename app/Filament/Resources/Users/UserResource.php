@@ -5,10 +5,12 @@ namespace App\Filament\Resources\Users;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Filament\Resources\Users\Pages\ViewUser;
 use App\Filament\Resources\Users\RelationManagers\IdeasRelationManager;
 use App\Filament\Resources\Users\RelationManagers\InvestorsRelationManager;
 use App\Filament\Resources\Users\RelationManagers\TransactionsRelationManager;
 use App\Filament\Resources\Users\Schemas\UserForm;
+use App\Filament\Resources\Users\Schemas\UserInfolist;
 use App\Filament\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
@@ -45,6 +47,11 @@ class UserResource extends Resource
         return UsersTable::configure($table);
     }
 
+    public static function infolist(Schema $schema): Schema
+    {
+        return UserInfolist::configure($schema);
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
@@ -64,7 +71,7 @@ class UserResource extends Resource
     {
         return [
             'index' => ListUsers::route('/'),
-            // 'view' => ListUsers::route('/{record}'),
+            'view' => ViewUser::route('/{record}'),
             'create' => CreateUser::route('/create'),
             'edit' => EditUser::route('/{record}/edit'),
         ];

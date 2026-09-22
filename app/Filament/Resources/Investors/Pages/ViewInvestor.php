@@ -51,7 +51,7 @@ class ViewInvestor extends ViewRecord
                         'person_money_amount',
                         'person_money_percent',
                         'money_contributions'
-                    )->with('contributionRange:id,type,min_value,max_value,label_en,label_ar');
+                    );
                 },
                 'attachments:id,attachable_id,attachable_type,original_name,path',
             ]);

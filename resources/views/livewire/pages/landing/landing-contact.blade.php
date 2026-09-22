@@ -36,7 +36,7 @@
                     <div class="relative h-64 sm:h-72 w-full overflow-hidden shrink-0">
                         <img alt="{{ __('landing.contactPage.cardTitle') }}"
                             class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
-                            src="https://lh3.googleusercontent.com/aida/AEtjO1VY8KUu7kVpinfpIUxqSpezy5rVAY-0jH5KBJnIjxZbTyQ7-R-xfwsWtiWdrI_PLmYCzXRiGcRjfZy9EFD6xMNpAOpMb0fHZxZYT6UU2C0oHHQC87_xVZQDAvS2VnG5q85bnu4wvlddNCrvedh0zOtuiqaxVTMF4y1fT6FkoRVNAs7iQMLsQQpoQe43Culjkzt4kSpAZx9enznGdqwnczccymDBUju30E6Uhhy9FSp9l1KqyhSNDXYJXQ">
+                            src="{{ asset('images/contact-support.webp') }}">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex flex-col justify-end p-5 text-white">
                             <h3 class="font-title-md text-title-md font-bold text-white">{{ __('landing.contactPage.cardTitle') }}</h3>
                             <p class="font-body-sm text-body-sm text-white/85 leading-relaxed">{{ __('landing.contactPage.cardText') }}</p>

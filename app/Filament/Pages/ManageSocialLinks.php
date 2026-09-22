@@ -99,7 +99,7 @@ class ManageSocialLinks extends Page
 
         Notification::make()
             ->success()
-            ->title('Social links saved successfully.')
+            ->title('تم حفظ روابط التواصل الاجتماعي بنجاح.')
             ->send();
     }
 

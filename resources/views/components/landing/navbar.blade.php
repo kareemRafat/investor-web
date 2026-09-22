@@ -17,16 +17,16 @@
         <!-- Desktop Links: anchors + public pages -->
         <nav class="hidden md:flex items-center gap-6">
             <a data-nav="about"
-                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
+                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('about') }}">{{ __('landing.nav.about') }}</a>
             <a data-nav="features"
-                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
+                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('features') }}">{{ __('landing.nav.features') }}</a>
             <a data-nav="how-it-works"
-                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
+                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('how-it-works') }}">{{ __('landing.nav.howItWorks') }}</a>
             <a data-nav="pricing"
-                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium"
+                class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('pricing') }}">{{ __('landing.nav.pricing') }}</a>
             <a class="text-on-surface-variant border-b-2 border-transparent pb-1 hover:text-primary transition-colors duration-200 font-label-lg text-label-lg font-medium {{ Route::is('main.faq.landing') ? '!text-primary !border-primary' : '' }}"
                 href="{{ LaravelLocalization::getLocalizedURL($locale, route('main.faq.landing')) }}">{{ __('landing.nav.faq') }}</a>
@@ -71,17 +71,17 @@
     <div class="hidden md:hidden bg-surface-container-lowest border-b border-outline-variant/30 px-space-md py-4 shadow-lg transition-all"
         id="mobile-menu">
         <div class="flex flex-col gap-3">
-            <a data-nav="about" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
+            <a data-nav="about" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('about') }}">{{ __('landing.nav.about') }}</a>
             <a data-nav="features"
-                class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
+                class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('features') }}">{{ __('landing.nav.features') }}</a>
-            <a data-nav="stats" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
+            <a data-nav="stats" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('stats') }}">{{ __('landing.nav.stats') }}</a>
             <a data-nav="how-it-works"
-                class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
+                class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('how-it-works') }}">{{ __('landing.nav.howItWorks') }}</a>
-            <a data-nav="pricing" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg"
+            <a data-nav="pricing" class="text-on-surface-variant hover:text-primary py-2 font-label-lg text-label-lg font-semibold"
                 href="{{ $anchor('pricing') }}">{{ __('landing.nav.pricing') }}</a>
             <div class="pt-3 border-t border-outline-variant/20 flex flex-col gap-3">
                 <a class="text-on-surface-variant hover:text-primary py-1 font-label-lg text-label-lg font-semibold"

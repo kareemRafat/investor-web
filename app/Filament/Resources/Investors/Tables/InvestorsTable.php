@@ -25,7 +25,6 @@ class InvestorsTable
                     'user:id,name,email',
                     'countries',
                     'contributions:id,investor_id,contribute_type,money_contributions',
-                    'contributions.contributionRange:id,type,label_en,label_ar',
                     'approver:id,name',
                 ])
                     ->withCount(['attachments', 'contactUnlocks'])

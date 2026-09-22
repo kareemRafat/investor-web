@@ -2,13 +2,14 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
-use App\Enums\UserRole;
 use App\Enums\UserStatus;
 use App\Filament\Actions\UserActions\ChangeStatusAction;
+use App\Filament\Resources\Users\UserResource;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
@@ -25,6 +26,7 @@ class UsersTable
             // ->recordUrl(null)
             ->defaultSort('created_at', 'desc')
             ->striped()
+            ->recordUrl(fn ($record) => UserResource::getUrl('view', ['record' => $record]))
             ->groups([
                 // table group by Role
                 Group::make('role')
@@ -58,29 +60,6 @@ class UsersTable
                     ->label('رقم الهاتف')
                     ->searchable(),
 
-                TextColumn::make('job_title')
-                    ->label('الوظيفة')
-                    ->toggleable(),
-
-                TextColumn::make('residence_country')
-                    ->label('دولة الإقامة')
-
-                    ->formatStateUsing(function (?string $state) {
-                        if (! $state) {
-                            return null;
-                        }
-                        $countries = collect(__('idea.steps.step2.options'))
-                            ->pluck('name', 'code')
-                            ->toArray();
-
-                        return $countries[$state] ?? $state;
-                    }),
-
-                TextColumn::make('birth_date')
-                    ->label('تاريخ الميلاد')
-                    ->date('Y-m-d')
-                    ->toggleable(),
-
                 TextColumn::make('status')
                     ->label('الحالة')
                     ->badge()
@@ -89,44 +68,6 @@ class UsersTable
                 TextColumn::make('plan_type')
                     ->label('الباقة')
                     ->badge(),
-
-                TextColumn::make('ideas_count')
-                    ->label('الأفكار')
-                    ->counts('ideas')
-                    ->badge()
-                    ->color('gray')
-                    ->sortable(),
-
-                TextColumn::make('investors_count')
-                    ->label('عروض الاستثمار')
-                    ->counts('investors')
-                    ->badge()
-                    ->color('gray')
-                    ->sortable(),
-
-                TextColumn::make('contact_credits')
-                    ->label('الرصيد')
-                    ->badge()
-                    ->color('gray'),
-
-                TextColumn::make('completed_transactions_sum_amount')
-                    ->label('إجمالي الدفع')
-                    ->sum('completedTransactions', 'amount')
-                    ->money('USD', locale: 'en')
-                    ->sortable()
-                    ->color('success'),
-
-                TextColumn::make('role')
-                    ->label('الصلاحية')
-                    ->badge()
-                    ->formatStateUsing(fn (UserRole $state) => $state)
-                    ->color(fn (UserRole $state) => $state->getColor()),
-
-                TextColumn::make('created_at')
-                    ->label('تاريخ التسجيل')
-                    ->dateTime('Y-m-d H:i')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('status')
@@ -150,6 +91,8 @@ class UsersTable
             ], layout: FiltersLayout::AboveContent)
             ->deferFilters(false)
             ->recordActions([
+                ViewAction::make()
+                    ->color('gray'),
                 ChangeStatusAction::make(),
                 Action::make('reset_credits')
                     ->label('تصفير الرصيد')

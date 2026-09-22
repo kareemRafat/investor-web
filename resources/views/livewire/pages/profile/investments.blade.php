@@ -135,12 +135,9 @@
                                             </div>
                                             @php
                                                 $contribution = $investor->contributions;
-                                                $range = $contribution?->contributionRange;
                                             @endphp
                                             <div class="fw-semibold text-dark">
-                                                @if ($range)
-                                                    {!! $range->{app()->getLocale() == 'ar' ? 'label_ar' : 'label_en'} !!}
-                                                @elseif ($contribution?->money_contributions)
+                                                @if ($contribution?->money_contributions)
                                                     {{ $contribution->money_contribution_label }}
                                                 @else
                                                     <span
