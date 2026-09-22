@@ -55,10 +55,6 @@
                     <li><a href="{{ route('idea.index', ['field' => 'food']) }}"
                             class="app-footer__link">{{ __('idea.steps.step1.options.food') }}</a>
                     </li>
-                    <li><a href="{{ route('main.contact') }}"
-                            class="app-footer__link app-footer__link--support">
-                            <i class="bi bi-headset"></i>{{ __('header.footer.support') }}</a>
-                    </li>
                 </ul>
             </div>
         </div>

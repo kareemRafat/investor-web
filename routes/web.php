@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\Pages\About;
-use App\Livewire\Pages\Contact;
 use App\Livewire\Pages\FAQ;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Idea\IdeaForm;
@@ -54,7 +53,6 @@ Route::group(
         Route::middleware(['auth', 'verified'])->group(function () {
             // Main pages
             Route::get('/home', Home::class)->name('main.home');
-            Route::get('/contact', Contact::class)->name('main.contact');
             Route::get('/terms-of-use', Terms::class)->name('main.terms');
             Route::get('/faq', FAQ::class)->name('main.faq');
             Route::get('/privacy-policy', PrivacyPolicy::class)->name('main.privacypolicy');

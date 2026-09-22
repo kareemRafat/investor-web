@@ -32,10 +32,6 @@
                     <li>
                         <x-nav-link route="main.faq" label="{{ __('header.faq') }}" />
                     </li>
-                    <!--  Contact Us-->
-                    <li>
-                        <x-nav-link route="main.contact" label="{{ __('header.contact') }}" />
-                    </li>
                 </ul>
             </nav>
             <div class="d-none d-xl-flex gap-2 align-items-center">
@@ -131,7 +127,6 @@
                             <li><x-nav-link route="main.terms" label="{{ __('header.terms') }}" /></li>
                             <li><x-nav-link route="main.privacypolicy" label="{{ __('header.privacy') }}" /></li>
                             <li><x-nav-link route="main.faq" label="{{ __('header.faq') }}" /></li>
-                            <li><x-nav-link route="main.contact" label="{{ __('header.contact') }}" /></li>
 
                         </ul>
                         <!-- make language as accordion! -->
