@@ -181,6 +181,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'phone' => [
+            'regex' => 'Please enter a valid phone number.',
+        ],
     ],
 
     /*

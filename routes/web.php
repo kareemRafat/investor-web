@@ -24,6 +24,7 @@ use App\Livewire\Pages\Profile\Investments;
 use App\Livewire\Pages\Profile\Profile;
 use App\Livewire\Pages\Profile\Security;
 use App\Livewire\Pages\Terms;
+use App\Http\Controllers\ContactMessageController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -44,6 +45,9 @@ Route::group(
         Route::get('/', Landing::class)->name('main.landing');
         Route::get('/terms', LandingTerms::class)->name('main.terms.landing');
         Route::get('/contact-us', LandingContact::class)->name('main.contact.landing');
+        Route::post('/contact-us', [ContactMessageController::class, 'store'])
+            ->middleware('throttle:10,1')
+            ->name('main.contact.landing.store');
         Route::get('/help', LandingFaq::class)->name('main.faq.landing');
         Route::get('/privacy', LandingPrivacy::class)->name('main.privacy.landing');
 

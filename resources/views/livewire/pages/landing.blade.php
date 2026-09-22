@@ -547,21 +547,18 @@
                     @endif
                     <div
                         class="w-11 h-11 rounded-xl bg-secondary-container/40 text-primary flex items-center justify-center mb-4">
-                        <span class="material-symbols-outlined text-[24px]">rocket_launch</span>
+                        <x-heroicon-o-rocket-launch class="w-6 h-6" />
                     </div>
                     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
                         {{ __('pages.pricing.free_title') }}</h3>
                     <p class="font-display text-display text-on-surface font-extrabold leading-none mb-6">
                         {{ __('pages.pricing.price_free') }}</p>
                     <ul class="flex flex-col gap-3 mb-8 grow">
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_ideas') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.browse_ideas') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_investors') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.browse_investors') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.support') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.support') }}
                         </li>
                     </ul>
                     @guest
@@ -582,7 +579,7 @@
                     @endif
                     <div
                         class="w-11 h-11 rounded-xl custom-gradient-btn text-on-primary flex items-center justify-center shadow-sm mb-4">
-                        <span class="material-symbols-outlined text-[24px]">diamond</span>
+                        <x-heroicon-o-sparkles class="w-6 h-6" />
                     </div>
                     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
                         {{ __('pages.pricing.monthly_title') }}</h3>
@@ -592,20 +589,15 @@
                             class="font-body-sm text-body-sm text-on-surface-variant">{{ __('pages.pricing.per_month') }}</span>
                     </p>
                     <ul class="flex flex-col gap-3 mb-8 grow">
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_ideas') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.browse_ideas') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_investors') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.browse_investors') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.monthly_credits') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.monthly_credits') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.open_contact_posts') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.open_contact_posts') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.priority_support') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.priority_support') }}
                         </li>
                     </ul>
                     @guest
@@ -628,7 +620,7 @@
                     @endif
                     <div
                         class="w-11 h-11 rounded-xl bg-secondary-container text-on-secondary-fixed flex items-center justify-center shadow-sm mb-4">
-                        <span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+                        <x-heroicon-o-trophy class="w-6 h-6" />
                     </div>
                     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
                         {{ __('pages.pricing.yearly_title') }}</h3>
@@ -638,20 +630,15 @@
                             class="font-body-sm text-body-sm text-on-surface-variant">{{ __('pages.pricing.per_year') }}</span>
                     </p>
                     <ul class="flex flex-col gap-3 mb-8 grow">
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_ideas') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.browse_ideas') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.browse_investors') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.browse_investors') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.monthly_credits') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.monthly_credits') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.open_contact_posts') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.open_contact_posts') }}
                         </li>
-                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><span
-                                class="material-symbols-outlined text-[20px] text-primary shrink-0">check_circle</span>{{ __('pages.pricing.features.whatsapp_support') }}
+                        <li class="flex items-start gap-2.5 font-body-sm text-body-sm text-on-surface-variant"><x-heroicon-o-check-circle class="w-5 h-5 text-primary shrink-0" />{{ __('pages.pricing.features.whatsapp_support') }}
                         </li>
                     </ul>
                     @guest

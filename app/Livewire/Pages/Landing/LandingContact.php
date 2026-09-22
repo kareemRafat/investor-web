@@ -36,15 +36,16 @@ class LandingContact extends Component
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:20'],
+            'phone' => ['required', 'string', 'max:20', 'regex:/^\+?[0-9\s\-().]{7,20}$/'],
             'subject' => ['required', 'string', 'max:255'],
             'message' => ['required', 'string', 'min:10'],
         ];
     }
 
-    public function submit(): void
+    public function save(): void
     {
         $this->successMessage = null;
+        $this->resetValidation();
 
         $this->validate();
 
@@ -57,6 +58,7 @@ class LandingContact extends Component
         ]);
 
         $this->reset(['subject', 'message']);
+        $this->resetValidation();
 
         // Reactive property (not session flash): Livewire re-renders in the
         // same request, where flashed session data is not yet visible.
