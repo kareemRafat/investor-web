@@ -14,12 +14,7 @@
                 <p class="app-footer__about mb-4">
                     {{ __('header.footer.about_text') }}
                 </p>
-                <div class="d-flex gap-2">
-                    <a href="#" class="app-footer__social" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="app-footer__social" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="app-footer__social" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="app-footer__social" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                </div>
+                <x-social-links variant="app" />
             </div>
 
             <!-- Useful Links -->

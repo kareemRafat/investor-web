@@ -75,24 +75,8 @@
         <div
             class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="font-body-sm text-body-sm text-on-surface-variant">{{ __('landing.footer.copyright') }}</p>
-            <!-- Social Links -->
-            <div class="flex items-center gap-3">
-                <a aria-label="Twitter/X"
-                    class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors"
-                    href="#">
-                    <x-heroicon-o-share class="w-[18px] h-[18px]" />
-                </a>
-                <a aria-label="LinkedIn"
-                    class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors"
-                    href="#">
-                    <x-heroicon-o-briefcase class="w-[18px] h-[18px]" />
-                </a>
-                <a aria-label="Community"
-                    class="w-9 h-9 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors"
-                    href="#">
-                    <x-heroicon-o-globe-alt class="w-[18px] h-[18px]" />
-                </a>
-            </div>
+            <!-- Social Links (managed from admin panel, empty links are hidden) -->
+            <x-social-links variant="landing" />
         </div>
     </div>
 </footer>
